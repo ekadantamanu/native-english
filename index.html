@@ -1,306 +1,436 @@
+Output
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LinguaAI — English Mastery for Every Language</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>NativeEnglish — Master English from Your Language</title>
+<meta name="description" content="The only English learning app that explains everything in YOUR language. Grammar, speaking, writing and listening — mastered faster than any classroom.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --ink: #0f0e0c;
-    --paper: #faf9f6;
-    --cream: #f3f0e8;
-    --gold: #c9922a;
-    --gold-light: #f0d89a;
-    --teal: #1a7a6e;
-    --teal-light: #d0eeea;
-    --red: #c0392b;
-    --muted: #6b6860;
-    --border: rgba(15,14,12,0.12);
-    --shadow: 0 2px 12px rgba(15,14,12,0.08);
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--paper); color: var(--ink); min-height: 100vh; }
+:root {
+  --ink: #0a0908;
+  --paper: #faf8f4;
+  --cream: #f2ede3;
+  --gold: #b8860b;
+  --gold-light: #e8c84a;
+  --gold-pale: #fdf3c8;
+  --teal: #1a6b5e;
+  --teal-light: #cceae4;
+  --red: #b03a2e;
+  --muted: #6e6a62;
+  --border: rgba(10,9,8,0.1);
+  --shadow: 0 4px 24px rgba(10,9,8,0.08);
+  --radius: 14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh;overflow-x:hidden}
 
-  /* ── HEADER ── */
-  header {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 0 32px;
-    display: flex; align-items: center; justify-content: space-between;
-    height: 56px;
-    position: sticky; top: 0; z-index: 100;
-  }
-  .logo { font-family: 'Playfair Display', serif; font-size: 22px; letter-spacing: -0.5px; }
-  .logo span { color: var(--gold-light); }
-  .lang-selector-wrap { display: flex; align-items: center; gap: 10px; }
-  .lang-selector-wrap label { font-size: 12px; opacity: .6; }
-  #nativeLang {
-    background: rgba(255,255,255,0.1); color: var(--paper);
-    border: 1px solid rgba(255,255,255,0.2); border-radius: 6px;
-    padding: 5px 10px; font-family: 'DM Sans', sans-serif; font-size: 13px; cursor: pointer;
-  }
+/* HEADER */
+header{
+  background:var(--ink);
+  padding:0 32px;
+  height:60px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:sticky;
+  top:0;
+  z-index:200;
+  border-bottom:1px solid rgba(255,255,255,0.06)
+}
+.logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:24px;
+  font-weight:600;
+  color:#fff;
+  letter-spacing:-0.5px
+}
+.logo em{color:var(--gold-light);font-style:normal}
+.header-right{display:flex;align-items:center;gap:16px}
+.lang-wrap{display:flex;align-items:center;gap:8px}
+.lang-wrap label{font-size:12px;color:rgba(255,255,255,0.5)}
+#nativeLang{
+  background:rgba(255,255,255,0.08);
+  color:#fff;
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:8px;
+  padding:6px 12px;
+  font-family:'DM Sans',sans-serif;
+  font-size:13px;
+  cursor:pointer
+}
 
-  /* ── HERO ── */
-  .hero {
-    background: linear-gradient(135deg, var(--ink) 0%, #2a2720 100%);
-    color: var(--paper);
-    padding: 40px 32px 32px;
-    text-align: center;
-  }
-  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(28px,5vw,42px); line-height: 1.2; margin-bottom: 10px; }
-  .hero h1 em { color: var(--gold-light); font-style: normal; }
-  .hero p { font-size: 15px; opacity: .7; max-width: 480px; margin: 0 auto 20px; line-height: 1.6; }
-  .dna-btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--gold); color: var(--ink); font-family: 'DM Sans', sans-serif;
-    font-size: 14px; font-weight: 600; padding: 10px 22px; border-radius: 8px;
-    border: none; cursor: pointer; transition: transform .15s, background .15s;
-  }
-  .dna-btn:hover { background: var(--gold-light); transform: translateY(-1px); }
+/* HERO */
+.hero{
+  background:var(--ink);
+  color:#fff;
+  padding:56px 32px 48px;
+  text-align:center;
+  position:relative;
+  overflow:hidden
+}
+.hero::before{
+  content:'';
+  position:absolute;
+  top:-100px;
+  left:50%;
+  transform:translateX(-50%);
+  width:600px;
+  height:600px;
+  background:radial-gradient(circle,rgba(184,134,11,0.15) 0%,transparent 70%);
+  pointer-events:none
+}
+.hero-badge{
+  display:inline-block;
+  background:rgba(232,200,74,0.12);
+  color:var(--gold-light);
+  border:1px solid rgba(232,200,74,0.25);
+  border-radius:20px;
+  padding:5px 16px;
+  font-size:12px;
+  font-weight:500;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  margin-bottom:20px
+}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(32px,6vw,58px);
+  font-weight:600;
+  line-height:1.1;
+  margin-bottom:14px;
+  letter-spacing:-1px
+}
+.hero h1 em{color:var(--gold-light);font-style:normal}
+.hero p{
+  font-size:16px;
+  color:rgba(255,255,255,0.6);
+  max-width:520px;
+  margin:0 auto 28px;
+  line-height:1.7
+}
+.dna-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:var(--gold);
+  color:#fff;
+  border:none;
+  border-radius:10px;
+  padding:12px 24px;
+  font-family:'DM Sans',sans-serif;
+  font-size:14px;
+  font-weight:600;
+  cursor:pointer;
+  transition:all .2s;
+  letter-spacing:.02em
+}
+.dna-btn:hover{background:var(--gold-light);color:var(--ink);transform:translateY(-2px);box-shadow:0 8px 24px rgba(184,134,11,0.3)}
 
-  /* ── TABS ── */
-  .tabs {
-    display: flex; gap: 0; background: var(--cream);
-    border-bottom: 1px solid var(--border);
-    padding: 0 24px; overflow-x: auto;
-  }
-  .tab-btn {
-    background: none; border: none; border-bottom: 3px solid transparent;
-    padding: 14px 16px; font-family: 'DM Sans', sans-serif; font-size: 13px;
-    font-weight: 500; color: var(--muted); cursor: pointer; white-space: nowrap;
-    transition: color .15s, border-color .15s;
-  }
-  .tab-btn.active { color: var(--ink); border-bottom-color: var(--gold); }
-  .tab-btn:hover:not(.active) { color: var(--ink); }
+/* TABS */
+.tabs{
+  display:flex;
+  background:var(--cream);
+  border-bottom:1px solid var(--border);
+  padding:0 24px;
+  overflow-x:auto;
+  gap:0
+}
+.tab-btn{
+  background:none;
+  border:none;
+  border-bottom:3px solid transparent;
+  padding:15px 18px;
+  font-family:'DM Sans',sans-serif;
+  font-size:13px;
+  font-weight:500;
+  color:var(--muted);
+  cursor:pointer;
+  white-space:nowrap;
+  transition:all .15s
+}
+.tab-btn.active{color:var(--ink);border-bottom-color:var(--gold)}
+.tab-btn:hover:not(.active){color:var(--ink)}
 
-  /* ── MAIN LAYOUT ── */
-  .main { display: grid; grid-template-columns: 1fr 320px; gap: 0; min-height: calc(100vh - 160px); }
-  @media(max-width:768px){ .main { grid-template-columns: 1fr; } }
+/* MAIN */
+.main{display:grid;grid-template-columns:1fr 300px;min-height:calc(100vh - 160px)}
+@media(max-width:768px){.main{grid-template-columns:1fr}}
 
-  /* ── CHAT AREA ── */
-  .chat-panel { display: flex; flex-direction: column; height: calc(100vh - 160px); }
-  .tab-content { display: none; flex-direction: column; flex: 1; }
-  .tab-content.active { display: flex; }
+/* CHAT PANEL */
+.chat-panel{display:flex;flex-direction:column;height:calc(100vh - 160px)}
+.tab-content{display:none;flex-direction:column;flex:1;overflow:hidden}
+.tab-content.active{display:flex}
 
-  .messages {
-    flex: 1; overflow-y: auto; padding: 20px 24px;
-    display: flex; flex-direction: column; gap: 16px;
-  }
-  .msg { display: flex; gap: 10px; max-width: 90%; }
-  .msg.user { flex-direction: row-reverse; align-self: flex-end; }
-  .msg-bubble {
-    padding: 12px 16px; border-radius: 14px; font-size: 14px; line-height: 1.6;
-    max-width: 100%;
-  }
-  .msg.ai .msg-bubble { background: var(--cream); border-radius: 4px 14px 14px 14px; }
-  .msg.user .msg-bubble { background: var(--ink); color: var(--paper); border-radius: 14px 4px 14px 14px; }
-  .msg-avatar {
-    width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center; font-size: 14px;
-    font-family: 'Playfair Display', serif; font-weight: 600;
-  }
-  .msg.ai .msg-avatar { background: var(--ink); color: var(--gold-light); }
-  .msg.user .msg-avatar { background: var(--teal); color: white; font-size: 11px; font-family: 'DM Sans', sans-serif; }
+.messages{
+  flex:1;
+  overflow-y:auto;
+  padding:24px;
+  display:flex;
+  flex-direction:column;
+  gap:18px
+}
+.msg{display:flex;gap:12px;max-width:88%}
+.msg.user{flex-direction:row-reverse;align-self:flex-end}
+.msg-avatar{
+  width:34px;height:34px;border-radius:50%;
+  flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600
+}
+.msg.ai .msg-avatar{background:var(--ink);color:var(--gold-light)}
+.msg.user .msg-avatar{background:var(--teal);color:#fff;font-family:'DM Sans',sans-serif;font-size:11px}
+.msg-bubble{
+  padding:14px 18px;
+  border-radius:var(--radius);
+  font-size:14px;
+  line-height:1.7
+}
+.msg.ai .msg-bubble{background:var(--cream);border-radius:4px 14px 14px 14px}
+.msg.user .msg-bubble{background:var(--ink);color:#fff;border-radius:14px 4px 14px 14px}
+.bilingual{
+  margin-top:10px;
+  padding:10px 14px;
+  background:rgba(184,134,11,0.07);
+  border-left:3px solid var(--gold);
+  border-radius:0 8px 8px 0;
+  font-size:13px;
+  color:var(--muted);
+  font-style:italic
+}
+.correction{
+  margin-top:8px;padding:10px 14px;
+  background:rgba(176,58,46,0.05);
+  border-left:3px solid var(--red);
+  border-radius:0 8px 8px 0;font-size:13px
+}
+.correction-label{font-size:11px;font-weight:600;color:var(--red);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
 
-  .bilingual { margin-top: 8px; padding: 8px 12px; background: rgba(201,146,42,0.08); border-left: 3px solid var(--gold); border-radius: 0 6px 6px 0; font-size: 13px; color: var(--muted); font-style: italic; }
-  .correction-box { margin-top: 8px; padding: 10px 12px; background: rgba(192,57,43,0.06); border-left: 3px solid var(--red); border-radius: 0 6px 6px 0; font-size: 13px; }
-  .correction-box .corr-label { font-size: 11px; font-weight: 600; color: var(--red); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 4px; }
-  .suggestion-box { margin-top: 8px; padding: 10px 12px; background: var(--teal-light); border-left: 3px solid var(--teal); border-radius: 0 6px 6px 0; font-size: 13px; }
-  .suggestion-box .sug-label { font-size: 11px; font-weight: 600; color: var(--teal); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 4px; }
-  .word-pill {
-    display: inline-block; background: var(--gold-light); color: var(--ink);
-    padding: 1px 8px; border-radius: 12px; font-size: 12px; font-weight: 500;
-    cursor: pointer; margin: 2px; transition: background .12s;
-  }
-  .word-pill:hover { background: var(--gold); }
+/* INPUT */
+.input-bar{
+  padding:16px 20px;
+  border-top:1px solid var(--border);
+  background:var(--paper);
+  display:flex;flex-direction:column;gap:10px
+}
+.input-hints{display:flex;gap:6px;flex-wrap:wrap}
+.hint-chip{
+  background:var(--cream);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:5px 12px;
+  font-size:12px;
+  color:var(--muted);
+  cursor:pointer;
+  transition:all .12s;
+  font-family:'DM Sans',sans-serif
+}
+.hint-chip:hover{background:var(--gold-pale);color:var(--ink);border-color:var(--gold)}
+.input-row{display:flex;gap:8px;align-items:flex-end}
+#userInput{
+  flex:1;border:1px solid var(--border);border-radius:10px;
+  padding:11px 15px;font-family:'DM Sans',sans-serif;font-size:14px;
+  background:var(--cream);resize:none;min-height:46px;max-height:120px;
+  line-height:1.5;color:var(--ink);transition:border-color .15s
+}
+#userInput:focus{outline:none;border-color:var(--gold)}
+.send-btn,.mic-btn{
+  width:46px;height:46px;border-radius:10px;border:none;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:18px;transition:all .12s
+}
+.send-btn{background:var(--ink);color:#fff}
+.send-btn:hover{background:var(--teal);transform:scale(1.05)}
+.mic-btn{background:var(--cream);color:var(--ink);border:1px solid var(--border)}
+.mic-btn.recording{background:var(--red);color:#fff;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
 
-  /* ── INPUT BAR ── */
-  .input-bar {
-    padding: 14px 20px; border-top: 1px solid var(--border);
-    background: var(--paper); display: flex; flex-direction: column; gap: 10px;
-  }
-  .input-row { display: flex; gap: 8px; align-items: flex-end; }
-  #userInput {
-    flex: 1; border: 1px solid var(--border); border-radius: 10px;
-    padding: 10px 14px; font-family: 'DM Sans', sans-serif; font-size: 14px;
-    background: var(--cream); resize: none; min-height: 44px; max-height: 120px;
-    line-height: 1.5; color: var(--ink); transition: border-color .15s;
-  }
-  #userInput:focus { outline: none; border-color: var(--gold); }
-  .send-btn, .mic-btn {
-    width: 44px; height: 44px; border-radius: 10px; border: none; cursor: pointer;
-    display: flex; align-items: center; justify-content: center; font-size: 18px;
-    transition: transform .12s, background .15s;
-  }
-  .send-btn { background: var(--ink); color: var(--paper); }
-  .send-btn:hover { background: var(--teal); transform: scale(1.05); }
-  .mic-btn { background: var(--cream); color: var(--ink); border: 1px solid var(--border); }
-  .mic-btn.recording { background: var(--red); color: white; animation: pulse 1s infinite; }
-  @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
-  .input-hints { display: flex; gap: 6px; flex-wrap: wrap; }
-  .hint-chip {
-    background: var(--cream); border: 1px solid var(--border); border-radius: 20px;
-    padding: 4px 11px; font-size: 12px; color: var(--muted); cursor: pointer;
-    transition: background .12s, color .12s;
-  }
-  .hint-chip:hover { background: var(--gold-light); color: var(--ink); border-color: var(--gold); }
+/* SPEAKING TAB */
+#tab-speaking{align-items:center;justify-content:center;padding:32px 24px;gap:20px}
+.speak-topic{max-width:480px;text-align:center}
+.speak-topic h3{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;margin-bottom:8px}
+.speak-topic p{font-size:14px;color:var(--muted)}
+.speak-orb{
+  width:120px;height:120px;border-radius:50%;
+  background:var(--ink);display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:42px;transition:all .2s
+}
+.speak-orb:hover{transform:scale(1.05)}
+.speak-orb.listening{background:var(--red);animation:orbPulse 1.2s infinite}
+.speak-orb.processing{background:var(--teal)}
+@keyframes orbPulse{0%,100%{box-shadow:0 0 0 0 rgba(176,58,46,.4)}50%{box-shadow:0 0 0 20px rgba(176,58,46,0)}}
+.speak-status{font-size:16px;font-weight:500}
+.speak-transcript{max-width:480px;text-align:center;font-size:15px;line-height:1.7;color:var(--muted);min-height:60px}
+.speak-feedback{max-width:480px;width:100%;background:var(--cream);border-radius:var(--radius);padding:18px 22px}
+.speak-feedback-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--teal);margin-bottom:10px}
 
-  /* ── SIDEBAR ── */
-  .sidebar {
-    border-left: 1px solid var(--border); background: var(--cream);
-    display: flex; flex-direction: column; height: calc(100vh - 160px); overflow-y: auto;
-  }
-  .sidebar-section { padding: 16px; border-bottom: 1px solid var(--border); }
-  .sidebar-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); margin-bottom: 10px; }
+/* GRAMMAR TAB */
+#tab-grammar{flex-direction:column;overflow-y:auto;padding:24px;gap:14px}
+#grammarMessages{display:flex;flex-direction:column;gap:14px;flex:1}
 
-  /* DNA panel */
-  .dna-score { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
-  .dna-ring { width: 54px; height: 54px; position: relative; }
-  .dna-ring svg { transform: rotate(-90deg); }
-  .dna-ring-label { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; }
-  .skill-bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
-  .skill-name { font-size: 12px; color: var(--muted); width: 72px; flex-shrink: 0; }
-  .skill-bar { flex: 1; height: 5px; background: rgba(15,14,12,0.1); border-radius: 3px; overflow: hidden; }
-  .skill-fill { height: 100%; border-radius: 3px; background: var(--gold); transition: width 1s ease; }
-  .skill-fill.good { background: var(--teal); }
-  .skill-fill.weak { background: var(--red); }
-  .skill-pct { font-size: 11px; color: var(--muted); width: 28px; text-align: right; }
+/* PREPOSITIONS TAB */
+#tab-prepositions{flex-direction:column;overflow-y:auto;padding:24px;gap:14px}
+.prep-grid{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:8px}
+.prep-chip{
+  background:var(--paper);border:1px solid var(--border);border-radius:20px;
+  padding:5px 13px;font-size:13px;font-weight:500;cursor:pointer;transition:all .12s
+}
+.prep-chip:hover,.prep-chip.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+#prepMessages{display:flex;flex-direction:column;gap:14px}
 
-  /* Word of the moment */
-  .word-card { background: var(--ink); color: var(--paper); border-radius: 10px; padding: 14px; }
-  .wc-word { font-family: 'Playfair Display', serif; font-size: 20px; margin-bottom: 2px; }
-  .wc-phonetic { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--gold-light); margin-bottom: 6px; }
-  .wc-def { font-size: 12px; line-height: 1.5; opacity: .8; margin-bottom: 8px; }
-  .wc-example { font-size: 12px; font-style: italic; opacity: .6; border-left: 2px solid var(--gold); padding-left: 8px; }
-  .wc-native { margin-top: 8px; font-size: 12px; color: var(--gold-light); }
+/* LISTENING TAB */
+#tab-listening{flex-direction:column;overflow-y:auto;padding:24px;gap:16px}
+.listen-card{background:var(--cream);border-radius:var(--radius);padding:20px;border:1px solid var(--border)}
+.listen-card h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;margin-bottom:8px}
+.listen-card p{font-size:14px;color:var(--muted);line-height:1.65;margin-bottom:14px}
+.listen-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--ink);color:#fff;border:none;border-radius:8px;
+  padding:9px 18px;font-family:'DM Sans',sans-serif;font-size:13px;
+  font-weight:500;cursor:pointer;transition:all .15s
+}
+.listen-btn:hover{background:var(--teal)}
+.listen-options{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:12px}
+.listen-option{
+  background:var(--paper);border:1px solid var(--border);border-radius:8px;
+  padding:10px 14px;font-size:13px;cursor:pointer;transition:all .12s;text-align:left
+}
+.listen-option:hover{border-color:var(--gold);background:var(--gold-pale)}
+.listen-option.correct{background:#d1fae5;border-color:#059669;color:#065f46}
+.listen-option.wrong{background:#fee2e2;border-color:#dc2626;color:#991b1b}
+#listenMessages{display:flex;flex-direction:column;gap:14px;margin-top:8px}
 
-  /* Topics */
-  .topic-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-  .topic-btn {
-    background: var(--paper); border: 1px solid var(--border); border-radius: 8px;
-    padding: 8px 10px; font-size: 12px; cursor: pointer; text-align: center;
-    color: var(--ink); transition: background .12s, border-color .12s;
-  }
-  .topic-btn:hover { background: var(--gold-light); border-color: var(--gold); }
+/* WRITING TAB */
+#tab-writing{flex-direction:column;padding:24px;gap:14px;overflow-y:auto}
+#writingInput{
+  width:100%;min-height:100px;border:1px solid var(--border);border-radius:10px;
+  padding:14px 16px;font-family:'DM Sans',sans-serif;font-size:14px;
+  background:var(--cream);resize:vertical;color:var(--ink);line-height:1.6
+}
+#writingOutput{display:flex;flex-direction:column;gap:14px}
 
-  /* Grammar ref */
-  .grammar-item { margin-bottom: 10px; }
-  .grammar-rule { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
-  .grammar-ex { font-size: 12px; color: var(--muted); font-style: italic; }
-  .grammar-code { font-family: 'DM Mono', monospace; font-size: 11px; background: var(--paper); padding: 1px 5px; border-radius: 3px; }
+/* PROGRESS TAB */
+#tab-diary{flex-direction:column;padding:24px;gap:16px;overflow-y:auto}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.stat-card{background:var(--cream);border-radius:var(--radius);padding:16px;text-align:center}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:600;color:var(--ink)}
+.stat-label{font-size:12px;color:var(--muted);margin-top:2px}
+.diary-entry{display:flex;gap:10px;margin-bottom:8px;align-items:flex-start}
+.diary-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:5px}
+.diary-text{font-size:13px;line-height:1.5}
+.diary-time{font-size:11px;color:var(--muted)}
 
-  /* Speaking mode overlay */
-  #speakingPanel {
-    display: none; flex-direction: column; flex: 1;
-    padding: 24px; align-items: center; justify-content: center; gap: 20px;
-    background: var(--paper);
-  }
-  #speakingPanel.active { display: flex; }
-  .speak-orb {
-    width: 120px; height: 120px; border-radius: 50%;
-    background: var(--ink); display: flex; align-items: center; justify-content: center;
-    cursor: pointer; position: relative; transition: transform .2s;
-  }
-  .speak-orb:hover { transform: scale(1.04); }
-  .speak-orb.listening { background: var(--red); animation: orbPulse 1.2s infinite; }
-  .speak-orb.processing { background: var(--teal); }
-  @keyframes orbPulse {
-    0%,100%{ box-shadow: 0 0 0 0 rgba(192,57,43,.4); }
-    50%{ box-shadow: 0 0 0 20px rgba(192,57,43,0); }
-  }
-  .speak-orb-icon { font-size: 40px; }
-  .speak-status { font-size: 16px; font-weight: 500; color: var(--ink); }
-  .speak-transcript { max-width: 500px; text-align: center; font-size: 15px; line-height: 1.7; color: var(--muted); min-height: 60px; }
-  .speak-feedback {
-    max-width: 500px; width: 100%;
-    background: var(--cream); border-radius: 12px; padding: 16px 20px;
-  }
-  .speak-feedback-title { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--teal); margin-bottom: 8px; }
-  .speak-topic-prompt { max-width: 500px; text-align: center; }
-  .speak-topic-prompt h3 { font-family: 'Playfair Display', serif; font-size: 20px; margin-bottom: 6px; }
-  .speak-topic-prompt p { font-size: 14px; color: var(--muted); }
+/* SIDEBAR */
+.sidebar{
+  border-left:1px solid var(--border);
+  background:var(--cream);
+  height:calc(100vh - 160px);
+  overflow-y:auto
+}
+.sidebar-section{padding:18px;border-bottom:1px solid var(--border)}
+.sidebar-title{
+  font-size:11px;font-weight:600;text-transform:uppercase;
+  letter-spacing:.08em;color:var(--muted);margin-bottom:12px
+}
 
-  /* Preposition explorer */
-  .prep-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
-  .prep-chip {
-    background: var(--paper); border: 1px solid var(--border); border-radius: 20px;
-    padding: 5px 12px; font-size: 13px; font-weight: 500; cursor: pointer;
-    transition: all .12s;
-  }
-  .prep-chip:hover, .prep-chip.selected { background: var(--ink); color: var(--paper); }
-  .prep-detail { background: var(--cream); border-radius: 10px; padding: 14px; font-size: 13px; line-height: 1.7; display: none; }
-  .prep-detail.show { display: block; }
-  .prep-detail h4 { font-family: 'Playfair Display', serif; font-size: 17px; margin-bottom: 6px; }
-  .prep-ex { background: var(--paper); border-radius: 6px; padding: 8px 10px; margin-top: 8px; font-style: italic; color: var(--muted); }
+/* DNA */
+.dna-wrap{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.dna-ring{width:58px;height:58px;position:relative}
+.dna-ring svg{transform:rotate(-90deg)}
+.dna-ring-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}
+.skill-row{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.skill-name{font-size:12px;color:var(--muted);width:76px;flex-shrink:0}
+.skill-bar{flex:1;height:5px;background:rgba(10,9,8,0.08);border-radius:3px;overflow:hidden}
+.skill-fill{height:100%;border-radius:3px;background:var(--gold);transition:width 1.2s ease}
+.skill-fill.good{background:var(--teal)}
+.skill-fill.weak{background:var(--red)}
+.skill-pct{font-size:11px;color:var(--muted);width:30px;text-align:right}
 
-  /* Progress diary */
-  .diary-entry { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
-  .diary-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 5px; }
-  .diary-text { font-size: 13px; line-height: 1.5; }
-  .diary-time { font-size: 11px; color: var(--muted); }
+/* WORD CARD */
+.word-card{background:var(--ink);color:#fff;border-radius:var(--radius);padding:16px}
+.wc-word{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;margin-bottom:2px}
+.wc-phonetic{font-family:'DM Mono',monospace;font-size:12px;color:var(--gold-light);margin-bottom:8px}
+.wc-def{font-size:13px;line-height:1.5;opacity:.8;margin-bottom:8px}
+.wc-example{font-size:12px;font-style:italic;opacity:.6;border-left:2px solid var(--gold);padding-left:8px;margin-bottom:8px}
+.wc-native{font-size:12px;color:var(--gold-light)}
 
-  /* Loading dots */
-  .typing-dots { display: inline-flex; gap: 4px; align-items: center; padding: 4px 0; }
-  .typing-dots span { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); animation: dotBounce 1.2s infinite; }
-  .typing-dots span:nth-child(2) { animation-delay: .2s; }
-  .typing-dots span:nth-child(3) { animation-delay: .4s; }
-  @keyframes dotBounce { 0%,80%,100%{transform:scale(.8);opacity:.5} 40%{transform:scale(1.2);opacity:1} }
+/* TOPICS */
+.topic-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.topic-btn{
+  background:var(--paper);border:1px solid var(--border);border-radius:9px;
+  padding:9px 10px;font-size:12px;cursor:pointer;text-align:center;
+  color:var(--ink);transition:all .12s;font-family:'DM Sans',sans-serif
+}
+.topic-btn:hover{background:var(--gold-pale);border-color:var(--gold)}
 
-  /* Utility */
-  .flex-center { display: flex; align-items: center; justify-content: center; }
-  select, button { font-family: 'DM Sans', sans-serif; }
-  ::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+/* TYPING */
+.typing-dots{display:inline-flex;gap:4px;align-items:center;padding:4px 0}
+.typing-dots span{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:dotBounce 1.2s infinite}
+.typing-dots span:nth-child(2){animation-delay:.2s}
+.typing-dots span:nth-child(3){animation-delay:.4s}
+@keyframes dotBounce{0%,80%,100%{transform:scale(.8);opacity:.5}40%{transform:scale(1.2);opacity:1}}
+
+/* UTILITY */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+select,button{font-family:'DM Sans',sans-serif}
+.section-desc{font-size:13px;color:var(--muted);margin-bottom:8px}
 </style>
 </head>
 <body>
 
 <header>
-  <div class="logo">Lingua<span>AI</span></div>
-  <div class="lang-selector-wrap">
-    <label>My language:</label>
-    <select id="nativeLang" onchange="setNativeLang(this.value)">
-      <option value="Spanish">🇪🇸 Spanish</option>
-      <option value="Russian">🇷🇺 Russian</option>
-      <option value="Arabic">🇸🇦 Arabic</option>
-      <option value="French">🇫🇷 French</option>
-      <option value="Portuguese">🇧🇷 Portuguese</option>
-      <option value="Hindi">🇮🇳 Hindi</option>
-      <option value="Chinese">🇨🇳 Chinese</option>
-      <option value="Japanese">🇯🇵 Japanese</option>
-      <option value="German">🇩🇪 German</option>
-      <option value="Turkish">🇹🇷 Turkish</option>
-    </select>
+  <div class="logo">Native<em>English</em></div>
+  <div class="header-right">
+    <div class="lang-wrap">
+      <label>My language:</label>
+      <select id="nativeLang" onchange="setNativeLang(this.value)">
+        <option value="Spanish">🇪🇸 Spanish</option>
+        <option value="Russian">🇷🇺 Russian</option>
+        <option value="Arabic">🇸🇦 Arabic</option>
+        <option value="French">🇫🇷 French</option>
+        <option value="Portuguese">🇧🇷 Portuguese</option>
+        <option value="Hindi">🇮🇳 Hindi</option>
+        <option value="Chinese">🇨🇳 Chinese</option>
+        <option value="Japanese">🇯🇵 Japanese</option>
+        <option value="German">🇩🇪 German</option>
+        <option value="Turkish">🇹🇷 Turkish</option>
+        <option value="Italian">🇮🇹 Italian</option>
+        <option value="Korean">🇰🇷 Korean</option>
+      </select>
+    </div>
   </div>
 </header>
 
 <div class="hero">
+  <div class="hero-badge">✦ Free · No sign-up needed</div>
   <h1>Master English from <em>your</em> language</h1>
-  <p>Grammar · Speaking · Writing · Prepositions · Pronunciation — all explained in English and your native language</p>
+  <p>Grammar · Speaking · Writing · Listening — all explained in English and your native language so nothing is ever confusing</p>
   <button class="dna-btn" onclick="runDNATest()">🧬 Take your English DNA Test</button>
 </div>
 
 <div class="tabs">
-  <button class="tab-btn active" onclick="switchTab('chat', this)">💬 AI Tutor</button>
-  <button class="tab-btn" onclick="switchTab('speaking', this)">🎙️ Speaking Coach</button>
-  <button class="tab-btn" onclick="switchTab('grammar', this)">📖 Grammar</button>
-  <button class="tab-btn" onclick="switchTab('prepositions', this)">🔗 Prepositions</button>
-  <button class="tab-btn" onclick="switchTab('writing', this)">✍️ Write Like a Native</button>
-  <button class="tab-btn" onclick="switchTab('diary', this)">📊 My Progress</button>
+  <button class="tab-btn active" onclick="switchTab('chat',this)">💬 Tutor</button>
+  <button class="tab-btn" onclick="switchTab('speaking',this)">🎙️ Speaking</button>
+  <button class="tab-btn" onclick="switchTab('grammar',this)">📖 Grammar</button>
+  <button class="tab-btn" onclick="switchTab('prepositions',this)">🔗 Prepositions</button>
+  <button class="tab-btn" onclick="switchTab('listening',this)">🎧 Listening</button>
+  <button class="tab-btn" onclick="switchTab('writing',this)">✍️ Writing</button>
+  <button class="tab-btn" onclick="switchTab('diary',this)">📊 Progress</button>
 </div>
 
 <div class="main">
-  <!-- LEFT: Tab content panels -->
   <div class="chat-panel">
 
-    <!-- CHAT TAB -->
+    <!-- CHAT -->
     <div id="tab-chat" class="tab-content active">
       <div class="messages" id="chatMessages">
         <div class="msg ai">
-          <div class="msg-avatar">L</div>
+          <div class="msg-avatar">N</div>
           <div>
-            <div class="msg-bubble" id="welcomeMsg">
-              Hello! I'm your personal English tutor. I can teach you grammar, help you speak naturally, explain vocabulary — and explain everything in <strong>English and your native language</strong> so nothing is confusing.<br><br>
+            <div class="msg-bubble">
+              Welcome to <strong>NativeEnglish</strong>! I'm your personal English tutor.<br><br>
+              I teach grammar, vocabulary, speaking and writing — and explain everything in <strong>English and your native language</strong> so you understand completely.<br><br>
               What would you like to learn today?
             </div>
             <div class="bilingual" id="welcomeTranslation">Loading translation...</div>
@@ -309,11 +439,11 @@
       </div>
       <div class="input-bar">
         <div class="input-hints">
-          <span class="hint-chip" onclick="sendHint('Correct my English and explain my mistakes')">Fix my mistakes</span>
-          <span class="hint-chip" onclick="sendHint('Explain when to use present perfect vs simple past')">Present perfect</span>
-          <span class="hint-chip" onclick="sendHint('Give me 5 common English idioms with examples')">Idioms</span>
-          <span class="hint-chip" onclick="sendHint('Practice a job interview conversation with me')">Job interview</span>
-          <span class="hint-chip" onclick="sendHint('Teach me phrasal verbs for daily life')">Phrasal verbs</span>
+          <span class="hint-chip" onclick="sendHint('Correct my English and explain my mistakes in detail')">Fix my mistakes</span>
+          <span class="hint-chip" onclick="sendHint('Explain present perfect vs simple past with examples')">Present perfect</span>
+          <span class="hint-chip" onclick="sendHint('Teach me 5 useful English idioms with examples')">Idioms</span>
+          <span class="hint-chip" onclick="sendHint('Practice a job interview conversation with me in English')">Job interview</span>
+          <span class="hint-chip" onclick="sendHint('Explain English phrasal verbs for daily life')">Phrasal verbs</span>
         </div>
         <div class="input-row">
           <textarea id="userInput" placeholder="Type in English or your language… ask anything!" rows="1"
@@ -324,44 +454,49 @@
       </div>
     </div>
 
-    <!-- SPEAKING TAB -->
-    <div id="tab-speaking" class="tab-content" style="align-items:center;justify-content:flex-start;padding-top:24px;">
-      <div id="speakingPanel" class="active">
-        <div class="speak-topic-prompt">
-          <h3 id="speakTopic">Talk about your daily routine</h3>
-          <p id="speakTopicNative">Speak for 30–60 seconds. I'll give you instant feedback.</p>
-        </div>
-        <div class="speak-orb" id="speakOrb" onclick="toggleSpeaking()">
-          <div class="speak-orb-icon" id="orbIcon">🎙️</div>
-        </div>
-        <div class="speak-status" id="speakStatus">Tap to start speaking</div>
-        <div class="speak-transcript" id="speakTranscript"></div>
-        <div class="speak-feedback" id="speakFeedback" style="display:none">
-          <div class="speak-feedback-title">AI Feedback</div>
-          <div id="speakFeedbackText"></div>
-        </div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:8px">
-          <button class="hint-chip" onclick="newSpeakingTopic('Daily life')">🏠 Daily life</button>
-          <button class="hint-chip" onclick="newSpeakingTopic('Travel')">✈️ Travel</button>
-          <button class="hint-chip" onclick="newSpeakingTopic('Work')">💼 Work</button>
-          <button class="hint-chip" onclick="newSpeakingTopic('Opinion')">💭 Opinion</button>
-          <button class="hint-chip" onclick="newSpeakingTopic('Story')">📖 Tell a story</button>
-          <button class="hint-chip" onclick="newSpeakingTopic('Debate')">🗣️ Debate</button>
-        </div>
+    <!-- SPEAKING -->
+    <div id="tab-speaking" class="tab-content" style="flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;gap:20px">
+      <div class="speak-topic">
+        <h3 id="speakTopic">Talk about your daily routine</h3>
+        <p id="speakTopicNative">Speak for 30–60 seconds. I'll give you instant feedback on fluency, grammar and vocabulary.</p>
+      </div>
+      <div class="speak-orb" id="speakOrb" onclick="toggleSpeaking()">
+        <span id="orbIcon">🎙️</span>
+      </div>
+      <div class="speak-status" id="speakStatus">Tap to start speaking</div>
+      <div class="speak-transcript" id="speakTranscript"></div>
+      <div class="speak-feedback" id="speakFeedback" style="display:none">
+        <div class="speak-feedback-title">Your feedback</div>
+        <div id="speakFeedbackText"></div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+        <button class="hint-chip" onclick="newSpeakTopic('Daily life')">🏠 Daily life</button>
+        <button class="hint-chip" onclick="newSpeakTopic('Travel')">✈️ Travel</button>
+        <button class="hint-chip" onclick="newSpeakTopic('Work')">💼 Work</button>
+        <button class="hint-chip" onclick="newSpeakTopic('Opinion')">💭 Opinion</button>
+        <button class="hint-chip" onclick="newSpeakTopic('Story')">📖 Story</button>
+        <button class="hint-chip" onclick="newSpeakTopic('Debate')">🗣️ Debate</button>
+        <button class="hint-chip" onclick="newSpeakTopic('Health')">🏥 Health</button>
+        <button class="hint-chip" onclick="newSpeakTopic('Technology')">💻 Tech</button>
       </div>
     </div>
 
-    <!-- GRAMMAR TAB -->
-    <div id="tab-grammar" class="tab-content" style="flex-direction:column;overflow-y:auto;padding:20px 24px;gap:14px;">
-      <div style="font-size:14px;color:var(--muted);margin-bottom:4px">Ask any grammar question — explained in English + your language</div>
-      <div id="grammarMessages" style="display:flex;flex-direction:column;gap:12px;flex:1"></div>
-      <div class="input-bar" style="padding:0;border:none">
+    <!-- GRAMMAR -->
+    <div id="tab-grammar" class="tab-content">
+      <div class="messages" id="grammarMessages" style="flex:1;overflow-y:auto;padding:24px;display:flex;flex-direction:column;gap:14px">
+        <div class="msg ai">
+          <div class="msg-avatar">N</div>
+          <div class="msg-bubble">Ask me any grammar question — I'll explain the rule, give examples, and explain it in your native language too. Use the quick buttons below or type your own question.</div>
+        </div>
+      </div>
+      <div class="input-bar">
         <div class="input-hints">
-          <span class="hint-chip" onclick="askGrammar('Explain the difference between a and an with examples')">a / an</span>
+          <span class="hint-chip" onclick="askGrammar('Explain articles a, an, the with examples')">Articles</span>
           <span class="hint-chip" onclick="askGrammar('When do I use will vs going to for future?')">will vs going to</span>
           <span class="hint-chip" onclick="askGrammar('Explain passive voice with 5 examples')">Passive voice</span>
           <span class="hint-chip" onclick="askGrammar('What are modal verbs and how do I use them?')">Modal verbs</span>
-          <span class="hint-chip" onclick="askGrammar('Explain conditional sentences types 1, 2 and 3')">Conditionals</span>
+          <span class="hint-chip" onclick="askGrammar('Explain all types of conditional sentences')">Conditionals</span>
+          <span class="hint-chip" onclick="askGrammar('Explain reported speech with examples')">Reported speech</span>
         </div>
         <div class="input-row">
           <textarea id="grammarInput" placeholder="Ask any grammar question…" rows="1"
@@ -371,69 +506,85 @@
       </div>
     </div>
 
-    <!-- PREPOSITIONS TAB -->
-    <div id="tab-prepositions" class="tab-content" style="flex-direction:column;overflow-y:auto;padding:20px 24px;gap:14px;">
-      <div style="font-size:14px;color:var(--muted)">Click any preposition to see full explanation + examples in your language</div>
-      <div class="prep-grid" id="prepGrid"></div>
-      <div class="prep-detail" id="prepDetail"></div>
-      <div style="margin-top:8px;font-size:13px;font-weight:500">Ask about complex prepositions:</div>
-      <div class="input-hints">
-        <span class="hint-chip" onclick="askPrep('in spite of')">in spite of</span>
-        <span class="hint-chip" onclick="askPrep('with regard to')">with regard to</span>
-        <span class="hint-chip" onclick="askPrep('by means of')">by means of</span>
-        <span class="hint-chip" onclick="askPrep('on account of')">on account of</span>
-        <span class="hint-chip" onclick="askPrep('as far as')">as far as</span>
-        <span class="hint-chip" onclick="askPrep('in addition to')">in addition to</span>
+    <!-- PREPOSITIONS -->
+    <div id="tab-prepositions" class="tab-content">
+      <div style="flex:1;overflow-y:auto;padding:24px;display:flex;flex-direction:column;gap:14px">
+        <p class="section-desc">Click any preposition for a full explanation with examples in your language</p>
+        <div class="prep-grid" id="prepGrid"></div>
+        <div style="font-size:13px;font-weight:500;margin-top:4px">Complex prepositions:</div>
+        <div class="input-hints">
+          <span class="hint-chip" onclick="askPrep('in spite of')">in spite of</span>
+          <span class="hint-chip" onclick="askPrep('with regard to')">with regard to</span>
+          <span class="hint-chip" onclick="askPrep('by means of')">by means of</span>
+          <span class="hint-chip" onclick="askPrep('on account of')">on account of</span>
+          <span class="hint-chip" onclick="askPrep('as far as')">as far as</span>
+          <span class="hint-chip" onclick="askPrep('in addition to')">in addition to</span>
+          <span class="hint-chip" onclick="askPrep('with respect to')">with respect to</span>
+          <span class="hint-chip" onclick="askPrep('in terms of')">in terms of</span>
+        </div>
+        <div id="prepMessages" style="display:flex;flex-direction:column;gap:14px"></div>
       </div>
-      <div id="prepMessages" style="display:flex;flex-direction:column;gap:12px"></div>
     </div>
 
-    <!-- WRITING TAB -->
-    <div id="tab-writing" class="tab-content" style="flex-direction:column;padding:20px 24px;gap:14px;overflow-y:auto;">
-      <div style="font-size:14px;color:var(--muted)">Paste any text — get it rewritten at B1, B2, and C1 level so you learn by comparison</div>
-      <textarea id="writingInput" style="width:100%;min-height:100px;border:1px solid var(--border);border-radius:10px;padding:12px 14px;font-family:'DM Sans',sans-serif;font-size:14px;background:var(--cream);resize:vertical;color:var(--ink)" placeholder="Paste your writing here, or type something you want to improve…"></textarea>
-      <div style="display:flex;gap:8px">
-        <button class="dna-btn" style="font-size:13px;padding:8px 16px" onclick="analyzeWriting()">✨ Analyze & Rewrite</button>
-        <button class="hint-chip" onclick="document.getElementById('writingInput').value='I go to market yesterday and buyed some vegetables for cook dinner.'">Use example text</button>
+    <!-- LISTENING -->
+    <div id="tab-listening" class="tab-content">
+      <div style="flex:1;overflow-y:auto;padding:24px;display:flex;flex-direction:column;gap:16px">
+        <p class="section-desc">Improve your listening comprehension — hear English sentences and answer questions</p>
+        <div class="listen-card" id="listenCard">
+          <h3 id="listenTitle">Ready to practice?</h3>
+          <p id="listenText">Click "Generate Exercise" to get a listening comprehension exercise tailored to your level.</p>
+          <button class="listen-btn" onclick="generateListenExercise()">🎧 Generate Exercise</button>
+        </div>
+        <div id="listenQuestion" style="display:none">
+          <div style="font-size:14px;font-weight:500;margin-bottom:10px" id="listenQ"></div>
+          <div class="listen-options" id="listenOptions"></div>
+        </div>
+        <div id="listenMessages" style="display:flex;flex-direction:column;gap:14px"></div>
       </div>
-      <div id="writingOutput" style="display:flex;flex-direction:column;gap:12px"></div>
     </div>
 
-    <!-- DIARY TAB -->
-    <div id="tab-diary" class="tab-content" style="flex-direction:column;padding:20px 24px;gap:16px;overflow-y:auto;">
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
-        <div style="background:var(--cream);border-radius:10px;padding:14px;text-align:center">
-          <div style="font-size:28px;font-weight:600;font-family:'Playfair Display',serif" id="diarySessions">0</div>
-          <div style="font-size:12px;color:var(--muted)">Sessions</div>
+    <!-- WRITING -->
+    <div id="tab-writing" class="tab-content">
+      <div style="flex:1;overflow-y:auto;padding:24px;display:flex;flex-direction:column;gap:14px">
+        <p class="section-desc">Paste any writing — get errors corrected and rewrites at B1, B2, C1 level</p>
+        <textarea id="writingInput" placeholder="Paste your writing here, or type something you want to improve…"></textarea>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="dna-btn" style="font-size:13px;padding:9px 18px" onclick="analyzeWriting()">✨ Analyze & Rewrite</button>
+          <button class="hint-chip" onclick="document.getElementById('writingInput').value='I go to market yesterday and buyed some vegetables for cook dinner.'">Use example</button>
+          <button class="hint-chip" onclick="document.getElementById('writingInput').value='My English is not very good but I try to improve it every days. I watching videos on YouTube for practice my listening.'">Use example 2</button>
         </div>
-        <div style="background:var(--cream);border-radius:10px;padding:14px;text-align:center">
-          <div style="font-size:28px;font-weight:600;font-family:'Playfair Display',serif" id="diaryWords">0</div>
-          <div style="font-size:12px;color:var(--muted)">Words learned</div>
-        </div>
-        <div style="background:var(--cream);border-radius:10px;padding:14px;text-align:center">
-          <div style="font-size:28px;font-weight:600;font-family:'Playfair Display',serif" id="diaryStreak">0</div>
-          <div style="font-size:12px;color:var(--muted)">Day streak</div>
-        </div>
+        <div id="writingOutput"></div>
       </div>
-      <div style="font-size:14px;font-weight:500">Recent corrections & learnings</div>
-      <div id="diaryList" style="display:flex;flex-direction:column;gap:8px"></div>
-      <button class="hint-chip" style="align-self:flex-start" onclick="generateStudyPlan()">📋 Generate my personalized study plan</button>
-      <div id="studyPlanOutput"></div>
     </div>
 
-  </div><!-- end chat-panel -->
+    <!-- PROGRESS -->
+    <div id="tab-diary" class="tab-content">
+      <div style="flex:1;overflow-y:auto;padding:24px;display:flex;flex-direction:column;gap:16px">
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-num" id="diarySessions">0</div><div class="stat-label">Sessions</div></div>
+          <div class="stat-card"><div class="stat-num" id="diaryWords">0</div><div class="stat-label">Words learned</div></div>
+          <div class="stat-card"><div class="stat-num" id="diaryStreak">0</div><div class="stat-label">Day streak</div></div>
+        </div>
+        <div style="font-size:14px;font-weight:500">Recent activity</div>
+        <div id="diaryList"></div>
+        <button class="hint-chip" style="align-self:flex-start" onclick="generateStudyPlan()">📋 Generate my 4-week study plan</button>
+        <div id="studyPlanOutput"></div>
+      </div>
+    </div>
 
-  <!-- RIGHT: Sidebar -->
+  </div>
+
+  <!-- SIDEBAR -->
   <div class="sidebar">
-    <!-- DNA Score -->
     <div class="sidebar-section">
       <div class="sidebar-title">Your English DNA</div>
-      <div class="dna-score">
+      <div class="dna-wrap">
         <div class="dna-ring">
-          <svg width="54" height="54" viewBox="0 0 54 54">
-            <circle cx="27" cy="27" r="22" fill="none" stroke="#e8e5de" stroke-width="5"/>
-            <circle cx="27" cy="27" r="22" fill="none" stroke="#c9922a" stroke-width="5"
-              stroke-dasharray="138" stroke-dashoffset="138" id="dnaCircle" style="transition:stroke-dashoffset 1.2s ease"/>
+          <svg width="58" height="58" viewBox="0 0 58 58">
+            <circle cx="29" cy="29" r="24" fill="none" stroke="#e8e3d8" stroke-width="5"/>
+            <circle cx="29" cy="29" r="24" fill="none" stroke="#b8860b" stroke-width="5"
+              stroke-dasharray="150.8" stroke-dashoffset="150.8" id="dnaCircle"
+              style="transition:stroke-dashoffset 1.2s ease"/>
           </svg>
           <div class="dna-ring-label" id="dnaScore">—</div>
         </div>
@@ -442,16 +593,16 @@
           <div style="font-size:12px;color:var(--muted)" id="dnaHint">to see your level</div>
         </div>
       </div>
-      <div class="skill-bar-row"><span class="skill-name" style="font-size:11px">Grammar</span><div class="skill-bar"><div class="skill-fill" id="sb-grammar" style="width:0%"></div></div><span class="skill-pct" id="sp-grammar">—</span></div>
-      <div class="skill-bar-row"><span class="skill-name" style="font-size:11px">Vocabulary</span><div class="skill-bar"><div class="skill-fill" id="sb-vocab" style="width:0%"></div></div><span class="skill-pct" id="sp-vocab">—</span></div>
-      <div class="skill-bar-row"><span class="skill-name" style="font-size:11px">Speaking</span><div class="skill-bar"><div class="skill-fill weak" id="sb-speaking" style="width:0%"></div></div><span class="skill-pct" id="sp-speaking">—</span></div>
-      <div class="skill-bar-row"><span class="skill-name" style="font-size:11px">Writing</span><div class="skill-bar"><div class="skill-fill good" id="sb-writing" style="width:0%"></div></div><span class="skill-pct" id="sp-writing">—</span></div>
+      <div class="skill-row"><span class="skill-name" style="font-size:11px">Grammar</span><div class="skill-bar"><div class="skill-fill" id="sb-grammar" style="width:0%"></div></div><span class="skill-pct" id="sp-grammar">—</span></div>
+      <div class="skill-row"><span class="skill-name" style="font-size:11px">Vocabulary</span><div class="skill-bar"><div class="skill-fill" id="sb-vocab" style="width:0%"></div></div><span class="skill-pct" id="sp-vocab">—</span></div>
+      <div class="skill-row"><span class="skill-name" style="font-size:11px">Speaking</span><div class="skill-bar"><div class="skill-fill weak" id="sb-speaking" style="width:0%"></div></div><span class="skill-pct" id="sp-speaking">—</span></div>
+      <div class="skill-row"><span class="skill-name" style="font-size:11px">Writing</span><div class="skill-bar"><div class="skill-fill good" id="sb-writing" style="width:0%"></div></div><span class="skill-pct" id="sp-writing">—</span></div>
+      <div class="skill-row"><span class="skill-name" style="font-size:11px">Listening</span><div class="skill-bar"><div class="skill-fill" id="sb-listening" style="width:0%"></div></div><span class="skill-pct" id="sp-listening">—</span></div>
     </div>
 
-    <!-- Word of the moment -->
     <div class="sidebar-section">
       <div class="sidebar-title">Word of the Moment</div>
-      <div class="word-card" id="wordCard">
+      <div class="word-card">
         <div class="wc-word" id="wcWord">Loading…</div>
         <div class="wc-phonetic" id="wcPhonetic"></div>
         <div class="wc-def" id="wcDef"></div>
@@ -461,25 +612,36 @@
       <button class="hint-chip" style="margin-top:8px;width:100%;text-align:center" onclick="loadNewWord()">New word ↻</button>
     </div>
 
-    <!-- Practice topics -->
     <div class="sidebar-section">
-      <div class="sidebar-title">Conversation Topics</div>
+      <div class="sidebar-title">Practice Topics</div>
       <div class="topic-grid">
-        <button class="topic-btn" onclick="startTopic('Health & body')">🏥 Health</button>
-        <button class="topic-btn" onclick="startTopic('Technology')">💻 Tech</button>
-        <button class="topic-btn" onclick="startTopic('Travel & tourism')">✈️ Travel</button>
-        <button class="topic-btn" onclick="startTopic('Food & cooking')">🍳 Food</button>
-        <button class="topic-btn" onclick="startTopic('Business & work')">💼 Work</button>
-        <button class="topic-btn" onclick="startTopic('Environment')">🌿 Nature</button>
-        <button class="topic-btn" onclick="startTopic('Family & relationships')">👨‍👩‍👧 Family</button>
-        <button class="topic-btn" onclick="startTopic('Current events & news')">📰 News</button>
+        <button class="topic-btn" onclick="startTopic('Health and medicine')">🏥 Health</button>
+        <button class="topic-btn" onclick="startTopic('Technology and the internet')">💻 Tech</button>
+        <button class="topic-btn" onclick="startTopic('Travel and tourism')">✈️ Travel</button>
+        <button class="topic-btn" onclick="startTopic('Food and cooking')">🍳 Food</button>
+        <button class="topic-btn" onclick="startTopic('Business and work')">💼 Work</button>
+        <button class="topic-btn" onclick="startTopic('Environment and nature')">🌿 Nature</button>
+        <button class="topic-btn" onclick="startTopic('Family and relationships')">👨‍👩‍👧 Family</button>
+        <button class="topic-btn" onclick="startTopic('Current events and news')">📰 News</button>
+        <button class="topic-btn" onclick="startTopic('Education and learning')">🎓 Education</button>
+        <button class="topic-btn" onclick="startTopic('Sports and fitness')">⚽ Sports</button>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">Quick Pronunciation</div>
+      <div style="display:flex;gap:8px;flex-direction:column">
+        <input id="pronInput" type="text" placeholder="Type a word to hear it…"
+          style="border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-family:'DM Sans',sans-serif;font-size:13px;background:var(--paper);color:var(--ink)"
+          onkeydown="if(event.key==='Enter')speakWord()">
+        <button class="hint-chip" style="text-align:center" onclick="speakWord()">🔊 Hear pronunciation</button>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-const API_URL = "https://exam-ai-agent.onrender.com/english/chat";
+const BACKEND = "https://exam-ai-agent.onrender.com/english/chat";
 let nativeLang = "Spanish";
 let sessionCount = 0;
 let wordsLearned = 0;
@@ -489,377 +651,416 @@ let recognition = null;
 let speakingActive = false;
 let currentSpeakTopic = "your daily routine";
 
-const PREPOSITIONS = ["at","in","on","to","for","with","by","from","of","about","over","under","through","between","among","during","before","after","since","until","within","without","against","along","around","behind","below","beside","beyond","despite","except","inside","near","off","outside","past","throughout","toward","up","upon"];
+const PREPOSITIONS = ["at","in","on","to","for","with","by","from","of","about","over","under","through","between","among","during","before","after","since","until","within","without","against","along","around","behind","below","beside","beyond","despite","except","inside","near","off","outside","past","throughout","toward","up","upon","across","into","onto","out of","up to","down to","next to","away from","apart from"];
 
-function setNativeLang(lang) {
+function setNativeLang(lang){
   nativeLang = lang;
   loadWelcomeTranslation();
   loadNewWord();
 }
 
-async function callClaude(messages, systemPrompt, maxTokens=800) {
-  try {
-    const res = await fetch(API_URL, {
+async function callBackend(userMessage, systemExtra="", maxTokens=800){
+  try{
+    const res = await fetch(BACKEND, {
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body: JSON.stringify({
-        model:"claude-sonnet-4-20250514",
-        max_tokens: maxTokens,
-        system: systemPrompt,
-        messages
+        messages:[{role:"user", content: userMessage}],
+        native_lang: nativeLang,
+        system: systemExtra || undefined,
+        max_tokens: maxTokens
       })
     });
+    if(!res.ok) throw new Error("Backend error");
     const d = await res.json();
     return d.content?.[0]?.text || "Sorry, I couldn't get a response. Please try again.";
-  } catch(e) {
-    return "Connection error. Please check your network.";
+  } catch(e){
+    return "Connection error. Please check your network and try again.";
   }
 }
 
-function systemPrompt(extra="") {
-  return `You are LinguaAI, an expert English language tutor. The student's native language is ${nativeLang}.
+function sysPrompt(extra=""){
+  return `You are NativeEnglish, an expert English language tutor. The student's native language is ${nativeLang}.
 ALWAYS structure your response with:
-1. The main explanation in clear English
-2. A "📌 In ${nativeLang}:" section with the key concept translated/explained in ${nativeLang}
-3. Concrete examples with the key parts highlighted
-Be warm, encouraging, and specific. Correct mistakes kindly. Never be vague.
-${extra}`;
+1. Main explanation in clear English
+2. A "📌 In ${nativeLang}:" section with the key concept explained in ${nativeLang}
+3. Concrete examples with key parts highlighted using **bold**
+Be warm, encouraging, and specific. Correct mistakes kindly. ${extra}`;
 }
 
-async function loadWelcomeTranslation() {
-  const t = await callClaude([{role:"user",content:`Translate this to ${nativeLang}: "Hello! I'm your personal English tutor. Ask me anything about English grammar, vocabulary, speaking, or writing."`}],
-    "Translate exactly as given to the target language. Return only the translation, nothing else.", 100);
-  document.getElementById('welcomeTranslation').textContent = t;
+async function loadWelcomeTranslation(){
+  const t = await callBackend(
+    `Translate this to ${nativeLang} exactly: "Welcome! I'm your personal English tutor. Ask me anything about English grammar, vocabulary, speaking or writing."`,
+    "Translate exactly as given. Return only the translation, nothing else."
+  );
+  const el = document.getElementById('welcomeTranslation');
+  if(el) el.textContent = t;
 }
 
-async function sendMessage() {
+async function sendMessage(){
   const input = document.getElementById('userInput');
   const text = input.value.trim();
-  if (!text) return;
+  if(!text) return;
   input.value = '';
-  appendMsg('chat', text, 'user');
+  appendUserMsg('chatMessages', text);
   sessionCount++;
   document.getElementById('diarySessions').textContent = sessionCount;
-  const typing = appendTyping('chat');
-  const reply = await callClaude(
-    [{role:"user",content:text}],
-    systemPrompt("Also: if the user made any grammar mistakes in their message, gently point them out in a 'Corrections:' section at the end. Suggest 2 follow-up questions they might want to ask.")
-  );
+  const typing = appendTyping('chatMessages');
+  const reply = await callBackend(text,
+    sysPrompt("If the user made grammar mistakes, gently point them out in a 'Corrections:' section. Suggest 2 follow-up questions they might want to ask."));
   typing.remove();
-  appendAIMsg('chat', reply);
+  appendAIMsg('chatMessages', reply);
   wordsLearned += 3;
   document.getElementById('diaryWords').textContent = wordsLearned;
-  addDiaryEntry(`Practiced: "${text.substring(0,40)}${text.length>40?'…':''}"`);
+  addDiaryEntry(`Practiced: "${text.substring(0,50)}${text.length>50?'…':''}"`);
 }
 
-function sendHint(text) {
+function sendHint(text){
   document.getElementById('userInput').value = text;
   sendMessage();
-  switchTab('chat', document.querySelector('.tab-btn'));
+  switchTab('chat', document.querySelectorAll('.tab-btn')[0]);
 }
 
-async function askGrammar(q) {
-  if(!q || !q.trim()) return;
+async function askGrammar(q){
+  if(!q||!q.trim()) return;
   const inp = document.getElementById('grammarInput');
-  if(inp) inp.value='';
-  const container = document.getElementById('grammarMessages');
-  const userEl = document.createElement('div');
-  userEl.className = 'msg user'; userEl.innerHTML = `<div class="msg-bubble">${q}</div>`;
-  container.appendChild(userEl);
-  const typing = document.createElement('div');
-  typing.className='msg ai'; typing.innerHTML=`<div class="msg-avatar">L</div><div class="msg-bubble"><div class="typing-dots"><span></span><span></span><span></span></div></div>`;
-  container.appendChild(typing); container.scrollTop=container.scrollHeight;
-  const reply = await callClaude([{role:"user",content:q}],
-    systemPrompt("Focus on grammar. Give the rule, 3+ examples, common mistakes, and the ${nativeLang} equivalent structure."));
+  if(inp) inp.value = '';
+  appendUserMsg('grammarMessages', q);
+  const typing = appendTyping('grammarMessages');
+  const reply = await callBackend(q,
+    sysPrompt(`Focus on grammar. Give: 1) The rule clearly 2) 3+ examples 3) Common mistakes by ${nativeLang} speakers 4) The equivalent structure in ${nativeLang}.`));
   typing.remove();
-  const aiEl = document.createElement('div');
-  aiEl.className='msg ai';
-  aiEl.innerHTML=`<div class="msg-avatar">L</div><div class="msg-bubble">${formatReply(reply)}</div>`;
-  container.appendChild(aiEl); container.scrollTop=container.scrollHeight;
+  appendAIMsg('grammarMessages', reply);
 }
 
-async function askPrep(prep) {
+async function askPrep(prep){
   const container = document.getElementById('prepMessages');
   container.innerHTML = '';
-  const typing = document.createElement('div');
-  typing.className='msg ai'; typing.innerHTML=`<div class="msg-avatar">L</div><div class="msg-bubble"><div class="typing-dots"><span></span><span></span><span></span></div></div>`;
-  container.appendChild(typing);
-  const reply = await callClaude(
-    [{role:"user",content:`Explain the preposition/prepositional phrase "${prep}" in detail.`}],
-    systemPrompt(`Focus on: 1) Meaning & usage rules 2) 5 example sentences 3) Common mistakes speakers of ${nativeLang} make with this preposition 4) Equivalent in ${nativeLang}. Be thorough.`)
-  );
+  document.querySelectorAll('.prep-chip').forEach(c=>c.classList.remove('active'));
+  const typing = appendTyping('prepMessages');
+  const reply = await callBackend(
+    `Explain the preposition "${prep}" in detail`,
+    sysPrompt(`Explain: 1) Meaning and usage rules 2) 5 example sentences 3) Common mistakes by ${nativeLang} speakers with this preposition 4) How to remember it 5) Equivalent in ${nativeLang}.`));
   typing.remove();
-  const aiEl = document.createElement('div');
-  aiEl.className='msg ai';
-  aiEl.innerHTML=`<div class="msg-avatar">L</div><div class="msg-bubble">${formatReply(reply)}</div>`;
-  container.appendChild(aiEl); container.scrollTop=container.scrollHeight;
+  appendAIMsg('prepMessages', reply);
 }
 
-function buildPrepGrid() {
-  const grid = document.getElementById('prepGrid');
-  PREPOSITIONS.forEach(p => {
-    const chip = document.createElement('span');
-    chip.className='prep-chip'; chip.textContent=p;
-    chip.onclick=()=>askPrep(p);
-    grid.appendChild(chip);
-  });
+async function generateListenExercise(){
+  const container = document.getElementById('listenMessages');
+  container.innerHTML = '';
+  document.getElementById('listenQuestion').style.display = 'none';
+  const typing = appendTyping('listenMessages');
+  const reply = await callBackend(
+    `Create a listening comprehension exercise for an English learner`,
+    `You are NativeEnglish tutor. Create a short listening exercise. Return ONLY a JSON object with:
+{"passage":"A short paragraph in English (3-4 sentences, intermediate level)","question":"One comprehension question","options":["A: option1","B: option2","C: option3","D: option4"],"answer":"A","explanation":"Why this answer is correct","native_hint":"Key vocabulary in ${nativeLang}"}
+No markdown, no extra text.`, 400);
+  typing.remove();
+  try{
+    const clean = reply.replace(/```json|```/g,'').trim();
+    const data = JSON.parse(clean);
+    document.getElementById('listenTitle').textContent = "Read carefully then answer:";
+    document.getElementById('listenText').textContent = data.passage;
+    document.getElementById('listenQ').textContent = data.question;
+    const opts = document.getElementById('listenOptions');
+    opts.innerHTML = '';
+    data.options.forEach(opt=>{
+      const btn = document.createElement('button');
+      btn.className = 'listen-option';
+      btn.textContent = opt;
+      btn.onclick = ()=>{
+        document.querySelectorAll('.listen-option').forEach(b=>{
+          b.classList.remove('correct','wrong');
+          b.disabled = true;
+        });
+        const isCorrect = opt.startsWith(data.answer);
+        btn.classList.add(isCorrect?'correct':'wrong');
+        if(!isCorrect){
+          document.querySelectorAll('.listen-option').forEach(b=>{
+            if(b.textContent.startsWith(data.answer)) b.classList.add('correct');
+          });
+        }
+        const fb = document.createElement('div');
+        fb.className = 'msg ai';
+        fb.innerHTML = `<div class="msg-avatar">N</div><div class="msg-bubble">${isCorrect?'✅ Correct! ':'❌ Not quite. '}${data.explanation}<div class="bilingual">📌 In ${nativeLang}: ${data.native_hint}</div></div>`;
+        container.appendChild(fb);
+        wordsLearned++;
+        document.getElementById('diaryWords').textContent = wordsLearned;
+      };
+      opts.appendChild(btn);
+    });
+    document.getElementById('listenQuestion').style.display = 'block';
+    addDiaryEntry('Completed a listening exercise');
+  } catch(e){
+    appendAIMsg('listenMessages', reply);
+  }
 }
 
-async function analyzeWriting() {
+async function analyzeWriting(){
   const text = document.getElementById('writingInput').value.trim();
   if(!text) return;
   const out = document.getElementById('writingOutput');
-  out.innerHTML = '<div class="msg ai"><div class="msg-avatar">L</div><div class="msg-bubble"><div class="typing-dots"><span></span><span></span><span></span></div></div></div>';
-  const reply = await callClaude(
-    [{role:"user",content:`Analyze and rewrite this text: "${text}"`}],
-    systemPrompt(`The user submitted a writing sample. Do ALL of:
+  out.innerHTML = '';
+  const typing = appendTyping('writingOutput');
+  const reply = await callBackend(
+    `Analyze and rewrite this text: "${text}"`,
+    sysPrompt(`Do ALL of these:
 1. ERRORS FOUND: List every grammar/vocabulary error with explanation
-2. REWRITE B1 (Intermediate): Cleaner version
-3. REWRITE B2 (Upper-intermediate): More sophisticated
-4. REWRITE C1 (Advanced): Native-level with rich vocabulary
-5. KEY IMPROVEMENTS: What they should study based on their errors
-6. In ${nativeLang}: Brief summary of the main mistakes in their language`),
-    1200
-  );
-  out.innerHTML = `<div class="msg ai"><div class="msg-avatar">L</div><div class="msg-bubble">${formatReply(reply)}</div></div>`;
+2. REWRITE B1: Cleaner intermediate version
+3. REWRITE B2: More sophisticated upper-intermediate version
+4. REWRITE C1: Native-level advanced version
+5. KEY LESSON: The most important thing to practice based on the errors
+6. In ${nativeLang}: Brief summary of main mistakes in their language`), 1200);
+  typing.remove();
+  out.innerHTML = `<div class="msg ai" style="max-width:100%"><div style="display:flex;gap:12px"><div class="msg-avatar">N</div><div class="msg-bubble" style="flex:1">${formatReply(reply)}</div></div></div>`;
+  addDiaryEntry(`Writing analyzed: "${text.substring(0,40)}…"`);
 }
 
-async function loadNewWord() {
+async function loadNewWord(){
   document.getElementById('wcWord').textContent = '…';
-  const reply = await callClaude(
-    [{role:"user",content:`Give me one interesting English word (intermediate level, useful for daily life).`}],
-    `Return ONLY a JSON object with keys: word, phonetic, definition, example, native (translation/explanation in ${nativeLang}). No markdown, no extra text.`,
-    150
-  );
-  try {
-    const clean = reply.replace(/```json|```/g,'').trim();
-    const w = JSON.parse(clean);
-    document.getElementById('wcWord').textContent = w.word || '—';
-    document.getElementById('wcPhonetic').textContent = w.phonetic || '';
-    document.getElementById('wcDef').textContent = w.definition || '';
-    document.getElementById('wcExample').textContent = '"'+w.example+'"' || '';
-    document.getElementById('wcNative').textContent = '→ '+w.native || '';
-  } catch{
+  const reply = await callBackend(
+    `Give me one useful English word at intermediate level`,
+    `Return ONLY a JSON: {"word":"...","phonetic":"...","definition":"...","example":"...","native":"translation/explanation in ${nativeLang}"}. No markdown.`, 150);
+  try{
+    const w = JSON.parse(reply.replace(/```json|```/g,'').trim());
+    document.getElementById('wcWord').textContent = w.word||'—';
+    document.getElementById('wcPhonetic').textContent = w.phonetic||'';
+    document.getElementById('wcDef').textContent = w.definition||'';
+    document.getElementById('wcExample').textContent = '"'+(w.example||'')+'"';
+    document.getElementById('wcNative').textContent = '→ '+(w.native||'');
+    wordsLearned++;
+    document.getElementById('diaryWords').textContent = wordsLearned;
+  } catch(e){
     document.getElementById('wcWord').textContent = 'serendipity';
     document.getElementById('wcPhonetic').textContent = '/ˌser.ənˈdɪp.ɪ.ti/';
     document.getElementById('wcDef').textContent = 'Finding something good by accident';
     document.getElementById('wcExample').textContent = '"Meeting my best friend was pure serendipity."';
-    document.getElementById('wcNative').textContent = reply.substring(0,80);
   }
-  wordsLearned++;
-  document.getElementById('diaryWords').textContent = wordsLearned;
 }
 
-async function runDNATest() {
+async function runDNATest(){
   switchTab('chat', document.querySelectorAll('.tab-btn')[0]);
-  const q = `Run my English DNA Test. Ask me 5 quick questions to assess my level across grammar, vocabulary, speaking confidence, and writing. Start with question 1 now. After I answer all 5, give me a score breakdown.`;
-  document.getElementById('userInput').value = q;
-  sendMessage();
+  sendHint('Please run my English DNA Test. Ask me 5 quick questions one at a time to assess my grammar, vocabulary, speaking confidence and writing. Start with question 1 now.');
   setTimeout(()=>{
-    const scores = { grammar:45+Math.floor(Math.random()*40), vocab:50+Math.floor(Math.random()*35), speaking:30+Math.floor(Math.random()*45), writing:55+Math.floor(Math.random()*35) };
-    updateDNA(scores);
-  }, 3000);
+    const s={grammar:45+Math.floor(Math.random()*40),vocab:50+Math.floor(Math.random()*35),speaking:30+Math.floor(Math.random()*45),writing:55+Math.floor(Math.random()*35),listening:40+Math.floor(Math.random()*40)};
+    updateDNA(s);
+  },3000);
 }
 
-function updateDNA(scores) {
-  const avg = Math.round(Object.values(scores).reduce((a,b)=>a+b,0)/4);
-  const level = avg<40?'A2 Beginner':avg<60?'B1 Intermediate':avg<75?'B2 Upper-Int.':avg<90?'C1 Advanced':'C2 Mastery';
-  document.getElementById('dnaScore').textContent = avg+'%';
-  document.getElementById('dnaLevel').textContent = level;
-  document.getElementById('dnaHint').textContent = 'Your current level';
-  const offset = 138 - (138 * avg / 100);
-  document.getElementById('dnaCircle').style.strokeDashoffset = offset;
-  ['grammar','vocab','speaking','writing'].forEach(k=>{
-    const v = scores[k]||0;
-    document.getElementById('sb-'+k).style.width = v+'%';
-    document.getElementById('sp-'+k).textContent = v+'%';
+function updateDNA(s){
+  const avg=Math.round(Object.values(s).reduce((a,b)=>a+b,0)/5);
+  const level=avg<40?'A2 Beginner':avg<60?'B1 Intermediate':avg<75?'B2 Upper-Int.':avg<90?'C1 Advanced':'C2 Mastery';
+  document.getElementById('dnaScore').textContent=avg+'%';
+  document.getElementById('dnaLevel').textContent=level;
+  document.getElementById('dnaHint').textContent='Your current level';
+  document.getElementById('dnaCircle').style.strokeDashoffset=150.8-(150.8*avg/100);
+  ['grammar','vocab','speaking','writing','listening'].forEach(k=>{
+    const v=s[k]||0;
+    document.getElementById('sb-'+k).style.width=v+'%';
+    document.getElementById('sp-'+k).textContent=v+'%';
   });
 }
 
-function startTopic(topic) {
+function startTopic(topic){
   switchTab('chat', document.querySelectorAll('.tab-btn')[0]);
-  document.getElementById('userInput').value = `Let's practice a conversation about "${topic}". Start the conversation and correct my English as we go.`;
-  sendMessage();
+  sendHint(`Let's have a conversation about "${topic}". Start the conversation naturally and correct my English mistakes as we go.`);
 }
 
-// Speaking coach
-function toggleSpeaking() {
-  if (!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
-    document.getElementById('speakStatus').textContent = 'Speech not supported in this browser. Try Chrome.';
+function speakWord(){
+  const word = document.getElementById('pronInput').value.trim();
+  if(!word) return;
+  const utt = new SpeechSynthesisUtterance(word);
+  utt.lang = 'en-US';
+  utt.rate = 0.8;
+  window.speechSynthesis.speak(utt);
+}
+
+// SPEAKING COACH
+function toggleSpeaking(){
+  if(!('webkitSpeechRecognition' in window||'SpeechRecognition' in window)){
+    document.getElementById('speakStatus').textContent='Speech not supported. Try Chrome browser.';
     return;
   }
-  if (speakingActive) { stopSpeaking(); return; }
+  if(speakingActive){stopSpeaking();return;}
   startSpeaking();
 }
 
-function startSpeaking() {
-  const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
-  recognition = new SpeechRec();
-  recognition.continuous = true;
-  recognition.interimResults = true;
-  recognition.lang = 'en-US';
-  let finalTranscript = '';
-  recognition.onstart = () => {
-    speakingActive = true;
+function startSpeaking(){
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  recognition=new SR();
+  recognition.continuous=true;
+  recognition.interimResults=true;
+  recognition.lang='en-US';
+  let final='';
+  recognition.onstart=()=>{
+    speakingActive=true;
     document.getElementById('speakOrb').classList.add('listening');
-    document.getElementById('orbIcon').textContent = '🔴';
-    document.getElementById('speakStatus').textContent = 'Listening… speak now!';
-    document.getElementById('speakFeedback').style.display = 'none';
+    document.getElementById('orbIcon').textContent='🔴';
+    document.getElementById('speakStatus').textContent='Listening… speak now!';
+    document.getElementById('speakFeedback').style.display='none';
   };
-  recognition.onresult = e => {
-    let interim = '';
+  recognition.onresult=e=>{
+    let interim='';
     for(let i=e.resultIndex;i<e.results.length;i++){
-      if(e.results[i].isFinal) finalTranscript += e.results[i][0].transcript;
-      else interim += e.results[i][0].transcript;
+      if(e.results[i].isFinal) final+=e.results[i][0].transcript;
+      else interim+=e.results[i][0].transcript;
     }
-    document.getElementById('speakTranscript').textContent = (finalTranscript+interim) || '…';
+    document.getElementById('speakTranscript').textContent=(final+interim)||'…';
   };
-  recognition.onend = () => {
-    speakingActive = false;
+  recognition.onend=()=>{
+    speakingActive=false;
     document.getElementById('speakOrb').classList.remove('listening');
-    document.getElementById('orbIcon').textContent = '🎙️';
-    if(finalTranscript.trim()) analyzeSpeech(finalTranscript);
-    else document.getElementById('speakStatus').textContent = 'No speech detected. Tap to try again.';
+    document.getElementById('orbIcon').textContent='🎙️';
+    if(final.trim()) analyzeSpeech(final);
+    else document.getElementById('speakStatus').textContent='No speech detected. Tap to try again.';
   };
   recognition.start();
 }
 
-function stopSpeaking() {
-  if(recognition) recognition.stop();
-}
+function stopSpeaking(){if(recognition)recognition.stop();}
 
-async function analyzeSpeech(transcript) {
-  document.getElementById('speakStatus').textContent = 'Analyzing your speech…';
+async function analyzeSpeech(transcript){
+  document.getElementById('speakStatus').textContent='Analyzing your speech…';
   document.getElementById('speakOrb').classList.add('processing');
-  document.getElementById('orbIcon').textContent = '⏳';
-  const reply = await callClaude(
-    [{role:"user",content:`The student spoke this text on the topic "${currentSpeakTopic}": "${transcript}"`}],
-    systemPrompt(`Analyze the spoken English. Provide:
-1. FLUENCY: Comment on the naturalness (1 sentence)
-2. GRAMMAR ERRORS: List specific errors found with corrections
+  document.getElementById('orbIcon').textContent='⏳';
+  const reply = await callBackend(
+    `The student spoke about "${currentSpeakTopic}": "${transcript}"`,
+    sysPrompt(`Analyze the spoken English. Provide:
+1. FLUENCY: Comment on naturalness (1 sentence)
+2. GRAMMAR ERRORS: List specific errors with corrections
 3. BETTER PHRASES: 3 suggestions to sound more native
-4. PRONUNCIATION NOTE: One word to practice
-5. SCORE: Fluency/10, Grammar/10, Vocabulary/10
-6. In ${nativeLang}: One encouraging sentence and the main tip`)
-  );
+4. PRONUNCIATION TIP: One word to practice
+5. SCORES: Fluency /10, Grammar /10, Vocabulary /10
+6. In ${nativeLang}: One encouraging sentence and the main tip to improve`));
   document.getElementById('speakOrb').classList.remove('processing');
-  document.getElementById('orbIcon').textContent = '🎙️';
-  document.getElementById('speakStatus').textContent = 'Tap to speak again';
-  const fb = document.getElementById('speakFeedback');
-  fb.style.display = 'block';
-  document.getElementById('speakFeedbackText').innerHTML = formatReply(reply);
-  addDiaryEntry(`Speaking practice: "${transcript.substring(0,50)}…"`);
+  document.getElementById('orbIcon').textContent='🎙️';
+  document.getElementById('speakStatus').textContent='Tap to speak again';
+  const fb=document.getElementById('speakFeedback');
+  fb.style.display='block';
+  document.getElementById('speakFeedbackText').innerHTML=formatReply(reply);
+  addDiaryEntry(`Speaking practice on "${currentSpeakTopic}"`);
 }
 
-async function newSpeakingTopic(category) {
-  const reply = await callClaude(
-    [{role:"user",content:`Give me one interesting speaking topic for ${category}`}],
-    `Return ONLY a JSON: {"topic":"...(English prompt, 1 sentence)","native":"...(same in ${nativeLang})"}. No markdown.`,
-    80
-  );
-  try {
-    const d = JSON.parse(reply.replace(/```json|```/g,'').trim());
-    currentSpeakTopic = d.topic;
-    document.getElementById('speakTopic').textContent = d.topic;
-    document.getElementById('speakTopicNative').textContent = d.native;
-    document.getElementById('speakTranscript').textContent = '';
-    document.getElementById('speakFeedback').style.display = 'none';
-    document.getElementById('speakStatus').textContent = 'Tap to start speaking';
-  } catch{ document.getElementById('speakTopic').textContent = `Talk about ${category}`; }
-}
-
-async function generateStudyPlan() {
-  const out = document.getElementById('studyPlanOutput');
-  out.innerHTML = '<div class="typing-dots" style="padding:10px"><span></span><span></span><span></span></div>';
-  const reply = await callClaude(
-    [{role:"user",content:`Create a 4-week personalized English study plan for me.`}],
-    systemPrompt(`The student is a ${nativeLang} speaker learning English. Create a detailed 4-week study plan with: daily tasks, focus areas, specific exercises. Make it realistic (20 min/day). Include tips specific to ${nativeLang} speakers' common challenges with English.`),
-    1000
-  );
-  out.innerHTML = `<div class="msg ai"><div class="msg-avatar">L</div><div class="msg-bubble">${formatReply(reply)}</div></div>`;
-}
-
-// Mic for chat input
-function toggleMic() {
-  if (!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
-    alert('Voice input requires Chrome browser.'); return;
+async function newSpeakTopic(cat){
+  const reply=await callBackend(
+    `Give me one speaking topic for ${cat}`,
+    `Return ONLY JSON: {"topic":"English prompt 1 sentence","native":"same in ${nativeLang}"}. No markdown.`,80);
+  try{
+    const d=JSON.parse(reply.replace(/```json|```/g,'').trim());
+    currentSpeakTopic=d.topic;
+    document.getElementById('speakTopic').textContent=d.topic;
+    document.getElementById('speakTopicNative').textContent=d.native;
+    document.getElementById('speakTranscript').textContent='';
+    document.getElementById('speakFeedback').style.display='none';
+    document.getElementById('speakStatus').textContent='Tap to start speaking';
+  } catch(e){
+    document.getElementById('speakTopic').textContent=`Talk about ${cat}`;
   }
-  const btn = document.getElementById('micBtn');
-  if(isRecording) {
-    if(recognition) recognition.stop();
-    isRecording = false;
-    btn.classList.remove('recording');
-    btn.textContent = '🎤';
-    return;
+}
+
+// MIC for chat
+function toggleMic(){
+  if(!('webkitSpeechRecognition' in window||'SpeechRecognition' in window)){
+    alert('Voice input requires Chrome browser.');return;
   }
-  const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
-  recognition = new SpeechRec();
-  recognition.lang='en-US'; recognition.continuous=false; recognition.interimResults=false;
-  recognition.onstart=()=>{ isRecording=true; btn.classList.add('recording'); btn.textContent='⏹️'; };
-  recognition.onresult=e=>{ document.getElementById('userInput').value=e.results[0][0].transcript; };
-  recognition.onend=()=>{ isRecording=false; btn.classList.remove('recording'); btn.textContent='🎤'; };
+  const btn=document.getElementById('micBtn');
+  if(isRecording){
+    if(recognition)recognition.stop();
+    isRecording=false;btn.classList.remove('recording');btn.textContent='🎤';return;
+  }
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  recognition=new SR();
+  recognition.lang='en-US';recognition.continuous=false;recognition.interimResults=false;
+  recognition.onstart=()=>{isRecording=true;btn.classList.add('recording');btn.textContent='⏹️'};
+  recognition.onresult=e=>{document.getElementById('userInput').value=e.results[0][0].transcript};
+  recognition.onend=()=>{isRecording=false;btn.classList.remove('recording');btn.textContent='🎤'};
   recognition.start();
 }
 
-// Helpers
-function appendMsg(tab, text, role) {
-  const container = tab==='chat'?document.getElementById('chatMessages'):null;
-  if(!container) return;
-  const div = document.createElement('div');
-  div.className = `msg ${role}`;
-  div.innerHTML = role==='user'
-    ? `<div class="msg-avatar" style="font-size:12px">YOU</div><div class="msg-bubble">${text}</div>`
-    : `<div class="msg-avatar">L</div><div class="msg-bubble">${formatReply(text)}</div>`;
-  container.appendChild(div);
-  container.scrollTop = container.scrollHeight;
-  return div;
+async function generateStudyPlan(){
+  const out=document.getElementById('studyPlanOutput');
+  out.innerHTML='<div class="typing-dots" style="padding:10px"><span></span><span></span><span></span></div>';
+  const reply=await callBackend(
+    `Create a 4-week personalized English study plan for me`,
+    sysPrompt(`Create a detailed 4-week English study plan. Include: daily tasks (20 min/day), focus areas each week, specific exercises. Make it realistic and motivating. Include tips specific to ${nativeLang} speakers' challenges with English.`),1000);
+  out.innerHTML=`<div class="msg ai" style="max-width:100%"><div style="display:flex;gap:12px"><div class="msg-avatar">N</div><div class="msg-bubble" style="flex:1">${formatReply(reply)}</div></div></div>`;
 }
 
-function appendAIMsg(tab, text) {
-  return appendMsg(tab, text, 'ai');
+// HELPERS
+function appendUserMsg(containerId, text){
+  const c=document.getElementById(containerId);
+  if(!c)return;
+  const d=document.createElement('div');
+  d.className='msg user';
+  d.innerHTML=`<div class="msg-avatar" style="font-size:11px;font-family:'DM Sans',sans-serif">YOU</div><div class="msg-bubble">${text}</div>`;
+  c.appendChild(d);c.scrollTop=c.scrollHeight;
 }
 
-function appendTyping(tab) {
-  const container = tab==='chat'?document.getElementById('chatMessages'):null;
-  if(!container) return {remove:()=>{}};
-  const div = document.createElement('div');
-  div.className='msg ai';
-  div.innerHTML=`<div class="msg-avatar">L</div><div class="msg-bubble"><div class="typing-dots"><span></span><span></span><span></span></div></div>`;
-  container.appendChild(div);
-  container.scrollTop=container.scrollHeight;
-  return div;
+function appendAIMsg(containerId, text){
+  const c=document.getElementById(containerId);
+  if(!c)return;
+  const d=document.createElement('div');
+  d.className='msg ai';
+  d.innerHTML=`<div class="msg-avatar">N</div><div class="msg-bubble">${formatReply(text)}</div>`;
+  c.appendChild(d);c.scrollTop=c.scrollHeight;
+  return d;
 }
 
-function formatReply(text) {
+function appendTyping(containerId){
+  const c=document.getElementById(containerId);
+  if(!c)return{remove:()=>{}};
+  const d=document.createElement('div');
+  d.className='msg ai';
+  d.innerHTML=`<div class="msg-avatar">N</div><div class="msg-bubble"><div class="typing-dots"><span></span><span></span><span></span></div></div>`;
+  c.appendChild(d);c.scrollTop=c.scrollHeight;
+  return d;
+}
+
+function formatReply(text){
   return text
     .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
     .replace(/\*(.*?)\*/g,'<em>$1</em>')
     .replace(/`(.*?)`/g,'<code style="font-family:\'DM Mono\',monospace;font-size:12px;background:rgba(0,0,0,0.06);padding:1px 5px;border-radius:3px">$1</code>')
-    .replace(/📌 In [^:]+:/g, m=>`<br><div style="margin-top:8px;padding:8px 12px;background:rgba(201,146,42,0.08);border-left:3px solid #c9922a;border-radius:0 6px 6px 0;font-style:italic;font-size:13px">${m}`)
+    .replace(/📌 In [^:]+:/g,m=>`<br><div style="margin-top:8px;padding:8px 12px;background:rgba(184,134,11,0.07);border-left:3px solid #b8860b;border-radius:0 6px 6px 0;font-style:italic;font-size:13px;color:#6e6a62">${m}`)
     .replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>');
 }
 
-function addDiaryEntry(text) {
-  diaryEntries.unshift({ text, time: new Date().toLocaleTimeString() });
-  const list = document.getElementById('diaryList');
-  list.innerHTML = diaryEntries.slice(0,10).map(e=>`
+function addDiaryEntry(text){
+  diaryEntries.unshift({text,time:new Date().toLocaleTimeString()});
+  const list=document.getElementById('diaryList');
+  if(!list)return;
+  list.innerHTML=diaryEntries.slice(0,10).map(e=>`
     <div class="diary-entry">
       <div class="diary-dot"></div>
       <div><div class="diary-text">${e.text}</div><div class="diary-time">${e.time}</div></div>
     </div>`).join('');
-  document.getElementById('diaryStreak').textContent = 1;
+  document.getElementById('diaryStreak').textContent=1;
 }
 
-function switchTab(name, btn) {
+function buildPrepGrid(){
+  const grid=document.getElementById('prepGrid');
+  PREPOSITIONS.forEach(p=>{
+    const chip=document.createElement('span');
+    chip.className='prep-chip';chip.textContent=p;
+    chip.onclick=()=>{
+      document.querySelectorAll('.prep-chip').forEach(c=>c.classList.remove('active'));
+      chip.classList.add('active');
+      askPrep(p);
+    };
+    grid.appendChild(chip);
+  });
+}
+
+function switchTab(name,btn){
   document.querySelectorAll('.tab-content').forEach(el=>el.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(el=>el.classList.remove('active'));
-  const panel = document.getElementById('tab-'+name);
-  if(panel) panel.classList.add('active');
-  if(btn) btn.classList.add('active');
+  const panel=document.getElementById('tab-'+name);
+  if(panel)panel.classList.add('active');
+  if(btn)btn.classList.add('active');
 }
 
-// Init
-window.onload = () => {
+// INIT
+window.onload=()=>{
   buildPrepGrid();
   loadWelcomeTranslation();
   loadNewWord();

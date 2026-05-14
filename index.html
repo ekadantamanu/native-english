@@ -753,13 +753,13 @@ async function api(msg,sys,tokens){
 
 function sys(extra){
   extra=extra||'';
-  return'You are NativeEnglish, an expert English tutor. The student\'s native language is '+lang+'.\n'+
-    'ALWAYS structure your response with:\n'+
-    '1. Clear accurate explanation in English\n'+
-    '2. A section starting exactly \"\ud83d\udccc In '+lang+':\" with the same explanation in '+lang+'\n'+
-    '3. Concrete examples with key grammar points in **bold**\n'+
-    '4. All grammar rules must be 100% accurate with no errors\n'+
-    'Be warm, encouraging and specific. '+extra;
+  var p='You are NativeEnglish, an expert English tutor. The student native language is '+lang+'. ';
+  p+='ALWAYS include: 1) Clear accurate explanation in English. ';
+  p+='2) A section starting with IN '+lang+': with the same explanation in '+lang+'. ';
+  p+='3) Concrete examples with key grammar points in bold. ';
+  p+='All grammar rules must be 100% accurate. Be warm, encouraging and specific. ';
+  p+=extra;
+  return p;
 }
 
 async function loadWelcomeTrans(){
@@ -779,7 +779,7 @@ function sendChat(){
   api(txt,sys('If the student made grammar mistakes, gently note them in a "\ud83d\udcdd Corrections:" section. Suggest 2 follow-up questions the student might want to ask.')).then(function(r){
     t.remove();addMsg('chatMsgs',r,'ai');
     wordsLearned+=3;document.getElementById('dWords').textContent=wordsLearned;
-    addDiary('Practiced: "'+txt.substring(0,45)+(txt.length>45?'\u2026':'')+'"');
+    addDiary('Practiced: ' + txt.substring(0,45));
   });
 }
 
@@ -791,7 +791,8 @@ function askGram(q,cid){
   var inp=document.getElementById('gi'+num);if(inp)inp.value='';
   addMsg(cid,q,'user');
   var t=addTyping(cid);
-  api(q,sys('This is a grammar question. Give: 1) The rule stated clearly and accurately 2) Three or more correct examples 3) Common mistakes made by '+lang+' speakers 4) The equivalent or closest structure in '+lang+'.')).then(function(r){
+  var gramSys = sys('This is a grammar question. Give the rule clearly and accurately. Give three or more correct examples. Mention common mistakes made by '+lang+' speakers. Give the equivalent structure in '+lang+'.');
+  api(q, gramSys).then(function(r){
     t.remove();addMsg(cid,r,'ai');
   });
 }
@@ -801,18 +802,32 @@ function buildPOS(){
   if(!c||c.children.length>0)return;
   POS.forEach(function(p){
     var s=document.createElement('div');
-    s.className='gsec';s.style.background=p.bg;s.style.border='1px solid rgba(0,0,0,0.06)';
-    var types=p.types.map(function(t){
-      return '<span class="stype" onclick="askGram(\'Explain '+t+' in detail: definition, usage rules, position in sentence, 3 correct examples, and equivalent in '+lang+'\',\'gr1\')">'+(t.split('(')[0].trim())+'</span>';
-    }).join('');
-    s.innerHTML='<div class="ghdr" onclick="toggleSec(this)" style="border-bottom:1px solid rgba(0,0,0,0.06)">'
-      +'<div class="gtitle" style="color:'+p.col+'">'+p.icon+' '+p.name+'</div>'
-      +'<span class="garrow">&#9660;</span></div>'
-      +'<div class="gbody">'
-      +'<p style="font-size:13px;color:var(--ink);margin-bottom:9px;line-height:1.65">'+p.desc+'</p>'
-      +'<div class="stypes">'+types+'</div>'
-      +'<button class="askbtn" onclick="askGram(\'Explain all types of '+p.name+' in English grammar with definition, detailed rules, examples, and '+lang+' explanation for each type\',\'gr1\')">&#128172; Explain all '+p.name+'</button>'
-      +'</div>';
+    s.className='gsec';
+    s.style.background=p.bg;
+    s.style.border='1px solid rgba(0,0,0,0.06)';
+    var types='';
+    p.types.forEach(function(t){
+      var tname=t.split('(')[0].trim();
+      types+='<span class="stype" style="cursor:pointer" onclick="var q=\'Explain '+'" + tname + "' +' in English grammar: definition, usage rules, position in sentence, 3 correct examples, and how it relates to '+lang+'\';askGram(q,\'gr1\')">'+tname+'</span>';
+    });
+    var hdr=document.createElement('div');
+    hdr.className='ghdr';
+    hdr.style.borderBottom='1px solid rgba(0,0,0,0.06)';
+    hdr.innerHTML='<div class="gtitle" style="color:'+p.col+'">'+p.icon+' '+p.name+'</div><span class="garrow">&#9660;</span>';
+    hdr.onclick=function(){toggleSec(hdr);};
+    var body=document.createElement('div');
+    body.className='gbody';
+    body.innerHTML='<p style="font-size:13px;color:var(--ink);margin-bottom:9px;line-height:1.65">'+p.desc+'</p>'
+      +'<div class="stypes">'+types+'</div>';
+    var abtn=document.createElement('button');
+    abtn.className='askbtn';
+    abtn.textContent='Explain all '+p.name;
+    abtn.onclick=function(){
+      askGram('Explain all types of '+p.name+' in English grammar with definition rules examples and '+lang+' explanation',  'gr1');
+    };
+    body.appendChild(abtn);
+    s.appendChild(hdr);
+    s.appendChild(body);
     c.appendChild(s);
   });
 }
@@ -858,29 +873,17 @@ function clickPrep(prep,chip){
   res.className='prep-res show';
   res.innerHTML='<div class="tdots"><span></span><span></span><span></span></div>';
   setTimeout(function(){res.scrollIntoView({behavior:'smooth',block:'nearest'});},100);
-  var escaped=prep.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
-  api(
-    'Explain the preposition "'+prep+'" completely for English learners',
-    'You are NativeEnglish tutor. Explain the preposition "'+prep+'". Use this EXACT structure:\n\n'
-    +'**'+prep.toUpperCase()+'** \u2014 [one-line definition]\n\n'
-    +'\ud83d\udccc In '+lang+': [translation and equivalent expression in '+lang+']\n\n'
-    +'**USAGE RULES:**\n[2 to 3 clear, accurate rules for when and how to use "'+prep+'" with no errors]\n\n'
-    +'**CORRECT EXAMPLES IN ENGLISH:**\n'
-    +'Mark "'+prep+'" clearly in each sentence so it stands out.\n'
-    +'1. [sentence using '+prep+' correctly]\n'
-    +'2. [second sentence using '+prep+' correctly]\n'
-    +'3. [third sentence using '+prep+' correctly]\n\n'
-    +'**SAME EXAMPLES IN '+lang.toUpperCase()+':**\n'
-    +'1. [example 1 explained in '+lang+']\n'
-    +'2. [example 2 explained in '+lang+']\n'
-    +'3. [example 3 explained in '+lang+']\n\n'
-    +'\u2705 **DO SAY (correct usage):**\n'
-    +'[two correct example sentences]\n\n'
-    +'\u274c **DO NOT SAY (common errors):**\n'
-    +'[two common wrong usages with explanation of why they are wrong]\n\n'
-    +'\ud83d\udca1 **Memory tip:** [one memorable tip for when to use "'+prep+'"]. All grammar must be 100% accurate.',
-    700
-  ).then(function(r){
+  var prompt='Explain the preposition "'+prep+'" for English learners. Include: ';
+  prompt+='1) Definition in one line. ';
+  prompt+='2) Translation and equivalent in '+lang+'. ';
+  prompt+='3) Two or three usage rules. ';
+  prompt+='4) Three correct example sentences with '+prep+' clearly marked. ';
+  prompt+='5) The same examples explained in '+lang+'. ';
+  prompt+='6) Two correct DO SAY examples. ';
+  prompt+='7) Two common DO NOT SAY errors with explanation why they are wrong. ';
+  prompt+='8) One memory tip for remembering when to use '+prep+'.';
+  api(prompt, 'You are NativeEnglish tutor. Be accurate, clear and helpful. Mark the preposition '+prep+' clearly in every example sentence so it stands out. Include explanations in both English and '+lang+'.', 700).then(function(r){
+    var escaped=prep.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
     var hl=r.replace(new RegExp('\\b'+escaped+'\\b','gi'),function(m){
       return '<span class="prep-hl">'+m+'</span>';
     });
@@ -945,21 +948,32 @@ function updateTimer(){
 
 function analyzeSpk(transcript){
   document.getElementById('spkOrb').className='orb processing';
-  document.getElementById('orbIcon').textContent='\u23f3';
-  document.getElementById('spkStatus').textContent='Analysing your speech\u2026';
+  document.getElementById('orbIcon').textContent='⏳';
+  document.getElementById('spkStatus').textContent='Analysing your speech...';
   var mode=document.getElementById('spkMode').value;
   var topic=document.getElementById('spkTopic').textContent;
-  var prompt=mode==='native'
-    ?'The student spoke in '+lang+' about "'+topic+'": "'+transcript+'". Please: 1) Translate their speech to natural English 2) Show how a native English speaker would express the same idea 3) Explain any tone or etiquette tips 4) Suggest relevant idioms or phrases to make it sound more natural'
-    :'The student spoke in English about "'+topic+'": "'+transcript+'". Analyse their spoken English thoroughly.';
-  api(prompt,sys('Analyse spoken English. Provide:\n1. FLUENCY: Comment on naturalness and flow\n2. GRAMMAR ERRORS: List each specific error with the correct version\n3. BETTER PHRASES: Three suggestions to sound more native\n4. ETIQUETTE TIP: A social or cultural tip to communicate more naturally\n5. SCORES: Fluency /10, Grammar /10, Vocabulary /10\n6. In '+lang+': Main improvement tip and an encouraging sentence')).then(function(r){
+  var prompt='';
+  if(mode==='native'){
+    prompt='The student spoke in '+lang+' about '+topic+': "'+transcript+'". ';
+    prompt+='Please translate their speech to natural English, show how a native speaker would say it, explain any etiquette or tone tips, and suggest relevant idioms or phrases to make it sound more natural.';
+  } else {
+    prompt='The student spoke in English about '+topic+': "'+transcript+'". Please analyse their spoken English thoroughly.';
+  }
+  var instruction='Analyse spoken English. Provide: ';
+  instruction+='1) FLUENCY - comment on naturalness and flow. ';
+  instruction+='2) GRAMMAR ERRORS - list each specific error with the correct version. ';
+  instruction+='3) BETTER PHRASES - three suggestions to sound more native. ';
+  instruction+='4) ETIQUETTE TIP - a social or cultural tip to communicate more naturally. ';
+  instruction+='5) SCORES - Fluency out of 10, Grammar out of 10, Vocabulary out of 10. ';
+  instruction+='6) In '+lang+' - main improvement tip and an encouraging sentence.';
+  api(prompt, sys(instruction)).then(function(r){
     document.getElementById('spkOrb').className='orb';
-    document.getElementById('orbIcon').textContent='\ud83c\udf99\ufe0f';
+    document.getElementById('orbIcon').textContent='🎙️';
     document.getElementById('spkStatus').textContent='Tap to speak again';
     var fb=document.getElementById('spkFb');
     fb.style.display='block';
     document.getElementById('spkFbText').innerHTML=fmt(r);
-    addDiary('Speaking practice: "'+topic.substring(0,40)+'"');
+    addDiary('Speaking practice on: '+topic.substring(0,40));
   });
 }
 
@@ -1006,12 +1020,12 @@ function lookupWord(){
 function toggleMic(){
   if(!('webkitSpeechRecognition'in window||'SpeechRecognition'in window)){alert('Voice input requires Chrome browser.');return;}
   var btn=document.getElementById('micBtn');
-  if(isRec){if(recognition)recognition.stop();isRec=false;btn.classList.remove('rec');btn.textContent='\ud83c\udfa4';return;}
+  if(isRec){if(recognition)recognition.stop();isRec=false;btn.classList.remove('rec');btn.textContent='🎤';return;}
   var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
   recognition=new SR();recognition.lang='en-US';recognition.continuous=false;recognition.interimResults=false;
-  recognition.onstart=function(){isRec=true;btn.classList.add('rec');btn.textContent='\u23f9\ufe0f';};
+  recognition.onstart=function(){isRec=true;btn.classList.add('rec');btn.textContent='⏹️';};
   recognition.onresult=function(e){document.getElementById('chatInput').value=e.results[0][0].transcript;};
-  recognition.onend=function(){isRec=false;btn.classList.remove('rec');btn.textContent='\ud83c\udfa4';};
+  recognition.onend=function(){isRec=false;btn.classList.remove('rec');btn.textContent='🎤';};
   recognition.start();
 }
 
@@ -1067,14 +1081,29 @@ function renderDNAQs(){
   DNA_QS.forEach(function(q,qi){
     var div=document.createElement('div');
     div.className='dna-q';div.id='dq'+qi;
-    div.innerHTML='<div class="dna-q-num">Question '+(qi+1)+' of '+DNA_QS.length+'</div>'
-      +'<div class="dna-q-text">'+q.q+'</div>'
-      +'<div class="dna-q-native">'+q.qn+'</div>'
-      +'<div class="dna-opts" id="do'+qi+'">'+q.opts.map(function(o,oi){
-        return '<button class="dna-opt" onclick="answerDNA('+qi+','+oi+')">'+o+'</button>';
-      }).join('')+'</div>'
-      +'<div class="dna-exp dna-exp-en" id="de'+qi+'"><strong>\u2705 English Explanation:</strong><br>'+q.expEn+'</div>'
-      +'<div class="dna-exp dna-exp-nat" id="dn'+qi+'"><strong>\ud83d\udccc In '+lang+':</strong><br>'+q.expN+'</div>';
+    var numDiv=document.createElement('div');
+    numDiv.className='dna-q-num';
+    numDiv.textContent='Question '+(qi+1)+' of '+DNA_QS.length;
+    var qtDiv=document.createElement('div');
+    qtDiv.className='dna-q-text';qtDiv.textContent=q.q;
+    var qnDiv=document.createElement('div');
+    qnDiv.className='dna-q-native';qnDiv.textContent=q.qn;
+    var optsDiv=document.createElement('div');
+    optsDiv.className='dna-opts';optsDiv.id='do'+qi;
+    q.opts.forEach(function(o,oi){
+      var btn=document.createElement('button');
+      btn.className='dna-opt';btn.textContent=o;
+      btn.onclick=(function(qi2,oi2){return function(){answerDNA(qi2,oi2);};})(qi,oi);
+      optsDiv.appendChild(btn);
+    });
+    var expEn=document.createElement('div');
+    expEn.className='dna-exp dna-exp-en';expEn.id='de'+qi;
+    expEn.innerHTML='<strong>Explanation (English):</strong><br>'+q.expEn;
+    var expNat=document.createElement('div');
+    expNat.className='dna-exp dna-exp-nat';expNat.id='dn'+qi;
+    expNat.innerHTML='<strong>In '+lang+':</strong><br>'+q.expN;
+    div.appendChild(numDiv);div.appendChild(qtDiv);div.appendChild(qnDiv);
+    div.appendChild(optsDiv);div.appendChild(expEn);div.appendChild(expNat);
     c.appendChild(div);
   });
 }
@@ -1096,30 +1125,34 @@ function answerDNA(qi,oi){
 
 function showDNAResult(){
   var correct=dnaAnswers.filter(Boolean).length;
-  var g=42+Math.floor(Math.random()*42),v=50+Math.floor(Math.random()*35),
-      s=38+Math.floor(Math.random()*42),w=55+Math.floor(Math.random()*35);
+  var g=42+Math.floor(Math.random()*42),v=50+Math.floor(Math.random()*35);
+  var s=38+Math.floor(Math.random()*42),w=55+Math.floor(Math.random()*35);
   var avg=Math.round((g+v+s+w)/4);
   var level=avg<40?'A2 Beginner':avg<58?'B1 Intermediate':avg<74?'B2 Upper-Intermediate':avg<88?'C1 Advanced':'C2 Mastery';
-  var weakest=['Grammar','Vocabulary','Speaking','Writing'][[g,v,s,w].indexOf(Math.min(g,v,s,w))];
+  var skills=['Grammar','Vocabulary','Speaking','Writing'];
+  var vals=[g,v,s,w];
+  var weakest=skills[vals.indexOf(Math.min.apply(null,vals))];
   updateDNASidebar({g:g,v:v,s:s,w:w},avg,level);
   document.getElementById('dnaQs').style.display='none';
   document.getElementById('dnaRes').style.display='block';
-  document.getElementById('dnaResContent').innerHTML=
-    '<div style="display:flex;gap:12px;align-items:center;margin-bottom:14px;background:linear-gradient(135deg,var(--gp),#fff8e8);padding:14px;border-radius:12px;border-left:4px solid var(--gold)">'
-    +'<div style="font-size:40px;font-family:Cormorant Garamond,serif;font-weight:700;color:var(--gold)">'+avg+'%</div>'
-    +'<div><div style="font-size:16px;font-weight:600">'+level+'</div><div style="font-size:12px;color:var(--muted)">Your current English level</div><div style="font-size:12px;color:var(--teal);margin-top:3px">'+correct+' of '+DNA_QS.length+' questions correct</div></div></div>'
-    +[['Grammar',g,'var(--gold)','linear-gradient(135deg,#fff8e8,#fdf3c8)'],
-      ['Vocabulary',v,'var(--teal)','linear-gradient(135deg,#e8f5f0,#d4ede6)'],
-      ['Speaking',s,'var(--red)','linear-gradient(135deg,#fff0ee,#fde4e0)'],
-      ['Writing',w,'var(--green)','linear-gradient(135deg,#eef8f2,#d9f0e6)']].map(function(a){
-      return '<div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;background:'+a[3]+';padding:8px 10px;border-radius:8px">'
-        +'<div style="font-size:12px;width:76px;color:var(--muted);font-weight:500">'+a[0]+'</div>'
-        +'<div style="flex:1;height:7px;background:rgba(0,0,0,0.08);border-radius:4px;overflow:hidden"><div style="width:'+a[1]+'%;height:100%;background:'+a[2]+';border-radius:4px;transition:width 1s ease"></div></div>'
-        +'<div style="font-size:13px;font-weight:600;width:32px;color:'+a[2]+'">'+a[1]+'%</div></div>';
-    }).join('')
-    +'<div style="margin-top:10px;background:linear-gradient(135deg,rgba(184,134,11,0.08),rgba(184,134,11,0.12));border-radius:9px;padding:11px 13px;font-size:12px;line-height:1.65;border-left:3px solid var(--gold)">'
-    +'&#128204; <strong>In '+lang+':</strong> Tu nivel actual es <strong>'+level+'</strong>. Tu \u00e1rea m\u00e1s d\u00e9bil es <strong>'+weakest+'</strong>. \u00a1Practica con NativeEnglish cada d\u00eda para mejorar r\u00e1pidamente!</div>';
-  addDiary('Completed DNA Test \u2014 Level: '+level+' ('+avg+'%)');
+  var html='<div style="display:flex;gap:12px;align-items:center;margin-bottom:14px;background:linear-gradient(135deg,var(--gp),#fff8e8);padding:14px;border-radius:12px;border-left:4px solid var(--gold)">';
+  html+='<div style="font-size:40px;font-family:Cormorant Garamond,serif;font-weight:700;color:var(--gold)">'+avg+'%</div>';
+  html+='<div><div style="font-size:16px;font-weight:600">'+level+'</div>';
+  html+='<div style="font-size:12px;color:var(--muted)">Your current English level</div>';
+  html+='<div style="font-size:12px;color:var(--teal);margin-top:3px">'+correct+' of '+DNA_QS.length+' questions correct</div></div></div>';
+  var colors=['var(--gold)','var(--teal)','var(--red)','var(--green)'];
+  var bgs=['linear-gradient(135deg,#fff8e8,#fdf3c8)','linear-gradient(135deg,#e8f5f0,#d4ede6)','linear-gradient(135deg,#fff0ee,#fde4e0)','linear-gradient(135deg,#eef8f2,#d9f0e6)'];
+  for(var i=0;i<4;i++){
+    html+='<div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;background:'+bgs[i]+';padding:8px 10px;border-radius:8px">';
+    html+='<div style="font-size:12px;width:76px;color:var(--muted);font-weight:500">'+skills[i]+'</div>';
+    html+='<div style="flex:1;height:7px;background:rgba(0,0,0,0.08);border-radius:4px;overflow:hidden">';
+    html+='<div style="width:'+vals[i]+'%;height:100%;background:'+colors[i]+';border-radius:4px;transition:width 1s ease"></div></div>';
+    html+='<div style="font-size:13px;font-weight:600;width:32px;color:'+colors[i]+'">'+vals[i]+'%</div></div>';
+  }
+  html+='<div style="margin-top:10px;background:linear-gradient(135deg,rgba(184,134,11,0.08),rgba(184,134,11,0.12));border-radius:9px;padding:11px 13px;font-size:12px;line-height:1.65;border-left:3px solid var(--gold)">';
+  html+='<strong>In '+lang+':</strong> Your current level is '+level+'. Your weakest area is '+weakest+'. Keep practising with NativeEnglish every day!</div>';
+  document.getElementById('dnaResContent').innerHTML=html;
+  addDiary('Completed DNA Test - Level: '+level+' ('+avg+'%)');
 }
 
 function updateDNASidebar(sc,avg,level){
@@ -1152,24 +1185,25 @@ function doMirror(){
   var txt=document.getElementById('mirrorIn').value.trim();if(!txt)return;
   var out=document.getElementById('mirrorOut');
   out.innerHTML='<div class="tdots" style="padding:10px"><span></span><span></span><span></span></div>';
-  api('Rewrite this English sentence at four different skill levels: "'+txt+'"',
-    'Return ONLY valid JSON with no markdown: {"b1":"beginner B1 rewrite","b2":"intermediate B2 rewrite","c1":"advanced C1 rewrite","native":"natural native speaker version","tip":"one specific grammar or vocabulary tip in English","tipNative":"same tip in '+lang+'"}',
-    320).then(function(r){
+  var prompt='Rewrite this English sentence at four different skill levels: "'+txt+'"';
+  var instruction='Return ONLY valid JSON with no markdown: {"b1":"beginner B1 rewrite","b2":"intermediate B2 rewrite","c1":"advanced C1 rewrite","native":"natural native speaker version","tip":"one specific grammar or vocabulary tip in English","tipNative":"same tip in '+lang+'"}';
+  api(prompt, instruction, 320).then(function(r){
     try{
       var d=JSON.parse(r.replace(/```json|```/g,'').trim());
-      out.innerHTML='<div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">'
-        +[['\ud83d\udcd8 B1 \u2014 Beginner','var(--blue)','linear-gradient(135deg,#e8f0ff,#d4e4ff)',d.b1],
-          ['\ud83d\udcd7 B2 \u2014 Intermediate','var(--purple)','linear-gradient(135deg,#eef0ff,#e2e5ff)',d.b2],
-          ['\ud83d\udcd9 C1 \u2014 Advanced','var(--gold)','linear-gradient(135deg,#fff8e8,#fdf3c8)',d.c1],
-          ['\u2b50 Native \u2014 Natural','var(--green)','linear-gradient(135deg,#eef8f2,#d9f0e6)',d.native]].map(function(a){
-          return '<div style="padding:10px 13px;border-radius:9px;background:'+a[2]+';border-left:4px solid '+a[1]+';font-size:13px;line-height:1.7">'
-            +'<div style="font-size:10px;font-weight:600;text-transform:uppercase;color:'+a[1]+';margin-bottom:5px">'+a[0]+'</div>'+(a[3]||'\u2014')+'</div>';
-        }).join('')
-        +'<div style="padding:9px 12px;border-radius:8px;background:linear-gradient(135deg,var(--gp),#fff8e8);border-left:4px solid var(--gold);font-size:12px;line-height:1.6">'
-        +'<div style="font-weight:600;color:var(--gold);margin-bottom:3px">\ud83d\udca1 Key tip</div>'
-        +(d.tip||'')+'<div style="margin-top:4px;color:var(--muted);font-style:italic">\ud83d\udccc In '+lang+': '+(d.tipNative||'')+'</div></div>'
-        +'</div>';
-      addDiary('Mirror writing: "'+txt.substring(0,40)+'\u2026"');
+      var labels=[['B1 - Beginner','var(--blue)','linear-gradient(135deg,#e8f0ff,#d4e4ff)',d.b1],
+        ['B2 - Intermediate','var(--purple)','linear-gradient(135deg,#eef0ff,#e2e5ff)',d.b2],
+        ['C1 - Advanced','var(--gold)','linear-gradient(135deg,#fff8e8,#fdf3c8)',d.c1],
+        ['Native - Natural','var(--green)','linear-gradient(135deg,#eef8f2,#d9f0e6)',d.native]];
+      var html='<div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">';
+      labels.forEach(function(a){
+        html+='<div style="padding:10px 13px;border-radius:9px;background:'+a[2]+';border-left:4px solid '+a[1]+';font-size:13px;line-height:1.7">';
+        html+='<div style="font-size:10px;font-weight:600;text-transform:uppercase;color:'+a[1]+';margin-bottom:5px">'+a[0]+'</div>'+(a[3]||'-')+'</div>';
+      });
+      html+='<div style="padding:9px 12px;border-radius:8px;background:linear-gradient(135deg,var(--gp),#fff8e8);border-left:4px solid var(--gold);font-size:12px;line-height:1.6">';
+      html+='<div style="font-weight:600;color:var(--gold);margin-bottom:3px">Key tip</div>';
+      html+=(d.tip||'')+'<div style="margin-top:4px;color:var(--muted);font-style:italic">In '+lang+': '+(d.tipNative||'')+'</div></div></div>';
+      out.innerHTML=html;
+      addDiary('Mirror writing practice');
     }catch(e){out.innerHTML='<div class="msg ai"><div class="av">N</div><div class="bbl">'+fmt(r)+'</div></div>';}
   });
 }
@@ -1181,7 +1215,7 @@ function doTranslate(){
   var out=document.getElementById('translateOut');
   out.innerHTML='<div class="tdots" style="padding:10px"><span></span><span></span><span></span></div>';
   api('Native language text ('+lang+'): "'+nat+'"\nStudent's English attempt: "'+att+'"',
-    sys('Grade this translation. Structure your response as:\n1. GRADE: Give A, B, C, or D with a one-sentence reason\n2. CORRECT TRANSLATION: Show how it should be written correctly\n3. ERRORS FOUND: Number each mistake, show the wrong version, show the correct version, explain WHY it is wrong in English and in '+lang+'\n4. POLISHED VERSION: Write a natural B2-level English version\n5. In '+lang+': Brief encouraging summary of the main things to improve. Be constructive, specific, and kind.'),
+    sys('Grade this translation. Give: 1) GRADE A B C or D with reason. 2) CORRECT TRANSLATION. 3) ERRORS FOUND - number each mistake explain why wrong in English and in '+lang+'. 4) POLISHED B2 VERSION. 5) In '+lang+': encouraging summary. Be constructive and kind.'),
     1000).then(function(r){
     var gm=r.match(/GRADE[:\s]*([ABCD])/i);
     var grade=gm?gm[1]:'B';
@@ -1200,7 +1234,7 @@ function doProofread(){
   var out=document.getElementById('proofOut');
   out.innerHTML='<div class="tdots" style="padding:10px"><span></span><span></span><span></span></div>';
   api('Please proofread this English text: "'+txt+'"',
-    sys('Proofread sentence by sentence. For EACH sentence:\n\u2022 Show the original sentence\n\u2022 Show the corrected version\n\u2022 List each error: what it is, why it is wrong, and how to fix it\n\u2022 Give a '+lang+' explanation of the error\n\nFinish with an overall summary: the main grammar patterns the student needs to practise. Be thorough, accurate, and encouraging.'),
+    sys('Proofread sentence by sentence. For each sentence show: the original, the corrected version, each error with what is wrong and why in English and in '+lang+'. End with an overall summary of the main patterns to improve. Be thorough, accurate and encouraging.'),
     1000).then(function(r){
     out.innerHTML='<div style="margin-top:8px"><div class="msg ai" style="max-width:100%"><div class="av">N</div><div class="bbl">'+fmt(r)+'</div></div></div>';
     addDiary('Proofreading session completed');
@@ -1235,7 +1269,7 @@ function genPlan(){
   var out=document.getElementById('planOut');
   out.innerHTML='<div class="tdots" style="padding:10px"><span></span><span></span><span></span></div>';
   api('Create a personalised 4-week English study plan for me',
-    sys('Create a detailed 4-week English study plan. Include: daily tasks taking 20 minutes each day, a clear focus area for each week, specific exercises targeting weaknesses common to '+lang+' speakers, and motivating milestones. Make it realistic and achievable.'),
+    sys('Create a detailed 4-week English study plan with daily tasks taking 20 minutes each day, a focus area for each week, specific exercises for weaknesses common to '+lang+' speakers, and motivating milestones. Make it realistic and achievable.'),
     1000).then(function(r){
     out.innerHTML='<div class="msg ai" style="max-width:100%"><div class="av">N</div><div class="bbl">'+fmt(r)+'</div></div>';
   });

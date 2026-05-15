@@ -9,369 +9,511 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-8XBCYMDH3C");</script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Fraunces:ital,wght@0,700;0,900;1,700;1,900&family=DM+Mono&display=swap');
+
+/* ══════════════════════════════════════════
+   MIDNIGHT GOLD — COMPLETE DESIGN SYSTEM
+   Primary: #F5C842 gold on #060810 deep dark
+   Accent:  #4ECDC4 teal + #FF6B6B coral
+══════════════════════════════════════════ */
 :root{
-  --ink:#0f0d0b;--paper:#faf9f6;--cream:#f4f0e8;
-  --gold:#c49a1a;--gl:#f0c93a;--gp:#fef9e7;
-  --teal:#0e6655;--tl:#a8dbd4;
-  --rose:#c0392b;--rl:#fde8e8;
-  --plum:#6c3483;--pll:#ede0f7;
-  --ocean:#1a5276;--ocl:#d4e6f1;
-  --forest:#1e8449;--frl:#d4efdf;
-  --amber:#d35400;--aml:#fdebd0;
-  --sky:#1565c0;--skl:#e3f2fd;
-  --muted:#7d7168;
-  --border:rgba(15,13,11,0.09);--r:14px;
+  --bg-0:#060810;
+  --bg-1:#0A0F1C;
+  --bg-2:#111827;
+  --bg-3:#1A2235;
+  --bg-4:#1F2D44;
+  --gold:#F5C842;
+  --gold-b:#FFD84D;
+  --gold-dim:rgba(245,200,66,0.14);
+  --gold-bdr:rgba(245,200,66,0.28);
+  --gold-glo:rgba(245,200,66,0.08);
+  --teal:#4ECDC4;
+  --teal-dim:rgba(78,205,196,0.12);
+  --coral:#FF6B6B;
+  --coral-dim:rgba(255,107,107,0.12);
+  --green:#4ADE80;
+  --blue:#60A5FA;
+  --txt-1:#FFFFFF;
+  --txt-2:rgba(255,255,255,0.90);
+  --txt-3:rgba(255,255,255,0.65);
+  --txt-4:rgba(255,255,255,0.42);
+  --bdr:rgba(255,255,255,0.09);
+  --bdr-g:rgba(245,200,66,0.24);
+  --r:12px;--rl:18px;--rx:24px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;font-family:"DM Sans",sans-serif;background:var(--paper);color:var(--ink);overflow-x:hidden}
-.cstrip{background:linear-gradient(90deg,#0e6655,#0a4a3f);color:#fff;padding:8px 16px;text-align:center;font-size:12px;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:400}
-.cstrip-link{color:var(--gl);font-weight:600;cursor:pointer;text-decoration:underline}
-header{background:var(--ink);padding:0 16px;height:50px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:33px;z-index:350}
-.logo{font-family:"Cormorant Garamond",serif;font-size:22px;font-weight:700;color:#fff;letter-spacing:-.5px}
-.logo em{color:var(--gl);font-style:normal}
-#nativeLang{background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.2);border-radius:7px;padding:5px 10px;font-family:"DM Sans",sans-serif;font-size:12px;cursor:pointer}
-.ubar{background:var(--cream);border-bottom:1px solid var(--border);padding:5px 16px;display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--muted);position:sticky;top:83px;z-index:300}
-.udot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
-.udot.green{background:var(--forest)}.udot.red{background:var(--rose)}
-.hero{background:linear-gradient(145deg,#0f0d0b 0%,#1a1612 50%,#0e1f1a 100%);color:#fff;padding:28px 16px 22px;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:"";position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:500px;height:500px;background:radial-gradient(ellipse,rgba(196,154,26,0.14) 0%,rgba(14,102,85,0.07) 40%,transparent 70%);pointer-events:none}
-.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(240,201,58,0.12);color:var(--gl);border:1px solid rgba(240,201,58,0.28);border-radius:20px;padding:4px 15px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
-.hero h1{font-family:"Cormorant Garamond",serif;font-size:clamp(24px,5.5vw,46px);font-weight:700;line-height:1.07;margin-bottom:8px;letter-spacing:-.5px}
-.hero h1 em{color:var(--gl);font-style:normal}
-.hero-sub{font-size:13px;color:rgba(255,255,255,0.6);max-width:460px;margin:0 auto 10px;line-height:1.65}
-.hero-langs{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;margin-bottom:16px}
-.hlang{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.14);border-radius:20px;padding:2px 9px;font-size:10px;color:rgba(255,255,255,0.65)}
-.hero-btns{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin-bottom:7px}
-.hbtn{display:inline-flex;align-items:center;gap:7px;border:none;border-radius:10px;padding:10px 20px;font-family:"DM Sans",sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
-.hbtn-gold{background:var(--gold);color:#fff}.hbtn-gold:hover{background:var(--gl);color:var(--ink)}
-.hbtn-outline{background:transparent;border:2px solid var(--gl);color:var(--gl)}.hbtn-outline:hover{background:var(--gl);color:var(--ink)}
-.hero-count{font-size:11px;color:rgba(255,255,255,0.38)}
-.tabs{display:flex;background:var(--ink);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;position:sticky;top:116px;z-index:280}
+html,body{height:100%;font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg-1);color:var(--txt-2);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ── ANNOUNCE BAR ── */
+.announce-bar{background:var(--bg-0);border-bottom:1px solid var(--bdr-g);color:var(--txt-3);padding:8px 16px;text-align:center;font-size:12px;font-weight:500;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:600}
+.announce-bar strong{color:var(--gold);font-weight:800}
+.cstrip-link,.announce-bar a{color:var(--gold-b);font-weight:800;cursor:pointer;text-decoration:underline}
+
+/* ── HEADER ── */
+header{background:rgba(6,8,16,0.97);border-bottom:1px solid var(--bdr-g);padding:0 20px;height:58px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:34px;z-index:500;gap:10px}
+.logo-wrap{display:flex;align-items:center;gap:9px;flex-shrink:0}
+.logo-icon{width:36px;height:36px;background:var(--gold);border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:18px;font-weight:900;color:var(--bg-0);flex-shrink:0;letter-spacing:-.5px}
+.logo-text,.logo{font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--txt-1);letter-spacing:-.3px}
+.logo-text span,.logo em{color:var(--gold);font-style:normal}
+.header-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+#nativeLang{background:var(--bg-2);color:var(--txt-2);border:1px solid var(--bdr);border-radius:8px;padding:6px 10px;font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:600;cursor:pointer;outline:none;max-width:130px}
+#nativeLang:focus{border-color:var(--bdr-g)}
+.hdr-btn{padding:7px 16px;border-radius:8px;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;cursor:pointer;border:none;transition:all .18s;white-space:nowrap;letter-spacing:-.1px}
+.hdr-btn-outline{background:transparent;border:1.5px solid rgba(255,255,255,0.2);color:var(--txt-3)}
+.hdr-btn-outline:hover{border-color:var(--gold-b);color:var(--gold-b)}
+.hdr-btn-fill{background:var(--gold);color:var(--bg-0);font-weight:800}
+.hdr-btn-fill:hover{background:var(--gold-b);transform:translateY(-1px)}
+@media(max-width:540px){.hdr-btn-outline{display:none}#nativeLang{max-width:100px;font-size:10px}}
+
+/* ── USAGE BAR ── */
+.ubar{background:rgba(10,15,28,0.98);border-bottom:1px solid var(--bdr-g);padding:6px 20px;display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--txt-4);font-weight:500;position:sticky;top:92px;z-index:400;flex-wrap:wrap;gap:6px}
+.ubar-link,.ubar a{color:var(--gold);font-weight:700;cursor:pointer}
+.udot{width:6px;height:6px;border-radius:50%;flex-shrink:0;display:inline-block}
+.udot.green{background:var(--green)}.udot.red{background:var(--coral)}
+
+/* ══════════ HERO SECTION ══════════ */
+.hero{background:var(--bg-0);padding:52px 20px 44px;text-align:center;position:relative;overflow:hidden;border-bottom:1px solid var(--bdr-g)}
+
+/* Radial glow behind headline */
+.hero::before{content:'';position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:800px;height:500px;background:radial-gradient(ellipse at 50% 40%,rgba(245,200,66,0.09) 0%,rgba(78,205,196,0.05) 35%,transparent 70%);pointer-events:none;z-index:0}
+
+.hero>*{position:relative;z-index:1}
+
+/* EYEBROW */
+.hero-eyebrow{display:inline-flex;align-items:center;gap:7px;background:var(--gold-dim);border:1px solid var(--bdr-g);border-radius:100px;padding:6px 18px;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+
+/* HEADLINE — Deep Ocean copy on Midnight Gold bg */
+.hero h1{font-family:'Fraunces',serif;font-size:clamp(32px,5.5vw,66px);font-weight:900;line-height:1.04;color:var(--txt-1);margin-bottom:12px;letter-spacing:-2px;max-width:820px;margin-left:auto;margin-right:auto}
+.hero h1 em{color:var(--gold);font-style:italic}
+.hero h1 strong{color:var(--teal);font-style:normal}
+
+/* SUB */
+.hero-sub{font-size:clamp(14px,2.2vw,18px);color:var(--txt-3);max-width:600px;margin:0 auto 24px;line-height:1.72;font-weight:400}
+.hero-sub b{color:var(--gold-b);font-weight:700}
+
+/* LANG CHIPS */
+.hero-lang-row{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-bottom:28px}
+.lang-chip{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:100px;padding:5px 13px;font-size:11.5px;font-weight:600;color:var(--txt-2);transition:all .18s;cursor:default}
+.lang-chip:hover{border-color:var(--bdr-g);color:var(--gold);background:var(--gold-glo)}
+
+/* CTA BUTTONS */
+.hero-cta{display:flex;gap:11px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--gold);color:var(--bg-0);border:none;border-radius:12px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14.5px;font-weight:800;cursor:pointer;transition:all .2s;letter-spacing:-.2px;white-space:nowrap}
+.btn-primary:hover{background:var(--gold-b);transform:translateY(-2px);box-shadow:0 10px 32px rgba(245,200,66,0.28)}
+.btn-secondary{display:inline-flex;align-items:center;gap:7px;padding:13px 26px;background:transparent;color:var(--gold-b);border:2px solid var(--bdr-g);border-radius:12px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14.5px;font-weight:700;cursor:pointer;transition:all .2s;white-space:nowrap}
+.btn-secondary:hover{border-color:var(--gold);background:var(--gold-dim);color:var(--gold-b)}
+
+/* hbtn aliases used elsewhere */
+.hbtn{display:inline-flex;align-items:center;gap:6px;padding:11px 20px;border-radius:10px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;border:none;transition:all .18s;white-space:nowrap}
+.hbtn-gold,.hbtn-primary{background:var(--gold);color:var(--bg-0);font-weight:800}
+.hbtn-gold:hover,.hbtn-primary:hover{background:var(--gold-b);transform:translateY(-1px)}
+.hbtn-outline{background:transparent;border:2px solid var(--bdr-g);color:var(--gold);font-weight:700}
+.hbtn-outline:hover{background:var(--gold-dim);border-color:var(--gold)}
+
+/* PRICING RIBBON */
+.price-ribbon{display:inline-flex;align-items:center;gap:12px;background:rgba(245,200,66,0.07);border:1px solid var(--bdr-g);border-radius:100px;padding:9px 22px;margin-bottom:16px;flex-wrap:wrap;justify-content:center;gap:10px}
+.pr-old{font-size:12px;color:var(--txt-4);text-decoration:line-through}
+.pr-sep{width:1px;height:16px;background:var(--bdr-g);flex-shrink:0}
+.pr-main{font-size:15px;font-weight:800;color:var(--gold);font-family:'Plus Jakarta Sans',sans-serif}
+.pr-annual{font-size:11.5px;color:var(--txt-4)}
+
+/* SOCIAL PROOF */
+.hero-social-proof{font-size:12.5px;color:var(--txt-4);font-weight:500;margin-bottom:6px}
+.hero-social-proof strong,.hero-count{color:var(--gold);font-weight:700}
+
+/* STATS */
+.hero-stats{display:flex;gap:0;justify-content:center;margin-top:20px;border:1px solid var(--bdr-g);border-radius:var(--rl);overflow:hidden;max-width:520px;margin-left:auto;margin-right:auto;background:var(--bg-1)}
+.hstat{flex:1;padding:14px 8px;text-align:center;border-right:1px solid var(--bdr-g)}
+.hstat:last-child{border:none}
+.hstat-num{font-family:'Fraunces',serif;font-size:26px;font-weight:900;color:var(--gold);line-height:1.1}
+.hstat-lbl{font-size:10px;color:var(--txt-4);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
+
+/* ── FEATURE STRIP ── */
+.feature-strip,.cstrip{background:var(--bg-2);border-bottom:1px solid var(--bdr-g);padding:13px 20px;display:flex;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;align-items:center}
+.feature-strip::-webkit-scrollbar,.cstrip::-webkit-scrollbar{display:none}
+.feat-item{display:flex;align-items:center;gap:7px;padding:0 20px;border-right:1px solid rgba(255,255,255,0.07);white-space:nowrap;flex-shrink:0}
+.feat-item:last-child{border:none}
+.feat-icon{font-size:14px}
+.feat-text{font-size:11.5px;font-weight:500;color:var(--txt-3)}
+.feat-text b{color:var(--gold-b);font-weight:700}
+
+/* ── TABS ── */
+.tabs-wrap{background:rgba(6,8,16,0.98);border-bottom:1px solid var(--bdr-g);position:sticky;top:122px;z-index:300}
+.tabs{display:flex;overflow-x:auto;scrollbar-width:none;padding:0 10px}
 .tabs::-webkit-scrollbar{display:none}
-.tbtn{background:none;border:none;border-bottom:3px solid transparent;padding:10px 13px;font-family:"DM Sans",sans-serif;font-size:11px;font-weight:500;color:rgba(255,255,255,0.42);cursor:pointer;white-space:nowrap;transition:all .15s;flex-shrink:0}
-.tbtn:hover{color:rgba(255,255,255,0.72)}
-.tbtn.active{color:#fff;border-bottom-color:var(--gl)}
-.layout{display:flex;height:calc(100vh - 160px)}
+.tbtn{background:none;border:none;border-bottom:2px solid transparent;padding:12px 12px;font-family:'Plus Jakarta Sans',sans-serif;font-size:11.5px;font-weight:600;color:var(--txt-4);cursor:pointer;white-space:nowrap;transition:all .13s;flex-shrink:0}
+.tbtn:hover{color:var(--txt-3)}
+.tbtn.active{color:var(--gold);border-bottom-color:var(--gold)}
+
+/* ── LAYOUT ── */
+.layout{display:flex;height:calc(100vh - 185px)}
 .content{flex:1;overflow:hidden;display:flex;flex-direction:column;min-width:0}
-.sidebar{width:272px;border-left:1px solid var(--border);background:var(--cream);overflow-y:auto;flex-shrink:0}
-@media(max-width:768px){.sidebar{display:none}}
+.sidebar{width:276px;border-left:1px solid var(--bdr-g);background:var(--bg-2);overflow-y:auto;flex-shrink:0}
+@media(max-width:880px){.sidebar{display:none}}
+@media(max-width:768px){.layout{height:calc(100vh - 158px)}}
+
+/* ── PANELS ── */
 .panel{display:none;flex-direction:column;flex:1;overflow:hidden;height:100%}
 .panel.active{display:flex}
-.msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:12px}
-.msg{display:flex;gap:9px;max-width:92%}
+
+/* ── MESSAGES ── */
+.msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;background:var(--bg-0)}
+.msg{display:flex;gap:9px;max-width:91%}
 .msg.user{flex-direction:row-reverse;align-self:flex-end}
-.av{width:31px;height:31px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:"Cormorant Garamond",serif;font-size:14px;font-weight:700}
-.msg.ai .av{background:linear-gradient(135deg,var(--ink),#2a2418);color:var(--gl)}
-.msg.user .av{background:linear-gradient(135deg,var(--teal),#0a4a3f);color:#fff;font-family:"DM Sans",sans-serif;font-size:10px}
-.bbl{padding:11px 14px;border-radius:var(--r);font-size:13px;line-height:1.78}
-.msg.ai .bbl{background:var(--cream);border-radius:4px 13px 13px 13px;box-shadow:0 1px 5px rgba(0,0,0,0.06)}
-.msg.user .bbl{background:linear-gradient(135deg,var(--ink),#2a2418);color:#fff;border-radius:13px 4px 13px 13px}
-.bili{margin-top:7px;padding:7px 11px;background:rgba(196,154,26,0.07);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;font-size:12px;color:var(--muted);font-style:italic}
-.ibar{padding:10px 13px;border-top:1px solid var(--border);background:var(--paper);flex-shrink:0}
-.chips{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:7px}
-.chip{background:var(--cream);border:1px solid var(--border);border-radius:20px;padding:3px 9px;font-size:11px;color:var(--muted);cursor:pointer;transition:all .12s;font-family:"DM Sans",sans-serif}
-.chip:hover{background:var(--gp);color:var(--ink);border-color:var(--gold)}
-.irow{display:flex;gap:6px;align-items:flex-end}
-.ti{flex:1;border:1.5px solid var(--border);border-radius:9px;padding:8px 11px;font-family:"DM Sans",sans-serif;font-size:13px;background:var(--cream);resize:none;min-height:40px;max-height:90px;line-height:1.5;color:var(--ink)}
-.ti:focus{outline:none;border-color:var(--gold)}
-.sbtn{width:40px;height:40px;border-radius:8px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;font-family:"DM Sans",sans-serif;flex-shrink:0}
-.sbtn.send{background:linear-gradient(135deg,var(--ink),#2a2418);color:var(--gl)}.sbtn.send:hover{background:var(--teal)}
-.sbtn.mic{background:var(--cream);border:1.5px solid var(--border);color:var(--ink)}.sbtn.mic.rec{background:var(--rose);color:#fff;animation:pulse 1s infinite}
+.av{width:33px;height:33px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;font-family:'Fraunces',serif}
+.msg.ai .av{background:var(--gold);color:var(--bg-0)}
+.msg.user .av{background:var(--bg-4);color:var(--gold);font-family:'Plus Jakarta Sans',sans-serif;font-size:9px;font-weight:800;border:1px solid var(--bdr-g)}
+.bbl{padding:12px 15px;border-radius:var(--r);font-size:13px;line-height:1.80}
+.msg.ai .bbl{background:var(--bg-2);border:1px solid var(--bdr);border-radius:3px 13px 13px 13px;color:var(--txt-2)}
+.msg.user .bbl{background:var(--bg-4);border:1px solid var(--bdr-g);border-radius:13px 3px 13px 13px;color:var(--txt-1)}
+.bili{margin-top:7px;padding:7px 11px;background:var(--gold-glo);border-left:3px solid var(--gold);border-radius:0 7px 7px 0;font-size:12px;color:var(--gold);font-style:italic}
+
+/* ── INPUT BAR ── */
+.ibar{padding:11px 14px;border-top:1px solid var(--bdr-g);background:var(--bg-2);flex-shrink:0}
+.chips{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px}
+.chip{background:var(--bg-3);border:1px solid var(--bdr);border-radius:100px;padding:4px 11px;font-size:10.5px;font-weight:600;color:var(--txt-3);cursor:pointer;transition:all .13s;font-family:'Plus Jakarta Sans',sans-serif}
+.chip:hover{background:var(--gold-dim);border-color:var(--bdr-g);color:var(--gold)}
+.irow{display:flex;gap:7px;align-items:flex-end}
+.ti{flex:1;border:1px solid var(--bdr);border-radius:10px;padding:9px 13px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;background:var(--bg-3);resize:none;min-height:42px;max-height:96px;line-height:1.5;color:var(--txt-1);outline:none;transition:border-color .13s}
+.ti::placeholder{color:var(--txt-4)}
+.ti:focus{border-color:var(--bdr-g)}
+.sbtn{width:42px;height:42px;border-radius:10px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;transition:all .13s;font-family:'Plus Jakarta Sans',sans-serif}
+.sbtn.send{background:var(--gold);color:var(--bg-0)}.sbtn.send:hover{background:var(--gold-b)}
+.sbtn.mic{background:var(--bg-3);color:var(--txt-3);border:1px solid var(--bdr)}.sbtn.mic.rec{background:var(--coral);color:#fff;animation:pulse 1s infinite}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+
+/* ── GRAMMAR ── */
 #panel-grammar{flex-direction:column;overflow:hidden}
-.gram-nav{background:linear-gradient(90deg,#0f0d0b,#1a1612);border-bottom:1px solid rgba(255,255,255,0.08);padding:8px 13px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;flex-shrink:0}
-.gram-title{font-size:12px;font-weight:600;flex:1;color:#fff}
+.gram-nav{background:var(--bg-2);border-bottom:1px solid var(--bdr-g);padding:9px 14px;display:flex;align-items:center;gap:7px;flex-wrap:wrap;flex-shrink:0}
+.gram-title{font-size:12.5px;font-weight:700;flex:1;color:var(--gold)}
 .pbtns{display:flex;gap:4px}
-.pbtn{width:27px;height:27px;border-radius:6px;border:1px solid rgba(255,255,255,0.18);background:rgba(255,255,255,0.07);font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:"DM Sans",sans-serif;color:rgba(255,255,255,0.7);font-weight:600}
-.pbtn.active{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.pbtn{width:27px;height:27px;border-radius:7px;border:1px solid var(--bdr);background:var(--bg-3);font-size:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',sans-serif;color:var(--txt-3);font-weight:600;transition:all .13s}
+.pbtn.active{background:var(--gold);border-color:var(--gold);color:var(--bg-0)}
 .gpages{flex:1;overflow:hidden;position:relative}
-.gpage{display:none;position:absolute;inset:0;overflow-y:auto;padding:12px}
+.gpage{display:none;position:absolute;inset:0;overflow-y:auto;padding:13px;background:var(--bg-0)}
 .gpage.active{display:block}
-.gsec{border-radius:var(--r);margin-bottom:9px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
-.ghdr{padding:12px 14px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px}
-.gtitle{font-family:"Cormorant Garamond",serif;font-size:17px;font-weight:700}
-.garrow{font-size:11px;color:var(--muted);transition:transform .2s;flex-shrink:0;font-weight:700}
+.gsec{border-radius:var(--r);margin-bottom:8px;overflow:hidden;border:1px solid var(--bdr)}
+.ghdr{padding:12px 14px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--bg-2)}
+.ghdr:hover{background:var(--bg-3)}
+.gtitle{font-family:'Fraunces',serif;font-size:17px;font-weight:700;color:var(--txt-1)}
+.garrow{font-size:11px;color:var(--txt-4);transition:transform .18s;font-weight:700}
 .garrow.open{transform:rotate(180deg)}
-.gbody{display:none;padding:0 14px 14px;font-size:13px;line-height:1.78}
+.gbody{display:none;padding:0 14px 14px;font-size:13px;line-height:1.78;color:var(--txt-3);background:var(--bg-2)}
 .gbody.open{display:block}
 .stypes{display:flex;flex-wrap:wrap;gap:5px;margin:7px 0}
-.stype{background:var(--paper);border:1.5px solid var(--border);border-radius:7px;padding:3px 8px;font-size:11px;cursor:pointer;transition:all .12s;font-weight:500}
-.stype:hover{background:var(--gp);border-color:var(--gold)}
-.askbtn{display:inline-flex;align-items:center;gap:5px;background:var(--gp);border:1.5px solid var(--gold);border-radius:20px;padding:4px 11px;font-size:11px;color:var(--gold);cursor:pointer;margin-top:7px;font-family:"DM Sans",sans-serif;font-weight:600}
-.askbtn:hover{background:var(--gold);color:#fff}
-.gram-ibar{padding:10px 12px;border-top:1px solid var(--border);background:var(--paper);flex-shrink:0;margin-top:8px}
-.gram-msgs{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.stype{background:var(--bg-3);border:1px solid var(--bdr);border-radius:100px;padding:4px 11px;font-size:10.5px;cursor:pointer;transition:all .12s;font-weight:600;color:var(--txt-3)}
+.stype:hover{background:var(--gold-dim);border-color:var(--bdr-g);color:var(--gold)}
+.askbtn{display:inline-flex;align-items:center;gap:5px;background:var(--gold-dim);border:1px solid var(--bdr-g);border-radius:100px;padding:4px 12px;font-size:10.5px;color:var(--gold);cursor:pointer;margin-top:7px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;transition:all .13s}
+.askbtn:hover{background:var(--gold);color:var(--bg-0)}
+.gram-ibar{padding:10px 13px;border-top:1px solid var(--bdr-g);background:var(--bg-2);flex-shrink:0}
+.gram-msgs{display:flex;flex-direction:column;gap:9px;margin-top:9px}
+
+/* ── PREPOSITIONS ── */
 #panel-prepositions{flex-direction:column;overflow:hidden}
-.prep-outer{flex:1;overflow-y:auto;padding:13px}
-.prep-sec-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:10px 0 7px;padding-bottom:3px;border-bottom:1px solid var(--border)}
-.prep-grid{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
-.prep-chip{border-radius:20px;padding:5px 11px;font-size:12px;font-weight:600;cursor:pointer;transition:all .15s;border:1.5px solid}
-.prep-chip:hover,.prep-chip.pa{color:#fff!important;border-color:transparent!important}
-.prep-res{border-radius:var(--r);padding:16px;display:none;margin-top:9px;box-shadow:0 3px 12px rgba(0,0,0,0.09)}
+.prep-outer{flex:1;overflow-y:auto;padding:13px;background:var(--bg-0)}
+.prep-sec-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--txt-4);margin:12px 0 7px;padding-bottom:3px;border-bottom:1px solid var(--bdr)}
+.prep-grid{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px}
+.prep-chip{border-radius:100px;padding:5px 13px;font-size:11.5px;font-weight:700;cursor:pointer;transition:all .13s;border:1.5px solid}
+.prep-chip:hover,.prep-chip.pa{color:var(--bg-0)!important;border-color:transparent!important}
+.prep-res{border-radius:var(--rl);padding:16px;display:none;margin-top:11px;border:1px solid var(--bdr-g);background:var(--bg-2);color:var(--txt-2)}
 .prep-res.show{display:block}
-.prep-hl{font-weight:800;padding:1px 5px;border-radius:4px}
-.do-dont{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}
+.prep-hl{font-weight:800;padding:1px 5px;border-radius:5px;background:var(--gold-dim);color:var(--gold)}
+.do-dont{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
 @media(max-width:420px){.do-dont{grid-template-columns:1fr}}
-.do-box,.dont-box{border-radius:9px;padding:9px 11px;font-size:12px;line-height:1.65;border-left:4px solid}
-.do-lbl,.dont-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;display:block}
+.do-box,.dont-box{border-radius:8px;padding:8px 10px;font-size:12px;line-height:1.65;border-left:3px solid;color:var(--txt-3)}
+.do-lbl,.dont-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;display:block}
+
+/* ── VOCABULARY ── */
 #panel-vocabulary{flex-direction:column;overflow:hidden}
-.voc-outer{flex:1;overflow-y:auto;padding:13px}
-.voc-controls{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:11px}
-.voc-filter,.voc-search{border:1.5px solid var(--border);border-radius:8px;padding:7px 10px;font-family:"DM Sans",sans-serif;font-size:12px;background:var(--cream);color:var(--ink)}
-.voc-filter:focus,.voc-search:focus{outline:none;border-color:var(--gold)}
-.voc-search{flex:1;min-width:110px}
-.voc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-bottom:10px}
-.voc-card{border-radius:var(--r);padding:12px;cursor:pointer;transition:all .18s;border:1.5px solid transparent;position:relative;box-shadow:0 1px 5px rgba(0,0,0,0.07)}
-.voc-card:hover{transform:translateY(-3px);box-shadow:0 5px 18px rgba(0,0,0,0.12)}
-.voc-word{font-family:"Cormorant Garamond",serif;font-size:17px;font-weight:700;margin-bottom:3px}
-.voc-pos{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;opacity:.75}
-.voc-def{font-size:11px;line-height:1.5;opacity:.82}
-.voc-back{display:none;font-size:12px;line-height:1.65}
-.voc-lv{position:absolute;top:8px;right:8px;font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px;text-transform:uppercase}
-.lv-basic{background:rgba(14,102,85,0.14);color:var(--teal)}
-.lv-inter{background:rgba(26,82,118,0.14);color:var(--ocean)}
-.lv-adv{background:rgba(108,52,131,0.14);color:var(--plum)}
+.voc-outer{flex:1;overflow-y:auto;padding:13px;background:var(--bg-0)}
+.voc-controls{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:11px}
+.voc-filter,.voc-search{border:1px solid var(--bdr);border-radius:8px;padding:7px 10px;font-family:'Plus Jakarta Sans',sans-serif;font-size:11.5px;background:var(--bg-2);color:var(--txt-2);font-weight:500;outline:none}
+.voc-filter:focus,.voc-search:focus{border-color:var(--bdr-g)}
+.voc-search{flex:1;min-width:100px}
+.voc-search::placeholder{color:var(--txt-4)}
+.voc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:8px;margin-bottom:11px}
+.voc-card{border-radius:var(--r);padding:12px;cursor:pointer;transition:all .18s;border:1px solid var(--bdr);background:var(--bg-2)}
+.voc-card:hover{transform:translateY(-3px);border-color:var(--bdr-g);box-shadow:0 8px 24px rgba(245,200,66,0.10)}
+.voc-word{font-family:'Fraunces',serif;font-size:17px;font-weight:700;margin-bottom:3px;color:var(--txt-1)}
+.voc-pos{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px;color:var(--txt-4)}
+.voc-def{font-size:11px;line-height:1.5;color:var(--txt-3)}
+.voc-back{display:none;font-size:11.5px;line-height:1.65;color:var(--txt-2)}
+.voc-lv{position:absolute;top:9px;right:9px;font-size:8.5px;font-weight:700;padding:2px 6px;border-radius:5px;text-transform:uppercase}
+.lv-basic{background:rgba(74,222,128,0.14);color:var(--green)}
+.lv-inter{background:rgba(96,165,250,0.14);color:var(--blue)}
+.lv-adv{background:var(--gold-dim);color:var(--gold)}
+
+/* ── IDIOMS ── */
 #panel-idioms{flex-direction:column;overflow:hidden}
-.idiom-outer{flex:1;overflow-y:auto;padding:13px}
-.idiom-card{border-radius:var(--r);padding:14px;margin-bottom:9px;cursor:pointer;transition:all .15s;box-shadow:0 2px 8px rgba(0,0,0,0.07)}
-.idiom-card:hover{transform:translateX(3px)}
-.idiom-phrase{font-family:"Cormorant Garamond",serif;font-size:18px;font-weight:700;margin-bottom:4px}
-.idiom-meaning{font-size:13px;line-height:1.65;margin-bottom:7px}
-.idiom-examples{display:none;margin-top:9px;padding-top:9px;border-top:1px solid rgba(0,0,0,0.08)}
+.idiom-outer{flex:1;overflow-y:auto;padding:13px;background:var(--bg-0)}
+.idiom-card{border-radius:var(--r);padding:13px;margin-bottom:8px;cursor:pointer;transition:all .13s;border:1px solid var(--bdr);background:var(--bg-2)}
+.idiom-card:hover{transform:translateX(4px);border-color:var(--bdr-g)}
+.idiom-phrase{font-family:'Fraunces',serif;font-size:17px;font-weight:700;margin-bottom:3px;color:var(--gold-b)}
+.idiom-meaning{font-size:12.5px;line-height:1.65;margin-bottom:6px;color:var(--txt-3)}
+.idiom-examples{display:none;margin-top:8px;padding-top:8px;border-top:1px solid var(--bdr)}
 .idiom-examples.show{display:block}
-.idiom-ex{font-size:12px;line-height:1.7;margin-bottom:5px;padding:7px 11px;border-radius:8px}
-.idiom-native{font-size:12px;font-style:italic;margin-top:7px;padding:7px 11px;border-radius:7px}
-.write-modes{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.idiom-ex{font-size:12px;line-height:1.7;margin-bottom:4px;padding:6px 10px;border-radius:7px;background:var(--bg-3);color:var(--txt-2)}
+.idiom-native{font-size:12px;font-style:italic;margin-top:6px;padding:6px 10px;border-radius:7px;background:var(--gold-glo);border-left:3px solid var(--gold);color:var(--gold)}
+
+/* ── WRITING ── */
+.write-modes{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}
 @media(min-width:500px){.write-modes{grid-template-columns:repeat(4,1fr)}}
-.wm-btn{padding:10px 6px;border-radius:11px;border:2px solid var(--border);background:var(--paper);font-size:11px;font-weight:600;cursor:pointer;text-align:center;transition:all .15s;font-family:"DM Sans",sans-serif}
-.wm-btn.active{border-color:var(--gold);background:var(--gp);color:var(--gold)}
-.wm-icon{font-size:19px;display:block;margin-bottom:5px}
+.wm-btn{padding:10px 6px;border-radius:10px;border:1px solid var(--bdr);background:var(--bg-2);font-size:10.5px;font-weight:700;cursor:pointer;text-align:center;transition:all .13s;font-family:'Plus Jakarta Sans',sans-serif;color:var(--txt-3)}
+.wm-btn:hover,.wm-btn.active{border-color:var(--bdr-g);background:var(--gold-dim);color:var(--gold)}
+.wm-icon{font-size:19px;display:block;margin-bottom:4px}
 .wp{display:none;flex-direction:column;gap:10px}
 .wp.active{display:flex}
-.wta{width:100%;min-height:86px;border:1.5px solid var(--border);border-radius:10px;padding:10px 12px;font-family:"DM Sans",sans-serif;font-size:13px;background:var(--cream);resize:vertical;color:var(--ink);line-height:1.65}
-.wta:focus{outline:none;border-color:var(--gold)}
-.wa-row{display:flex;gap:7px;flex-wrap:wrap}
-.wa-pri{padding:9px 18px;border-radius:9px;border:none;background:linear-gradient(135deg,var(--ink),#2a2418);color:var(--gl);font-family:"DM Sans",sans-serif;font-size:13px;font-weight:600;cursor:pointer}
-.wa-pri:hover{background:var(--teal)}
-.wa-sec{padding:9px 14px;border-radius:9px;background:var(--cream);color:var(--ink);border:1.5px solid var(--border);font-family:"DM Sans",sans-serif;font-size:13px;cursor:pointer}
-.grade-badge{font-size:23px;font-weight:700;font-family:"Cormorant Garamond",serif;padding:5px 15px;border-radius:9px;display:inline-block}
-.gA{background:#d5f5e3;color:#1e8449}.gB{background:#d6eaf8;color:#1a5276}.gC{background:#fef9e7;color:#d35400}.gD{background:#fadbd8;color:#c0392b}
+.wta{width:100%;min-height:84px;border:1px solid var(--bdr);border-radius:10px;padding:10px 12px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;background:var(--bg-3);resize:vertical;color:var(--txt-1);line-height:1.65;outline:none}
+.wta:focus{border-color:var(--bdr-g)}
+.wta::placeholder{color:var(--txt-4)}
+.wa-row{display:flex;gap:6px;flex-wrap:wrap}
+.wa-pri{padding:9px 18px;border-radius:9px;border:none;background:var(--gold);color:var(--bg-0);font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:800;cursor:pointer;transition:all .18s}
+.wa-pri:hover{background:var(--gold-b)}
+.wa-sec{padding:9px 13px;border-radius:9px;background:var(--bg-3);color:var(--txt-3);border:1px solid var(--bdr);font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;cursor:pointer}
+.grade-badge{font-size:22px;font-weight:700;font-family:'Fraunces',serif;padding:5px 14px;border-radius:8px;display:inline-block}
+.gA{background:rgba(74,222,128,0.14);color:var(--green)}.gB{background:rgba(96,165,250,0.14);color:var(--blue)}.gC{background:var(--gold-dim);color:var(--gold)}.gD{background:var(--coral-dim);color:var(--coral)}
 .tone-row{display:flex;gap:5px;flex-wrap:wrap}
-.tone-btn{padding:5px 10px;border-radius:20px;border:1.5px solid var(--border);background:var(--paper);font-size:11px;cursor:pointer;font-family:"DM Sans",sans-serif;font-weight:500}
-.tone-btn.active{background:var(--ink);color:var(--gl);border-color:var(--ink)}
+.tone-btn{padding:5px 10px;border-radius:100px;border:1px solid var(--bdr);background:var(--bg-3);font-size:10.5px;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;color:var(--txt-3);transition:all .13s}
+.tone-btn.active{background:var(--gold);color:var(--bg-0);border-color:var(--gold);font-weight:800}
+
+/* ── PROGRESS ── */
 .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.stat-card{border-radius:var(--r);padding:13px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.07)}
-.stat-num{font-family:"Cormorant Garamond",serif;font-size:29px;font-weight:700}
-.stat-label{font-size:11px;color:var(--muted);margin-top:2px;font-weight:500}
+.stat-card{border-radius:var(--r);padding:13px;text-align:center;border:1px solid var(--bdr-g);background:var(--bg-2)}
+.stat-num{font-family:'Fraunces',serif;font-size:29px;font-weight:700;color:var(--gold)}
+.stat-label{font-size:10.5px;color:var(--txt-4);margin-top:3px;font-weight:600}
 .diary-item{display:flex;gap:8px;margin-bottom:6px;align-items:flex-start}
-.diary-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:5px}
-.diary-txt{font-size:12px;line-height:1.5}
-.diary-time{font-size:10px;color:var(--muted)}
-.sb-sec{padding:13px;border-bottom:1px solid var(--border)}
-.sb-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:9px}
+.diary-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:5px;background:var(--gold)}
+.diary-txt{font-size:12px;line-height:1.55;color:var(--txt-3)}
+.diary-time{font-size:10px;color:var(--txt-4)}
+
+/* ── SIDEBAR ── */
+.sb-sec{padding:13px;border-bottom:1px solid var(--bdr-g)}
+.sb-title{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--gold);margin-bottom:8px}
 .dna-ring{width:50px;height:50px;position:relative;flex-shrink:0}
 .dna-ring svg{transform:rotate(-90deg)}
-.dna-ring-lbl{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
-.sk-row{display:flex;align-items:center;gap:6px;margin-bottom:5px}
-.sk-nm{font-size:11px;color:var(--muted);width:68px;flex-shrink:0;font-weight:500}
-.sk-bar{flex:1;height:4px;background:rgba(15,13,11,0.08);border-radius:2px;overflow:hidden}
+.dna-ring-lbl{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;color:var(--gold)}
+.sk-row{display:flex;align-items:center;gap:6px;margin-bottom:6px}
+.sk-nm{font-size:10.5px;color:var(--txt-4);width:68px;flex-shrink:0;font-weight:500}
+.sk-bar{flex:1;height:4px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden}
 .sk-fill{height:100%;border-radius:2px;transition:width 1.2s ease}
-.sk-pct{font-size:10px;color:var(--muted);width:27px;text-align:right;font-weight:500}
-.word-card{border-radius:var(--r);padding:13px;background:linear-gradient(145deg,#0f0d0b,#1e1a14)}
-.wc-word{font-family:"Cormorant Garamond",serif;font-size:19px;font-weight:700;color:#fff;margin-bottom:2px}
-.wc-phon{font-family:"DM Mono",monospace;font-size:11px;color:var(--gl);margin-bottom:6px}
-.wc-row{font-size:12px;line-height:1.62;margin-bottom:4px;padding:5px 8px;border-radius:6px}
-.wc-def{background:rgba(240,201,58,0.11);color:rgba(255,255,255,0.95)}
-.wc-en{background:rgba(77,208,196,0.14);color:#8FE8E0}
-.wc-nat{background:rgba(195,155,211,0.17);color:#D7BDE2}
-.wc-ant{background:rgba(241,148,138,0.17);color:#FAB3AB}
-.wc-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;opacity:.6;display:block;margin-bottom:2px}
+.sk-pct{font-size:9.5px;color:var(--txt-4);width:26px;text-align:right;font-weight:600}
+.word-card{border-radius:var(--r);padding:12px;background:var(--bg-3);border:1px solid var(--bdr-g)}
+.wc-word{font-family:'Fraunces',serif;font-size:19px;font-weight:700;color:var(--gold);margin-bottom:2px}
+.wc-phon{font-family:'DM Mono',monospace;font-size:10.5px;color:var(--txt-4);margin-bottom:6px}
+.wc-row{font-size:11.5px;line-height:1.65;margin-bottom:3px;padding:5px 8px;border-radius:6px}
+.wc-def{background:var(--gold-glo);color:var(--txt-1);border-left:2px solid var(--gold)}
+.wc-en{background:var(--teal-dim);color:var(--teal)}
+.wc-nat{background:rgba(255,255,255,0.04);color:var(--txt-3)}
+.wc-ant{background:var(--coral-dim);color:var(--coral)}
+.wc-lbl{font-size:8.5px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;opacity:.5;display:block;margin-bottom:1px;color:var(--txt-4)}
 .topic-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px}
-.topic-btn{background:var(--paper);border:1.5px solid var(--border);border-radius:8px;padding:7px;font-size:11px;cursor:pointer;text-align:center;color:var(--ink);font-family:"DM Sans",sans-serif;font-weight:500}
-.topic-btn:hover{background:var(--gp);border-color:var(--gold)}
+.topic-btn{background:var(--bg-3);border:1px solid var(--bdr);border-radius:8px;padding:7px;font-size:10.5px;cursor:pointer;text-align:center;color:var(--txt-3);font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;transition:all .13s}
+.topic-btn:hover{background:var(--gold-dim);border-color:var(--bdr-g);color:var(--gold)}
 .phon-row{display:flex;gap:5px}
-.phon-inp{flex:1;border:1.5px solid var(--border);border-radius:6px;padding:5px 8px;font-family:"DM Sans",sans-serif;font-size:11px;background:var(--paper);color:var(--ink);min-width:0}
-.phon-go{padding:5px 9px;border-radius:6px;border:none;background:var(--ink);color:var(--gl);font-size:11px;font-weight:600;cursor:pointer;font-family:"DM Sans",sans-serif}
-.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:500;display:none;align-items:center;justify-content:center;padding:14px}
+.phon-inp{flex:1;border:1px solid var(--bdr);border-radius:7px;padding:5px 8px;font-family:'Plus Jakarta Sans',sans-serif;font-size:10.5px;background:var(--bg-3);color:var(--txt-2);outline:none;min-width:0}
+.phon-inp::placeholder{color:var(--txt-4)}
+.phon-inp:focus{border-color:var(--bdr-g)}
+.phon-go{padding:5px 10px;border-radius:7px;border:none;background:var(--gold);color:var(--bg-0);font-size:10.5px;font-weight:800;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif}
+.phon-go:hover{background:var(--gold-b)}
+
+/* ── MODALS ── */
+.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,0.82);z-index:700;display:none;align-items:center;justify-content:center;padding:14px;overflow-y:auto}
 .modal-ov.open{display:flex}
-.modal{background:var(--paper);border-radius:var(--r);padding:20px;max-width:500px;width:100%;max-height:90vh;overflow-y:auto}
-.modal-title{font-family:"Cormorant Garamond",serif;font-size:23px;font-weight:700;margin-bottom:4px}
-.modal-sub{font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.55}
-.modal-close{float:right;background:none;border:none;font-size:18px;cursor:pointer;color:var(--muted);font-weight:700}
-.dna-q{border-radius:12px;padding:14px;margin-bottom:10px}
-.dna-q-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px;opacity:.65}
-.dna-q-text{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:4px;line-height:1.4}
-.dna-q-native{font-size:12px;color:var(--muted);font-style:italic;margin-bottom:10px}
+.modal{background:var(--bg-2);border:1px solid var(--bdr-g);border-radius:var(--rx);padding:20px;max-width:510px;width:100%;max-height:90vh;overflow-y:auto}
+.modal-title{font-family:'Fraunces',serif;font-size:23px;font-weight:700;margin-bottom:4px;color:var(--gold)}
+.modal-sub{font-size:12.5px;color:var(--txt-3);margin-bottom:14px;line-height:1.6}
+.modal-close{float:right;background:var(--bg-3);border:none;font-size:14px;cursor:pointer;color:var(--txt-4);font-weight:700;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .13s}
+.modal-close:hover{color:var(--txt-1);background:var(--bdr)}
+.dna-q{border-radius:var(--r);padding:13px;margin-bottom:10px;border:1px solid var(--bdr);background:var(--bg-3)}
+.dna-q-num{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px;color:var(--gold)}
+.dna-q-text{font-size:13.5px;font-weight:700;color:var(--txt-1);margin-bottom:4px;line-height:1.4}
+.dna-q-native{font-size:11.5px;color:var(--txt-4);font-style:italic;margin-bottom:9px}
 .dna-opts{display:flex;flex-direction:column;gap:6px}
-.dna-opt{padding:9px 12px;border-radius:9px;border:2px solid rgba(0,0,0,0.1);background:rgba(255,255,255,0.85);font-size:13px;cursor:pointer;text-align:left;font-family:"DM Sans",sans-serif;transition:all .15s;font-weight:500}
-.dna-opt:hover{border-color:var(--gold);background:#fff}
-.dna-opt.correct{background:#d5f5e3;border-color:#1e8449;color:#1e8449;font-weight:600}
-.dna-opt.wrong{background:#fadbd8;border-color:#c0392b;color:#c0392b}
-.dna-exp{margin-top:9px;border-radius:9px;font-size:12px;line-height:1.68;display:none}
+.dna-opt{padding:9px 12px;border-radius:8px;border:1px solid var(--bdr);background:var(--bg-4);font-size:12.5px;cursor:pointer;text-align:left;font-family:'Plus Jakarta Sans',sans-serif;transition:all .13s;font-weight:600;color:var(--txt-2)}
+.dna-opt:hover{border-color:var(--bdr-g);background:var(--gold-dim);color:var(--gold)}
+.dna-opt.correct{background:rgba(74,222,128,0.12);border-color:var(--green);color:var(--green);font-weight:700}
+.dna-opt.wrong{background:rgba(255,107,107,0.12);border-color:var(--coral);color:var(--coral)}
+.dna-exp{margin-top:9px;border-radius:8px;font-size:12px;line-height:1.7;display:none}
 .dna-exp.show{display:block}
-.dna-exp-en{border-left:4px solid var(--teal);padding:9px 12px;margin-bottom:5px}
-.dna-exp-nat{border-left:4px solid var(--gold);padding:9px 12px;font-style:italic}
-/* NEW FEATURES */
-.spk-outer{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:12px;align-items:center}
-.spk-sel{border:1.5px solid var(--border);border-radius:8px;padding:7px 10px;font-family:"DM Sans",sans-serif;font-size:12px;background:var(--cream);color:var(--ink);cursor:pointer;flex:1;min-width:130px}
-.orb{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,var(--ink),#2a2418);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:13px;font-weight:700;color:var(--gl);transition:all .2s;box-shadow:0 4px 20px rgba(0,0,0,0.3)}
-.orb:hover{transform:scale(1.05)}
-.orb.listening{background:linear-gradient(135deg,var(--rose),#a93226);animation:orbP 1.2s infinite}
-.orb.processing{background:linear-gradient(135deg,var(--teal),#0a4a3f)}
-@keyframes orbP{0%,100%{box-shadow:0 0 0 0 rgba(192,57,43,.4)}50%{box-shadow:0 0 0 18px rgba(192,57,43,0)}}
-.spk-fb{background:var(--cream);border-radius:var(--r);padding:14px;width:100%;max-width:540px;display:none;border:1px solid var(--border)}
+.dna-exp-en{border-left:3px solid var(--teal);padding:8px 11px;margin-bottom:5px;background:var(--teal-dim);color:var(--txt-2)}
+.dna-exp-nat{border-left:3px solid var(--gold);padding:8px 11px;font-style:italic;background:var(--gold-glo);color:var(--gold)}
+
+/* ── SPEAKING ── */
+.spk-outer{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;align-items:center;background:var(--bg-0)}
+.spk-sel{border:1px solid var(--bdr);border-radius:8px;padding:7px 10px;font-family:'Plus Jakarta Sans',sans-serif;font-size:11.5px;font-weight:600;background:var(--bg-2);color:var(--txt-2);outline:none;flex:1;min-width:120px}
+.orb{width:92px;height:92px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:12.5px;font-weight:800;color:var(--bg-0);transition:all .2s;box-shadow:0 0 0 0 transparent;font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:-.2px}
+.orb:hover{transform:scale(1.06);box-shadow:0 0 32px rgba(245,200,66,0.22)}
+.orb.listening{animation:orbP 1.2s infinite}
+.orb.processing{background:var(--teal);color:var(--bg-0)}
+@keyframes orbP{0%,100%{box-shadow:0 0 0 0 rgba(245,200,66,.45)}50%{box-shadow:0 0 0 22px rgba(245,200,66,0)}}
+.spk-fb{background:var(--bg-2);border:1px solid var(--bdr-g);border-radius:var(--r);padding:13px;width:100%;max-width:540px;display:none}
 .spk-tools{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;max-width:540px}
 @media(max-width:480px){.spk-tools{grid-template-columns:1fr}}
-.tool-box{background:var(--cream);border:1.5px solid var(--border);border-radius:var(--r);padding:12px}
-.tool-title{font-size:11px;font-weight:700;color:var(--ink);margin-bottom:7px;text-transform:uppercase;letter-spacing:.05em}
+.tool-box{background:var(--bg-2);border:1px solid var(--bdr-g);border-radius:var(--r);padding:11px}
+.tool-title{font-size:10px;font-weight:700;color:var(--gold);margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em}
 .trow{display:flex;gap:5px}
-.tinp{flex:1;border:1.5px solid var(--border);border-radius:7px;padding:7px 9px;font-family:"DM Sans",sans-serif;font-size:12px;background:var(--paper);color:var(--ink);min-width:0}
-.tinp:focus{outline:none;border-color:var(--gold)}
-.tbtn2{padding:7px 10px;border-radius:7px;border:none;background:var(--ink);color:var(--gl);font-size:11px;font-weight:700;cursor:pointer;font-family:"DM Sans",sans-serif}
-.tbtn2:hover{background:var(--teal)}
-.tres{margin-top:7px;font-size:12px;color:var(--muted);line-height:1.6}
-/* ACCENT MIRROR */
-.accent-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-top:10px}
-.accent-card{border-radius:11px;padding:13px;text-align:center;cursor:pointer;transition:all .15s;border:2px solid transparent;box-shadow:0 2px 8px rgba(0,0,0,0.07)}
-.accent-card:hover{transform:translateY(-3px);box-shadow:0 5px 16px rgba(0,0,0,0.14)}
-.accent-name{font-size:13px;font-weight:600;margin-bottom:2px}
-.accent-flag{font-size:24px;margin-bottom:6px;display:block}
-.accent-eg{font-size:11px;opacity:.7}
-/* CHALLENGE */
-.challenge-card{border-radius:var(--r);padding:18px;margin-bottom:10px;box-shadow:0 3px 14px rgba(0,0,0,0.08)}
-.challenge-day{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;opacity:.65}
-.challenge-title{font-family:"Cormorant Garamond",serif;font-size:20px;font-weight:700;margin-bottom:6px;line-height:1.3}
-.challenge-desc{font-size:13px;line-height:1.72;margin-bottom:9px}
-.challenge-native{font-size:12px;font-style:italic;padding:8px 12px;border-radius:8px;margin-bottom:9px}
-.challenge-ans{display:none;padding:13px;border-radius:9px;margin-top:8px;font-size:13px;line-height:1.72}
+.tinp{flex:1;border:1px solid var(--bdr);border-radius:7px;padding:6px 8px;font-family:'Plus Jakarta Sans',sans-serif;font-size:11.5px;background:var(--bg-3);color:var(--txt-1);min-width:0;outline:none}
+.tinp::placeholder{color:var(--txt-4)}
+.tinp:focus{border-color:var(--bdr-g)}
+.tbtn2{padding:6px 11px;border-radius:7px;border:none;background:var(--gold);color:var(--bg-0);font-size:10.5px;font-weight:800;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all .13s}
+.tbtn2:hover{background:var(--gold-b)}
+.tres{margin-top:7px;font-size:11.5px;color:var(--txt-3);line-height:1.6}
+
+/* ── FEATURES ── */
+.accent-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(126px,1fr));gap:8px;margin-top:10px}
+.accent-card{border-radius:var(--r);padding:12px;text-align:center;cursor:pointer;transition:all .16s;border:1px solid var(--bdr);background:var(--bg-2)}
+.accent-card:hover{transform:translateY(-3px);border-color:var(--bdr-g);box-shadow:0 8px 20px rgba(245,200,66,0.10)}
+.accent-name{font-size:12.5px;font-weight:700;margin-bottom:2px;color:var(--txt-1)}
+.accent-flag{font-size:25px;margin-bottom:6px;display:block}
+.accent-eg{font-size:10.5px;color:var(--txt-4)}
+.challenge-card{border-radius:var(--rl);padding:17px;margin-bottom:10px;border:1px solid var(--bdr-g);background:var(--bg-2)}
+.challenge-day{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px;color:var(--gold)}
+.challenge-title{font-family:'Fraunces',serif;font-size:19px;font-weight:700;margin-bottom:5px;line-height:1.3;color:var(--txt-1)}
+.challenge-desc{font-size:12.5px;line-height:1.72;margin-bottom:8px;color:var(--txt-3)}
+.challenge-native{font-size:11.5px;font-style:italic;padding:7px 11px;border-radius:8px;margin-bottom:8px;background:var(--gold-glo);border-left:3px solid var(--gold);color:var(--gold)}
+.challenge-ans{display:none;padding:12px;border-radius:10px;margin-top:7px;font-size:12.5px;line-height:1.72;background:var(--bg-3);border:1px solid var(--bdr-g);color:var(--txt-2)}
 .challenge-ans.show{display:block}
-.reveal-btn{padding:8px 18px;border-radius:20px;border:none;font-family:"DM Sans",sans-serif;font-size:12px;font-weight:600;cursor:pointer}
-/* MISTAKES */
-.mistake-item{border-radius:11px;padding:14px;margin-bottom:9px;border-left:4px solid;box-shadow:0 2px 7px rgba(0,0,0,0.06)}
-.mistake-num{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;opacity:.65}
-.mistake-wrong{font-size:15px;font-weight:600;margin-bottom:3px;text-decoration:line-through;opacity:.65}
-.mistake-right{font-size:15px;font-weight:700;margin-bottom:6px}
-.mistake-why{font-size:12px;line-height:1.65;margin-bottom:5px}
-.mistake-native{font-size:12px;font-style:italic;opacity:.8;padding:6px 10px;border-radius:6px;margin-top:4px}
-/* SENTENCE PUZZLE */
-.puzzle-clue{font-size:12px;font-style:italic;padding:7px 11px;border-radius:8px;margin-bottom:10px}
-.puzzle-bank{min-height:50px;border-radius:9px;padding:8px;margin-bottom:8px;display:flex;flex-wrap:wrap;gap:5px}
-.puzzle-target{min-height:50px;border-radius:9px;padding:8px;margin-bottom:8px;display:flex;flex-wrap:wrap;gap:5px;border:2px dashed}
-.puzzle-word{display:inline-block;padding:7px 12px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:all .15s;user-select:none;box-shadow:0 2px 5px rgba(0,0,0,0.1)}
-.puzzle-word:hover{transform:scale(1.05)}
-/* CONFUSABLE */
-.confuse-card{border-radius:var(--r);padding:15px;margin-bottom:9px;box-shadow:0 2px 8px rgba(0,0,0,0.07)}
-.confuse-pair{display:flex;gap:10px;align-items:center;margin-bottom:8px;flex-wrap:wrap}
-.confuse-word{font-family:"Cormorant Garamond",serif;font-size:22px;font-weight:700;padding:4px 12px;border-radius:8px}
-.confuse-vs{font-size:11px;font-weight:700;color:var(--muted)}
-.confuse-rule{font-size:13px;line-height:1.72;margin-bottom:6px}
-.confuse-native{font-size:12px;font-style:italic;padding:7px 10px;border-radius:7px}
-.confuse-examples{display:none;margin-top:8px}
-.confuse-examples.show{display:block}
-.confuse-ex{font-size:12px;line-height:1.65;margin-bottom:5px;padding:6px 10px;border-radius:6px}
-/* TENSE TIMELINE */
-.tl-wrap{overflow-x:auto;padding-bottom:8px}
+.reveal-btn{padding:7px 17px;border-radius:100px;border:none;font-family:'Plus Jakarta Sans',sans-serif;font-size:11.5px;font-weight:800;cursor:pointer;background:var(--gold);color:var(--bg-0);transition:all .13s}
+.reveal-btn:hover{background:var(--gold-b)}
+.mistake-item{border-radius:10px;padding:12px;margin-bottom:8px;border-left:3px solid;border:1px solid var(--bdr);border-left:3px solid;background:var(--bg-2)}
+.mistake-num{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;color:var(--gold)}
+.mistake-wrong{font-size:13.5px;font-weight:700;margin-bottom:2px;text-decoration:line-through;color:var(--coral);opacity:.75}
+.mistake-right{font-size:13.5px;font-weight:700;margin-bottom:5px;color:var(--green)}
+.mistake-why{font-size:11.5px;line-height:1.65;margin-bottom:4px;color:var(--txt-3)}
+.confuse-card{border-radius:var(--r);padding:13px;margin-bottom:8px;border:1px solid var(--bdr);background:var(--bg-2)}
+.confuse-pair{display:flex;gap:9px;align-items:center;margin-bottom:7px;flex-wrap:wrap}
+.confuse-word{font-family:'Fraunces',serif;font-size:21px;font-weight:700;padding:3px 11px;border-radius:7px;color:var(--txt-1)}
+.confuse-vs{font-size:10.5px;font-weight:700;color:var(--txt-4)}
+.confuse-rule{font-size:12.5px;line-height:1.72;margin-bottom:5px;color:var(--txt-3)}
+.confuse-examples{display:none;margin-top:7px}.confuse-examples.show{display:block}
+.tl-wrap{overflow-x:auto;padding-bottom:9px}
 .tl-track{display:flex;gap:0;min-width:680px;position:relative;margin:18px 0}
-.tl-track::before{content:"";position:absolute;top:50%;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--rose),var(--gold),var(--forest));transform:translateY(-50%);z-index:0}
-.tl-sect{flex:1;display:flex;flex-direction:column;gap:5px;position:relative;z-index:1}
-.tl-lbl{text-align:center;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:3px 7px;border-radius:5px;margin-bottom:4px}
-.tl-tenses{display:flex;flex-direction:column;gap:5px;padding:0 3px}
-.tl-tense{text-align:center;padding:6px 4px;border-radius:9px;font-size:10px;font-weight:600;cursor:pointer;transition:all .15s;border:1.5px solid transparent;line-height:1.3}
-.tl-tense:hover{transform:scale(1.06);box-shadow:0 3px 10px rgba(0,0,0,0.15)}
-.tl-popup{border-radius:var(--r);padding:14px;margin-top:10px;display:none;box-shadow:0 3px 14px rgba(0,0,0,0.1)}
+.tl-track::before{content:'';position:absolute;top:50%;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--coral),var(--gold),var(--green));transform:translateY(-50%);z-index:0}
+.tl-popup{border-radius:var(--rl);padding:14px;margin-top:10px;display:none;border:1px solid var(--bdr-g);background:var(--bg-2);color:var(--txt-2)}
 .tl-popup.show{display:block}
-/* PHRASE OF DAY */
-.phrase-card{border-radius:var(--r);padding:18px;margin-bottom:9px;box-shadow:0 3px 13px rgba(0,0,0,0.08)}
-.phrase-day{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px;opacity:.65}
-.phrase-text{font-family:"Cormorant Garamond",serif;font-size:22px;font-weight:700;margin-bottom:5px;line-height:1.3}
-.phrase-meaning{font-size:13px;line-height:1.7;margin-bottom:8px}
-.phrase-example{font-size:13px;font-style:italic;padding:9px 13px;border-radius:9px;margin-bottom:8px;border-left:4px solid}
-.phrase-native{font-size:12px;font-style:italic;padding:8px 12px;border-radius:7px}
-/* ERROR SPOTTER */
-.error-para{font-size:14px;line-height:2.3;cursor:default;padding:14px;border-radius:10px}
-.ew{cursor:pointer;padding:2px 3px;border-radius:3px;transition:all .15s}
-.ew:hover{background:rgba(196,154,26,0.25)}
-.ew.found-err{background:rgba(192,57,43,0.18);color:var(--rose);font-weight:600;border-radius:4px}
-.ew.found-ok{background:rgba(30,132,73,0.18);color:var(--forest);font-weight:600;border-radius:4px}
-/* CHEAT SHEET */
-.cs-topic-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:12px}
-.cs-topic-btn{padding:10px;border-radius:10px;border:1.5px solid var(--border);background:var(--paper);font-size:12px;font-weight:600;cursor:pointer;text-align:center;font-family:"DM Sans",sans-serif;transition:all .15s}
-.cs-topic-btn:hover,.cs-topic-btn.active{border-color:var(--gold);background:var(--gp);color:var(--gold)}
-.cs-sheet{border-radius:var(--r);padding:16px;border:1px solid var(--border);display:none}
-.cs-sheet.show{display:block}
-.cs-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:12px;gap:10px}
-.cs-row:last-child{border:none}
-.cs-term{font-weight:600;flex-shrink:0;min-width:100px}
-.cs-rule{color:var(--muted);line-height:1.5;flex:1}
-.cs-native{color:var(--ocean);font-style:italic;font-size:11px;flex:1}
-/* WAITLIST */
-.wl-ov{position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:600;display:none;align-items:center;justify-content:center;padding:14px}
-.wl-ov.open{display:flex}
-.wl-modal{background:var(--paper);border-radius:var(--r);max-width:480px;width:100%;max-height:92vh;overflow-y:auto}
-.wl-top{background:linear-gradient(145deg,#0f0d0b,#1a1a0e);padding:22px 20px;text-align:center;border-radius:var(--r) var(--r) 0 0;position:relative}
-.wl-close-btn{position:absolute;top:12px;right:14px;background:none;border:none;color:rgba(255,255,255,0.5);font-size:18px;cursor:pointer;font-weight:700}
-.wl-body{padding:20px}
-.wl-feats{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:16px}
-.wl-feat{border-radius:9px;padding:9px 11px;font-size:11px;line-height:1.5;border-left:3px solid}
-.wl-feat strong{display:block;font-size:12px;margin-bottom:2px;font-weight:600}
-.wl-inp{width:100%;border:1.5px solid var(--border);border-radius:9px;padding:10px 13px;font-family:"DM Sans",sans-serif;font-size:13px;background:var(--cream);color:var(--ink);margin-bottom:9px}
-.wl-inp:focus{outline:none;border-color:var(--gold)}
-.wl-submit-btn{width:100%;padding:12px;background:linear-gradient(135deg,var(--gold),#e8a820);color:#fff;border:none;border-radius:9px;font-family:"DM Sans",sans-serif;font-size:14px;font-weight:700;cursor:pointer;margin-top:10px}
-/* LIMIT SCREEN */
-.lmt-ov{position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:550;display:none;align-items:center;justify-content:center;padding:14px}
-.lmt-ov.open{display:flex}
-.lmt-box{background:var(--paper);border-radius:var(--r);max-width:420px;width:100%;overflow:hidden}
-.lmt-top{background:linear-gradient(135deg,#0f0d0b,#2a2418);padding:22px 20px;text-align:center}
+.phrase-card{border-radius:var(--rl);padding:17px;margin-bottom:9px;border:1px solid var(--bdr-g);background:var(--bg-2)}
+.phrase-day{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px;color:var(--gold)}
+.phrase-text{font-family:'Fraunces',serif;font-size:21px;font-weight:700;margin-bottom:5px;line-height:1.3;color:var(--gold-b)}
+.phrase-meaning{font-size:12.5px;line-height:1.7;margin-bottom:7px;color:var(--txt-3)}
+.phrase-example{font-size:12.5px;font-style:italic;padding:8px 12px;border-radius:8px;margin-bottom:7px;border-left:3px solid var(--gold);background:var(--gold-glo);color:var(--txt-2)}
+.phrase-native{font-size:11.5px;font-style:italic;padding:7px 11px;border-radius:7px;background:var(--bg-3);color:var(--txt-3)}
+
+/* ── TYPING ── */
 .tdots{display:inline-flex;gap:4px;align-items:center;padding:3px 0}
-.tdots span{width:5px;height:5px;border-radius:50%;background:var(--muted);animation:db 1.2s infinite}
+.tdots span{width:5px;height:5px;border-radius:50%;background:var(--txt-4);animation:db 1.2s infinite}
 .tdots span:nth-child(2){animation-delay:.2s}
 .tdots span:nth-child(3){animation-delay:.4s}
 @keyframes db{0%,80%,100%{transform:scale(.8);opacity:.5}40%{transform:scale(1.2);opacity:1}}
+
+/* ── INFO BOXES ── */
+.ib{border-radius:9px;padding:10px 13px;font-size:12.5px;line-height:1.65;margin-bottom:9px;border-left:3px solid;color:var(--txt-3)}
+.ib-gold{background:var(--gold-glo);border-color:var(--gold);color:var(--txt-2)}
+.ib-teal{background:var(--teal-dim);border-color:var(--teal)}
+.ib-coral{background:var(--coral-dim);border-color:var(--coral)}
+.ib-green{background:rgba(74,222,128,0.08);border-color:var(--green)}
+.ib-blue{background:rgba(96,165,250,0.08);border-color:var(--blue)}
+.ib-plum{background:rgba(167,139,250,0.08);border-color:#A78BFA}
+.ib-amber{background:rgba(251,191,36,0.08);border-color:#FBBF24}
+.ib-slate{background:rgba(255,255,255,0.04);border-color:var(--bdr)}
+
+code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;font-family:'DM Mono',monospace;color:var(--gold)}
 ::-webkit-scrollbar{width:3px}
-::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
-code{font-size:11px;background:rgba(0,0,0,0.06);padding:1px 4px;border-radius:3px;font-family:"DM Mono",monospace}
-.ib{border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.65;margin-bottom:10px;border-left:4px solid}
-.ib-gold{background:var(--gp);border-color:var(--gold)}
-.ib-teal{background:linear-gradient(135deg,#e8f5f0,#d4ede6);border-color:var(--teal)}
-.ib-plum{background:var(--pll);border-color:var(--plum)}
-.ib-ocean{background:var(--ocl);border-color:var(--ocean)}
-.ib-rose{background:var(--rl);border-color:var(--rose)}
-.ib-forest{background:var(--frl);border-color:var(--forest)}
-.ib-amber{background:var(--aml);border-color:var(--amber)}
-@media print{.cstrip,header,.tabs,.sidebar,.ibar,.ubar,.wl-ov,.modal-ov,.lmt-ov,button{display:none!important}.layout{height:auto}.content{overflow:visible}.panel.active{overflow:visible;height:auto}}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.09);border-radius:2px}
+
+/* ══ FULL MOBILE RESPONSIVENESS ══ */
+@media(max-width:768px){
+  .announce-bar{font-size:10.5px;padding:6px 10px;gap:7px}
+  header{padding:0 12px;height:52px;top:30px;gap:7px}
+  .logo-text,.logo{font-size:17px}
+  .logo-icon{width:30px;height:30px;font-size:15px}
+  .hdr-btn{padding:6px 12px;font-size:11px}
+  .ubar{top:82px;font-size:10.5px;padding:5px 12px}
+  .tabs-wrap{top:112px}
+  .layout{height:calc(100vh - 150px)}
+  .hero{padding:36px 14px 30px}
+  .hero h1{letter-spacing:-1px}
+  .hero-eyebrow{font-size:10px;padding:5px 14px}
+  .btn-primary,.btn-secondary{font-size:13px;padding:12px 20px}
+  .hero-stats{max-width:100%}
+  .hstat-num{font-size:22px}
+  .price-ribbon{padding:8px 16px;gap:8px}
+  .pr-main{font-size:13px}
+  .msgs{padding:11px}
+  .ibar{padding:8px 10px}
+  .bbl{font-size:12.5px;padding:10px 13px}
+  .voc-grid{grid-template-columns:repeat(auto-fill,minmax(135px,1fr))}
+  .feat-item{padding:0 14px}
+  .feat-text{font-size:11px}
+}
+@media(max-width:480px){
+  .announce-bar{font-size:10px;flex-direction:column;gap:4px;padding:7px 10px;text-align:center}
+  header{gap:5px}
+  #nativeLang{display:none}
+  .hero h1{font-size:27px;letter-spacing:-.8px}
+  .hero-sub{font-size:13px}
+  .hero-cta{flex-direction:column;align-items:stretch}
+  .btn-primary,.btn-secondary{justify-content:center}
+  .hero-stats .hstat{padding:11px 4px}
+  .hstat-num{font-size:20px}
+  .hstat-lbl{font-size:9px}
+  .price-ribbon{flex-direction:column;border-radius:14px;gap:4px}
+  .pr-sep{width:40px;height:1px}
+  .voc-grid{grid-template-columns:repeat(2,1fr)}
+  .stats-grid{gap:6px}
+  .stat-num{font-size:24px}
+  .accent-grid{grid-template-columns:repeat(2,1fr)}
+  .spk-tools{grid-template-columns:1fr}
+  .do-dont{grid-template-columns:1fr}
+  .write-modes{grid-template-columns:repeat(2,1fr)}
+  .tabs-wrap{top:105px}
+  .layout{height:calc(100vh - 140px)}
+}
+@media print{
+  .announce-bar,header,.tabs-wrap,.sidebar,.ibar,.ubar,button,#wlModal,#lmtScreen,#dnaModal{display:none!important}
+  .layout{height:auto}
+  .content{overflow:visible}
+  .panel.active{overflow:visible;height:auto}
+}
 </style>
 </head>
 <body>
 
 <!-- CAMPAIGN STRIP -->
-<div class="cstrip">
-  <span>Full app launching soon &mdash; <strong>limited preview now live</strong></span>
-  <span style="opacity:.35">|</span>
-  <span id="stripCount">Join 1,247 learners on the waitlist</span>
-  <span style="opacity:.35">|</span>
-  <span class="cstrip-link" onclick="openWaitlist()">Get early access &rarr;</span>
+<div class="announce-bar">
+  <span>&#127891; <strong style="color:var(--gold)">Early Bird $4.99/mo</strong> &mdash; regular $9.99 &mdash; register before launch to lock this price forever</span>
+  <span style="opacity:.3">|</span>
+  <span id="stripCount" style="color:var(--txt-3)">1,247 learners registered</span>
+  <span style="opacity:.3">|</span>
+  <span onclick="openWaitlist()" style="color:var(--gold-bright);font-weight:800;cursor:pointer;text-decoration:underline;white-space:nowrap">Claim yours &rarr;</span>
 </div>
 
 <header>
-  <div class="logo">Native<em>English</em></div>
-  <select id="nativeLang" onchange="setLang(this.value)">
-    <option value="Spanish">ES Spanish</option>
-    <option value="Russian">RU Russian</option>
-    <option value="Arabic">AR Arabic</option>
-    <option value="French">FR French</option>
-    <option value="Portuguese">PT Portuguese</option>
-    <option value="Hindi">HI Hindi</option>
-    <option value="Chinese">ZH Chinese</option>
-    <option value="Japanese">JA Japanese</option>
-    <option value="German">DE German</option>
-    <option value="Turkish">TR Turkish</option>
-    <option value="Italian">IT Italian</option>
-    <option value="Korean">KO Korean</option>
-    <option value="Telugu">TE Telugu</option>
-    <option value="Tamil">TA Tamil</option>
-    <option value="Kannada">KA Kannada</option>
-    <option value="Malayalam">ML Malayalam</option>
-  </select>
+  <div class="logo-wrap">
+    <div class="logo-icon">N</div>
+    <div class="logo-text">Native<span>English</span></div>
+  </div>
+  <div class="header-right">
+    <select id="nativeLang" onchange="setLang(this.value)">
+      <option value="Spanish">🇪🇸 Spanish</option>
+      <option value="Russian">🇷🇺 Russian</option>
+      <option value="Arabic">🇸🇦 Arabic</option>
+      <option value="French">🇫🇷 French</option>
+      <option value="Portuguese">🇧🇷 Portuguese</option>
+      <option value="Hindi">🇮🇳 Hindi</option>
+      <option value="Chinese">🇨🇳 Chinese</option>
+      <option value="Japanese">🇯🇵 Japanese</option>
+      <option value="German">🇩🇪 German</option>
+      <option value="Turkish">🇹🇷 Turkish</option>
+      <option value="Italian">🇮🇹 Italian</option>
+      <option value="Korean">🇰🇷 Korean</option>
+      <option value="Telugu">🇮🇳 Telugu</option>
+      <option value="Tamil">🇮🇳 Tamil</option>
+      <option value="Kannada">🇮🇳 Kannada</option>
+      <option value="Malayalam">🇮🇳 Malayalam</option>
+    </select>
+    <button class="hdr-btn hdr-btn-outline" onclick="openDNA()" style="color:rgba(255,255,255,0.85);border-color:rgba(255,255,255,0.25)">&#129514; Level Test</button>
+    <button class="hdr-btn hdr-btn-fill" onclick="openWaitlist()">&#127891; Join &mdash; $4.99/mo</button>
+  </div>
 </header>
 
 <div class="ubar">
@@ -379,26 +521,62 @@ code{font-size:11px;background:rgba(0,0,0,0.06);padding:1px 4px;border-radius:3p
     <div id="udot" class="udot green"></div>
     <span id="utext">1 free interactive session available today</span>
   </div>
-  <span onclick="openWaitlist()" style="color:var(--gold);font-weight:600;cursor:pointer">Join waitlist for full access</span>
+  <span onclick="openWaitlist()" style="color:var(--gold);font-weight:600;cursor:pointer">Join Unlimited Learning</span>
 </div>
 
 <div class="hero">
-  <div class="hero-badge">Free Preview &mdash; Full Launch Coming Soon</div>
-  <h1>Master English from <em>your</em> language</h1>
-  <p class="hero-sub">Grammar, Speaking, Writing, Vocabulary and Idioms &mdash; all explained in <strong style="color:var(--gl)">English AND your native language</strong></p>
-  <div class="hero-langs">
-    <span class="hlang">Telugu</span><span class="hlang">Tamil</span><span class="hlang">Kannada</span>
-    <span class="hlang">Malayalam</span><span class="hlang">Arabic</span><span class="hlang">Hindi</span>
-    <span class="hlang">Spanish</span><span class="hlang">French</span><span class="hlang">+8 more</span>
-  </div>
-  <div class="hero-btns">
-    <button class="hbtn hbtn-gold" onclick="openDNA()">Take your English DNA Test</button>
-    <button class="hbtn hbtn-outline" onclick="openWaitlist()">Join the Waitlist</button>
-  </div>
-  <div class="hero-count" id="heroCount">1,247 learners already on the waitlist</div>
-</div>
 
-<div class="tabs">
+  <!-- EYEBROW BADGE -->
+  <div class="hero-eyebrow">&#10022; Free preview live &mdash; Limited early bird spots</div>
+
+  <!-- DEEP OCEAN HEADLINE ON MIDNIGHT GOLD -->
+  <h1>No tutor required.<br><em>Your language</em> unlocks <strong>English.</strong></h1>
+
+  <!-- SUBHEADLINE -->
+  <p class="hero-sub">The first English learning experience built specifically for <b>Telugu, Tamil, Kannada, Malayalam, Arabic and Hindi speakers</b> &mdash; every rule explained in your language, every time.</p>
+
+  <!-- LANGUAGE CHIPS -->
+  <div class="hero-lang-row">
+    <span class="lang-chip">&#127470;&#127475; Telugu</span>
+    <span class="lang-chip">&#127470;&#127475; Tamil</span>
+    <span class="lang-chip">&#127470;&#127475; Kannada</span>
+    <span class="lang-chip">&#127470;&#127475; Malayalam</span>
+    <span class="lang-chip">&#127470;&#127475; Hindi</span>
+    <span class="lang-chip">&#127480;&#127462; Arabic</span>
+    <span class="lang-chip">&#127466;&#127480; Spanish</span>
+    <span class="lang-chip">&#127467;&#127479; French</span>
+    <span class="lang-chip">+ 8 more</span>
+  </div>
+
+  <!-- CTA BUTTONS -->
+  <div class="hero-cta">
+    <button class="btn-primary" onclick="openDNA()">&#129514; Test Your English Level &mdash; Free</button>
+    <button class="btn-secondary" onclick="openWaitlist()">&#127891; Join Unlimited Learning</button>
+  </div>
+
+  <!-- EARLY BIRD PRICING TEASER -->
+  <div class="price-ribbon">
+    <span class="pr-old">Regular $9.99/mo</span>
+    <span class="pr-sep"></span>
+    <span class="pr-main">&#9733; Early Bird $4.99/mo &mdash; locked forever</span>
+    <span class="pr-sep"></span>
+    <span class="pr-annual">Annual $49.99/yr &nbsp;&#183;&nbsp; Lifetime $79</span>
+  </div>
+
+  <!-- SOCIAL PROOF -->
+  <p class="hero-social-proof">&#127775; <strong id="heroCount">1,247 learners</strong> already registered for early bird access</p>
+
+  <!-- STATS ROW -->
+  <div class="hero-stats">
+    <div class="hstat"><div class="hstat-num">16</div><div class="hstat-lbl">Native Languages</div></div>
+    <div class="hstat"><div class="hstat-num">9</div><div class="hstat-lbl">Free Tools Always</div></div>
+    <div class="hstat"><div class="hstat-num">375+</div><div class="hstat-lbl">Vocabulary Words</div></div>
+    <div class="hstat"><div class="hstat-num">$0</div><div class="hstat-lbl">To Start</div></div>
+  </div>
+
+</div></div>
+
+<div class="tabs-wrap"><div class="tabs">
   <button class="tbtn active" onclick="showTab('chat',this)">Tutor</button>
   <button class="tbtn" onclick="showTab('speaking',this)">Speaking</button>
   <button class="tbtn" onclick="showTab('grammar',this)">Grammar</button>
@@ -416,37 +594,103 @@ code{font-size:11px;background:rgba(0,0,0,0.06);padding:1px 4px;border-radius:3p
   <button class="tbtn" onclick="showTab('spotter',this)">Error Spotter</button>
   <button class="tbtn" onclick="showTab('cheatsheet',this)">Cheat Sheet</button>
   <button class="tbtn" onclick="showTab('diary',this)">Progress</button>
-</div>
+</div></div>
 
+<div class="feature-strip">
+  <div class="feat-item"><span class="feat-icon">🎯</span><span class="feat-text"><b>Bilingual</b> explanations</span></div>
+  <div class="feat-item"><span class="feat-icon">🌏</span><span class="feat-text"><b>16</b> native languages</span></div>
+  <div class="feat-item"><span class="feat-icon">🎤</span><span class="feat-text"><b>Speaking</b> coach</span></div>
+  <div class="feat-item"><span class="feat-icon">📚</span><span class="feat-text"><b>375+</b> vocabulary words</span></div>
+  <div class="feat-item"><span class="feat-icon">✍️</span><span class="feat-text"><b>Writing</b> grader</span></div>
+  <div class="feat-item"><span class="feat-icon">🧩</span><span class="feat-text"><b>9</b> free tools always</span></div>
+  <div class="feat-item"><span class="feat-icon">⚡</span><span class="feat-text"><b>Smart</b> bilingual tutor</span></div>
+  <div class="feat-item"><span class="feat-icon">💰</span><span class="feat-text"><b>$4.99/mo</b> early bird</span></div>
+  <div class="feat-item"><span class="feat-icon">🔓</span><span class="feat-text"><b>No</b> tutor needed</span></div>
+</div>
 <div class="layout">
 <div class="content">
 
-<!-- TUTOR -->
-<div id="panel-chat" class="panel active">
+<!-- TUTOR — GLAMOROUS VERSION -->
+<div id="panel-chat" class="panel active" style="flex-direction:column;overflow:hidden">
+
+  <!-- TOP HERO BAR -->
+  <div style="background:linear-gradient(135deg,#0f0d0b 0%,#1a1612 60%,#0d1f1a 100%);padding:14px 16px 12px;border-bottom:1px solid rgba(245,200,66,0.18);flex-shrink:0">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap">
+      <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#e8a820);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--txt-1);flex-shrink:0">N</div>
+      <div>
+        <div style="font-family:'Fraunces',serif;font-size:18px;font-weight:700;color:#fff;line-height:1.1">Your Personal English Tutor</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.6);margin-top:1px">Bilingual explanations &mdash; English <span style="color:var(--gold)">&amp;</span> your language</div>
+      </div>
+      <div style="margin-left:auto;display:flex;gap:5px;flex-wrap:wrap">
+        <div style="background:rgba(14,102,85,0.3);border:1px solid rgba(168,219,212,0.3);border-radius:6px;padding:3px 8px;font-size:10px;color:var(--teal-dim);font-weight:600">&#9679; Live tutor</div>
+        <div style="background:rgba(196,154,26,0.2);border:1px solid rgba(245,200,66,0.3);border-radius:6px;padding:3px 8px;font-size:10px;color:var(--gold);font-weight:600">Bilingual</div>
+      </div>
+    </div>
+    <!-- Quick topic cards -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:6px" id="topicCards">
+      <div onclick="sendHint('Check my English and correct all my mistakes with full explanation')" style="background:rgba(196,154,26,0.12);border:1.5px solid rgba(196,154,26,0.3);border-radius:9px;padding:8px 6px;text-align:center;cursor:pointer;transition:all .15s" onmouseover="this.style.background='rgba(196,154,26,0.25)'" onmouseout="this.style.background='rgba(196,154,26,0.12)'">
+        <div style="font-size:16px;margin-bottom:3px">&#128394;</div>
+        <div style="font-size:10px;font-weight:600;color:var(--gold)">Fix My English</div>
+      </div>
+      <div onclick="sendHint('Explain present perfect vs simple past tense: when to use each with examples and explanation in my language')" style="background:rgba(14,102,85,0.12);border:1.5px solid rgba(14,102,85,0.3);border-radius:9px;padding:8px 6px;text-align:center;cursor:pointer;transition:all .15s" onmouseover="this.style.background='rgba(14,102,85,0.25)'" onmouseout="this.style.background='rgba(14,102,85,0.12)'">
+        <div style="font-size:16px;margin-bottom:3px">&#128336;</div>
+        <div style="font-size:10px;font-weight:600;color:var(--teal-dim)">Tenses</div>
+      </div>
+      <div onclick="sendHint('Teach me 5 very useful English idioms with meanings, examples and explanation in my native language')" style="background:rgba(108,52,131,0.12);border:1.5px solid rgba(108,52,131,0.3);border-radius:9px;padding:8px 6px;text-align:center;cursor:pointer;transition:all .15s" onmouseover="this.style.background='rgba(108,52,131,0.25)'" onmouseout="this.style.background='rgba(108,52,131,0.12)'">
+        <div style="font-size:16px;margin-bottom:3px">&#128218;</div>
+        <div style="font-size:10px;font-weight:600;color:#c39bd3">Idioms</div>
+      </div>
+      <div onclick="sendHint('Let us do a job interview practice in English. Ask me typical interview questions and correct my answers')" style="background:rgba(26,82,118,0.12);border:1.5px solid rgba(26,82,118,0.3);border-radius:9px;padding:8px 6px;text-align:center;cursor:pointer;transition:all .15s" onmouseover="this.style.background='rgba(26,82,118,0.25)'" onmouseout="this.style.background='rgba(26,82,118,0.12)'">
+        <div style="font-size:16px;margin-bottom:3px">&#128084;</div>
+        <div style="font-size:10px;font-weight:600;color:#74b9f7">Interview</div>
+      </div>
+      <div onclick="sendHint('Explain the most important English phrasal verbs with meanings and bilingual examples')" style="background:rgba(30,132,73,0.12);border:1.5px solid rgba(30,132,73,0.3);border-radius:9px;padding:8px 6px;text-align:center;cursor:pointer;transition:all .15s" onmouseover="this.style.background='rgba(30,132,73,0.25)'" onmouseout="this.style.background='rgba(30,132,73,0.12)'">
+        <div style="font-size:16px;margin-bottom:3px">&#128640;</div>
+        <div style="font-size:10px;font-weight:600;color:#82e0aa">Phrasal Verbs</div>
+      </div>
+      <div onclick="sendHint('Teach me how to write a professional email in English with examples and explanation in my language')" style="background:rgba(211,84,0,0.12);border:1.5px solid rgba(211,84,0,0.3);border-radius:9px;padding:8px 6px;text-align:center;cursor:pointer;transition:all .15s" onmouseover="this.style.background='rgba(211,84,0,0.25)'" onmouseout="this.style.background='rgba(211,84,0,0.12)'">
+        <div style="font-size:16px;margin-bottom:3px">&#128231;</div>
+        <div style="font-size:10px;font-weight:600;color:#f0b27a">Email Writing</div>
+      </div>
+      <div onclick="sendHint('What are the most common English grammar mistakes and how can I avoid them? Explain in my language too')" style="background:rgba(192,57,43,0.12);border:1.5px solid rgba(192,57,43,0.3);border-radius:9px;padding:8px 6px;text-align:center;cursor:pointer;transition:all .15s" onmouseover="this.style.background='rgba(192,57,43,0.25)'" onmouseout="this.style.background='rgba(192,57,43,0.12)'">
+        <div style="font-size:16px;margin-bottom:3px">&#9888;</div>
+        <div style="font-size:10px;font-weight:600;color:#f1948a">Common Errors</div>
+      </div>
+      <div onclick="sendHint('Explain how to use English articles a an the correctly with rules and examples in my language')" style="background:rgba(21,101,192,0.12);border:1.5px solid rgba(21,101,192,0.3);border-radius:9px;padding:8px 6px;text-align:center;cursor:pointer;transition:all .15s" onmouseover="this.style.background='rgba(21,101,192,0.25)'" onmouseout="this.style.background='rgba(21,101,192,0.12)'">
+        <div style="font-size:16px;margin-bottom:3px">&#128270;</div>
+        <div style="font-size:10px;font-weight:600;color:#7fb3f5">Articles</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MESSAGES -->
   <div class="msgs" id="chatMsgs">
     <div class="msg ai"><div class="av">N</div><div>
-      <div class="bbl" style="background:linear-gradient(135deg,#fff8e8,#fdf3c8);border-left:4px solid var(--gold)">
-        <span style="color:var(--gold);font-weight:700">Welcome to NativeEnglish!</span> I am your personal English tutor.<br><br>
-        I explain every rule, every correction and every mistake in <strong>English AND your native language</strong> so nothing is ever confusing.<br><br>
-        <span style="color:var(--teal);font-weight:600">What would you like to learn today?</span>
+      <div style="background:linear-gradient(135deg,#0f0d0b,#1a1612);border-radius:4px 14px 14px 14px;padding:14px 16px;font-size:13px;line-height:1.82;box-shadow:0 3px 12px var(--bg-3);border:1px solid var(--bdr-g)">
+        <div style="font-family:'Fraunces',serif;font-size:19px;font-weight:700;color:var(--gold);margin-bottom:8px;line-height:1.2">Welcome to NativeEnglish &#127775;</div>
+        <div style="color:var(--txt-2);margin-bottom:8px">I am your personal NativeEnglish tutor. Every explanation, correction and rule comes in <strong style="color:var(--gold)">English AND your native language</strong> — so nothing is ever confusing.</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:10px">
+          <div style="background:rgba(196,154,26,0.1);border-radius:7px;padding:7px 9px;font-size:11px;color:rgba(255,255,255,0.8);border-left:2px solid var(--gold)">&#9989; Grammar corrections</div>
+          <div style="background:rgba(14,102,85,0.12);border-radius:7px;padding:7px 9px;font-size:11px;color:rgba(255,255,255,0.8);border-left:2px solid var(--teal)">&#9989; Bilingual explanations</div>
+          <div style="background:rgba(108,52,131,0.12);border-radius:7px;padding:7px 9px;font-size:11px;color:rgba(255,255,255,0.8);border-left:2px solid var(--plum)">&#9989; Vocabulary building</div>
+          <div style="background:rgba(26,82,118,0.12);border-radius:7px;padding:7px 9px;font-size:11px;color:rgba(255,255,255,0.8);border-left:2px solid var(--ocean)">&#9989; Speaking practice</div>
+        </div>
+        <div style="color:var(--txt-3);font-size:12px">Tap any card above or type below &mdash; in English or your language.</div>
       </div>
-      <div class="bili" id="welcomeTrans">Loading translation...</div>
+      <div class="bili" id="welcomeTrans" style="color:var(--gold);font-style:italic">Loading translation...</div>
     </div></div>
   </div>
-  <div class="ibar">
-    <div class="chips">
-      <span class="chip" onclick="sendHint('Correct my English and explain my mistakes in detail')">Fix mistakes</span>
-      <span class="chip" onclick="sendHint('Explain present perfect vs simple past with examples')">Present perfect</span>
-      <span class="chip" onclick="sendHint('Teach me 5 useful English idioms with examples')">Idioms</span>
-      <span class="chip" onclick="sendHint('Practice a job interview in English with me')">Job interview</span>
-      <span class="chip" onclick="sendHint('Explain English phrasal verbs for daily life')">Phrasal verbs</span>
-    </div>
+
+  <!-- INPUT BAR -->
+  <div class="ibar" style="background:linear-gradient(135deg,#0f0d0b,#1a1612);border-top:1px solid rgba(245,200,66,0.15)">
     <div class="irow">
-      <textarea class="ti" id="chatInput" placeholder="Ask anything in English or your language..." rows="1"
+      <textarea class="ti" id="chatInput" placeholder="Ask in English or your language..." rows="1"
+        style="background:rgba(255,255,255,0.07);color:#fff;border-color:rgba(255,255,255,0.15);caret-color:var(--gold)"
         onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChat()}"></textarea>
-      <button class="sbtn mic" id="micBtn" onclick="toggleMic()">MIC</button>
-      <button class="sbtn send" onclick="sendChat()">GO</button>
+      <button class="sbtn mic" id="micBtn" onclick="toggleMic()" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.2);color:var(--txt-3)">MIC</button>
+      <button class="sbtn send" onclick="sendChat()" style="background:linear-gradient(135deg,var(--gold),#e8a820);color:var(--txt-1);font-weight:800">GO</button>
     </div>
+    <div style="font-size:10px;color:rgba(255,255,255,0.35);text-align:center;margin-top:5px">Smart &bull; Bilingual &bull; Your session resets at midnight</div>
   </div>
 </div>
 
@@ -466,12 +710,12 @@ code{font-size:11px;background:rgba(0,0,0,0.06);padding:1px 4px;border-radius:3p
       </select>
     </div>
     <div style="text-align:center;max-width:460px">
-      <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;margin-bottom:4px;color:var(--ocean)" id="spkTopic">Talk about your daily routine</div>
+      <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;margin-bottom:4px;color:var(--ocean)" id="spkTopic">Talk about your daily routine</div>
       <div style="font-size:13px;color:var(--muted)" id="spkTopicNative">Speak freely &mdash; I give instant scored feedback</div>
     </div>
     <div class="orb" id="spkOrb" onclick="toggleSpk()"><span id="orbTxt">TAP</span></div>
     <div style="display:flex;gap:8px">
-      <button class="sbtn send" id="stopBtn" onclick="stopSpk()" style="display:none;width:auto;padding:0 14px;border-radius:8px;background:var(--rose);color:#fff">STOP</button>
+      <button class="sbtn send" id="stopBtn" onclick="stopSpk()" style="display:none;width:auto;padding:0 14px;border-radius:8px;background:var(--coral);color:#fff">STOP</button>
     </div>
     <div style="font-size:14px;font-weight:600;text-align:center;color:var(--forest)" id="spkStatus">Tap to start speaking</div>
     <div style="font-size:13px;color:var(--muted);line-height:1.75;min-height:44px;text-align:center;max-width:460px" id="spkTranscript"></div>
@@ -616,10 +860,10 @@ code{font-size:11px;background:rgba(0,0,0,0.06);padding:1px 4px;border-radius:3p
   <div class="voc-outer">
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:8px">
       <div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--ocean)">Vocabulary Library</div>
+        <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--ocean)">Vocabulary Library</div>
         <div style="font-size:12px;color:var(--muted)">375 essential words &mdash; click any card to flip and see translation + examples</div>
       </div>
-      <button onclick="printVocab()" style="padding:8px 15px;border-radius:9px;border:none;background:var(--ink);color:var(--gl);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer">Print Flashcards</button>
+      <button onclick="printVocab()" style="padding:8px 15px;border-radius:9px;border:none;background:var(--txt-1);color:var(--gold);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer">Print Flashcards</button>
     </div>
     <div class="voc-controls">
       <select class="voc-filter" id="vocLevel" onchange="filterVocab()">
@@ -643,7 +887,7 @@ code{font-size:11px;background:rgba(0,0,0,0.06);padding:1px 4px;border-radius:3p
   <div class="idiom-outer">
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:8px">
       <div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--plum)">English Idioms</div>
+        <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--plum)">English Idioms</div>
         <div style="font-size:12px;color:var(--muted)">92 idioms with meanings, examples and translations &mdash; click any to expand</div>
       </div>
       <button onclick="printIdioms()" style="padding:8px 15px;border-radius:9px;border:none;background:var(--plum);color:#fff;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer">Print Idioms</button>
@@ -665,7 +909,7 @@ code{font-size:11px;background:rgba(0,0,0,0.06);padding:1px 4px;border-radius:3p
 
 <!-- WRITING -->
 <div id="panel-writing" class="panel" style="overflow-y:auto;padding:14px;gap:12px;flex-direction:column">
-  <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--amber);margin-bottom:4px">Writing Practice</div>
+  <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--amber);margin-bottom:4px">Writing Practice</div>
   <p style="font-size:12px;color:var(--muted);margin-bottom:4px">Four free writing modes &mdash; all explained in English and your language</p>
   <div class="write-modes">
     <button class="wm-btn active" onclick="setWM('mirror',this)"><span class="wm-icon">Mirror</span>See It Native</button>
@@ -723,10 +967,10 @@ code{font-size:11px;background:rgba(0,0,0,0.06);padding:1px 4px;border-radius:3p
 
 <!-- ACCENT MIRROR (Idea 1) -->
 <div id="panel-accents" class="panel" style="overflow-y:auto;padding:14px;flex-direction:column;gap:12px">
-  <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--teal)">Accent Mirror</div>
+  <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:var(--teal)">Accent Mirror</div>
   <div class="ib ib-teal">Type any word or phrase and hear it spoken in 5 different English accents. Completely free &mdash; uses your browser's built-in voice engine. No account needed.</div>
   <div style="display:flex;gap:8px;flex-wrap:wrap">
-    <input id="accentInput" placeholder="Type any word or your name..." style="flex:1;border:1.5px solid var(--border);border-radius:9px;padding:9px 12px;font-family:'DM Sans',sans-serif;font-size:14px;background:var(--cream);color:var(--ink);min-width:150px">
+    <input id="accentInput" placeholder="Type any word or your name..." style="flex:1;border:1.5px solid var(--border);border-radius:9px;padding:9px 12px;font-family:'DM Sans',sans-serif;font-size:14px;background:var(--cream);color:var(--txt-1);min-width:150px">
     <button onclick="playAllAccents()" style="padding:9px 18px;border-radius:9px;border:none;background:var(--teal);color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer">Hear All Accents</button>
   </div>
   <div class="accent-grid" id="accentGrid">
@@ -764,24 +1008,24 @@ code{font-size:11px;background:rgba(0,0,0,0.06);padding:1px 4px;border-radius:3p
 
 <!-- DAILY CHALLENGE (Idea 2) -->
 <div id="panel-challenge" class="panel" style="overflow-y:auto;padding:14px;flex-direction:column;gap:10px">
-  <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--rose)">Daily English Challenge</div>
+  <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:var(--coral)">Daily English Challenge</div>
   <div class="ib ib-rose">A new challenge every day &mdash; completely free, no account needed. Answer revealed when you are ready. Explanation in English AND your language.</div>
   <div id="challengeArea"></div>
 </div>
 
 <!-- MISTAKES BY LANGUAGE (Idea 3) -->
 <div id="panel-mistakes" class="panel" style="overflow-y:auto;padding:14px;flex-direction:column;gap:10px">
-  <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--forest)">Common Mistakes</div>
+  <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:var(--forest)">Common Mistakes</div>
   <div class="ib ib-forest">The top 15 English mistakes made specifically by speakers of YOUR language &mdash; with the correction and explanation in your language. No other app has created this.</div>
   <div id="mistakesArea"></div>
 </div>
 
 <!-- CONFUSABLE WORDS (Idea 6) -->
 <div id="panel-confusable" class="panel" style="overflow-y:auto;padding:14px;flex-direction:column;gap:10px">
-  <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--ocean)">Confusable Words</div>
+  <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:var(--ocean)">Confusable Words</div>
   <div class="ib ib-ocean">Word pairs that English learners always mix up &mdash; with clear rules and bilingual explanations. Click any pair to see example sentences.</div>
   <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px" id="confuseFilter">
-    <button class="chip" onclick="filterConfuse('all',this)" style="border-color:var(--gold);background:var(--gp);color:var(--gold)">All</button>
+    <button class="chip" onclick="filterConfuse('all',this)" style="border-color:var(--gold);background:var(--gold-dim);color:var(--gold)">All</button>
     <button class="chip" onclick="filterConfuse('grammar',this)">Grammar</button>
     <button class="chip" onclick="filterConfuse('vocabulary',this)">Vocabulary</button>
     <button class="chip" onclick="filterConfuse('preposition',this)">Prepositions</button>
@@ -791,7 +1035,7 @@ code{font-size:11px;background:rgba(0,0,0,0.06);padding:1px 4px;border-radius:3p
 
 <!-- TENSE TIMELINE (Idea 7) -->
 <div id="panel-timeline" class="panel" style="overflow-y:auto;padding:14px;flex-direction:column;gap:10px">
-  <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--plum)">Tense Timeline</div>
+  <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:var(--plum)">Tense Timeline</div>
   <div class="ib ib-plum">All 12 English tenses on a visual timeline &mdash; click any tense to see the formula, example and explanation in your language. Completely free, no account needed.</div>
   <div class="tl-wrap">
     <div class="tl-track" id="tlTrack"></div>
@@ -801,14 +1045,14 @@ code{font-size:11px;background:rgba(0,0,0,0.06);padding:1px 4px;border-radius:3p
 
 <!-- PHRASE OF DAY (Idea 8) -->
 <div id="panel-phrases" class="panel" style="overflow-y:auto;padding:14px;flex-direction:column;gap:10px">
-  <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--amber)">Phrase of the Day</div>
+  <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:var(--amber)">Phrase of the Day</div>
   <div class="ib ib-amber">A new practical English phrase every day &mdash; with meaning, example conversation and explanation in your language. Come back daily. 365 phrases total.</div>
   <div id="phraseArea"></div>
 </div>
 
 <!-- SENTENCE PUZZLE (Idea 4) -->
 <div id="panel-puzzle" class="panel" style="overflow-y:auto;padding:14px;flex-direction:column;gap:10px">
-  <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--sky)">Sentence Puzzle</div>
+  <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:rgba(96,165,250,0.8)">Sentence Puzzle</div>
   <div class="ib ib-ocean">Arrange the scrambled words into a correct English sentence. The native language clue helps you understand. Click words to move them &mdash; 50 puzzles total.</div>
   <div id="puzzleArea"></div>
   <div style="display:flex;gap:8px">
@@ -819,14 +1063,14 @@ code{font-size:11px;background:rgba(0,0,0,0.06);padding:1px 4px;border-radius:3p
 
 <!-- ERROR SPOTTER (Idea 9) -->
 <div id="panel-spotter" class="panel" style="overflow-y:auto;padding:14px;flex-direction:column;gap:10px">
-  <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--rose)">Error Spotter</div>
+  <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:var(--coral)">Error Spotter</div>
   <div class="ib ib-rose">Read the paragraph and tap on the words or phrases that contain grammar errors. Each paragraph has 3 to 5 hidden mistakes. Explanation in English and your language.</div>
   <div id="spotterArea"></div>
 </div>
 
 <!-- CHEAT SHEET (Idea 10) -->
 <div id="panel-cheatsheet" class="panel" style="overflow-y:auto;padding:14px;flex-direction:column;gap:10px">
-  <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--forest)">Grammar Cheat Sheet</div>
+  <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:var(--forest)">Grammar Cheat Sheet</div>
   <div class="ib ib-forest">One-page summaries of key grammar topics in English and your language. Click any topic then click Print to get a clean printable reference card.</div>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:12px" id="csTopics"></div>
   <div id="csContent"></div>
@@ -835,13 +1079,13 @@ code{font-size:11px;background:rgba(0,0,0,0.06);padding:1px 4px;border-radius:3p
 <!-- PROGRESS -->
 <div id="panel-diary" class="panel" style="overflow-y:auto;padding:14px;gap:14px;flex-direction:column">
   <div class="stats-grid">
-    <div class="stat-card" style="background:linear-gradient(135deg,#fff8e8,var(--gp))"><div class="stat-num" style="color:var(--gold)" id="dSess">0</div><div class="stat-label">Sessions</div></div>
-    <div class="stat-card" style="background:linear-gradient(135deg,#e8f5f0,var(--tl))"><div class="stat-num" style="color:var(--teal)" id="dWords">0</div><div class="stat-label">Words Learned</div></div>
-    <div class="stat-card" style="background:linear-gradient(135deg,var(--pll),#e8d8f5)"><div class="stat-num" style="color:var(--plum)" id="dStreak">0</div><div class="stat-label">Day Streak</div></div>
+    <div class="stat-card" style="background:linear-gradient(135deg,#fff8e8,var(--gold-dim))"><div class="stat-num" style="color:var(--gold)" id="dSess">0</div><div class="stat-label">Sessions</div></div>
+    <div class="stat-card" style="background:linear-gradient(135deg,#e8f5f0,var(--teal-dim))"><div class="stat-num" style="color:var(--teal)" id="dWords">0</div><div class="stat-label">Words Learned</div></div>
+    <div class="stat-card" style="background:linear-gradient(135deg,var(--teal-dim),#e8d8f5)"><div class="stat-num" style="color:var(--plum)" id="dStreak">0</div><div class="stat-label">Day Streak</div></div>
   </div>
-  <div style="font-size:13px;font-weight:700;color:var(--ink)">Recent Activity</div>
+  <div style="font-size:13px;font-weight:700;color:var(--txt-1)">Recent Activity</div>
   <div id="diaryList"><div style="font-size:12px;color:var(--muted)">Your activity appears here as you practise</div></div>
-  <div style="font-size:13px;font-weight:700;color:var(--ink)">Vocabulary Diary</div>
+  <div style="font-size:13px;font-weight:700;color:var(--txt-1)">Vocabulary Diary</div>
   <div id="vocabSaved"><div style="font-size:12px;color:var(--muted)">Words you save from Word of the Moment appear here</div></div>
   <button class="chip" style="align-self:flex-start;padding:7px 14px" onclick="genPlan()">Generate My 4-Week Study Plan</button>
   <div id="planOut"></div>
@@ -864,13 +1108,13 @@ code{font-size:11px;background:rgba(0,0,0,0.06);padding:1px 4px;border-radius:3p
         <div class="dna-ring-lbl" id="dnaScore">-</div>
       </div>
       <div>
-        <div style="font-size:12px;font-weight:600;color:var(--ink)" id="dnaLevel">Take DNA test</div>
+        <div style="font-size:12px;font-weight:600;color:var(--txt-1)" id="dnaLevel">Take DNA test</div>
         <div style="font-size:11px;color:var(--muted)" id="dnaHint">to see your level</div>
       </div>
     </div>
     <div class="sk-row"><span class="sk-nm">Grammar</span><div class="sk-bar"><div class="sk-fill" id="sk-grammar" style="width:0%;background:var(--gold)"></div></div><span class="sk-pct" id="sp-grammar">-</span></div>
     <div class="sk-row"><span class="sk-nm">Vocabulary</span><div class="sk-bar"><div class="sk-fill" id="sk-vocab" style="width:0%;background:var(--teal)"></div></div><span class="sk-pct" id="sp-vocab">-</span></div>
-    <div class="sk-row"><span class="sk-nm">Speaking</span><div class="sk-bar"><div class="sk-fill" id="sk-speaking" style="width:0%;background:var(--rose)"></div></div><span class="sk-pct" id="sp-speaking">-</span></div>
+    <div class="sk-row"><span class="sk-nm">Speaking</span><div class="sk-bar"><div class="sk-fill" id="sk-speaking" style="width:0%;background:var(--coral)"></div></div><span class="sk-pct" id="sp-speaking">-</span></div>
     <div class="sk-row"><span class="sk-nm">Writing</span><div class="sk-bar"><div class="sk-fill" id="sk-writing" style="width:0%;background:var(--forest)"></div></div><span class="sk-pct" id="sp-writing">-</span></div>
   </div>
 
@@ -924,7 +1168,7 @@ code{font-size:11px;background:rgba(0,0,0,0.06);padding:1px 4px;border-radius:3p
     <div class="modal-sub">5 questions to discover your exact English level. Each answer explained in <span style="color:var(--teal);font-weight:600">English</span> AND your <span style="color:var(--gold);font-weight:600">native language</span>.</div>
     <div id="dnaQs"></div>
     <div id="dnaRes" style="display:none">
-      <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;margin-bottom:12px;color:var(--gold)">Your Results</div>
+      <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;margin-bottom:12px;color:var(--gold)">Your Results</div>
       <div id="dnaResContent"></div>
       <button onclick="closeDNA()" style="width:100%;padding:12px;background:var(--gold);color:#fff;border:none;border-radius:9px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;margin-top:14px">Start Learning</button>
     </div>
@@ -932,68 +1176,194 @@ code{font-size:11px;background:rgba(0,0,0,0.06);padding:1px 4px;border-radius:3p
 </div>
 
 
-<div id="wlModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:600;display:none;align-items:center;justify-content:center;padding:14px">
-  <div style="background:var(--paper);border-radius:var(--r);max-width:480px;width:100%;max-height:92vh;overflow-y:auto">
-    <div style="background:linear-gradient(145deg,#0f0d0b,#1a1a0e);padding:22px 20px;text-align:center;border-radius:var(--r) var(--r) 0 0;position:relative">
-      <button onclick="closeWaitlist()" style="position:absolute;top:12px;right:14px;background:none;border:none;color:rgba(255,255,255,0.5);font-size:18px;cursor:pointer;font-weight:700">&#10005;</button>
-      <div style="font-size:36px;margin-bottom:10px">&#127891;</div>
-      <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:6px">Get Full Access to NativeEnglish</div>
-      <div style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.6">The only English app that explains everything in your language.<br>Full unlimited version launching very soon.</div>
+<div id="wlModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:700;display:none;align-items:flex-start;justify-content:center;padding:16px;overflow-y:auto">
+  <div style="background:var(--white);border-radius:24px;max-width:540px;width:100%;margin:auto;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,0.4)">
+
+    <!-- DARK HERO TOP -->
+    <div style="background:linear-gradient(145deg,#0D3D2E,#1A6B52);padding:32px 28px 26px;text-align:center;position:relative">
+      <button onclick="closeWaitlist()" style="position:absolute;top:14px;right:16px;background:rgba(255,255,255,0.12);border:none;border-radius:50%;width:32px;height:32px;color:var(--txt-3);font-size:16px;cursor:pointer;font-weight:700;display:flex;align-items:center;justify-content:center;transition:all .15s" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.12)'">&#10005;</button>
+
+      <div style="display:inline-flex;align-items:center;gap:7px;background:rgba(245,166,35,0.15);border:1.5px solid rgba(245,166,35,0.4);border-radius:100px;padding:6px 16px;font-size:10px;font-weight:700;color:#FCD34D;letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px">
+        &#127891; Unlimited Learning — Coming Soon
+      </div>
+
+      <div id="ulHook" style="font-family:'Fraunces',serif;font-size:clamp(19px,4vw,26px);font-weight:700;color:#fff;line-height:1.25;margin-bottom:14px;min-height:65px;display:flex;align-items:center;justify-content:center;text-align:center;transition:opacity .4s,transform .4s"></div>
+
+      <div style="font-size:13px;color:var(--txt-3);line-height:1.7;margin-bottom:20px">
+        No expensive tutor. No classroom. No fixed schedule.<br>
+        <strong style="color:var(--txt-2)">Just you, your language, and English — unlocked.</strong>
+      </div>
+
+      <!-- Feature pills -->
+      <div style="display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-bottom:20px">
+        <span style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:100px;padding:4px 12px;font-size:11px;font-weight:600;color:var(--txt-2)">🎯 Smart Bilingual Tutor</span>
+        <span style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:100px;padding:4px 12px;font-size:11px;font-weight:600;color:var(--txt-2)">🌏 16 Languages</span>
+        <span style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:100px;padding:4px 12px;font-size:11px;font-weight:600;color:var(--txt-2)">🎤 Speaking Coach</span>
+        <span style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:100px;padding:4px 12px;font-size:11px;font-weight:600;color:var(--txt-2)">📚 2000+ Vocabulary</span>
+        <span style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:100px;padding:4px 12px;font-size:11px;font-weight:600;color:var(--txt-2)">✍️ Writing Grader</span>
+        <span style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:100px;padding:4px 12px;font-size:11px;font-weight:600;color:var(--txt-2)">🔓 No Tutor Needed</span>
+      </div>
+
+      <!-- Pricing teaser -->
+      <div style="background:rgba(245,166,35,0.12);border:1.5px solid rgba(245,166,35,0.35);border-radius:14px;padding:12px 16px;text-align:center">
+        <div style="font-size:11px;color:rgba(255,255,255,0.45);text-decoration:line-through;margin-bottom:3px">Regular $9.99/mo</div>
+        <div style="font-size:17px;font-weight:800;color:#FCD34D;font-family:'Fraunces',serif">Early Bird: $4.99/mo &mdash; your price locked forever</div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.45);margin-top:3px">Only for learners who register before launch</div>
+      </div>
     </div>
-    <div style="padding:20px">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:16px">
-        <div style="background:var(--cream);border-radius:9px;padding:9px 11px;font-size:11px;border-left:3px solid var(--gold)"><strong style="display:block;font-size:12px;color:var(--gold)">Unlimited Tutor</strong>Bilingual answers every time</div>
-        <div style="background:var(--cream);border-radius:9px;padding:9px 11px;font-size:11px;border-left:3px solid var(--teal)"><strong style="display:block;font-size:12px;color:var(--teal)">Full Grammar</strong>All 32 sections</div>
-        <div style="background:var(--cream);border-radius:9px;padding:9px 11px;font-size:11px;border-left:3px solid var(--plum)"><strong style="display:block;font-size:12px;color:var(--plum)">2000+ Vocabulary</strong>With native translations</div>
-        <div style="background:var(--cream);border-radius:9px;padding:9px 11px;font-size:11px;border-left:3px solid var(--rose)"><strong style="display:block;font-size:12px;color:var(--rose)">Speaking Coach</strong>Scored bilingual feedback</div>
-        <div style="background:var(--cream);border-radius:9px;padding:9px 11px;font-size:11px;border-left:3px solid var(--ocean)"><strong style="display:block;font-size:12px;color:var(--ocean)">92 Idioms</strong>With bilingual examples</div>
-        <div style="background:var(--cream);border-radius:9px;padding:9px 11px;font-size:11px;border-left:3px solid var(--forest)"><strong style="display:block;font-size:12px;color:var(--forest)">All Prepositions</strong>Rules in your language</div>
-        <div style="background:var(--cream);border-radius:9px;padding:9px 11px;font-size:11px;border-left:3px solid var(--amber)"><strong style="display:block;font-size:12px;color:var(--amber)">Writing Analysis</strong>Graded with corrections</div>
-        <div style="background:var(--cream);border-radius:9px;padding:9px 11px;font-size:11px;border-left:3px solid var(--sky)"><strong style="display:block;font-size:12px;color:var(--sky)">16 Languages</strong>Telugu Tamil Arabic +13 more</div>
-      </div>
+
+    <!-- FORM BODY -->
+    <div style="padding:24px 28px">
       <div id="wlFormArea">
-        <div style="font-size:14px;font-weight:600;color:var(--ink);margin-bottom:10px">Join the waitlist for your early bird price:</div>
-        <input id="wlEmail" type="email" placeholder="Your email address (required)" style="width:100%;border:1.5px solid var(--border);border-radius:9px;padding:10px 13px;font-family:'DM Sans',sans-serif;font-size:13px;background:var(--cream);color:var(--ink);margin-bottom:9px">
-        <input id="wlName" type="text" placeholder="Your name (optional)" style="width:100%;border:1.5px solid var(--border);border-radius:9px;padding:10px 13px;font-family:'DM Sans',sans-serif;font-size:13px;background:var(--cream);color:var(--ink);margin-bottom:9px">
-        <select id="wlLangSel" style="width:100%;border:1.5px solid var(--border);border-radius:9px;padding:10px 13px;font-family:'DM Sans',sans-serif;font-size:13px;background:var(--cream);color:var(--ink);margin-bottom:9px">
-          <option value="">Which language do you speak at home?</option>
-          <option>Telugu</option><option>Tamil</option><option>Kannada</option><option>Malayalam</option>
-          <option>Hindi</option><option>Arabic</option><option>Spanish</option><option>French</option>
-          <option>Portuguese</option><option>Russian</option><option>Chinese</option><option>Japanese</option>
-          <option>German</option><option>Turkish</option><option>Italian</option><option>Korean</option><option>Other</option>
-        </select>
-        <textarea id="wlFeedback" placeholder="What would help you learn English faster? What do current apps fail to give you? (We read every response)" style="width:100%;border:1.5px solid var(--border);border-radius:9px;padding:10px 13px;font-family:'DM Sans',sans-serif;font-size:13px;background:var(--cream);color:var(--ink);resize:vertical;min-height:70px;line-height:1.6"></textarea>
-        <button onclick="submitWaitlist()" style="width:100%;padding:12px;background:linear-gradient(135deg,var(--gold),#e8a820);color:#fff;border:none;border-radius:9px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;margin-top:10px">Join Waitlist - Get Early Bird Price</button>
-        <div style="font-size:11px;color:var(--muted);text-align:center;margin-top:8px">No spam. One launch email only. Unsubscribe anytime.</div>
-        <div style="font-size:12px;color:var(--muted);text-align:center;margin-top:5px" id="wlCountDisplay">Joining 1,247 learners already on the waitlist</div>
+        <div style="font-size:16px;font-weight:700;color:var(--slate);margin-bottom:4px;font-family:'Fraunces',serif">Reserve your early bird spot</div>
+        <div style="font-size:12px;color:var(--slate-mid);margin-bottom:18px;line-height:1.6">We launch very soon. Register now — your early bird price is locked in permanently the moment you submit.</div>
+
+        <!-- Name -->
+        <div style="margin-bottom:12px">
+          <label style="font-size:11px;font-weight:700;color:var(--slate-mid);text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:5px">Your Name *</label>
+          <input id="wlName" type="text" placeholder="Enter your full name" style="width:100%;border:1.5px solid var(--border);border-radius:12px;padding:11px 14px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;color:var(--slate);background:var(--slate-light);outline:none;transition:border-color .15s" onfocus="this.style.borderColor='var(--coral)'" onblur="this.style.borderColor='var(--border)'">
+        </div>
+
+        <!-- Email -->
+        <div style="margin-bottom:12px">
+          <label style="font-size:11px;font-weight:700;color:var(--slate-mid);text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:5px">Email Address *</label>
+          <input id="wlEmail" type="email" placeholder="your@email.com" style="width:100%;border:1.5px solid var(--border);border-radius:12px;padding:11px 14px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;color:var(--slate);background:var(--slate-light);outline:none;transition:border-color .15s" onfocus="this.style.borderColor='var(--coral)'" onblur="this.style.borderColor='var(--border)'">
+        </div>
+
+        <!-- Phone -->
+        <div style="margin-bottom:12px">
+          <label style="font-size:11px;font-weight:700;color:var(--slate-mid);text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:5px">WhatsApp / Phone (optional)</label>
+          <input id="wlPhone" type="tel" placeholder="+91 98765 43210" style="width:100%;border:1.5px solid var(--border);border-radius:12px;padding:11px 14px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;color:var(--slate);background:var(--slate-light);outline:none;transition:border-color .15s" onfocus="this.style.borderColor='var(--coral)'" onblur="this.style.borderColor='var(--border)'">
+        </div>
+
+        <!-- Native Language -->
+        <div style="margin-bottom:12px">
+          <label style="font-size:11px;font-weight:700;color:var(--slate-mid);text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:5px">Your Native Language *</label>
+          <select id="wlLangSel" style="width:100%;border:1.5px solid var(--border);border-radius:12px;padding:11px 14px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;color:var(--slate);background:var(--slate-light);outline:none;cursor:pointer;transition:border-color .15s" onfocus="this.style.borderColor='var(--coral)'" onblur="this.style.borderColor='var(--border)'">
+            <option value="">Select your language...</option>
+            <option value="Telugu">🇮🇳 Telugu</option>
+            <option value="Tamil">🇮🇳 Tamil</option>
+            <option value="Kannada">🇮🇳 Kannada</option>
+            <option value="Malayalam">🇮🇳 Malayalam</option>
+            <option value="Hindi">🇮🇳 Hindi</option>
+            <option value="Arabic">🇸🇦 Arabic</option>
+            <option value="Spanish">🇪🇸 Spanish</option>
+            <option value="French">🇫🇷 French</option>
+            <option value="Portuguese">🇧🇷 Portuguese</option>
+            <option value="Russian">🇷🇺 Russian</option>
+            <option value="Chinese">🇨🇳 Chinese</option>
+            <option value="Japanese">🇯🇵 Japanese</option>
+            <option value="German">🇩🇪 German</option>
+            <option value="Turkish">🇹🇷 Turkish</option>
+            <option value="Italian">🇮🇹 Italian</option>
+            <option value="Korean">🇰🇷 Korean</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <!-- Country -->
+        <div style="margin-bottom:12px">
+          <label style="font-size:11px;font-weight:700;color:var(--slate-mid);text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:5px">Country</label>
+          <select id="wlCountry" style="width:100%;border:1.5px solid var(--border);border-radius:12px;padding:11px 14px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;color:var(--slate);background:var(--slate-light);outline:none;cursor:pointer;transition:border-color .15s" onfocus="this.style.borderColor='var(--coral)'" onblur="this.style.borderColor='var(--border)'">
+            <option value="">Select your country...</option>
+            <option>India</option><option>United States</option><option>United Kingdom</option>
+            <option>UAE</option><option>Saudi Arabia</option><option>Qatar</option><option>Kuwait</option>
+            <option>Canada</option><option>Australia</option><option>Germany</option>
+            <option>Singapore</option><option>Malaysia</option><option>Other</option>
+          </select>
+        </div>
+
+        <!-- English level -->
+        <div style="margin-bottom:12px">
+          <label style="font-size:11px;font-weight:700;color:var(--slate-mid);text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:5px">Current English Level</label>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px" id="levelBtns">
+            <button onclick="selectLevel(this,'Beginner')" style="padding:8px 4px;border-radius:10px;border:1.5px solid var(--border);background:var(--slate-light);font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:600;cursor:pointer;color:var(--slate);transition:all .15s">Beginner</button>
+            <button onclick="selectLevel(this,'Intermediate')" style="padding:8px 4px;border-radius:10px;border:1.5px solid var(--border);background:var(--slate-light);font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:600;cursor:pointer;color:var(--slate);transition:all .15s">Intermediate</button>
+            <button onclick="selectLevel(this,'Advanced')" style="padding:8px 4px;border-radius:10px;border:1.5px solid var(--border);background:var(--slate-light);font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:600;cursor:pointer;color:var(--slate);transition:all .15s">Advanced</button>
+          </div>
+          <input type="hidden" id="wlLevel" value="">
+        </div>
+
+        <!-- Goal -->
+        <div style="margin-bottom:12px">
+          <label style="font-size:11px;font-weight:700;color:var(--slate-mid);text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:5px">Main Learning Goal</label>
+          <select id="wlGoal" style="width:100%;border:1.5px solid var(--border);border-radius:12px;padding:11px 14px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;color:var(--slate);background:var(--slate-light);outline:none;cursor:pointer">
+            <option value="">What do you want most?</option>
+            <option>Speak confidently at work</option>
+            <option>Pass an English exam (IELTS/TOEFL)</option>
+            <option>Study abroad</option>
+            <option>Improve grammar and writing</option>
+            <option>Understand English movies/shows</option>
+            <option>General fluency improvement</option>
+            <option>Help my children with English</option>
+            <option>Travel and tourism</option>
+          </select>
+        </div>
+
+        <!-- Feedback -->
+        <div style="margin-bottom:16px">
+          <label style="font-size:11px;font-weight:700;color:var(--slate-mid);text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:5px">What do current apps fail to give you? (optional)</label>
+          <textarea id="wlFeedback" placeholder="Tell us what frustrates you about other English learning apps — we read every single response personally and build features based on your feedback..." style="width:100%;border:1.5px solid var(--border);border-radius:12px;padding:11px 14px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;color:var(--slate);background:var(--slate-light);resize:vertical;min-height:75px;line-height:1.6;outline:none;transition:border-color .15s" onfocus="this.style.borderColor='var(--coral)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+        </div>
+
+        <button onclick="submitWaitlist()" id="wlSubmitBtn" style="width:100%;padding:14px;background:linear-gradient(135deg,var(--coral),var(--coral-dark));color:#fff;border:none;border-radius:14px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:800;cursor:pointer;letter-spacing:.01em;box-shadow:0 4px 20px rgba(255,107,71,0.35);transition:all .2s" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(255,107,71,0.45)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 20px rgba(255,107,71,0.35)'">
+          &#127891; &#127891; Claim Early Bird Spot &mdash; $4.99/mo
+        </button>
+
+        <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;font-size:11px;color:var(--slate-mid)">
+          <span>🔒 No spam</span><span style="opacity:.4">|</span>
+          <span>✅ One launch email only</span><span style="opacity:.4">|</span>
+          <span>Unsubscribe anytime</span>
+        </div>
+        <div style="font-size:12px;color:var(--slate-mid);text-align:center;margin-top:7px;font-weight:600" id="wlCountDisplay">🌟 1,247 learners already registered</div>
       </div>
-      <div id="wlSuccess" style="text-align:center;padding:10px;display:none">
-        <div style="font-size:48px;margin-bottom:12px">&#127881;</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;margin-bottom:8px;color:var(--gold)">You are on the list!</div>
-        <div style="font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:16px">Thank you for joining. We will email you the moment NativeEnglish launches with your exclusive early bird price.<br><br>Your free interactive session resets every midnight.</div>
-        <button onclick="closeWaitlist()" style="width:100%;padding:11px;background:var(--gold);color:#fff;border:none;border-radius:9px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer">Continue Learning</button>
+
+      <!-- SUCCESS STATE -->
+      <div id="wlSuccess" style="text-align:center;padding:16px;display:none">
+        <div style="font-size:56px;margin-bottom:16px">🎉</div>
+        <div style="font-family:'Fraunces',serif;font-size:28px;font-weight:700;margin-bottom:10px;color:var(--coral)">You are in! 🌟</div>
+        <div style="font-size:13px;color:var(--slate-mid);line-height:1.78;margin-bottom:20px">Welcome to <strong style="color:var(--slate)">Unlimited Learning</strong>.<br><br>We will email you the moment we launch with your <strong style="color:var(--coral)">exclusive early bird price</strong> — locked in forever, just for you.<br><br>Your free interactive session resets every midnight. Keep practising daily!</div>
+        <div style="background:var(--gold-light);border-radius:12px;padding:14px 16px;border-left:4px solid var(--gold);font-size:13px;font-style:italic;color:var(--slate);margin-bottom:20px;text-align:left;line-height:1.72">
+          "No tutor required. No classroom. No fixed schedule. Just you, your language, and English — mastered at your own pace."
+        </div>
+        <button onclick="closeWaitlist()" style="width:100%;padding:13px;background:var(--coral);color:#fff;border:none;border-radius:12px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:800;cursor:pointer;transition:all .2s" onmouseover="this.style.background='var(--coral-dark)'" onmouseout="this.style.background='var(--coral)'">Continue Learning &rarr;</button>
       </div>
     </div>
   </div>
 </div>
 
-<div id="lmtScreen" style="position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:550;display:none;align-items:center;justify-content:center;padding:14px">
-  <div style="background:var(--paper);border-radius:var(--r);max-width:420px;width:100%;overflow:hidden">
-    <div style="background:linear-gradient(135deg,#0f0d0b,#2a2418);padding:22px 20px;text-align:center">
-      <div style="font-size:40px;margin-bottom:10px">&#11088;</div>
-      <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:8px;line-height:1.35">You may have found this more helpful than any other English learning app you have tried.</div>
-      <div style="font-size:12px;color:rgba(255,255,255,0.6);line-height:1.65">You have used your 1 free interactive session for today.<br>Vocabulary, Idioms, Grammar, Challenges, Puzzles and more remain fully open and free.</div>
-    </div>
-    <div style="padding:18px">
-      <div style="font-size:13px;color:var(--ink);line-height:1.75;margin-bottom:14px;text-align:center">Join the waitlist to be first when full access launches, with an exclusive early bird price for waitlist members only.</div>
-      <div style="display:flex;flex-direction:column;gap:8px">
-        <button onclick="closeLimitOpenWL()" style="width:100%;padding:11px;background:var(--gold);color:#fff;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer">Join Waitlist - Get Early Bird Price</button>
-        <button onclick="closeLimitScreen()" style="width:100%;padding:9px;background:var(--cream);color:var(--ink);border:1.5px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer">Continue with free features</button>
+
+<div id="lmtScreen" style="position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:650;display:none;align-items:center;justify-content:center;padding:16px">
+  <div style="background:var(--white);border-radius:24px;max-width:460px;width:100%;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,0.45)">
+    <div style="background:linear-gradient(135deg,#0D3D2E,#1A6B52);padding:28px 24px;text-align:center">
+      <div style="font-size:48px;margin-bottom:12px">⭐</div>
+      <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:10px;line-height:1.3">You may have found this more helpful than any other English learning app you have tried.</div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.6);line-height:1.7;margin-bottom:14px">Your free interactive session for today is used.<br>All 9 free features below remain fully open:</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center">
+        <span style="background:rgba(255,255,255,0.12);border-radius:100px;padding:3px 10px;font-size:10px;font-weight:600;color:var(--txt-2)">Vocabulary</span>
+        <span style="background:rgba(255,255,255,0.12);border-radius:100px;padding:3px 10px;font-size:10px;font-weight:600;color:var(--txt-2)">Idioms</span>
+        <span style="background:rgba(255,255,255,0.12);border-radius:100px;padding:3px 10px;font-size:10px;font-weight:600;color:var(--txt-2)">Daily Challenge</span>
+        <span style="background:rgba(255,255,255,0.12);border-radius:100px;padding:3px 10px;font-size:10px;font-weight:600;color:var(--txt-2)">Tense Timeline</span>
+        <span style="background:rgba(255,255,255,0.12);border-radius:100px;padding:3px 10px;font-size:10px;font-weight:600;color:var(--txt-2)">Sentence Puzzle</span>
+        <span style="background:rgba(255,255,255,0.12);border-radius:100px;padding:3px 10px;font-size:10px;font-weight:600;color:var(--txt-2)">Accent Mirror</span>
+        <span style="background:rgba(255,255,255,0.12);border-radius:100px;padding:3px 10px;font-size:10px;font-weight:600;color:var(--txt-2)">Phrases</span>
+        <span style="background:rgba(255,255,255,0.12);border-radius:100px;padding:3px 10px;font-size:10px;font-weight:600;color:var(--txt-2)">Error Spotter</span>
+        <span style="background:rgba(255,255,255,0.12);border-radius:100px;padding:3px 10px;font-size:10px;font-weight:600;color:var(--txt-2)">Cheat Sheet</span>
       </div>
-      <div style="font-size:11px;color:var(--muted);text-align:center;margin-top:10px">Your free interactive session resets at midnight tonight.</div>
+    </div>
+    <div style="padding:20px 24px">
+      <div style="font-size:13px;color:var(--slate);line-height:1.78;margin-bottom:16px;text-align:center">
+        Register for <strong style="color:var(--coral)">Unlimited Learning</strong> and be first to get full unlimited access at an <strong>exclusive early bird price</strong> locked in forever.
+      </div>
+      <div style="display:flex;flex-direction:column;gap:9px">
+        <button onclick="closeLimitScreen();openWaitlist();" style="width:100%;padding:13px;background:linear-gradient(135deg,var(--coral),var(--coral-dark));color:#fff;border:none;border-radius:12px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:800;cursor:pointer;box-shadow:0 4px 16px rgba(255,107,71,0.3);transition:all .2s" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform=''">&#127891; Join Unlimited Learning</button>
+        <button onclick="closeLimitScreen();" style="width:100%;padding:10px;background:var(--slate-light);color:var(--slate-mid);border:1.5px solid var(--border);border-radius:12px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .15s">Continue with free features &rarr;</button>
+      </div>
+      <div style="font-size:11px;color:var(--slate-mid);text-align:center;margin-top:12px">⏰ Your interactive session resets at midnight tonight.</div>
     </div>
   </div>
 </div>
+
 
 <script>
 var DNA_QS = [
@@ -1057,7 +1427,7 @@ var SIMPLE = ['at','in','on','to','for','with','by','from','of','about','over','
 
 var COMPLEX = ['in spite of','with regard to','by means of','on account of','as far as','in addition to','with respect to','in terms of','on behalf of','in front of','in place of','in case of','according to','due to','because of','instead of','as well as','apart from','out of','up to','along with','together with','in order to','so as to','next to','away from','close to','far from','on top of','in between','in the middle of','at the end of','at the beginning of','in comparison with','in contrast to','with the exception of','in relation to','on the basis of','by the time of','in the course of'];
 
-// 200 built-in vocabulary words (app loads more via AI)
+// 200 built-in vocabulary words (app loads more on demand)
 var VOCAB_DATA = [
   {w:"abundant",pos:"adj",level:"inter",cat:"adjectives",def:"More than enough; plentiful",ex:"The region has abundant natural resources.",nat:"",col:"#1a6b5e"},
   {w:"accomplish",pos:"verb",level:"basic",cat:"verbs",def:"To succeed in doing or completing something",ex:"She accomplished all her goals for the year.",nat:"",col:"#b8860b"},
@@ -1906,7 +2276,7 @@ var IDIOM_DATA = [
 // One live API call per visitor per day - tracked in localStorage
 // All static features (DNA, vocab, idioms, parts of speech) are unlimited
 
-var DAILY_LIMIT = 1;  // One live AI interaction per day per visitor
+var DAILY_LIMIT = 1;  // One live interactive session per day per visitor
 var waitlistCount = 1247;  // Starting waitlist counter
 
 function getTodayKey() {
@@ -1948,18 +2318,23 @@ function updateUsageBar() {
 
 // ── WAITLIST SYSTEM ──
 function openWaitlist() {
-  document.getElementById('wlModal').classList.add('open');
-  document.getElementById('wlFormArea').style.display = 'block';
-  document.getElementById('wlSuccess').style.display = 'none';
-  updateWaitlistCount();
+  var m=document.getElementById('wlModal');
+  if(!m)return;
+  m.style.display='flex';
+  document.getElementById('wlFormArea').style.display='block';
+  document.getElementById('wlSuccess').style.display='none';
+  updateWLCount();
+  ulHookIdx=0;clearInterval(ulHookTimer);
+  setTimeout(startHookRotation,200);
 }
-
 function closeWaitlist() {
-  document.getElementById('wlModal').classList.remove('open');
+  var m=document.getElementById('wlModal');
+  if(m)m.style.display='none';
+  clearInterval(ulHookTimer);
 }
 
 function openLimitScreen() {
-  document.getElementById('limitScreen').classList.add('open');
+  var ls=document.getElementById('lmtScreen');if(ls)ls.style.display='flex';;
 }
 
 function closeLimitScreen() {
@@ -1971,13 +2346,13 @@ function closeLimitOpenWaitlist() {
   openWaitlist();
 }
 
-function updateWaitlistCount() {
+function updateWLCount() {
   var el = document.getElementById('wlCountDisplay');
-  if (el) el.textContent = 'Joining ' + waitlistCount.toLocaleString() + ' learners already on the waitlist';
+  if (el) el.textContent = 'Joining ' + waitlistCount.toLocaleString() + ' learners already registered';
   var strip = document.getElementById('stripCount');
-  if (strip) strip.textContent = 'Join ' + waitlistCount.toLocaleString() + ' learners on the waitlist';
+  if (strip) strip.textContent = 'Join ' + waitlistCount.toLocaleString() + ' learners registered';
   var hero = document.getElementById('waitlistCount');
-  if (hero) hero.textContent = waitlistCount.toLocaleString() + ' learners already on the waitlist';
+  if (hero) hero.textContent = waitlistCount.toLocaleString() + ' learners already registered';
 }
 
 function submitWaitlist() {
@@ -1987,7 +2362,7 @@ function submitWaitlist() {
   var feedback = document.getElementById('wlFeedback').value.trim();
 
   if (!email || !email.includes('@')) {
-    document.getElementById('wlEmail').style.borderColor = 'var(--red)';
+    document.getElementById('wlEmail').style.borderColor = 'var(--coral)';
     document.getElementById('wlEmail').placeholder = 'Please enter a valid email address';
     return;
   }
@@ -2012,7 +2387,7 @@ function submitWaitlist() {
 
   // Increment counter
   waitlistCount++;
-  updateWaitlistCount();
+  updateWLCount();
 
   // Show success screen
   document.getElementById('wlFormArea').style.display = 'none';
@@ -2878,7 +3253,7 @@ var IDIOM_DATA = [
 // One live API call per visitor per day - tracked in localStorage
 // All static features (DNA, vocab, idioms, parts of speech) are unlimited
 
-var DAILY_LIMIT = 1;  // One live AI interaction per day per visitor
+var DAILY_LIMIT = 1;  // One live interactive session per day per visitor
 var waitlistCount = 1247;  // Starting waitlist counter
 
 function getTodayKey() {
@@ -2920,18 +3295,23 @@ function updateUsageBar() {
 
 // ── WAITLIST SYSTEM ──
 function openWaitlist() {
-  document.getElementById('wlModal').classList.add('open');
-  document.getElementById('wlFormArea').style.display = 'block';
-  document.getElementById('wlSuccess').style.display = 'none';
-  updateWaitlistCount();
+  var m=document.getElementById('wlModal');
+  if(!m)return;
+  m.style.display='flex';
+  document.getElementById('wlFormArea').style.display='block';
+  document.getElementById('wlSuccess').style.display='none';
+  updateWLCount();
+  ulHookIdx=0;clearInterval(ulHookTimer);
+  setTimeout(startHookRotation,200);
 }
-
 function closeWaitlist() {
-  document.getElementById('wlModal').classList.remove('open');
+  var m=document.getElementById('wlModal');
+  if(m)m.style.display='none';
+  clearInterval(ulHookTimer);
 }
 
 function openLimitScreen() {
-  document.getElementById('limitScreen').classList.add('open');
+  var ls=document.getElementById('lmtScreen');if(ls)ls.style.display='flex';;
 }
 
 function closeLimitScreen() {
@@ -2943,13 +3323,13 @@ function closeLimitOpenWaitlist() {
   openWaitlist();
 }
 
-function updateWaitlistCount() {
+function updateWLCount() {
   var el = document.getElementById('wlCountDisplay');
-  if (el) el.textContent = 'Joining ' + waitlistCount.toLocaleString() + ' learners already on the waitlist';
+  if (el) el.textContent = 'Joining ' + waitlistCount.toLocaleString() + ' learners already registered';
   var strip = document.getElementById('stripCount');
-  if (strip) strip.textContent = 'Join ' + waitlistCount.toLocaleString() + ' learners on the waitlist';
+  if (strip) strip.textContent = 'Join ' + waitlistCount.toLocaleString() + ' learners registered';
   var hero = document.getElementById('waitlistCount');
-  if (hero) hero.textContent = waitlistCount.toLocaleString() + ' learners already on the waitlist';
+  if (hero) hero.textContent = waitlistCount.toLocaleString() + ' learners already registered';
 }
 
 function submitWaitlist() {
@@ -2959,7 +3339,7 @@ function submitWaitlist() {
   var feedback = document.getElementById('wlFeedback').value.trim();
 
   if (!email || !email.includes('@')) {
-    document.getElementById('wlEmail').style.borderColor = 'var(--red)';
+    document.getElementById('wlEmail').style.borderColor = 'var(--coral)';
     document.getElementById('wlEmail').placeholder = 'Please enter a valid email address';
     return;
   }
@@ -2984,7 +3364,7 @@ function submitWaitlist() {
 
   // Increment counter
   waitlistCount++;
-  updateWaitlistCount();
+  updateWLCount();
 
   // Show success screen
   document.getElementById('wlFormArea').style.display = 'none';
@@ -3020,30 +3400,79 @@ function updateUsageBar(){
   if(rem>0){dot.className='udot green';txt.textContent=rem+' free interactive session available today';}
   else{dot.className='udot red';txt.textContent='Daily interactive limit reached - all free features still available';}
 }
+var ulHooks=[
+  'No tutor required. No classroom. No fixed schedule. Just you, your language, and English — mastered.',
+  'One app. Your language. Every English rule — finally explained in a way that makes sense.',
+  'The gap between knowing English and speaking English closes here — in your own language.',
+  'Imagine never having to guess a grammar rule again. That is what Unlimited Learning gives you.',
+  'Every mistake you make in English has a reason. We tell you that reason — in your language.',
+  'Most apps teach English in English. We explain it in the language your brain already thinks in.',
+  'You already speak one language fluently. Let us use that power to unlock the second.',
+  'The best English learners do not memorise rules — they understand them. We make you understand.',
+  'From confusing to clear. From guessing to knowing. From frustrated to fluent. Your journey starts here.',
+  'Fluency is not talent. It is the right explanation at the right moment. In your language.'
+];
+var ulHookIdx=0,ulHookTimer=null;
+function startHookRotation(){
+  var el=document.getElementById('ulHook');if(!el)return;
+  function showHook(){
+    if(!document.getElementById('ulHook'))return;
+    var h=ulHooks[ulHookIdx%ulHooks.length];
+    el.style.opacity='0';el.style.transform='translateY(8px)';
+    setTimeout(function(){
+      el.textContent=h;
+      el.style.transition='opacity .5s ease,transform .5s ease';
+      el.style.opacity='1';el.style.transform='translateY(0)';
+      ulHookIdx++;
+    },300);
+  }
+  showHook();
+  ulHookTimer=setInterval(showHook,3800);
+}
 function openWaitlist(){
-  document.getElementById('wlModal').classList.add('open');
+  var m=document.getElementById('wlModal');m.style.display='flex';
   document.getElementById('wlFormArea').style.display='block';
   document.getElementById('wlSuccess').style.display='none';
   updateWLCount();
+  ulHookIdx=0;clearInterval(ulHookTimer);
+  setTimeout(startHookRotation,200);
 }
 function closeWaitlist(){document.getElementById('wlModal').classList.remove('open');}
-function openLimitScreen(){document.getElementById('lmtScreen').classList.add('open');}
-function closeLimitScreen(){document.getElementById('lmtScreen').classList.remove('open');}
+function openLimitScreen(){var ls=document.getElementById('lmtScreen');if(ls)ls.style.display='flex';;}
+function closeLimitScreen(){var ls=document.getElementById('lmtScreen');if(ls)ls.style.display='none';;}
 function closeLimitOpenWL(){closeLimitScreen();openWaitlist();}
 function updateWLCount(){
-  [['wlCountDisplay','Joining '+waitlistCount.toLocaleString()+' learners already on the waitlist'],
-   ['stripCount','Join '+waitlistCount.toLocaleString()+' learners on the waitlist'],
-   ['heroCount',waitlistCount.toLocaleString()+' learners already on the waitlist']
+  [['wlCountDisplay','&#127775; '+waitlistCount.toLocaleString()+' learners already registered'],
+   ['stripCount','&#127891; '+waitlistCount.toLocaleString()+' learners joining Unlimited Learning'],
+   ['heroCount',waitlistCount.toLocaleString()+' learners joining Unlimited Learning']
   ].forEach(function(a){var el=document.getElementById(a[0]);if(el)el.textContent=a[1];});
+}
+function selectLevel(btn,level){
+  document.querySelectorAll('#levelBtns button').forEach(function(b){
+    b.style.background='var(--slate-light)';b.style.borderColor='var(--border)';b.style.color='var(--slate)';
+  });
+  btn.style.background='var(--coral)';btn.style.borderColor='var(--coral)';btn.style.color='#fff';
+  document.getElementById('wlLevel').value=level;
 }
 function submitWaitlist(){
   var email=document.getElementById('wlEmail').value.trim();
-  if(!email||!email.includes('@')){document.getElementById('wlEmail').style.borderColor='var(--rose)';return;}
+  var name=document.getElementById('wlName').value.trim();
+  var langSel=document.getElementById('wlLangSel').value;
+  if(!name){document.getElementById('wlName').style.borderColor='var(--coral)';document.getElementById('wlName').focus();return;}
+  if(!email||!email.includes('@')){document.getElementById('wlEmail').style.borderColor='var(--coral)';document.getElementById('wlEmail').focus();return;}
+  if(!langSel){document.getElementById('wlLangSel').style.borderColor='var(--coral)';return;}
   localStorage.setItem('ne_wl_joined','1');
+  localStorage.setItem('ne_wl_name',name);
+  localStorage.setItem('ne_wl_email',email);
+  var btn=document.getElementById('wlSubmitBtn');if(btn){btn.textContent='Saving...';btn.disabled=true;}
   var fd=new FormData();
+  fd.append('entry.NAME',name);
   fd.append('entry.EMAIL',email);
-  fd.append('entry.NAME',document.getElementById('wlName').value.trim());
-  fd.append('entry.LANGUAGE',document.getElementById('wlLangSel').value);
+  fd.append('entry.PHONE',document.getElementById('wlPhone').value.trim());
+  fd.append('entry.LANGUAGE',langSel);
+  fd.append('entry.COUNTRY',document.getElementById('wlCountry').value);
+  fd.append('entry.LEVEL',document.getElementById('wlLevel').value);
+  fd.append('entry.GOAL',document.getElementById('wlGoal').value);
   fd.append('entry.FEEDBACK',document.getElementById('wlFeedback').value.trim());
   fetch('https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse',{method:'POST',body:fd,mode:'no-cors'}).catch(function(){});
   waitlistCount++;updateWLCount();
@@ -3051,7 +3480,7 @@ function submitWaitlist(){
   document.getElementById('wlSuccess').style.display='block';
   var cur=getUsageToday();
   if(cur>=DAILY_LIMIT)localStorage.setItem(getTodayKey(),Math.max(0,cur-1));
-  updateUsageBar();addDiary('Joined waitlist');
+  updateUsageBar();addDiary('Joined Unlimited Learning');
 }
 async function api(msg,sysP,tokens){
   tokens=tokens||800;
@@ -3077,7 +3506,7 @@ function setLang(l){
   loadWelcomeTrans();loadWord();renderDNAQs();renderVocab();renderIdioms();renderMistakes();renderPhrases();buildCheatSheet();
 }
 async function loadWelcomeTrans(){
-  var t=await api('Translate exactly to '+lang+': "Welcome! I am your personal English tutor. Ask me anything about grammar, vocabulary, speaking or writing."','Translate exactly. Return only the translation.',100);
+  var t=await api('Translate exactly to '+lang+': "Welcome! I am your personal NativeEnglish tutor. Ask me anything about grammar, vocabulary, speaking or writing."','Translate exactly. Return only the translation.',100);
   var el=document.getElementById('welcomeTrans');if(el)el.textContent=t;
 }
 async function sendChat(){
@@ -3304,12 +3733,12 @@ function playAllAccents(){
 var CHALLENGES=[
   {title:"despite vs although vs however",col:"#c0392b",bg:"var(--rl)",desc:"Use all three words correctly in one or two sentences about any topic.",native:"Three contrast words each must be used at least once and correctly.",answer:"DESPITE + noun phrase: Despite the rain, she went out. ALTHOUGH + clause: Although she was tired, she finished. HOWEVER connects two sentences: The plan was difficult. However, we succeeded.",answerNative:"DESPITE + noun. ALTHOUGH + subject + verb. HOWEVER connects two separate sentences. All three show contrast but are used differently."},
   {title:"Present Perfect vs Simple Past",col:"#0e6655",bg:"linear-gradient(135deg,#e8f5f0,#d4ede6)",desc:"Write one correct sentence using each: 'I have eaten' and 'I ate'.",native:"When do you use have eaten vs ate? Write one example of each.",answer:"Simple Past (ate) = specific past time: I ate pizza yesterday. Present Perfect (have eaten) = experience without specific time: I have eaten sushi before. Rule: specific time word = Simple Past. No specific time = Present Perfect.",answerNative:"Simple Past = specific time. Present Perfect = experience without specific time. Test: can you say WHEN exactly? If yes, use Simple Past."},
-  {title:"Make vs Do",col:"#1a5276",bg:"var(--ocl)",desc:"Write four correct sentences: two with 'make' and two with 'do'.",native:"Make and Do are confusing for English learners. Use each correctly twice.",answer:"MAKE = create or produce: make a decision, make money, make a mistake. DO = perform a task: do homework, do your best, do business. Many pairs must be memorised.",answerNative:"MAKE = create or produce. DO = perform or carry out."},
-  {title:"Formal vs Informal English",col:"#6c3483",bg:"var(--pll)",desc:"Rewrite this formally: 'Hey, can you send me that file ASAP? I really need it like NOW.'",native:"Same meaning, completely different professional tone.",answer:"Formal: Dear [Name], I hope this message finds you well. Could you please send me the file at your earliest convenience? This is quite urgent. Thank you very much. Key changes: Remove hey, ASAP, like NOW. Add polite opener and modal verbs.",answerNative:"Formal English: no slang, no abbreviations. Add polite openers, modal verbs (could you please), professional closings."},
-  {title:"Conditional sentences",col:"#1e8449",bg:"var(--frl)",desc:"Write one example of each: Zero, First, Second and Third conditional.",native:"English has 4 main conditional structures for different situations.",answer:"Zero: If you heat water to 100, it boils. First: If it rains tomorrow, I will stay home. Second: If I had more money, I would travel. Third: If I had studied, I would have passed.",answerNative:"Zero = general truth. First = real future possibility. Second = imaginary now. Third = impossible past regret."},
-  {title:"Passive voice",col:"#d35400",bg:"var(--aml)",desc:"Change to passive: 1)Shakespeare wrote Hamlet. 2)They are building a new road. 3)Police have caught the thief.",native:"Passive = subject receives the action. Formula: to be + past participle.",answer:"1)Hamlet was written by Shakespeare. 2)A new road is being built. 3)The thief has been caught. Rule: passive = to be + past participle.",answerNative:"Passive = to be + past participle. Tense lives in the to be verb."},
-  {title:"Question formation",col:"#c49a1a",bg:"var(--gp)",desc:"Form the question for: 1)She goes by bus. 2)They have been married ten years. 3)He was reading when it rang.",native:"English question word order: auxiliary verb comes before the subject.",answer:"1)How does she go to work? 2)How long have they been married? 3)What was he doing when the phone rang? Rule: Question word + auxiliary + subject + main verb.",answerNative:"English questions: Question word + auxiliary + subject + main verb."},
-  {title:"Reported speech",col:"#1565c0",bg:"var(--skl)",desc:"Report: 1)She said I am tired. 2)He said I will call you. 3)They asked Are you coming?",native:"Tenses shift back one step when reporting what someone said.",answer:"1)She said she was tired. 2)He said he would call me. 3)They asked if I was coming. Rule: tenses move one step into the past.",answerNative:"Present to past, will to would, is doing to was doing. Yes/No questions use if or whether."},
+  {title:"Make vs Do",col:"#1a5276",bg:"rgba(96,165,250,0.12)",desc:"Write four correct sentences: two with 'make' and two with 'do'.",native:"Make and Do are confusing for English learners. Use each correctly twice.",answer:"MAKE = create or produce: make a decision, make money, make a mistake. DO = perform a task: do homework, do your best, do business. Many pairs must be memorised.",answerNative:"MAKE = create or produce. DO = perform or carry out."},
+  {title:"Formal vs Informal English",col:"#6c3483",bg:"var(--teal-dim)",desc:"Rewrite this formally: 'Hey, can you send me that file ASAP? I really need it like NOW.'",native:"Same meaning, completely different professional tone.",answer:"Formal: Dear [Name], I hope this message finds you well. Could you please send me the file at your earliest convenience? This is quite urgent. Thank you very much. Key changes: Remove hey, ASAP, like NOW. Add polite opener and modal verbs.",answerNative:"Formal English: no slang, no abbreviations. Add polite openers, modal verbs (could you please), professional closings."},
+  {title:"Conditional sentences",col:"#1e8449",bg:"rgba(74,222,128,0.12)",desc:"Write one example of each: Zero, First, Second and Third conditional.",native:"English has 4 main conditional structures for different situations.",answer:"Zero: If you heat water to 100, it boils. First: If it rains tomorrow, I will stay home. Second: If I had more money, I would travel. Third: If I had studied, I would have passed.",answerNative:"Zero = general truth. First = real future possibility. Second = imaginary now. Third = impossible past regret."},
+  {title:"Passive voice",col:"#d35400",bg:"var(--coral-dim)",desc:"Change to passive: 1)Shakespeare wrote Hamlet. 2)They are building a new road. 3)Police have caught the thief.",native:"Passive = subject receives the action. Formula: to be + past participle.",answer:"1)Hamlet was written by Shakespeare. 2)A new road is being built. 3)The thief has been caught. Rule: passive = to be + past participle.",answerNative:"Passive = to be + past participle. Tense lives in the to be verb."},
+  {title:"Question formation",col:"#c49a1a",bg:"var(--gold-dim)",desc:"Form the question for: 1)She goes by bus. 2)They have been married ten years. 3)He was reading when it rang.",native:"English question word order: auxiliary verb comes before the subject.",answer:"1)How does she go to work? 2)How long have they been married? 3)What was he doing when the phone rang? Rule: Question word + auxiliary + subject + main verb.",answerNative:"English questions: Question word + auxiliary + subject + main verb."},
+  {title:"Reported speech",col:"#1565c0",bg:"rgba(167,139,250,0.12)",desc:"Report: 1)She said I am tired. 2)He said I will call you. 3)They asked Are you coming?",native:"Tenses shift back one step when reporting what someone said.",answer:"1)She said she was tired. 2)He said he would call me. 3)They asked if I was coming. Rule: tenses move one step into the past.",answerNative:"Present to past, will to would, is doing to was doing. Yes/No questions use if or whether."},
   {title:"Articles a an the",col:"#c0392b",bg:"var(--rl)",desc:"Fill in: __ sun rises in __ east. She is __ honest person. I need __ advice. He bought __ new car.",native:"Articles are one of the hardest parts for speakers of languages without them.",answer:"THE sun. THE east. AN honest (vowel sound). ADVICE no article (uncountable). A new car (first mention). Rule: THE=specific. A/AN=first mention. No article=uncountable.",answerNative:"THE = specific or unique. A/AN = one of many. No article = uncountable nouns."},
   {title:"Confusable collocations",col:"#0e6655",bg:"linear-gradient(135deg,#e8f5f0,#d4ede6)",desc:"Choose: 1)make/do homework 2)make/do a mistake 3)make/take a photo 4)make/do your best",native:"Collocations must be memorised. Often no logical rule.",answer:"1)DO homework. 2)MAKE a mistake. 3)TAKE a photo. 4)DO your best. Memorise: do homework, do business, make a decision, make money, take a photo.",answerNative:"No perfect rule. Memorise the most common pairs."}
 ];
@@ -3319,12 +3748,12 @@ function renderChallenge(){
   area.innerHTML='<div class="challenge-card" style="background:'+c.bg+';border-left:4px solid '+c.col+'">'
     +'<div class="challenge-day" style="color:'+c.col+'">Day '+(day+1)+' Challenge - '+new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'})+'</div>'
     +'<div class="challenge-title" style="color:'+c.col+'">'+c.title+'</div>'
-    +'<div class="challenge-desc" style="color:var(--ink)">'+c.desc+'</div>'
+    +'<div class="challenge-desc" style="color:var(--txt-1)">'+c.desc+'</div>'
     +'<div class="challenge-native" style="background:rgba(0,0,0,0.05);color:var(--muted)"><strong style="color:'+c.col+'">In '+lang+':</strong> '+c.native+'</div>'
     +'<button class="reveal-btn" onclick="revealChallenge(this)" style="background:'+c.col+';color:#fff">Reveal Answer</button>'
     +'<div class="challenge-ans" id="chalAns" style="background:rgba(255,255,255,0.75);border-left:3px solid '+c.col+'">'
     +'<div style="font-size:11px;font-weight:700;text-transform:uppercase;color:'+c.col+';margin-bottom:7px">Answer &amp; Explanation</div>'
-    +'<div style="color:var(--ink);margin-bottom:10px;line-height:1.72">'+c.answer+'</div>'
+    +'<div style="color:var(--txt-1);margin-bottom:10px;line-height:1.72">'+c.answer+'</div>'
     +'<div style="color:var(--muted);font-style:italic;font-size:12px;padding:9px 11px;background:rgba(0,0,0,0.04);border-radius:7px"><strong style="color:'+c.col+'">In '+lang+':</strong> '+c.answerNative+'</div>'
     +'</div></div>'
     +'<div class="ib" style="background:rgba(0,0,0,0.04);border-color:var(--muted);font-size:12px;color:var(--muted)">A new challenge every day. Completely free with no account needed.</div>';
@@ -3342,7 +3771,7 @@ function renderMistakes(){
   var area=document.getElementById('mistakesArea');if(!area)return;
   var mistakes=MISTAKES_DATA[lang]||MISTAKES_DATA['Spanish'];
   var colors=['#c49a1a','#0e6655','#1a5276','#6c3483','#1e8449','#d35400','#c0392b','#1565c0'];
-  var bgs=['var(--gp)','linear-gradient(135deg,#e8f5f0,#d4ede6)','var(--ocl)','var(--pll)','var(--frl)','var(--aml)','var(--rl)','var(--skl)'];
+  var bgs=['var(--gold-dim)','linear-gradient(135deg,#e8f5f0,#d4ede6)','rgba(96,165,250,0.12)','var(--teal-dim)','rgba(74,222,128,0.12)','var(--coral-dim)','var(--rl)','rgba(167,139,250,0.12)'];
   area.innerHTML='<div style="font-size:13px;font-weight:700;color:var(--forest);margin-bottom:12px">Top 15 mistakes by '+lang+' speakers - corrections in English and '+lang+'</div>';
   mistakes.forEach(function(m,i){
     var col=colors[i%colors.length],bg=bgs[i%bgs.length];
@@ -3351,9 +3780,9 @@ function renderMistakes(){
     var why=m.includes('(')?m.split('(')[1].replace(')',''):'See explanation';
     var div=document.createElement('div');div.className='mistake-item';div.style.background=bg;div.style.borderColor=col;
     div.innerHTML='<div class="mistake-num" style="color:'+col+'">Mistake '+(i+1)+'</div>'
-      +'<div class="mistake-wrong" style="color:var(--rose)">WRONG: '+wrong+'</div>'
+      +'<div class="mistake-wrong" style="color:var(--coral)">WRONG: '+wrong+'</div>'
       +'<div class="mistake-right" style="color:'+col+'">CORRECT: '+right+'</div>'
-      +'<div class="mistake-why" style="color:var(--ink)">'+why+'</div>'
+      +'<div class="mistake-why" style="color:var(--txt-1)">'+why+'</div>'
       +'<div id="mn-'+i+'" style="margin-top:5px"><button onclick="translateMistake(this,'+i+',\''+col+'\',\''+why.replace(/'/g,'')+'\',\''+wrong.replace(/'/g,'')+'\',\''+right.replace(/'/g,'')+'\')" style="font-size:10px;padding:2px 8px;border-radius:4px;border:1px solid '+col+';background:transparent;color:'+col+';cursor:pointer;font-family:DM Sans,sans-serif">Explain in '+lang+'</button></div>';
     area.appendChild(div);
   });
@@ -3365,21 +3794,21 @@ async function translateMistake(btn,idx,col,why,wrong,right){
 }
 
 var CONFUSE_DATA=[
-  {cat:'grammar',w1:'affect',w2:'effect',col:'#c49a1a',bg:'var(--gp)',rule:'AFFECT is a verb: the rain affected our plans. EFFECT is a noun: the effect was significant. Test: replace with influence (verb=affect) or result (noun=effect).',native:'AFFECT = verb action. EFFECT = noun result. A for Action, E for End result.',ex1:{e:'The news affected everyone.',n:'(verb: changed/influenced)'},ex2:{e:'The effect was remarkable.',n:'(noun: the result)'}},
+  {cat:'grammar',w1:'affect',w2:'effect',col:'#c49a1a',bg:'var(--gold-dim)',rule:'AFFECT is a verb: the rain affected our plans. EFFECT is a noun: the effect was significant. Test: replace with influence (verb=affect) or result (noun=effect).',native:'AFFECT = verb action. EFFECT = noun result. A for Action, E for End result.',ex1:{e:'The news affected everyone.',n:'(verb: changed/influenced)'},ex2:{e:'The effect was remarkable.',n:'(noun: the result)'}},
   {cat:'vocabulary',w1:'borrow',w2:'lend',col:'#0e6655',bg:'linear-gradient(135deg,#e8f5f0,#d4ede6)',rule:'BORROW = take temporarily from someone. LEND = give temporarily to someone. You borrow FROM. You lend TO.',native:'BORROW = you take it. LEND = you give it.',ex1:{e:'Can I borrow your pen?',n:'(you take and return it)'},ex2:{e:'Can you lend me your pen?',n:'(you want them to give it)'}},
-  {cat:'vocabulary',w1:'say',w2:'tell',col:'#1a5276',bg:'var(--ocl)',rule:'SAY does not need a person object. TELL requires a person directly after: she told ME.',native:'SAY = no person object needed. TELL = person must follow directly.',ex1:{e:'She said she was tired.',n:'(no person after said)'},ex2:{e:'She told me she was tired.',n:'(me = person after told)'}},
-  {cat:'preposition',w1:'since',w2:'for',col:'#6c3483',bg:'var(--pll)',rule:'SINCE + starting point: since 2020, since Monday. FOR + duration: for 5 years, for two weeks.',native:'SINCE = when it started. FOR = how long.',ex1:{e:'I have worked here since January.',n:'(January = starting point)'},ex2:{e:'I have worked here for six months.',n:'(six months = duration)'}},
-  {cat:'vocabulary',w1:'make',w2:'do',col:'#1e8449',bg:'var(--frl)',rule:'MAKE = create or produce something. DO = perform an activity or task.',native:'MAKE = create. DO = perform.',ex1:{e:'She made a plan and made money.',n:'(create and produce)'},ex2:{e:'He did his homework and did his best.',n:'(activity and effort)'}},
-  {cat:'grammar',w1:'less',w2:'fewer',col:'#d35400',bg:'var(--aml)',rule:'FEWER = countable nouns you can count: fewer books, fewer mistakes. LESS = uncountable: less water, less time.',native:'FEWER = countable. LESS = uncountable.',ex1:{e:'Please make fewer mistakes.',n:'(mistakes are countable)'},ex2:{e:'Use less water.',n:'(water is uncountable)'}},
+  {cat:'vocabulary',w1:'say',w2:'tell',col:'#1a5276',bg:'rgba(96,165,250,0.12)',rule:'SAY does not need a person object. TELL requires a person directly after: she told ME.',native:'SAY = no person object needed. TELL = person must follow directly.',ex1:{e:'She said she was tired.',n:'(no person after said)'},ex2:{e:'She told me she was tired.',n:'(me = person after told)'}},
+  {cat:'preposition',w1:'since',w2:'for',col:'#6c3483',bg:'var(--teal-dim)',rule:'SINCE + starting point: since 2020, since Monday. FOR + duration: for 5 years, for two weeks.',native:'SINCE = when it started. FOR = how long.',ex1:{e:'I have worked here since January.',n:'(January = starting point)'},ex2:{e:'I have worked here for six months.',n:'(six months = duration)'}},
+  {cat:'vocabulary',w1:'make',w2:'do',col:'#1e8449',bg:'rgba(74,222,128,0.12)',rule:'MAKE = create or produce something. DO = perform an activity or task.',native:'MAKE = create. DO = perform.',ex1:{e:'She made a plan and made money.',n:'(create and produce)'},ex2:{e:'He did his homework and did his best.',n:'(activity and effort)'}},
+  {cat:'grammar',w1:'less',w2:'fewer',col:'#d35400',bg:'var(--coral-dim)',rule:'FEWER = countable nouns you can count: fewer books, fewer mistakes. LESS = uncountable: less water, less time.',native:'FEWER = countable. LESS = uncountable.',ex1:{e:'Please make fewer mistakes.',n:'(mistakes are countable)'},ex2:{e:'Use less water.',n:'(water is uncountable)'}},
   {cat:'vocabulary',w1:'look',w2:'see',col:'#c0392b',bg:'var(--rl)',rule:'SEE = passive, happens without effort. LOOK = active, you direct your eyes. WATCH = looking at something moving over time.',native:'SEE = happens automatically. LOOK = you choose to direct your eyes.',ex1:{e:'I can see a bird.',n:'(passive - appeared in vision)'},ex2:{e:'Look at that sunset!',n:'(active - directing attention)'}},
-  {cat:'grammar',w1:'its',w2:"it's",col:'#1565c0',bg:'var(--skl)',rule:"IT'S = contraction of 'it is'. ITS = possessive. Test: replace with 'it is' - if it works use it's.",native:"IT'S = it is. ITS = belonging to it.",ex1:{e:"It's a beautiful day.",n:"(it is a beautiful day)"},ex2:{e:'The dog wagged its tail.',n:"(possessive - belongs to dog)"}},
-  {cat:'preposition',w1:'in',w2:'at',col:'#c49a1a',bg:'var(--gp)',rule:'IN = larger areas: in London, in the office. AT = specific points: at the door, at 9am.',native:'IN = inside something larger. AT = precise point.',ex1:{e:'She works in London.',n:'(city = larger space)'},ex2:{e:'Meet me at the station at 8pm.',n:'(specific place and time)'}},
+  {cat:'grammar',w1:'its',w2:"it's",col:'#1565c0',bg:'rgba(167,139,250,0.12)',rule:"IT'S = contraction of 'it is'. ITS = possessive. Test: replace with 'it is' - if it works use it's.",native:"IT'S = it is. ITS = belonging to it.",ex1:{e:"It's a beautiful day.",n:"(it is a beautiful day)"},ex2:{e:'The dog wagged its tail.',n:"(possessive - belongs to dog)"}},
+  {cat:'preposition',w1:'in',w2:'at',col:'#c49a1a',bg:'var(--gold-dim)',rule:'IN = larger areas: in London, in the office. AT = specific points: at the door, at 9am.',native:'IN = inside something larger. AT = precise point.',ex1:{e:'She works in London.',n:'(city = larger space)'},ex2:{e:'Meet me at the station at 8pm.',n:'(specific place and time)'}},
   {cat:'vocabulary',w1:'bring',w2:'take',col:'#0e6655',bg:'linear-gradient(135deg,#e8f5f0,#d4ede6)',rule:'BRING = movement toward speaker. TAKE = movement away from speaker.',native:'BRING = toward you. TAKE = away from you.',ex1:{e:'Bring your passport to the interview.',n:'(toward interview)'},ex2:{e:'Take an umbrella when you go out.',n:'(away from home)'}}
 ];
 var confuseFiltered=CONFUSE_DATA.slice();
 function filterConfuse(cat,btn){
   document.querySelectorAll('#confuseFilter .chip').forEach(function(b){b.style.borderColor='';b.style.background='';b.style.color='';});
-  btn.style.borderColor='var(--gold)';btn.style.background='var(--gp)';btn.style.color='var(--gold)';
+  btn.style.borderColor='var(--gold)';btn.style.background='var(--gold-dim)';btn.style.color='var(--gold)';
   confuseFiltered=(cat==='all')?CONFUSE_DATA.slice():CONFUSE_DATA.filter(function(c){return c.cat===cat;});
   renderConfuse();
 }
@@ -3389,7 +3818,7 @@ function renderConfuse(){
     var div=document.createElement('div');div.className='confuse-card';div.style.background=c.bg;div.style.borderLeft='4px solid '+c.col;
     var exId='ce-'+c.w1+'-'+c.w2;
     div.innerHTML='<div class="confuse-pair"><span class="confuse-word" style="background:'+c.col+'20;color:'+c.col+'">'+c.w1+'</span><span class="confuse-vs">vs</span><span class="confuse-word" style="background:'+c.col+'20;color:'+c.col+'">'+c.w2+'</span></div>'
-      +'<div class="confuse-rule" style="color:var(--ink)">'+c.rule+'</div>'
+      +'<div class="confuse-rule" style="color:var(--txt-1)">'+c.rule+'</div>'
       +'<div style="font-size:12px;font-style:italic;padding:7px 10px;border-radius:7px;background:rgba(0,0,0,0.05);margin-bottom:7px"><strong style="color:'+c.col+'">In '+lang+':</strong> '+c.native+'</div>'
       +'<button onclick="toggleConfuseEx(\''+exId+'\',this)" style="font-size:11px;padding:3px 10px;border-radius:20px;border:1.5px solid '+c.col+';background:transparent;color:'+c.col+';cursor:pointer;font-family:DM Sans,sans-serif;font-weight:600">Show examples</button>'
       +'<div class="confuse-examples" id="'+exId+'"><div style="font-size:12px;padding:7px 10px;border-radius:7px;margin-bottom:5px;background:rgba(255,255,255,0.7)"><strong style="color:'+c.col+'">'+c.w1+':</strong> '+c.ex1.e+'<br><em style="color:var(--muted)">'+c.ex1.n+'</em></div><div style="font-size:12px;padding:7px 10px;border-radius:7px;background:rgba(255,255,255,0.7)"><strong style="color:'+c.col+'">'+c.w2+':</strong> '+c.ex2.e+'<br><em style="color:var(--muted)">'+c.ex2.n+'</em></div></div>';
@@ -3402,19 +3831,19 @@ var TENSES={
   past:[
     {name:'Simple Past',formula:'V-ed / V2',ex:'She walked to school.',when:'Action completed at a specific past time.',col:'#c0392b',bg:'var(--rl)'},
     {name:'Past Continuous',formula:'was/were + V-ing',ex:'She was walking when it rained.',when:'Action in progress at a past time, often interrupted.',col:'#e74c3c',bg:'#fff0ee'},
-    {name:'Past Perfect',formula:'had + V3',ex:'She had walked before it rained.',when:'Action completed before another past action.',col:'#d35400',bg:'var(--aml)'},
+    {name:'Past Perfect',formula:'had + V3',ex:'She had walked before it rained.',when:'Action completed before another past action.',col:'#d35400',bg:'var(--coral-dim)'},
     {name:'Past Perf. Cont.',formula:'had been + V-ing',ex:'She had been walking for an hour.',when:'Ongoing action continuing up to a past point.',col:'#e67e22',bg:'#fff5e8'}
   ],
   present:[
-    {name:'Simple Present',formula:'V / V-s',ex:'She walks every day.',when:'Habits, facts, and general truths.',col:'#1e8449',bg:'var(--frl)'},
+    {name:'Simple Present',formula:'V / V-s',ex:'She walks every day.',when:'Habits, facts, and general truths.',col:'#1e8449',bg:'rgba(74,222,128,0.12)'},
     {name:'Present Continuous',formula:'am/is/are + V-ing',ex:'She is walking right now.',when:'Action happening at this moment or temporarily.',col:'#27ae60',bg:'#e8f8e8'},
     {name:'Present Perfect',formula:'have/has + V3',ex:'She has walked here before.',when:'Past experience or recent action with present relevance.',col:'#16a085',bg:'#e8f5f0'},
     {name:'Pres. Perf. Cont.',formula:'have/has been + V-ing',ex:'She has been walking for 30 minutes.',when:'Ongoing action started in the past, continuing now.',col:'#0e6655',bg:'#d4ede6'}
   ],
   future:[
-    {name:'Simple Future',formula:'will + V',ex:'She will walk tomorrow.',when:'Decision made now, prediction, or willingness.',col:'#1a5276',bg:'var(--ocl)'},
+    {name:'Simple Future',formula:'will + V',ex:'She will walk tomorrow.',when:'Decision made now, prediction, or willingness.',col:'#1a5276',bg:'rgba(96,165,250,0.12)'},
     {name:'Future Continuous',formula:'will be + V-ing',ex:'She will be walking at noon.',when:'Action in progress at a specific future time.',col:'#2471a3',bg:'#d6eaf8'},
-    {name:'Future Perfect',formula:'will have + V3',ex:'She will have walked 5 miles by then.',when:'Action completed before a specific future point.',col:'#6c3483',bg:'var(--pll)'},
+    {name:'Future Perfect',formula:'will have + V3',ex:'She will have walked 5 miles by then.',when:'Action completed before a specific future point.',col:'#6c3483',bg:'var(--teal-dim)'},
     {name:'Future Perf. Cont.',formula:'will have been + V-ing',ex:'She will have been walking for an hour.',when:'Ongoing action leading up to a future point.',col:'#7d3c98',bg:'#ede0f7'}
   ]
 };
@@ -3441,7 +3870,7 @@ function showTlPopup(t){
   var p=document.getElementById('tlPopup');p.className='tl-popup show';p.style.background=t.bg;p.style.borderLeft='4px solid '+t.col;
   p.innerHTML='<div style="font-family:Cormorant Garamond,serif;font-size:20px;font-weight:700;color:'+t.col+';margin-bottom:8px">'+t.name+'</div>'
     +'<div style="margin-bottom:10px"><span style="background:'+t.col+'15;color:'+t.col+';padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700;font-family:DM Mono,monospace">Formula: '+t.formula+'</span></div>'
-    +'<div style="font-size:14px;font-style:italic;color:var(--ink);padding:8px 12px;background:rgba(255,255,255,0.6);border-radius:8px;margin-bottom:8px;border-left:3px solid '+t.col+'"><strong style="color:'+t.col+'">Example:</strong> '+t.ex+'</div>'
+    +'<div style="font-size:14px;font-style:italic;color:var(--txt-1);padding:8px 12px;background:rgba(255,255,255,0.6);border-radius:8px;margin-bottom:8px;border-left:3px solid '+t.col+'"><strong style="color:'+t.col+'">Example:</strong> '+t.ex+'</div>'
     +'<div style="font-size:13px;line-height:1.65;margin-bottom:8px"><strong style="color:'+t.col+'">When to use:</strong> '+t.when+'</div>'
     +'<div style="font-size:12px;color:var(--muted);padding:8px 10px;background:rgba(0,0,0,0.04);border-radius:7px" id="tlNative"><strong style="color:'+t.col+'">In '+lang+':</strong> Click below to explain</div>'
     +'<button onclick="translateTense(\''+t.name+'\',\''+t.formula+'\',\''+t.when+'\',\''+t.col+'\')" style="margin-top:8px;padding:5px 14px;border-radius:20px;border:1.5px solid '+t.col+';background:transparent;color:'+t.col+';font-size:11px;cursor:pointer;font-family:DM Sans,sans-serif;font-weight:600">Explain in '+lang+'</button>';
@@ -3487,8 +3916,8 @@ var PHRASES=[
 function renderPhrases(){
   var area=document.getElementById('phraseArea');if(!area)return;
   var dayNum=new Date().getDate()-1;
-  var colors=['var(--amber)','var(--teal)','var(--ocean)','var(--rose)','var(--plum)','var(--forest)','var(--gold)'];
-  var bgs=['var(--aml)','linear-gradient(135deg,#e8f5f0,#d4ede6)','var(--ocl)','var(--rl)','var(--pll)','var(--frl)','var(--gp)'];
+  var colors=['var(--amber)','var(--teal)','var(--ocean)','var(--coral)','var(--plum)','var(--forest)','var(--gold)'];
+  var bgs=['var(--coral-dim)','linear-gradient(135deg,#e8f5f0,#d4ede6)','rgba(96,165,250,0.12)','var(--rl)','var(--teal-dim)','rgba(74,222,128,0.12)','var(--gold-dim)'];
   area.innerHTML='';
   for(var i=0;i<5;i++){
     var idx=(dayNum+i)%PHRASES.length,p=PHRASES[idx];
@@ -3497,7 +3926,7 @@ function renderPhrases(){
     var safeText=p.text.replace(/'/g,'');var safeMeaning=p.meaning.replace(/'/g,'');
     card.innerHTML='<div class="phrase-day" style="color:'+col+'">'+(i===0?'Today':'Day '+(i+1))+' - '+p.cat+'</div>'
       +'<div class="phrase-text" style="color:'+col+'">'+p.text+'</div>'
-      +'<div class="phrase-meaning" style="color:var(--ink)">'+p.meaning+'</div>'
+      +'<div class="phrase-meaning" style="color:var(--txt-1)">'+p.meaning+'</div>'
       +'<div class="phrase-example" style="border-color:'+col+';background:rgba(255,255,255,0.6)"><strong style="color:'+col+'">Example:</strong> '+p.example+'</div>'
       +'<div style="font-size:12px;color:var(--muted);margin-bottom:8px;padding:5px 10px;background:rgba(0,0,0,0.04);border-radius:6px"><strong style="color:'+col+'">When to use:</strong> '+p.ctx+'</div>'
       +'<div id="pn-'+idx+'" style="font-size:12px;padding:7px 10px;background:rgba(0,0,0,0.05);border-radius:7px"><button onclick="translatePhrase('+idx+',\''+col+'\',\''+safeText+'\',\''+safeMeaning+'\')" style="font-size:11px;padding:3px 10px;border-radius:20px;border:1.5px solid '+col+';background:transparent;color:'+col+';cursor:pointer;font-family:DM Sans,sans-serif;font-weight:600">Translate to '+lang+'</button></div>';
@@ -3512,15 +3941,15 @@ async function translatePhrase(idx,col,text,meaning){
 }
 
 var PUZZLES=[
-  {words:['have','been','studying','I','English','for','three','years'],answer:'I have been studying English for three years.',native:'Present Perfect Continuous: I have been + verb-ing + for + time period.',col:'#c49a1a',bg:'var(--gp)'},
+  {words:['have','been','studying','I','English','for','three','years'],answer:'I have been studying English for three years.',native:'Present Perfect Continuous: I have been + verb-ing + for + time period.',col:'#c49a1a',bg:'var(--gold-dim)'},
   {words:['letter','The','was','written','by','a','famous','author'],answer:'The letter was written by a famous author.',native:'Passive voice: The + noun + was + past participle + by + agent.',col:'#0e6655',bg:'linear-gradient(135deg,#e8f5f0,#d4ede6)'},
-  {words:['If','I','had','studied','I','would','have','passed'],answer:'If I had studied, I would have passed.',native:'Third conditional: If + had + past participle, would have + past participle.',col:'#1a5276',bg:'var(--ocl)'},
-  {words:['long','has','she','How','been','living','here'],answer:'How long has she been living here?',native:'Present Perfect Continuous question: How long + has + subject + been + verb-ing.',col:'#6c3483',bg:'var(--pll)'},
-  {words:['Neither','the','manager','nor','the','employees','arrived','on','time'],answer:'Neither the manager nor the employees arrived on time.',native:'Neither nor connects two negative subjects.',col:'#1e8449',bg:'var(--frl)'},
-  {words:['She','asked','me','where','I','had','been'],answer:'She asked me where I had been.',native:'Indirect reported question: verb shifts back.',col:'#d35400',bg:'var(--aml)'},
+  {words:['If','I','had','studied','I','would','have','passed'],answer:'If I had studied, I would have passed.',native:'Third conditional: If + had + past participle, would have + past participle.',col:'#1a5276',bg:'rgba(96,165,250,0.12)'},
+  {words:['long','has','she','How','been','living','here'],answer:'How long has she been living here?',native:'Present Perfect Continuous question: How long + has + subject + been + verb-ing.',col:'#6c3483',bg:'var(--teal-dim)'},
+  {words:['Neither','the','manager','nor','the','employees','arrived','on','time'],answer:'Neither the manager nor the employees arrived on time.',native:'Neither nor connects two negative subjects.',col:'#1e8449',bg:'rgba(74,222,128,0.12)'},
+  {words:['She','asked','me','where','I','had','been'],answer:'She asked me where I had been.',native:'Indirect reported question: verb shifts back.',col:'#d35400',bg:'var(--coral-dim)'},
   {words:['more','you','read','The','the','better','you','write'],answer:'The more you read, the better you write.',native:'The + comparative, the + comparative: parallel increase.',col:'#c0392b',bg:'var(--rl)'},
-  {words:['The','building','is','being','renovated'],answer:'The building is being renovated.',native:'Present continuous passive: is/are + being + past participle.',col:'#1565c0',bg:'var(--skl)'},
-  {words:['Despite','the','rain','she','went','for','a','walk'],answer:'Despite the rain, she went for a walk.',native:'Despite + noun phrase. Shows contrast without using although.',col:'#c49a1a',bg:'var(--gp)'},
+  {words:['The','building','is','being','renovated'],answer:'The building is being renovated.',native:'Present continuous passive: is/are + being + past participle.',col:'#1565c0',bg:'rgba(167,139,250,0.12)'},
+  {words:['Despite','the','rain','she','went','for','a','walk'],answer:'Despite the rain, she went for a walk.',native:'Despite + noun phrase. Shows contrast without using although.',col:'#c49a1a',bg:'var(--gold-dim)'},
   {words:['It','is','essential','that','he','arrive','on','time'],answer:'It is essential that he arrive on time.',native:'Subjunctive: It is + adjective + that + subject + base verb (no -s).',col:'#0e6655',bg:'linear-gradient(135deg,#e8f5f0,#d4ede6)'}
 ];
 function renderPuzzle(){
@@ -3557,15 +3986,15 @@ function checkPuzzle(p){
   if(words.length===p.words.length){
     var correct=(words.join(' ')===p.answer);
     fb.innerHTML=correct
-      ?'<div style="background:var(--frl);border-left:4px solid var(--forest);padding:10px 13px;border-radius:9px"><span style="color:var(--forest);font-weight:700">Correct!</span> <em>"'+p.answer+'"</em><br><small style="color:var(--muted)">'+p.native+'</small></div>'
-      :'<div style="background:var(--aml);border-left:4px solid var(--amber);padding:10px 13px;border-radius:9px"><span style="color:var(--amber);font-weight:700">Not quite.</span> Try rearranging the words.</div>';
+      ?'<div style="background:rgba(74,222,128,0.12);border-left:4px solid var(--forest);padding:10px 13px;border-radius:9px"><span style="color:var(--forest);font-weight:700">Correct!</span> <em>"'+p.answer+'"</em><br><small style="color:var(--muted)">'+p.native+'</small></div>'
+      :'<div style="background:var(--coral-dim);border-left:4px solid var(--amber);padding:10px 13px;border-radius:9px"><span style="color:var(--amber);font-weight:700">Not quite.</span> Try rearranging the words.</div>';
     if(correct){var nb=document.getElementById('nextPuzzleBtn');if(nb)nb.style.display='block';}
   }
 }
 function nextPuzzle(){currentPuzzle++;renderPuzzle();}
 function showPuzzleHint(){
   var p=PUZZLES[currentPuzzle%PUZZLES.length],fb=document.getElementById('puzzleFeedback');
-  if(fb)fb.innerHTML='<div style="background:var(--gp);border-left:4px solid var(--gold);padding:10px 13px;border-radius:9px"><strong style="color:var(--gold)">Hint:</strong> The sentence starts with "'+p.answer.split(' ')[0]+'"</div>';
+  if(fb)fb.innerHTML='<div style="background:var(--gold-dim);border-left:4px solid var(--gold);padding:10px 13px;border-radius:9px"><strong style="color:var(--gold)">Hint:</strong> The sentence starts with "'+p.answer.split(' ')[0]+'"</div>';
 }
 
 var SPOTTER_DATA=[
@@ -3576,11 +4005,11 @@ var SPOTTER_DATA=[
   {para:'She has lived in London since five years. Every morning she go to work by underground. She is liking her job very much and she work very hard.',
    errWords:['since','go','liking','work'],
    exps:{'since':'Should be FOR five years. SINCE needs a point in time. FOR needs a duration.','go':'Should be GOES. Third person singular needs -s in simple present.','liking':'Should be LIKES. Stative verbs like LIKE, LOVE, KNOW do not use continuous.','work':'Should be WORKS. Third person singular needs -s.'},
-   col:'#d35400',bg:'var(--aml)'},
+   col:'#d35400',bg:'var(--coral-dim)'},
   {para:'If I will have more money, I would buy bigger house. I have this dream since I was child. The house which I dream about it is near lake.',
    errWords:['will','child','it','near'],
    exps:{'will':'Should be HAD. Second conditional: If I had more money...','child':'Should be A CHILD. Singular countable nouns need an article.','it':'Remove IT. Relative clauses do not repeat the noun.','near':'Should be NEAR A LAKE or NEAR THE LAKE. Noun needs an article.'},
-   col:'#1a5276',bg:'var(--ocl)'}
+   col:'#1a5276',bg:'rgba(96,165,250,0.12)'}
 ];
 function renderSpotter(){
   var area=document.getElementById('spotterArea');if(!area)return;
@@ -3613,7 +4042,7 @@ function checkSpotter(){
   document.querySelectorAll('#errorPara span').forEach(function(sp){
     var w=sp.dataset.word;
     var isErr=s.errWords.some(function(e){return w===e.toLowerCase();});
-    if(isErr)sp.style.cssText='cursor:pointer;padding:2px 4px;border-radius:4px;background:rgba(192,57,43,0.2);color:var(--rose);font-weight:700';
+    if(isErr)sp.style.cssText='cursor:pointer;padding:2px 4px;border-radius:4px;background:rgba(192,57,43,0.2);color:var(--coral);font-weight:700';
     else if(sp.dataset.clicked==='1')sp.style.cssText='cursor:pointer;padding:2px 4px;border-radius:4px;background:rgba(30,132,73,0.2);color:var(--forest);font-weight:700';
   });
   var fb=document.getElementById('spotterFeedback');
@@ -3687,9 +4116,9 @@ function showCS(topic,ci,btn){
     +'<button onclick="window.print()" style="padding:8px 16px;border-radius:9px;border:none;background:'+col+';color:#fff;font-family:DM Sans,sans-serif;font-size:12px;font-weight:600;cursor:pointer">Print</button>'
     +'</div>'
     +'<div style="background:var(--paper);border-radius:var(--r);border:1.5px solid '+col+'33;overflow:hidden">'
-    +'<div style="background:'+col+'12;padding:10px 14px;border-bottom:1px solid '+col+'22;display:grid;grid-template-columns:160px 1fr 1fr;gap:10px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:'+col+'"><span>Rule</span><span style="color:var(--ink)">English</span><span style="color:var(--ocean)">In '+lang+'</span></div>'
+    +'<div style="background:'+col+'12;padding:10px 14px;border-bottom:1px solid '+col+'22;display:grid;grid-template-columns:160px 1fr 1fr;gap:10px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:'+col+'"><span>Rule</span><span style="color:var(--txt-1)">English</span><span style="color:var(--ocean)">In '+lang+'</span></div>'
     +data.map(function(row){
-      return '<div style="padding:10px 14px;border-bottom:1px solid '+col+'15;display:grid;grid-template-columns:160px 1fr 1fr;gap:10px;font-size:12px;line-height:1.6"><div style="font-weight:700;color:'+col+'">'+row.term+'</div><div style="color:var(--ink)">'+row.rule+'</div><div style="color:var(--ocean);font-style:italic">'+row.native+'</div></div>';
+      return '<div style="padding:10px 14px;border-bottom:1px solid '+col+'15;display:grid;grid-template-columns:160px 1fr 1fr;gap:10px;font-size:12px;line-height:1.6"><div style="font-weight:700;color:'+col+'">'+row.term+'</div><div style="color:var(--txt-1)">'+row.rule+'</div><div style="color:var(--ocean);font-style:italic">'+row.native+'</div></div>';
     }).join('')+'</div>';
 }
 
@@ -3707,10 +4136,10 @@ async function doMirror(){
   if(r===null){out.innerHTML='';return;}
   try{
     var d=JSON.parse(r.replace(/```json|```/g,'').trim());
-    var levs=[['B1 Beginner','var(--sky)','var(--skl)',d.b1],['B2 Intermediate','var(--plum)','var(--pll)',d.b2],['C1 Advanced','var(--gold)','var(--gp)',d.c1],['Native Natural','var(--forest)','var(--frl)',d.native]];
+    var levs=[['B1 Beginner','rgba(96,165,250,0.8)','rgba(167,139,250,0.12)',d.b1],['B2 Intermediate','var(--plum)','var(--teal-dim)',d.b2],['C1 Advanced','var(--gold)','var(--gold-dim)',d.c1],['Native Natural','var(--forest)','rgba(74,222,128,0.12)',d.native]];
     var html='<div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">';
     levs.forEach(function(a){html+='<div style="padding:11px 13px;border-radius:9px;background:'+a[2]+';border-left:4px solid '+a[1]+';font-size:13px;line-height:1.72"><div style="font-size:10px;font-weight:700;text-transform:uppercase;color:'+a[1]+';margin-bottom:5px">'+a[0]+'</div>'+a[3]+'</div>';});
-    html+='<div style="padding:9px 12px;border-radius:8px;background:var(--gp);border-left:4px solid var(--gold);font-size:12px"><strong style="color:var(--gold)">Key tip:</strong> '+(d.tip||'')+'<div style="color:var(--muted);font-style:italic;margin-top:4px">In '+lang+': '+(d.tipNative||'')+'</div></div></div>';
+    html+='<div style="padding:9px 12px;border-radius:8px;background:var(--gold-dim);border-left:4px solid var(--gold);font-size:12px"><strong style="color:var(--gold)">Key tip:</strong> '+(d.tip||'')+'<div style="color:var(--muted);font-style:italic;margin-top:4px">In '+lang+': '+(d.tipNative||'')+'</div></div></div>';
     out.innerHTML=html;addDiary('Mirror writing');
   }catch(e){out.innerHTML='<div class="msg ai"><div class="av">N</div><div class="bbl">'+fmt(r)+'</div></div>';}
 }
@@ -3743,9 +4172,9 @@ async function doTone(){
   if(r===null){out.innerHTML='';return;}
   try{
     var d=JSON.parse(r.replace(/```json|```/g,'').trim());
-    out.innerHTML='<div style="display:flex;flex-direction:column;gap:8px;margin-top:8px"><div style="padding:12px 15px;border-radius:9px;background:var(--pll);border-left:4px solid var(--plum);font-size:14px;line-height:1.72"><div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--plum);margin-bottom:5px">'+currentTone+' version</div><strong style="color:var(--plum)">'+d.transformed+'</strong></div>'
+    out.innerHTML='<div style="display:flex;flex-direction:column;gap:8px;margin-top:8px"><div style="padding:12px 15px;border-radius:9px;background:var(--teal-dim);border-left:4px solid var(--plum);font-size:14px;line-height:1.72"><div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--plum);margin-bottom:5px">'+currentTone+' version</div><strong style="color:var(--plum)">'+d.transformed+'</strong></div>'
       +'<div style="padding:9px 12px;border-radius:9px;background:var(--cream);font-size:13px;line-height:1.65">'+d.explanation+'<div style="color:var(--muted);font-style:italic;margin-top:5px">In '+lang+': '+d.native+'</div></div>'
-      +'<div style="padding:8px 12px;border-radius:8px;background:var(--gp);font-size:12px;color:var(--gold);border-left:3px solid var(--gold)">Tip: '+d.tip+'</div></div>';
+      +'<div style="padding:8px 12px;border-radius:8px;background:var(--gold-dim);font-size:12px;color:var(--gold);border-left:3px solid var(--gold)">Tip: '+d.tip+'</div></div>';
     addDiary('Tone: '+currentTone);
   }catch(e){out.innerHTML='<div class="msg ai"><div class="av">N</div><div class="bbl">'+fmt(r)+'</div></div>';}
 }
@@ -3785,7 +4214,7 @@ function saveWord(){
     return '<div style="background:var(--cream);border-radius:8px;padding:8px 11px;margin-bottom:5px;border-left:3px solid var(--gold)"><div style="font-family:Cormorant Garamond,serif;font-size:15px;font-weight:700;color:var(--gold)">'+v.word+'</div><div style="font-size:11px;color:var(--muted)">'+v.def+'</div></div>';
   }).join('');
   addDiary('Saved: '+w);
-  var el=document.getElementById('wcWord');el.style.color='var(--gl)';setTimeout(function(){el.style.color='#fff';},1200);
+  var el=document.getElementById('wcWord');el.style.color='var(--gold)';setTimeout(function(){el.style.color='#fff';},1200);
 }
 function openDNA(){
   dnaAnswers=[];renderDNAQs();
@@ -3834,18 +4263,18 @@ function showDNAResult(){
   var weakest=skills[vals.indexOf(Math.min.apply(null,vals))];
   updateDNASidebar({g:g,v:v,s:s,w:w},avg,level);
   document.getElementById('dnaQs').style.display='none';document.getElementById('dnaRes').style.display='block';
-  var cols=['var(--gold)','var(--teal)','var(--rose)','var(--forest)'];
-  var bgs=['var(--gp)','linear-gradient(135deg,#e8f5f0,#d4ede6)','var(--rl)','var(--frl)'];
-  var html='<div style="display:flex;gap:12px;align-items:center;margin-bottom:14px;background:var(--gp);padding:14px;border-radius:12px;border-left:4px solid var(--gold)">'
+  var cols=['var(--gold)','var(--teal)','var(--coral)','var(--forest)'];
+  var bgs=['var(--gold-dim)','linear-gradient(135deg,#e8f5f0,#d4ede6)','var(--rl)','rgba(74,222,128,0.12)'];
+  var html='<div style="display:flex;gap:12px;align-items:center;margin-bottom:14px;background:var(--gold-dim);padding:14px;border-radius:12px;border-left:4px solid var(--gold)">'
     +'<div style="font-size:42px;font-family:Cormorant Garamond,serif;font-weight:700;color:var(--gold)">'+avg+'%</div>'
-    +'<div><div style="font-size:16px;font-weight:700;color:var(--ink)">'+level+'</div><div style="font-size:12px;color:var(--muted)">'+correct+' of '+DNA_QS.length+' correct</div></div></div>';
+    +'<div><div style="font-size:16px;font-weight:700;color:var(--txt-1)">'+level+'</div><div style="font-size:12px;color:var(--muted)">'+correct+' of '+DNA_QS.length+' correct</div></div></div>';
   for(var i=0;i<4;i++){
     html+='<div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;background:'+bgs[i]+';padding:8px 10px;border-radius:9px">'
       +'<div style="font-size:12px;width:76px;color:var(--muted);font-weight:600">'+skills[i]+'</div>'
       +'<div style="flex:1;height:7px;background:rgba(0,0,0,0.08);border-radius:4px;overflow:hidden"><div style="width:'+vals[i]+'%;height:100%;background:'+cols[i]+';border-radius:4px;transition:width 1s ease"></div></div>'
       +'<div style="font-size:13px;font-weight:700;width:32px;color:'+cols[i]+'">'+vals[i]+'%</div></div>';
   }
-  html+='<div style="margin-top:10px;background:var(--gp);border-radius:9px;padding:11px 13px;font-size:12px;line-height:1.65;border-left:3px solid var(--gold)"><strong style="color:var(--gold)">In '+lang+':</strong> Your level is '+level+'. Weakest area: '+weakest+'. Keep practising every day!</div>';
+  html+='<div style="margin-top:10px;background:var(--gold-dim);border-radius:9px;padding:11px 13px;font-size:12px;line-height:1.65;border-left:3px solid var(--gold)"><strong style="color:var(--gold)">In '+lang+':</strong> Your level is '+level+'. Weakest area: '+weakest+'. Keep practising every day!</div>';
   document.getElementById('dnaResContent').innerHTML=html;addDiary('DNA Test: '+level+' ('+avg+'%)');
 }
 function updateDNASidebar(sc,avg,level){

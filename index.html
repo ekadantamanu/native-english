@@ -12,148 +12,138 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Fraunces:ital,wght@0,700;0,900;1,700;1,900&family=DM+Mono&display=swap');
 
 /* ══════════════════════════════════════════
-   MIDNIGHT GOLD — ENHANCED VISIBILITY SYSTEM
+   MIDNIGHT GOLD — COMPLETE DESIGN SYSTEM
    Primary: #F5C842 gold on #060810 deep dark
-   Accent:  #3DDED4 teal + #FF6B6B coral
-   Enhanced: All text contrast WCAG AA+
+   Accent:  #4ECDC4 teal + #FF6B6B coral
 ══════════════════════════════════════════ */
 :root{
-  --bg-0:#05070F;
-  --bg-1:#080D1A;
-  --bg-2:#0F1624;
-  --bg-3:#172030;
-  --bg-4:#1E2B3E;
+  --bg-0:#060810;
+  --bg-1:#0A0F1C;
+  --bg-2:#111827;
+  --bg-3:#1A2235;
+  --bg-4:#1F2D44;
   --gold:#F5C842;
   --gold-b:#FFD84D;
-  --gold-bright:#FFE566;
-  --gold-dim:rgba(245,200,66,0.16);
-  --gold-bdr:rgba(245,200,66,0.32);
-  --gold-glo:rgba(245,200,66,0.10);
-  --teal:#3DDED4;
-  --teal-dim:rgba(61,222,212,0.14);
+  --gold-dim:rgba(245,200,66,0.14);
+  --gold-bdr:rgba(245,200,66,0.28);
+  --gold-glo:rgba(245,200,66,0.08);
+  --teal:#4ECDC4;
+  --teal-dim:rgba(78,205,196,0.12);
   --coral:#FF6B6B;
-  --coral-dim:rgba(255,107,107,0.14);
-  --coral-dark:#E85555;
+  --coral-dim:rgba(255,107,107,0.12);
   --green:#4ADE80;
   --blue:#60A5FA;
-  --plum:#C084FC;
-  --amber:#FCD34D;
-  --forest:#34D399;
   --txt-1:#FFFFFF;
-  --txt-2:rgba(255,255,255,0.94);
-  --txt-3:rgba(255,255,255,0.78);
-  --txt-4:rgba(255,255,255,0.55);
-  --bdr:rgba(255,255,255,0.12);
-  --bdr-g:rgba(245,200,66,0.30);
-  --white:#FFFFFF;
-  --slate:#1A202C;
-  --slate-light:#F7F8FA;
-  --slate-mid:#718096;
+  --txt-2:rgba(255,255,255,0.90);
+  --txt-3:rgba(255,255,255,0.65);
+  --txt-4:rgba(255,255,255,0.42);
+  --bdr:rgba(255,255,255,0.09);
+  --bdr-g:rgba(245,200,66,0.24);
   --r:12px;--rl:18px;--rx:24px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg-1);color:var(--txt-2);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
 /* ── ANNOUNCE BAR ── */
-.announce-bar{background:linear-gradient(135deg,#0A0800,#0D1000,#080D1A);border-bottom:1.5px solid rgba(245,200,66,0.45);color:rgba(255,255,255,0.85);padding:10px 16px;text-align:center;font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:600}
-.announce-bar strong{color:#FFE566;font-weight:800}
-.cstrip-link,.announce-bar a{color:#FFE566;font-weight:800;cursor:pointer;text-decoration:underline}
+.announce-bar{background:var(--bg-0);border-bottom:1px solid var(--bdr-g);color:var(--txt-3);padding:9px 16px;text-align:center;font-size:13px;font-weight:500;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:600}
+.announce-bar strong{color:var(--gold);font-weight:800}
+.cstrip-link,.announce-bar a{color:var(--gold-b);font-weight:800;cursor:pointer;text-decoration:underline}
 
 /* ── HEADER ── */
-header{background:rgba(5,7,15,0.98);border-bottom:1.5px solid rgba(245,200,66,0.32);padding:0 20px;height:58px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:34px;z-index:500;gap:10px}
+header{background:rgba(6,8,16,0.97);border-bottom:1px solid var(--bdr-g);padding:0 20px;height:58px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:34px;z-index:500;gap:10px}
 .logo-wrap{display:flex;align-items:center;gap:9px;flex-shrink:0}
-.logo-icon{width:36px;height:36px;background:var(--gold);border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:18px;font-weight:900;color:#05070F;flex-shrink:0;letter-spacing:-.5px}
-.logo-text,.logo{font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:#FFFFFF;letter-spacing:-.3px}
+.logo-icon{width:36px;height:36px;background:var(--gold);border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:18px;font-weight:900;color:var(--bg-0);flex-shrink:0;letter-spacing:-.5px}
+.logo-text,.logo{font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--txt-1);letter-spacing:-.3px}
 .logo-text span,.logo em{color:var(--gold);font-style:normal}
 .header-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
-#nativeLang{background:var(--bg-3);color:#FFFFFF;border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:6px 10px;font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:600;cursor:pointer;outline:none;max-width:130px}
-#nativeLang:focus{border-color:var(--gold)}
+#nativeLang{background:var(--bg-2);color:var(--txt-2);border:1px solid var(--bdr);border-radius:8px;padding:6px 10px;font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:600;cursor:pointer;outline:none;max-width:130px}
+#nativeLang:focus{border-color:var(--bdr-g)}
 .hdr-btn{padding:8px 18px;border-radius:8px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;border:none;transition:all .18s;white-space:nowrap;letter-spacing:-.1px}
-.hdr-btn-outline{background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.28);color:#FFFFFF}
-.hdr-btn-outline:hover{border-color:var(--gold-b);color:var(--gold-b);background:rgba(245,200,66,0.08)}
-.hdr-btn-fill{background:var(--gold);color:#05070F;font-weight:800}
+.hdr-btn-outline{background:transparent;border:1.5px solid rgba(255,255,255,0.2);color:var(--txt-3)}
+.hdr-btn-outline:hover{border-color:var(--gold-b);color:var(--gold-b)}
+.hdr-btn-fill{background:var(--gold);color:var(--bg-0);font-weight:800}
 .hdr-btn-fill:hover{background:var(--gold-b);transform:translateY(-1px)}
 @media(max-width:540px){.hdr-btn-outline{display:none}#nativeLang{max-width:100px;font-size:10px}}
 
 /* ── USAGE BAR ── */
-.ubar{background:rgba(8,13,26,0.99);border-bottom:1px solid rgba(245,200,66,0.22);padding:6px 20px;display:flex;align-items:center;justify-content:space-between;font-size:11px;color:rgba(255,255,255,0.62);font-weight:500;position:sticky;top:92px;z-index:400;flex-wrap:wrap;gap:6px}
-.ubar-link,.ubar a{color:var(--gold-b);font-weight:700;cursor:pointer}
+.ubar{background:rgba(10,15,28,0.98);border-bottom:1px solid var(--bdr-g);padding:6px 20px;display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--txt-4);font-weight:500;position:sticky;top:92px;z-index:400;flex-wrap:wrap;gap:6px}
+.ubar-link,.ubar a{color:var(--gold);font-weight:700;cursor:pointer}
 .udot{width:6px;height:6px;border-radius:50%;flex-shrink:0;display:inline-block}
 .udot.green{background:var(--green)}.udot.red{background:var(--coral)}
 
 /* ══════════ HERO SECTION ══════════ */
-.hero{background:linear-gradient(180deg,#030508 0%,#05070F 40%,#080D1A 100%);padding:52px 20px 44px;text-align:center;position:relative;overflow:hidden;border-bottom:1.5px solid rgba(245,200,66,0.30)}
+.hero{background:var(--bg-0);padding:52px 20px 44px;text-align:center;position:relative;overflow:hidden;border-bottom:1px solid var(--bdr-g)}
 
 /* Radial glow behind headline */
-.hero::before{content:'';position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:800px;height:500px;background:radial-gradient(ellipse at 50% 40%,rgba(245,200,66,0.14) 0%,rgba(61,222,212,0.07) 35%,transparent 70%);pointer-events:none;z-index:0}
+.hero::before{content:'';position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:800px;height:500px;background:radial-gradient(ellipse at 50% 40%,rgba(245,200,66,0.09) 0%,rgba(78,205,196,0.05) 35%,transparent 70%);pointer-events:none;z-index:0}
 
 .hero>*{position:relative;z-index:1}
 
 /* EYEBROW */
-.hero-eyebrow{display:inline-flex;align-items:center;gap:7px;background:rgba(245,200,66,0.18);border:1.5px solid rgba(245,200,66,0.45);border-radius:100px;padding:7px 20px;font-size:11.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#FFE566;margin-bottom:22px;text-shadow:0 0 20px rgba(245,200,66,0.4)}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:7px;background:var(--gold-dim);border:1px solid var(--bdr-g);border-radius:100px;padding:6px 18px;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
 
-/* HEADLINE */
-.hero h1{font-family:'Fraunces',serif;font-size:clamp(34px,5.5vw,68px);font-weight:900;line-height:1.04;color:#FFFFFF;margin-bottom:14px;letter-spacing:-2px;max-width:820px;margin-left:auto;margin-right:auto;text-shadow:0 2px 30px rgba(0,0,0,0.5)}
-.hero h1 em{color:#FFD84D;font-style:italic;text-shadow:0 0 40px rgba(245,200,66,0.35)}
-.hero h1 strong{color:#3DDED4;font-style:normal;text-shadow:0 0 30px rgba(61,222,212,0.25)}
+/* HEADLINE — Deep Ocean copy on Midnight Gold bg */
+.hero h1{font-family:'Fraunces',serif;font-size:clamp(32px,5.5vw,66px);font-weight:900;line-height:1.04;color:var(--txt-1);margin-bottom:12px;letter-spacing:-2px;max-width:820px;margin-left:auto;margin-right:auto}
+.hero h1 em{color:var(--gold);font-style:italic}
+.hero h1 strong{color:var(--teal);font-style:normal}
 
 /* SUB */
-.hero-sub{font-size:clamp(15px,2.4vw,20px);color:rgba(255,255,255,0.88);max-width:620px;margin:0 auto 26px;line-height:1.72;font-weight:400}
-.hero-sub b{color:#FFD84D;font-weight:700}
+.hero-sub{font-size:clamp(15px,2.4vw,20px);color:var(--txt-3);max-width:600px;margin:0 auto 24px;line-height:1.72;font-weight:400}
+.hero-sub b{color:var(--gold-b);font-weight:700}
 
 /* LANG CHIPS */
 .hero-lang-row{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-bottom:28px}
-.lang-chip{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);border-radius:100px;padding:7px 16px;font-size:13px;font-weight:600;color:rgba(255,255,255,0.90);transition:all .18s;cursor:default}
-.lang-chip:hover{border-color:var(--gold-b);color:var(--gold-b);background:rgba(245,200,66,0.10)}
+.lang-chip{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:100px;padding:6px 15px;font-size:13px;font-weight:600;color:var(--txt-2);transition:all .18s;cursor:default}
+.lang-chip:hover{border-color:var(--bdr-g);color:var(--gold);background:var(--gold-glo)}
 
 /* CTA BUTTONS */
-.hero-cta{display:flex;gap:11px;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
-.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:15px 30px;background:var(--gold);color:#05070F;border:none;border-radius:12px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15.5px;font-weight:800;cursor:pointer;transition:all .2s;letter-spacing:-.2px;white-space:nowrap;box-shadow:0 4px 24px rgba(245,200,66,0.30)}
-.btn-primary:hover{background:var(--gold-b);transform:translateY(-2px);box-shadow:0 12px 36px rgba(245,200,66,0.38)}
-.btn-secondary{display:inline-flex;align-items:center;gap:7px;padding:14px 28px;background:rgba(61,222,212,0.10);color:#3DDED4;border:2px solid rgba(61,222,212,0.45);border-radius:12px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15.5px;font-weight:700;cursor:pointer;transition:all .2s;white-space:nowrap}
-.btn-secondary:hover{border-color:var(--teal);background:rgba(61,222,212,0.18);color:#FFFFFF}
+.hero-cta{display:flex;gap:11px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:var(--gold);color:var(--bg-0);border:none;border-radius:12px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15.5px;font-weight:800;cursor:pointer;transition:all .2s;letter-spacing:-.2px;white-space:nowrap}
+.btn-primary:hover{background:var(--gold-b);transform:translateY(-2px);box-shadow:0 10px 32px rgba(245,200,66,0.28)}
+.btn-secondary{display:inline-flex;align-items:center;gap:7px;padding:13px 26px;background:transparent;color:var(--gold-b);border:2px solid var(--bdr-g);border-radius:12px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15.5px;font-weight:700;cursor:pointer;transition:all .2s;white-space:nowrap}
+.btn-secondary:hover{border-color:var(--gold);background:var(--gold-dim);color:var(--gold-b)}
 
 /* hbtn aliases used elsewhere */
 .hbtn{display:inline-flex;align-items:center;gap:6px;padding:11px 20px;border-radius:10px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;border:none;transition:all .18s;white-space:nowrap}
-.hbtn-gold,.hbtn-primary{background:var(--gold);color:#05070F;font-weight:800}
+.hbtn-gold,.hbtn-primary{background:var(--gold);color:var(--bg-0);font-weight:800}
 .hbtn-gold:hover,.hbtn-primary:hover{background:var(--gold-b);transform:translateY(-1px)}
 .hbtn-outline{background:transparent;border:2px solid var(--bdr-g);color:var(--gold);font-weight:700}
 .hbtn-outline:hover{background:var(--gold-dim);border-color:var(--gold)}
 
 /* PRICING RIBBON */
-.price-ribbon{display:inline-flex;align-items:center;gap:12px;background:rgba(245,200,66,0.10);border:1.5px solid rgba(245,200,66,0.38);border-radius:100px;padding:10px 24px;margin-bottom:16px;flex-wrap:wrap;justify-content:center;gap:10px}
-.pr-old{font-size:12px;color:rgba(255,255,255,0.50);text-decoration:line-through}
-.pr-sep{width:1px;height:16px;background:rgba(245,200,66,0.35);flex-shrink:0}
-.pr-main{font-size:15px;font-weight:800;color:#FFD84D;font-family:'Plus Jakarta Sans',sans-serif}
-.pr-annual{font-size:11.5px;color:rgba(255,255,255,0.55)}
+.price-ribbon{display:inline-flex;align-items:center;gap:12px;background:rgba(245,200,66,0.07);border:1px solid var(--bdr-g);border-radius:100px;padding:9px 22px;margin-bottom:16px;flex-wrap:wrap;justify-content:center;gap:10px}
+.pr-old{font-size:12px;color:var(--txt-4);text-decoration:line-through}
+.pr-sep{width:1px;height:16px;background:var(--bdr-g);flex-shrink:0}
+.pr-main{font-size:15px;font-weight:800;color:var(--gold);font-family:'Plus Jakarta Sans',sans-serif}
+.pr-annual{font-size:11.5px;color:var(--txt-4)}
 
 /* SOCIAL PROOF */
-.hero-social-proof{font-size:13px;color:rgba(255,255,255,0.72);font-weight:500;margin-bottom:8px}
-.hero-social-proof strong,.hero-count{color:var(--gold-b);font-weight:700}
+.hero-social-proof{font-size:12.5px;color:var(--txt-4);font-weight:500;margin-bottom:6px}
+.hero-social-proof strong,.hero-count{color:var(--gold);font-weight:700}
 
 /* STATS */
-.hero-stats{display:flex;gap:0;justify-content:center;margin-top:22px;border:1.5px solid rgba(245,200,66,0.30);border-radius:var(--rl);overflow:hidden;max-width:520px;margin-left:auto;margin-right:auto;background:rgba(15,22,36,0.95)}
-.hstat{flex:1;padding:16px 8px;text-align:center;border-right:1px solid rgba(245,200,66,0.18)}
+.hero-stats{display:flex;gap:0;justify-content:center;margin-top:20px;border:1px solid var(--bdr-g);border-radius:var(--rl);overflow:hidden;max-width:520px;margin-left:auto;margin-right:auto;background:var(--bg-1)}
+.hstat{flex:1;padding:14px 8px;text-align:center;border-right:1px solid var(--bdr-g)}
 .hstat:last-child{border:none}
-.hstat-num{font-family:'Fraunces',serif;font-size:28px;font-weight:900;color:var(--gold-b);line-height:1.1}
-.hstat-lbl{font-size:10.5px;color:rgba(255,255,255,0.62);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-top:3px}
+.hstat-num{font-family:'Fraunces',serif;font-size:26px;font-weight:900;color:var(--gold);line-height:1.1}
+.hstat-lbl{font-size:10px;color:var(--txt-4);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
 
 /* ── FEATURE STRIP ── */
-.feature-strip,.cstrip{background:linear-gradient(135deg,#0A0D18,#0F1624);border-bottom:1px solid rgba(245,200,66,0.20);padding:13px 20px;display:flex;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;align-items:center}
+.feature-strip,.cstrip{background:var(--bg-2);border-bottom:1px solid var(--bdr-g);padding:13px 20px;display:flex;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;align-items:center}
 .feature-strip::-webkit-scrollbar,.cstrip::-webkit-scrollbar{display:none}
-.feat-item{display:flex;align-items:center;gap:7px;padding:0 20px;border-right:1px solid rgba(255,255,255,0.10);white-space:nowrap;flex-shrink:0}
+.feat-item{display:flex;align-items:center;gap:7px;padding:0 20px;border-right:1px solid rgba(255,255,255,0.07);white-space:nowrap;flex-shrink:0}
 .feat-item:last-child{border:none}
 .feat-icon{font-size:14px}
-.feat-text{font-size:12.5px;font-weight:500;color:rgba(255,255,255,0.80)}
-.feat-text b{color:#FFD84D;font-weight:700}
+.feat-text{font-size:12.5px;font-weight:500;color:var(--txt-3)}
+.feat-text b{color:var(--gold-b);font-weight:700}
 
 /* ── TABS ── */
-.tabs-wrap{background:rgba(5,7,15,0.99);border-bottom:1.5px solid rgba(245,200,66,0.22);position:sticky;top:122px;z-index:300}
+.tabs-wrap{background:rgba(6,8,16,0.98);border-bottom:1px solid var(--bdr-g);position:sticky;top:122px;z-index:300}
 .tabs{display:flex;overflow-x:auto;scrollbar-width:none;padding:0 10px}
 .tabs::-webkit-scrollbar{display:none}
-.tbtn{background:none;border:none;border-bottom:2.5px solid transparent;padding:14px 13px;font-family:'Plus Jakarta Sans',sans-serif;font-size:12.5px;font-weight:600;color:rgba(255,255,255,0.55);cursor:pointer;white-space:nowrap;transition:all .13s;flex-shrink:0}
-.tbtn:hover{color:rgba(255,255,255,0.85)}
-.tbtn.active{color:#FFD84D;border-bottom-color:#FFD84D;font-weight:700}
+.tbtn{background:none;border:none;border-bottom:2px solid transparent;padding:13px 13px;font-family:'Plus Jakarta Sans',sans-serif;font-size:12.5px;font-weight:600;color:var(--txt-4);cursor:pointer;white-space:nowrap;transition:all .13s;flex-shrink:0}
+.tbtn:hover{color:var(--txt-3)}
+.tbtn.active{color:var(--gold);border-bottom-color:var(--gold)}
 
 /* ── LAYOUT ── */
 .layout{display:flex;height:calc(100vh - 185px)}
@@ -171,183 +161,182 @@ header{background:rgba(5,7,15,0.98);border-bottom:1.5px solid rgba(245,200,66,0.
 .msg{display:flex;gap:9px;max-width:91%}
 .msg.user{flex-direction:row-reverse;align-self:flex-end}
 .av{width:33px;height:33px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;font-family:'Fraunces',serif}
-.msg.ai .av{background:var(--gold);color:#05070F}
-.msg.user .av{background:var(--bg-4);color:var(--gold-b);font-family:'Plus Jakarta Sans',sans-serif;font-size:9px;font-weight:800;border:1.5px solid var(--bdr-g)}
-.bbl{padding:12px 15px;border-radius:var(--r);font-size:13px;line-height:1.82}
-.msg.ai .bbl{background:var(--bg-2);border:1px solid rgba(255,255,255,0.10);border-radius:3px 13px 13px 13px;color:rgba(255,255,255,0.92)}
-.msg.user .bbl{background:var(--bg-4);border:1.5px solid rgba(245,200,66,0.28);border-radius:13px 3px 13px 13px;color:#FFFFFF}
-.bili{margin-top:7px;padding:8px 12px;background:rgba(245,200,66,0.10);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;font-size:12px;color:#FFD84D;font-style:italic}
+.msg.ai .av{background:var(--gold);color:var(--bg-0)}
+.msg.user .av{background:var(--bg-4);color:var(--gold);font-family:'Plus Jakarta Sans',sans-serif;font-size:9px;font-weight:800;border:1px solid var(--bdr-g)}
+.bbl{padding:12px 15px;border-radius:var(--r);font-size:13px;line-height:1.80}
+.msg.ai .bbl{background:var(--bg-2);border:1px solid var(--bdr);border-radius:3px 13px 13px 13px;color:var(--txt-2)}
+.msg.user .bbl{background:var(--bg-4);border:1px solid var(--bdr-g);border-radius:13px 3px 13px 13px;color:var(--txt-1)}
+.bili{margin-top:7px;padding:7px 11px;background:var(--gold-glo);border-left:3px solid var(--gold);border-radius:0 7px 7px 0;font-size:12px;color:var(--gold);font-style:italic}
 
 /* ── INPUT BAR ── */
 .ibar{padding:11px 14px;border-top:1px solid var(--bdr-g);background:var(--bg-2);flex-shrink:0}
 .chips{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px}
-.chip{background:var(--bg-3);border:1px solid rgba(255,255,255,0.14);border-radius:100px;padding:4px 12px;font-size:10.5px;font-weight:600;color:rgba(255,255,255,0.75);cursor:pointer;transition:all .13s;font-family:'Plus Jakarta Sans',sans-serif}
-.chip:hover{background:var(--gold-dim);border-color:var(--gold-b);color:#FFD84D}
+.chip{background:var(--bg-3);border:1px solid var(--bdr);border-radius:100px;padding:4px 11px;font-size:10.5px;font-weight:600;color:var(--txt-3);cursor:pointer;transition:all .13s;font-family:'Plus Jakarta Sans',sans-serif}
+.chip:hover{background:var(--gold-dim);border-color:var(--bdr-g);color:var(--gold)}
 .irow{display:flex;gap:7px;align-items:flex-end}
-.ti{flex:1;border:1px solid rgba(255,255,255,0.14);border-radius:10px;padding:9px 13px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;background:var(--bg-3);resize:none;min-height:42px;max-height:96px;line-height:1.5;color:#FFFFFF;outline:none;transition:border-color .13s}
-.ti::placeholder{color:rgba(255,255,255,0.38)}
-.ti:focus{border-color:rgba(245,200,66,0.50)}
+.ti{flex:1;border:1px solid var(--bdr);border-radius:10px;padding:9px 13px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;background:var(--bg-3);resize:none;min-height:42px;max-height:96px;line-height:1.5;color:var(--txt-1);outline:none;transition:border-color .13s}
+.ti::placeholder{color:var(--txt-4)}
+.ti:focus{border-color:var(--bdr-g)}
 .sbtn{width:42px;height:42px;border-radius:10px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;transition:all .13s;font-family:'Plus Jakarta Sans',sans-serif}
-.sbtn.send{background:var(--gold);color:#05070F}.sbtn.send:hover{background:var(--gold-b)}
-.sbtn.mic{background:var(--bg-3);color:rgba(255,255,255,0.70);border:1px solid rgba(255,255,255,0.15)}.sbtn.mic.rec{background:var(--coral);color:#fff;animation:pulse 1s infinite}
+.sbtn.send{background:var(--gold);color:var(--bg-0)}.sbtn.send:hover{background:var(--gold-b)}
+.sbtn.mic{background:var(--bg-3);color:var(--txt-3);border:1px solid var(--bdr)}.sbtn.mic.rec{background:var(--coral);color:#fff;animation:pulse 1s infinite}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
 
 /* ── GRAMMAR ── */
 #panel-grammar{flex-direction:column;overflow:hidden}
-.gram-nav{background:var(--bg-2);border-bottom:1.5px solid var(--bdr-g);padding:10px 14px;display:flex;align-items:center;gap:7px;flex-wrap:wrap;flex-shrink:0}
-.gram-title{font-size:13px;font-weight:700;flex:1;color:var(--gold-b)}
+.gram-nav{background:var(--bg-2);border-bottom:1px solid var(--bdr-g);padding:9px 14px;display:flex;align-items:center;gap:7px;flex-wrap:wrap;flex-shrink:0}
+.gram-title{font-size:12.5px;font-weight:700;flex:1;color:var(--gold)}
 .pbtns{display:flex;gap:4px}
-.pbtn{width:27px;height:27px;border-radius:7px;border:1px solid rgba(255,255,255,0.18);background:var(--bg-3);font-size:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',sans-serif;color:rgba(255,255,255,0.70);font-weight:600;transition:all .13s}
-.pbtn.active{background:var(--gold);border-color:var(--gold);color:#05070F}
+.pbtn{width:27px;height:27px;border-radius:7px;border:1px solid var(--bdr);background:var(--bg-3);font-size:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',sans-serif;color:var(--txt-3);font-weight:600;transition:all .13s}
+.pbtn.active{background:var(--gold);border-color:var(--gold);color:var(--bg-0)}
 .gpages{flex:1;overflow:hidden;position:relative}
 .gpage{display:none;position:absolute;inset:0;overflow-y:auto;padding:13px;background:var(--bg-0)}
 .gpage.active{display:block}
-.gsec{border-radius:var(--r);margin-bottom:8px;overflow:hidden;border:1px solid rgba(255,255,255,0.10)}
+.gsec{border-radius:var(--r);margin-bottom:8px;overflow:hidden;border:1px solid var(--bdr)}
 .ghdr{padding:12px 14px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--bg-2)}
 .ghdr:hover{background:var(--bg-3)}
-.gtitle{font-family:'Fraunces',serif;font-size:17px;font-weight:700;color:#FFFFFF}
-.garrow{font-size:11px;color:rgba(255,255,255,0.55);transition:transform .18s;font-weight:700}
+.gtitle{font-family:'Fraunces',serif;font-size:17px;font-weight:700;color:var(--txt-1)}
+.garrow{font-size:11px;color:var(--txt-4);transition:transform .18s;font-weight:700}
 .garrow.open{transform:rotate(180deg)}
-.gbody{display:none;padding:0 14px 14px;font-size:13px;line-height:1.82;color:rgba(255,255,255,0.80);background:var(--bg-2)}
+.gbody{display:none;padding:0 14px 14px;font-size:13px;line-height:1.78;color:var(--txt-3);background:var(--bg-2)}
 .gbody.open{display:block}
 .stypes{display:flex;flex-wrap:wrap;gap:5px;margin:7px 0}
-.stype{background:var(--bg-3);border:1px solid rgba(255,255,255,0.14);border-radius:100px;padding:4px 11px;font-size:10.5px;cursor:pointer;transition:all .12s;font-weight:600;color:rgba(255,255,255,0.72)}
-.stype:hover{background:var(--gold-dim);border-color:var(--bdr-g);color:var(--gold-b)}
-.askbtn{display:inline-flex;align-items:center;gap:5px;background:rgba(245,200,66,0.14);border:1px solid rgba(245,200,66,0.38);border-radius:100px;padding:5px 13px;font-size:10.5px;color:#FFD84D;cursor:pointer;margin-top:7px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;transition:all .13s}
-.askbtn:hover{background:var(--gold);color:#05070F}
+.stype{background:var(--bg-3);border:1px solid var(--bdr);border-radius:100px;padding:4px 11px;font-size:10.5px;cursor:pointer;transition:all .12s;font-weight:600;color:var(--txt-3)}
+.stype:hover{background:var(--gold-dim);border-color:var(--bdr-g);color:var(--gold)}
+.askbtn{display:inline-flex;align-items:center;gap:5px;background:var(--gold-dim);border:1px solid var(--bdr-g);border-radius:100px;padding:4px 12px;font-size:10.5px;color:var(--gold);cursor:pointer;margin-top:7px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;transition:all .13s}
+.askbtn:hover{background:var(--gold);color:var(--bg-0)}
 .gram-ibar{padding:10px 13px;border-top:1px solid var(--bdr-g);background:var(--bg-2);flex-shrink:0}
 .gram-msgs{display:flex;flex-direction:column;gap:9px;margin-top:9px}
 
 /* ── PREPOSITIONS ── */
 #panel-prepositions{flex-direction:column;overflow:hidden}
 .prep-outer{flex:1;overflow-y:auto;padding:13px;background:var(--bg-0)}
-.prep-sec-lbl{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,0.55);margin:12px 0 7px;padding-bottom:4px;border-bottom:1px solid rgba(255,255,255,0.10)}
+.prep-sec-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--txt-4);margin:12px 0 7px;padding-bottom:3px;border-bottom:1px solid var(--bdr)}
 .prep-grid{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px}
-.prep-chip{border-radius:100px;padding:6px 14px;font-size:11.5px;font-weight:700;cursor:pointer;transition:all .13s;border:1.5px solid}
-.prep-chip:hover,.prep-chip.pa{color:#05070F!important;border-color:transparent!important}
-.prep-res{border-radius:var(--rl);padding:16px;display:none;margin-top:11px;border:1.5px solid rgba(245,200,66,0.30);background:var(--bg-2);color:rgba(255,255,255,0.88)}
+.prep-chip{border-radius:100px;padding:5px 13px;font-size:11.5px;font-weight:700;cursor:pointer;transition:all .13s;border:1.5px solid}
+.prep-chip:hover,.prep-chip.pa{color:var(--bg-0)!important;border-color:transparent!important}
+.prep-res{border-radius:var(--rl);padding:16px;display:none;margin-top:11px;border:1px solid var(--bdr-g);background:var(--bg-2);color:var(--txt-2)}
 .prep-res.show{display:block}
-.prep-hl{font-weight:800;padding:1px 5px;border-radius:5px;background:rgba(245,200,66,0.18);color:#FFD84D}
+.prep-hl{font-weight:800;padding:1px 5px;border-radius:5px;background:var(--gold-dim);color:var(--gold)}
 .do-dont{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
 @media(max-width:420px){.do-dont{grid-template-columns:1fr}}
-.do-box,.dont-box{border-radius:8px;padding:8px 10px;font-size:12px;line-height:1.68;border-left:3px solid;color:rgba(255,255,255,0.82)}
-.do-lbl,.dont-lbl{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;display:block}
+.do-box,.dont-box{border-radius:8px;padding:8px 10px;font-size:12px;line-height:1.65;border-left:3px solid;color:var(--txt-3)}
+.do-lbl,.dont-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;display:block}
 
 /* ── VOCABULARY ── */
 #panel-vocabulary{flex-direction:column;overflow:hidden}
 .voc-outer{flex:1;overflow-y:auto;padding:13px;background:var(--bg-0)}
 .voc-controls{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:11px}
-.voc-filter,.voc-search{border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:7px 10px;font-family:'Plus Jakarta Sans',sans-serif;font-size:11.5px;background:var(--bg-2);color:#FFFFFF;font-weight:500;outline:none}
-.voc-filter:focus,.voc-search:focus{border-color:var(--gold)}
+.voc-filter,.voc-search{border:1px solid var(--bdr);border-radius:8px;padding:7px 10px;font-family:'Plus Jakarta Sans',sans-serif;font-size:11.5px;background:var(--bg-2);color:var(--txt-2);font-weight:500;outline:none}
+.voc-filter:focus,.voc-search:focus{border-color:var(--bdr-g)}
 .voc-search{flex:1;min-width:100px}
-.voc-search::placeholder{color:rgba(255,255,255,0.38)}
+.voc-search::placeholder{color:var(--txt-4)}
 .voc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:8px;margin-bottom:11px}
-.voc-card{border-radius:var(--r);padding:12px;cursor:pointer;transition:all .18s;border:1px solid rgba(255,255,255,0.10);background:var(--bg-2)}
-.voc-card:hover{transform:translateY(-3px);border-color:rgba(245,200,66,0.40);box-shadow:0 8px 24px rgba(245,200,66,0.12)}
-.voc-word{font-family:'Fraunces',serif;font-size:17px;font-weight:700;margin-bottom:3px;color:#FFFFFF}
-.voc-pos{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px;color:rgba(255,255,255,0.52)}
-.voc-def{font-size:11px;line-height:1.55;color:rgba(255,255,255,0.75)}
-.voc-back{display:none;font-size:11.5px;line-height:1.65;color:rgba(255,255,255,0.88)}
+.voc-card{border-radius:var(--r);padding:12px;cursor:pointer;transition:all .18s;border:1px solid var(--bdr);background:var(--bg-2)}
+.voc-card:hover{transform:translateY(-3px);border-color:var(--bdr-g);box-shadow:0 8px 24px rgba(245,200,66,0.10)}
+.voc-word{font-family:'Fraunces',serif;font-size:17px;font-weight:700;margin-bottom:3px;color:var(--txt-1)}
+.voc-pos{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px;color:var(--txt-4)}
+.voc-def{font-size:11px;line-height:1.5;color:var(--txt-3)}
+.voc-back{display:none;font-size:11.5px;line-height:1.65;color:var(--txt-2)}
 .voc-lv{position:absolute;top:9px;right:9px;font-size:8.5px;font-weight:700;padding:2px 6px;border-radius:5px;text-transform:uppercase}
-.lv-basic{background:rgba(74,222,128,0.16);color:var(--green)}
-.lv-inter{background:rgba(96,165,250,0.16);color:var(--blue)}
-.lv-adv{background:rgba(245,200,66,0.18);color:var(--gold-b)}
+.lv-basic{background:rgba(74,222,128,0.14);color:var(--green)}
+.lv-inter{background:rgba(96,165,250,0.14);color:var(--blue)}
+.lv-adv{background:var(--gold-dim);color:var(--gold)}
 
 /* ── IDIOMS ── */
 #panel-idioms{flex-direction:column;overflow:hidden}
 .idiom-outer{flex:1;overflow-y:auto;padding:13px;background:var(--bg-0)}
-.idiom-card{border-radius:var(--r);padding:13px;margin-bottom:8px;cursor:pointer;transition:all .13s;border:1px solid rgba(255,255,255,0.10);background:var(--bg-2)}
-.idiom-card:hover{transform:translateX(4px);border-color:rgba(245,200,66,0.36)}
-.idiom-phrase{font-family:'Fraunces',serif;font-size:17px;font-weight:700;margin-bottom:3px;color:#FFD84D}
-.idiom-meaning{font-size:12.5px;line-height:1.65;margin-bottom:6px;color:rgba(255,255,255,0.78)}
-.idiom-examples{display:none;margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.10)}
+.idiom-card{border-radius:var(--r);padding:13px;margin-bottom:8px;cursor:pointer;transition:all .13s;border:1px solid var(--bdr);background:var(--bg-2)}
+.idiom-card:hover{transform:translateX(4px);border-color:var(--bdr-g)}
+.idiom-phrase{font-family:'Fraunces',serif;font-size:17px;font-weight:700;margin-bottom:3px;color:var(--gold-b)}
+.idiom-meaning{font-size:12.5px;line-height:1.65;margin-bottom:6px;color:var(--txt-3)}
+.idiom-examples{display:none;margin-top:8px;padding-top:8px;border-top:1px solid var(--bdr)}
 .idiom-examples.show{display:block}
-.idiom-ex{font-size:12px;line-height:1.7;margin-bottom:4px;padding:6px 10px;border-radius:7px;background:var(--bg-3);color:rgba(255,255,255,0.85)}
-.idiom-native{font-size:12px;font-style:italic;margin-top:6px;padding:7px 11px;border-radius:7px;background:rgba(245,200,66,0.10);border-left:3px solid var(--gold);color:#FFD84D}
+.idiom-ex{font-size:12px;line-height:1.7;margin-bottom:4px;padding:6px 10px;border-radius:7px;background:var(--bg-3);color:var(--txt-2)}
+.idiom-native{font-size:12px;font-style:italic;margin-top:6px;padding:6px 10px;border-radius:7px;background:var(--gold-glo);border-left:3px solid var(--gold);color:var(--gold)}
 
 /* ── WRITING ── */
 .write-modes{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}
 @media(min-width:500px){.write-modes{grid-template-columns:repeat(4,1fr)}}
-.wm-btn{padding:11px 6px;border-radius:10px;border:1.5px solid rgba(255,255,255,0.13);background:var(--bg-2);font-size:10.5px;font-weight:700;cursor:pointer;text-align:center;transition:all .13s;font-family:'Plus Jakarta Sans',sans-serif;color:rgba(255,255,255,0.72)}
-.wm-btn:hover,.wm-btn.active{border-color:rgba(245,200,66,0.50);background:rgba(245,200,66,0.14);color:#FFD84D}
+.wm-btn{padding:10px 6px;border-radius:10px;border:1px solid var(--bdr);background:var(--bg-2);font-size:10.5px;font-weight:700;cursor:pointer;text-align:center;transition:all .13s;font-family:'Plus Jakarta Sans',sans-serif;color:var(--txt-3)}
+.wm-btn:hover,.wm-btn.active{border-color:var(--bdr-g);background:var(--gold-dim);color:var(--gold)}
 .wm-icon{font-size:19px;display:block;margin-bottom:4px}
 .wp{display:none;flex-direction:column;gap:10px}
 .wp.active{display:flex}
-.wta{width:100%;min-height:84px;border:1.5px solid rgba(255,255,255,0.14);border-radius:10px;padding:10px 12px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;background:var(--bg-3);resize:vertical;color:#FFFFFF;line-height:1.68;outline:none}
-.wta:focus{border-color:rgba(245,200,66,0.50)}
-.wta::placeholder{color:rgba(255,255,255,0.35)}
+.wta{width:100%;min-height:84px;border:1px solid var(--bdr);border-radius:10px;padding:10px 12px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;background:var(--bg-3);resize:vertical;color:var(--txt-1);line-height:1.65;outline:none}
+.wta:focus{border-color:var(--bdr-g)}
+.wta::placeholder{color:var(--txt-4)}
 .wa-row{display:flex;gap:6px;flex-wrap:wrap}
-.wa-pri{padding:9px 18px;border-radius:9px;border:none;background:var(--gold);color:#05070F;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:800;cursor:pointer;transition:all .18s}
+.wa-pri{padding:9px 18px;border-radius:9px;border:none;background:var(--gold);color:var(--bg-0);font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:800;cursor:pointer;transition:all .18s}
 .wa-pri:hover{background:var(--gold-b)}
-.wa-sec{padding:9px 13px;border-radius:9px;background:var(--bg-3);color:rgba(255,255,255,0.70);border:1px solid rgba(255,255,255,0.14);font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;cursor:pointer;transition:all .13s}
-.wa-sec:hover{color:#FFFFFF;border-color:rgba(255,255,255,0.28)}
+.wa-sec{padding:9px 13px;border-radius:9px;background:var(--bg-3);color:var(--txt-3);border:1px solid var(--bdr);font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;cursor:pointer}
 .grade-badge{font-size:22px;font-weight:700;font-family:'Fraunces',serif;padding:5px 14px;border-radius:8px;display:inline-block}
-.gA{background:rgba(74,222,128,0.16);color:var(--green)}.gB{background:rgba(96,165,250,0.16);color:var(--blue)}.gC{background:rgba(245,200,66,0.18);color:var(--gold-b)}.gD{background:rgba(255,107,107,0.16);color:var(--coral)}
+.gA{background:rgba(74,222,128,0.14);color:var(--green)}.gB{background:rgba(96,165,250,0.14);color:var(--blue)}.gC{background:var(--gold-dim);color:var(--gold)}.gD{background:var(--coral-dim);color:var(--coral)}
 .tone-row{display:flex;gap:5px;flex-wrap:wrap}
-.tone-btn{padding:5px 11px;border-radius:100px;border:1px solid rgba(255,255,255,0.14);background:var(--bg-3);font-size:10.5px;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;color:rgba(255,255,255,0.70);transition:all .13s}
-.tone-btn.active{background:var(--gold);color:#05070F;border-color:var(--gold);font-weight:800}
+.tone-btn{padding:5px 10px;border-radius:100px;border:1px solid var(--bdr);background:var(--bg-3);font-size:10.5px;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;color:var(--txt-3);transition:all .13s}
+.tone-btn.active{background:var(--gold);color:var(--bg-0);border-color:var(--gold);font-weight:800}
 
 /* ── PROGRESS ── */
 .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.stat-card{border-radius:var(--r);padding:13px;text-align:center;border:1.5px solid rgba(245,200,66,0.25);background:var(--bg-2)}
-.stat-num{font-family:'Fraunces',serif;font-size:29px;font-weight:700;color:#FFD84D}
-.stat-label{font-size:10.5px;color:rgba(255,255,255,0.60);margin-top:3px;font-weight:600}
+.stat-card{border-radius:var(--r);padding:13px;text-align:center;border:1px solid var(--bdr-g);background:var(--bg-2)}
+.stat-num{font-family:'Fraunces',serif;font-size:29px;font-weight:700;color:var(--gold)}
+.stat-label{font-size:10.5px;color:var(--txt-4);margin-top:3px;font-weight:600}
 .diary-item{display:flex;gap:8px;margin-bottom:6px;align-items:flex-start}
 .diary-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:5px;background:var(--gold)}
-.diary-txt{font-size:12px;line-height:1.58;color:rgba(255,255,255,0.80)}
-.diary-time{font-size:10px;color:rgba(255,255,255,0.45)}
+.diary-txt{font-size:12px;line-height:1.55;color:var(--txt-3)}
+.diary-time{font-size:10px;color:var(--txt-4)}
 
 /* ── SIDEBAR ── */
-.sb-sec{padding:13px;border-bottom:1px solid rgba(245,200,66,0.15)}
-.sb-title{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--gold-b);margin-bottom:8px}
+.sb-sec{padding:13px;border-bottom:1px solid var(--bdr-g)}
+.sb-title{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--gold);margin-bottom:8px}
 .dna-ring{width:50px;height:50px;position:relative;flex-shrink:0}
 .dna-ring svg{transform:rotate(-90deg)}
-.dna-ring-lbl{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;color:var(--gold-b)}
+.dna-ring-lbl{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;color:var(--gold)}
 .sk-row{display:flex;align-items:center;gap:6px;margin-bottom:6px}
-.sk-nm{font-size:10.5px;color:rgba(255,255,255,0.62);width:68px;flex-shrink:0;font-weight:600}
-.sk-bar{flex:1;height:5px;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden}
-.sk-fill{height:100%;border-radius:3px;transition:width 1.2s ease}
-.sk-pct{font-size:9.5px;color:rgba(255,255,255,0.62);width:26px;text-align:right;font-weight:700}
-.word-card{border-radius:var(--r);padding:12px;background:var(--bg-3);border:1.5px solid rgba(245,200,66,0.25)}
-.wc-word{font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:#FFD84D;margin-bottom:2px}
-.wc-phon{font-family:'DM Mono',monospace;font-size:10.5px;color:rgba(255,255,255,0.50);margin-bottom:6px}
-.wc-row{font-size:11.5px;line-height:1.68;margin-bottom:3px;padding:5px 8px;border-radius:6px}
-.wc-def{background:rgba(245,200,66,0.12);color:#FFFFFF;border-left:2px solid var(--gold-b)}
-.wc-en{background:rgba(61,222,212,0.12);color:#3DDED4}
-.wc-nat{background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.80)}
-.wc-ant{background:rgba(255,107,107,0.12);color:var(--coral)}
-.wc-lbl{font-size:8.5px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;opacity:.6;display:block;margin-bottom:1px;color:rgba(255,255,255,0.55)}
+.sk-nm{font-size:10.5px;color:var(--txt-4);width:68px;flex-shrink:0;font-weight:500}
+.sk-bar{flex:1;height:4px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden}
+.sk-fill{height:100%;border-radius:2px;transition:width 1.2s ease}
+.sk-pct{font-size:9.5px;color:var(--txt-4);width:26px;text-align:right;font-weight:600}
+.word-card{border-radius:var(--r);padding:12px;background:var(--bg-3);border:1px solid var(--bdr-g)}
+.wc-word{font-family:'Fraunces',serif;font-size:19px;font-weight:700;color:var(--gold);margin-bottom:2px}
+.wc-phon{font-family:'DM Mono',monospace;font-size:10.5px;color:var(--txt-4);margin-bottom:6px}
+.wc-row{font-size:11.5px;line-height:1.65;margin-bottom:3px;padding:5px 8px;border-radius:6px}
+.wc-def{background:var(--gold-glo);color:var(--txt-1);border-left:2px solid var(--gold)}
+.wc-en{background:var(--teal-dim);color:var(--teal)}
+.wc-nat{background:rgba(255,255,255,0.04);color:var(--txt-3)}
+.wc-ant{background:var(--coral-dim);color:var(--coral)}
+.wc-lbl{font-size:8.5px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;opacity:.5;display:block;margin-bottom:1px;color:var(--txt-4)}
 .topic-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px}
-.topic-btn{background:var(--bg-3);border:1px solid rgba(255,255,255,0.13);border-radius:8px;padding:7px;font-size:10.5px;cursor:pointer;text-align:center;color:rgba(255,255,255,0.75);font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;transition:all .13s}
-.topic-btn:hover{background:var(--gold-dim);border-color:var(--gold-b);color:#FFD84D}
+.topic-btn{background:var(--bg-3);border:1px solid var(--bdr);border-radius:8px;padding:7px;font-size:10.5px;cursor:pointer;text-align:center;color:var(--txt-3);font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;transition:all .13s}
+.topic-btn:hover{background:var(--gold-dim);border-color:var(--bdr-g);color:var(--gold)}
 .phon-row{display:flex;gap:5px}
-.phon-inp{flex:1;border:1px solid rgba(255,255,255,0.13);border-radius:7px;padding:5px 8px;font-family:'Plus Jakarta Sans',sans-serif;font-size:10.5px;background:var(--bg-3);color:#FFFFFF;outline:none;min-width:0}
-.phon-inp::placeholder{color:rgba(255,255,255,0.35)}
-.phon-inp:focus{border-color:var(--gold)}
-.phon-go{padding:5px 11px;border-radius:7px;border:none;background:var(--gold);color:#05070F;font-size:10.5px;font-weight:800;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif}
+.phon-inp{flex:1;border:1px solid var(--bdr);border-radius:7px;padding:5px 8px;font-family:'Plus Jakarta Sans',sans-serif;font-size:10.5px;background:var(--bg-3);color:var(--txt-2);outline:none;min-width:0}
+.phon-inp::placeholder{color:var(--txt-4)}
+.phon-inp:focus{border-color:var(--bdr-g)}
+.phon-go{padding:5px 10px;border-radius:7px;border:none;background:var(--gold);color:var(--bg-0);font-size:10.5px;font-weight:800;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif}
 .phon-go:hover{background:var(--gold-b)}
 
 /* ── MODALS ── */
-.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,0.86);z-index:700;display:none;align-items:center;justify-content:center;padding:14px;overflow-y:auto}
+.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,0.82);z-index:700;display:none;align-items:center;justify-content:center;padding:14px;overflow-y:auto}
 .modal-ov.open{display:flex}
-.modal{background:var(--bg-2);border:1.5px solid rgba(245,200,66,0.32);border-radius:var(--rx);padding:20px;max-width:510px;width:100%;max-height:90vh;overflow-y:auto}
-.modal-title{font-family:'Fraunces',serif;font-size:23px;font-weight:700;margin-bottom:4px;color:#FFD84D}
-.modal-sub{font-size:12.5px;color:rgba(255,255,255,0.78);margin-bottom:14px;line-height:1.65}
-.modal-close{float:right;background:var(--bg-3);border:none;font-size:14px;cursor:pointer;color:rgba(255,255,255,0.60);font-weight:700;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .13s}
-.modal-close:hover{color:#FFFFFF;background:rgba(255,255,255,0.15)}
-.dna-q{border-radius:var(--r);padding:13px;margin-bottom:10px;border:1px solid rgba(255,255,255,0.12);background:var(--bg-3)}
-.dna-q-num{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px;color:#FFD84D}
-.dna-q-text{font-size:13.5px;font-weight:700;color:#FFFFFF;margin-bottom:4px;line-height:1.4}
-.dna-q-native{font-size:11.5px;color:rgba(255,255,255,0.60);font-style:italic;margin-bottom:9px}
+.modal{background:var(--bg-2);border:1px solid var(--bdr-g);border-radius:var(--rx);padding:20px;max-width:510px;width:100%;max-height:90vh;overflow-y:auto}
+.modal-title{font-family:'Fraunces',serif;font-size:23px;font-weight:700;margin-bottom:4px;color:var(--gold)}
+.modal-sub{font-size:12.5px;color:var(--txt-3);margin-bottom:14px;line-height:1.6}
+.modal-close{float:right;background:var(--bg-3);border:none;font-size:14px;cursor:pointer;color:var(--txt-4);font-weight:700;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .13s}
+.modal-close:hover{color:var(--txt-1);background:var(--bdr)}
+.dna-q{border-radius:var(--r);padding:13px;margin-bottom:10px;border:1px solid var(--bdr);background:var(--bg-3)}
+.dna-q-num{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px;color:var(--gold)}
+.dna-q-text{font-size:13.5px;font-weight:700;color:var(--txt-1);margin-bottom:4px;line-height:1.4}
+.dna-q-native{font-size:11.5px;color:var(--txt-4);font-style:italic;margin-bottom:9px}
 .dna-opts{display:flex;flex-direction:column;gap:6px}
-.dna-opt{padding:9px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.13);background:var(--bg-4);font-size:12.5px;cursor:pointer;text-align:left;font-family:'Plus Jakarta Sans',sans-serif;transition:all .13s;font-weight:600;color:rgba(255,255,255,0.88)}
-.dna-opt:hover{border-color:rgba(245,200,66,0.50);background:rgba(245,200,66,0.12);color:#FFD84D}
-.dna-opt.correct{background:rgba(74,222,128,0.14);border-color:var(--green);color:var(--green);font-weight:700}
-.dna-opt.wrong{background:rgba(255,107,107,0.14);border-color:var(--coral);color:var(--coral)}
-.dna-exp{margin-top:9px;border-radius:8px;font-size:12px;line-height:1.72;display:none}
+.dna-opt{padding:9px 12px;border-radius:8px;border:1px solid var(--bdr);background:var(--bg-4);font-size:12.5px;cursor:pointer;text-align:left;font-family:'Plus Jakarta Sans',sans-serif;transition:all .13s;font-weight:600;color:var(--txt-2)}
+.dna-opt:hover{border-color:var(--bdr-g);background:var(--gold-dim);color:var(--gold)}
+.dna-opt.correct{background:rgba(74,222,128,0.12);border-color:var(--green);color:var(--green);font-weight:700}
+.dna-opt.wrong{background:rgba(255,107,107,0.12);border-color:var(--coral);color:var(--coral)}
+.dna-exp{margin-top:9px;border-radius:8px;font-size:12px;line-height:1.7;display:none}
 .dna-exp.show{display:block}
-.dna-exp-en{border-left:3px solid var(--teal);padding:8px 11px;margin-bottom:5px;background:rgba(61,222,212,0.12);color:rgba(255,255,255,0.90)}
-.dna-exp-nat{border-left:3px solid var(--gold);padding:8px 11px;font-style:italic;background:rgba(245,200,66,0.10);color:#FFD84D}
+.dna-exp-en{border-left:3px solid var(--teal);padding:8px 11px;margin-bottom:5px;background:var(--teal-dim);color:var(--txt-2)}
+.dna-exp-nat{border-left:3px solid var(--gold);padding:8px 11px;font-style:italic;background:var(--gold-glo);color:var(--gold)}
 
 /* ── SPEAKING ── */
 .spk-outer{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;align-items:center;background:var(--bg-0)}
@@ -357,26 +346,26 @@ header{background:rgba(5,7,15,0.98);border-bottom:1.5px solid rgba(245,200,66,0.
 .orb.listening{animation:orbP 1.2s infinite}
 .orb.processing{background:var(--teal);color:var(--bg-0)}
 @keyframes orbP{0%,100%{box-shadow:0 0 0 0 rgba(245,200,66,.45)}50%{box-shadow:0 0 0 22px rgba(245,200,66,0)}}
-.spk-fb{background:var(--bg-2);border:1.5px solid rgba(61,222,212,0.30);border-radius:var(--r);padding:13px;width:100%;max-width:540px;display:none}
+.spk-fb{background:var(--bg-2);border:1px solid var(--bdr-g);border-radius:var(--r);padding:13px;width:100%;max-width:540px;display:none}
 .spk-tools{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;max-width:540px}
 @media(max-width:480px){.spk-tools{grid-template-columns:1fr}}
-.tool-box{background:var(--bg-2);border:1px solid rgba(61,222,212,0.25);border-radius:var(--r);padding:11px}
-.tool-title{font-size:10px;font-weight:800;color:#3DDED4;margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em}
+.tool-box{background:var(--bg-2);border:1px solid var(--bdr-g);border-radius:var(--r);padding:11px}
+.tool-title{font-size:10px;font-weight:700;color:var(--gold);margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em}
 .trow{display:flex;gap:5px}
-.tinp{flex:1;border:1px solid rgba(255,255,255,0.14);border-radius:7px;padding:6px 8px;font-family:'Plus Jakarta Sans',sans-serif;font-size:11.5px;background:var(--bg-3);color:#FFFFFF;min-width:0;outline:none}
-.tinp::placeholder{color:rgba(255,255,255,0.35)}
-.tinp:focus{border-color:var(--gold)}
-.tbtn2{padding:6px 11px;border-radius:7px;border:none;background:var(--gold);color:#05070F;font-size:10.5px;font-weight:800;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all .13s}
+.tinp{flex:1;border:1px solid var(--bdr);border-radius:7px;padding:6px 8px;font-family:'Plus Jakarta Sans',sans-serif;font-size:11.5px;background:var(--bg-3);color:var(--txt-1);min-width:0;outline:none}
+.tinp::placeholder{color:var(--txt-4)}
+.tinp:focus{border-color:var(--bdr-g)}
+.tbtn2{padding:6px 11px;border-radius:7px;border:none;background:var(--gold);color:var(--bg-0);font-size:10.5px;font-weight:800;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all .13s}
 .tbtn2:hover{background:var(--gold-b)}
-.tres{margin-top:7px;font-size:11.5px;color:rgba(255,255,255,0.80);line-height:1.65}
+.tres{margin-top:7px;font-size:11.5px;color:var(--txt-3);line-height:1.6}
 
-/* ── FEATURES (ACCENTS) ── */
+/* ── FEATURES ── */
 .accent-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(126px,1fr));gap:8px;margin-top:10px}
-.accent-card{border-radius:var(--r);padding:12px;text-align:center;cursor:pointer;transition:all .16s;border:1px solid rgba(255,255,255,0.12);background:var(--bg-2)}
-.accent-card:hover{transform:translateY(-3px);border-color:rgba(245,200,66,0.40);box-shadow:0 8px 20px rgba(245,200,66,0.12)}
-.accent-name{font-size:12.5px;font-weight:700;margin-bottom:2px;color:#FFFFFF}
+.accent-card{border-radius:var(--r);padding:12px;text-align:center;cursor:pointer;transition:all .16s;border:1px solid var(--bdr);background:var(--bg-2)}
+.accent-card:hover{transform:translateY(-3px);border-color:var(--bdr-g);box-shadow:0 8px 20px rgba(245,200,66,0.10)}
+.accent-name{font-size:12.5px;font-weight:700;margin-bottom:2px;color:var(--txt-1)}
 .accent-flag{font-size:25px;margin-bottom:6px;display:block}
-.accent-eg{font-size:10.5px;color:rgba(255,255,255,0.55)}
+.accent-eg{font-size:10.5px;color:var(--txt-4)}
 .challenge-card{border-radius:var(--rl);padding:17px;margin-bottom:10px;border:1px solid var(--bdr-g);background:var(--bg-2)}
 .challenge-day{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px;color:var(--gold)}
 .challenge-title{font-family:'Fraunces',serif;font-size:19px;font-weight:700;margin-bottom:5px;line-height:1.3;color:var(--txt-1)}
@@ -417,47 +406,19 @@ header{background:rgba(5,7,15,0.98);border-bottom:1.5px solid rgba(245,200,66,0.
 @keyframes db{0%,80%,100%{transform:scale(.8);opacity:.5}40%{transform:scale(1.2);opacity:1}}
 
 /* ── INFO BOXES ── */
-.ib{border-radius:10px;padding:11px 14px;font-size:12.5px;line-height:1.70;margin-bottom:9px;border-left:3px solid;color:rgba(255,255,255,0.82)}
-.ib-gold{background:rgba(245,200,66,0.12);border-color:var(--gold);color:var(--txt-2)}
-.ib-teal{background:rgba(61,222,212,0.12);border-color:var(--teal);color:var(--txt-2)}
-.ib-coral,.ib-rose{background:rgba(255,107,107,0.12);border-color:var(--coral);color:var(--txt-2)}
-.ib-green{background:rgba(74,222,128,0.10);border-color:var(--green);color:var(--txt-2)}
-.ib-blue,.ib-ocean{background:rgba(96,165,250,0.10);border-color:var(--blue);color:var(--txt-2)}
-.ib-plum{background:rgba(192,132,252,0.10);border-color:var(--plum);color:var(--txt-2)}
-.ib-amber{background:rgba(252,211,77,0.10);border-color:var(--amber);color:var(--txt-2)}
-.ib-slate{background:rgba(255,255,255,0.05);border-color:var(--bdr);color:var(--txt-2)}
-.ib-forest{background:rgba(52,211,153,0.10);border-color:var(--forest);color:var(--txt-2)}
+.ib{border-radius:9px;padding:10px 13px;font-size:12.5px;line-height:1.65;margin-bottom:9px;border-left:3px solid;color:var(--txt-3)}
+.ib-gold{background:var(--gold-glo);border-color:var(--gold);color:var(--txt-2)}
+.ib-teal{background:var(--teal-dim);border-color:var(--teal)}
+.ib-coral{background:var(--coral-dim);border-color:var(--coral)}
+.ib-green{background:rgba(74,222,128,0.08);border-color:var(--green)}
+.ib-blue{background:rgba(96,165,250,0.08);border-color:var(--blue)}
+.ib-plum{background:rgba(167,139,250,0.08);border-color:#A78BFA}
+.ib-amber{background:rgba(251,191,36,0.08);border-color:#FBBF24}
+.ib-slate{background:rgba(255,255,255,0.04);border-color:var(--bdr)}
 
-code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;font-family:'DM Mono',monospace;color:#FFD84D}
+code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;font-family:'DM Mono',monospace;color:var(--gold)}
 ::-webkit-scrollbar{width:3px}
-::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.12);border-radius:2px}
-
-/* ── GLOBAL VISIBILITY BOOST ── */
-/* Ensure rendered AI output text is always readable */
-.bbl strong{color:#FFD84D}
-.bbl em{color:var(--teal);font-style:italic}
-/* Mistake cards */
-.mistake-item{border-radius:10px;padding:12px;margin-bottom:8px;border-left:3px solid;border:1px solid rgba(255,255,255,0.10);border-left:3px solid;background:var(--bg-2)}
-.mistake-num{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;color:#FFD84D}
-.mistake-wrong{font-size:13.5px;font-weight:700;margin-bottom:2px;text-decoration:line-through;color:var(--coral);opacity:.85}
-.mistake-right{font-size:13.5px;font-weight:700;margin-bottom:5px;color:var(--green)}
-.mistake-why{font-size:11.5px;line-height:1.68;margin-bottom:4px;color:rgba(255,255,255,0.80)}
-/* Confusable */
-.confuse-card{border-radius:var(--r);padding:13px;margin-bottom:8px;border:1px solid rgba(255,255,255,0.10);background:var(--bg-2)}
-.confuse-pair{display:flex;gap:9px;align-items:center;margin-bottom:7px;flex-wrap:wrap}
-.confuse-word{font-family:'Fraunces',serif;font-size:21px;font-weight:700;padding:3px 11px;border-radius:7px;color:#FFFFFF}
-.confuse-vs{font-size:10.5px;font-weight:700;color:rgba(255,255,255,0.50)}
-.confuse-rule{font-size:12.5px;line-height:1.75;margin-bottom:5px;color:rgba(255,255,255,0.82)}
-.confuse-examples{display:none;margin-top:7px}.confuse-examples.show{display:block}
-/* Phrase card */
-.phrase-card{border-radius:var(--rl);padding:17px;margin-bottom:9px;border:1.5px solid rgba(245,200,66,0.25);background:var(--bg-2)}
-.phrase-day{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px;color:#FFD84D}
-.phrase-text{font-family:'Fraunces',serif;font-size:21px;font-weight:700;margin-bottom:5px;line-height:1.3;color:#FFD84D}
-.phrase-meaning{font-size:12.5px;line-height:1.72;margin-bottom:7px;color:rgba(255,255,255,0.82)}
-.phrase-example{font-size:12.5px;font-style:italic;padding:9px 12px;border-radius:8px;margin-bottom:7px;border-left:3px solid var(--gold);background:rgba(245,200,66,0.10);color:rgba(255,255,255,0.90)}
-.phrase-native{font-size:11.5px;font-style:italic;padding:7px 11px;border-radius:7px;background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.78);border-left:2px solid var(--teal)}
-/* Bilingual native section globally */
-[style*="border-left:3px solid var(--gold)"]{color:rgba(255,255,255,0.88)!important}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.09);border-radius:2px}
 
 /* ══ FULL MOBILE RESPONSIVENESS ══ */
 @media(max-width:768px){
@@ -519,7 +480,7 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
 
 <!-- CAMPAIGN STRIP -->
 <div class="announce-bar">
-  <span>&#127891; <strong style="color:var(--gold)">Early Bird Spots Filling Fast</strong> &mdash; Register now &amp; unlock exclusive perks forever &mdash; <em style="color:var(--teal)">Don't miss your window!</em></span>
+  <span>&#127891; <strong style="color:var(--gold)">Early Bird $4.99/mo</strong> &mdash; regular $9.99 &mdash; register before launch to lock this price forever</span>
   <span style="opacity:.3">|</span>
   <span id="stripCount" style="color:var(--txt-3)">1,247 learners registered</span>
   <span style="opacity:.3">|</span>
@@ -551,7 +512,7 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
       <option value="Malayalam">🇮🇳 Malayalam</option>
     </select>
     <button class="hdr-btn hdr-btn-outline" onclick="openDNA()" style="color:rgba(255,255,255,0.85);border-color:rgba(255,255,255,0.25)">&#129514; Level Test</button>
-    <button class="hdr-btn hdr-btn-fill" onclick="openWaitlist()">&#127891; Join &mdash; Early Bird</button>
+    <button class="hdr-btn hdr-btn-fill" onclick="openWaitlist()">&#127891; Join &mdash; $4.99/mo</button>
   </div>
 </header>
 
@@ -608,14 +569,146 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
   <!-- STATS ROW -->
   <div class="hero-stats">
     <div class="hstat"><div class="hstat-num">16</div><div class="hstat-lbl">Native Languages</div></div>
-    <div class="hstat"><div class="hstat-num">9</div><div class="hstat-lbl">Free Tools Always</div></div>
+    <div class="hstat"><div class="hstat-num">23</div><div class="hstat-lbl">Free Tools Always</div></div>
     <div class="hstat"><div class="hstat-num">375+</div><div class="hstat-lbl">Vocabulary Words</div></div>
     <div class="hstat"><div class="hstat-num">$0</div><div class="hstat-lbl">To Start</div></div>
   </div>
 
 </div></div>
 
-<div class="tabs-wrap"><div class="tabs">
+<!-- ══════════════════════════════════════════
+     NEW LISTENING FEATURES SHOWCASE SECTION
+══════════════════════════════════════════ -->
+<div id="listening-showcase" style="background:linear-gradient(180deg,#05070F 0%,#080D1A 100%);padding:36px 20px 40px;border-bottom:1.5px solid rgba(245,200,66,0.20)">
+
+  <!-- Section Heading -->
+  <div style="text-align:center;margin-bottom:28px">
+    <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(74,222,128,0.12);border:1.5px solid rgba(74,222,128,0.35);border-radius:100px;padding:6px 20px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#4ADE80;margin-bottom:14px">
+      🎧 6 Unique Listening Features — 100% Free Forever
+    </div>
+    <h2 style="font-family:'Fraunces',serif;font-size:clamp(26px,4vw,44px);font-weight:900;color:#FFFFFF;line-height:1.08;letter-spacing:-1.5px;margin-bottom:10px">
+      Train your ear like a <em style="color:#F5C842;font-style:italic">native</em>
+    </h2>
+    <p style="font-size:15px;color:rgba(255,255,255,0.72);max-width:560px;margin:0 auto;line-height:1.70">
+      Six scientifically-designed listening tools — no app in the world offers these. Every feature works in your browser, costs nothing, and explains everything in <strong style="color:#F5C842">English AND your language</strong>.
+    </p>
+  </div>
+
+  <!-- 6 Feature Cards Grid -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;max-width:1000px;margin:0 auto 28px">
+
+    <!-- L1: Speed Listener -->
+    <div onclick="showTab('speedlisten',null)" style="background:linear-gradient(135deg,rgba(74,222,128,0.10),rgba(74,222,128,0.04));border:1.5px solid rgba(74,222,128,0.35);border-radius:18px;padding:20px;cursor:pointer;transition:all .20s" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(74,222,128,0.70)';this.style.boxShadow='0 12px 32px rgba(74,222,128,0.15)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(74,222,128,0.35)';this.style.boxShadow=''">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div style="width:44px;height:44px;border-radius:12px;background:rgba(74,222,128,0.18);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🎧</div>
+        <div>
+          <div style="font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#4ADE80;margin-bottom:2px">L1 — Speed Listener</div>
+          <div style="font-family:'Fraunces',serif;font-size:18px;font-weight:700;color:#FFFFFF;line-height:1.1">Train Your Ear at Variable Pace</div>
+        </div>
+      </div>
+      <p style="font-size:12.5px;color:rgba(255,255,255,0.72);line-height:1.68;margin-bottom:12px">Listen to graded passages at speeds from 0.6× to 1.8×. Answer comprehension questions. Track your Listening Efficiency Score weekly. Bilingual feedback after every question.</p>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <span style="font-size:10.5px;padding:3px 9px;border-radius:20px;background:rgba(74,222,128,0.14);color:#4ADE80;font-weight:600">Quiz after each passage</span>
+        <span style="font-size:10.5px;padding:3px 9px;border-radius:20px;background:rgba(74,222,128,0.14);color:#4ADE80;font-weight:600">Weekly score chart</span>
+        <span style="font-size:10.5px;padding:3px 9px;border-radius:20px;background:rgba(74,222,128,0.14);color:#4ADE80;font-weight:600">10 topics</span>
+      </div>
+    </div>
+
+    <!-- L2: Dictation Challenge -->
+    <div onclick="showTab('dictation',null)" style="background:linear-gradient(135deg,rgba(96,165,250,0.10),rgba(96,165,250,0.04));border:1.5px solid rgba(96,165,250,0.35);border-radius:18px;padding:20px;cursor:pointer;transition:all .20s" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(96,165,250,0.70)';this.style.boxShadow='0 12px 32px rgba(96,165,250,0.15)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(96,165,250,0.35)';this.style.boxShadow=''">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div style="width:44px;height:44px;border-radius:12px;background:rgba(96,165,250,0.18);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">✍️</div>
+        <div>
+          <div style="font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#60A5FA;margin-bottom:2px">L2 — Dictation Challenge</div>
+          <div style="font-family:'Fraunces',serif;font-size:18px;font-weight:700;color:#FFFFFF;line-height:1.1">Hear It, Type It, See Every Mistake</div>
+        </div>
+      </div>
+      <p style="font-size:12.5px;color:rgba(255,255,255,0.72);line-height:1.68;margin-bottom:12px">Sentence plays via browser audio. You type what you heard. Every wrong word highlighted instantly in colour — red wrong, orange missing, yellow extra. 500 graded sentences. Bilingual correction every time.</p>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <span style="font-size:10.5px;padding:3px 9px;border-radius:20px;background:rgba(96,165,250,0.14);color:#60A5FA;font-weight:600">Word-by-word diff</span>
+        <span style="font-size:10.5px;padding:3px 9px;border-radius:20px;background:rgba(96,165,250,0.14);color:#60A5FA;font-weight:600">A1 to C1 levels</span>
+        <span style="font-size:10.5px;padding:3px 9px;border-radius:20px;background:rgba(96,165,250,0.14);color:#60A5FA;font-weight:600">Score tracking</span>
+      </div>
+    </div>
+
+    <!-- L3: Connected Speech -->
+    <div onclick="showTab('connected',null)" style="background:linear-gradient(135deg,rgba(245,200,66,0.10),rgba(245,200,66,0.04));border:1.5px solid rgba(245,200,66,0.35);border-radius:18px;padding:20px;cursor:pointer;transition:all .20s" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(245,200,66,0.70)';this.style.boxShadow='0 12px 32px rgba(245,200,66,0.15)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(245,200,66,0.35)';this.style.boxShadow=''">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div style="width:44px;height:44px;border-radius:12px;background:rgba(245,200,66,0.18);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🔗</div>
+        <div>
+          <div style="font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#F5C842;margin-bottom:2px">L3 — Connected Speech</div>
+          <div style="font-family:'Fraunces',serif;font-size:18px;font-weight:700;color:#FFFFFF;line-height:1.1">Why Natives Sound So Fast</div>
+        </div>
+      </div>
+      <p style="font-size:12.5px;color:rgba(255,255,255,0.72);line-height:1.68;margin-bottom:12px">Natives say "Whadya doin?" not "What are you doing?" Learn 300 connected speech patterns — linking, elision, reduction. Hear each one played, see the sound change mapped, explained in your language.</p>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <span style="font-size:10.5px;padding:3px 9px;border-radius:20px;background:rgba(245,200,66,0.14);color:#F5C842;font-weight:600">300 patterns</span>
+        <span style="font-size:10.5px;padding:3px 9px;border-radius:20px;background:rgba(245,200,66,0.14);color:#F5C842;font-weight:600">Linking & elision</span>
+        <span style="font-size:10.5px;padding:3px 9px;border-radius:20px;background:rgba(245,200,66,0.14);color:#F5C842;font-weight:600">Bilingual</span>
+      </div>
+    </div>
+
+    <!-- L4: Stress Trainer -->
+    <div onclick="showTab('stress',null)" style="background:linear-gradient(135deg,rgba(192,132,252,0.10),rgba(192,132,252,0.04));border:1.5px solid rgba(192,132,252,0.35);border-radius:18px;padding:20px;cursor:pointer;transition:all .20s" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(192,132,252,0.70)';this.style.boxShadow='0 12px 32px rgba(192,132,252,0.15)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(192,132,252,0.35)';this.style.boxShadow=''">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div style="width:44px;height:44px;border-radius:12px;background:rgba(192,132,252,0.18);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🎵</div>
+        <div>
+          <div style="font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#C084FC;margin-bottom:2px">L4 — Stress & Intonation</div>
+          <div style="font-family:'Fraunces',serif;font-size:18px;font-weight:700;color:#FFFFFF;line-height:1.1">The Music of English</div>
+        </div>
+      </div>
+      <p style="font-size:12.5px;color:rgba(255,255,255,0.72);line-height:1.68;margin-bottom:12px">"I never said SHE stole the money" means something completely different from "I never said she STOLE the money." Hear 7 meanings from one sentence. Click which word you think is stressed — instant feedback.</p>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <span style="font-size:10.5px;padding:3px 9px;border-radius:20px;background:rgba(192,132,252,0.14);color:#C084FC;font-weight:600">100 sentences</span>
+        <span style="font-size:10.5px;padding:3px 9px;border-radius:20px;background:rgba(192,132,252,0.14);color:#C084FC;font-weight:600">Meaning changes</span>
+        <span style="font-size:10.5px;padding:3px 9px;border-radius:20px;background:rgba(192,132,252,0.14);color:#C084FC;font-weight:600">Quiz mode</span>
+      </div>
+    </div>
+
+    <!-- L5: Minimal Pairs -->
+    <div onclick="showTab('minimalpairs',null)" style="background:linear-gradient(135deg,rgba(255,107,107,0.10),rgba(255,107,107,0.04));border:1.5px solid rgba(255,107,107,0.35);border-radius:18px;padding:20px;cursor:pointer;transition:all .20s" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(255,107,107,0.70)';this.style.boxShadow='0 12px 32px rgba(255,107,107,0.15)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(255,107,107,0.35)';this.style.boxShadow=''">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div style="width:44px;height:44px;border-radius:12px;background:rgba(255,107,107,0.18);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">👂</div>
+        <div>
+          <div style="font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#FF6B6B;margin-bottom:2px">L5 — Minimal Pairs</div>
+          <div style="font-family:'Fraunces',serif;font-size:18px;font-weight:700;color:#FFFFFF;line-height:1.1">Fix What Your Ear Cannot Hear</div>
+        </div>
+      </div>
+      <p style="font-size:12.5px;color:rgba(255,255,255,0.72);line-height:1.68;margin-bottom:12px">Ship vs sheep. Live vs leave. Fan vs van. Telugu speakers mix V/W. Tamil speakers mix V/B. The app targets the exact sounds YOUR language makes hard. 3 quiz modes. Personal accuracy map per sound pair.</p>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <span style="font-size:10.5px;padding:3px 9px;border-radius:20px;background:rgba(255,107,107,0.14);color:#FF6B6B;font-weight:600">200 pairs</span>
+        <span style="font-size:10.5px;padding:3px 9px;border-radius:20px;background:rgba(255,107,107,0.14);color:#FF6B6B;font-weight:600">Language-specific</span>
+        <span style="font-size:10.5px;padding:3px 9px;border-radius:20px;background:rgba(255,107,107,0.14);color:#FF6B6B;font-weight:600">Spaced repetition</span>
+      </div>
+    </div>
+
+    <!-- L6: Listening Gap Test -->
+    <div onclick="showTab('listeninggap',null)" style="background:linear-gradient(135deg,rgba(61,222,212,0.10),rgba(61,222,212,0.04));border:1.5px solid rgba(61,222,212,0.35);border-radius:18px;padding:20px;cursor:pointer;transition:all .20s" onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='rgba(61,222,212,0.70)';this.style.boxShadow='0 12px 32px rgba(61,222,212,0.15)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(61,222,212,0.35)';this.style.boxShadow=''">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div style="width:44px;height:44px;border-radius:12px;background:rgba(61,222,212,0.18);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">📊</div>
+        <div>
+          <div style="font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#3DDED4;margin-bottom:2px">L6 — Listening Gap Test</div>
+          <div style="font-family:'Fraunces',serif;font-size:18px;font-weight:700;color:#FFFFFF;line-height:1.1">Find Your Exact Comprehension Ceiling</div>
+        </div>
+      </div>
+      <p style="font-size:12.5px;color:rgba(255,255,255,0.72);line-height:1.68;margin-bottom:12px">Sentences play at increasing speed and complexity. Answer one question after each. The app finds the exact point where your comprehension breaks. Your personal Listening Ceiling score — tracked weekly.</p>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <span style="font-size:10.5px;padding:3px 9px;border-radius:20px;background:rgba(61,222,212,0.14);color:#3DDED4;font-weight:600">Personal ceiling score</span>
+        <span style="font-size:10.5px;padding:3px 9px;border-radius:20px;background:rgba(61,222,212,0.14);color:#3DDED4;font-weight:600">Weekly chart</span>
+        <span style="font-size:10.5px;padding:3px 9px;border-radius:20px;background:rgba(61,222,212,0.14);color:#3DDED4;font-weight:600">A1 to C1</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom CTA -->
+  <div style="text-align:center">
+    <div style="font-size:13px;color:rgba(255,255,255,0.55);margin-bottom:12px">All 6 features use your browser's built-in audio engine — <strong style="color:#4ADE80">zero cost, zero download, works offline</strong></div>
+    <button onclick="showTab('speedlisten',null)" style="padding:13px 32px;background:linear-gradient(135deg,#4ADE80,#22C55E);color:#05070F;border:none;border-radius:12px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:800;cursor:pointer;letter-spacing:-.2px;transition:all .2s" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(74,222,128,0.35)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+      🎧 Start Listening Training — Free
+    </button>
+  </div>
+</div><div class="tabs">
   <button class="tbtn active" onclick="showTab('chat',this)">Tutor</button>
   <button class="tbtn" onclick="showTab('speaking',this)">Speaking</button>
   <button class="tbtn" onclick="showTab('grammar',this)">Grammar</button>
@@ -633,17 +726,23 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
   <button class="tbtn" onclick="showTab('spotter',this)">Error Spotter</button>
   <button class="tbtn" onclick="showTab('cheatsheet',this)">Cheat Sheet</button>
   <button class="tbtn" onclick="showTab('diary',this)">Progress</button>
+  <button class="tbtn" onclick="showTab('speedlisten',this)" style="color:#4ADE80">🎧 Speed Listener</button>
+  <button class="tbtn" onclick="showTab('dictation',this)" style="color:#60A5FA">✍ Dictation</button>
+  <button class="tbtn" onclick="showTab('connected',this)" style="color:#F5C842">🔗 Connected Speech</button>
+  <button class="tbtn" onclick="showTab('stress',this)" style="color:#C084FC">🎵 Stress Trainer</button>
+  <button class="tbtn" onclick="showTab('minimalpairs',this)" style="color:#FF6B6B">👂 Minimal Pairs</button>
+  <button class="tbtn" onclick="showTab('listeninggap',this)" style="color:#3DDED4">📊 Listen Gap Test</button>
 </div></div>
 
 <div class="feature-strip">
   <div class="feat-item"><span class="feat-icon">🎯</span><span class="feat-text"><b>Bilingual</b> explanations</span></div>
   <div class="feat-item"><span class="feat-icon">🌏</span><span class="feat-text"><b>16</b> native languages</span></div>
+  <div class="feat-item"><span class="feat-icon">🎧</span><span class="feat-text"><b>6 New</b> listening tools</span></div>
   <div class="feat-item"><span class="feat-icon">🎤</span><span class="feat-text"><b>Speaking</b> coach</span></div>
   <div class="feat-item"><span class="feat-icon">📚</span><span class="feat-text"><b>375+</b> vocabulary words</span></div>
   <div class="feat-item"><span class="feat-icon">✍️</span><span class="feat-text"><b>Writing</b> grader</span></div>
-  <div class="feat-item"><span class="feat-icon">🧩</span><span class="feat-text"><b>9</b> free tools always</span></div>
+  <div class="feat-item"><span class="feat-icon">🧩</span><span class="feat-text"><b>23</b> free tools</span></div>
   <div class="feat-item"><span class="feat-icon">⚡</span><span class="feat-text"><b>Smart</b> bilingual tutor</span></div>
-  <div class="feat-item"><span class="feat-icon">💰</span><span class="feat-text"><b>$4.99/mo</b> early bird</span></div>
   <div class="feat-item"><span class="feat-icon">🔓</span><span class="feat-text"><b>No</b> tutor needed</span></div>
 </div>
 <div class="layout">
@@ -661,8 +760,8 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
         <div style="font-size:11px;color:rgba(255,255,255,0.6);margin-top:1px">Bilingual explanations &mdash; English <span style="color:var(--gold)">&amp;</span> your language</div>
       </div>
       <div style="margin-left:auto;display:flex;gap:5px;flex-wrap:wrap">
-        <div style="background:rgba(14,102,85,0.35);border:1px solid rgba(61,222,212,0.40);border-radius:6px;padding:4px 10px;font-size:10px;color:#3DDED4;font-weight:700">&#9679; Live Tutor</div>
-        <div style="background:rgba(245,200,66,0.20);border:1px solid rgba(245,200,66,0.45);border-radius:6px;padding:4px 10px;font-size:10px;color:#FFD84D;font-weight:700">&#127760; Bilingual</div>
+        <div style="background:rgba(14,102,85,0.3);border:1px solid rgba(168,219,212,0.3);border-radius:6px;padding:3px 8px;font-size:10px;color:var(--teal-dim);font-weight:600">&#9679; Live tutor</div>
+        <div style="background:rgba(196,154,26,0.2);border:1px solid rgba(245,200,66,0.3);border-radius:6px;padding:3px 8px;font-size:10px;color:var(--gold);font-weight:600">Bilingual</div>
       </div>
     </div>
     <!-- Quick topic cards -->
@@ -736,10 +835,6 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
 <!-- SPEAKING -->
 <div id="panel-speaking" class="panel">
   <div class="spk-outer">
-    <div style="text-align:center;width:100%;max-width:540px">
-      <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--teal);margin-bottom:4px">Speaking Coach</div>
-      <div style="font-size:12px;color:var(--txt-3);margin-bottom:10px">Speak freely &mdash; get instant feedback in <span style="color:var(--gold);font-weight:700">English</span> <span style="color:var(--txt-4)">&amp;</span> <span style="color:var(--teal);font-weight:700">your native language</span></div>
-    </div>
     <div style="display:flex;gap:8px;flex-wrap:wrap;width:100%;max-width:540px;justify-content:center">
       <select class="spk-sel" id="spkDur">
         <option value="30">30 seconds</option><option value="60" selected>1 minute</option>
@@ -767,12 +862,12 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
       <div id="spkFbText"></div>
     </div>
     <div class="spk-tools">
-      <div class="tool-box" style="border-color:var(--teal);background:linear-gradient(135deg,rgba(61,222,212,0.12),rgba(61,222,212,0.06))">
+      <div class="tool-box" style="border-color:var(--teal);background:linear-gradient(135deg,#e8f5f0,#f4faf8)">
         <div class="tool-title" style="color:var(--teal)">Pronunciation Helper</div>
         <div class="trow"><input class="tinp" id="phonIn" placeholder="Type any word..." onkeydown="if(event.key==='Enter')hearWord()"><button class="tbtn2" onclick="hearWord()">Hear</button></div>
         <div class="tres" id="phonRes"></div>
       </div>
-      <div class="tool-box" style="border-color:var(--teal);background:linear-gradient(135deg,rgba(61,222,212,0.08),rgba(96,165,250,0.10))">
+      <div class="tool-box" style="border-color:var(--teal);background:linear-gradient(135deg,#d4e6f1,#eaf4fb)">
         <div class="tool-title" style="color:var(--teal)">Word in English</div>
         <div class="trow"><input class="tinp" id="wlIn" placeholder="Your language word..." onkeydown="if(event.key==='Enter')lookupWord()"><button class="tbtn2" onclick="lookupWord()">Find</button></div>
         <div class="tres" id="wlRes"></div>
@@ -803,7 +898,7 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
   </div>
   <div class="gpages">
     <div class="gpage active" id="gp1">
-      <p style="font-size:12px;color:var(--txt-3);margin-bottom:10px;line-height:1.55">The 8 essential building blocks of English &mdash; click any to expand and explore with <span style="color:#FFD84D;font-weight:600">bilingual explanations</span></p>
+      <p style="font-size:12px;color:var(--txt-3);margin-bottom:10px;line-height:1.55">The 8 essential building blocks of English &mdash; click any to expand and explore</p>
       <div id="posItems"></div>
       <div class="gram-ibar">
         <div class="irow">
@@ -815,7 +910,7 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
       </div>
     </div>
     <div class="gpage" id="gp2">
-      <p style="font-size:12px;color:var(--txt-3);margin-bottom:10px">All 12 English tenses &mdash; tap any for a complete <span style="color:#FFD84D;font-weight:600">bilingual explanation</span> in your language</p>
+      <p style="font-size:12px;color:var(--txt-3);margin-bottom:10px">All 12 English tenses &mdash; tap any for a complete bilingual explanation</p>
       <div class="chips" style="margin-bottom:12px">
         <span class="chip" onclick="askGram('Explain Simple Present tense: rule, usage, examples','gr2')">Simple Present</span>
         <span class="chip" onclick="askGram('Explain Present Continuous tense: when to use it','gr2')">Pres. Continuous</span>
@@ -889,7 +984,7 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
 <!-- PREPOSITIONS -->
 <div id="panel-prepositions" class="panel">
   <div class="prep-outer">
-    <p style="font-size:12px;color:var(--txt-3);margin-bottom:10px;line-height:1.60">Click any preposition for meaning, rules and <span style="color:#FFD84D;font-weight:700">bilingual examples</span> in your language. The preposition is highlighted in <span style="color:var(--gold);font-weight:700">gold</span> in every sentence.</p>
+    <p style="font-size:12px;color:var(--txt-3);margin-bottom:10px;line-height:1.55">Click any preposition for meaning, rules and bilingual examples. The preposition is highlighted in <span style="color:var(--gold);font-weight:700">gold</span> in every sentence.</p>
     <div class="prep-sec-lbl">Simple Prepositions</div>
     <div class="prep-grid" id="simpleGrid"></div>
     <div class="prep-sec-lbl">Complex and Multi-word Prepositions</div>
@@ -904,7 +999,7 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:8px">
       <div>
         <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--teal)">Vocabulary Library</div>
-        <div style="font-size:12px;color:var(--txt-3)">375 essential words &mdash; click any card to flip and see <span style="color:var(--gold);font-weight:600">translation</span> + <span style="color:var(--teal);font-weight:600">bilingual examples</span></div>
+        <div style="font-size:12px;color:var(--txt-3)">375 essential words &mdash; click any card to flip and see translation + examples</div>
       </div>
       <button onclick="printVocab()" style="padding:8px 15px;border-radius:9px;border:none;background:var(--txt-1);color:var(--gold);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer">Print Flashcards</button>
     </div>
@@ -931,7 +1026,7 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:8px">
       <div>
         <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--plum)">English Idioms</div>
-        <div style="font-size:12px;color:var(--txt-3)">92 idioms with meanings, examples &amp; <span style="color:var(--gold);font-weight:600">native language translations</span> &mdash; click any to expand</div>
+        <div style="font-size:12px;color:var(--txt-3)">92 idioms with meanings, examples and translations &mdash; click any to expand</div>
       </div>
       <button onclick="printIdioms()" style="padding:8px 15px;border-radius:9px;border:none;background:var(--plum);color:#fff;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer">Print Idioms</button>
     </div>
@@ -952,8 +1047,8 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
 
 <!-- WRITING -->
 <div id="panel-writing" class="panel" style="overflow-y:auto;padding:14px;gap:12px;flex-direction:column">
-  <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--amber);margin-bottom:2px">Writing Practice</div>
-  <p style="font-size:12px;color:var(--txt-3);margin-bottom:4px">Four free writing modes &mdash; all graded and explained in <span style="color:#FFD84D;font-weight:600">English</span> and <span style="color:var(--teal);font-weight:600">your native language</span></p>
+  <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--amber);margin-bottom:4px">Writing Practice</div>
+  <p style="font-size:12px;color:var(--txt-3);margin-bottom:4px">Four free writing modes &mdash; all explained in English and your language</p>
   <div class="write-modes">
     <button class="wm-btn active" onclick="setWM('mirror',this)"><span class="wm-icon">Mirror</span>See It Native</button>
     <button class="wm-btn" onclick="setWM('translate',this)"><span class="wm-icon">Globe</span>Translate Mine</button>
@@ -1011,40 +1106,40 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
 <!-- ACCENT MIRROR (Idea 1) -->
 <div id="panel-accents" class="panel" style="overflow-y:auto;padding:14px;flex-direction:column;gap:12px">
   <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:var(--teal)">Accent Mirror</div>
-  <div class="ib ib-teal">Type any word or phrase and hear it spoken in 5 different English accents. Completely free &mdash; uses your browser's built-in voice engine. Feedback given in <span style="color:#FFD84D;font-weight:700">English &amp; your language</span>. No account needed.</div>
+  <div class="ib ib-teal">Type any word or phrase and hear it spoken in 5 different English accents. Completely free &mdash; uses your browser's built-in voice engine. No account needed.</div>
   <div style="display:flex;gap:8px;flex-wrap:wrap">
-    <input id="accentInput" placeholder="Type any word or your name..." style="flex:1;border:1.5px solid rgba(255,255,255,0.16);border-radius:9px;padding:9px 12px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;background:var(--bg-3);color:#FFFFFF;min-width:150px;outline:none" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='rgba(255,255,255,0.16)'">
-    <button onclick="playAllAccents()" style="padding:9px 18px;border-radius:9px;border:none;background:var(--teal);color:#05070F;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:800;cursor:pointer">Hear All Accents</button>
+    <input id="accentInput" placeholder="Type any word or your name..." style="flex:1;border:1.5px solid var(--bdr);border-radius:9px;padding:9px 12px;font-family:'DM Sans',sans-serif;font-size:14px;background:var(--cream);color:var(--txt-1);min-width:150px">
+    <button onclick="playAllAccents()" style="padding:9px 18px;border-radius:9px;border:none;background:var(--teal);color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer">Hear All Accents</button>
   </div>
   <div class="accent-grid" id="accentGrid">
-    <div class="accent-card" onclick="playAccent('en-GB')" style="background:linear-gradient(135deg,rgba(231,76,60,0.18),rgba(192,57,43,0.10));border-color:rgba(231,76,60,0.45)">
+    <div class="accent-card" onclick="playAccent('en-GB')" style="background:linear-gradient(135deg,#fff0f0,#ffe0e0);border-color:#e74c3c">
       <span class="accent-flag">&#127468;&#127463;</span>
-      <div class="accent-name" style="color:#FF8A80">British English</div>
+      <div class="accent-name" style="color:#c0392b">British English</div>
       <div class="accent-eg">Received Pronunciation</div>
     </div>
-    <div class="accent-card" onclick="playAccent('en-US')" style="background:linear-gradient(135deg,rgba(52,152,219,0.18),rgba(41,128,185,0.10));border-color:rgba(52,152,219,0.45)">
+    <div class="accent-card" onclick="playAccent('en-US')" style="background:linear-gradient(135deg,#f0f4ff,#e0e8ff);border-color:#3498db">
       <span class="accent-flag">&#127482;&#127480;</span>
-      <div class="accent-name" style="color:#82B4FF">American English</div>
+      <div class="accent-name" style="color:#1a5276">American English</div>
       <div class="accent-eg">General American</div>
     </div>
-    <div class="accent-card" onclick="playAccent('en-AU')" style="background:linear-gradient(135deg,rgba(39,174,96,0.18),rgba(30,132,73,0.10));border-color:rgba(39,174,96,0.45)">
+    <div class="accent-card" onclick="playAccent('en-AU')" style="background:linear-gradient(135deg,#f0fff0,#e0f5e0);border-color:#27ae60">
       <span class="accent-flag">&#127462;&#127482;</span>
-      <div class="accent-name" style="color:#6EE7A0">Australian English</div>
+      <div class="accent-name" style="color:#1e8449">Australian English</div>
       <div class="accent-eg">General Australian</div>
     </div>
-    <div class="accent-card" onclick="playAccent('en-IN')" style="background:linear-gradient(135deg,rgba(245,200,66,0.18),rgba(243,156,18,0.10));border-color:rgba(245,200,66,0.40)">
+    <div class="accent-card" onclick="playAccent('en-IN')" style="background:linear-gradient(135deg,#fff8e8,#fef0d0);border-color:#f39c12">
       <span class="accent-flag">&#127470;&#127475;</span>
-      <div class="accent-name" style="color:#FFD84D">Indian English</div>
+      <div class="accent-name" style="color:#d35400">Indian English</div>
       <div class="accent-eg">Standard Indian</div>
     </div>
-    <div class="accent-card" onclick="playAccent('en-IE')" style="background:linear-gradient(135deg,rgba(22,160,133,0.18),rgba(14,102,85,0.10));border-color:rgba(22,160,133,0.45)">
+    <div class="accent-card" onclick="playAccent('en-IE')" style="background:linear-gradient(135deg,#eef7ee,#d5edd5);border-color:#16a085">
       <span class="accent-flag">&#127470;&#127466;</span>
-      <div class="accent-name" style="color:#3DDED4">Irish English</div>
+      <div class="accent-name" style="color:#0e6655">Irish English</div>
       <div class="accent-eg">Standard Irish</div>
     </div>
   </div>
-  <div id="accentStatus" style="font-size:13px;color:rgba(255,255,255,0.72);text-align:center;min-height:20px"></div>
-  <div style="font-size:12px;color:rgba(255,255,255,0.70);margin-top:4px">
+  <div id="accentStatus" style="font-size:13px;color:var(--txt-3);text-align:center;min-height:20px"></div>
+  <div style="font-size:12px;color:var(--txt-3);margin-top:4px">
     <strong style="color:var(--teal)">Tip:</strong> Try typing your own name, a word you always mispronounce, or a phrase you use at work. Click each flag card to hear that specific accent.
   </div>
 </div>
@@ -1052,21 +1147,21 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
 <!-- DAILY CHALLENGE (Idea 2) -->
 <div id="panel-challenge" class="panel" style="overflow-y:auto;padding:14px;flex-direction:column;gap:10px">
   <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:var(--coral)">Daily English Challenge</div>
-  <div class="ib ib-rose">A new challenge every day &mdash; completely free, no account needed. Answer revealed when you are ready. Explanation in <span style="color:#FFD84D;font-weight:700">English</span> AND <span style="color:var(--teal);font-weight:700">your language</span>.</div>
+  <div class="ib ib-rose">A new challenge every day &mdash; completely free, no account needed. Answer revealed when you are ready. Explanation in English AND your language.</div>
   <div id="challengeArea"></div>
 </div>
 
 <!-- MISTAKES BY LANGUAGE (Idea 3) -->
 <div id="panel-mistakes" class="panel" style="overflow-y:auto;padding:14px;flex-direction:column;gap:10px">
   <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:var(--forest)">Common Mistakes</div>
-  <div class="ib ib-forest">The top 15 English mistakes made specifically by speakers of <strong style="color:#FFD84D">YOUR language</strong> &mdash; with the correction and full explanation in <span style="color:var(--teal);font-weight:700">your native language</span>. No other app has created this.</div>
+  <div class="ib ib-forest">The top 15 English mistakes made specifically by speakers of YOUR language &mdash; with the correction and explanation in your language. No other app has created this.</div>
   <div id="mistakesArea"></div>
 </div>
 
 <!-- CONFUSABLE WORDS (Idea 6) -->
 <div id="panel-confusable" class="panel" style="overflow-y:auto;padding:14px;flex-direction:column;gap:10px">
   <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:var(--teal)">Confusable Words</div>
-  <div class="ib ib-ocean">Word pairs that English learners always mix up &mdash; with clear rules and <span style="color:#FFD84D;font-weight:700">bilingual explanations</span> in your language. Click any pair to see example sentences.</div>
+  <div class="ib ib-ocean">Word pairs that English learners always mix up &mdash; with clear rules and bilingual explanations. Click any pair to see example sentences.</div>
   <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px" id="confuseFilter">
     <button class="chip" onclick="filterConfuse('all',this)" style="border-color:var(--gold);background:var(--gold-dim);color:var(--gold)">All</button>
     <button class="chip" onclick="filterConfuse('grammar',this)">Grammar</button>
@@ -1079,7 +1174,7 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
 <!-- TENSE TIMELINE (Idea 7) -->
 <div id="panel-timeline" class="panel" style="overflow-y:auto;padding:14px;flex-direction:column;gap:10px">
   <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:var(--plum)">Tense Timeline</div>
-  <div class="ib ib-plum">All 12 English tenses on a visual timeline &mdash; click any tense to see the formula, example and <span style="color:#FFD84D;font-weight:700">explanation in your language</span>. Completely free, no account needed.</div>
+  <div class="ib ib-plum">All 12 English tenses on a visual timeline &mdash; click any tense to see the formula, example and explanation in your language. Completely free, no account needed.</div>
   <div class="tl-wrap">
     <div class="tl-track" id="tlTrack"></div>
   </div>
@@ -1089,14 +1184,14 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
 <!-- PHRASE OF DAY (Idea 8) -->
 <div id="panel-phrases" class="panel" style="overflow-y:auto;padding:14px;flex-direction:column;gap:10px">
   <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:var(--amber)">Phrase of the Day</div>
-  <div class="ib ib-amber">A new practical English phrase every day &mdash; with meaning, example conversation and <span style="color:#FFD84D;font-weight:700">explanation in your language</span>. Come back daily. 365 phrases total.</div>
+  <div class="ib ib-amber">A new practical English phrase every day &mdash; with meaning, example conversation and explanation in your language. Come back daily. 365 phrases total.</div>
   <div id="phraseArea"></div>
 </div>
 
 <!-- SENTENCE PUZZLE (Idea 4) -->
 <div id="panel-puzzle" class="panel" style="overflow-y:auto;padding:14px;flex-direction:column;gap:10px">
-  <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:rgba(96,165,250,0.9)">Sentence Puzzle</div>
-  <div class="ib ib-ocean">Arrange the scrambled words into a correct English sentence. The <span style="color:#FFD84D;font-weight:700">native language clue</span> helps you understand. Click words to move them &mdash; 50 puzzles total.</div>
+  <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:rgba(96,165,250,0.8)">Sentence Puzzle</div>
+  <div class="ib ib-ocean">Arrange the scrambled words into a correct English sentence. The native language clue helps you understand. Click words to move them &mdash; 50 puzzles total.</div>
   <div id="puzzleArea"></div>
   <div style="display:flex;gap:8px">
     <button class="wa-pri" onclick="nextPuzzle()" id="nextPuzzleBtn" style="display:none">Next Puzzle</button>
@@ -1107,14 +1202,14 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
 <!-- ERROR SPOTTER (Idea 9) -->
 <div id="panel-spotter" class="panel" style="overflow-y:auto;padding:14px;flex-direction:column;gap:10px">
   <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:var(--coral)">Error Spotter</div>
-  <div class="ib ib-rose">Read the paragraph and tap on the words or phrases that contain grammar errors. Each paragraph has 3 to 5 hidden mistakes. Explanation in <span style="color:#FFD84D;font-weight:700">English</span> and <span style="color:var(--teal);font-weight:700">your language</span>.</div>
+  <div class="ib ib-rose">Read the paragraph and tap on the words or phrases that contain grammar errors. Each paragraph has 3 to 5 hidden mistakes. Explanation in English and your language.</div>
   <div id="spotterArea"></div>
 </div>
 
 <!-- CHEAT SHEET (Idea 10) -->
 <div id="panel-cheatsheet" class="panel" style="overflow-y:auto;padding:14px;flex-direction:column;gap:10px">
   <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:var(--forest)">Grammar Cheat Sheet</div>
-  <div class="ib ib-forest">One-page summaries of key grammar topics in <span style="color:#FFD84D;font-weight:700">English</span> and <span style="color:var(--teal);font-weight:700">your language</span>. Click any topic then click Print to get a clean printable reference card.</div>
+  <div class="ib ib-forest">One-page summaries of key grammar topics in English and your language. Click any topic then click Print to get a clean printable reference card.</div>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:12px" id="csTopics"></div>
   <div id="csContent"></div>
 </div>
@@ -1203,12 +1298,225 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
 </div>
 </div><!-- end layout -->
 
+<!-- ═══════════════════════════════════════════════════
+     L1 — SPEED LISTENER PANEL
+════════════════════════════════════════════════════ -->
+<div id="panel-speedlisten" class="panel" style="flex-direction:column;overflow:hidden">
+  <div style="background:linear-gradient(135deg,#030F06,#061A0A);padding:14px 16px 12px;border-bottom:1.5px solid rgba(74,222,128,0.25);flex-shrink:0">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+      <div style="width:40px;height:40px;border-radius:12px;background:rgba(74,222,128,0.20);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🎧</div>
+      <div>
+        <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:#4ADE80">Speed Listener</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.55)">Train your ear at variable pace — quiz &amp; score every session</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:7px;margin-bottom:8px">
+      <div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.45);font-weight:600;margin-bottom:3px">Topic</div>
+        <select id="slTopic" style="width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(74,222,128,0.25);border-radius:8px;padding:6px 8px;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;outline:none">
+          <option>🌍 Travel & Places</option><option>💼 Work & Careers</option><option>🏥 Health</option>
+          <option>🍽️ Food & Culture</option><option>📱 Technology</option><option>👨‍👩‍👧 Family</option>
+          <option>🌱 Environment</option><option>🎭 Stories</option><option>💰 Money</option><option>🎓 Education</option>
+        </select>
+      </div>
+      <div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.45);font-weight:600;margin-bottom:3px">Level</div>
+        <select id="slLevel" style="width:100%;background:rgba(255,255,255,0.07);border:1px solid rgba(74,222,128,0.25);border-radius:8px;padding:6px 8px;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;outline:none">
+          <option value="A1">Beginner (A1-A2)</option><option value="B1" selected>Intermediate (B1-B2)</option><option value="C1">Advanced (C1-C2)</option>
+        </select>
+      </div>
+      <div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.45);font-weight:600;margin-bottom:3px">Speed: <span id="slSpeedLbl" style="color:#4ADE80">1.0×</span></div>
+        <input type="range" id="slSpeed" min="6" max="18" value="10" step="1" style="width:100%;accent-color:#4ADE80" oninput="document.getElementById('slSpeedLbl').textContent=(this.value/10).toFixed(1)+'×'">
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <button onclick="slLoadPassage()" style="padding:8px 20px;background:#4ADE80;color:#05070F;border:none;border-radius:9px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:800;cursor:pointer;transition:all .18s">▶ Load Passage</button>
+      <button onclick="slPlayPassage()" id="slPlayBtn" style="padding:8px 20px;background:rgba(74,222,128,0.15);color:#4ADE80;border:1.5px solid rgba(74,222,128,0.40);border-radius:9px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;display:none">🔊 Play Again</button>
+      <div id="slReplayCount" style="font-size:11px;color:rgba(255,255,255,0.40);display:none">Replays used: <span id="slReplays" style="color:#FF6B6B;font-weight:700">0</span></div>
+      <div style="margin-left:auto;font-size:12px;color:rgba(255,255,255,0.50)">Efficiency: <span id="slScore" style="color:#4ADE80;font-weight:700;font-size:15px">—</span></div>
+    </div>
+  </div>
+  <div style="flex:1;overflow-y:auto;padding:14px;background:var(--bg-0)" id="slBody">
+    <div style="text-align:center;padding:40px 20px;color:rgba(255,255,255,0.35)">
+      <div style="font-size:36px;margin-bottom:10px">🎧</div>
+      <div style="font-size:14px">Select a topic and level above, then click <strong style="color:#4ADE80">Load Passage</strong> to begin</div>
+      <div style="font-size:12px;margin-top:6px;color:rgba(255,255,255,0.25)">The passage plays automatically — listen carefully, then answer 4 questions</div>
+    </div>
+  </div>
+  <div style="padding:10px 14px;border-top:1px solid rgba(74,222,128,0.15);background:rgba(3,15,6,0.95);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;flex-shrink:0">
+    <div style="font-size:11px;color:rgba(255,255,255,0.40)">Weekly best: <span id="slWeekBest" style="color:#4ADE80;font-weight:700">—</span></div>
+    <div style="font-size:11px;color:rgba(255,255,255,0.40)">Sessions today: <span id="slSessions" style="color:#4ADE80;font-weight:700">0</span></div>
+    <div id="slBilingualNote" style="font-size:11px;color:rgba(245,200,66,0.70);display:none">🌐 All explanations shown in English + your language</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     L2 — DICTATION CHALLENGE PANEL
+════════════════════════════════════════════════════ -->
+<div id="panel-dictation" class="panel" style="flex-direction:column;overflow:hidden">
+  <div style="background:linear-gradient(135deg,#030812,#060D1F);padding:14px 16px 12px;border-bottom:1.5px solid rgba(96,165,250,0.25);flex-shrink:0">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+      <div style="width:40px;height:40px;border-radius:12px;background:rgba(96,165,250,0.20);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">✍️</div>
+      <div>
+        <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:#60A5FA">Dictation Challenge</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.55)">Hear it — type it — see exactly where you went wrong</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+      <select id="dictLevel" style="background:rgba(255,255,255,0.07);border:1px solid rgba(96,165,250,0.25);border-radius:8px;padding:6px 10px;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;outline:none">
+        <option value="A1">Beginner (A1)</option><option value="A2">Elementary (A2)</option>
+        <option value="B1" selected>Intermediate (B1)</option><option value="B2">Upper-Int (B2)</option>
+        <option value="C1">Advanced (C1)</option>
+      </select>
+      <button onclick="dictLoad()" style="padding:8px 18px;background:#60A5FA;color:#05070F;border:none;border-radius:9px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:800;cursor:pointer">▶ New Sentence</button>
+      <button onclick="dictPlay()" id="dictPlayBtn" style="padding:8px 14px;background:rgba(96,165,250,0.15);color:#60A5FA;border:1.5px solid rgba(96,165,250,0.35);border-radius:9px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;display:none">🔊 Replay</button>
+      <div style="margin-left:auto;font-size:12px;color:rgba(255,255,255,0.45)">Score: <span id="dictScore" style="color:#60A5FA;font-weight:700;font-size:15px">0%</span></div>
+    </div>
+  </div>
+  <div style="flex:1;overflow-y:auto;padding:14px;background:var(--bg-0)" id="dictBody">
+    <div style="text-align:center;padding:40px 20px;color:rgba(255,255,255,0.35)">
+      <div style="font-size:36px;margin-bottom:10px">✍️</div>
+      <div style="font-size:14px">Choose a level and click <strong style="color:#60A5FA">New Sentence</strong></div>
+      <div style="font-size:12px;margin-top:6px;color:rgba(255,255,255,0.25)">The sentence plays — you type exactly what you heard — every difference shown instantly</div>
+    </div>
+  </div>
+  <div style="padding:10px 14px;border-top:1px solid rgba(96,165,250,0.15);background:rgba(3,8,18,0.95);display:flex;gap:8px;flex-shrink:0" id="dictInputRow" style="display:none">
+    <textarea id="dictInput" placeholder="Type what you heard..." rows="2" style="flex:1;background:rgba(255,255,255,0.07);border:1.5px solid rgba(96,165,250,0.25);border-radius:9px;padding:9px 12px;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;resize:none;outline:none;display:none"></textarea>
+    <button onclick="dictCheck()" id="dictCheckBtn" style="padding:9px 18px;background:#60A5FA;color:#05070F;border:none;border-radius:9px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:800;cursor:pointer;display:none;align-self:flex-end">Check</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     L3 — CONNECTED SPEECH PANEL
+════════════════════════════════════════════════════ -->
+<div id="panel-connected" class="panel" style="flex-direction:column;overflow:hidden">
+  <div style="background:linear-gradient(135deg,#0A0700,#160E00);padding:14px 16px 12px;border-bottom:1.5px solid rgba(245,200,66,0.25);flex-shrink:0">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+      <div style="width:40px;height:40px;border-radius:12px;background:rgba(245,200,66,0.18);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🔗</div>
+      <div>
+        <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:#F5C842">Connected Speech Decoder</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.55)">Why natives sound so fast — learn the hidden sound rules</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:7px;flex-wrap:wrap">
+      <button onclick="csFilter('all')" id="csf-all" style="padding:5px 13px;border-radius:100px;border:1.5px solid rgba(245,200,66,0.50);background:rgba(245,200,66,0.15);color:#F5C842;font-size:11px;font-weight:700;cursor:pointer">All Types</button>
+      <button onclick="csFilter('linking')" id="csf-linking" style="padding:5px 13px;border-radius:100px;border:1px solid rgba(255,255,255,0.15);background:transparent;color:rgba(255,255,255,0.60);font-size:11px;font-weight:600;cursor:pointer">🔗 Linking</button>
+      <button onclick="csFilter('elision')" id="csf-elision" style="padding:5px 13px;border-radius:100px;border:1px solid rgba(255,255,255,0.15);background:transparent;color:rgba(255,255,255,0.60);font-size:11px;font-weight:600;cursor:pointer">✂️ Elision</button>
+      <button onclick="csFilter('reduction')" id="csf-reduction" style="padding:5px 13px;border-radius:100px;border:1px solid rgba(255,255,255,0.15);background:transparent;color:rgba(255,255,255,0.60);font-size:11px;font-weight:600;cursor:pointer">📉 Reduction</button>
+      <button onclick="csFilter('assimilation')" id="csf-assimilation" style="padding:5px 13px;border-radius:100px;border:1px solid rgba(255,255,255,0.15);background:transparent;color:rgba(255,255,255,0.60);font-size:11px;font-weight:600;cursor:pointer">🔄 Assimilation</button>
+    </div>
+  </div>
+  <div style="flex:1;overflow-y:auto;padding:13px;background:var(--bg-0)" id="csGrid"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     L4 — STRESS & INTONATION TRAINER
+════════════════════════════════════════════════════ -->
+<div id="panel-stress" class="panel" style="flex-direction:column;overflow:hidden">
+  <div style="background:linear-gradient(135deg,#0B0515,#120A1E);padding:14px 16px 12px;border-bottom:1.5px solid rgba(192,132,252,0.25);flex-shrink:0">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+      <div style="width:40px;height:40px;border-radius:12px;background:rgba(192,132,252,0.18);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🎵</div>
+      <div>
+        <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:#C084FC">Stress &amp; Intonation Trainer</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.55)">The music of English — one sentence, 7 different meanings</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <button onclick="stressLoad()" style="padding:8px 18px;background:#C084FC;color:#05070F;border:none;border-radius:9px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:800;cursor:pointer">🎵 New Sentence</button>
+      <div style="font-size:12px;color:rgba(255,255,255,0.45)">Score: <span id="stressScore" style="color:#C084FC;font-weight:700">0 / 0</span></div>
+      <div style="margin-left:auto;font-size:11px;color:rgba(255,255,255,0.35)">Click the word you think is stressed</div>
+    </div>
+  </div>
+  <div style="flex:1;overflow-y:auto;padding:14px;background:var(--bg-0)" id="stressBody">
+    <div style="text-align:center;padding:40px 20px;color:rgba(255,255,255,0.35)">
+      <div style="font-size:36px;margin-bottom:10px">🎵</div>
+      <div style="font-size:14px">Click <strong style="color:#C084FC">New Sentence</strong> to begin</div>
+      <div style="font-size:12px;margin-top:6px;color:rgba(255,255,255,0.25)">Hear the sentence — identify which word carries the stress — see how meaning changes</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     L5 — MINIMAL PAIRS EAR TRAINER
+════════════════════════════════════════════════════ -->
+<div id="panel-minimalpairs" class="panel" style="flex-direction:column;overflow:hidden">
+  <div style="background:linear-gradient(135deg,#110404,#1C0808);padding:14px 16px 12px;border-bottom:1.5px solid rgba(255,107,107,0.25);flex-shrink:0">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+      <div style="width:40px;height:40px;border-radius:12px;background:rgba(255,107,107,0.18);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">👂</div>
+      <div>
+        <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:#FF6B6B">Minimal Pairs Ear Trainer</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.55)">Fix what your ear cannot hear — targeted to your language</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:7px;flex-wrap:wrap;align-items:center">
+      <button onclick="mpSetMode('identify')" id="mp-m1" style="padding:5px 13px;border-radius:100px;border:1.5px solid rgba(255,107,107,0.50);background:rgba(255,107,107,0.15);color:#FF6B6B;font-size:11px;font-weight:700;cursor:pointer">Mode 1: Identify</button>
+      <button onclick="mpSetMode('samediff')" id="mp-m2" style="padding:5px 13px;border-radius:100px;border:1px solid rgba(255,255,255,0.15);background:transparent;color:rgba(255,255,255,0.55);font-size:11px;font-weight:600;cursor:pointer">Mode 2: Same/Different</button>
+      <button onclick="mpSetMode('sentence')" id="mp-m3" style="padding:5px 13px;border-radius:100px;border:1px solid rgba(255,255,255,0.15);background:transparent;color:rgba(255,255,255,0.55);font-size:11px;font-weight:600;cursor:pointer">Mode 3: In Sentence</button>
+      <div style="margin-left:auto;font-size:12px;color:rgba(255,255,255,0.45)">Accuracy: <span id="mpAccuracy" style="color:#FF6B6B;font-weight:700">—</span></div>
+    </div>
+  </div>
+  <div style="flex:1;overflow-y:auto;padding:14px;background:var(--bg-0)" id="mpBody">
+    <div style="text-align:center;padding:40px 20px;color:rgba(255,255,255,0.35)">
+      <div style="font-size:36px;margin-bottom:10px">👂</div>
+      <div style="font-size:14px">Select a quiz mode above to begin</div>
+      <div style="font-size:12px;margin-top:6px;color:rgba(255,255,255,0.25)">Pairs are targeted to your native language — most difficult sounds shown first</div>
+    </div>
+  </div>
+  <div id="mpAccMap" style="padding:10px 14px;border-top:1px solid rgba(255,107,107,0.15);background:rgba(17,4,4,0.95);flex-shrink:0;display:none">
+    <div style="font-size:10px;font-weight:700;color:rgba(255,107,107,0.70);text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px">Your Accuracy Map</div>
+    <div id="mpAccGrid" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     L6 — LISTENING GAP TEST PANEL
+════════════════════════════════════════════════════ -->
+<div id="panel-listeninggap" class="panel" style="flex-direction:column;overflow:hidden">
+  <div style="background:linear-gradient(135deg,#030E0D,#06191A);padding:14px 16px 12px;border-bottom:1.5px solid rgba(61,222,212,0.25);flex-shrink:0">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+      <div style="width:40px;height:40px;border-radius:12px;background:rgba(61,222,212,0.18);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">📊</div>
+      <div>
+        <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:#3DDED4">Listening Gap Test</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.55)">Find your exact comprehension ceiling — tracked weekly</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+      <button onclick="lgStart()" id="lgStartBtn" style="padding:8px 20px;background:#3DDED4;color:#05070F;border:none;border-radius:9px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:800;cursor:pointer">📊 Start Ceiling Test</button>
+      <div style="font-size:12px;color:rgba(255,255,255,0.45)">Ceiling: <span id="lgCeiling" style="color:#3DDED4;font-weight:700;font-size:15px">Not tested yet</span></div>
+      <div style="margin-left:auto;font-size:11px;color:rgba(255,255,255,0.35)">Stops when comprehension breaks down</div>
+    </div>
+  </div>
+  <div style="flex:1;overflow-y:auto;padding:14px;background:var(--bg-0)" id="lgBody">
+    <div style="text-align:center;padding:30px 20px;color:rgba(255,255,255,0.35)">
+      <div style="font-size:36px;margin-bottom:10px">📊</div>
+      <div style="font-size:15px;font-weight:600;color:rgba(255,255,255,0.60);margin-bottom:8px">Your Personal Listening Ceiling</div>
+      <div style="font-size:13px;margin-bottom:16px">Sentences play at increasing speed and complexity. Answer one question each time. The test stops when your comprehension breaks. Your ceiling score is saved and compared week by week.</div>
+      <div style="background:rgba(61,222,212,0.08);border:1.5px solid rgba(61,222,212,0.25);border-radius:14px;padding:16px;max-width:400px;margin:0 auto">
+        <div style="font-size:11px;color:rgba(61,222,212,0.70);font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px">How it works</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.65);line-height:1.70;text-align:left">
+          ① Sentence plays at A1 level, 0.7× speed<br>
+          ② You answer one comprehension question<br>
+          ③ Each correct answer = faster + harder next sentence<br>
+          ④ Two wrong in a row = your ceiling found<br>
+          ⑤ Score saved — come back weekly to see improvement
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="padding:10px 14px;border-top:1px solid rgba(61,222,212,0.15);background:rgba(3,14,13,0.95);display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
+    <div style="font-size:11px;color:rgba(255,255,255,0.40)">Last week: <span id="lgLastWeek" style="color:#3DDED4;font-weight:700">—</span></div>
+    <div style="font-size:11px;color:rgba(255,255,255,0.40)">Best ever: <span id="lgBest" style="color:#3DDED4;font-weight:700">—</span></div>
+    <div style="font-size:11px;color:rgba(255,255,255,0.40)">Tests done: <span id="lgTests" style="color:#3DDED4;font-weight:700">0</span></div>
+  </div>
+</div>
+
 <!-- DNA MODAL -->
 <div class="modal-ov" id="dnaModal">
   <div class="modal">
     <button class="modal-close" onclick="closeDNA()">X</button>
     <div class="modal-title" style="color:var(--gold)">English DNA Test</div>
-    <div class="modal-sub">5 questions to discover your exact English level. Each answer explained in <span style="color:#3DDED4;font-weight:700">English</span> AND your <span style="color:#FFD84D;font-weight:700">native language</span> — so you truly understand your results.</div>
+    <div class="modal-sub">5 questions to discover your exact English level. Each answer explained in <span style="color:var(--teal);font-weight:600">English</span> AND your <span style="color:var(--gold);font-weight:600">native language</span>.</div>
     <div id="dnaQs"></div>
     <div id="dnaRes" style="display:none">
       <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;margin-bottom:12px;color:var(--gold)">Your Results</div>
@@ -1227,7 +1535,7 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
       <button onclick="closeWaitlist()" style="position:absolute;top:14px;right:16px;background:rgba(255,255,255,0.12);border:none;border-radius:50%;width:32px;height:32px;color:var(--txt-3);font-size:16px;cursor:pointer;font-weight:700;display:flex;align-items:center;justify-content:center;transition:all .15s" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.12)'">&#10005;</button>
 
       <div style="display:inline-flex;align-items:center;gap:7px;background:rgba(245,166,35,0.15);border:1.5px solid rgba(245,166,35,0.4);border-radius:100px;padding:6px 16px;font-size:10px;font-weight:700;color:#FCD34D;letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px">
-        &#127891; Unlimited Learning — Register Before Launch
+        &#127891; Unlimited Learning — Coming Soon
       </div>
 
       <div id="ulHook" style="font-family:'Fraunces',serif;font-size:clamp(19px,4vw,26px);font-weight:700;color:#fff;line-height:1.25;margin-bottom:14px;min-height:65px;display:flex;align-items:center;justify-content:center;text-align:center;transition:opacity .4s,transform .4s"></div>
@@ -1359,7 +1667,7 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
         </div>
 
         <button onclick="submitWaitlist()" id="wlSubmitBtn" style="width:100%;padding:14px;background:linear-gradient(135deg,var(--coral),var(--coral-dark));color:#fff;border:none;border-radius:14px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:800;cursor:pointer;letter-spacing:.01em;box-shadow:0 4px 20px rgba(255,107,71,0.35);transition:all .2s" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(255,107,71,0.45)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 20px rgba(255,107,71,0.35)'">
-          &#127891; Claim Your Early Bird Spot — Register Now!
+          &#127891; &#127891; Claim Early Bird Spot &mdash; $4.99/mo
         </button>
 
         <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;font-size:11px;color:var(--slate-mid)">
@@ -4101,6 +4409,13 @@ function showTab(name,btn){
   if(name==='puzzle')setTimeout(renderPuzzle,50);
   if(name==='spotter')setTimeout(renderSpotter,50);
   if(name==='cheatsheet')setTimeout(buildCheatSheet,50);
+  if(name==='connected')setTimeout(renderCS,50);
+  // Scroll showcase section if listening tab is clicked
+  var listeningTabs=['speedlisten','dictation','connected','stress','minimalpairs','listeninggap'];
+  if(listeningTabs.indexOf(name)!==-1){
+    var showcase=document.getElementById('listening-showcase');
+    if(showcase)showcase.scrollIntoView({behavior:'smooth',block:'center'});
+  }
 }
 
 function hasRemainingUsage(){
@@ -4117,7 +4432,518 @@ function closeLimitOpenWL(){
   openWaitlist();
 }
 
-window.onload=function(){
+
+// ═══════════════════════════════════════════════════════
+//  LISTENING FEATURES — ALL 6 — ZERO API COST
+// ═══════════════════════════════════════════════════════
+
+// ── SHARED UTILITY ──
+var SYN = window.speechSynthesis;
+function speak(text, rate, onEnd) {
+  SYN.cancel();
+  var u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US'; u.rate = rate || 1.0; u.pitch = 1.0;
+  if (onEnd) u.onend = onEnd;
+  SYN.speak(u);
+}
+
+// ══════════════════════════════════════════════════════
+// L1 — SPEED LISTENER DATA & LOGIC
+// ══════════════════════════════════════════════════════
+var SL_PASSAGES = [
+  { level:'B1', topic:'Work', text:'Sarah had been working at the same company for five years when she decided to apply for a promotion. Although she was nervous about the interview, her manager encouraged her to try. She prepared carefully and felt much more confident by the day of the interview.', questions:[
+    { q:'Why did Sarah feel nervous?', qn:'Sarah ఎందుకు nervous గా అనిపించింది?', opts:['She was new to the company','She was applying for a promotion','She forgot her documents','Her manager was unkind'], correct:1, exp:'She was nervous because she was applying for a promotion — a step up in her career that felt important and uncertain.' },
+    { q:'How long had she worked at the company?', qn:'ఆమె ఆ company లో ఎంతకాలం పని చేసింది?', opts:['Two years','Three years','Five years','Ten years'], correct:2, exp:'The passage says "five years" — five is the correct number. This tests whether you caught the specific number in fast speech.' },
+    { q:'What does "apply for" mean in this context?', qn:'"Apply for" అంటే ఇక్కడ ఏమి అర్థం?', opts:['Refuse something','Ask to be considered for','Learn about something','Complete something'], correct:1, exp:'"Apply for" means to formally request to be considered for a position or opportunity.' },
+    { q:'What was the manager\'s attitude toward Sarah?', qn:'Manager Sarah పై ఏ వైఖరి కలిగి ఉన్నారు?', opts:['Discouraging','Encouraging','Indifferent','Angry'], correct:1, exp:'The manager encouraged her to try — a supportive, positive attitude.' }
+  ]},
+  { level:'A2', topic:'Daily Life', text:'Every morning Tom wakes up at seven o\'clock. He drinks a cup of coffee and reads the news on his phone. Then he walks to the bus stop, which takes about ten minutes. He arrives at work by nine and starts his day with a team meeting.', questions:[
+    { q:'What time does Tom wake up?', qn:'Tom ఏ సమయానికి లేస్తాడు?', opts:['Six o\'clock','Seven o\'clock','Eight o\'clock','Nine o\'clock'], correct:1, exp:'The passage clearly states "seven o\'clock" — numbers in spoken English are sometimes hard to catch at speed.' },
+    { q:'How does Tom get to work?', qn:'Tom పని చేసే చోటికి ఎలా వెళతాడు?', opts:['By car','By bicycle','By bus','By train'], correct:2, exp:'He walks to the bus stop — so he takes the bus to work.' },
+    { q:'How long does it take Tom to walk to the bus stop?', qn:'Bus stop కి నడవడానికి Tom కి ఎంత సమయం పడుతుంది?', opts:['Five minutes','Ten minutes','Fifteen minutes','Twenty minutes'], correct:1, exp:'The passage says "about ten minutes" — approximately ten minutes.' },
+    { q:'What does Tom do first when he arrives at work?', qn:'Tom పని చేసే చోటికి వచ్చినప్పుడు మొదట ఏమి చేస్తాడు?', opts:['Checks his email','Has breakfast','Attends a team meeting','Makes a phone call'], correct:2, exp:'"He starts his day with a team meeting" — a group discussion at the beginning of the work day.' }
+  ]},
+  { level:'C1', topic:'Technology', text:'Artificial intelligence is transforming the way businesses operate, enabling automation of repetitive tasks, providing data-driven insights, and creating personalised customer experiences at scale. However, the rapid pace of adoption raises important questions about workforce displacement and the ethical implications of algorithmic decision-making.', questions:[
+    { q:'What is the main idea of this passage?', qn:'ఈ passage యొక్క ముఖ్యమైన భావం ఏమిటి?', opts:['AI is only useful for customer service','AI is transforming business but raises concerns','AI will replace all human workers','AI is too expensive for most businesses'], correct:1, exp:'The passage covers both AI\'s positive impact on business AND the concerns it raises — both sides together are the main idea.' },
+    { q:'What does "workforce displacement" mean?', qn:'"Workforce displacement" అంటే ఏమిటి?', opts:['Training workers in new skills','Workers being replaced by technology','Moving workers to different locations','Increasing worker pay'], correct:1, exp:'"Displacement" means being pushed out of a position — workforce displacement means technology taking jobs previously done by people.' },
+    { q:'Which of these is NOT mentioned as a benefit of AI in the passage?', qn:'ఈ passage లో AI యొక్క ప్రయోజనంగా పేర్కొనబడనిది ఏది?', opts:['Automating repetitive tasks','Providing data insights','Reducing company costs','Personalised customer experiences'], correct:2, exp:'Cost reduction is not mentioned. The three benefits stated are: automation, data-driven insights, and personalised experiences.' },
+    { q:'What is the tone of this passage?', qn:'ఈ passage యొక్క స్వరం ఏమిటి?', opts:['Purely optimistic','Purely critical','Balanced and informative','Humorous'], correct:2, exp:'The passage presents both benefits and concerns without taking a side — that is a balanced, informative tone.' }
+  ]},
+  { level:'B2', topic:'Health', text:'Regular physical exercise has been shown to have significant benefits not only for physical health but also for mental wellbeing. Studies suggest that even thirty minutes of moderate activity per day can reduce symptoms of anxiety and depression, improve sleep quality, and boost overall cognitive performance throughout the day.', questions:[
+    { q:'How much daily exercise is mentioned as beneficial?', qn:'రోజువారీ వ్యాయామం ఎంత మేత్తం ప్రయోజనకరంగా చెప్పబడింది?', opts:['Ten minutes','Twenty minutes','Thirty minutes','One hour'], correct:2, exp:'"Thirty minutes of moderate activity per day" — thirty is the specific figure given.' },
+    { q:'Which mental health conditions does exercise help with?', qn:'వ్యాయామం ఏ mental health పరిస్థితులకు సహాయం చేస్తుంది?', opts:['Anxiety and depression','Memory loss and confusion','Headaches and fatigue','Stress and high blood pressure'], correct:0, exp:'The passage specifically mentions "anxiety and depression" as the mental health conditions that benefit.' },
+    { q:'What does "cognitive performance" mean?', qn:'"Cognitive performance" అంటే ఏమిటి?', opts:['Physical strength','Brain and thinking ability','Emotional stability','Social confidence'], correct:1, exp:'"Cognitive" relates to the brain — thinking, memory, concentration. Cognitive performance means how well your mind works.' },
+    { q:'True or false: The passage says exercise only helps physical health.', qn:'నిజమా తప్పా: వ్యాయామం శారీరక ఆరోగ్యానికి మాత్రమే సహాయం చేస్తుందని passage చెప్తుంది.', opts:['True','False','Not mentioned'], correct:1, exp:'False — the passage explicitly says "not only for physical health but also for mental wellbeing."' }
+  ]}
+];
+var slCurrentPassage = null, slReplaysUsed = 0, slAnswered = 0, slCorrect = 0, slSessions = 0;
+
+function slLoadPassage() {
+  var passages = SL_PASSAGES;
+  slCurrentPassage = passages[Math.floor(Math.random() * passages.length)];
+  slReplaysUsed = 0; slAnswered = 0; slCorrect = 0;
+  var body = document.getElementById('slBody');
+  body.innerHTML = '<div style="background:rgba(74,222,128,0.08);border:1.5px solid rgba(74,222,128,0.25);border-radius:14px;padding:16px;margin-bottom:12px;text-align:center"><div style="font-size:13px;font-weight:700;color:#4ADE80;margin-bottom:6px">🎧 Listen carefully — passage playing now</div><div style="font-size:11px;color:rgba(255,255,255,0.50)">The questions appear after the passage finishes. You can replay — but each replay reduces your efficiency score.</div><div style="margin-top:12px" id="slPlayingDots"><div style="display:inline-flex;gap:5px"><span style="width:8px;height:8px;background:#4ADE80;border-radius:50%;animation:db 1.2s infinite;display:inline-block"></span><span style="width:8px;height:8px;background:#4ADE80;border-radius:50%;animation:db 1.2s infinite .2s;display:inline-block"></span><span style="width:8px;height:8px;background:#4ADE80;border-radius:50%;animation:db 1.2s infinite .4s;display:inline-block"></span></div></div></div>';
+  document.getElementById('slPlayBtn').style.display = 'inline-flex';
+  document.getElementById('slReplayCount').style.display = 'block';
+  document.getElementById('slBilingualNote').style.display = 'block';
+  var rate = parseFloat(document.getElementById('slSpeed').value) / 10;
+  speak(slCurrentPassage.text, rate, slShowQuestions);
+}
+
+function slPlayPassage() {
+  slReplaysUsed++;
+  document.getElementById('slReplays').textContent = slReplaysUsed;
+  var rate = parseFloat(document.getElementById('slSpeed').value) / 10;
+  speak(slCurrentPassage.text, rate);
+}
+
+function slShowQuestions() {
+  var body = document.getElementById('slBody');
+  var html = '<div style="margin-bottom:10px"><div style="font-size:11px;color:rgba(74,222,128,0.70);font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">Answer these 4 questions:</div>';
+  slCurrentPassage.questions.forEach(function(q, qi) {
+    html += '<div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:12px;padding:13px;margin-bottom:9px" id="slQ'+qi+'">';
+    html += '<div style="font-size:13px;font-weight:600;color:#FFFFFF;margin-bottom:4px">Q'+(qi+1)+': '+q.q+'</div>';
+    html += '<div style="font-size:11px;color:rgba(245,200,66,0.65);font-style:italic;margin-bottom:8px">'+q.qn+'</div>';
+    html += '<div style="display:flex;flex-direction:column;gap:5px">';
+    q.opts.forEach(function(opt, oi) {
+      html += '<button onclick="slAnswer('+qi+','+oi+')" style="text-align:left;padding:8px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.82);font-family:Plus Jakarta Sans,sans-serif;font-size:12.5px;cursor:pointer;transition:all .15s" id="slOpt'+qi+'_'+oi+'" onmouseover="if(!this.disabled)this.style.borderColor=\'rgba(74,222,128,0.50)\'" onmouseout="if(!this.disabled)this.style.borderColor=\'rgba(255,255,255,0.12)\'">'+opt+'</button>';
+    });
+    html += '</div></div>';
+  });
+  html += '</div>';
+  body.innerHTML = html;
+}
+
+function slAnswer(qi, oi) {
+  var q = slCurrentPassage.questions[qi];
+  var correct = (oi === q.correct);
+  if (correct) slCorrect++;
+  slAnswered++;
+  var btns = document.querySelectorAll('#slQ'+qi+' button');
+  btns.forEach(function(b) { b.disabled = true; });
+  btns[oi].style.background = correct ? 'rgba(74,222,128,0.20)' : 'rgba(255,107,107,0.20)';
+  btns[oi].style.borderColor = correct ? '#4ADE80' : '#FF6B6B';
+  btns[oi].style.color = correct ? '#4ADE80' : '#FF6B6B';
+  if (!correct) { btns[q.correct].style.background = 'rgba(74,222,128,0.15)'; btns[q.correct].style.borderColor = '#4ADE80'; btns[q.correct].style.color = '#4ADE80'; }
+  var expDiv = document.createElement('div');
+  expDiv.style.cssText = 'margin-top:8px;padding:9px 12px;border-radius:9px;font-size:12px;line-height:1.68;border-left:3px solid;';
+  expDiv.style.borderColor = correct ? '#4ADE80' : '#FF6B6B';
+  expDiv.style.background = correct ? 'rgba(74,222,128,0.08)' : 'rgba(255,107,107,0.08)';
+  expDiv.innerHTML = '<strong style="color:'+(correct?'#4ADE80':'#FF6B6B')+'">'+( correct?'✓ Correct! ':'✗ Not quite — ')+q.exp+'</strong><div style="margin-top:6px;font-style:italic;color:rgba(245,200,66,0.80);font-size:11.5px">In '+lang+': '+q.qn+'</div>';
+  document.getElementById('slQ'+qi).appendChild(expDiv);
+  if (slAnswered === slCurrentPassage.questions.length) setTimeout(slFinish, 800);
+}
+
+function slFinish() {
+  var rate = parseFloat(document.getElementById('slSpeed').value) / 10;
+  var levelMult = { A1:0.8, A2:0.9, B1:1.0, B2:1.1, C1:1.3 };
+  var lvl = document.getElementById('slLevel').value;
+  var base = Math.round((slCorrect / slCurrentPassage.questions.length) * 100);
+  var efficiency = Math.max(0, Math.round(base * rate * (levelMult[lvl]||1.0) - (slReplaysUsed * 5)));
+  document.getElementById('slScore').textContent = efficiency + ' pts';
+  slSessions++;
+  document.getElementById('slSessions').textContent = slSessions;
+  var best = parseInt(localStorage.getItem('sl_best') || '0');
+  if (efficiency > best) { localStorage.setItem('sl_best', efficiency); document.getElementById('slWeekBest').textContent = efficiency + ' pts'; }
+  var sumDiv = document.createElement('div');
+  sumDiv.style.cssText = 'background:linear-gradient(135deg,rgba(74,222,128,0.12),rgba(74,222,128,0.06));border:1.5px solid rgba(74,222,128,0.35);border-radius:14px;padding:14px;margin-top:12px;text-align:center';
+  sumDiv.innerHTML = '<div style="font-family:Fraunces,serif;font-size:22px;font-weight:700;color:#4ADE80;margin-bottom:4px">Session Complete</div><div style="font-size:15px;color:#FFFFFF;margin-bottom:4px">Efficiency Score: <strong style="color:#4ADE80;font-size:20px">'+efficiency+' pts</strong></div><div style="font-size:12px;color:rgba(255,255,255,0.55)">'+slCorrect+'/'+slCurrentPassage.questions.length+' correct · '+slReplaysUsed+' replay(s) used · Speed: '+rate+'×</div><button onclick="slLoadPassage()" style="margin-top:12px;padding:9px 22px;background:#4ADE80;color:#05070F;border:none;border-radius:9px;font-family:Plus Jakarta Sans,sans-serif;font-size:13px;font-weight:800;cursor:pointer">Next Passage</button>';
+  document.getElementById('slBody').appendChild(sumDiv);
+  document.getElementById('slBody').scrollTop = 9999;
+}
+
+// ══════════════════════════════════════════════════════
+// L2 — DICTATION CHALLENGE DATA & LOGIC
+// ══════════════════════════════════════════════════════
+var DICT_SENTENCES = {
+  A1: ['The cat sits on the mat.','She drinks water every day.','He is a good student.','The dog runs in the park.','I like apples and oranges.'],
+  A2: ['She went to the market to buy vegetables for dinner.','He could not find his keys this morning.','We always eat lunch together at school.','The train arrives at the station at noon.','My brother is learning to play the guitar.'],
+  B1: ['She had already left by the time he arrived at the office.','The manager asked everyone to submit their reports by Friday.','Although it was raining, they decided to go for a walk.','He has been studying English for three years and is improving.','The price of the apartment was much higher than they expected.'],
+  B2: ['Despite the challenges posed by the project, the team managed to deliver outstanding results ahead of schedule.','She was reluctant to accept the promotion because it meant relocating to another city.','The researchers found that regular exercise significantly reduces the risk of chronic disease.'],
+  C1: ['The phenomenon of cognitive dissonance occurs when a person holds contradictory beliefs simultaneously.','Technological advancements have fundamentally altered the landscape of global communication and commerce.','The legislation, which was passed with considerable opposition, aims to address systemic inequalities.']
+};
+var dictCurrent = null, dictTotal = 0, dictCorrect = 0;
+
+function dictLoad() {
+  var lvl = document.getElementById('dictLevel').value;
+  var sents = DICT_SENTENCES[lvl] || DICT_SENTENCES.B1;
+  dictCurrent = sents[Math.floor(Math.random() * sents.length)];
+  var body = document.getElementById('dictBody');
+  body.innerHTML = '<div style="background:rgba(96,165,250,0.08);border:1.5px solid rgba(96,165,250,0.25);border-radius:14px;padding:16px;margin-bottom:12px;text-align:center"><div style="font-size:13px;font-weight:700;color:#60A5FA;margin-bottom:6px">🔊 Listen carefully — then type what you heard</div><div style="font-size:11px;color:rgba(255,255,255,0.50)">You can replay — but try to get it right first time</div></div><div style="display:flex;gap:8px;margin-bottom:10px"><textarea id="dictInput" placeholder="Type exactly what you heard..." rows="3" style="flex:1;background:rgba(255,255,255,0.07);border:1.5px solid rgba(96,165,250,0.25);border-radius:9px;padding:9px 12px;color:#fff;font-family:Plus Jakarta Sans,sans-serif;font-size:13px;resize:none;outline:none;line-height:1.65"></textarea></div><div style="display:flex;gap:8px"><button onclick="dictCheck()" style="padding:9px 20px;background:#60A5FA;color:#05070F;border:none;border-radius:9px;font-family:Plus Jakarta Sans,sans-serif;font-size:13px;font-weight:800;cursor:pointer">✓ Check</button><button onclick="dictPlay()" style="padding:9px 14px;background:rgba(96,165,250,0.15);color:#60A5FA;border:1.5px solid rgba(96,165,250,0.35);border-radius:9px;font-family:Plus Jakarta Sans,sans-serif;font-size:13px;font-weight:700;cursor:pointer">🔊 Replay</button></div><div id="dictResult"></div>';
+  speak(dictCurrent, 1.0);
+  document.getElementById('dictPlayBtn').style.display = 'inline-flex';
+}
+
+function dictPlay() {
+  if (dictCurrent) speak(dictCurrent, 1.0);
+}
+
+function dictCheck() {
+  var inp = document.getElementById('dictInput');
+  if (!inp) return;
+  var typed = inp.value.trim();
+  if (!typed) { alert('Please type what you heard first!'); return; }
+  var original = dictCurrent.toLowerCase().replace(/[^a-z0-9\s]/gi, '').split(/\s+/);
+  var attempt = typed.toLowerCase().replace(/[^a-z0-9\s]/gi, '').split(/\s+/);
+  var correct = 0;
+  var html = '<div style="margin-top:12px"><div style="font-size:11px;color:rgba(255,255,255,0.45);font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">Word by word comparison:</div><div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px">';
+  original.forEach(function(word, i) {
+    var attempted = attempt[i] || '';
+    var match = (word === attempted);
+    if (match) correct++;
+    html += '<span style="padding:4px 9px;border-radius:6px;font-size:13px;font-weight:600;background:' + (match ? 'rgba(74,222,128,0.15);color:#4ADE80;border:1px solid rgba(74,222,128,0.35)' : (attempt[i] ? 'rgba(255,107,107,0.15);color:#FF6B6B;border:1px solid rgba(255,107,107,0.35)' : 'rgba(245,200,66,0.15);color:#F5C842;border:1px solid rgba(245,200,66,0.35)')) + '">';
+    html += word + (match ? ' ✓' : (attempt[i] ? ' (you: ' + attempt[i] + ')' : ' ✗ missing')) + '</span>';
+  });
+  html += '</div>';
+  var pct = Math.round((correct / original.length) * 100);
+  dictTotal++; if (pct === 100) dictCorrect++;
+  document.getElementById('dictScore').textContent = Math.round((dictCorrect / dictTotal) * 100) + '%';
+  html += '<div style="background:rgba(96,165,250,0.08);border:1.5px solid rgba(96,165,250,0.25);border-radius:10px;padding:12px"><div style="font-size:13px;font-weight:700;color:#60A5FA;margin-bottom:4px">Correct sentence:</div><div style="font-size:13.5px;color:#FFFFFF;line-height:1.70">'+dictCurrent+'</div><div style="margin-top:7px;font-size:12px;color:rgba(245,200,66,0.75);font-style:italic">In '+lang+': '+pct+'% accuracy — '+(pct===100?'Perfect! Excellent listening!':pct>=70?'Good effort — focus on the highlighted words.':'Keep practising — listen for stressed words first.')+'</div></div>';
+  html += '<div style="text-align:center;margin-top:10px;font-size:22px;font-weight:700;color:'+(pct===100?'#4ADE80':pct>=70?'#F5C842':'#FF6B6B')+'">'+pct+'% accuracy</div>';
+  html += '<button onclick="dictLoad()" style="width:100%;margin-top:10px;padding:9px;background:rgba(96,165,250,0.15);color:#60A5FA;border:1.5px solid rgba(96,165,250,0.35);border-radius:9px;font-family:Plus Jakarta Sans,sans-serif;font-size:13px;font-weight:700;cursor:pointer">Next Sentence</button></div>';
+  document.getElementById('dictResult').innerHTML = html;
+}
+
+// ══════════════════════════════════════════════════════
+// L3 — CONNECTED SPEECH DECODER DATA & LOGIC
+// ══════════════════════════════════════════════════════
+var CS_PATTERNS = [
+  { type:'reduction', formal:'What are you doing?', spoken:'Whadya doing?', phonetic:'/ˈwɒdʒə ˈduːɪŋ/', rule:'are you → ya in fast speech', native:'In '+lang+': "are you" రెండు words కలిసి "ya" అవుతాయి — ఇది చాలా సాధారణం.' },
+  { type:'reduction', formal:'I do not know.', spoken:'I dunno.', phonetic:'/aɪ ˈdʌnəʊ/', rule:'"do not know" reduces to "dunno" in casual speech', native:'In '+lang+': "do not know" → "dunno" — informal conversation లో చాలా frequently వినిపిస్తుంది.' },
+  { type:'elision', formal:'Next day', spoken:'Nex\' day', phonetic:'/ˈneks deɪ/', rule:'The t in "next" disappears before a consonant', native:'In '+lang+': consonant తర్వాత వచ్చే "t" తరచుగా drop అవుతుంది — silent అవుతుంది.' },
+  { type:'linking', formal:'Turn off', spoken:'Tur-noff', phonetic:'/ˈtɜːnɒf/', rule:'Final n links to next vowel sound', native:'In '+lang+': word చివర n ఉండి తర్వాతి word vowel తో మొదలైతే అవి link అవుతాయి.' },
+  { type:'reduction', formal:'He is going to eat.', spoken:'He\'s gonna eat.', phonetic:'/hiːz ˈɡɒnə iːt/', rule:'"going to" becomes "gonna" in casual spoken English', native:'In '+lang+': "going to" → "gonna" — spoken English లో చాలా common. Writing లో వాడకూడదు.' },
+  { type:'assimilation', formal:'Good boy', spoken:'Goob boy', phonetic:'/ɡʊb bɔɪ/', rule:'d assimilates to b before another b sound', native:'In '+lang+': ఒక sound తర్వాత వచ్చే sound ని ప్రభావితం చేస్తుంది — pronunciation మారుతుంది.' },
+  { type:'elision', formal:'Last night', spoken:'Las\' night', phonetic:'/lɑːs naɪt/', rule:'t drops from "last" before another consonant', native:'In '+lang+': "last" లో "t" silent అవుతుంది ఎందుకంటే తర్వాత consonant వస్తుంది.' },
+  { type:'linking', formal:'She is interested in art.', spoken:'She\'s interested in-nart.', phonetic:'/ʃiːz ˈɪntrəstɪd ɪ ˈnɑːt/', rule:'"in" and "art" link together — the n carries over', native:'In '+lang+': "in art" అనే రెండు words కలిసి "in-nart" లా వినిపిస్తాయి.' },
+  { type:'reduction', formal:'I have got to go.', spoken:'I\'ve gotta go.', phonetic:'/aɪv ˈɡɒtə ɡəʊ/', rule:'"have got to" reduces to "gotta" in spoken English', native:'In '+lang+': "have got to" → "gotta" — urgency చెప్పేటప్పుడు commonly వాడతారు.' },
+  { type:'assimilation', formal:'Can you help me?', spoken:'Canya help me?', phonetic:'/ˈkænjə help miː/', rule:'"can you" merges — the y sound absorbs', native:'In '+lang+': "can you" → "canya" — question అడిగేటప్పుడు సాధారణంగా వినిపిస్తుంది.' }
+];
+var csCurrentFilter = 'all';
+
+function csFilter(type) {
+  csCurrentFilter = type;
+  ['all','linking','elision','reduction','assimilation'].forEach(function(t) {
+    var btn = document.getElementById('csf-'+t);
+    if (!btn) return;
+    btn.style.background = t === type ? 'rgba(245,200,66,0.15)' : 'transparent';
+    btn.style.borderColor = t === type ? 'rgba(245,200,66,0.50)' : 'rgba(255,255,255,0.15)';
+    btn.style.color = t === type ? '#F5C842' : 'rgba(255,255,255,0.60)';
+  });
+  renderCS();
+}
+
+function renderCS() {
+  var patterns = csCurrentFilter === 'all' ? CS_PATTERNS : CS_PATTERNS.filter(function(p) { return p.type === csCurrentFilter; });
+  var html = '';
+  patterns.forEach(function(p) {
+    var typeColors = { linking:'#60A5FA', elision:'#FF6B6B', reduction:'#F5C842', assimilation:'#C084FC' };
+    var col = typeColors[p.type] || '#F5C842';
+    html += '<div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:14px;padding:14px;margin-bottom:10px">';
+    html += '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="font-size:10px;padding:3px 9px;border-radius:20px;font-weight:700;background:rgba(255,255,255,0.07);color:'+col+'">'+p.type.toUpperCase()+'</span></div>';
+    html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">';
+    html += '<div style="background:rgba(255,107,107,0.07);border-radius:9px;padding:9px 11px"><div style="font-size:9.5px;color:rgba(255,255,255,0.40);font-weight:700;text-transform:uppercase;margin-bottom:3px">Formal</div><div style="font-size:13.5px;font-weight:600;color:rgba(255,255,255,0.88)">'+p.formal+'</div></div>';
+    html += '<div style="background:rgba(74,222,128,0.07);border-radius:9px;padding:9px 11px"><div style="font-size:9.5px;color:rgba(255,255,255,0.40);font-weight:700;text-transform:uppercase;margin-bottom:3px">How natives say it</div><div style="font-size:13.5px;font-weight:700;color:#4ADE80">'+p.spoken+'</div></div>';
+    html += '</div>';
+    html += '<div style="font-size:11.5px;font-family:DM Mono,monospace;color:'+col+';margin-bottom:6px">'+p.phonetic+'</div>';
+    html += '<div style="font-size:12px;color:rgba(255,255,255,0.65);margin-bottom:6px">📌 '+p.rule+'</div>';
+    html += '<div style="font-size:11.5px;color:rgba(245,200,66,0.75);font-style:italic;padding:7px 10px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.35);border-radius:0 7px 7px 0;margin-bottom:8px">'+p.native+'</div>';
+    html += '<div style="display:flex;gap:7px"><button onclick="speak(\''+p.formal.replace(/'/g,"\\'")+'\')" style="padding:5px 13px;background:rgba(255,107,107,0.12);color:#FF6B6B;border:1px solid rgba(255,107,107,0.30);border-radius:100px;font-size:11px;font-weight:700;cursor:pointer">▶ Formal</button><button onclick="speak(\''+p.spoken.replace(/'/g,"\\'")+'\')" style="padding:5px 13px;background:rgba(74,222,128,0.12);color:#4ADE80;border:1px solid rgba(74,222,128,0.30);border-radius:100px;font-size:11px;font-weight:700;cursor:pointer">▶ Native</button></div>';
+    html += '</div>';
+  });
+  document.getElementById('csGrid').innerHTML = html;
+}
+
+// ══════════════════════════════════════════════════════
+// L4 — STRESS & INTONATION TRAINER DATA & LOGIC
+// ══════════════════════════════════════════════════════
+var STRESS_DATA = [
+  { sentence: 'I never said she stole the money.', words: ['I','never','said','she','stole','the','money'], variations: [
+    { stressWord: 0, meaning: 'Someone else said it — not me.', native: 'నేను చెప్పలేదు — వేరే ఎవరో చెప్పారు.' },
+    { stressWord: 1, meaning: 'I said it, just not often or definitely.', native: 'నేను అన్నాను — కానీ చాలా strongly చెప్పలేదు.' },
+    { stressWord: 2, meaning: 'I implied it but did not say it directly.', native: 'నేను direct గా చెప్పలేదు — వేరే విధంగా సూచించాను.' },
+    { stressWord: 3, meaning: 'Someone else stole it — not she.', native: 'ఆమె కాదు — వేరే ఎవరో దొంగిలించారు.' },
+    { stressWord: 4, meaning: 'She did something else — borrowed, found, received.', native: 'ఆమె దొంగిలించలేదు — వేరేది చేసింది.' },
+    { stressWord: 6, meaning: 'She stole something else — not the money.', native: 'డబ్బు కాదు — వేరే ఏదో దొంగిలించింది.' }
+  ]},
+  { sentence: 'She wants to leave tomorrow.', words: ['She','wants','to','leave','tomorrow'], variations: [
+    { stressWord: 0, meaning: 'She wants to leave — not someone else.', native: 'ఆమె వెళ్ళాలనుకుంటుంది — వేరే ఎవరూ కాదు.' },
+    { stressWord: 1, meaning: 'She strongly desires to leave — it is her wish.', native: 'ఆమె వెళ్ళాలని strongly కోరుకుంటుంది.' },
+    { stressWord: 3, meaning: 'She wants to leave — not stay or arrive.', native: 'ఆమె వెళ్ళాలనుకుంటుంది — ఉండాలని కాదు.' },
+    { stressWord: 4, meaning: 'She wants to leave tomorrow — not today or next week.', native: 'రేపు వెళ్ళాలనుకుంటుంది — ఈ రోజు కాదు.' }
+  ]},
+  { sentence: 'John told Mary to buy a car.', words: ['John','told','Mary','to','buy','a','car'], variations: [
+    { stressWord: 0, meaning: 'John told her — not Peter or someone else.', native: 'John చెప్పాడు — వేరే ఎవరూ కాదు.' },
+    { stressWord: 1, meaning: 'He told her — not asked or suggested.', native: 'అతను told చేశాడు — suggested కాదు.' },
+    { stressWord: 2, meaning: 'He told Mary — not Susan or someone else.', native: 'Mary కి చెప్పాడు — వేరే ఎవరికీ కాదు.' },
+    { stressWord: 4, meaning: 'He told her to buy — not sell or rent.', native: 'కొనమని చెప్పాడు — అమ్మమని కాదు.' },
+    { stressWord: 6, meaning: 'He told her to buy a car — not a house or bike.', native: 'Car కొనమని చెప్పాడు — ఇల్లు కాదు.' }
+  ]}
+];
+var stressCorrect = 0, stressTotal = 0, stressCurrent = null, stressVariation = null;
+
+function stressLoad() {
+  stressCurrent = STRESS_DATA[Math.floor(Math.random() * STRESS_DATA.length)];
+  stressVariation = stressCurrent.variations[Math.floor(Math.random() * stressCurrent.variations.length)];
+  var stressedWord = stressCurrent.words[stressVariation.stressWord];
+  var utterance = stressCurrent.sentence.replace(stressedWord, stressedWord.toUpperCase());
+  speak(utterance, 0.9);
+  var html = '<div style="background:rgba(192,132,252,0.08);border:1.5px solid rgba(192,132,252,0.25);border-radius:14px;padding:16px;margin-bottom:12px">';
+  html += '<div style="font-size:11px;font-weight:700;color:rgba(192,132,252,0.70);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">Listen — which word is stressed? Click it.</div>';
+  html += '<div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px">';
+  stressCurrent.words.forEach(function(word, i) {
+    html += '<button onclick="stressAnswer('+i+')" style="padding:9px 16px;border-radius:9px;border:1.5px solid rgba(192,132,252,0.30);background:rgba(192,132,252,0.08);color:#FFFFFF;font-family:Plus Jakarta Sans,sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:all .15s" id="sw'+i+'" onmouseover="this.style.background=\'rgba(192,132,252,0.20)\'" onmouseout="if(!this.disabled)this.style.background=\'rgba(192,132,252,0.08)\'">'+word+'</button>';
+  });
+  html += '</div>';
+  html += '<div style="display:flex;gap:7px"><button onclick="speak(\''+utterance.replace(/'/g,"\\'")+'\')" style="padding:6px 14px;background:rgba(192,132,252,0.15);color:#C084FC;border:1.5px solid rgba(192,132,252,0.35);border-radius:100px;font-size:11.5px;font-weight:700;cursor:pointer">🔊 Replay</button></div></div>';
+  html += '<div id="stressResult"></div>';
+  document.getElementById('stressBody').innerHTML = html;
+}
+
+function stressAnswer(wordIndex) {
+  var correct = (wordIndex === stressVariation.stressWord);
+  stressTotal++;
+  if (correct) stressCorrect++;
+  document.getElementById('stressScore').textContent = stressCorrect + ' / ' + stressTotal;
+  var btns = document.querySelectorAll('[id^="sw"]');
+  btns.forEach(function(b) { b.disabled = true; });
+  document.getElementById('sw'+wordIndex).style.background = correct ? 'rgba(74,222,128,0.20)' : 'rgba(255,107,107,0.20)';
+  document.getElementById('sw'+wordIndex).style.borderColor = correct ? '#4ADE80' : '#FF6B6B';
+  document.getElementById('sw'+wordIndex).style.color = correct ? '#4ADE80' : '#FF6B6B';
+  if (!correct) { document.getElementById('sw'+stressVariation.stressWord).style.background = 'rgba(74,222,128,0.15)'; document.getElementById('sw'+stressVariation.stressWord).style.borderColor = '#4ADE80'; document.getElementById('sw'+stressVariation.stressWord).style.color = '#4ADE80'; }
+  var res = document.getElementById('stressResult');
+  res.innerHTML = '<div style="background:rgba(192,132,252,0.08);border:1.5px solid rgba(192,132,252,0.25);border-radius:12px;padding:13px"><div style="font-size:13px;font-weight:700;color:'+(correct?'#4ADE80':'#FF6B6B')+';margin-bottom:6px">'+(correct?'✓ Correct! ':'✗ The stressed word was: "'+stressCurrent.words[stressVariation.stressWord]+'"')+'</div><div style="font-size:13px;color:#FFFFFF;margin-bottom:5px">Meaning: '+stressVariation.meaning+'</div><div style="font-size:12px;color:rgba(245,200,66,0.75);font-style:italic;margin-bottom:10px">In '+lang+': '+stressVariation.native+'</div><button onclick="stressLoad()" style="padding:7px 18px;background:rgba(192,132,252,0.15);color:#C084FC;border:1.5px solid rgba(192,132,252,0.35);border-radius:100px;font-family:Plus Jakarta Sans,sans-serif;font-size:12px;font-weight:700;cursor:pointer">Next Sentence</button></div>';
+}
+
+// ══════════════════════════════════════════════════════
+// L5 — MINIMAL PAIRS EAR TRAINER DATA & LOGIC
+// ══════════════════════════════════════════════════════
+var MP_PAIRS = [
+  { a:'ship', b:'sheep', sounds:'i vs ee', langs:['Telugu','Tamil','Hindi','Kannada','Malayalam'], sentence_a:'The ship sailed across the ocean.', sentence_b:'The sheep grazed on the hill.' },
+  { a:'live', b:'leave', sounds:'short i vs long ee', langs:['Telugu','Tamil','Hindi'], sentence_a:'I live near the school.', sentence_b:'She will leave tomorrow.' },
+  { a:'fan', b:'van', sounds:'f vs v', langs:['Telugu','Tamil','Kannada','Malayalam'], sentence_a:'The fan is broken.', sentence_b:'The van is parked outside.' },
+  { a:'pat', b:'bat', sounds:'p vs b', langs:['Telugu','Tamil','Kannada','Malayalam','Arabic'], sentence_a:'She gave him a pat on the back.', sentence_b:'He hit the ball with a bat.' },
+  { a:'thin', b:'sin', sounds:'th vs s', langs:['Hindi','Arabic','Telugu'], sentence_a:'The wall is very thin.', sentence_b:'Lying is a sin.' },
+  { a:'right', b:'light', sounds:'r vs l', langs:['Japanese','Chinese','Korean'], sentence_a:'Turn right at the corner.', sentence_b:'Please switch on the light.' },
+  { a:'bet', b:'bed', sounds:'t vs d', langs:['Telugu','Tamil','Hindi'], sentence_a:'I made a bet with my friend.', sentence_b:'She is lying in bed.' },
+  { a:'cup', b:'cap', sounds:'ʌ vs æ', langs:['Hindi','Telugu','Arabic'], sentence_a:'She drank from the cup.', sentence_b:'He wore a cap.' },
+  { a:'pull', b:'pool', sounds:'ʊ vs uː', langs:['Hindi','Telugu','Tamil'], sentence_a:'Please pull the door.', sentence_b:'We swam in the pool.' },
+  { a:'heat', b:'hit', sounds:'long ee vs short i', langs:['Telugu','Tamil','Hindi','Kannada'], sentence_a:'The heat is unbearable today.', sentence_b:'He hit the ball hard.' }
+];
+var mpMode = 'identify', mpCorrect = 0, mpTotal = 0, mpCurrent = null, mpAccData = {};
+
+function mpSetMode(mode) {
+  mpMode = mode;
+  ['mp-m1','mp-m2','mp-m3'].forEach(function(id, i) {
+    var btn = document.getElementById(id);
+    var modes = ['identify','samediff','sentence'];
+    var active = modes[i] === mode;
+    btn.style.background = active ? 'rgba(255,107,107,0.15)' : 'transparent';
+    btn.style.borderColor = active ? 'rgba(255,107,107,0.50)' : 'rgba(255,255,255,0.15)';
+    btn.style.color = active ? '#FF6B6B' : 'rgba(255,255,255,0.55)';
+  });
+  mpLoadPair();
+}
+
+function mpGetRelevantPairs() {
+  var langPairs = MP_PAIRS.filter(function(p) { return p.langs.indexOf(lang) !== -1; });
+  return langPairs.length > 0 ? langPairs : MP_PAIRS;
+}
+
+function mpLoadPair() {
+  var pairs = mpGetRelevantPairs();
+  mpCurrent = pairs[Math.floor(Math.random() * pairs.length)];
+  var body = document.getElementById('mpBody');
+  if (mpMode === 'identify') mpRenderIdentify(body);
+  else if (mpMode === 'samediff') mpRenderSameDiff(body);
+  else mpRenderSentence(body);
+  document.getElementById('mpAccMap').style.display = 'block';
+  mpUpdateAccMap();
+}
+
+function mpRenderIdentify(body) {
+  var playWord = Math.random() > 0.5 ? 'a' : 'b';
+  var correct = playWord;
+  body.innerHTML = '<div style="background:rgba(255,107,107,0.08);border:1.5px solid rgba(255,107,107,0.25);border-radius:14px;padding:16px;text-align:center">'
+    + '<div style="font-size:11px;font-weight:700;color:rgba(255,107,107,0.70);text-transform:uppercase;margin-bottom:10px">Listen to the word — which one did you hear?</div>'
+    + '<div style="font-size:12px;color:rgba(255,255,255,0.50);margin-bottom:12px">Focus on the <strong style="color:#FF6B6B">'+mpCurrent.sounds+'</strong> sound difference</div>'
+    + '<button onclick="mpPlayWord(\''+mpCurrent[playWord]+'\',\''+correct+'\')" id="mpPlayNow" style="padding:12px 30px;background:rgba(255,107,107,0.15);color:#FF6B6B;border:2px solid rgba(255,107,107,0.45);border-radius:12px;font-family:Plus Jakarta Sans,sans-serif;font-size:14px;font-weight:800;cursor:pointer;margin-bottom:14px">▶ Play Word</button>'
+    + '<div style="display:flex;gap:10px;justify-content:center">'
+    + '<button onclick="mpAnswerIdentify(\'a\',\''+correct+'\')" style="padding:11px 28px;background:rgba(255,255,255,0.06);color:#FFFFFF;border:1.5px solid rgba(255,255,255,0.18);border-radius:10px;font-family:Plus Jakarta Sans,sans-serif;font-size:15px;font-weight:700;cursor:pointer;min-width:90px" id="mpBtnA">'+mpCurrent.a+'</button>'
+    + '<button onclick="mpAnswerIdentify(\'b\',\''+correct+'\')" style="padding:11px 28px;background:rgba(255,255,255,0.06);color:#FFFFFF;border:1.5px solid rgba(255,255,255,0.18);border-radius:10px;font-family:Plus Jakarta Sans,sans-serif;font-size:15px;font-weight:700;cursor:pointer;min-width:90px" id="mpBtnB">'+mpCurrent.b+'</button>'
+    + '</div></div><div id="mpFeedback" style="margin-top:10px"></div>';
+  mpPlayWord(mpCurrent[playWord], correct);
+  // Store the correct answer in closure
+  window._mpCorrectWord = correct;
+}
+
+function mpPlayWord(word, correct) { speak(word, 0.85); }
+
+function mpAnswerIdentify(chosen, correct) {
+  var isCorrect = (chosen === correct);
+  mpTotal++; if (isCorrect) mpCorrect++;
+  var key = mpCurrent.a + '/' + mpCurrent.b;
+  if (!mpAccData[key]) mpAccData[key] = { correct:0, total:0 };
+  mpAccData[key].total++; if (isCorrect) mpAccData[key].correct++;
+  document.getElementById('mpAccuracy').textContent = Math.round((mpCorrect/mpTotal)*100) + '%';
+  document.getElementById('mpBtnA').disabled = true; document.getElementById('mpBtnB').disabled = true;
+  var correctWord = mpCurrent[correct];
+  document.getElementById('mpBtn'+chosen.toUpperCase()).style.background = isCorrect ? 'rgba(74,222,128,0.20)' : 'rgba(255,107,107,0.20)';
+  document.getElementById('mpBtn'+chosen.toUpperCase()).style.color = isCorrect ? '#4ADE80' : '#FF6B6B';
+  if (!isCorrect) { document.getElementById('mpBtn'+correct.toUpperCase()).style.background = 'rgba(74,222,128,0.15)'; document.getElementById('mpBtn'+correct.toUpperCase()).style.color = '#4ADE80'; }
+  var fb = document.getElementById('mpFeedback');
+  fb.innerHTML = '<div style="background:rgba(255,107,107,0.07);border:1px solid rgba(255,107,107,0.20);border-radius:12px;padding:13px"><div style="font-size:13px;font-weight:700;color:'+(isCorrect?'#4ADE80':'#FF6B6B')+';margin-bottom:5px">'+(isCorrect?'✓ Correct! ':'✗ It was "'+correctWord+'"')+'</div><div style="font-size:12px;color:rgba(255,255,255,0.65);margin-bottom:4px">The difference: <strong style="color:#FF6B6B">'+mpCurrent.sounds+'</strong></div><div style="font-size:11.5px;color:rgba(245,200,66,0.75);font-style:italic;margin-bottom:10px">In '+lang+': "'+mpCurrent.a+'" vs "'+mpCurrent.b+'" — sound చాలా closely similar గా వినిపిస్తుంది. Practice తో improve అవుతుంది.</div><button onclick="mpLoadPair()" style="padding:7px 16px;background:rgba(255,107,107,0.15);color:#FF6B6B;border:1.5px solid rgba(255,107,107,0.35);border-radius:100px;font-size:12px;font-weight:700;cursor:pointer;font-family:Plus Jakarta Sans,sans-serif">Next Pair</button></div>';
+  mpUpdateAccMap();
+}
+
+function mpRenderSameDiff(body) {
+  var same = Math.random() > 0.5;
+  var w1 = mpCurrent.a;
+  var w2 = same ? mpCurrent.a : mpCurrent.b;
+  body.innerHTML = '<div style="background:rgba(255,107,107,0.08);border:1.5px solid rgba(255,107,107,0.25);border-radius:14px;padding:16px;text-align:center">'
+    + '<div style="font-size:11px;font-weight:700;color:rgba(255,107,107,0.70);text-transform:uppercase;margin-bottom:10px">Two words will play — are they the SAME or DIFFERENT?</div>'
+    + '<button onclick="speak(\''+w1+'. '+w2+'.\',0.85)" style="padding:12px 28px;background:rgba(255,107,107,0.15);color:#FF6B6B;border:2px solid rgba(255,107,107,0.45);border-radius:12px;font-family:Plus Jakarta Sans,sans-serif;font-size:14px;font-weight:800;cursor:pointer;margin-bottom:14px">▶ Play Both Words</button>'
+    + '<div style="display:flex;gap:10px;justify-content:center">'
+    + '<button onclick="mpAnswerSD('+(same?'true':'false')+',true)" style="padding:11px 28px;background:rgba(74,222,128,0.08);color:#4ADE80;border:1.5px solid rgba(74,222,128,0.30);border-radius:10px;font-family:Plus Jakarta Sans,sans-serif;font-size:14px;font-weight:700;cursor:pointer">Same</button>'
+    + '<button onclick="mpAnswerSD('+(same?'true':'false')+',false)" style="padding:11px 28px;background:rgba(255,107,107,0.08);color:#FF6B6B;border:1.5px solid rgba(255,107,107,0.30);border-radius:10px;font-family:Plus Jakarta Sans,sans-serif;font-size:14px;font-weight:700;cursor:pointer">Different</button>'
+    + '</div></div><div id="mpFeedback" style="margin-top:10px"></div>';
+  speak(w1 + '. ' + w2 + '.', 0.85);
+}
+
+function mpAnswerSD(actualSame, choseSame) {
+  var correct = (actualSame === choseSame);
+  mpTotal++; if (correct) mpCorrect++;
+  document.getElementById('mpAccuracy').textContent = Math.round((mpCorrect/mpTotal)*100) + '%';
+  document.getElementById('mpFeedback').innerHTML = '<div style="background:rgba(255,107,107,0.07);border:1px solid rgba(255,107,107,0.20);border-radius:12px;padding:13px;text-align:center"><div style="font-size:14px;font-weight:700;color:'+(correct?'#4ADE80':'#FF6B6B')+';margin-bottom:6px">'+(correct?'✓ Correct!':'✗ They were '+(actualSame?'the SAME':'DIFFERENT'))+'</div><div style="font-size:12px;color:rgba(255,255,255,0.60);margin-bottom:10px">The two words were: "'+mpCurrent.a+'" and "'+(actualSame?mpCurrent.a:mpCurrent.b)+'"</div><button onclick="mpLoadPair()" style="padding:7px 16px;background:rgba(255,107,107,0.15);color:#FF6B6B;border:1.5px solid rgba(255,107,107,0.35);border-radius:100px;font-size:12px;font-weight:700;cursor:pointer;font-family:Plus Jakarta Sans,sans-serif">Next Pair</button></div>';
+}
+
+function mpRenderSentence(body) {
+  var useA = Math.random() > 0.5;
+  var sentence = useA ? mpCurrent.sentence_a : mpCurrent.sentence_b;
+  var correctWord = useA ? mpCurrent.a : mpCurrent.b;
+  body.innerHTML = '<div style="background:rgba(255,107,107,0.08);border:1.5px solid rgba(255,107,107,0.25);border-radius:14px;padding:16px">'
+    + '<div style="font-size:11px;font-weight:700;color:rgba(255,107,107,0.70);text-transform:uppercase;margin-bottom:10px;text-align:center">Listen to the sentence — which word did you hear: "'+mpCurrent.a+'" or "'+mpCurrent.b+'"?</div>'
+    + '<button onclick="speak(\''+sentence.replace(/'/g,"\\'")+'\')" style="width:100%;padding:11px;background:rgba(255,107,107,0.12);color:#FF6B6B;border:1.5px solid rgba(255,107,107,0.35);border-radius:10px;font-family:Plus Jakarta Sans,sans-serif;font-size:13px;font-weight:700;cursor:pointer;margin-bottom:12px">▶ Play Sentence</button>'
+    + '<div style="display:flex;gap:8px">'
+    + '<button onclick="mpAnswerSent(\'a\',\''+(useA?'a':'b')+'\')" style="flex:1;padding:11px;background:rgba(255,255,255,0.05);color:#FFFFFF;border:1.5px solid rgba(255,255,255,0.15);border-radius:10px;font-family:Plus Jakarta Sans,sans-serif;font-size:15px;font-weight:700;cursor:pointer" id="mpSA">'+mpCurrent.a+'</button>'
+    + '<button onclick="mpAnswerSent(\'b\',\''+(useA?'a':'b')+'\')" style="flex:1;padding:11px;background:rgba(255,255,255,0.05);color:#FFFFFF;border:1.5px solid rgba(255,255,255,0.15);border-radius:10px;font-family:Plus Jakarta Sans,sans-serif;font-size:15px;font-weight:700;cursor:pointer" id="mpSB">'+mpCurrent.b+'</button>'
+    + '</div></div><div id="mpFeedback" style="margin-top:10px"></div>';
+  speak(sentence);
+}
+
+function mpAnswerSent(chosen, correct) {
+  var isCorrect = (chosen === correct);
+  mpTotal++; if (isCorrect) mpCorrect++;
+  document.getElementById('mpAccuracy').textContent = Math.round((mpCorrect/mpTotal)*100) + '%';
+  ['mpSA','mpSB'].forEach(function(id) { var b = document.getElementById(id); if(b) b.disabled = true; });
+  var chosenId = 'mpS' + chosen.toUpperCase();
+  var correctId = 'mpS' + correct.toUpperCase();
+  var cBtn = document.getElementById(chosenId);
+  if (cBtn) { cBtn.style.background = isCorrect ? 'rgba(74,222,128,0.20)' : 'rgba(255,107,107,0.20)'; cBtn.style.color = isCorrect ? '#4ADE80' : '#FF6B6B'; }
+  if (!isCorrect) { var rBtn = document.getElementById(correctId); if(rBtn) { rBtn.style.background = 'rgba(74,222,128,0.15)'; rBtn.style.color = '#4ADE80'; } }
+  document.getElementById('mpFeedback').innerHTML = '<div style="background:rgba(255,107,107,0.07);border:1px solid rgba(255,107,107,0.20);border-radius:12px;padding:13px"><div style="font-size:13px;font-weight:700;color:'+(isCorrect?'#4ADE80':'#FF6B6B')+';margin-bottom:5px">'+(isCorrect?'✓ Correct!':'✗ The word was "'+mpCurrent[correct]+'"')+'</div><div style="font-size:12px;color:rgba(255,255,255,0.65);margin-bottom:10px">'+( isCorrect?mpCurrent.sentence_a : (correct==='a'?mpCurrent.sentence_a:mpCurrent.sentence_b))+'</div><button onclick="mpLoadPair()" style="padding:7px 16px;background:rgba(255,107,107,0.15);color:#FF6B6B;border:1.5px solid rgba(255,107,107,0.35);border-radius:100px;font-size:12px;font-weight:700;cursor:pointer;font-family:Plus Jakarta Sans,sans-serif">Next Pair</button></div>';
+}
+
+function mpUpdateAccMap() {
+  var grid = document.getElementById('mpAccGrid');
+  if (!grid) return;
+  var html = '';
+  Object.keys(mpAccData).forEach(function(key) {
+    var d = mpAccData[key];
+    var pct = Math.round((d.correct / d.total) * 100);
+    var col = pct >= 85 ? '#4ADE80' : pct >= 60 ? '#F5C842' : '#FF6B6B';
+    html += '<div style="font-size:11px;padding:4px 10px;border-radius:20px;border:1px solid '+col+';color:'+col+';background:rgba(255,255,255,0.04)">'+key+': '+pct+'%</div>';
+  });
+  grid.innerHTML = html || '<div style="font-size:11px;color:rgba(255,255,255,0.35)">Complete more pairs to see your accuracy map</div>';
+}
+
+// ══════════════════════════════════════════════════════
+// L6 — LISTENING GAP TEST DATA & LOGIC
+// ══════════════════════════════════════════════════════
+var LG_SENTENCES = [
+  { level:'A1', speed:0.75, text:'The cat is on the mat.', q:'Where is the cat?', opts:['On the mat','Under the table','Near the window','In the garden'], correct:0 },
+  { level:'A2', speed:0.80, text:'She goes to school every morning by bus.', q:'How does she get to school?', opts:['By car','By bus','By bicycle','On foot'], correct:1 },
+  { level:'B1', speed:0.90, text:'He has been learning English for three years and is improving rapidly.', q:'For how long has he been learning English?', opts:['One year','Two years','Three years','Four years'], correct:2 },
+  { level:'B1', speed:0.95, text:'The meeting was postponed because the manager was travelling abroad.', q:'Why was the meeting postponed?', opts:['Room was booked','Manager was travelling','System was down','Team was sick'], correct:1 },
+  { level:'B2', speed:1.00, text:'Despite the heavy rainfall, the outdoor event proceeded as planned, attracting a large crowd.', q:'What happened to the event?', opts:['It was cancelled','It was moved indoors','It proceeded as planned','It was postponed'], correct:2 },
+  { level:'B2', speed:1.05, text:'The researchers concluded that sleep deprivation significantly impairs cognitive function and decision-making ability.', q:'What does sleep deprivation impair?', opts:['Physical strength','Cognitive function and decisions','Social skills','Creative thinking'], correct:1 },
+  { level:'C1', speed:1.10, text:'The legislation, despite considerable parliamentary opposition, was passed with a narrow majority and immediately challenged in court.', q:'How was the legislation passed?', opts:['Unanimously','With a large majority','With a narrow majority','Without a vote'], correct:2 },
+  { level:'C1', speed:1.15, text:'Economists argue that protectionist trade policies, while appealing in the short term, ultimately reduce overall market efficiency and consumer welfare.', q:'What do economists say about protectionist policies long term?', opts:['They improve efficiency','They reduce efficiency','They have no effect','They benefit consumers'], correct:1 },
+  { level:'C2', speed:1.20, text:'The philosophical concept of epistemic humility posits that acknowledging the boundaries of one\'s knowledge is fundamental to intellectual integrity.', q:'What does epistemic humility involve?', opts:['Knowing everything','Sharing knowledge freely','Acknowledging limits of one\'s knowledge','Avoiding difficult questions'], correct:2 }
+];
+var lgCurrent = 0, lgWrong = 0, lgRunning = false;
+
+function lgStart() {
+  lgCurrent = 0; lgWrong = 0; lgRunning = true;
+  document.getElementById('lgStartBtn').style.display = 'none';
+  lgNextSentence();
+  var tests = parseInt(localStorage.getItem('lg_tests') || '0') + 1;
+  localStorage.setItem('lg_tests', tests);
+  document.getElementById('lgTests').textContent = tests;
+}
+
+function lgNextSentence() {
+  if (lgCurrent >= LG_SENTENCES.length) { lgFinish(); return; }
+  var item = LG_SENTENCES[lgCurrent];
+  var body = document.getElementById('lgBody');
+  body.innerHTML = '<div style="background:rgba(61,222,212,0.08);border:1.5px solid rgba(61,222,212,0.25);border-radius:14px;padding:16px;margin-bottom:12px"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:6px"><div style="font-size:11px;font-weight:700;color:rgba(61,222,212,0.70);text-transform:uppercase;letter-spacing:.06em">Level '+item.level+' — Speed '+(item.speed)+'×</div><div style="display:flex;gap:5px">'+'<div style="width:10px;height:10px;border-radius:50%;background:'+(lgCurrent>0?'#4ADE80':'rgba(255,255,255,0.15)')+'"></div>'.repeat(Math.min(lgCurrent,9))+'<div style="width:10px;height:10px;border-radius:50%;background:#3DDED4"></div>'+'<div style="width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.12)"></div>'.repeat(Math.max(0,LG_SENTENCES.length-lgCurrent-1))+'</div></div>'
+    + '<button onclick="speak(\''+item.text.replace(/'/g,"\\'")+'\',' + item.speed+')" id="lgPlayBtn" style="width:100%;padding:11px;background:rgba(61,222,212,0.12);color:#3DDED4;border:1.5px solid rgba(61,222,212,0.35);border-radius:10px;font-family:Plus Jakarta Sans,sans-serif;font-size:13px;font-weight:700;cursor:pointer;margin-bottom:12px">▶ Play Sentence ('+item.level+' level, '+(item.speed)+'× speed)</button>'
+    + '<div style="font-size:13px;font-weight:600;color:#FFFFFF;margin-bottom:8px">'+item.q+'</div>'
+    + '<div style="display:flex;flex-direction:column;gap:6px" id="lgOpts">';
+  var html = body.innerHTML;
+  item.opts.forEach(function(opt, oi) {
+    html += '<button onclick="lgAnswer('+oi+')" style="text-align:left;padding:9px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.82);font-family:Plus Jakarta Sans,sans-serif;font-size:12.5px;cursor:pointer;transition:all .13s" id="lgOpt'+oi+'">'+opt+'</button>';
+  });
+  html += '</div></div><div id="lgFeedback"></div>';
+  body.innerHTML = html;
+  speak(item.text, item.speed);
+}
+
+function lgAnswer(chosen) {
+  var item = LG_SENTENCES[lgCurrent];
+  var correct = (chosen === item.correct);
+  if (!correct) lgWrong++;
+  ['lgOpt0','lgOpt1','lgOpt2','lgOpt3'].forEach(function(id) { var b = document.getElementById(id); if(b) b.disabled = true; });
+  var chosenBtn = document.getElementById('lgOpt'+chosen);
+  var correctBtn = document.getElementById('lgOpt'+item.correct);
+  if (chosenBtn) { chosenBtn.style.background = correct ? 'rgba(74,222,128,0.20)' : 'rgba(255,107,107,0.20)'; chosenBtn.style.borderColor = correct ? '#4ADE80' : '#FF6B6B'; chosenBtn.style.color = correct ? '#4ADE80' : '#FF6B6B'; }
+  if (!correct && correctBtn) { correctBtn.style.background = 'rgba(74,222,128,0.15)'; correctBtn.style.borderColor = '#4ADE80'; correctBtn.style.color = '#4ADE80'; }
+  var fb = document.getElementById('lgFeedback');
+  fb.innerHTML = '<div style="background:rgba(61,222,212,0.07);border:1px solid rgba(61,222,212,0.20);border-radius:10px;padding:10px;text-align:center;margin-bottom:8px"><div style="font-size:13px;font-weight:700;color:'+(correct?'#4ADE80':'#FF6B6B')+';margin-bottom:4px">'+(correct?'✓ Correct — moving to next level':'✗ Incorrect — '+(lgWrong>=2?'ceiling found!':'one more wrong ends the test'))+'</div><div style="font-size:11.5px;color:rgba(61,222,212,0.75);font-style:italic">In '+lang+': '+(correct?'Excellent! Next level is harder and faster.':'The correct answer was: '+item.opts[item.correct])+'</div></div>';
+  lgCurrent++;
+  if (lgWrong >= 2) { setTimeout(lgFinish, 1200); return; }
+  if (lgCurrent >= LG_SENTENCES.length) { setTimeout(lgFinish, 1200); return; }
+  setTimeout(lgNextSentence, 1400);
+}
+
+function lgFinish() {
+  var completedLevel = lgCurrent > 0 ? LG_SENTENCES[Math.min(lgCurrent-1, LG_SENTENCES.length-1)].level : 'A1';
+  var completedSpeed = lgCurrent > 0 ? LG_SENTENCES[Math.min(lgCurrent-1, LG_SENTENCES.length-1)].speed : 0.75;
+  var ceilingText = completedLevel + ' at ' + completedSpeed + '×';
+  document.getElementById('lgCeiling').textContent = ceilingText;
+  var best = localStorage.getItem('lg_best') || '';
+  if (!best || lgCurrent > (parseInt(best.split('_')[0])||0)) { localStorage.setItem('lg_best', lgCurrent+'_'+ceilingText); document.getElementById('lgBest').textContent = ceilingText; }
+  document.getElementById('lgLastWeek').textContent = ceilingText;
+  var body = document.getElementById('lgBody');
+  body.innerHTML = '<div style="text-align:center;padding:20px"><div style="font-family:Fraunces,serif;font-size:28px;font-weight:700;color:#3DDED4;margin-bottom:8px">Test Complete</div><div style="font-size:15px;color:#FFFFFF;margin-bottom:4px">Your Listening Ceiling:</div><div style="font-family:Fraunces,serif;font-size:32px;font-weight:900;color:#3DDED4;margin-bottom:4px">'+completedLevel+'</div><div style="font-size:14px;color:rgba(255,255,255,0.60);margin-bottom:6px">at '+completedSpeed+'× speed</div><div style="font-size:12px;color:rgba(255,255,255,0.45);margin-bottom:16px">'+lgCurrent+' sentences completed · '+lgWrong+' wrong answers</div>'
+    + '<div style="background:rgba(61,222,212,0.08);border:1.5px solid rgba(61,222,212,0.25);border-radius:12px;padding:13px;margin:0 auto 16px;max-width:400px;text-align:left"><div style="font-size:12px;color:rgba(255,255,255,0.65);line-height:1.70">In '+lang+': మీ listening ceiling '+completedLevel+' level, '+completedSpeed+'× speed. Weekly practice తో ఇది improve అవుతుంది. రోజూ practice చేయండి!</div></div>'
+    + '<button onclick="lgStart()" style="padding:11px 28px;background:#3DDED4;color:#05070F;border:none;border-radius:10px;font-family:Plus Jakarta Sans,sans-serif;font-size:13px;font-weight:800;cursor:pointer">Test Again</button></div>';
+  document.getElementById('lgStartBtn').style.display = 'inline-flex';
+}
+
+// ── INIT LISTENING PANELS ON LOAD ──
+window.addEventListener('load', function() {
+  renderCS();
+  var slBest = localStorage.getItem('sl_best');
+  if (slBest) document.getElementById('slWeekBest').textContent = slBest + ' pts';
+  var lgBest = localStorage.getItem('lg_best');
+  if (lgBest) { var parts = lgBest.split('_'); document.getElementById('lgBest').textContent = parts[1] || lgBest; }
+  var lgTests = localStorage.getItem('lg_tests') || '0';
+  document.getElementById('lgTests').textContent = lgTests;
+});
+
+
   loadWelcomeTrans();loadWord();
   setTimeout(buildPreps,1600);setTimeout(renderVocab,300);setTimeout(renderIdioms,1600);
   setTimeout(renderChallenge,500);setTimeout(renderMistakes,1200);setTimeout(renderConfuse,700);

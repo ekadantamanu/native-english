@@ -708,7 +708,7 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
       🎧 Start Listening Training — Free
     </button>
   </div>
-</div><div class="tabs">
+</div><div class="tabs-wrap"><div class="tabs">
   <button class="tbtn active" onclick="showTab('chat',this)">Tutor</button>
   <button class="tbtn" onclick="showTab('speaking',this)">Speaking</button>
   <button class="tbtn" onclick="showTab('grammar',this)">Grammar</button>
@@ -1229,74 +1229,6 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
   <div id="planOut"></div>
 </div>
 
-</div><!-- end content -->
-
-<!-- SIDEBAR -->
-<div class="sidebar">
-  <div class="sb-sec">
-    <div class="sb-title" style="color:var(--gold)">Your English DNA</div>
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px">
-      <div class="dna-ring">
-        <svg width="50" height="50" viewBox="0 0 50 50">
-          <circle cx="25" cy="25" r="21" fill="none" stroke="#e8e3d8" stroke-width="4"/>
-          <circle cx="25" cy="25" r="21" fill="none" stroke="var(--gold)" stroke-width="4"
-            stroke-dasharray="131.9" stroke-dashoffset="131.9" id="dnaCircle"
-            style="transition:stroke-dashoffset 1.2s ease"/>
-        </svg>
-        <div class="dna-ring-lbl" id="dnaScore">-</div>
-      </div>
-      <div>
-        <div style="font-size:12px;font-weight:600;color:var(--txt-1)" id="dnaLevel">Take DNA test</div>
-        <div style="font-size:11px;color:var(--txt-3)" id="dnaHint">to see your level</div>
-      </div>
-    </div>
-    <div class="sk-row"><span class="sk-nm">Grammar</span><div class="sk-bar"><div class="sk-fill" id="sk-grammar" style="width:0%;background:var(--gold)"></div></div><span class="sk-pct" id="sp-grammar">-</span></div>
-    <div class="sk-row"><span class="sk-nm">Vocabulary</span><div class="sk-bar"><div class="sk-fill" id="sk-vocab" style="width:0%;background:var(--teal)"></div></div><span class="sk-pct" id="sp-vocab">-</span></div>
-    <div class="sk-row"><span class="sk-nm">Speaking</span><div class="sk-bar"><div class="sk-fill" id="sk-speaking" style="width:0%;background:var(--coral)"></div></div><span class="sk-pct" id="sp-speaking">-</span></div>
-    <div class="sk-row"><span class="sk-nm">Writing</span><div class="sk-bar"><div class="sk-fill" id="sk-writing" style="width:0%;background:var(--forest)"></div></div><span class="sk-pct" id="sp-writing">-</span></div>
-  </div>
-
-  <div class="sb-sec">
-    <div class="sb-title" style="color:var(--plum)">Word of the Moment</div>
-    <div class="word-card">
-      <div class="wc-word" id="wcWord">Loading...</div>
-      <div class="wc-phon" id="wcPhon"></div>
-      <div class="wc-row wc-def"><span class="wc-lbl">Definition</span><span id="wcDef"></span></div>
-      <div class="wc-row wc-en"><span class="wc-lbl">English example</span><span id="wcEnEx"></span></div>
-      <div class="wc-row wc-nat"><span class="wc-lbl" id="wcNatLbl">Native example</span><span id="wcNatEx"></span></div>
-      <div class="wc-row wc-ant"><span class="wc-lbl">Antonyms EN / Native</span><span id="wcAnt"></span></div>
-    </div>
-    <div style="display:flex;gap:6px;margin-top:7px">
-      <button class="chip" style="flex:1;text-align:center" onclick="loadWord()">New word</button>
-      <button class="chip" style="flex:1;text-align:center" onclick="saveWord()">Save</button>
-    </div>
-  </div>
-
-  <div class="sb-sec">
-    <div class="sb-title" style="color:var(--teal)">Practice Topics</div>
-    <div class="topic-grid">
-      <button class="topic-btn" onclick="startTopic('Health and medicine')">Health</button>
-      <button class="topic-btn" onclick="startTopic('Technology')">Tech</button>
-      <button class="topic-btn" onclick="startTopic('Travel and tourism')">Travel</button>
-      <button class="topic-btn" onclick="startTopic('Food and cooking')">Food</button>
-      <button class="topic-btn" onclick="startTopic('Business and work')">Work</button>
-      <button class="topic-btn" onclick="startTopic('Environment')">Nature</button>
-      <button class="topic-btn" onclick="startTopic('Family')">Family</button>
-      <button class="topic-btn" onclick="startTopic('Current events')">News</button>
-      <button class="topic-btn" onclick="startTopic('Education')">Study</button>
-      <button class="topic-btn" onclick="startTopic('Sports')">Sports</button>
-    </div>
-  </div>
-
-  <div class="sb-sec">
-    <div class="sb-title" style="color:var(--teal)">Quick Pronunciation</div>
-    <div class="phon-row">
-      <input class="phon-inp" id="sbPhon" placeholder="Type word to hear..." onkeydown="if(event.key==='Enter')sbHear()">
-      <button class="phon-go" onclick="sbHear()">Hear</button>
-    </div>
-  </div>
-</div>
-</div><!-- end layout -->
 
 <!-- ═══════════════════════════════════════════════════
      L1 — SPEED LISTENER PANEL
@@ -1511,6 +1443,74 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
   </div>
 </div>
 
+</div><!-- end content -->
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="sb-sec">
+    <div class="sb-title" style="color:var(--gold)">Your English DNA</div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px">
+      <div class="dna-ring">
+        <svg width="50" height="50" viewBox="0 0 50 50">
+          <circle cx="25" cy="25" r="21" fill="none" stroke="#e8e3d8" stroke-width="4"/>
+          <circle cx="25" cy="25" r="21" fill="none" stroke="var(--gold)" stroke-width="4"
+            stroke-dasharray="131.9" stroke-dashoffset="131.9" id="dnaCircle"
+            style="transition:stroke-dashoffset 1.2s ease"/>
+        </svg>
+        <div class="dna-ring-lbl" id="dnaScore">-</div>
+      </div>
+      <div>
+        <div style="font-size:12px;font-weight:600;color:var(--txt-1)" id="dnaLevel">Take DNA test</div>
+        <div style="font-size:11px;color:var(--txt-3)" id="dnaHint">to see your level</div>
+      </div>
+    </div>
+    <div class="sk-row"><span class="sk-nm">Grammar</span><div class="sk-bar"><div class="sk-fill" id="sk-grammar" style="width:0%;background:var(--gold)"></div></div><span class="sk-pct" id="sp-grammar">-</span></div>
+    <div class="sk-row"><span class="sk-nm">Vocabulary</span><div class="sk-bar"><div class="sk-fill" id="sk-vocab" style="width:0%;background:var(--teal)"></div></div><span class="sk-pct" id="sp-vocab">-</span></div>
+    <div class="sk-row"><span class="sk-nm">Speaking</span><div class="sk-bar"><div class="sk-fill" id="sk-speaking" style="width:0%;background:var(--coral)"></div></div><span class="sk-pct" id="sp-speaking">-</span></div>
+    <div class="sk-row"><span class="sk-nm">Writing</span><div class="sk-bar"><div class="sk-fill" id="sk-writing" style="width:0%;background:var(--forest)"></div></div><span class="sk-pct" id="sp-writing">-</span></div>
+  </div>
+
+  <div class="sb-sec">
+    <div class="sb-title" style="color:var(--plum)">Word of the Moment</div>
+    <div class="word-card">
+      <div class="wc-word" id="wcWord">Loading...</div>
+      <div class="wc-phon" id="wcPhon"></div>
+      <div class="wc-row wc-def"><span class="wc-lbl">Definition</span><span id="wcDef"></span></div>
+      <div class="wc-row wc-en"><span class="wc-lbl">English example</span><span id="wcEnEx"></span></div>
+      <div class="wc-row wc-nat"><span class="wc-lbl" id="wcNatLbl">Native example</span><span id="wcNatEx"></span></div>
+      <div class="wc-row wc-ant"><span class="wc-lbl">Antonyms EN / Native</span><span id="wcAnt"></span></div>
+    </div>
+    <div style="display:flex;gap:6px;margin-top:7px">
+      <button class="chip" style="flex:1;text-align:center" onclick="loadWord()">New word</button>
+      <button class="chip" style="flex:1;text-align:center" onclick="saveWord()">Save</button>
+    </div>
+  </div>
+
+  <div class="sb-sec">
+    <div class="sb-title" style="color:var(--teal)">Practice Topics</div>
+    <div class="topic-grid">
+      <button class="topic-btn" onclick="startTopic('Health and medicine')">Health</button>
+      <button class="topic-btn" onclick="startTopic('Technology')">Tech</button>
+      <button class="topic-btn" onclick="startTopic('Travel and tourism')">Travel</button>
+      <button class="topic-btn" onclick="startTopic('Food and cooking')">Food</button>
+      <button class="topic-btn" onclick="startTopic('Business and work')">Work</button>
+      <button class="topic-btn" onclick="startTopic('Environment')">Nature</button>
+      <button class="topic-btn" onclick="startTopic('Family')">Family</button>
+      <button class="topic-btn" onclick="startTopic('Current events')">News</button>
+      <button class="topic-btn" onclick="startTopic('Education')">Study</button>
+      <button class="topic-btn" onclick="startTopic('Sports')">Sports</button>
+    </div>
+  </div>
+
+  <div class="sb-sec">
+    <div class="sb-title" style="color:var(--teal)">Quick Pronunciation</div>
+    <div class="phon-row">
+      <input class="phon-inp" id="sbPhon" placeholder="Type word to hear..." onkeydown="if(event.key==='Enter')sbHear()">
+      <button class="phon-go" onclick="sbHear()">Hear</button>
+    </div>
+  </div>
+</div>
+</div><!-- end layout -->
 <!-- DNA MODAL -->
 <div class="modal-ov" id="dnaModal">
   <div class="modal">
@@ -4932,29 +4932,28 @@ function lgFinish() {
   document.getElementById('lgStartBtn').style.display = 'inline-flex';
 }
 
-// ── INIT LISTENING PANELS ON LOAD ──
-window.addEventListener('load', function() {
+// ── INIT ALL PANELS ON LOAD ──
+window.onload = function() {
+  // Original app initialisation
+  loadWelcomeTrans(); loadWord();
+  setTimeout(buildPreps,1600); setTimeout(renderVocab,300); setTimeout(renderIdioms,1600);
+  setTimeout(renderChallenge,500); setTimeout(renderMistakes,1200); setTimeout(renderConfuse,700);
+  setTimeout(renderPhrases,1600); setTimeout(buildTimeline,900); setTimeout(buildCheatSheet,1000);
+  updateUsageBar(); updateWLCount();
+  if (localStorage.getItem('ne_wl_joined')) {
+    var strip = document.getElementById('stripCount');
+    if (strip) strip.textContent = 'Welcome back! Full access launching very soon';
+  }
+  // Listening features initialisation
   renderCS();
   var slBest = localStorage.getItem('sl_best');
-  if (slBest) document.getElementById('slWeekBest').textContent = slBest + ' pts';
+  if (slBest) { var sw = document.getElementById('slWeekBest'); if(sw) sw.textContent = slBest + ' pts'; }
   var lgBest = localStorage.getItem('lg_best');
-  if (lgBest) { var parts = lgBest.split('_'); document.getElementById('lgBest').textContent = parts[1] || lgBest; }
+  if (lgBest) { var parts = lgBest.split('_'); var lb = document.getElementById('lgBest'); if(lb) lb.textContent = parts[1] || lgBest; }
   var lgTests = localStorage.getItem('lg_tests') || '0';
-  document.getElementById('lgTests').textContent = lgTests;
-});
-
-
-  loadWelcomeTrans();loadWord();
-  setTimeout(buildPreps,1600);setTimeout(renderVocab,300);setTimeout(renderIdioms,1600);
-  setTimeout(renderChallenge,500);setTimeout(renderMistakes,1200);setTimeout(renderConfuse,700);
-  setTimeout(renderPhrases,1600);setTimeout(buildTimeline,900);setTimeout(buildCheatSheet,1000);
-  updateUsageBar();updateWLCount();
-  if(localStorage.getItem('ne_wl_joined')){
-    var strip=document.getElementById('stripCount');
-    if(strip)strip.textContent='Welcome back! Full access launching very soon';
-  }
+  var lt = document.getElementById('lgTests'); if(lt) lt.textContent = lgTests;
 };
+
 
 </script>
 </body>
-</html>

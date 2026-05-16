@@ -718,6 +718,7 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
     </div>
   </div>
 </div>
+<div class="feature-strip">
   <div class="feat-item"><span class="feat-icon">🎯</span><span class="feat-text"><b>Bilingual</b> explanations</span></div>
   <div class="feat-item"><span class="feat-icon">🌏</span><span class="feat-text"><b>16</b> native languages</span></div>
   <div class="feat-item"><span class="feat-icon">🎤</span><span class="feat-text"><b>Speaking</b> coach</span></div>
@@ -734,137 +735,42 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
 <!-- TUTOR — GLAMOROUS VERSION -->
 <div id="panel-chat" class="panel active" style="flex-direction:column;overflow:hidden">
 
-  <!-- TOP HERO BAR -->
-  <div style="background:linear-gradient(135deg,#0f0d0b 0%,#1a1612 60%,#0d1f1a 100%);padding:14px 16px 12px;border-bottom:1px solid rgba(245,200,66,0.18);flex-shrink:0">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap">
-      <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#e8a820);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--txt-1);flex-shrink:0">N</div>
-      <div>
-        <div style="font-family:'Fraunces',serif;font-size:18px;font-weight:700;color:#fff;line-height:1.1">Your Personal English Tutor</div>
-        <div style="font-size:11px;color:rgba(255,255,255,0.6);margin-top:1px">Bilingual explanations &mdash; English <span style="color:var(--gold)">&amp;</span> your language</div>
-      </div>
-      <div style="margin-left:auto;display:flex;gap:5px;flex-wrap:wrap">
-        <div style="background:rgba(14,102,85,0.3);border:1px solid rgba(168,219,212,0.3);border-radius:6px;padding:3px 8px;font-size:10px;color:var(--teal-dim);font-weight:600">&#9679; Live tutor</div>
-        <div style="background:rgba(196,154,26,0.2);border:1px solid rgba(245,200,66,0.3);border-radius:6px;padding:3px 8px;font-size:10px;color:var(--gold);font-weight:600">Bilingual</div>
-      </div>
+  <!-- COMING SOON SCREEN -->
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 20px;text-align:center;background:linear-gradient(135deg,#0f0d0b,#1a1612,#0d1f1a)">
+    <div style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#e8a820);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:32px;font-weight:700;color:#05070F;margin-bottom:18px;box-shadow:0 8px 30px rgba(245,200,66,0.30)">N</div>
+    <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(245,200,66,0.12);border:1.5px solid rgba(245,200,66,0.35);border-radius:100px;padding:5px 16px;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:16px">🚀 Premium Feature</div>
+    <h2 style="font-family:'Fraunces',serif;font-size:clamp(24px,4vw,36px);font-weight:900;color:#FFFFFF;line-height:1.1;letter-spacing:-1px;margin-bottom:10px">Your Personal <em style="color:var(--gold);font-style:italic">AI English Tutor</em></h2>
+    <p style="font-size:14px;color:rgba(255,255,255,0.65);max-width:440px;line-height:1.72;margin-bottom:22px">A live AI tutor that explains every grammar rule, corrects every mistake, and answers every question — <strong style="color:var(--gold)">in English AND your native language</strong>. Coming very soon for registered members.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:380px;width:100%;margin-bottom:22px">
+      <div style="background:rgba(245,200,66,0.08);border:1px solid rgba(245,200,66,0.20);border-radius:10px;padding:10px;font-size:12px;color:rgba(255,255,255,0.75)">🎯 Grammar corrections in your language</div>
+      <div style="background:rgba(78,205,196,0.08);border:1px solid rgba(78,205,196,0.20);border-radius:10px;padding:10px;font-size:12px;color:rgba(255,255,255,0.75)">💬 Ask anything — get bilingual answers</div>
+      <div style="background:rgba(108,52,131,0.10);border:1px solid rgba(108,52,131,0.20);border-radius:10px;padding:10px;font-size:12px;color:rgba(255,255,255,0.75)">📚 Vocabulary with native examples</div>
+      <div style="background:rgba(26,82,118,0.10);border:1px solid rgba(26,82,118,0.20);border-radius:10px;padding:10px;font-size:12px;color:rgba(255,255,255,0.75)">✉️ Email and professional writing help</div>
     </div>
-    <!-- Quick topic cards -->
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:6px" id="topicCards">
-      <div onclick="sendHint('Check my English and correct all my mistakes with full explanation')" style="background:rgba(196,154,26,0.12);border:1.5px solid rgba(196,154,26,0.3);border-radius:9px;padding:8px 6px;text-align:center;cursor:pointer;transition:all .15s" onmouseover="this.style.background='rgba(196,154,26,0.25)'" onmouseout="this.style.background='rgba(196,154,26,0.12)'">
-        <div style="font-size:16px;margin-bottom:3px">&#128394;</div>
-        <div style="font-size:10px;font-weight:600;color:var(--gold)">Fix My English</div>
-      </div>
-      <div onclick="sendHint('Explain present perfect vs simple past tense: when to use each with examples and explanation in my language')" style="background:rgba(14,102,85,0.12);border:1.5px solid rgba(14,102,85,0.3);border-radius:9px;padding:8px 6px;text-align:center;cursor:pointer;transition:all .15s" onmouseover="this.style.background='rgba(14,102,85,0.25)'" onmouseout="this.style.background='rgba(14,102,85,0.12)'">
-        <div style="font-size:16px;margin-bottom:3px">&#128336;</div>
-        <div style="font-size:10px;font-weight:600;color:var(--teal-dim)">Tenses</div>
-      </div>
-      <div onclick="sendHint('Teach me 5 very useful English idioms with meanings, examples and explanation in my native language')" style="background:rgba(108,52,131,0.12);border:1.5px solid rgba(108,52,131,0.3);border-radius:9px;padding:8px 6px;text-align:center;cursor:pointer;transition:all .15s" onmouseover="this.style.background='rgba(108,52,131,0.25)'" onmouseout="this.style.background='rgba(108,52,131,0.12)'">
-        <div style="font-size:16px;margin-bottom:3px">&#128218;</div>
-        <div style="font-size:10px;font-weight:600;color:#c39bd3">Idioms</div>
-      </div>
-      <div onclick="sendHint('Let us do a job interview practice in English. Ask me typical interview questions and correct my answers')" style="background:rgba(26,82,118,0.12);border:1.5px solid rgba(26,82,118,0.3);border-radius:9px;padding:8px 6px;text-align:center;cursor:pointer;transition:all .15s" onmouseover="this.style.background='rgba(26,82,118,0.25)'" onmouseout="this.style.background='rgba(26,82,118,0.12)'">
-        <div style="font-size:16px;margin-bottom:3px">&#128084;</div>
-        <div style="font-size:10px;font-weight:600;color:#74b9f7">Interview</div>
-      </div>
-      <div onclick="sendHint('Explain the most important English phrasal verbs with meanings and bilingual examples')" style="background:rgba(30,132,73,0.12);border:1.5px solid rgba(30,132,73,0.3);border-radius:9px;padding:8px 6px;text-align:center;cursor:pointer;transition:all .15s" onmouseover="this.style.background='rgba(30,132,73,0.25)'" onmouseout="this.style.background='rgba(30,132,73,0.12)'">
-        <div style="font-size:16px;margin-bottom:3px">&#128640;</div>
-        <div style="font-size:10px;font-weight:600;color:#82e0aa">Phrasal Verbs</div>
-      </div>
-      <div onclick="sendHint('Teach me how to write a professional email in English with examples and explanation in my language')" style="background:rgba(211,84,0,0.12);border:1.5px solid rgba(211,84,0,0.3);border-radius:9px;padding:8px 6px;text-align:center;cursor:pointer;transition:all .15s" onmouseover="this.style.background='rgba(211,84,0,0.25)'" onmouseout="this.style.background='rgba(211,84,0,0.12)'">
-        <div style="font-size:16px;margin-bottom:3px">&#128231;</div>
-        <div style="font-size:10px;font-weight:600;color:#f0b27a">Email Writing</div>
-      </div>
-      <div onclick="sendHint('What are the most common English grammar mistakes and how can I avoid them? Explain in my language too')" style="background:rgba(192,57,43,0.12);border:1.5px solid rgba(192,57,43,0.3);border-radius:9px;padding:8px 6px;text-align:center;cursor:pointer;transition:all .15s" onmouseover="this.style.background='rgba(192,57,43,0.25)'" onmouseout="this.style.background='rgba(192,57,43,0.12)'">
-        <div style="font-size:16px;margin-bottom:3px">&#9888;</div>
-        <div style="font-size:10px;font-weight:600;color:#f1948a">Common Errors</div>
-      </div>
-      <div onclick="sendHint('Explain how to use English articles a an the correctly with rules and examples in my language')" style="background:rgba(21,101,192,0.12);border:1.5px solid rgba(21,101,192,0.3);border-radius:9px;padding:8px 6px;text-align:center;cursor:pointer;transition:all .15s" onmouseover="this.style.background='rgba(21,101,192,0.25)'" onmouseout="this.style.background='rgba(21,101,192,0.12)'">
-        <div style="font-size:16px;margin-bottom:3px">&#128270;</div>
-        <div style="font-size:10px;font-weight:600;color:#7fb3f5">Articles</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- MESSAGES -->
-  <div class="msgs" id="chatMsgs">
-    <div class="msg ai"><div class="av">N</div><div>
-      <div style="background:linear-gradient(135deg,#0f0d0b,#1a1612);border-radius:4px 14px 14px 14px;padding:14px 16px;font-size:13px;line-height:1.82;box-shadow:0 3px 12px var(--bg-3);border:1px solid var(--bdr-g)">
-        <div style="font-family:'Fraunces',serif;font-size:19px;font-weight:700;color:var(--gold);margin-bottom:8px;line-height:1.2">Welcome to NativeEnglish &#127775;</div>
-        <div style="color:var(--txt-2);margin-bottom:8px">I am your personal NativeEnglish tutor. Every explanation, correction and rule comes in <strong style="color:var(--gold)">English AND your native language</strong> — so nothing is ever confusing.</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:10px">
-          <div style="background:rgba(196,154,26,0.1);border-radius:7px;padding:7px 9px;font-size:11px;color:rgba(255,255,255,0.8);border-left:2px solid var(--gold)">&#9989; Grammar corrections</div>
-          <div style="background:rgba(14,102,85,0.12);border-radius:7px;padding:7px 9px;font-size:11px;color:rgba(255,255,255,0.8);border-left:2px solid var(--teal)">&#9989; Bilingual explanations</div>
-          <div style="background:rgba(108,52,131,0.12);border-radius:7px;padding:7px 9px;font-size:11px;color:rgba(255,255,255,0.8);border-left:2px solid var(--plum)">&#9989; Vocabulary building</div>
-          <div style="background:rgba(26,82,118,0.12);border-radius:7px;padding:7px 9px;font-size:11px;color:rgba(255,255,255,0.8);border-left:2px solid var(--teal)">&#9989; Speaking practice</div>
-        </div>
-        <div style="color:var(--txt-3);font-size:12px">Tap any card above or type below &mdash; in English or your language.</div>
-      </div>
-      <div class="bili" id="welcomeTrans" style="color:var(--gold);font-style:italic">Loading translation...</div>
-    </div></div>
-  </div>
-
-  <!-- INPUT BAR -->
-  <div class="ibar" style="background:linear-gradient(135deg,#0f0d0b,#1a1612);border-top:1px solid rgba(245,200,66,0.15)">
-    <div class="irow">
-      <textarea class="ti" id="chatInput" placeholder="Ask in English or your language..." rows="1"
-        style="background:rgba(255,255,255,0.07);color:#fff;border-color:rgba(255,255,255,0.15);caret-color:var(--gold)"
-        onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChat()}"></textarea>
-      <button class="sbtn mic" id="micBtn" onclick="toggleMic()" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.2);color:var(--txt-3)">MIC</button>
-      <button class="sbtn send" onclick="sendChat()" style="background:linear-gradient(135deg,var(--gold),#e8a820);color:var(--txt-1);font-weight:800">GO</button>
-    </div>
-    <div style="font-size:10px;color:rgba(255,255,255,0.35);text-align:center;margin-top:5px">Smart &bull; Bilingual &bull; Your session resets at midnight</div>
+    <button onclick="openWaitlist()" style="padding:14px 32px;background:linear-gradient(135deg,var(--gold),#e8a820);color:#05070F;border:none;border-radius:12px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:800;cursor:pointer;letter-spacing:-.2px;box-shadow:0 6px 24px rgba(245,200,66,0.30);transition:all .2s" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 32px rgba(245,200,66,0.40)'" onmouseout="this.style.transform='';this.style.boxShadow='0 6px 24px rgba(245,200,66,0.30)'">
+      🚀 Register for Early Access — Free
+    </button>
+    <p style="font-size:11px;color:rgba(255,255,255,0.35);margin-top:12px">While you wait — explore 30+ free tools using the tabs above ↑</p>
   </div>
 </div>
 
-<!-- SPEAKING -->
-<div id="panel-speaking" class="panel">
-  <div class="spk-outer">
-    <div style="display:flex;gap:8px;flex-wrap:wrap;width:100%;max-width:540px;justify-content:center">
-      <select class="spk-sel" id="spkDur">
-        <option value="30">30 seconds</option><option value="60" selected>1 minute</option>
-        <option value="300">5 minutes</option><option value="600">10 minutes</option>
-        <option value="900">15 minutes</option><option value="1800">30 minutes</option>
-        <option value="3600">1 hour</option>
-      </select>
-      <select class="spk-sel" id="spkMode">
-        <option value="english">Speak in English</option>
-        <option value="native">Speak in my language</option>
-      </select>
+<!-- SPEAKING — COMING SOON -->
+<div id="panel-speaking" class="panel" style="flex-direction:column;overflow:hidden">
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 20px;text-align:center;background:linear-gradient(135deg,#030E0D,#061A18)">
+    <div style="font-size:56px;margin-bottom:16px">🎤</div>
+    <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(78,205,196,0.12);border:1.5px solid rgba(78,205,196,0.35);border-radius:100px;padding:5px 16px;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:16px">🚀 Premium Feature</div>
+    <h2 style="font-family:'Fraunces',serif;font-size:clamp(22px,3.5vw,32px);font-weight:900;color:#FFFFFF;line-height:1.1;letter-spacing:-1px;margin-bottom:10px">AI <em style="color:var(--teal);font-style:italic">Speaking Coach</em></h2>
+    <p style="font-size:13.5px;color:rgba(255,255,255,0.62);max-width:420px;line-height:1.72;margin-bottom:10px">Speak freely — the AI listens, scores your fluency, grammar and vocabulary, and gives bilingual feedback in your language. Coming soon for registered members.</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:22px">
+      <span style="font-size:11px;padding:4px 12px;border-radius:20px;background:rgba(78,205,196,0.10);color:var(--teal);border:1px solid rgba(78,205,196,0.25);font-weight:600">🎯 Fluency scoring</span>
+      <span style="font-size:11px;padding:4px 12px;border-radius:20px;background:rgba(78,205,196,0.10);color:var(--teal);border:1px solid rgba(78,205,196,0.25);font-weight:600">📊 Grammar feedback</span>
+      <span style="font-size:11px;padding:4px 12px;border-radius:20px;background:rgba(78,205,196,0.10);color:var(--teal);border:1px solid rgba(78,205,196,0.25);font-weight:600">🌐 Bilingual explanations</span>
+      <span style="font-size:11px;padding:4px 12px;border-radius:20px;background:rgba(78,205,196,0.10);color:var(--teal);border:1px solid rgba(78,205,196,0.25);font-weight:600">💼 Job interview practice</span>
     </div>
-    <div style="text-align:center;max-width:460px">
-      <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;margin-bottom:4px;color:var(--teal)" id="spkTopic">Talk about your daily routine</div>
-      <div style="font-size:13px;color:var(--txt-3)" id="spkTopicNative">Speak freely &mdash; I give instant scored feedback</div>
-    </div>
-    <div class="orb" id="spkOrb" onclick="toggleSpk()"><span id="orbTxt">TAP</span></div>
-    <div style="display:flex;gap:8px">
-      <button class="sbtn send" id="stopBtn" onclick="stopSpk()" style="display:none;width:auto;padding:0 14px;border-radius:8px;background:var(--coral);color:#fff">STOP</button>
-    </div>
-    <div style="font-size:14px;font-weight:600;text-align:center;color:var(--forest)" id="spkStatus">Tap to start speaking</div>
-    <div style="font-size:13px;color:var(--txt-3);line-height:1.75;min-height:44px;text-align:center;max-width:460px" id="spkTranscript"></div>
-    <div class="spk-fb" id="spkFb">
-      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--teal);margin-bottom:8px">Your speaking feedback</div>
-      <div id="spkFbText"></div>
-    </div>
-    <div class="spk-tools">
-      <div class="tool-box" style="border-color:var(--teal);background:linear-gradient(135deg,#e8f5f0,#f4faf8)">
-        <div class="tool-title" style="color:var(--teal)">Pronunciation Helper</div>
-        <div class="trow"><input class="tinp" id="phonIn" placeholder="Type any word..." onkeydown="if(event.key==='Enter')hearWord()"><button class="tbtn2" onclick="hearWord()">Hear</button></div>
-        <div class="tres" id="phonRes"></div>
-      </div>
-      <div class="tool-box" style="border-color:var(--teal);background:linear-gradient(135deg,#d4e6f1,#eaf4fb)">
-        <div class="tool-title" style="color:var(--teal)">Word in English</div>
-        <div class="trow"><input class="tinp" id="wlIn" placeholder="Your language word..." onkeydown="if(event.key==='Enter')lookupWord()"><button class="tbtn2" onclick="lookupWord()">Find</button></div>
-        <div class="tres" id="wlRes"></div>
-      </div>
-    </div>
-    <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center">
-      <button class="chip" onclick="newSpkTopic('Daily life')">Daily life</button>
-      <button class="chip" onclick="newSpkTopic('Travel')">Travel</button>
-      <button class="chip" onclick="newSpkTopic('Work')">Work</button>
-      <button class="chip" onclick="newSpkTopic('Opinion')">Opinion</button>
-      <button class="chip" onclick="newSpkTopic('Health')">Health</button>
-      <button class="chip" onclick="newSpkTopic('Technology')">Tech</button>
-      <button class="chip" onclick="newSpkTopic('Debate')">Debate</button>
-    </div>
+    <button onclick="openWaitlist()" style="padding:13px 28px;background:var(--teal);color:#05070F;border:none;border-radius:12px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:800;cursor:pointer;box-shadow:0 6px 24px rgba(78,205,196,0.28);transition:all .2s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
+      🚀 Register for Early Access — Free
+    </button>
+    <p style="font-size:11px;color:rgba(255,255,255,0.32);margin-top:12px">Meanwhile — try the 6 free Listening Tools using the tab bar ↑</p>
   </div>
 </div>
 
@@ -883,13 +789,9 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
     <div class="gpage active" id="gp1">
       <p style="font-size:12px;color:var(--txt-3);margin-bottom:10px;line-height:1.55">The 8 essential building blocks of English &mdash; click any to expand and explore</p>
       <div id="posItems"></div>
-      <div class="gram-ibar">
-        <div class="irow">
-          <textarea class="ti" id="gi1" placeholder="Ask any Parts of Speech question..." rows="1"
-            onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();askGram(document.getElementById('gi1').value,'gr1')}"></textarea>
-          <button class="sbtn send" onclick="askGram(document.getElementById('gi1').value,'gr1')">GO</button>
-        </div>
-        <div class="gram-msgs" id="gr1"></div>
+      <div style="margin-top:10px;padding:11px 14px;background:rgba(245,200,66,0.07);border:1.5px solid rgba(245,200,66,0.22);border-radius:10px;display:flex;align-items:center;gap:10px">
+        <span style="font-size:18px">🚀</span>
+        <div><div style="font-size:12px;font-weight:700;color:var(--gold);margin-bottom:2px">AI Grammar Explainer — Coming Soon</div><div style="font-size:11.5px;color:rgba(255,255,255,0.55)">Ask any grammar question and get a bilingual answer. <span onclick="openWaitlist()" style="color:var(--gold);text-decoration:underline;cursor:pointer">Register for early access →</span></div></div>
       </div>
     </div>
     <div class="gpage" id="gp2">
@@ -908,14 +810,7 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
         <span class="chip" onclick="askGram('Explain Future Perfect tense','gr2')">Future Perfect</span>
         <span class="chip" onclick="askGram('Explain Future Perfect Continuous tense','gr2')">Future Perf. Cont.</span>
       </div>
-      <div class="gram-ibar">
-        <div class="irow">
-          <textarea class="ti" id="gi2" placeholder="Ask about any tense..." rows="1"
-            onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();askGram(document.getElementById('gi2').value,'gr2')}"></textarea>
-          <button class="sbtn send" onclick="askGram(document.getElementById('gi2').value,'gr2')">GO</button>
-        </div>
-        <div class="gram-msgs" id="gr2"></div>
-      </div>
+      <div style="margin-top:10px;padding:11px 14px;background:rgba(245,200,66,0.07);border:1.5px solid rgba(245,200,66,0.22);border-radius:10px;display:flex;align-items:center;gap:10px"><span style="font-size:18px">🚀</span><div><div style="font-size:12px;font-weight:700;color:var(--gold);margin-bottom:2px">AI Grammar Explainer — Coming Soon</div><div style="font-size:11.5px;color:rgba(255,255,255,0.55)">Ask any grammar question and get a bilingual answer. <span onclick="openWaitlist()" style="color:var(--gold);text-decoration:underline;cursor:pointer">Register for early access →</span></div></div></div>
     </div>
     <div class="gpage" id="gp3">
       <p style="font-size:12px;color:var(--txt-3);margin-bottom:10px">Advanced grammar &mdash; conditionals, voice, reported speech, modals, clauses</p>
@@ -931,14 +826,7 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
         <span class="chip" onclick="askGram('Explain Subjunctive Mood in English','gr3')">Subjunctive</span>
         <span class="chip" onclick="askGram('Explain Parallelism in grammar','gr3')">Parallelism</span>
       </div>
-      <div class="gram-ibar">
-        <div class="irow">
-          <textarea class="ti" id="gi3" placeholder="Ask about advanced grammar..." rows="1"
-            onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();askGram(document.getElementById('gi3').value,'gr3')}"></textarea>
-          <button class="sbtn send" onclick="askGram(document.getElementById('gi3').value,'gr3')">GO</button>
-        </div>
-        <div class="gram-msgs" id="gr3"></div>
-      </div>
+      <div style="margin-top:10px;padding:11px 14px;background:rgba(245,200,66,0.07);border:1.5px solid rgba(245,200,66,0.22);border-radius:10px;display:flex;align-items:center;gap:10px"><span style="font-size:18px">🚀</span><div><div style="font-size:12px;font-weight:700;color:var(--gold);margin-bottom:2px">AI Grammar Explainer — Coming Soon</div><div style="font-size:11.5px;color:rgba(255,255,255,0.55)">Ask any grammar question and get a bilingual answer. <span onclick="openWaitlist()" style="color:var(--gold);text-decoration:underline;cursor:pointer">Register for early access →</span></div></div></div>
     </div>
     <div class="gpage" id="gp4">
       <p style="font-size:12px;color:var(--txt-3);margin-bottom:10px">Usage, style, punctuation, common errors and word formation</p>
@@ -952,14 +840,7 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
         <span class="chip" onclick="askGram('Explain articles a an the all rules','gr4')">Articles</span>
         <span class="chip" onclick="askGram('Explain English syntax word order inversion','gr4')">Syntax</span>
       </div>
-      <div class="gram-ibar">
-        <div class="irow">
-          <textarea class="ti" id="gi4" placeholder="Ask about usage and style..." rows="1"
-            onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();askGram(document.getElementById('gi4').value,'gr4')}"></textarea>
-          <button class="sbtn send" onclick="askGram(document.getElementById('gi4').value,'gr4')">GO</button>
-        </div>
-        <div class="gram-msgs" id="gr4"></div>
-      </div>
+      <div style="margin-top:10px;padding:11px 14px;background:rgba(245,200,66,0.07);border:1.5px solid rgba(245,200,66,0.22);border-radius:10px;display:flex;align-items:center;gap:10px"><span style="font-size:18px">🚀</span><div><div style="font-size:12px;font-weight:700;color:var(--gold);margin-bottom:2px">AI Grammar Explainer — Coming Soon</div><div style="font-size:11.5px;color:rgba(255,255,255,0.55)">Ask any grammar question and get a bilingual answer. <span onclick="openWaitlist()" style="color:var(--gold);text-decoration:underline;cursor:pointer">Register for early access →</span></div></div></div>
     </div>
   </div>
 </div>
@@ -1031,58 +912,24 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
 <!-- WRITING -->
 <div id="panel-writing" class="panel" style="overflow-y:auto;padding:14px;gap:12px;flex-direction:column">
   <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--amber);margin-bottom:4px">Writing Practice</div>
-  <p style="font-size:12px;color:var(--txt-3);margin-bottom:4px">Four free writing modes &mdash; all explained in English and your language</p>
-  <div class="write-modes">
-    <button class="wm-btn active" onclick="setWM('mirror',this)"><span class="wm-icon">Mirror</span>See It Native</button>
-    <button class="wm-btn" onclick="setWM('translate',this)"><span class="wm-icon">Globe</span>Translate Mine</button>
-    <button class="wm-btn" onclick="setWM('proofread',this)"><span class="wm-icon">Check</span>Proofread</button>
-    <button class="wm-btn" onclick="setWM('tone',this)"><span class="wm-icon">Tone</span>Change Tone</button>
-  </div>
-  <div class="wp active" id="wm-mirror">
-    <div class="ib ib-gold"><strong style="color:var(--gold)">See It Native</strong> &mdash; Type any sentence. See it rewritten at B1, B2, C1 and Native level instantly.</div>
-    <textarea class="wta" id="mirrorIn" placeholder="Type any English sentence..."></textarea>
-    <div class="wa-row">
-      <button class="wa-pri" onclick="doMirror()">Transform It</button>
-      <button class="wa-sec" onclick="document.getElementById('mirrorIn').value='I want to buy some food from the market yesterday'">Example</button>
+  <p style="font-size:12px;color:var(--txt-3);margin-bottom:16px">AI-powered writing feedback — bilingual corrections in English and your language</p>
+
+  <!-- COMING SOON CARD -->
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center">
+    <div style="font-size:52px;margin-bottom:16px">✍️</div>
+    <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(245,158,11,0.12);border:1.5px solid rgba(245,158,11,0.35);border-radius:100px;padding:5px 16px;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#F59E0B;margin-bottom:16px">🚀 Premium Feature</div>
+    <h2 style="font-family:'Fraunces',serif;font-size:clamp(20px,3vw,28px);font-weight:900;color:#FFFFFF;line-height:1.1;letter-spacing:-0.5px;margin-bottom:10px">AI <em style="color:#F59E0B;font-style:italic">Writing Coach</em></h2>
+    <p style="font-size:13px;color:rgba(255,255,255,0.60);max-width:400px;line-height:1.70;margin-bottom:14px">Four powerful AI writing modes — rewrite at B1/B2/C1/Native level, grade your translation, proofread sentence by sentence, and transform tone. All with bilingual explanations in your language.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;max-width:360px;width:100%;margin-bottom:20px">
+      <div style="background:rgba(245,200,66,0.08);border:1px solid rgba(245,200,66,0.18);border-radius:9px;padding:9px;font-size:11.5px;color:rgba(255,255,255,0.70)">🪞 Mirror — see it at native level</div>
+      <div style="background:rgba(78,205,196,0.08);border:1px solid rgba(78,205,196,0.18);border-radius:9px;padding:9px;font-size:11.5px;color:rgba(255,255,255,0.70)">🌐 Grade your translation</div>
+      <div style="background:rgba(30,132,73,0.08);border:1px solid rgba(30,132,73,0.18);border-radius:9px;padding:9px;font-size:11.5px;color:rgba(255,255,255,0.70)">🔍 Proofread every sentence</div>
+      <div style="background:rgba(108,52,131,0.08);border:1px solid rgba(108,52,131,0.18);border-radius:9px;padding:9px;font-size:11.5px;color:rgba(255,255,255,0.70)">🎚️ Transform tone instantly</div>
     </div>
-    <div id="mirrorOut"></div>
-  </div>
-  <div class="wp" id="wm-translate">
-    <div class="ib ib-teal"><strong style="color:var(--teal)">Translate Mine</strong> &mdash; Paste text in your native language. Write your English version. Get it graded with bilingual explanations.</div>
-    <div style="font-size:12px;color:var(--teal);font-weight:600">Your native language text:</div>
-    <textarea class="wta" id="nativeText" placeholder="Paste text in your native language..."></textarea>
-    <div style="font-size:12px;color:var(--teal);font-weight:600">Your English translation:</div>
-    <textarea class="wta" id="engAttempt" placeholder="Write your English version here..."></textarea>
-    <div class="wa-row"><button class="wa-pri" onclick="doTranslate()">Grade My Translation</button></div>
-    <div id="translateOut"></div>
-  </div>
-  <div class="wp" id="wm-proofread">
-    <div class="ib ib-forest"><strong style="color:var(--forest)">Proofread</strong> &mdash; Paste any English writing. Get every mistake corrected sentence by sentence with full bilingual explanations.</div>
-    <textarea class="wta" id="proofIn" placeholder="Paste your English text here..." style="min-height:110px"></textarea>
-    <div class="wa-row">
-      <button class="wa-pri" onclick="doProofread()">Find All Mistakes</button>
-      <button class="wa-sec" onclick="document.getElementById('proofIn').value='Yesterday I am going to the market and buyed many vegetable for cook dinner.'">Example</button>
-    </div>
-    <div id="proofOut"></div>
-  </div>
-  <div class="wp" id="wm-tone">
-    <div class="ib ib-plum"><strong style="color:var(--plum)">Change Tone</strong> &mdash; Write any sentence. Choose a tone. See it transformed with full bilingual explanation.</div>
-    <textarea class="wta" id="toneIn" placeholder="Type your sentence..."></textarea>
-    <div style="font-size:12px;color:var(--plum);font-weight:600">Choose tone:</div>
-    <div class="tone-row">
-      <button class="tone-btn active" onclick="setTone('Formal',this)">Formal</button>
-      <button class="tone-btn" onclick="setTone('Casual',this)">Casual</button>
-      <button class="tone-btn" onclick="setTone('Business professional',this)">Business</button>
-      <button class="tone-btn" onclick="setTone('Apologetic and polite',this)">Apologetic</button>
-      <button class="tone-btn" onclick="setTone('Urgent',this)">Urgent</button>
-      <button class="tone-btn" onclick="setTone('Warm and friendly',this)">Friendly</button>
-      <button class="tone-btn" onclick="setTone('Academic',this)">Academic</button>
-    </div>
-    <div class="wa-row" style="margin-top:5px">
-      <button class="wa-pri" onclick="doTone()">Transform Tone</button>
-      <button class="wa-sec" onclick="document.getElementById('toneIn').value='I need that file now'">Example</button>
-    </div>
-    <div id="toneOut"></div>
+    <button onclick="openWaitlist()" style="padding:12px 26px;background:linear-gradient(135deg,#F59E0B,#D97706);color:#05070F;border:none;border-radius:12px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:800;cursor:pointer;box-shadow:0 6px 22px rgba(245,158,11,0.28);transition:all .2s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
+      🚀 Register for Early Access — Free
+    </button>
+    <p style="font-size:11px;color:rgba(255,255,255,0.32);margin-top:12px">Meanwhile — try the 7 free Writing Tools using the tab bar ↑</p>
   </div>
 </div>
 
@@ -1208,7 +1055,10 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
   <div id="diaryList"><div style="font-size:12px;color:var(--txt-3)">Your activity appears here as you practise</div></div>
   <div style="font-size:13px;font-weight:700;color:var(--txt-1)">Vocabulary Diary</div>
   <div id="vocabSaved"><div style="font-size:12px;color:var(--txt-3)">Words you save from Word of the Moment appear here</div></div>
-  <button class="chip" style="align-self:flex-start;padding:7px 14px" onclick="genPlan()">Generate My 4-Week Study Plan</button>
+  <div style="padding:11px 14px;background:rgba(245,200,66,0.07);border:1.5px solid rgba(245,200,66,0.22);border-radius:10px;display:flex;align-items:center;gap:10px">
+    <span style="font-size:18px">🚀</span>
+    <div><div style="font-size:12px;font-weight:700;color:var(--gold);margin-bottom:2px">AI Study Plan — Coming Soon</div><div style="font-size:11.5px;color:rgba(255,255,255,0.55)">Personalised 4-week plan based on your level and language. <span onclick="openWaitlist()" style="color:var(--gold);text-decoration:underline;cursor:pointer">Register for early access →</span></div></div>
+  </div>
   <div id="planOut"></div>
 </div>
 
@@ -1545,16 +1395,15 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
   <div class="sb-sec">
     <div class="sb-title" style="color:var(--plum)">Word of the Moment</div>
     <div class="word-card">
-      <div class="wc-word" id="wcWord">Loading...</div>
-      <div class="wc-phon" id="wcPhon"></div>
-      <div class="wc-row wc-def"><span class="wc-lbl">Definition</span><span id="wcDef"></span></div>
-      <div class="wc-row wc-en"><span class="wc-lbl">English example</span><span id="wcEnEx"></span></div>
-      <div class="wc-row wc-nat"><span class="wc-lbl" id="wcNatLbl">Native example</span><span id="wcNatEx"></span></div>
-      <div class="wc-row wc-ant"><span class="wc-lbl">Antonyms EN / Native</span><span id="wcAnt"></span></div>
+      <div class="wc-word" id="wcWord">serendipity</div>
+      <div class="wc-phon" id="wcPhon">/ser.en.DIP.i.tee/</div>
+      <div class="wc-row wc-def"><span class="wc-lbl">Definition</span><span id="wcDef">Finding something wonderful by happy accident</span></div>
+      <div class="wc-row wc-en"><span class="wc-lbl">English example</span><span id="wcEnEx">"Meeting my best friend was pure serendipity."</span></div>
+      <div class="wc-row wc-nat"><span class="wc-lbl" id="wcNatLbl">In your language</span><span id="wcNatEx">🚀 Bilingual examples coming in Premium</span></div>
+      <div class="wc-row wc-ant"><span class="wc-lbl">Antonyms</span><span id="wcAnt">misfortune / tragedy</span></div>
     </div>
-    <div style="display:flex;gap:6px;margin-top:7px">
-      <button class="chip" style="flex:1;text-align:center" onclick="loadWord()">New word</button>
-      <button class="chip" style="flex:1;text-align:center" onclick="saveWord()">Save</button>
+    <div style="margin-top:8px;padding:8px 10px;background:rgba(245,200,66,0.07);border:1px solid rgba(245,200,66,0.20);border-radius:8px;font-size:11px;color:rgba(255,255,255,0.55);text-align:center">
+      🚀 Daily AI words with bilingual examples — <span onclick="openWaitlist()" style="color:var(--gold);text-decoration:underline;cursor:pointer">register for Premium →</span>
     </div>
   </div>
 
@@ -3640,7 +3489,7 @@ function buildSys(extra){
 }
 function setLang(l){
   lang=l;var el=document.getElementById('wcNatLbl');if(el)el.textContent=l+' example';
-  loadWelcomeTrans();loadWord();renderDNAQs();renderVocab();renderIdioms();renderMistakes();renderPhrases();buildCheatSheet();
+  renderDNAQs();renderVocab();renderIdioms();renderMistakes();renderPhrases();buildCheatSheet();
 }
 
 async function loadWelcomeTrans(){
@@ -5269,7 +5118,6 @@ function rmAnalyse(){
 function rmExample(){var d=document.getElementById('rmInput');if(d)d.value='She went to the market. She bought vegetables. She came home. She cooked dinner. She ate. The entire experience of going to the market on a busy Saturday morning when everyone else in the neighbourhood seemed to have decided that they too would go to the very same market at precisely the same time was something that she found to be particularly overwhelming and stressful given her general preference for quiet and orderly environments.';rmAnalyse();}
 
 window.onload=function(){
-  loadWelcomeTrans();loadWord();
   setTimeout(buildPreps,1600);setTimeout(renderVocab,300);setTimeout(renderIdioms,1600);
   setTimeout(renderChallenge,500);setTimeout(renderMistakes,1200);setTimeout(renderConfuse,700);
   setTimeout(renderPhrases,1600);setTimeout(buildTimeline,900);setTimeout(buildCheatSheet,1000);

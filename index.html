@@ -1681,7 +1681,127 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
 </div>
 
 
-<script>var IDIOM_DATA = [
+<script>
+// ╔══════════════════════════════════════════════════════════════╗
+// ║  NATIVE TRANSLATE ENGINE — Universal, zero-cost, cached      ║
+// ║  Translates any English text to the learner's language        ║
+// ║  Uses Google Translate (browser-side, no API key needed)      ║
+// ║  Caches in localStorage forever — each text translates once   ║
+// ╚══════════════════════════════════════════════════════════════╝
+
+var NT_CODES={
+  Spanish:'es',French:'fr',German:'de',Chinese:'zh-CN',Japanese:'ja',
+  Russian:'ru',Portuguese:'pt',Italian:'it',Korean:'ko',Turkish:'tr',
+  Arabic:'ar',Hindi:'hi',Tamil:'ta',Telugu:'te',Kannada:'kn',Malayalam:'ml'
+};
+// Safe attribute value — strip quotes for data-nt
+function ntSafe(s){return s?s.replace(/["']/g,''):'';}
+
+
+// Simple hash for cache key
+function ntHash(s){
+  var h=0;for(var i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i);h|=0;}
+  return Math.abs(h).toString(36);
+}
+
+// Get from cache
+function ntFromCache(langCode,text){
+  try{
+    var k='nte_'+langCode+'_'+ntHash(text);
+    var v=localStorage.getItem(k);
+    return v?JSON.parse(v):null;
+  }catch(e){return null;}
+}
+
+// Save to cache
+function ntToCache(langCode,text,translated){
+  try{
+    var k='nte_'+langCode+'_'+ntHash(text);
+    localStorage.setItem(k,JSON.stringify(translated));
+  }catch(e){}
+}
+
+// Core translate function — translates text, updates element, uses cache
+// el: DOM element to update with translation
+// text: English source text
+// prefix: optional label before translation e.g. 'In Telugu: '
+// suffix: optional class/style for the element
+function nt(el, text, prefix){
+  if(!el||!text||!text.trim())return;
+  var lc=NT_CODES[lang];
+  if(!lc){return;}  // Language not in list — keep English
+  if(lang==='English'){el.textContent=(prefix||'')+text;return;}
+
+  // Check cache first — instant display
+  var cached=ntFromCache(lc,text);
+  if(cached){
+    el.innerHTML=(prefix?'<strong>'+prefix+'</strong> ':'')+cached;
+    el.style.direction=(lang==='Arabic')?'rtl':'ltr';
+    return;
+  }
+
+  // Show English immediately while translating
+  el.innerHTML=(prefix?'<strong>'+prefix+'</strong> ':'')+
+    '<span style="opacity:0.6;font-style:italic">'+text+
+    '</span><span style="font-size:10px;opacity:0.45;margin-left:6px">⟳ translating…</span>';
+
+  // Fetch translation from Google Translate (browser-side, no key)
+  var url='https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl='+
+    encodeURIComponent(lc)+'&dt=t&q='+encodeURIComponent(text);
+
+  fetch(url)
+    .then(function(r){return r.json();})
+    .then(function(d){
+      // Response is nested arrays: [[[translated, original],...]...]
+      var translated='';
+      if(d&&d[0]){
+        d[0].forEach(function(chunk){if(chunk&&chunk[0])translated+=chunk[0];});
+      }
+      if(translated&&translated.trim()){
+        ntToCache(lc,text,translated);
+        el.innerHTML=(prefix?'<strong>'+prefix+'</strong> ':'')+translated;
+        el.style.direction=(lang==='Arabic')?'rtl':'ltr';
+      } else {
+        // Fallback: show English
+        el.innerHTML=(prefix?'<strong>'+prefix+'</strong> ':'')+text;
+      }
+    })
+    .catch(function(){
+      // Fallback: show English on error
+      el.innerHTML=(prefix?'<strong>'+prefix+'</strong> ':'')+text;
+    });
+}
+
+// Batch translate: translates all elements with data-nt attribute on screen
+// Call this after rendering any section
+function ntBatch(){
+  var lc=NT_CODES[lang];
+  if(!lc)return;
+  document.querySelectorAll('[data-nt]').forEach(function(el){
+    var text=el.getAttribute('data-nt');
+    var prefix=el.getAttribute('data-nt-prefix')||'';
+    if(text)nt(el,text,prefix);
+  });
+}
+
+// Translate a plain element's text content
+// Usage: ntEl('elementId', 'English text to translate', 'In Telugu: ')
+function ntEl(id,text,prefix){
+  var el=document.getElementById(id);
+  if(el)nt(el,text,prefix||('In '+lang+': '));
+}
+
+// Re-translate all visible nt elements when language changes
+function ntRefresh(){
+  // Clear all pending translations and re-run
+  document.querySelectorAll('[data-nt]').forEach(function(el){
+    var text=el.getAttribute('data-nt');
+    var prefix=el.getAttribute('data-nt-prefix')||'';
+    el.innerHTML=''; // Clear stale translation
+    if(text)nt(el,text,prefix);
+  });
+}
+var IDIOM_DATA = [
   {ph:"A blessing in disguise",cat:"daily",col:"#b8860b",bg:"linear-gradient(135deg,rgba(180,140,11,0.18),rgba(180,140,11,0.08))",
    meaning:"Something that seems bad at first but turns out to be good",
    ex1:"Losing that job was a blessing in disguise - I found a much better one.",
@@ -3524,6 +3644,8 @@ function buildSys(extra){
 function setLang(l){
   lang=l;var el=document.getElementById('wcNatLbl');if(el)el.textContent=l+' example';
   loadWelcomeTrans();loadWord();injectListeningNotes();renderDNAQs();renderVocab();renderIdioms();renderMistakes();renderPhrases();buildCheatSheet();
+  // Re-translate all visible translated elements
+  setTimeout(function(){ntRefresh();},300);
 }
 
 async function loadWelcomeTrans(){
@@ -3980,7 +4102,7 @@ function clickPrep(prep,chip,col){
   var h='<div style="display:flex;flex-direction:column;gap:10px;padding:4px 0">';
   // Definition
   h+='<div style="font-size:15px;font-weight:700;color:'+col+';font-family:Fraunces,serif">'+prep.toUpperCase()+'</div>';
-  h+='<div style="font-size:13px;color:rgba(255,255,255,0.85);line-height:1.65">'+d.def+'</div>';
+  h+='<div style="font-size:13px;color:rgba(255,255,255,0.85);line-height:1.65">'+d.def+'</div>'+'<div data-nt="'+ntSafe(d.def)+'" style="font-size:12.5px;color:rgba(245,200,66,0.85);margin-top:5px;margin-bottom:5px;font-style:italic;line-height:1.55"></div>';
   // Rules
   h+='<div style="background:rgba(255,255,255,0.04);border-radius:10px;padding:11px">';
   h+='<div style="font-size:10px;font-weight:800;color:'+col+';text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px">Usage Rules</div>';
@@ -4007,14 +4129,14 @@ function clickPrep(prep,chip,col){
   // Memory tip
   h+='<div style="background:rgba(245,200,66,0.08);border:1.5px solid rgba(245,200,66,0.28);border-radius:10px;padding:11px">';
   h+='<div style="font-size:10px;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px">💡 Memory Tip</div>';
-  h+='<div style="font-size:13px;color:rgba(255,255,255,0.85);line-height:1.60">'+d.tip+'</div></div>';
+  h+='<div style="font-size:13px;color:rgba(255,255,255,0.85);line-height:1.60">'+d.tip+'</div>'+'<div data-nt="'+ntSafe(d.tip)+'" style="font-size:12.5px;color:rgba(245,200,66,0.85);margin-top:6px;font-style:italic;line-height:1.55"></div></div>';
   // Native language explanation
   h+='<div style="background:rgba(245,200,66,0.07);border:1.5px solid rgba(245,200,66,0.25);border-radius:11px;padding:12px;margin-top:4px">';
   h+='<div style="font-size:10px;font-weight:800;color:rgba(245,200,66,0.70);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">🌐 In '+lang+'</div>';
   h+='<div style="font-size:12.5px;color:rgba(255,255,255,0.80);line-height:1.70;margin-bottom:6px">'+NL.get('prep_tip')+'</div>';
   h+='<div style="font-size:12px;font-style:italic;color:rgba(245,200,66,0.70)">'+NL.get('prep_rule')+'</div></div>';
   h+='</div>';
-  res.innerHTML=h;
+  res.innerHTML=h;ntBatch();
   setTimeout(function(){res.scrollIntoView({behavior:'smooth',block:'nearest'});},100);
 }
 
@@ -4053,7 +4175,7 @@ function renderVocabGrid(){
       +'<div style="font-family:Fraunces,serif;font-size:18px;font-weight:700;color:'+v.col+';margin-bottom:4px">'+v.w+'</div>'
       +'<div style="font-size:11.5px;color:rgba(255,255,255,0.80);margin-bottom:7px">'+safeDef+'</div>'
       +'<div style="font-size:12px;font-style:italic;color:'+v.col+';margin-bottom:8px;padding:6px 10px;background:rgba(0,0,0,0.2);border-radius:7px;border-left:2px solid '+v.col+'">"'+safeEx+'"</div>'
-      +'<div style="font-size:11.5px;color:rgba(245,200,66,0.80);font-style:italic;padding:6px 9px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.30);border-radius:0 7px 7px 0;margin-bottom:5px">'      +'<strong>In '+lang+':</strong> '+NL.get('vocab_pos')+'</div>'      +'<div style="font-size:11px;color:var(--teal);font-style:italic" id="vn-'+safeW+'"></div>'
+      +'<div style="margin-top:8px;border-radius:9px;overflow:hidden">'      +'<div style="font-size:10px;font-weight:800;text-transform:uppercase;color:rgba(245,200,66,0.70);padding:4px 9px;background:rgba(245,200,66,0.10)">In '+lang+'</div>'      +'<div data-nt="'+safeDef+'" data-nt-prefix="" style="font-size:12.5px;padding:7px 9px;background:rgba(245,200,66,0.07);line-height:1.60;color:rgba(255,255,255,0.85)"></div>'      +'<div data-nt="'+safeEx+'" data-nt-prefix="" style="font-size:11.5px;padding:5px 9px 7px;background:rgba(245,200,66,0.04);font-style:italic;color:rgba(255,255,255,0.65);border-top:1px solid rgba(245,200,66,0.10)"></div>'      +'</div>'
       +"<button data-w='"+safeW+"' onclick='translateVocWord(this,this.dataset.w)' style='margin-top:6px;padding:3px 10px;border-radius:20px;border:1.5px solid "+v.col+";background:transparent;color:"+v.col+";cursor:pointer;font-size:10px;font-weight:700;'>Explain in "+lang+"</button>"
       +'</div>';
     card.addEventListener('click',function(e){
@@ -4063,6 +4185,8 @@ function renderVocabGrid(){
       else{fr.style.display='block';bk.style.display='none';}
     });
     grid.appendChild(card);
+    // Translate the new data-nt elements in this card
+    card.querySelectorAll('[data-nt]').forEach(function(el){var t=el.getAttribute('data-nt');if(t)nt(el,t,'');});
   });
   var lb=document.getElementById('vocMore');
   if(lb)lb.style.display=((vocPage+1)*VOC_PER>=vocFiltered.length)?'none':'block';
@@ -4119,10 +4243,12 @@ function renderIdiomList(){
     var safeMeaning=id.meaning.replace(/'/g,"");
     var safeEx1=id.ex1?id.ex1.replace(/'/g,""):'';
     var safeEx2=id.ex2?id.ex2.replace(/'/g,""):'';
+    var safeNatMeaning=ntSafe(id.meaning);
+    var safeNatEx1=id.ex1?id.ex1.replace(/"/g,"&quot;").replace(/'/g,"\'"):'';
     var safeNative=id.native?id.native.replace(/'/g,""):'';
     card.innerHTML=
       '<div style="font-family:Fraunces,serif;font-size:18px;font-weight:700;color:'+id.col+';margin-bottom:5px">'+id.ph+'</div>'
-      +'<div style="font-size:13px;line-height:1.68;color:rgba(255,255,255,0.88);margin-bottom:8px">'+id.meaning+'</div>'
+      +'<div style="font-size:13px;line-height:1.68;color:rgba(255,255,255,0.88);margin-bottom:6px">'+id.meaning+'</div>'      +'<div data-nt="'+ntSafe(id.meaning)+'" style="font-size:12.5px;line-height:1.65;color:rgba(245,200,66,0.85);padding:6px 10px;background:rgba(245,200,66,0.08);border-left:2px solid rgba(245,200,66,0.35);border-radius:0 7px 7px 0;margin-bottom:8px;font-style:italic"></div>'
       +'<button data-eid="'+exId+'" onclick="toggleIdiomShow(this.dataset.eid,this)" style="font-size:11px;padding:4px 12px;border-radius:20px;border:1.5px solid '+id.col+';background:transparent;color:'+id.col+';cursor:pointer;font-weight:700;font-family:inherit">Show examples</button>'
       +'<div id="'+exId+'" style="display:none;margin-top:10px">'
       +(safeEx1?'<div style="font-size:12.5px;line-height:1.7;margin-bottom:6px;padding:8px 12px;border-radius:8px;background:rgba(0,0,0,0.25);color:rgba(255,255,255,0.88)"><strong style="color:'+id.col+'">Example 1:</strong> '+id.ex1+'</div>':'')
@@ -4130,6 +4256,8 @@ function renderIdiomList(){
       +(safeNative?'<div style="font-size:12px;font-style:italic;padding:8px 12px;border-radius:8px;background:rgba(0,0,0,0.20);border-left:3px solid '+id.col+';color:'+id.col+'">'+id.native+'</div>':'')
       +'</div>';
     list.appendChild(card);
+    // Translate new elements in this card
+    card.querySelectorAll('[data-nt]').forEach(function(el){var t=el.getAttribute('data-nt');if(t)nt(el,t,'');});
   });
   var lb=document.getElementById('idiomMore');
   if(lb)lb.style.display=((idiomPage+1)*IDM_PER>=idiomFiltered.length)?'none':'block';
@@ -4236,6 +4364,7 @@ function renderChallenge(){
     +'<div style="color:var(--gold);font-style:italic;font-size:12px;padding:9px 12px;background:rgba(0,0,0,0.2);border-radius:8px;border-left:3px solid var(--gold)"><strong>In '+lang+':</strong> '+c.answerNative+'</div>'
     +'</div>'
     +'</div>';
+  ntBatch();
 }
 function revealChallenge(btn){var a=document.getElementById('chalAns');if(a){a.style.display='block';btn.style.display='none';}}
 
@@ -4264,6 +4393,7 @@ function translateMistake(btn,idx,col,why,wrong,right){
   var el=document.getElementById('mn-'+idx);
   if(el)el.innerHTML='<div style="font-size:12px;padding:7px 10px;border-radius:7px;background:rgba(255,255,255,0.04);border-left:2px solid '+col+'"><strong style="color:'+col+'">Why wrong:</strong> '+why+'<br><span style="color:rgba(255,255,255,0.60)">✅ Say: <strong>'+right+'</strong> ❌ Not: <strong>'+wrong+'</strong></span><br><span style="font-size:11px;color:rgba(245,200,66,0.65)">In '+lang+': Full explanation in your language — Premium coming soon.</span></div>';
   btn.style.display='none';
+  ntBatch();
 }
 function filterConfuse(cat,btn){
   document.querySelectorAll('#confuseFilter .chip').forEach(function(b){b.style.borderColor='';b.style.background='';b.style.color='';});
@@ -4278,12 +4408,13 @@ function renderConfuse(){
     var div=document.createElement('div');div.className='confuse-card';div.style.background=c.bg;div.style.borderLeft='4px solid '+c.col;
     var exId='ce-'+c.w1+'-'+c.w2;
     div.innerHTML='<div class="confuse-pair"><span class="confuse-word" style="background:'+c.col+'20;color:'+c.col+'">'+c.w1+'</span><span class="confuse-vs">vs</span><span class="confuse-word" style="background:'+c.col+'20;color:'+c.col+'">'+c.w2+'</span></div>'
-      +'<div class="confuse-rule" style="color:var(--txt-1)">'+c.rule+'</div>'
+      +'<div class="confuse-rule" style="color:var(--txt-1)">'+c.rule+'</div>'      +'<div data-nt="'+ntSafe(c.rule)+'" style="font-size:12.5px;color:rgba(245,200,66,0.85);padding:7px 10px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.35);border-radius:0 7px 7px 0;margin:6px 0;line-height:1.60;font-style:italic"></div>'
       +'<div style="font-size:12px;font-style:italic;padding:7px 10px;border-radius:7px;background:rgba(0,0,0,0.05);margin-bottom:7px"><strong style="color:'+c.col+'">In '+lang+':</strong> '+c.native+'</div>'
       +'<button onclick="toggleConfuseEx(\''+exId+'\',this)" style="font-size:11px;padding:3px 10px;border-radius:20px;border:1.5px solid '+c.col+';background:transparent;color:'+c.col+';cursor:pointer;font-family:inherit;font-weight:600">Show examples</button>'
       +'<div class="confuse-examples" id="'+exId+'"><div style="font-size:12px;padding:7px 10px;border-radius:7px;margin-bottom:5px;background:rgba(255,255,255,0.7)"><strong style="color:'+c.col+'">'+c.w1+':</strong> '+c.ex1.e+'<br><em style="color:var(--txt-3)">'+c.ex1.n+'</em></div><div style="font-size:12px;padding:7px 10px;border-radius:7px;background:rgba(255,255,255,0.7)"><strong style="color:'+c.col+'">'+c.w2+':</strong> '+c.ex2.e+'<br><em style="color:var(--txt-3)">'+c.ex2.n+'</em></div></div>';
     list.appendChild(div);
   });
+  ntBatch();
 }
 
 function toggleConfuseEx(id,btn){var el=document.getElementById(id);if(!el)return;var open=el.classList.contains('show');el.classList.toggle('show',!open);btn.textContent=open?'Show examples':'Hide examples';}
@@ -4344,8 +4475,12 @@ function renderPhrases(){
       +'<div class="phrase-meaning" style="color:var(--txt-1)">'+p.meaning+'</div>'
       +'<div class="phrase-example" style="border-color:'+col+';background:rgba(255,255,255,0.6)"><strong style="color:'+col+'">Example:</strong> '+p.example+'</div>'
       +'<div style="font-size:12px;color:var(--txt-3);margin-bottom:8px;padding:5px 10px;background:rgba(0,0,0,0.04);border-radius:6px"><strong style="color:'+col+'">When to use:</strong> '+p.ctx+'</div>'
-      +'<div style="font-size:12px;color:rgba(245,200,66,0.80);padding:7px 10px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.30);border-radius:0 7px 7px 0;margin-top:6px">'      +'<strong>In '+lang+':</strong> '+NL.get('phrase_use')+'</div>'      +'<div id="pn-'+idx+'" style="font-size:11px;color:rgba(255,255,255,0.45);padding:4px 10px">'+NL.get('phrase_register')+'</div>';
+            +'<div style="margin-top:8px;border-radius:9px;overflow:hidden">'      +'<div style="font-size:10px;font-weight:800;text-transform:uppercase;color:rgba(245,200,66,0.70);padding:4px 9px 3px;background:rgba(245,200,66,0.10)">In '+lang+'</div>'      +'<div id="pnt-mean-'+idx+'" style="font-size:12.5px;padding:7px 9px 4px;background:rgba(245,200,66,0.07);line-height:1.60;color:rgba(255,255,255,0.85)"></div>'      +'<div id="pnt-ex-'+idx+'" style="font-size:11.5px;padding:4px 9px 7px;background:rgba(245,200,66,0.04);font-style:italic;color:rgba(255,255,255,0.65);border-top:1px solid rgba(245,200,66,0.10)"></div>'      +'</div>';
     area.appendChild(card);
+    // Translate meaning and example
+    ntEl('pnt-mean-'+idx, p.meaning, '');
+    ntEl('pnt-ex-'+idx, p.example, '');
+area.appendChild(card);
   }
 }
 
@@ -4379,6 +4514,7 @@ function movePWord(w,p){
   if(!bank||!target)return;
   if(bank.contains(w))target.appendChild(w);else bank.appendChild(w);
   checkPuzzle(p);
+  ntBatch();
 }
 
 function checkPuzzle(p){
@@ -4438,13 +4574,13 @@ function checkSpotter(){
     else if(sp.dataset.clicked==='1')sp.style.cssText='cursor:pointer;padding:2px 4px;border-radius:4px;background:rgba(30,132,73,0.2);color:var(--teal);font-weight:700';
   });
   var fb=document.getElementById('spotterFeedback');
-  var exps=Object.entries(s.exps).map(function(kv){
-    return '<div style="margin-bottom:8px;padding:8px 12px;background:rgba(255,255,255,0.6);border-radius:8px;border-left:3px solid '+s.col+'"><strong style="color:'+s.col+'">"'+kv[0]+'":</strong> '+kv[1]+'</div>';
-  }).join('');
-  fb.innerHTML='<div style="background:'+s.bg+';border-left:4px solid '+s.col+';border-radius:9px;padding:13px">'
-    +'<div style="font-family:Fraunces,serif;font-size:18px;font-weight:700;color:'+s.col+';margin-bottom:8px">Explanation of All Errors</div>'
-    +exps
-    +'<div style="margin-top:9px;padding:8px 12px;background:rgba(0,0,0,0.05);border-radius:7px;font-size:12px;color:var(--txt-3)"><strong style="color:'+s.col+'">In '+lang+':</strong> Red = errors. Very common mistakes for '+lang+' speakers. Study each correction carefully.</div></div>';
+  var expItems=Object.entries(s.exps).map(function(kv,ki){
+    var ntId='spexp-'+ki+'-'+Date.now();
+    return '<div style="margin-bottom:8px;padding:8px 12px;background:rgba(0,0,0,0.2);border-radius:8px;border-left:3px solid '+s.col+'">'    +'<strong style="color:'+s.col+'">"'+kv[0]+'":</strong> <span style="color:rgba(255,255,255,0.85)">'+kv[1]+'</span>'    +'<div data-nt="'+ntSafe(kv[1])+'" style="font-size:11.5px;color:rgba(245,200,66,0.85);margin-top:4px;font-style:italic;line-height:1.55"></div></div>';
+  });
+  var exps=expItems.join('');
+  fb.innerHTML='<div style="background:'+s.bg+';border-left:4px solid '+s.col+';border-radius:9px;padding:13px">'    +'<div style="font-family:Fraunces,serif;font-size:18px;font-weight:700;color:'+s.col+';margin-bottom:8px">Explanation of All Errors</div>'    +exps    +'<div style="margin-top:9px;padding:8px 12px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.30);border-radius:0 7px 7px 0;font-size:12px">'    +'<div style="font-size:10px;font-weight:800;text-transform:uppercase;color:rgba(245,200,66,0.70);margin-bottom:4px">In '+lang+'</div>'    +'<div data-nt="These are very common grammar mistakes. Red words show errors. Study each correction carefully." style="font-size:12px;color:rgba(245,200,66,0.85);font-style:italic;line-height:1.55"></div></div></div>';
+  ntBatch();
 }
 
 function nextSpotter(){currentSpotter++;renderSpotter();}
@@ -5321,7 +5457,7 @@ function fsRender(level){
   h+='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><span style="font-size:11px;color:rgba(167,139,250,0.70);font-weight:700;text-transform:uppercase;letter-spacing:.06em">Formality level</span><span style="font-size:13px;font-weight:700;color:'+FS_COLORS[level]+'">'+FS_LABELS[level]+'</span></div>';
   h+='<input type="range" min="0" max="4" value="'+level+'" style="width:100%;accent-color:#A78BFA;margin-bottom:12px" oninput="fsRender(parseInt(this.value))">';
   h+='<div style="background:rgba(167,139,250,0.10);border:2px solid '+FS_COLORS[level]+';border-radius:12px;padding:16px;margin-bottom:12px">';
-  h+='<div style="font-size:15px;font-weight:600;color:#FFFFFF;line-height:1.70">'+fsCurrentLevels[level]+'</div></div>';
+  h+='<div style="font-size:15px;font-weight:600;color:#FFFFFF;line-height:1.70">'+fsCurrentLevels[level]+'</div>'  +'<div data-nt="'+ntSafe(fsCurrentLevels[level])+'" style="font-size:13.5px;color:rgba(245,200,66,0.90);padding:8px 0 0;line-height:1.65;font-style:italic"></div></div>';
   h+='<div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.40);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">All 5 levels:</div>';
   fsCurrentLevels.forEach(function(l,i){
     h+='<div onclick="fsRender('+i+')" style="padding:9px 12px;border-radius:9px;border:1px solid '+(i===level?FS_COLORS[i]:'rgba(255,255,255,0.09)')+';background:'+(i===level?'rgba(167,139,250,0.12)':'rgba(255,255,255,0.03)')+';margin-bottom:5px;cursor:pointer;transition:all .13s">';
@@ -5329,7 +5465,7 @@ function fsRender(level){
   });
   h+='<div style="margin-top:10px;font-size:11.5px;font-style:italic;color:rgba(245,200,66,0.70);padding:8px 11px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.35);border-radius:0 8px 8px 0"><strong>In '+lang+':</strong> '+NL.get('fs_register')+'</div>';
   h+='</div>';
-  wHtml('fsResult',h);
+  wHtml('fsResult',h);ntBatch();
 }
 function fsExample(){var d=document.getElementById('fsInput');if(d)d.value='I want a refund';fsGenerate();}
 function fsClear(){var d=document.getElementById('fsInput');if(d)d.value='';wHtml('fsResult','');fsCurrentLevels=null;}
@@ -5399,10 +5535,10 @@ function pdCheck(){
     if(!e.label)return;
     h+='<div style="background:rgba(255,255,255,0.04);border:1px solid rgba(52,211,153,0.18);border-radius:10px;padding:11px;margin-bottom:7px">';
     h+='<div style="font-size:12px;font-weight:700;color:#34D399;margin-bottom:4px">🩺 '+e.label+'</div>';
-    h+='<div style="font-size:12.5px;color:rgba(255,255,255,0.80);margin-bottom:6px;line-height:1.60">'+e.fix+'</div>';
+    h+='<div style="font-size:12.5px;color:rgba(255,255,255,0.80);margin-bottom:4px;line-height:1.60">'+e.fix+'</div>'    +'<div data-nt="'+ntSafe(e.fix)+'" style="font-size:12px;color:rgba(245,200,66,0.85);padding:5px 10px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.30);border-radius:0 7px 7px 0;margin-bottom:6px;line-height:1.55;font-style:italic"></div>';
     h+='<div style="font-size:12px;font-style:italic;color:rgba(245,200,66,0.80);padding:7px 10px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.40);border-radius:0 7px 7px 0">'+pdNat(e.key)+'</div></div>';
   });
-  wHtml('pdResult',h);
+  wHtml('pdResult',h);ntBatch();
 }
 function pdExample(){var d=document.getElementById('pdInput');if(d)d.value='after the meeting john said we should review the proposal again before friday';pdCheck();}
 
@@ -5550,7 +5686,7 @@ function renderCollocations(){
       item.nouns.forEach(function(n){h+='<span style="background:rgba(96,165,250,0.12);color:#60A5FA;border:1px solid rgba(96,165,250,0.28);border-radius:7px;padding:3px 10px;font-size:12.5px;font-weight:600">'+item[keyName]+' '+n+'</span>';});
       h+='</div>';
       if(item.wrong)h+='<div style="font-size:11.5px;color:rgba(255,107,107,0.80);margin-bottom:5px">❌ Not: '+item.wrong+'</div>';
-      h+='<div style="font-size:11.5px;color:rgba(245,200,66,0.70);font-style:italic">💡 '+item.tip+'</div>';
+      h+='<div style="font-size:11.5px;color:rgba(245,200,66,0.70);font-style:italic">💡 '+item.tip+'</div>'      +'<div data-nt="'+ntSafe(item.tip)+'" style="font-size:11.5px;color:rgba(245,200,66,0.85);font-style:italic;margin-top:3px;padding:5px 8px;background:rgba(245,200,66,0.06);border-radius:6px"></div>';
       h+='<div style="font-size:12px;color:rgba(255,255,255,0.65);padding:6px 10px;background:rgba(245,200,66,0.06);border-left:2px solid rgba(245,200,66,0.25);border-radius:0 7px 7px 0;margin-top:7px">In '+lang+': '+(collCurrentCat==='verbs'?(item.verb==='make'?NL.get('coll_make'):item.verb==='do'?NL.get('coll_do'):NL.get('coll_intro')):NL.get('coll_intro'))+'</div>';
       h+='</div>';
     });
@@ -5565,7 +5701,7 @@ function renderCollocations(){
       h+='</div>';
     });
   }
-  list.innerHTML=natIntro+h||'<div style="padding:20px;text-align:center;color:rgba(255,255,255,0.40)">Click a category above to explore collocations.</div>';
+  list.innerHTML=natIntro+h||'<div style="padding:20px;text-align:center;color:rgba(255,255,255,0.40)">Click a category above to explore collocations.</div>';ntBatch();
 }
 
 // ══════════════════════════════════════════════════════
@@ -5615,7 +5751,7 @@ function decodeError(){
     found.forEach(function(p){
       h+='<div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,107,107,0.20);border-radius:12px;padding:13px;margin-bottom:8px">';
       h+='<div style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,107,107,0.15);border-radius:7px;padding:4px 10px;font-size:11px;font-weight:800;color:#FF6B6B;margin-bottom:8px">🔬 '+p.type+'</div>';
-      h+='<div style="font-size:13px;color:rgba(255,255,255,0.85);line-height:1.65;margin-bottom:8px">'+p.rule+'</div>';
+      h+='<div style="font-size:13px;color:rgba(255,255,255,0.85);line-height:1.65;margin-bottom:4px">'+p.rule+'</div>'      +'<div data-nt="'+ntSafe(p.rule)+'" style="font-size:12px;color:rgba(245,200,66,0.85);padding:6px 10px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.35);border-radius:0 7px 7px 0;margin-bottom:8px;line-height:1.55;font-style:italic"></div>';
       // Map error type to native language explanation
       var errNatKey={'State Verb Error':'err_state_verb','False Preposition Error':'err_preposition',
         'Indirect Question Word Order':'err_indirect','Present Perfect vs Simple Past':'err_tense',
@@ -5629,7 +5765,7 @@ function decodeError(){
       h+='</div>';
     });
   }
-  document.getElementById('errorResult').innerHTML=h;
+  document.getElementById('errorResult').innerHTML=h;ntBatch();
 }
 function errorExample(){
   var examples=['She is knowing the answer to this question.','I am having a very big house near the station.','Can you tell me where is the nearest hospital?','We discussed about the project yesterday.','I have seen this film yesterday evening.','If I will have time, I will call you.'];
@@ -5701,7 +5837,7 @@ function renderWordBuilder(){
       h+='<div style="background:'+item.color+'12;border:1px solid '+item.color+'35;border-radius:9px;padding:8px 10px">';
       h+='<div style="font-size:13px;font-weight:700;color:'+item.color+'">'+wordStr+'</div>';
       if(baseStr)h+='<div style="font-size:10px;color:rgba(255,255,255,0.40)">← '+baseStr+'</div>';
-      if(defStr)h+='<div style="font-size:11px;color:rgba(255,255,255,0.70);margin-top:2px">'+defStr+'</div>';
+      if(defStr){h+='<div style="font-size:11px;color:rgba(255,255,255,0.70);margin-top:2px">'+defStr+'</div>'      +'<div data-nt="'+ntSafe(defStr)+'" style="font-size:11px;color:rgba(245,200,66,0.80);margin-top:2px;font-style:italic;line-height:1.45"></div>';}
       h+='</div>';
     });
     h+='</div></div>';
@@ -5709,7 +5845,7 @@ function renderWordBuilder(){
   // Add native language intro
   var wbNatKey={'prefix':'wb_prefix_intro','suffix':'wb_suffix_intro','root':'wb_root_intro'};
   var natNote='<div style="background:rgba(52,211,153,0.07);border:1px solid rgba(52,211,153,0.20);border-radius:10px;padding:10px 12px;margin-bottom:10px;font-size:12.5px;color:rgba(255,255,255,0.80)"><span style="font-weight:700;color:#34D399">🌐 In '+lang+':</span> '+NL.get(wbNatKey[wbCurrentCat]||'wb_prefix_intro')+'</div>';
-  list.innerHTML=natNote+(h||'<div style="padding:20px;text-align:center;color:rgba(255,255,255,0.40)">Click a category to explore.</div>');
+  list.innerHTML=natNote+(h||'<div style="padding:20px;text-align:center;color:rgba(255,255,255,0.40)">Click a category to explore.</div>');ntBatch();
 }
 
 window.onload=function(){

@@ -582,6 +582,13 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
   <button class="tbtn" onclick="showTab('vocabulary',this)">📚 Vocabulary</button>
   <button class="tbtn" onclick="showTab('idioms',this)">💬 Idioms</button>
   <button class="tbtn" onclick="showTab('writing',this)">✍️ Writing</button>
+  <button class="tbtn" onclick="showTab('beforeafter',this)" style="color:#F59E0B;border-left:2px solid rgba(245,158,11,0.40)">✨ Before &amp; After</button>
+  <button class="tbtn" onclick="showTab('formalslider',this)" style="color:#A78BFA">🎚️ Formality Slider</button>
+  <button class="tbtn" onclick="showTab('collocations',this)" style="color:#60A5FA">🔗 Collocations</button>
+  <button class="tbtn" onclick="showTab('errordecoder',this)" style="color:#FF6B6B">🔬 Error Decoder</button>
+  <button class="tbtn" onclick="showTab('wordbuilder',this)" style="color:#34D399">🧩 Word Builder</button>
+  <button class="tbtn" onclick="showTab('punctdoctor',this)" style="color:#34D399">🩺 Punctuation</button>
+  <button class="tbtn" onclick="showTab('redundancy',this)" style="color:#F472B6">✂️ Redundancy</button>
   <button class="tbtn" onclick="showTab('accents',this)">🗣️ Accents</button>
   <button class="tbtn" onclick="showTab('challenge',this)">🎯 Daily Challenge</button>
   <button class="tbtn" onclick="showTab('mistakes',this)">⚠️ Mistakes</button>
@@ -598,13 +605,6 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
   <button class="tbtn" onclick="showTab('stress',this)" style="color:#C084FC">🎵 Stress Trainer</button>
   <button class="tbtn" onclick="showTab('minimalpairs',this)" style="color:#FF6B6B">👂 Minimal Pairs</button>
   <button class="tbtn" onclick="showTab('listeninggap',this)" style="color:#3DDED4">📊 Gap Test</button>
-  <button class="tbtn" onclick="showTab('beforeafter',this)" style="color:#F59E0B;border-left:2px solid rgba(245,158,11,0.40)">✨ Before &amp; After</button>
-  <button class="tbtn" onclick="showTab('formalslider',this)" style="color:#A78BFA">🎚️ Formality Slider</button>
-  <button class="tbtn" onclick="showTab('weakwords',this)" style="color:#FB923C">🔍 Weak Words</button>
-  <button class="tbtn" onclick="showTab('punctdoctor',this)" style="color:#34D399">🩺 Punctuation</button>
-  <button class="tbtn" onclick="showTab('redundancy',this)" style="color:#F472B6">✂️ Redundancy</button>
-  <button class="tbtn" onclick="showTab('ghostwords',this)" style="color:#60A5FA">👻 Ghost Words</button>
-  <button class="tbtn" onclick="showTab('rhythmmap',this)" style="color:#FBBF24">🌊 Rhythm Map</button>
 </div></div>
 
 <!-- ══ LISTENING FEATURES SHOWCASE — visible on front page ══ -->
@@ -691,34 +691,35 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
       <p style="font-size:11.5px;color:rgba(255,255,255,0.62);line-height:1.58;margin-bottom:7px">Type any message — drag a slider to see it transform from Very Casual to Formal English instantly.</p>
       <span style="font-size:10px;padding:2px 8px;border-radius:20px;background:rgba(167,139,250,0.12);color:#A78BFA;font-weight:600">5 register levels</span>
     </div>
-    <div onclick="showTab('weakwords',null)" style="background:rgba(251,146,60,0.08);border:1.5px solid rgba(251,146,60,0.28);border-radius:16px;padding:14px;cursor:pointer;transition:all .18s" onmouseover="this.style.borderColor='rgba(251,146,60,0.65)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='rgba(251,146,60,0.28)';this.style.transform=''">
-      <div style="display:flex;align-items:center;gap:9px;margin-bottom:7px"><div style="width:36px;height:36px;border-radius:9px;background:rgba(251,146,60,0.18);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">🔍</div><div><div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:rgba(251,146,60,0.70)">W3</div><div style="font-family:'Fraunces',serif;font-size:15px;font-weight:700;color:#FB923C">Weak Word Detector</div></div></div>
-      <p style="font-size:11.5px;color:rgba(255,255,255,0.62);line-height:1.58;margin-bottom:7px">Highlights "very", "good", "nice", "got" and 196 other weak words. Shows 3 stronger alternatives each.</p>
-      <span style="font-size:10px;padding:2px 8px;border-radius:20px;background:rgba(251,146,60,0.12);color:#FB923C;font-weight:600">200 weak words database</span>
+    <div onclick="showTab('collocations',null)" style="background:rgba(96,165,250,0.08);border:1.5px solid rgba(96,165,250,0.28);border-radius:16px;padding:14px;cursor:pointer;transition:all .18s" onmouseover="this.style.borderColor='rgba(96,165,250,0.65)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='rgba(96,165,250,0.28)';this.style.transform=''">
+      <div style="display:flex;align-items:center;gap:9px;margin-bottom:7px"><div style="width:36px;height:36px;border-radius:9px;background:rgba(96,165,250,0.18);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">🔗</div><div><div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:rgba(96,165,250,0.70)">W3</div><div style="font-family:'Fraunces',serif;font-size:15px;font-weight:700;color:#60A5FA">Collocations Coach</div></div></div>
+      <p style="font-size:11.5px;color:rgba(255,255,255,0.62);line-height:1.58;margin-bottom:7px">Words that always go together — make/do/take/have — with native language explanation for every rule.</p>
+      <span style="font-size:10px;padding:2px 8px;border-radius:20px;background:rgba(96,165,250,0.12);color:#60A5FA;font-weight:600">200+ collocations</span>
+    </div>
+    <div onclick="showTab('errordecoder',null)" style="background:rgba(255,107,107,0.08);border:1.5px solid rgba(255,107,107,0.28);border-radius:16px;padding:14px;cursor:pointer;transition:all .18s" onmouseover="this.style.borderColor='rgba(255,107,107,0.65)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='rgba(255,107,107,0.28)';this.style.transform=''">
+      <div style="display:flex;align-items:center;gap:9px;margin-bottom:7px"><div style="width:36px;height:36px;border-radius:9px;background:rgba(255,107,107,0.18);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">🔬</div><div><div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,107,107,0.70)">W4</div><div style="font-family:'Fraunces',serif;font-size:15px;font-weight:700;color:#FF6B6B">Error Pattern Decoder</div></div></div>
+      <p style="font-size:11.5px;color:rgba(255,255,255,0.62);line-height:1.58;margin-bottom:7px">Paste a sentence with a grammar mistake — the app names the error type, explains the rule in your language and corrects it.</p>
+      <span style="font-size:10px;padding:2px 8px;border-radius:20px;background:rgba(255,107,107,0.12);color:#FF6B6B;font-weight:600">12 grammar error patterns</span>
+    </div>
+    <div onclick="showTab('wordbuilder',null)" style="background:rgba(52,211,153,0.08);border:1.5px solid rgba(52,211,153,0.28);border-radius:16px;padding:14px;cursor:pointer;transition:all .18s" onmouseover="this.style.borderColor='rgba(52,211,153,0.65)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='rgba(52,211,153,0.28)';this.style.transform=''">
+      <div style="display:flex;align-items:center;gap:9px;margin-bottom:7px"><div style="width:36px;height:36px;border-radius:9px;background:rgba(52,211,153,0.18);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">🧩</div><div><div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:rgba(52,211,153,0.70)">W5</div><div style="font-family:'Fraunces',serif;font-size:15px;font-weight:700;color:#34D399">Word Builder</div></div></div>
+      <p style="font-size:11.5px;color:rgba(255,255,255,0.62);line-height:1.58;margin-bottom:7px">Prefixes, suffixes and word roots — understand how English words are built and unlock hundreds of new words instantly.</p>
+      <span style="font-size:10px;padding:2px 8px;border-radius:20px;background:rgba(52,211,153,0.12);color:#34D399;font-weight:600">8 prefixes · 8 suffixes · 8 roots</span>
     </div>
     <div onclick="showTab('punctdoctor',null)" style="background:rgba(52,211,153,0.08);border:1.5px solid rgba(52,211,153,0.28);border-radius:16px;padding:14px;cursor:pointer;transition:all .18s" onmouseover="this.style.borderColor='rgba(52,211,153,0.65)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='rgba(52,211,153,0.28)';this.style.transform=''">
-      <div style="display:flex;align-items:center;gap:9px;margin-bottom:7px"><div style="width:36px;height:36px;border-radius:9px;background:rgba(52,211,153,0.18);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">🩺</div><div><div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:rgba(52,211,153,0.70)">W4</div><div style="font-family:'Fraunces',serif;font-size:15px;font-weight:700;color:#34D399">Punctuation Doctor</div></div></div>
-      <p style="font-size:11.5px;color:rgba(255,255,255,0.62);line-height:1.58;margin-bottom:7px">Finds comma splices, missing apostrophes, wrong quotation marks and 37 other punctuation errors.</p>
-      <span style="font-size:10px;padding:2px 8px;border-radius:20px;background:rgba(52,211,153,0.12);color:#34D399;font-weight:600">40 error types</span>
+      <div style="display:flex;align-items:center;gap:9px;margin-bottom:7px"><div style="width:36px;height:36px;border-radius:9px;background:rgba(52,211,153,0.18);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">🩺</div><div><div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:rgba(52,211,153,0.70)">W6</div><div style="font-family:'Fraunces',serif;font-size:15px;font-weight:700;color:#34D399">Punctuation Doctor</div></div></div>
+      <p style="font-size:11.5px;color:rgba(255,255,255,0.62);line-height:1.58;margin-bottom:7px">Finds comma splices, missing apostrophes, wrong quotation marks and other punctuation errors. Shows the corrected sentence.</p>
+      <span style="font-size:10px;padding:2px 8px;border-radius:20px;background:rgba(52,211,153,0.12);color:#34D399;font-weight:600">11 error types</span>
     </div>
     <div onclick="showTab('redundancy',null)" style="background:rgba(244,114,182,0.08);border:1.5px solid rgba(244,114,182,0.28);border-radius:16px;padding:14px;cursor:pointer;transition:all .18s" onmouseover="this.style.borderColor='rgba(244,114,182,0.65)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='rgba(244,114,182,0.28)';this.style.transform=''">
-      <div style="display:flex;align-items:center;gap:9px;margin-bottom:7px"><div style="width:36px;height:36px;border-radius:9px;background:rgba(244,114,182,0.18);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">✂️</div><div><div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:rgba(244,114,182,0.70)">W5</div><div style="font-family:'Fraunces',serif;font-size:15px;font-weight:700;color:#F472B6">Redundancy Cutter</div></div></div>
+      <div style="display:flex;align-items:center;gap:9px;margin-bottom:7px"><div style="width:36px;height:36px;border-radius:9px;background:rgba(244,114,182,0.18);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">✂️</div><div><div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:rgba(244,114,182,0.70)">W7</div><div style="font-family:'Fraunces',serif;font-size:15px;font-weight:700;color:#F472B6">Redundancy Cutter</div></div></div>
       <p style="font-size:11.5px;color:rgba(255,255,255,0.62);line-height:1.58;margin-bottom:7px">"Due to the fact that" → "because". Finds 300 wordy phrases and shows the tight, native replacement.</p>
       <span style="font-size:10px;padding:2px 8px;border-radius:20px;background:rgba(244,114,182,0.12);color:#F472B6;font-weight:600">300 wordy phrases</span>
     </div>
-    <div onclick="showTab('ghostwords',null)" style="background:rgba(96,165,250,0.08);border:1.5px solid rgba(96,165,250,0.28);border-radius:16px;padding:14px;cursor:pointer;transition:all .18s" onmouseover="this.style.borderColor='rgba(96,165,250,0.65)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='rgba(96,165,250,0.28)';this.style.transform=''">
-      <div style="display:flex;align-items:center;gap:9px;margin-bottom:7px"><div style="width:36px;height:36px;border-radius:9px;background:rgba(96,165,250,0.18);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">👻</div><div><div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:rgba(96,165,250,0.70)">W6</div><div style="font-family:'Fraunces',serif;font-size:15px;font-weight:700;color:#60A5FA">Ghost Word Tracker</div></div></div>
-      <p style="font-size:11.5px;color:rgba(255,255,255,0.62);line-height:1.58;margin-bottom:7px">Tracks YOUR personal crutch words across all sessions. Shows your top overused words and flags them live.</p>
-      <span style="font-size:10px;padding:2px 8px;border-radius:20px;background:rgba(96,165,250,0.12);color:#60A5FA;font-weight:600">Personalised tracking</span>
-    </div>
-    <div onclick="showTab('rhythmmap',null)" style="background:rgba(251,191,36,0.08);border:1.5px solid rgba(251,191,36,0.28);border-radius:16px;padding:14px;cursor:pointer;transition:all .18s" onmouseover="this.style.borderColor='rgba(251,191,36,0.65)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='rgba(251,191,36,0.28)';this.style.transform=''">
-      <div style="display:flex;align-items:center;gap:9px;margin-bottom:7px"><div style="width:36px;height:36px;border-radius:9px;background:rgba(251,191,36,0.18);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">🌊</div><div><div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:rgba(251,191,36,0.70)">W7</div><div style="font-family:'Fraunces',serif;font-size:15px;font-weight:700;color:#FBBF24">Sentence Rhythm Map</div></div></div>
-      <p style="font-size:11.5px;color:rgba(255,255,255,0.62);line-height:1.58;margin-bottom:7px">Visual bar chart of your sentence lengths. Spots paragraphs that are too monotonous or too long instantly.</p>
-      <span style="font-size:10px;padding:2px 8px;border-radius:20px;background:rgba(251,191,36,0.12);color:#FBBF24;font-weight:600">Readability score</span>
-    </div>
   </div>
-</div>
-<div class="feature-strip">
+      <p style="font-size:11.5px;color:rgba(255,255,255,0.62);line-height:1.58;margin-bottom:7px">Highlights "very", "good", "nice", "got" and 196 other weak words. Shows 3 stronger alternatives each.</p>
+      <span style="font-size:10px;padding:2px 8px;border-radius:20px;background:rgba(251,146,60,0.12);color:#FB923C;font-weight:600">200 weak words database</span>
+    </div></div>
   <div class="feat-item"><span class="feat-icon">🎯</span><span class="feat-text"><b>Bilingual</b> explanations</span></div>
   <div class="feat-item"><span class="feat-icon">🌏</span><span class="feat-text"><b>16</b> native languages</span></div>
   <div class="feat-item"><span class="feat-icon">🎤</span><span class="feat-text"><b>Speaking</b> coach</span></div>
@@ -734,40 +735,39 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
 
 <!-- TUTOR — GLAMOROUS VERSION -->
 <div id="panel-chat" class="panel active" style="flex-direction:column;overflow:hidden">
-
-  <!-- COMING SOON SCREEN -->
+  <!-- AI Tutor Coming Soon -->
   <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 20px;text-align:center;background:linear-gradient(135deg,#0f0d0b,#1a1612,#0d1f1a)">
     <div style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#e8a820);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:32px;font-weight:700;color:#05070F;margin-bottom:18px;box-shadow:0 8px 30px rgba(245,200,66,0.30)">N</div>
-    <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(245,200,66,0.12);border:1.5px solid rgba(245,200,66,0.35);border-radius:100px;padding:5px 16px;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:16px">🚀 Premium Feature</div>
-    <h2 style="font-family:'Fraunces',serif;font-size:clamp(24px,4vw,36px);font-weight:900;color:#FFFFFF;line-height:1.1;letter-spacing:-1px;margin-bottom:10px">Your Personal <em style="color:var(--gold);font-style:italic">AI English Tutor</em></h2>
-    <p style="font-size:14px;color:rgba(255,255,255,0.65);max-width:440px;line-height:1.72;margin-bottom:22px">A live AI tutor that explains every grammar rule, corrects every mistake, and answers every question — <strong style="color:var(--gold)">in English AND your native language</strong>. Coming very soon for registered members.</p>
+    <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(245,200,66,0.12);border:1.5px solid rgba(245,200,66,0.35);border-radius:100px;padding:5px 16px;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:16px">🚀 Premium Feature — Coming Soon</div>
+    <h2 style="font-family:'Fraunces',serif;font-size:clamp(22px,4vw,34px);font-weight:900;color:#FFFFFF;line-height:1.1;letter-spacing:-1px;margin-bottom:10px">Your Personal <em style="color:var(--gold);font-style:italic">AI English Tutor</em></h2>
+    <p style="font-size:13.5px;color:rgba(255,255,255,0.65);max-width:440px;line-height:1.75;margin-bottom:22px">A live AI tutor that explains every grammar rule, corrects every mistake, and answers every question — <strong style="color:var(--gold)">in English AND your native language</strong>. Launching soon for registered members.</p>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:380px;width:100%;margin-bottom:22px">
       <div style="background:rgba(245,200,66,0.08);border:1px solid rgba(245,200,66,0.20);border-radius:10px;padding:10px;font-size:12px;color:rgba(255,255,255,0.75)">🎯 Grammar corrections in your language</div>
-      <div style="background:rgba(78,205,196,0.08);border:1px solid rgba(78,205,196,0.20);border-radius:10px;padding:10px;font-size:12px;color:rgba(255,255,255,0.75)">💬 Ask anything — get bilingual answers</div>
+      <div style="background:rgba(78,205,196,0.08);border:1px solid rgba(78,205,196,0.20);border-radius:10px;padding:10px;font-size:12px;color:rgba(255,255,255,0.75)">💬 Ask anything — bilingual answers</div>
       <div style="background:rgba(108,52,131,0.10);border:1px solid rgba(108,52,131,0.20);border-radius:10px;padding:10px;font-size:12px;color:rgba(255,255,255,0.75)">📚 Vocabulary with native examples</div>
       <div style="background:rgba(26,82,118,0.10);border:1px solid rgba(26,82,118,0.20);border-radius:10px;padding:10px;font-size:12px;color:rgba(255,255,255,0.75)">✉️ Email and professional writing help</div>
     </div>
-    <button onclick="openWaitlist()" style="padding:14px 32px;background:linear-gradient(135deg,var(--gold),#e8a820);color:#05070F;border:none;border-radius:12px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:800;cursor:pointer;letter-spacing:-.2px;box-shadow:0 6px 24px rgba(245,200,66,0.30);transition:all .2s" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 32px rgba(245,200,66,0.40)'" onmouseout="this.style.transform='';this.style.boxShadow='0 6px 24px rgba(245,200,66,0.30)'">
+    <button onclick="openWaitlist()" style="padding:14px 32px;background:linear-gradient(135deg,var(--gold),#e8a820);color:#05070F;border:none;border-radius:12px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:800;cursor:pointer;letter-spacing:-.2px;box-shadow:0 6px 24px rgba(245,200,66,0.30)">
       🚀 Register for Early Access — Free
     </button>
     <p style="font-size:11px;color:rgba(255,255,255,0.35);margin-top:12px">While you wait — explore 30+ free tools using the tabs above ↑</p>
   </div>
 </div>
 
-<!-- SPEAKING — COMING SOON -->
-<div id="panel-speaking" class="panel" style="flex-direction:column;overflow:hidden">
+<!-- SPEAKING -->
+<div id="panel-speaking" class="panel">
+  <!-- Speaking Coach Coming Soon -->
   <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 20px;text-align:center;background:linear-gradient(135deg,#030E0D,#061A18)">
     <div style="font-size:56px;margin-bottom:16px">🎤</div>
-    <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(78,205,196,0.12);border:1.5px solid rgba(78,205,196,0.35);border-radius:100px;padding:5px 16px;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:16px">🚀 Premium Feature</div>
+    <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(78,205,196,0.12);border:1.5px solid rgba(78,205,196,0.35);border-radius:100px;padding:5px 16px;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:16px">🚀 Premium Feature — Coming Soon</div>
     <h2 style="font-family:'Fraunces',serif;font-size:clamp(22px,3.5vw,32px);font-weight:900;color:#FFFFFF;line-height:1.1;letter-spacing:-1px;margin-bottom:10px">AI <em style="color:var(--teal);font-style:italic">Speaking Coach</em></h2>
-    <p style="font-size:13.5px;color:rgba(255,255,255,0.62);max-width:420px;line-height:1.72;margin-bottom:10px">Speak freely — the AI listens, scores your fluency, grammar and vocabulary, and gives bilingual feedback in your language. Coming soon for registered members.</p>
+    <p style="font-size:13.5px;color:rgba(255,255,255,0.62);max-width:420px;line-height:1.72;margin-bottom:20px">Speak freely — the AI listens, scores your fluency, grammar and vocabulary, and gives bilingual feedback in your language. Launching soon for registered members.</p>
     <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:22px">
       <span style="font-size:11px;padding:4px 12px;border-radius:20px;background:rgba(78,205,196,0.10);color:var(--teal);border:1px solid rgba(78,205,196,0.25);font-weight:600">🎯 Fluency scoring</span>
       <span style="font-size:11px;padding:4px 12px;border-radius:20px;background:rgba(78,205,196,0.10);color:var(--teal);border:1px solid rgba(78,205,196,0.25);font-weight:600">📊 Grammar feedback</span>
       <span style="font-size:11px;padding:4px 12px;border-radius:20px;background:rgba(78,205,196,0.10);color:var(--teal);border:1px solid rgba(78,205,196,0.25);font-weight:600">🌐 Bilingual explanations</span>
-      <span style="font-size:11px;padding:4px 12px;border-radius:20px;background:rgba(78,205,196,0.10);color:var(--teal);border:1px solid rgba(78,205,196,0.25);font-weight:600">💼 Job interview practice</span>
     </div>
-    <button onclick="openWaitlist()" style="padding:13px 28px;background:var(--teal);color:#05070F;border:none;border-radius:12px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:800;cursor:pointer;box-shadow:0 6px 24px rgba(78,205,196,0.28);transition:all .2s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
+    <button onclick="openWaitlist()" style="padding:13px 28px;background:var(--teal);color:#05070F;border:none;border-radius:12px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:800;cursor:pointer;box-shadow:0 6px 24px rgba(78,205,196,0.28)">
       🚀 Register for Early Access — Free
     </button>
     <p style="font-size:11px;color:rgba(255,255,255,0.32);margin-top:12px">Meanwhile — try the 6 free Listening Tools using the tab bar ↑</p>
@@ -789,10 +789,7 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
     <div class="gpage active" id="gp1">
       <p style="font-size:12px;color:var(--txt-3);margin-bottom:10px;line-height:1.55">The 8 essential building blocks of English &mdash; click any to expand and explore</p>
       <div id="posItems"></div>
-      <div style="margin-top:10px;padding:11px 14px;background:rgba(245,200,66,0.07);border:1.5px solid rgba(245,200,66,0.22);border-radius:10px;display:flex;align-items:center;gap:10px">
-        <span style="font-size:18px">🚀</span>
-        <div><div style="font-size:12px;font-weight:700;color:var(--gold);margin-bottom:2px">AI Grammar Explainer — Coming Soon</div><div style="font-size:11.5px;color:rgba(255,255,255,0.55)">Ask any grammar question and get a bilingual answer. <span onclick="openWaitlist()" style="color:var(--gold);text-decoration:underline;cursor:pointer">Register for early access →</span></div></div>
-      </div>
+<div style="margin-top:8px;padding:9px 12px;background:rgba(245,200,66,0.07);border:1.5px solid rgba(245,200,66,0.20);border-radius:9px;font-size:11.5px;color:rgba(255,255,255,0.55)">🚀 AI explanations coming soon — <span onclick="openWaitlist()" style="color:var(--gold);text-decoration:underline;cursor:pointer">Register for early access →</span></div>
     </div>
     <div class="gpage" id="gp2">
       <p style="font-size:12px;color:var(--txt-3);margin-bottom:10px">All 12 English tenses &mdash; tap any for a complete bilingual explanation</p>
@@ -810,7 +807,7 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
         <span class="chip" onclick="askGram('Explain Future Perfect tense','gr2')">Future Perfect</span>
         <span class="chip" onclick="askGram('Explain Future Perfect Continuous tense','gr2')">Future Perf. Cont.</span>
       </div>
-      <div style="margin-top:10px;padding:11px 14px;background:rgba(245,200,66,0.07);border:1.5px solid rgba(245,200,66,0.22);border-radius:10px;display:flex;align-items:center;gap:10px"><span style="font-size:18px">🚀</span><div><div style="font-size:12px;font-weight:700;color:var(--gold);margin-bottom:2px">AI Grammar Explainer — Coming Soon</div><div style="font-size:11.5px;color:rgba(255,255,255,0.55)">Ask any grammar question and get a bilingual answer. <span onclick="openWaitlist()" style="color:var(--gold);text-decoration:underline;cursor:pointer">Register for early access →</span></div></div></div>
+<div style="margin-top:8px;padding:9px 12px;background:rgba(245,200,66,0.07);border:1.5px solid rgba(245,200,66,0.20);border-radius:9px;font-size:11.5px;color:rgba(255,255,255,0.55)">🚀 AI explanations coming soon — <span onclick="openWaitlist()" style="color:var(--gold);text-decoration:underline;cursor:pointer">Register for early access →</span></div>
     </div>
     <div class="gpage" id="gp3">
       <p style="font-size:12px;color:var(--txt-3);margin-bottom:10px">Advanced grammar &mdash; conditionals, voice, reported speech, modals, clauses</p>
@@ -826,7 +823,7 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
         <span class="chip" onclick="askGram('Explain Subjunctive Mood in English','gr3')">Subjunctive</span>
         <span class="chip" onclick="askGram('Explain Parallelism in grammar','gr3')">Parallelism</span>
       </div>
-      <div style="margin-top:10px;padding:11px 14px;background:rgba(245,200,66,0.07);border:1.5px solid rgba(245,200,66,0.22);border-radius:10px;display:flex;align-items:center;gap:10px"><span style="font-size:18px">🚀</span><div><div style="font-size:12px;font-weight:700;color:var(--gold);margin-bottom:2px">AI Grammar Explainer — Coming Soon</div><div style="font-size:11.5px;color:rgba(255,255,255,0.55)">Ask any grammar question and get a bilingual answer. <span onclick="openWaitlist()" style="color:var(--gold);text-decoration:underline;cursor:pointer">Register for early access →</span></div></div></div>
+<div style="margin-top:8px;padding:9px 12px;background:rgba(245,200,66,0.07);border:1.5px solid rgba(245,200,66,0.20);border-radius:9px;font-size:11.5px;color:rgba(255,255,255,0.55)">🚀 AI explanations coming soon — <span onclick="openWaitlist()" style="color:var(--gold);text-decoration:underline;cursor:pointer">Register for early access →</span></div>
     </div>
     <div class="gpage" id="gp4">
       <p style="font-size:12px;color:var(--txt-3);margin-bottom:10px">Usage, style, punctuation, common errors and word formation</p>
@@ -840,7 +837,7 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
         <span class="chip" onclick="askGram('Explain articles a an the all rules','gr4')">Articles</span>
         <span class="chip" onclick="askGram('Explain English syntax word order inversion','gr4')">Syntax</span>
       </div>
-      <div style="margin-top:10px;padding:11px 14px;background:rgba(245,200,66,0.07);border:1.5px solid rgba(245,200,66,0.22);border-radius:10px;display:flex;align-items:center;gap:10px"><span style="font-size:18px">🚀</span><div><div style="font-size:12px;font-weight:700;color:var(--gold);margin-bottom:2px">AI Grammar Explainer — Coming Soon</div><div style="font-size:11.5px;color:rgba(255,255,255,0.55)">Ask any grammar question and get a bilingual answer. <span onclick="openWaitlist()" style="color:var(--gold);text-decoration:underline;cursor:pointer">Register for early access →</span></div></div></div>
+<div style="margin-top:8px;padding:9px 12px;background:rgba(245,200,66,0.07);border:1.5px solid rgba(245,200,66,0.20);border-radius:9px;font-size:11.5px;color:rgba(255,255,255,0.55)">🚀 AI explanations coming soon — <span onclick="openWaitlist()" style="color:var(--gold);text-decoration:underline;cursor:pointer">Register for early access →</span></div>
     </div>
   </div>
 </div>
@@ -912,24 +909,58 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
 <!-- WRITING -->
 <div id="panel-writing" class="panel" style="overflow-y:auto;padding:14px;gap:12px;flex-direction:column">
   <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--amber);margin-bottom:4px">Writing Practice</div>
-  <p style="font-size:12px;color:var(--txt-3);margin-bottom:16px">AI-powered writing feedback — bilingual corrections in English and your language</p>
-
-  <!-- COMING SOON CARD -->
-  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center">
-    <div style="font-size:52px;margin-bottom:16px">✍️</div>
-    <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(245,158,11,0.12);border:1.5px solid rgba(245,158,11,0.35);border-radius:100px;padding:5px 16px;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#F59E0B;margin-bottom:16px">🚀 Premium Feature</div>
-    <h2 style="font-family:'Fraunces',serif;font-size:clamp(20px,3vw,28px);font-weight:900;color:#FFFFFF;line-height:1.1;letter-spacing:-0.5px;margin-bottom:10px">AI <em style="color:#F59E0B;font-style:italic">Writing Coach</em></h2>
-    <p style="font-size:13px;color:rgba(255,255,255,0.60);max-width:400px;line-height:1.70;margin-bottom:14px">Four powerful AI writing modes — rewrite at B1/B2/C1/Native level, grade your translation, proofread sentence by sentence, and transform tone. All with bilingual explanations in your language.</p>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;max-width:360px;width:100%;margin-bottom:20px">
-      <div style="background:rgba(245,200,66,0.08);border:1px solid rgba(245,200,66,0.18);border-radius:9px;padding:9px;font-size:11.5px;color:rgba(255,255,255,0.70)">🪞 Mirror — see it at native level</div>
-      <div style="background:rgba(78,205,196,0.08);border:1px solid rgba(78,205,196,0.18);border-radius:9px;padding:9px;font-size:11.5px;color:rgba(255,255,255,0.70)">🌐 Grade your translation</div>
-      <div style="background:rgba(30,132,73,0.08);border:1px solid rgba(30,132,73,0.18);border-radius:9px;padding:9px;font-size:11.5px;color:rgba(255,255,255,0.70)">🔍 Proofread every sentence</div>
-      <div style="background:rgba(108,52,131,0.08);border:1px solid rgba(108,52,131,0.18);border-radius:9px;padding:9px;font-size:11.5px;color:rgba(255,255,255,0.70)">🎚️ Transform tone instantly</div>
+  <p style="font-size:12px;color:var(--txt-3);margin-bottom:4px">Four free writing modes &mdash; all explained in English and your language</p>
+  <div class="write-modes">
+    <button class="wm-btn active" onclick="setWM('mirror',this)"><span class="wm-icon">Mirror</span>See It Native</button>
+    <button class="wm-btn" onclick="setWM('translate',this)"><span class="wm-icon">Globe</span>Translate Mine</button>
+    <button class="wm-btn" onclick="setWM('proofread',this)"><span class="wm-icon">Check</span>Proofread</button>
+    <button class="wm-btn" onclick="setWM('tone',this)"><span class="wm-icon">Tone</span>Change Tone</button>
+  </div>
+  <div class="wp active" id="wm-mirror">
+    <div class="ib ib-gold"><strong style="color:var(--gold)">See It Native</strong> &mdash; Type any sentence. See it rewritten at B1, B2, C1 and Native level instantly.</div>
+    <textarea class="wta" id="mirrorIn" spellcheck="true" placeholder="Type any English sentence..."></textarea>
+    <div class="wa-row">
+      <div style="display:inline-flex;align-items:center;gap:8px;padding:9px 18px;background:rgba(245,200,66,0.10);border:1.5px solid rgba(245,200,66,0.30);border-radius:9px;font-size:12px;font-weight:700;color:var(--gold)">🚀 AI feature — <span onclick="openWaitlist()" style="text-decoration:underline;cursor:pointer">Register for access</span></div>
+      <button class="wa-sec" onclick="document.getElementById('mirrorIn').value='I want to buy some food from the market yesterday'">Example</button>
     </div>
-    <button onclick="openWaitlist()" style="padding:12px 26px;background:linear-gradient(135deg,#F59E0B,#D97706);color:#05070F;border:none;border-radius:12px;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:800;cursor:pointer;box-shadow:0 6px 22px rgba(245,158,11,0.28);transition:all .2s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
-      🚀 Register for Early Access — Free
-    </button>
-    <p style="font-size:11px;color:rgba(255,255,255,0.32);margin-top:12px">Meanwhile — try the 7 free Writing Tools using the tab bar ↑</p>
+    <div id="mirrorOut"></div>
+  </div>
+  <div class="wp" id="wm-translate">
+    <div class="ib ib-teal"><strong style="color:var(--teal)">Translate Mine</strong> &mdash; Paste text in your native language. Write your English version. Get it graded with bilingual explanations.</div>
+    <div style="font-size:12px;color:var(--teal);font-weight:600">Your native language text:</div>
+    <textarea class="wta" id="nativeText" spellcheck="true" placeholder="Paste text in your native language..."></textarea>
+    <div style="font-size:12px;color:var(--teal);font-weight:600">Your English translation:</div>
+    <textarea class="wta" id="engAttempt" spellcheck="true" placeholder="Write your English version here..."></textarea>
+    <div class="wa-row"><div style="display:inline-flex;align-items:center;gap:8px;padding:9px 18px;background:rgba(245,200,66,0.10);border:1.5px solid rgba(245,200,66,0.30);border-radius:9px;font-size:12px;font-weight:700;color:var(--gold)">🚀 AI feature — <span onclick="openWaitlist()" style="text-decoration:underline;cursor:pointer">Register for access</span></div></div>
+    <div id="translateOut"></div>
+  </div>
+  <div class="wp" id="wm-proofread">
+    <div class="ib ib-forest"><strong style="color:var(--forest)">Proofread</strong> &mdash; Paste any English writing. Get every mistake corrected sentence by sentence with full bilingual explanations.</div>
+    <textarea class="wta" id="proofIn" spellcheck="true" placeholder="Paste your English text here..." style="min-height:110px"></textarea>
+    <div class="wa-row">
+      <div style="display:inline-flex;align-items:center;gap:8px;padding:9px 18px;background:rgba(245,200,66,0.10);border:1.5px solid rgba(245,200,66,0.30);border-radius:9px;font-size:12px;font-weight:700;color:var(--gold)">🚀 AI feature — <span onclick="openWaitlist()" style="text-decoration:underline;cursor:pointer">Register for access</span></div>
+      <button class="wa-sec" onclick="document.getElementById('proofIn').value='Yesterday I am going to the market and buyed many vegetable for cook dinner.'">Example</button>
+    </div>
+    <div id="proofOut"></div>
+  </div>
+  <div class="wp" id="wm-tone">
+    <div class="ib ib-plum"><strong style="color:var(--plum)">Change Tone</strong> &mdash; Write any sentence. Choose a tone. See it transformed with full bilingual explanation.</div>
+    <textarea class="wta" id="toneIn" spellcheck="true" placeholder="Type your sentence..."></textarea>
+    <div style="font-size:12px;color:var(--plum);font-weight:600">Choose tone:</div>
+    <div class="tone-row">
+      <button class="tone-btn active" onclick="setTone('Formal',this)">Formal</button>
+      <button class="tone-btn" onclick="setTone('Casual',this)">Casual</button>
+      <button class="tone-btn" onclick="setTone('Business professional',this)">Business</button>
+      <button class="tone-btn" onclick="setTone('Apologetic and polite',this)">Apologetic</button>
+      <button class="tone-btn" onclick="setTone('Urgent',this)">Urgent</button>
+      <button class="tone-btn" onclick="setTone('Warm and friendly',this)">Friendly</button>
+      <button class="tone-btn" onclick="setTone('Academic',this)">Academic</button>
+    </div>
+    <div class="wa-row" style="margin-top:5px">
+      <div style="display:inline-flex;align-items:center;gap:8px;padding:9px 18px;background:rgba(245,200,66,0.10);border:1.5px solid rgba(245,200,66,0.30);border-radius:9px;font-size:12px;font-weight:700;color:var(--gold)">🚀 AI feature — <span onclick="openWaitlist()" style="text-decoration:underline;cursor:pointer">Register for access</span></div>
+      <button class="wa-sec" onclick="document.getElementById('toneIn').value='I need that file now'">Example</button>
+    </div>
+    <div id="toneOut"></div>
   </div>
 </div>
 
@@ -1055,10 +1086,7 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
   <div id="diaryList"><div style="font-size:12px;color:var(--txt-3)">Your activity appears here as you practise</div></div>
   <div style="font-size:13px;font-weight:700;color:var(--txt-1)">Vocabulary Diary</div>
   <div id="vocabSaved"><div style="font-size:12px;color:var(--txt-3)">Words you save from Word of the Moment appear here</div></div>
-  <div style="padding:11px 14px;background:rgba(245,200,66,0.07);border:1.5px solid rgba(245,200,66,0.22);border-radius:10px;display:flex;align-items:center;gap:10px">
-    <span style="font-size:18px">🚀</span>
-    <div><div style="font-size:12px;font-weight:700;color:var(--gold);margin-bottom:2px">AI Study Plan — Coming Soon</div><div style="font-size:11.5px;color:rgba(255,255,255,0.55)">Personalised 4-week plan based on your level and language. <span onclick="openWaitlist()" style="color:var(--gold);text-decoration:underline;cursor:pointer">Register for early access →</span></div></div>
-  </div>
+  <div style="padding:9px 12px;background:rgba(245,200,66,0.07);border:1.5px solid rgba(245,200,66,0.20);border-radius:9px;font-size:11.5px;color:rgba(255,255,255,0.55)">🚀 AI Study Plan coming soon — <span onclick="openWaitlist()" style="color:var(--gold);text-decoration:underline;cursor:pointer">Register →</span></div>
   <div id="planOut"></div>
 </div>
 
@@ -1251,7 +1279,7 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
     </div>
   </div>
   <div style="flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px">
-    <textarea id="baInput" placeholder="Paste or type your English sentence or paragraph here..." rows="4" style="width:100%;background:rgba(255,255,255,0.05);border:1.5px solid rgba(245,158,11,0.20);border-radius:10px;padding:11px 13px;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;resize:vertical;outline:none;line-height:1.70" onfocus="this.style.borderColor='rgba(245,158,11,0.50)'" onblur="this.style.borderColor='rgba(245,158,11,0.20)'"></textarea>
+    <textarea id="baInput" spellcheck="true" placeholder="Paste or type your English sentence or paragraph here..." rows="4" style="width:100%;background:rgba(255,255,255,0.05);border:1.5px solid rgba(245,158,11,0.20);border-radius:10px;padding:11px 13px;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;resize:vertical;outline:none;line-height:1.70" onfocus="this.style.borderColor='rgba(245,158,11,0.50)'" onblur="this.style.borderColor='rgba(245,158,11,0.20)'"></textarea>
     <div id="baResult"></div>
   </div>
 </div>
@@ -1265,34 +1293,17 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
     </div>
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
       <button onclick="fsGenerate()" style="padding:8px 20px;background:#A78BFA;color:#05070F;border:none;border-radius:9px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:800;cursor:pointer">🎚️ Transform</button>
+      <button onclick="fsClear()" style="padding:8px 14px;background:rgba(167,139,250,0.10);color:#A78BFA;border:1.5px solid rgba(167,139,250,0.28);border-radius:9px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif">↩ New Sentence</button>
       <button onclick="fsExample()" style="padding:8px 14px;background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.60);border:1px solid rgba(255,255,255,0.14);border-radius:9px;font-size:12px;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif">Try Example</button>
     </div>
   </div>
   <div style="flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px">
-    <textarea id="fsInput" placeholder="Type any message e.g. 'I want a refund for this product'" rows="3" style="width:100%;background:rgba(255,255,255,0.05);border:1.5px solid rgba(167,139,250,0.20);border-radius:10px;padding:11px 13px;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;resize:none;outline:none;line-height:1.70" onfocus="this.style.borderColor='rgba(167,139,250,0.50)'" onblur="this.style.borderColor='rgba(167,139,250,0.20)'"></textarea>
+    <textarea id="fsInput" spellcheck="true" placeholder="Type any message e.g. 'I want a refund for this product'" rows="3" style="width:100%;background:rgba(255,255,255,0.05);border:1.5px solid rgba(167,139,250,0.20);border-radius:10px;padding:11px 13px;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;resize:none;outline:none;line-height:1.70" onfocus="this.style.borderColor='rgba(167,139,250,0.50)'" onblur="this.style.borderColor='rgba(167,139,250,0.20)'"></textarea>
     <div id="fsResult"></div>
   </div>
 </div>
 
 <!-- ═══════ W3: WEAK WORD DETECTOR ═══════ -->
-<div id="panel-weakwords" class="panel" style="flex-direction:column;overflow:hidden">
-  <div style="background:linear-gradient(135deg,#0A0400,#150600);padding:14px 16px 12px;border-bottom:1.5px solid rgba(251,146,60,0.28);flex-shrink:0">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-      <div style="width:40px;height:40px;border-radius:12px;background:rgba(251,146,60,0.18);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🔍</div>
-      <div><div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:#FB923C">Weak Word Detector</div><div style="font-size:11px;color:rgba(255,255,255,0.50)">Find every overused word — get 3 stronger alternatives each — bilingual labels</div></div>
-    </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button onclick="wwCheck()" style="padding:8px 20px;background:#FB923C;color:#05070F;border:none;border-radius:9px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:800;cursor:pointer">🔍 Detect Weak Words</button>
-      <button onclick="wwExample()" style="padding:8px 14px;background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.60);border:1px solid rgba(255,255,255,0.14);border-radius:9px;font-size:12px;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif">Try Example</button>
-    </div>
-  </div>
-  <div style="flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px">
-    <textarea id="wwInput" placeholder="Paste your text here — weak words will be highlighted in orange..." rows="4" style="width:100%;background:rgba(255,255,255,0.05);border:1.5px solid rgba(251,146,60,0.20);border-radius:10px;padding:11px 13px;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;resize:vertical;outline:none;line-height:1.70" onfocus="this.style.borderColor='rgba(251,146,60,0.50)'" onblur="this.style.borderColor='rgba(251,146,60,0.20)'"></textarea>
-    <div id="wwResult"></div>
-  </div>
-</div>
-
-<!-- ═══════ W4: PUNCTUATION DOCTOR ═══════ -->
 <div id="panel-punctdoctor" class="panel" style="flex-direction:column;overflow:hidden">
   <div style="background:linear-gradient(135deg,#020A06,#03120A);padding:14px 16px 12px;border-bottom:1.5px solid rgba(52,211,153,0.28);flex-shrink:0">
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
@@ -1305,9 +1316,59 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
     </div>
   </div>
   <div style="flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px">
-    <textarea id="pdInput" placeholder="Paste your text — punctuation errors will be highlighted and explained..." rows="4" style="width:100%;background:rgba(255,255,255,0.05);border:1.5px solid rgba(52,211,153,0.20);border-radius:10px;padding:11px 13px;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;resize:vertical;outline:none;line-height:1.70" onfocus="this.style.borderColor='rgba(52,211,153,0.50)'" onblur="this.style.borderColor='rgba(52,211,153,0.20)'"></textarea>
+    <textarea id="pdInput" spellcheck="true" placeholder="Paste your text — punctuation errors will be highlighted and explained..." rows="4" style="width:100%;background:rgba(255,255,255,0.05);border:1.5px solid rgba(52,211,153,0.20);border-radius:10px;padding:11px 13px;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;resize:vertical;outline:none;line-height:1.70" onfocus="this.style.borderColor='rgba(52,211,153,0.50)'" onblur="this.style.borderColor='rgba(52,211,153,0.20)'"></textarea>
     <div id="pdResult"></div>
   </div>
+</div>
+<!-- ═══════ NEW W3: COLLOCATIONS COACH ═══════ -->
+<div id="panel-collocations" class="panel" style="flex-direction:column;overflow:hidden">
+  <div style="background:linear-gradient(135deg,#03080A,#060F14);padding:14px 16px 12px;border-bottom:1.5px solid rgba(96,165,250,0.28);flex-shrink:0">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div style="width:40px;height:40px;border-radius:12px;background:rgba(96,165,250,0.18);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🔗</div>
+      <div><div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:#60A5FA">Collocations Coach</div><div style="font-size:11px;color:rgba(255,255,255,0.50)">Words that always go together — the secret to sounding native</div></div>
+    </div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap" id="collCatBtns">
+      <button onclick="collFilter('verbs',this)" style="padding:6px 12px;border-radius:20px;border:1.5px solid rgba(96,165,250,0.40);background:rgba(96,165,250,0.15);color:#60A5FA;font-size:11px;font-weight:700;cursor:pointer">Verb+Noun</button>
+      <button onclick="collFilter('adj',this)" style="padding:6px 12px;border-radius:20px;border:1.5px solid rgba(255,255,255,0.15);background:transparent;color:rgba(255,255,255,0.50);font-size:11px;font-weight:700;cursor:pointer">Adj+Noun</button>
+      <button onclick="collFilter('adv',this)" style="padding:6px 12px;border-radius:20px;border:1.5px solid rgba(255,255,255,0.15);background:transparent;color:rgba(255,255,255,0.50);font-size:11px;font-weight:700;cursor:pointer">Adverb+Adj</button>
+      <button onclick="collFilter('mistakes',this)" style="padding:6px 12px;border-radius:20px;border:1.5px solid rgba(255,107,107,0.40);background:rgba(255,107,107,0.10);color:#FF6B6B;font-size:11px;font-weight:700;cursor:pointer">❌ Common Wrong</button>
+    </div>
+  </div>
+  <div style="flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:8px" id="collList"></div>
+</div>
+
+<!-- ═══════ NEW W4: ERROR PATTERN DECODER ═══════ -->
+<div id="panel-errordecoder" class="panel" style="flex-direction:column;overflow:hidden">
+  <div style="background:linear-gradient(135deg,#0A0300,#140500);padding:14px 16px 12px;border-bottom:1.5px solid rgba(255,107,107,0.28);flex-shrink:0">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div style="width:40px;height:40px;border-radius:12px;background:rgba(255,107,107,0.18);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🔬</div>
+      <div><div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:#FF6B6B">Error Pattern Decoder</div><div style="font-size:11px;color:rgba(255,255,255,0.50)">Identifies grammar error types — tells you the rule you broke — shows the fix</div></div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button onclick="decodeError()" style="padding:8px 20px;background:#FF6B6B;color:#05070F;border:none;border-radius:9px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:800;cursor:pointer">🔬 Decode My Error</button>
+      <button onclick="errorExample()" style="padding:8px 14px;background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.60);border:1px solid rgba(255,255,255,0.14);border-radius:9px;font-size:12px;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif">Try Example</button>
+    </div>
+  </div>
+  <div style="flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px">
+    <textarea id="errorInput" spellcheck="true" placeholder="Paste a sentence you think has a grammar error — e.g. 'She don't likes coffee' or 'I am having a car'" rows="3" style="width:100%;background:rgba(255,255,255,0.05);border:1.5px solid rgba(255,107,107,0.20);border-radius:10px;padding:11px 13px;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;resize:none;outline:none;line-height:1.70" onfocus="this.style.borderColor='rgba(255,107,107,0.50)'" onblur="this.style.borderColor='rgba(255,107,107,0.20)'"></textarea>
+    <div id="errorResult"><div style="text-align:center;padding:16px;color:rgba(255,255,255,0.35);font-size:12.5px;border:1px dashed rgba(255,107,107,0.20);border-radius:10px">🔬 Paste a sentence and click <strong style="color:#FF6B6B">Decode My Error</strong> — or try an example</div></div>
+  </div>
+</div>
+
+<!-- ═══════ NEW W5: WORD BUILDER ═══════ -->
+<div id="panel-wordbuilder" class="panel" style="flex-direction:column;overflow:hidden">
+  <div style="background:linear-gradient(135deg,#030A05,#050F08);padding:14px 16px 12px;border-bottom:1.5px solid rgba(52,211,153,0.28);flex-shrink:0">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div style="width:40px;height:40px;border-radius:12px;background:rgba(52,211,153,0.18);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🧩</div>
+      <div><div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:#34D399">Word Builder</div><div style="font-size:11px;color:rgba(255,255,255,0.50)">Decode any English word — roots, prefixes, suffixes — unlock hundreds of related words</div></div>
+    </div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap" id="wbPrefixBtns">
+      <button onclick="wbFilter('prefix',this)" style="padding:6px 12px;border-radius:20px;border:1.5px solid rgba(52,211,153,0.40);background:rgba(52,211,153,0.15);color:#34D399;font-size:11px;font-weight:700;cursor:pointer">Prefixes</button>
+      <button onclick="wbFilter('suffix',this)" style="padding:6px 12px;border-radius:20px;border:1.5px solid rgba(255,255,255,0.15);background:transparent;color:rgba(255,255,255,0.50);font-size:11px;font-weight:700;cursor:pointer">Suffixes</button>
+      <button onclick="wbFilter('root',this)" style="padding:6px 12px;border-radius:20px;border:1.5px solid rgba(255,255,255,0.15);background:transparent;color:rgba(255,255,255,0.50);font-size:11px;font-weight:700;cursor:pointer">Word Roots</button>
+    </div>
+  </div>
+  <div style="flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:8px" id="wbList"></div>
 </div>
 
 <!-- ═══════ W5: REDUNDANCY CUTTER ═══════ -->
@@ -1323,47 +1384,12 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
     </div>
   </div>
   <div style="flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px">
-    <textarea id="rcInput" placeholder="Paste your text — wordy phrases will be highlighted in pink with tight replacements..." rows="4" style="width:100%;background:rgba(255,255,255,0.05);border:1.5px solid rgba(244,114,182,0.20);border-radius:10px;padding:11px 13px;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;resize:vertical;outline:none;line-height:1.70" onfocus="this.style.borderColor='rgba(244,114,182,0.50)'" onblur="this.style.borderColor='rgba(244,114,182,0.20)'"></textarea>
+    <textarea id="rcInput" spellcheck="true" placeholder="Paste your text — wordy phrases will be highlighted in pink with tight replacements..." rows="4" style="width:100%;background:rgba(255,255,255,0.05);border:1.5px solid rgba(244,114,182,0.20);border-radius:10px;padding:11px 13px;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;resize:vertical;outline:none;line-height:1.70" onfocus="this.style.borderColor='rgba(244,114,182,0.50)'" onblur="this.style.borderColor='rgba(244,114,182,0.20)'"></textarea>
     <div id="rcResult"></div>
   </div>
 </div>
 
 <!-- ═══════ W6: GHOST WORD TRACKER ═══════ -->
-<div id="panel-ghostwords" class="panel" style="flex-direction:column;overflow:hidden">
-  <div style="background:linear-gradient(135deg,#020814,#040C1E);padding:14px 16px 12px;border-bottom:1.5px solid rgba(96,165,250,0.28);flex-shrink:0">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-      <div style="width:40px;height:40px;border-radius:12px;background:rgba(96,165,250,0.18);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">👻</div>
-      <div><div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:#60A5FA">Ghost Word Tracker</div><div style="font-size:11px;color:rgba(255,255,255,0.50)">Your personal crutch words — tracked across all sessions — flagged live as you write</div></div>
-    </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button onclick="gwAnalyse()" style="padding:8px 20px;background:#60A5FA;color:#05070F;border:none;border-radius:9px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:800;cursor:pointer">👻 Track My Ghosts</button>
-      <button onclick="gwClear()" style="padding:8px 14px;background:rgba(96,165,250,0.10);color:#60A5FA;border:1.5px solid rgba(96,165,250,0.28);border-radius:9px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif">Reset History</button>
-    </div>
-  </div>
-  <div style="flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px">
-    <textarea id="gwInput" placeholder="Paste any writing — your most overused words will be revealed and tracked over time..." rows="4" style="width:100%;background:rgba(255,255,255,0.05);border:1.5px solid rgba(96,165,250,0.20);border-radius:10px;padding:11px 13px;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;resize:vertical;outline:none;line-height:1.70" onfocus="this.style.borderColor='rgba(96,165,250,0.50)'" onblur="this.style.borderColor='rgba(96,165,250,0.20)'"></textarea>
-    <div id="gwResult"></div>
-    <div id="gwHistory"></div>
-  </div>
-</div>
-
-<!-- ═══════ W7: SENTENCE RHYTHM MAP ═══════ -->
-<div id="panel-rhythmmap" class="panel" style="flex-direction:column;overflow:hidden">
-  <div style="background:linear-gradient(135deg,#080600,#120A00);padding:14px 16px 12px;border-bottom:1.5px solid rgba(251,191,36,0.28);flex-shrink:0">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-      <div style="width:40px;height:40px;border-radius:12px;background:rgba(251,191,36,0.18);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🌊</div>
-      <div><div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:#FBBF24">Sentence Rhythm Map</div><div style="font-size:11px;color:rgba(255,255,255,0.50)">Visual bar chart of your sentence lengths — readability score — bilingual tips</div></div>
-    </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button onclick="rmAnalyse()" style="padding:8px 20px;background:#FBBF24;color:#05070F;border:none;border-radius:9px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:800;cursor:pointer">🌊 Map My Rhythm</button>
-      <button onclick="rmExample()" style="padding:8px 14px;background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.60);border:1px solid rgba(255,255,255,0.14);border-radius:9px;font-size:12px;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif">Try Example</button>
-    </div>
-  </div>
-  <div style="flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px">
-    <textarea id="rmInput" placeholder="Paste a paragraph — see a visual bar chart of each sentence length and your readability score..." rows="4" style="width:100%;background:rgba(255,255,255,0.05);border:1.5px solid rgba(251,191,36,0.20);border-radius:10px;padding:11px 13px;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;resize:vertical;outline:none;line-height:1.70" onfocus="this.style.borderColor='rgba(251,191,36,0.50)'" onblur="this.style.borderColor='rgba(251,191,36,0.20)'"></textarea>
-    <div id="rmResult"></div>
-  </div>
-</div>
 
 </div><!-- end content -->
 
@@ -1395,15 +1421,16 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
   <div class="sb-sec">
     <div class="sb-title" style="color:var(--plum)">Word of the Moment</div>
     <div class="word-card">
-      <div class="wc-word" id="wcWord">serendipity</div>
-      <div class="wc-phon" id="wcPhon">/ser.en.DIP.i.tee/</div>
-      <div class="wc-row wc-def"><span class="wc-lbl">Definition</span><span id="wcDef">Finding something wonderful by happy accident</span></div>
-      <div class="wc-row wc-en"><span class="wc-lbl">English example</span><span id="wcEnEx">"Meeting my best friend was pure serendipity."</span></div>
-      <div class="wc-row wc-nat"><span class="wc-lbl" id="wcNatLbl">In your language</span><span id="wcNatEx">🚀 Bilingual examples coming in Premium</span></div>
-      <div class="wc-row wc-ant"><span class="wc-lbl">Antonyms</span><span id="wcAnt">misfortune / tragedy</span></div>
+      <div class="wc-word" id="wcWord">Loading...</div>
+      <div class="wc-phon" id="wcPhon"></div>
+      <div class="wc-row wc-def"><span class="wc-lbl">Definition</span><span id="wcDef"></span></div>
+      <div class="wc-row wc-en"><span class="wc-lbl">English example</span><span id="wcEnEx"></span></div>
+      <div class="wc-row wc-nat"><span class="wc-lbl" id="wcNatLbl">Native example</span><span id="wcNatEx"></span></div>
+      <div class="wc-row wc-ant"><span class="wc-lbl">Antonyms EN / Native</span><span id="wcAnt"></span></div>
     </div>
-    <div style="margin-top:8px;padding:8px 10px;background:rgba(245,200,66,0.07);border:1px solid rgba(245,200,66,0.20);border-radius:8px;font-size:11px;color:rgba(255,255,255,0.55);text-align:center">
-      🚀 Daily AI words with bilingual examples — <span onclick="openWaitlist()" style="color:var(--gold);text-decoration:underline;cursor:pointer">register for Premium →</span>
+    <div style="display:flex;gap:6px;margin-top:7px">
+      <button class="chip" style="flex:1;text-align:center" onclick="loadWord()">New word</button>
+      <button class="chip" style="flex:1;text-align:center" onclick="saveWord()">Save</button>
     </div>
   </div>
 
@@ -3489,7 +3516,7 @@ function buildSys(extra){
 }
 function setLang(l){
   lang=l;var el=document.getElementById('wcNatLbl');if(el)el.textContent=l+' example';
-  renderDNAQs();renderVocab();renderIdioms();renderMistakes();renderPhrases();buildCheatSheet();
+  loadWelcomeTrans();loadWord();renderDNAQs();renderVocab();renderIdioms();renderMistakes();renderPhrases();buildCheatSheet();
 }
 
 async function loadWelcomeTrans(){
@@ -3558,6 +3585,176 @@ function showGP(n,btn){
   if(n===1)setTimeout(buildPOS,50);
 }
 
+
+// ══ STATIC PREPOSITION DATABASE — zero API cost ══
+
+// ══ NATIVE LANGUAGE NOTES — static, zero API cost ══
+var NL={
+  // Helper: get note for current lang
+  get:function(key){var o=NL.data[key];if(!o)return '';return o[lang]||o['default']||'';},
+
+  data:{
+    // ── PREPOSITIONS ──
+    prep_tip:{
+      Spanish:'💡 Consejo: Las preposiciones en inglés no siempre coinciden con el español. Memoriza cada combinación (collocation) como una unidad.',
+      Telugu:'💡 గుర్తుంచుకో: English prepositions Telugu లో ఉండే లాగా directly translate కావు. ప్రతి collocation ని ఒక unit గా నేర్చుకో.',
+      Tamil:'💡 குறிப்பு: ஆங்கில prepositions தமிழில் உள்ளதுபோல் நேரடியாக மொழிபெயர்க்கப்படுவதில்லை. ஒவ்வொரு சேர்க்கையையும் ஒரு அலகாக கற்றுக்கொள்.',
+      Hindi:'💡 याद रखें: अंग्रेजी prepositions सीधे हिंदी में translate नहीं होतीं। हर combination को एक unit की तरह सीखें।',
+      Arabic:'💡 تذكر: حروف الجر في الإنجليزية لا تُترجم مباشرة من العربية. تعلم كل تركيب كوحدة واحدة.',
+      Kannada:'💡 ನೆನಪಿಡಿ: ಇಂಗ್ಲಿಷ್ prepositions ಕನ್ನಡದಂತೆ ನೇರವಾಗಿ ಅನುವಾದ ಆಗುವುದಿಲ್ಲ. ಪ್ರತಿ combination ಅನ್ನು ಒಂದು unit ಆಗಿ ಕಲಿಯಿರಿ.',
+      Malayalam:'💡 ഓർക്കുക: ഇംഗ്ലീഷ് prepositions Malayalam-ലേക്ക് നേരിട്ട് translate ആകില്ല. ഓരോ combination-ഉം ഒരു unit ആയി പഠിക്കൂ.',
+      default:'💡 Tip: English prepositions rarely translate directly from your language. Learn each combination as one unit.'
+    },
+    prep_rule:{
+      Spanish:'Regla en tu idioma: Compara este uso con el español. A veces coincide, a veces no.',
+      Telugu:'నీ భాషలో rule: ఈ usage ని Telugu తో compare చేయి. కొన్నిసార్లు same గా ఉంటుంది, కొన్నిసార్లు different గా.',
+      Tamil:'உன் மொழியில் விதி: இந்த usage-ஐ தமிழுடன் ஒப்பிடுங்கள். சில நேரம் ஒரே மாதிரி இருக்கும், சில நேரம் மாறுபடும்.',
+      Hindi:'अपनी भाषा में नियम: इस usage को हिंदी से compare करें। कभी-कभी मिलता है, कभी अलग होता है।',
+      Arabic:'القاعدة في لغتك: قارن هذا الاستخدام مع العربية. أحياناً يتشابهان وأحياناً يختلفان.',
+      default:'Compare this usage with your language. Sometimes they match, sometimes they differ.'
+    },
+    // ── COLLOCATIONS ──
+    coll_intro:{
+      Spanish:'Las colocaciones son combinaciones de palabras que los nativos usan de forma natural. No se pueden traducir literalmente — hay que aprenderlas como unidades.',
+      Telugu:'Collocations అంటే native speakers naturally కలిపి వాడే words. వాటిని literally translate చేయకూడదు — unit గా నేర్చుకోవాలి.',
+      Tamil:'Collocations என்பது native speakers இயல்பாகப் பயன்படுத்தும் சொல் சேர்க்கைகள். அவற்றை நேரடியாக மொழிபெயர்க்க முடியாது — ஒரு அலகாக கற்றுக்கொள்ள வேண்டும்.',
+      Hindi:'Collocations वे शब्द-जोड़ी हैं जो native speakers स्वाभाविक रूप से उपयोग करते हैं। इन्हें literally translate नहीं किया जा सकता — इन्हें unit की तरह सीखें।',
+      Arabic:'التضامات (Collocations) هي مجموعات الكلمات التي يستخدمها الناطقون الأصليون بشكل طبيعي. لا يمكن ترجمتها حرفياً — يجب تعلمها كوحدات.',
+      Kannada:'Collocations ಎಂದರೆ native speakers ಸ್ವಾಭಾವಿಕವಾಗಿ ಒಟ್ಟಿಗೆ ಬಳಸುವ words. ಅವುಗಳನ್ನು literally translate ಮಾಡಬೇಡಿ — unit ಆಗಿ ಕಲಿಯಿರಿ.',
+      Malayalam:'Collocations എന്നത് native speakers സ്വാഭാവികമായി ഒരുമിച്ച് ഉപയോഗിക്കുന്ന വാക്കുകളാണ്. അവ literally translate ചെയ്യരുത് — unit ആയി പഠിക്കൂ.',
+      default:'Collocations are word combinations native speakers use naturally. Learn them as fixed units, not word-by-word.'
+    },
+    coll_make:{
+      Spanish:'MAKE: crear, producir. Usamos MAKE con cosas que creamos o producimos: make a cake, make a decision, make a mistake.',
+      Telugu:'MAKE: create చేయడం, produce చేయడం. మనం create చేసే లేదా produce చేసే things తో MAKE వాడతాం: make a cake, make a decision.',
+      Tamil:'MAKE: உருவாக்குவது, தயாரிப்பது. நாம் உருவாக்கும் அல்லது தயாரிக்கும் விஷயங்களுக்கு MAKE பயன்படுத்துகிறோம்.',
+      Hindi:'MAKE: बनाना, उत्पन्न करना। जब हम कुछ बनाते या produce करते हैं तो MAKE उपयोग करते हैं।',
+      Arabic:'MAKE تعني الإنشاء أو الإنتاج. نستخدم MAKE مع الأشياء التي نصنعها: make a cake, make a decision.',
+      default:'MAKE = create or produce. Use for things you create: make a cake, make a decision, make a mistake.'
+    },
+    coll_do:{
+      Spanish:'DO: realizar una acción o actividad. Usamos DO con tareas y actividades: do homework, do exercise, do research.',
+      Telugu:'DO: action చేయడం, activity చేయడం. Tasks మరియు activities తో DO వాడతాం: do homework, do exercise, do research.',
+      Tamil:'DO: ஒரு செயலை அல்லது செயல்பாட்டை நிறைவேற்றுவது. பணிகள் மற்றும் செயல்பாடுகளுக்கு DO பயன்படுத்துகிறோம்.',
+      Hindi:'DO: कोई क्रिया या गतिविधि करना। कार्यों और गतिविधियों के साथ DO का उपयोग करते हैं।',
+      Arabic:'DO تعني تنفيذ نشاط أو مهمة. نستخدم DO مع المهام: do homework, do exercise, do research.',
+      default:'DO = an action or activity. Use for tasks and activities: do homework, do exercise, do research.'
+    },
+    coll_mistake:{
+      Spanish:'Este es un error muy frecuente para hablantes de tu idioma. Practica la forma correcta hasta que sea automática.',
+      Telugu:'ఇది మీ భాష speakers చేసే చాలా common mistake. Correct form ని automatic గా వాడేంత వరకు practice చేయి.',
+      Tamil:'இது உன் மொழி பேசுபவர்களின் மிகவும் பொதுவான தவறு. சரியான வடிவம் தானாக வரும் வரை பயிற்சி செய்.',
+      Hindi:'यह आपकी भाषा बोलने वालों की बहुत सामान्य गलती है। सही रूप को automatic होने तक practice करें।',
+      Arabic:'هذا خطأ شائع جداً لمتحدثي لغتك. تدرّب على الشكل الصحيح حتى يصبح تلقائياً.',
+      Kannada:'ಇದು ನಿಮ್ಮ ಭಾಷಿಕರ ತುಂಬಾ ಸಾಮಾನ್ಯ ತಪ್ಪು. ಸರಿಯಾದ ರೂಪ automatic ಆಗುವವರೆಗೆ practice ಮಾಡಿ.',
+      Malayalam:'ഇത് നിങ്ങളുടെ ഭാഷ സംസാരിക്കുന്നവർ ചെയ്യുന്ന വളരെ സാധാരണ തെറ്റാണ്. ശരിയായ രൂപം automatic ആകുന്നതുവരെ practice ചെയ്യൂ.',
+      default:'This is a very common mistake for speakers of your language. Practice the correct form until it becomes automatic.'
+    },
+    // ── ERROR DECODER ──
+    err_state_verb:{
+      Spanish:'Los verbos de estado (have, know, like, understand, want, love) no se usan en forma continua en inglés. En español a veces sí, pero en inglés NO.',
+      Telugu:'State verbs (have, know, like, understand, want, love) continuous form లో వాడకూడదు. Telugu లో వాడినా, English లో వాడకూడదు.',
+      Tamil:'நிலை வினைகள் (have, know, like, understand, want) continuous-ல் பயன்படுத்தப்படுவதில்லை. தமிழில் சில நேரம் வரலாம், ஆனால் ஆங்கிலத்தில் கூடாது.',
+      Hindi:'State verbs (have, know, like, understand, want, love) को continuous form में use नहीं किया जाता। हिंदी में हो सकता है, लेकिन English में नहीं।',
+      Arabic:'أفعال الحالة (have, know, like, understand, want) لا تُستخدم في الصيغة المستمرة في الإنجليزية.',
+      Kannada:'State verbs (have, know, like, understand) ಅನ್ನು continuous form ನಲ್ಲಿ ಬಳಸಬಾರದು.',
+      Malayalam:'State verbs (have, know, like, understand, want) continuous form-ൽ ഉപയോഗിക്കരുത്.',
+      default:'State verbs (have, know, like, understand, want, love) are NEVER used in continuous form in English.'
+    },
+    err_preposition:{
+      Spanish:'Algunos verbos en inglés no necesitan preposición aunque en tu idioma sí: DISCUSS (not discuss about), REACH (not reach to), MARRY (not marry with).',
+      Telugu:'కొన్ని English verbs కి preposition అవసరం లేదు — Telugu లో ఉన్నా: DISCUSS (discuss about కాదు), REACH (reach to కాదు), MARRY (marry with కాదు).',
+      Tamil:'சில ஆங்கில வினைகளுக்கு preposition தேவையில்லை: DISCUSS (discuss about அல்ல), REACH (reach to அல்ல), MARRY (marry with அல்ல).',
+      Hindi:'कुछ English verbs के साथ preposition नहीं चाहिए: DISCUSS (discuss about नहीं), REACH (reach to नहीं), MARRY (marry with नहीं)।',
+      Arabic:'بعض الأفعال الإنجليزية لا تحتاج حروف جر: DISCUSS (ليس discuss about), REACH (ليس reach to), MARRY (ليس marry with).',
+      default:'Some English verbs need NO preposition: DISCUSS it (not about), REACH it (not to), MARRY him (not with).'
+    },
+    err_indirect:{
+      Spanish:'En las preguntas indirectas en inglés, el orden es como una afirmación: "Can you tell me where the station IS?" — no "where IS the station?"',
+      Telugu:'Indirect questions లో English word order statement లాగా ఉంటుంది: "where the station IS" — "where IS the station" కాదు.',
+      Tamil:'மறைமுக கேள்விகளில் ஆங்கிலத்தில் வாக்கிய வரிசை: "where the station IS" — "where IS the station" அல்ல.',
+      Hindi:'Indirect questions में English word order statement जैसी होती है: "where the station IS" — "where IS the station" नहीं।',
+      Arabic:'في الأسئلة غير المباشرة بالإنجليزية، الترتيب مثل الجمل الخبرية: "where the station IS" وليس "where IS the station".',
+      default:'In indirect questions, use statement word order: "where the station IS" — not "where IS the station".'
+    },
+    err_tense:{
+      Spanish:'Usa el pasado simple (saw, went, ate) con expresiones de tiempo específicas: yesterday, last week, in 2020. El presente perfecto (have seen) NO va con tiempos específicos.',
+      Telugu:'Specific past time words తో (yesterday, last week) simple past వాడాలి. Present perfect (have seen) specific time తో రాదు.',
+      Tamil:'Yesterday, last week போன்ற குறிப்பிட்ட கால வார்த்தைகளுடன் simple past பயன்படுத்துங்கள். Present perfect குறிப்பிட்ட நேரத்துடன் வராது.',
+      Hindi:'Specific time words (yesterday, last week) के साथ simple past (saw, went) use करें। Present perfect specific time के साथ नहीं आता।',
+      Arabic:'استخدم الماضي البسيط (saw, went) مع كلمات الزمن المحددة: yesterday, last week. المضارع التام لا يأتي مع وقت محدد.',
+      default:'Use simple past (saw, went) with specific time words like yesterday, last week. Present perfect has no specific time.'
+    },
+    err_uncountable:{
+      Spanish:'Algunos sustantivos en inglés no tienen plural: information, advice, furniture, luggage, equipment, progress, research. Siempre van con verbos singulares.',
+      Telugu:'కొన్ని English nouns కి plural form లేదు: information, advice, furniture, luggage, equipment, progress, research. ఇవి ఎప్పుడూ singular గా వాడాలి.',
+      Tamil:'சில ஆங்கில பெயர்ச்சொற்களுக்கு பன்மை இல்லை: information, advice, furniture, luggage. இவை எப்போதும் ஒருமையில் இருக்கும்.',
+      Hindi:'कुछ English nouns का plural नहीं होता: information, advice, furniture, luggage, equipment, progress, research। इनके साथ singular verb आती है।',
+      Arabic:'بعض الأسماء الإنجليزية لا جمع لها: information, advice, furniture, luggage, equipment. تأتي دائماً مع فعل مفرد.',
+      default:'Some nouns have no plural: information, advice, furniture, luggage, equipment. Always use singular verbs with them.'
+    },
+    err_conditional:{
+      Spanish:'Después de IF en condicionales, no se usa WILL. Usa el presente: "If I have time" (no "If I will have time"). Si la oración fuera real, la otra parte lleva WILL.',
+      Telugu:'Conditional sentences లో IF తర్వాత WILL వాడకూడదు. Present tense వాడాలి: "If I have time" (If I will have time కాదు).',
+      Tamil:'Conditional sentences-ல் IF-க்கு பிறகு WILL பயன்படுத்தக்கூடாது. Present tense பயன்படுத்துங்கள்: "If I have time" (If I will have time அல்ல).',
+      Hindi:'Conditional sentences में IF के बाद WILL नहीं आता। Present tense use करें: "If I have time" (If I will have time नहीं)।',
+      Arabic:'في الجمل الشرطية، لا يأتي WILL بعد IF. استخدم المضارع البسيط: "If I have time" وليس "If I will have time".',
+      default:'After IF in conditionals, do NOT use WILL. Use present tense: "If I have time" not "If I will have time".'
+    },
+    // ── WORD BUILDER ──
+    wb_prefix_intro:{
+      Spanish:'Los prefijos cambian el significado de una palabra. Conocer los prefijos te ayuda a entender miles de palabras nuevas sin buscarlas en el diccionario.',
+      Telugu:'Prefixes words యొక్క meaning ని మారుస్తాయి. Prefixes నేర్చుకుంటే dictionary చూడకుండా thousands of new words అర్థం అవుతాయి.',
+      Tamil:'Prefixes வார்த்தையின் அர்த்தத்தை மாற்றுகின்றன. Prefixes கற்றுக்கொண்டால் dictionary பார்க்காமல் ஆயிரக்கணக்கான புதிய வார்த்தைகளை புரிந்துகொள்ளலாம்.',
+      Hindi:'Prefixes किसी शब्द का अर्थ बदल देते हैं। Prefixes जानने से dictionary देखे बिना हजारों नए शब्द समझ सकते हैं।',
+      Arabic:'البوادئ (Prefixes) تغير معنى الكلمة. معرفة البوادئ تساعدك على فهم آلاف الكلمات الجديدة دون الرجوع إلى القاموس.',
+      Kannada:'Prefixes ಪದದ ಅರ್ಥವನ್ನು ಬದಲಾಯಿಸುತ್ತವೆ. Prefixes ತಿಳಿದರೆ dictionary ನೋಡದೆ ಸಾವಿರಾರು ಹೊಸ ಪದಗಳನ್ನು ಅರ್ಥ ಮಾಡಿಕೊಳ್ಳಬಹುದು.',
+      Malayalam:'Prefixes ഒരു വാക്കിന്റെ അർഥം മാറ്റുന്നു. Prefixes പഠിച്ചാൽ dictionary നോക്കാതെ ആയിരക്കണക്കിന് പുതിയ വാക്കുകൾ മനസ്സിലാക്കാം.',
+      default:'Prefixes change a word\'s meaning. Knowing them lets you understand thousands of new words without a dictionary.'
+    },
+    wb_suffix_intro:{
+      Spanish:'Los sufijos cambian la función gramatical de una palabra: un verbo se convierte en sustantivo, un adjetivo en adverbio, etc.',
+      Telugu:'Suffixes ఒక word యొక్క grammatical function ని మారుస్తాయి: verb ని noun గా, adjective ని adverb గా మారుస్తాయి.',
+      Tamil:'Suffixes ஒரு வார்த்தையின் இலக்கண செயல்பாட்டை மாற்றுகின்றன: verb-ஐ noun-ஆகவும், adjective-ஐ adverb-ஆகவும் மாற்றுகின்றன.',
+      Hindi:'Suffixes किसी शब्द का grammatical function बदलते हैं: verb को noun में, adjective को adverb में बदलते हैं।',
+      Arabic:'اللواحق (Suffixes) تغير الوظيفة النحوية للكلمة: تحول الفعل إلى اسم، والصفة إلى ظرف.',
+      default:'Suffixes change a word\'s grammatical function: they turn a verb into a noun, an adjective into an adverb.'
+    },
+    wb_root_intro:{
+      Spanish:'Las raíces latinas y griegas aparecen en miles de palabras inglesas. Conocer una raíz = comprender automáticamente muchas palabras nuevas.',
+      Telugu:'Latin మరియు Greek roots వేలాది English words లో కనిపిస్తాయి. ఒక root తెలిస్తే = automatically చాలా new words అర్థం అవుతాయి.',
+      Tamil:'Latin மற்றும் Greek roots ஆயிரக்கணக்கான ஆங்கில வார்த்தைகளில் தோன்றுகின்றன. ஒரு root தெரிந்தால் = தானாகவே பல புதிய வார்த்தைகளை புரிந்துகொள்ளலாம்.',
+      Hindi:'Latin और Greek roots हजारों English words में दिखते हैं। एक root जानने से = automatically कई नए words समझ आते हैं।',
+      Arabic:'الجذور اللاتينية واليونانية تظهر في آلاف الكلمات الإنجليزية. معرفة جذر واحد = فهم تلقائي لكلمات جديدة كثيرة.',
+      default:'Latin and Greek roots appear in thousands of English words. Know one root = automatically understand many new words.'
+    }
+  }
+};
+
+var PREP_DB={
+  'at':{def:'Used for precise points in time or place.',rules:['Time: at 3pm, at noon, at midnight, at sunrise','Place: at the door, at school, at the bus stop, at home','Events: at a party, at a meeting, at a concert'],examples:['She arrived at 7am.','I am at the office.','We met at the airport.','Meet me at the corner.'],doSay:['at the station','at midnight','at work','at school'],dontSay:['at the morning (use in)','at Monday (use on)','at the bedroom (use in)'],tip:'AT = a precise point. Think of a pin on a map or a clock hand pointing exactly.'},
+  'in':{def:'Inside something, or within a larger area or period of time.',rules:['Time: in January, in 2024, in the morning, in an hour','Place: in London, in the room, in the car, in a box','Abstract: in trouble, in love, in pain'],examples:['She was born in 1995.','I live in Mumbai.','The keys are in my bag.','We will arrive in 10 minutes.'],doSay:['in the morning','in December','in India','in a meeting'],dontSay:['in Monday (use on)','in the station (use at)','in the weekend (use at/on)'],tip:'IN = inside a container or within a space. Think of being inside a box.'},
+  'on':{def:'On a surface, or for specific days and dates.',rules:['Days: on Monday, on 5th March, on Christmas Day','Surfaces: on the table, on the wall, on the floor','Media: on TV, on the radio, on the internet'],examples:['The book is on the table.','I have a meeting on Friday.','She heard it on the news.','We leave on 20th April.'],doSay:['on Monday','on the floor','on the bus','on time'],dontSay:['on the morning (use in)','on the station (use at)','on 2024 (use in)'],tip:'ON = touching a surface, or a specific day. Picture something resting on top.'},
+  'for':{def:'Shows duration of time or purpose.',rules:['Duration: for 3 years, for a week, for a moment','Purpose: for a reason, a gift for you, medicine for pain'],examples:['She lived there for five years.','This is a present for you.','I waited for an hour.','He apologised for the mistake.'],doSay:['for 3 hours','for a reason','wait for someone'],dontSay:['for since (choose one)','since 3 hours (use for)','I am here since morning (use since morning or for hours)'],tip:'FOR = length of time. Answer the question "How long?"'},
+  'since':{def:'From a starting point in the past up to now.',rules:['Since + a point in time: since 2020, since Monday, since childhood','Always used with perfect tenses: have/has/had'],examples:['She has lived here since 2018.','I have not eaten since morning.','He has worked here since January.'],doSay:['since 2020','since Monday','since I was a child'],dontSay:['since 3 years (use for 3 years)','since a long time (use for a long time)'],tip:'SINCE = a starting point. Draw a timeline — since marks the left edge, now is the right edge.'},
+  'to':{def:'Direction, movement toward something, or relationship.',rules:['Direction: go to school, walk to the station','Time: from 9 to 5, quarter to 7','Indirect object: give to someone'],examples:['She walked to the park.','I go to work at 8am.','Give this letter to him.','It is ten to three (2:50).'],doSay:['go to school','listen to music','speak to someone'],dontSay:["go to home (use go home, no preposition)","arrive to (use arrive at)",'return to back (redundant)'],tip:'TO = movement or direction. Picture an arrow pointing toward a target.'},
+  'from':{def:'Shows origin, starting point, or source.',rules:['Origin: from Spain, from the market','Range: from 9am to 5pm, prices from £10'],examples:['She is from Brazil.','The train leaves from platform 3.','This coffee is from Ethiopia.','Working from home.'],doSay:['from Monday to Friday','different from','made from'],dontSay:['different than (use different from)','borrow from (correct — but not borrow to)'],tip:'FROM = the starting point. Think of a departure gate at an airport.'},
+  'by':{def:'Agent in passive voice, deadline, method, or proximity.',rules:['Deadline: finish by Friday, by 5pm','Method: travel by bus, pay by card','Passive agent: written by Shakespeare','Proximity: sitting by the window'],examples:['The report must be submitted by Monday.','We travelled by train.','The film was directed by Nolan.','She sat by the door.'],doSay:['by the time','by mistake','by bus/car/train','by 5 o\'clock'],dontSay:['arrive by the station (use at)','made by gold (use made of gold)'],tip:'BY = the one who did something, or the latest time for an action. The deadline preposition.'},
+  'with':{def:'Shows accompaniment, tools, or manner.',rules:['Accompaniment: come with me, coffee with milk','Tools/instruments: write with a pen, cut with a knife','Manner: speak with confidence, done with care'],examples:['I had coffee with my friend.','She opened the door with a key.','He spoke with great confidence.','Mix the flour with the butter.'],doSay:['agree with','compare with','deal with','fill with'],dontSay:['discuss with someone (discuss someone — no preposition needed)','marry with (use marry — no preposition)'],tip:'WITH = together or using something as a tool. Picture two things touching.'},
+  'of':{def:'Shows belonging, origin, content, or quantity.',rules:['Belonging: the leg of the table, the title of the book','Quantity: a cup of coffee, a group of people','Part of: some of us, most of them'],examples:['The capital of France is Paris.','A glass of water please.','She is a friend of mine.','The colour of the sky.'],doSay:['a piece of','a lot of','ahead of','because of'],dontSay:['a member of (correct)','explain of (use explain — no preposition)'],tip:'OF = the relationship between two things. Most common English preposition.'},
+  'about':{def:'Concerning a subject, approximately, or nearby.',rules:['Topic: a book about history, talk about work','Approximately: about 3 hours, about 50 people'],examples:['We talked about the project.','I am reading a book about space.','She arrived at about 9am.','What is the film about?'],doSay:['think about','worry about','talk about','know about'],dontSay:['discuss about (use discuss — no preposition)','explain about (use explain — no preposition)'],tip:'ABOUT = the topic of something. Ask "what is it about?" to test usage.'},
+  'over':{def:'Above, across, more than, or throughout a period.',rules:['Above: a bridge over the river, fly over the city','More than: over 100 people, over £50','Throughout: over the years, over time'],examples:['The plane flew over the mountains.','She jumped over the fence.','Over 200 students attended.','He improved a lot over the years.'],doSay:['get over (recover)','look over (review)','over time','over the weekend'],dontSay:['climb over of the fence (no of needed)'],tip:'OVER = above, across, or exceeding. Think of a rainbow arc — it goes over.'},
+  'under':{def:'Below something physically, or less than a number.',rules:['Below: under the table, under the bridge','Less than: under 18, under £100','Control: under pressure, under new management'],examples:['The cat is under the bed.','Children under 12 are free.','She is under a lot of stress.','The company is under new leadership.'],doSay:['under pressure','under control','under construction','under 18'],dontSay:['below 18 years old (both work, but under is more common for age)'],tip:'UNDER = beneath. Think of a table with something underneath it.'},
+  'between':{def:'In the middle of two specific things.',rules:['Two items: between 9am and 5pm, between London and Paris','Choice: choose between tea and coffee'],examples:['The meeting is between 2pm and 4pm.','Sit between Maria and John.','She had to choose between two jobs.','This is between you and me.'],doSay:['between two people','between Monday and Friday','difference between'],dontSay:['between three or more (use among)','difference between A with B (use between A and B)'],tip:'BETWEEN = two specific things. For three or more, use AMONG.'},
+  'among':{def:'In the middle of a group (three or more things or people).',rules:['Group: among friends, among the top ten','Distribution: share among the team'],examples:['She was popular among her classmates.','Divide the money among the four of you.','Among the applicants, she was the best.'],doSay:['among friends','popular among','among the best'],dontSay:['among two people (use between)'],tip:'AMONG = within a group of three or more. Use BETWEEN for exactly two.'},
+  'through':{def:'Movement from one side to the other, or for the whole of a period.',rules:['Movement: walk through the park, drive through the tunnel','Period: through the night, through the week'],examples:['She walked through the forest.','I slept through the alarm.','We worked through the night.','Light came through the window.'],doSay:['go through','look through','break through','halfway through'],tip:'THROUGH = entering one side and coming out the other. Think of a tunnel.'},
+  'during':{def:'Throughout a particular period of time.',rules:['Use with events or periods: during the meeting, during summer, during the film'],examples:['Please do not use your phone during the class.','She fell asleep during the film.','Temperatures rise during summer.','He became ill during the journey.'],doSay:['during the meeting','during summer','during the war'],dontSay:['during 3 hours (use for 3 hours)','during she was sleeping (use while she was sleeping)'],tip:'DURING = inside a period. Use FOR with a duration (for 3 hours), DURING with an event (during the meeting).'},
+  'until':{def:'Up to a specific point in time.',rules:['Limit: wait until Friday, open until 10pm','Until vs by: until = right up to that time; by = no later than'],examples:['The shop is open until 9pm.','She worked until midnight.','I will wait until you arrive.','The offer is valid until 31st March.'],doSay:['until Friday','wait until','valid until','not until'],dontSay:['by vs until confusion: use UNTIL for continuous (I will wait until); use BY for deadline (submit by Friday)'],tip:'UNTIL = continuous action right up to a point. BY = the deadline. Wait UNTIL vs finish BY.'},
+  'despite':{def:'In spite of; regardless of.',rules:['Despite + noun/gerund: despite the rain, despite working hard','= even though something makes it difficult'],examples:['Despite the rain, we went for a walk.','She succeeded despite many obstacles.','Despite working all day, she was not tired.'],doSay:['despite the fact that','despite working hard','despite everything'],dontSay:['despite of (incorrect — just despite, no of)'],tip:'DESPITE = in spite of. No OF after it. Despite the rain = In spite of the rain.'},
+  'except':{def:'Not including; other than.',rules:['Exclusion: everyone except me, every day except Sunday'],examples:['Everyone was invited except John.','The shop is open every day except Monday.','I eat everything except seafood.'],doSay:['except for','everyone except','nothing except'],tip:'EXCEPT = everything minus one thing. Picture a full circle with one piece removed.'},
+  'along':{def:'Moving beside or in a line with something.',rules:['Beside: walk along the river, shops along the street','Progress: along the way, come along'],examples:['We walked along the beach.','There are cafés along the main street.','She learned a lot along the way.'],doSay:['walk along','come along','along the way','along the coast'],tip:'ALONG = following the line or length of something. Think of a river path.'}
+};
+
 function buildPreps(){
   var sg=document.getElementById('simpleGrid'),cg=document.getElementById('complexGrid');
   if(!sg||sg.children.length>0)return;
@@ -3587,18 +3784,52 @@ function buildPreps(){
     cg.appendChild(c);
   });
 }
-async function clickPrep(prep,chip,col){
+function clickPrep(prep,chip,col){
   document.querySelectorAll('.prep-chip').forEach(function(c){c.classList.remove('pa');c.style.background='';c.style.color='';});
   chip.classList.add('pa');chip.style.background=col;chip.style.color='#fff';
   var res=document.getElementById('prepResult');
   res.className='prep-res show';res.style.background=col+'0e';res.style.borderLeft='4px solid '+col;
-  res.innerHTML='<div class="tdots"><span></span><span></span><span></span></div>';
-  setTimeout(function(){res.scrollIntoView({behavior:'smooth',block:'nearest'});},300);
-  var r=await gatedApi('Explain English preposition "'+prep+'": 1)Definition. 2)Translation in '+lang+'. 3)Usage rules. 4)Three sentences. 5)Same in '+lang+'. 6)DO SAY. 7)DO NOT SAY. 8)Memory tip.','Be accurate and clear.',700);
-  if(r===null){res.innerHTML='';return;}
-  var re=new RegExp('\\b'+prep.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\b','gi');
-  var hl=r.replace(re,function(m){return '<span style="font-weight:800;padding:1px 5px;border-radius:4px;background:'+col+'22;color:'+col+'">'+m+'</span>';});
-  res.innerHTML='<div style="font-size:13px;line-height:1.8">'+fmt(hl)+'</div>';
+  var d=PREP_DB[prep.toLowerCase()];
+  if(!d){res.innerHTML='<div style="padding:12px;color:rgba(255,255,255,0.55);font-size:13px">Detailed explanation coming soon for "'+prep+'".</div>';return;}
+  var h='<div style="display:flex;flex-direction:column;gap:10px;padding:4px 0">';
+  // Definition
+  h+='<div style="font-size:15px;font-weight:700;color:'+col+';font-family:Fraunces,serif">'+prep.toUpperCase()+'</div>';
+  h+='<div style="font-size:13px;color:rgba(255,255,255,0.85);line-height:1.65">'+d.def+'</div>';
+  // Rules
+  h+='<div style="background:rgba(255,255,255,0.04);border-radius:10px;padding:11px">';
+  h+='<div style="font-size:10px;font-weight:800;color:'+col+';text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px">Usage Rules</div>';
+  d.rules.forEach(function(r){h+='<div style="font-size:12.5px;color:rgba(255,255,255,0.78);margin-bottom:5px;padding-left:8px;border-left:2px solid '+col+'55">'+r+'</div>';});
+  h+='</div>';
+  // Examples
+  h+='<div style="background:rgba(255,255,255,0.04);border-radius:10px;padding:11px">';
+  h+='<div style="font-size:10px;font-weight:800;color:'+col+';text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px">Example Sentences</div>';
+  d.examples.forEach(function(e){
+    var highlighted=e.replace(new RegExp('\\b'+prep.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\b','gi'),function(m){return'<span style="font-weight:800;color:'+col+';background:'+col+'20;padding:1px 5px;border-radius:3px">'+m+'</span>';});
+    h+='<div style="font-size:13px;color:rgba(255,255,255,0.85);margin-bottom:5px;font-style:italic">'+highlighted+'</div>';
+  });
+  h+='</div>';
+  // Do / Do not
+  h+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">';
+  h+='<div style="background:rgba(74,222,128,0.07);border:1px solid rgba(74,222,128,0.25);border-radius:10px;padding:10px">';
+  h+='<div style="font-size:10px;font-weight:800;color:#4ADE80;margin-bottom:6px">✅ DO SAY</div>';
+  d.doSay.forEach(function(s){h+='<div style="font-size:12px;color:rgba(255,255,255,0.75);margin-bottom:3px">'+prep+' → '+s+'</div>';});
+  h+='</div>';
+  h+='<div style="background:rgba(255,107,107,0.07);border:1px solid rgba(255,107,107,0.25);border-radius:10px;padding:10px">';
+  h+='<div style="font-size:10px;font-weight:800;color:#FF6B6B;margin-bottom:6px">❌ DO NOT SAY</div>';
+  d.dontSay.forEach(function(s){h+='<div style="font-size:12px;color:rgba(255,255,255,0.60);margin-bottom:3px">'+s+'</div>';});
+  h+='</div></div>';
+  // Memory tip
+  h+='<div style="background:rgba(245,200,66,0.08);border:1.5px solid rgba(245,200,66,0.28);border-radius:10px;padding:11px">';
+  h+='<div style="font-size:10px;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px">💡 Memory Tip</div>';
+  h+='<div style="font-size:13px;color:rgba(255,255,255,0.85);line-height:1.60">'+d.tip+'</div></div>';
+  // Native language explanation
+  h+='<div style="background:rgba(245,200,66,0.07);border:1.5px solid rgba(245,200,66,0.25);border-radius:11px;padding:12px;margin-top:4px">';
+  h+='<div style="font-size:10px;font-weight:800;color:rgba(245,200,66,0.70);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px">🌐 In '+lang+'</div>';
+  h+='<div style="font-size:12.5px;color:rgba(255,255,255,0.80);line-height:1.70;margin-bottom:6px">'+NL.get('prep_tip')+'</div>';
+  h+='<div style="font-size:12px;font-style:italic;color:rgba(245,200,66,0.70)">'+NL.get('prep_rule')+'</div></div>';
+  h+='</div>';
+  res.innerHTML=h;
+  setTimeout(function(){res.scrollIntoView({behavior:'smooth',block:'nearest'});},100);
 }
 
 function renderVocab(){filterVocab();}
@@ -3652,17 +3883,13 @@ function renderVocabGrid(){
 }
 function loadMoreVocab(){vocPage++;renderVocabGrid();}
 
-async function translateVocWord(btn,word,def,ex,col){
-  btn.textContent='Loading...';
-  var r=await api('Translate to '+lang+': 1)"'+def+'" 2)"'+ex+'"','Return ONLY valid JSON:{"d":"def","e":"example"}. No markdown.',150);
-  try{
-    var d=JSON.parse(r.replace(/```json|```/g,'').trim());
-    var el=document.getElementById('vn-'+word.replace(/\s/g,'_'));
-    if(el)el.innerHTML='<strong style="color:'+col+'">In '+lang+':</strong><br>'+d.d+'<br><em>'+d.e+'</em>';
+function translateVocWord(btn,word,def,ex,col){
+  var el=document.getElementById('vn-'+word.replace(/\s/g,'_'));
+  if(el){
+    el.innerHTML='<span style="color:'+col+'"><strong>More detail:</strong><br>'+def+'<br><em style="color:rgba(255,255,255,0.60)">'+ex+'</em><br><span style="font-size:11px;color:rgba(245,200,66,0.65)">In '+lang+': Bilingual translation — Premium feature coming soon.</span></span>';
     btn.style.display='none';
-  }catch(e){btn.textContent='Retry';}
+  }
 }
-
 function printVocab(){
   document.querySelectorAll('.voc-card').forEach(function(c){c.querySelector('.voc-front').style.display='block';c.querySelector('.voc-back').style.display='block';});
   window.print();
@@ -3725,13 +3952,10 @@ function toggleIdiomEx(id,btn){var el=document.getElementById(id);if(!el)return;
 
 function loadMoreIdioms(){idiomPage++;renderIdiomList();}
 
-async function translateIdiom(btn,meaning,ex,col){
-  btn.textContent='Loading...';
-  var r=await api('Translate to '+lang+': 1)"'+meaning+'" 2)"'+ex+'"','Return ONLY valid JSON:{"m":"meaning","e":"example"}. No markdown.',150);
-  try{var d=JSON.parse(r.replace(/```json|```/g,'').trim());var parent=btn.parentElement;parent.innerHTML='<div style="font-size:12px;line-height:1.7"><strong style="color:'+col+'">In '+lang+':</strong> '+d.m+'<br><em style="color:var(--txt-3)">'+d.e+'</em></div>';}
-  catch(e){btn.textContent='Retry';}
+function translateIdiom(btn,meaning,ex,col){
+  var parent=btn.parentElement;
+  parent.innerHTML='<div style="font-size:12.5px;color:rgba(255,255,255,0.85);line-height:1.65"><strong style="color:'+col+'">Meaning:</strong> '+meaning+'<br><em>'+ex+'</em><br><span style="font-size:11px;color:rgba(245,200,66,0.65)">In '+lang+': Full bilingual translation — Premium feature coming soon.</span></div>';
 }
-
 function printIdioms(){document.querySelectorAll('.idiom-examples').forEach(function(e){e.classList.add('show');});window.print();}
 
 async function toggleSpk(){if(!('webkitSpeechRecognition'in window||'SpeechRecognition'in window)){document.getElementById('spkStatus').textContent='Speech not supported. Use Chrome.';return;}if(spkActive){stopSpk();return;}startSpk();}
@@ -3769,14 +3993,11 @@ function hearWord(){var w=document.getElementById('phonIn').value.trim();if(!w)r
 
 function sbHear(){var w=document.getElementById('sbPhon').value.trim();if(!w)return;var u=new SpeechSynthesisUtterance(w);u.lang='en-US';u.rate=0.85;window.speechSynthesis.speak(u);}
 
-async function lookupWord(){
-  var w=document.getElementById('wlIn').value.trim();if(!w)return;
-  document.getElementById('wlRes').textContent='Looking up...';
-  var r=await api('English for '+lang+' word "'+w+'": give English, pronunciation, definition, example.','Return ONLY valid JSON:{"english":"...","phonetic":"...","definition":"...","example":"..."}. No markdown.',150);
-  try{var d=JSON.parse(r.replace(/```json|```/g,'').trim());document.getElementById('wlRes').innerHTML='<strong style="color:var(--teal)">'+d.english+'</strong> <span style="font-family:DM Mono,monospace;font-size:10px;color:var(--gold)">'+d.phonetic+'</span><br><span style="color:var(--txt-3);font-size:11px">'+d.definition+'</span>';}
-  catch(e){document.getElementById('wlRes').textContent=r.substring(0,300);}
+function lookupWord(){
+  var w=document.getElementById('wlIn');if(!w||!w.value.trim())return;
+  var res=document.getElementById('wlRes');
+  if(res)res.innerHTML='<div style="font-size:12px;color:rgba(255,255,255,0.60);padding:8px">Word lookup in your language — Premium feature. Use a dictionary app for now.</div>';
 }
-
 function toggleMic(){
   if(!('webkitSpeechRecognition'in window||'SpeechRecognition'in window)){alert('Voice input requires Chrome.');return;}
   var btn=document.getElementById('micBtn');
@@ -3853,12 +4074,11 @@ function renderMistakes(){
   });
 }
 
-async function translateMistake(btn,idx,col,why,wrong,right){
-  btn.textContent='...';
-  var r=await api('Explain briefly in '+lang+': mistake "'+wrong+'" should be "'+right+'". Reason: '+why,'Respond only in '+lang+'. 2-3 sentences.',120);
-  var el=document.getElementById('mn-'+idx);if(el)el.innerHTML='<span style="color:'+col+'"><strong>In '+lang+':</strong> '+r+'</span>';btn.style.display='none';
+function translateMistake(btn,idx,col,why,wrong,right){
+  var el=document.getElementById('mn-'+idx);
+  if(el)el.innerHTML='<div style="font-size:12px;padding:7px 10px;border-radius:7px;background:rgba(255,255,255,0.04);border-left:2px solid '+col+'"><strong style="color:'+col+'">Why wrong:</strong> '+why+'<br><span style="color:rgba(255,255,255,0.60)">✅ Say: <strong>'+right+'</strong> ❌ Not: <strong>'+wrong+'</strong></span><br><span style="font-size:11px;color:rgba(245,200,66,0.65)">In '+lang+': Full explanation in your language — Premium coming soon.</span></div>';
+  btn.style.display='none';
 }
-
 function filterConfuse(cat,btn){
   document.querySelectorAll('#confuseFilter .chip').forEach(function(b){b.style.borderColor='';b.style.background='';b.style.color='';});
   btn.style.borderColor='var(--gold)';btn.style.background='var(--gold-dim)';btn.style.color='var(--gold)';
@@ -3912,12 +4132,10 @@ function showTlPopup(t){
     +'<button onclick="translateTense(\''+t.name+'\',\''+t.formula+'\',\''+t.when+'\',\''+t.col+'\')" style="margin-top:8px;padding:5px 14px;border-radius:20px;border:1.5px solid '+t.col+';background:transparent;color:'+t.col+';font-size:11px;cursor:pointer;font-family:inherit;font-weight:600">Explain in '+lang+'</button>';
 }
 
-async function translateTense(name,formula,when,col){
-  var el=document.getElementById('tlNative');if(!el)return;el.textContent='Loading...';
-  var r=await api('Explain '+name+' tense in '+lang+'. Formula: '+formula+'. Usage: '+when,'Respond only in '+lang+'. Be brief.',130);
-  el.innerHTML='<strong style="color:'+col+'">In '+lang+':</strong> '+r;
+function translateTense(name,formula,when,col){
+  var el=document.getElementById('tlNative');
+  if(el)el.innerHTML='<strong style="color:'+col+'">'+name+'</strong><br>Formula: <strong>'+formula+'</strong><br>When: '+when+'<br><span style="font-size:11px;color:rgba(245,200,66,0.65)">In '+lang+': Bilingual explanation — Premium coming soon.</span>';
 }
-
 function renderPhrases(){
   var area=document.getElementById('phraseArea');if(!area)return;
   var dayNum=new Date().getDate()-1;
@@ -3939,13 +4157,10 @@ function renderPhrases(){
   }
 }
 
-async function translatePhrase(idx,col,text,meaning){
-  var el=document.getElementById('pn-'+idx);if(!el)return;el.textContent='Loading...';
-  var r=await api('Translate to '+lang+': meaning of "'+text+'": "'+meaning+'"','Return ONLY valid JSON:{"m":"meaning in '+lang+'"}. No markdown.',120);
-  try{var d=JSON.parse(r.replace(/```json|```/g,'').trim());el.innerHTML='<strong style="color:'+col+'">In '+lang+':</strong> '+d.m;}
-  catch(e){el.textContent=r.substring(0,150);}
+function translatePhrase(idx,col,text,meaning){
+  var el=document.getElementById('pn-'+idx);
+  if(el)el.innerHTML='<div style="font-size:12px;color:rgba(255,255,255,0.80)"><strong style="color:'+col+'">"'+text+'"</strong><br>'+meaning+'<br><span style="font-size:11px;color:rgba(245,200,66,0.65)">In '+lang+': Translation — Premium coming soon.</span></div>';
 }
-
 function renderPuzzle(){
   var area=document.getElementById('puzzleArea');if(!area)return;
   var p=PUZZLES[currentPuzzle%PUZZLES.length];
@@ -4319,6 +4534,9 @@ function showTab(name,btn){
   document.querySelectorAll('.tbtn').forEach(function(b){b.classList.remove('active');});
   var p=document.getElementById('panel-'+name);if(p)p.classList.add('active');
   if(btn)btn.classList.add('active');
+  if(!btn){var tw=document.querySelector('.tabs-wrap');if(tw)tw.scrollIntoView({behavior:'smooth',block:'start'});}
+  // When called from showcase cards (btn===null), scroll layout into view
+  if(!btn){var layout=document.querySelector('.tabs-wrap');if(layout)layout.scrollIntoView({behavior:'smooth',block:'start'});}
   if(name==='grammar')setTimeout(buildPOS,50);
   if(name==='prepositions')setTimeout(buildPreps,50);
   if(name==='vocabulary')setTimeout(renderVocab,50);
@@ -4333,7 +4551,8 @@ function showTab(name,btn){
   if(name==='cheatsheet')setTimeout(buildCheatSheet,50);
   if(name==='connected')setTimeout(renderCS,50);
   if(name==='minimalpairs')setTimeout(function(){mpMode('identify',document.getElementById('mpM1'));},50);
-  if(name==='ghostwords')setTimeout(function(){gwRenderHistory('');},50);
+  if(name==='collocations')setTimeout(function(){renderCollocations();},50);
+  if(name==='wordbuilder')setTimeout(function(){renderWordBuilder();},50);
 }
 
 function hasRemainingUsage(){
@@ -4799,6 +5018,21 @@ function lgReset(){lgIdx=0;lgWrong=0;lgRunning=false;lgStart();}
 // ═══════════════════════════════════════════════
 
 // ── SHARED WRITING HELPER ──
+
+function ml(key){
+  var M={
+    'ba_clean':{Spanish:'Tu escritura no tiene errores comunes — ¡muy bien!',Telugu:'మీ writing లో common errors లేవు — బాగుంది!',Tamil:'உங்கள் writing-ல் பொதுவான errors இல்லை!',Hindi:'आपकी writing में कोई error नहीं — बहुत अच्छा!',Arabic:'كتابتك خالية من الأخطاء الشائعة — أحسنت!',default:'No common errors found — well done!'},
+    'ww_strong':{Spanish:'¡Vocabulario sólido — no se detectaron palabras débiles!',Telugu:'మీ vocabulary strong గా ఉంది — weak words లేవు!',Tamil:'உங்கள் vocabulary வலிமையானது!',Hindi:'शानदार vocabulary — कोई weak words नहीं!',Arabic:'مفرداتك قوية!',default:'Strong vocabulary — no weak words detected!'},
+    'ww_pro':{Spanish:'Usa las alternativas para una escritura más profesional.',Telugu:'పైన alternatives వాడితే writing professional గా అవుతుంది.',Tamil:'மேலே உள்ள alternatives writing-ஐ professional ஆக்கும்.',Hindi:'ऊपर दिए alternatives लिखने को professional बनाएंगे।',Arabic:'استخدم البدائل أعلاه لكتابة أكثر احترافية.',default:'Use the alternatives above for more professional writing.'},
+    'gw_vary':{Spanish:'Las palabras en rojo se repiten demasiado — varíalas.',Telugu:'ఎరుపు words చాలా తరచుగా వాడుతున్నారు — vary చేయండి.',Tamil:'சிவப்பு வார்த்தைகளை அடிக்கடி பயன்படுத்துகிறீர்கள்.',Hindi:'लाल शब्दों का उपयोग बहुत होता है — बदलें।',Arabic:'الكلمات الحمراء مستخدمة كثيراً — نوّع فيها.',default:'Red words are overused — vary them to improve your writing.'},
+    'rc_clean':{Spanish:'¡Tu escritura es concisa — sin frases innecesarias!',Telugu:'మీ writing concise గా ఉంది — wordy phrases లేవు!',Tamil:'உங்கள் writing சுருக்கமாக உள்ளது!',Hindi:'आपकी writing concise है!',Arabic:'كتابتك مختصرة!',default:'Writing is concise — no wordy phrases found!'},
+    'rc_pro':{Spanish:'En escritura profesional: di más con menos palabras.',Telugu:'Professional writing లో words తక్కువగా వాడి meaning ఎక్కువ చెప్పాలి.',Tamil:'Professional writing-ல் குறைவான வார்த்தைகளில் அதிக அர்த்தம்.',Hindi:'Professional writing में कम शब्दों में ज़्यादा बोलें।',Arabic:'في الكتابة المهنية: قل أكثر بكلمات أقل.',default:'In professional writing, say more with fewer words.'},
+    'rm_balanced':{Spanish:'¡Longitudes de oraciones equilibradas — excelente ritmo!',Telugu:'మీ sentence lengths balanced గా ఉన్నాయి — అద్భుతం!',Tamil:'வாக்கிய நீளங்கள் balanced ஆக உள்ளன!',Hindi:'वाक्यों की लंबाई balanced है!',Arabic:'أطوال جملك متوازنة — ممتاز!',default:'Excellent sentence rhythm — good length variety!'},
+    'pd_clean':{Spanish:'¡No se detectaron errores de puntuación — muy bien!',Telugu:'Punctuation errors లేవు — బాగుంది!',Tamil:'Punctuation errors இல்லை!',Hindi:'कोई punctuation error नहीं!',Arabic:'لا توجد أخطاء في علامات الترقيم!',default:'No punctuation errors detected — well done!'}
+  };
+  var o=M[key];if(!o)return '';return(o[lang]||o['default']);
+}
+
 function wHtml(el,h){var d=document.getElementById(el);if(d)d.innerHTML=h;}
 function wVal(el){var d=document.getElementById(el);return d?d.value.trim():'';}
 
@@ -4834,7 +5068,7 @@ function baCheck(){
     var m=fixed.match(f.w);
     if(m){m.forEach(function(match){if(changes.indexOf(f.why)===-1)changes.push({orig:match,repl:f.r,why:f.why});});fixed=fixed.replace(f.w,f.r);}
   });
-  if(fixed===orig){wHtml('baResult','<div style="background:rgba(74,222,128,0.10);border:1.5px solid rgba(74,222,128,0.30);border-radius:12px;padding:14px;text-align:center"><div style="font-size:22px;margin-bottom:6px">✅</div><div style="font-size:14px;font-weight:700;color:#4ADE80">No common errors found!</div><div style="font-size:12px;color:rgba(255,255,255,0.55);margin-top:4px">In '+lang+': మీ writing లో common errors కనపడలేదు — చాలా బాగుంది!</div></div>');return;}
+  if(fixed===orig){wHtml('baResult','<div style="background:rgba(74,222,128,0.10);border:1.5px solid rgba(74,222,128,0.30);border-radius:12px;padding:14px;text-align:center"><div style="font-size:22px;margin-bottom:6px">✅</div><div style="font-size:14px;font-weight:700;color:#4ADE80">No common errors found!</div><div style="font-size:12px;color:rgba(255,255,255,0.55);margin-top:4px">In '+lang+': '+ml('ba_clean')+'</div></div>');return;}
   var h='<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">';
   h+='<div style="background:rgba(255,107,107,0.08);border:1px solid rgba(255,107,107,0.25);border-radius:11px;padding:12px"><div style="font-size:10px;font-weight:800;color:rgba(255,107,107,0.80);text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px">⬅ Your version</div><div style="font-size:13px;color:rgba(255,255,255,0.80);line-height:1.70">'+orig+'</div></div>';
   h+='<div style="background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.25);border-radius:11px;padding:12px"><div style="font-size:10px;font-weight:800;color:rgba(74,222,128,0.80);text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px">✓ Corrected version</div><div style="font-size:13px;color:#4ADE80;line-height:1.70">'+fixed+'</div></div>';
@@ -4870,13 +5104,16 @@ function fsGenerate(){
   FS_TRANSFORMS.forEach(function(t){if(text.match(t.input))match=t;});
   if(!match){
     var base=text;
-    fsCurrentLevels=[
-      base.toLowerCase().replace(/please/gi,'').replace(/\./g,'')+'!',
-      base,
-      base.replace(/\bi\b/g,'I').replace(/!/g,'.'),
-      'I would like to '+base.toLowerCase().replace(/\./g,'')+'.',
-      'I respectfully wish to formally convey that '+base.toLowerCase().replace(/\./g,'')+'.'
-    ];
+    var t2=base.trim().replace(/[.!?]+$/,'');
+    var tLow=t2.toLowerCase();
+    var tClean=tLow.replace(/\bplease\b/gi,'').replace(/\bjust\b/gi,'').replace(/\bkind of\b/gi,'').replace(/\bbasically\b/gi,'').trim();
+    var cap=function(s){return s.charAt(0).toUpperCase()+s.slice(1);};
+    var casual=tLow.replace(/\bcould you\b/gi,'can ya').replace(/\bI would like\b/gi,'wanna').replace(/\bplease\b/gi,'').trim()+'!';
+    var friendly=cap(tLow.replace(/\bplease\b/gi,'').trim())+'.';
+    var neutral=cap(tClean)+'.';
+    var professional=cap(tClean.replace(/\bwant\b/gi,'require').replace(/\bneed\b/gi,'require').replace(/\bask\b/gi,'request').replace(/\bhelp\b/gi,'assistance'))+'.';
+    var formal='I wish to bring to your attention that '+tClean+'. I would appreciate your prompt response at your earliest convenience.';
+    fsCurrentLevels=[casual,friendly,neutral,professional,formal];
   } else {fsCurrentLevels=match.levels;}
   fsRender(2);
 }
@@ -4893,92 +5130,85 @@ function fsRender(level){
     h+='<div onclick="fsRender('+i+')" style="padding:9px 12px;border-radius:9px;border:1px solid '+(i===level?FS_COLORS[i]:'rgba(255,255,255,0.09)')+';background:'+(i===level?'rgba(167,139,250,0.12)':'rgba(255,255,255,0.03)')+';margin-bottom:5px;cursor:pointer;transition:all .13s">';
     h+='<div style="display:flex;align-items:center;gap:8px"><span style="font-size:11px;font-weight:700;color:'+FS_COLORS[i]+';min-width:100px">'+FS_LABELS[i]+'</span><span style="font-size:12.5px;color:rgba(255,255,255,0.75)">'+l+'</span></div></div>';
   });
-  h+='<div style="margin-top:10px;font-size:11.5px;font-style:italic;color:rgba(245,200,66,0.70);padding:8px 11px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.35);border-radius:0 8px 8px 0">In '+lang+': Register అంటే మీరు ఏ context లో మాట్లాడుతున్నారో దానికి తగ్గ language style. Formal = office letters. Casual = friends. Professional = workplace.</div>';
+  h+='<div style="margin-top:10px;font-size:11.5px;font-style:italic;color:rgba(245,200,66,0.70);padding:8px 11px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.35);border-radius:0 8px 8px 0">In '+lang+': '+({'Spanish':'"Register" = estilo de lenguaje según el contexto. Casual=amigos. Professional=trabajo. Formal=documentos oficiales.','Telugu':'"Register" = context కి తగ్గ language style. Casual=friends. Professional=office. Formal=letters.','Tamil':'"Register" = context-க்கு ஏற்ற language style.','Hindi':'"Register" = context के अनुसार भाषा शैली।','Arabic':'"Register" = أسلوب اللغة حسب السياق.','default':'"Register" = language style suited to context. Casual=friends. Professional=workplace. Formal=documents.'})[lang]||'Register = language style suited to context.'+'</div>';
   h+='</div>';
   wHtml('fsResult',h);
 }
 function fsExample(){var d=document.getElementById('fsInput');if(d)d.value='I want a refund';fsGenerate();}
-
-// ── W3: WEAK WORD DETECTOR ──
-var WW_DATA={
-  'very':['extremely','remarkably','exceptionally'],'really':['genuinely','truly','considerably'],
-  'good':['excellent','outstanding','superb'],'bad':['terrible','dreadful','poor'],
-  'big':['enormous','substantial','significant'],'small':['tiny','minimal','slight'],
-  'nice':['pleasant','delightful','appealing'],'great':['outstanding','remarkable','extraordinary'],
-  'got':['received','obtained','acquired'],'get':['obtain','receive','acquire'],
-  'said':['stated','explained','remarked'],'went':['travelled','proceeded','journeyed'],
-  'thing':['aspect','element','factor'],'things':['aspects','elements','matters'],
-  'stuff':['materials','items','content'],'lot':['considerable amount','great deal','substantial number'],
-  'use':['utilise','employ','apply'],'make':['create','produce','establish'],
-  'do':['complete','perform','undertake'],'put':['place','position','insert'],
-  'give':['provide','offer','present'],'show':['demonstrate','illustrate','reveal'],
-  'need':['require','necessitate','demand'],'want':['desire','require','seek'],
-  'like':['appreciate','value','favour'],'think':['believe','consider','conclude'],
-  'know':['understand','recognise','acknowledge'],'feel':['believe','sense','perceive'],
-  'look':['appear','seem','examine'],'come':['arrive','emerge','approach'],
-  'also':['furthermore','additionally','moreover'],'but':['however','nevertheless','nonetheless'],
-  'so':['therefore','consequently','thus'],'just':['simply','merely','only'],
-  'actually':['in fact','genuinely','effectively'],'basically':['fundamentally','essentially','primarily']
-};
-
-function wwCheck(){
-  var text=wVal('wwInput');
-  if(!text){alert('Please paste some text first.');return;}
-  var found=[],words=text.toLowerCase().match(/\b[a-z]+\b/g)||[];
-  words.forEach(function(w){if(WW_DATA[w]&&found.indexOf(w)===-1)found.push(w);});
-  if(found.length===0){wHtml('wwResult','<div style="background:rgba(74,222,128,0.10);border:1.5px solid rgba(74,222,128,0.30);border-radius:12px;padding:14px;text-align:center"><div style="font-size:22px;margin-bottom:6px">💪</div><div style="font-size:14px;font-weight:700;color:#4ADE80">Strong vocabulary — no weak words detected!</div><div style="font-size:12px;color:rgba(255,255,255,0.55);margin-top:4px">In '+lang+': మీ vocabulary చాలా strong గా ఉంది!</div></div>');return;}
-  // Highlight text
-  var highlighted=text;
-  found.forEach(function(w){highlighted=highlighted.replace(new RegExp('\\b'+w+'\\b','gi'),function(m){return'<mark style="background:rgba(251,146,60,0.30);color:#FB923C;border-radius:3px;padding:1px 3px;font-weight:700">'+m+'</mark>';});});
-  var h='<div style="background:rgba(251,146,60,0.08);border:1.5px solid rgba(251,146,60,0.25);border-radius:12px;padding:14px;margin-bottom:12px"><div style="font-size:10px;font-weight:800;color:rgba(251,146,60,0.70);text-transform:uppercase;margin-bottom:8px">Your text — weak words highlighted:</div><div style="font-size:13px;line-height:1.75;color:rgba(255,255,255,0.85)">'+highlighted+'</div></div>';
-  h+='<div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.40);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">'+found.length+' weak word'+(found.length>1?'s':'')+' found — stronger alternatives:</div>';
-  found.forEach(function(w){
-    var alts=WW_DATA[w];
-    h+='<div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:10px;padding:11px;margin-bottom:7px">';
-    h+='<div style="display:flex;align-items:center;gap:10px;margin-bottom:7px"><span style="padding:4px 11px;border-radius:7px;background:rgba(251,146,60,0.18);color:#FB923C;font-size:13px;font-weight:700">"'+w+'"</span><span style="font-size:11px;color:rgba(255,255,255,0.40)">→ stronger options:</span></div>';
-    h+='<div style="display:flex;gap:6px;flex-wrap:wrap">';
-    alts.forEach(function(a){h+='<span style="padding:4px 11px;border-radius:7px;background:rgba(74,222,128,0.12);color:#4ADE80;font-size:12px;font-weight:600">'+a+'</span>';});
-    h+='</div><div style="margin-top:7px;font-size:11.5px;font-style:italic;color:rgba(245,200,66,0.65)">In '+lang+': "'+w+'" బదులు పైన ఉన్న words వాడితే మీ writing మరింత professional గా అవుతుంది.</div>';
-    h+='</div>';
-  });
-  wHtml('wwResult',h);
-}
-function wwExample(){var d=document.getElementById('wwInput');if(d)d.value='It was a very good presentation. She got a lot of really nice feedback. The big thing is that everyone said it was very helpful and they really liked the stuff she showed them.';wwCheck();}
+function fsClear(){var d=document.getElementById('fsInput');if(d)d.value='';wHtml('fsResult','');fsCurrentLevels=null;}
+function fsClear(){var d=document.getElementById('fsInput');if(d)d.value='';wHtml('fsResult','');fsCurrentLevels=null;}
 
 // ── W4: PUNCTUATION DOCTOR ──
+
+var PD_NAT={
+  comma_splice:{Spanish:'Dos oraciones unidas por coma — usa punto (.) o punto y coma (;).',Telugu:'రెండు sentences ని comma తో కలపడం తప్పు. Full stop లేదా semicolon వాడండి.',Tamil:'இரண்டு வாக்கியங்களை காற்புள்ளியால் இணைக்கக்கூடாது.',Hindi:'दो वाक्यों को comma से न जोड़ें।',Arabic:'لا تربط جملتين بفاصلة — استخدم نقطة.',default:'Two sentences joined by a comma — use a full stop or semicolon instead.'},
+  its_its:{Spanish:'Sus = its (posesivo). Es = it is = it\'s. Comprueba cuál necesitas.',Telugu:'"its" = దాని. "it\'s" = it is లేదా it has.',Tamil:'"its" = அதன். "it\'s" = it is / it has.',Hindi:'"its" = उसका. "it\'s" = it is / it has।',Arabic:'"its" للملكية. "it\'s" تعني it is أو it has.',default:'"its" = possession. "it\'s" = it is or it has. Check which you need.'},
+  double_space:{Spanish:'Solo un espacio entre palabras.',Telugu:'Words మధ్య ఒకే space వాడాలి.',Tamil:'ஒரே space மட்டும்.',Hindi:'एक ही space।',Arabic:'مسافة واحدة فقط.',default:'Use only one space between words.'},
+  space_after_stop:{Spanish:'Un espacio después del punto antes de la siguiente oración.',Telugu:'Full stop తర్వాత ఒక space తప్పనిసరి.',Tamil:'முழுப்புள்ளிக்கு பின் ஒரு space.',Hindi:'Full stop के बाद एक space।',Arabic:'مسافة بعد النقطة.',default:'Leave one space after a full stop.'},
+  comma_conjunction:{Spanish:'No se necesita coma antes de and/but/or normalmente.',Telugu:'"and/but/or" ముందు comma సాధారణంగా అవసరం లేదు.',Tamil:'"and/but/or" முன் comma பொதுவாக வேண்டாம்.',Hindi:'"and/but/or" से पहले comma जरूरी नहीं।',Arabic:'لا حاجة لفاصلة قبل and / but / or.',default:'Usually no comma needed before and, but, or.'},
+  apostrophe:{Spanish:'Las contracciones necesitan apóstrofe: don\'t, can\'t, won\'t.',Telugu:'Contraction లో apostrophe తప్పనిసరి — don\'t, can\'t, won\'t.',Tamil:'don\'t, can\'t, won\'t — apostrophe அவசியம்.',Hindi:'don\'t, can\'t, won\'t — apostrophe जरूरी।',Arabic:'الاختصارات تحتاج فاصلة عليا: don\'t.',default:'Contractions need an apostrophe: don\'t, can\'t, won\'t.'},
+  lowercase_start:{Spanish:'Cada oración empieza con mayúscula.',Telugu:'ప్రతి sentence capital letter తో మొదలు కావాలి.',Tamil:'ஒவ்வொரு வாக்கியமும் பெரிய எழுத்தில் தொடங்க வேண்டும்.',Hindi:'हर वाक्य capital letter से शुरू।',Arabic:'كل جملة تبدأ بحرف كبير.',default:'Every sentence must begin with a capital letter.'},
+  lowercase_i:{Spanish:'El pronombre I (yo) siempre va en mayúscula.',Telugu:'"I" (నేను) ఎప్పుడూ capital letter తో రాయాలి.',Tamil:'"I" (நான்) எப்போதும் capital letter.',Hindi:'"I" (मैं) हमेशा capital।',Arabic:'الضمير I يُكتب بحرف كبير دائماً.',default:'The pronoun I is always written as a capital letter.'},
+  multi_punct:{Spanish:'Un solo signo de puntuación al final.',Telugu:'Sentence చివర ఒకే punctuation mark వాడాలి.',Tamil:'ஒரே punctuation mark.',Hindi:'एक ही punctuation mark।',Arabic:'علامة ترقيم واحدة في النهاية.',default:'Use only one punctuation mark at the end.'},
+  space_before_punct:{Spanish:'Los signos de puntuación van pegados a la palabra.',Telugu:'Punctuation mark ముందు space వేయకూడదు.',Tamil:'Punctuation mark-க்கு முன் space இடக்கூடாது.',Hindi:'Punctuation से पहले space नहीं।',Arabic:'لا مسافة قبل علامات الترقيم.',default:'No space before punctuation marks.'},
+  missing_end:{Spanish:'La oración debe terminar con punto, interrogación o exclamación.',Telugu:'Sentence చివర full stop (.), question mark (?), లేదా exclamation mark (!) వాడాలి.',Tamil:'வாக்கியம் . அல்லது ? அல்லது ! உடன் முடிய வேண்டும்.',Hindi:'वाक्य full stop, question mark या exclamation mark से समाप्त करें।',Arabic:'الجملة تنتهي بنقطة أو علامة استفهام أو تعجب.',default:'End with a full stop (.), question mark (?), or exclamation mark (!).'},
+  comma_after_intro:{Spanish:'Usa coma después de una frase introductoria: "After the meeting,".',Telugu:'Introductory phrase తర్వాత comma వాడాలి: "After the meeting, ..."',Tamil:'தொடக்க சொற்றொடருக்கு பிறகு comma: "After the meeting,".',Hindi:'Introductory phrase के बाद comma: "After the meeting,"।',Arabic:'فاصلة بعد العبارة التمهيدية: After the meeting,',default:'Add a comma after an introductory phrase: "After the meeting, ..."'}
+};
+function pdNat(key){var o=PD_NAT[key];if(!o)return '';return 'In '+lang+': '+(o[lang]||o['default']);}
+
 var PD_RULES=[
-  {re:/([a-z]),\s+([A-Z][a-z])/g,label:'Comma splice',fix:'Comma between two independent sentences — use a full stop or semicolon instead.',nat:'In '+lang+': Comma splice అంటే రెండు complete sentences ని comma తో కలపడం — English లో ఇది error.'},
-  {re:/\bits\s+([a-z])/gi,label:"its vs it's",fix:'"its" shows possession (its colour). "it\'s" means "it is" or "it has". Check which meaning you intend.',nat:"In "+lang+": 'its' = దాని (possession). 'it's' = it is / it has. Context ని చూసి use చేయండి."},
-  {re:/\s{2,}/g,label:'Double space',fix:'English uses only one space between words and after punctuation.',nat:'In '+lang+': Words మధ్య ఒకే space వాడాలి — రెండు spaces error.'},
-  {re:/[a-z]\.[A-Z]/g,label:'Missing space after full stop',fix:'Always leave one space after a full stop before the next sentence.',nat:'In '+lang+': Full stop తర్వాత ఒక space వాడాలి.'},
-  {re:/,and |,but |,or /gi,label:'Comma before conjunction',fix:'No comma needed before "and", "but", "or" in most cases unless joining two independent clauses.',nat:'In '+lang+': "and/but/or" ముందు comma వేయడం సాధారణంగా అవసరం లేదు.'},
-  {re:/\b(dont|cant|wont|isnt|arent|wasnt|werent|havent|hasnt|hadnt|couldnt|wouldnt|shouldnt|didnt)\b/gi,label:'Missing apostrophe in contraction',fix:'Contractions need an apostrophe: don\'t, can\'t, won\'t, isn\'t, aren\'t.',nat:"In "+lang+": Contraction లో apostrophe (') వాడాలి — don't, can't, won't."}
+  {re:/([a-z]),\s+([A-Z][a-z])/g,key:'comma_splice',label:'Comma splice',fix:'A comma is joining two complete sentences. Use a full stop (.) or semicolon (;).',corr:function(t){return t.replace(/([a-z]),\s+([A-Z][a-z])/g,function(m,a,b){return a+'. '+b;});}},
+  {re:/\bits\s+([a-z])/gi,key:'its_its',label:"its / it\'s confusion",fix:'"its" = possession. "it\'s" = it is or it has. Check which meaning you need.',corr:null},
+  {re:/\s{2,}/g,key:'double_space',label:'Double space',fix:'Use only one space between words.',corr:function(t){return t.replace(/\s{2,}/g,' ');}},
+  {re:/[a-z]\.[A-Z]/g,key:'space_after_stop',label:'Missing space after full stop',fix:'Leave one space after a full stop before the next sentence.',corr:function(t){return t.replace(/([a-z])\.([A-Z])/g,'$1. $2');}},
+  {re:/,and |,but |,or /gi,key:'comma_conjunction',label:'Unnecessary comma before conjunction',fix:'Usually no comma before "and", "but", "or" unless joining two independent clauses.',corr:function(t){return t.replace(/,and /gi,' and ').replace(/,but /gi,' but ').replace(/,or /gi,' or ');}},
+  {re:/\b(dont|cant|wont|isnt|arent|wasnt|werent|havent|hasnt|hadnt|couldnt|wouldnt|shouldnt|didnt)\b/gi,key:'apostrophe',label:"Missing apostrophe in contraction",fix:"Contractions need an apostrophe: don't, can't, won't, isn't.",corr:function(t){var m={'dont':"don't",'cant':"can't",'wont':"won't",'isnt':"isn't",'arent':"aren't",'wasnt':"wasn't",'werent':"weren't",'havent':"haven't",'hasnt':"hasn't",'hadnt':"hadn't",'couldnt':"couldn't",'wouldnt':"wouldn't",'shouldnt':"shouldn't",'didnt':"didn't"};return t.replace(/\b(dont|cant|wont|isnt|arent|wasnt|werent|havent|hasnt|hadnt|couldnt|wouldnt|shouldnt|didnt)\b/gi,function(w){return m[w.toLowerCase()]||w;});}},
+  {re:/^[a-z]/m,key:'lowercase_start',label:'Sentence starts with lowercase',fix:'Every sentence must begin with a capital letter.',corr:function(t){return t.replace(/(^|[.!?]\s+)([a-z])/g,function(m,p,c){return p+c.toUpperCase();});}},
+  {re:/\bi\b/g,key:'lowercase_i',label:'Lowercase "i" — always capital "I"',fix:'The pronoun "I" is always a capital letter in English.',corr:function(t){return t.replace(/\bi\b/g,'I');}},
+  {re:/[.!?]{2,}/g,key:'multi_punct',label:'Multiple end punctuation marks',fix:'Use only one punctuation mark to end a sentence.',corr:function(t){return t.replace(/([.!?])[.!?]+/g,'$1');}},
+  {re:/\s[,;:.]/g,key:'space_before_punct',label:'Space before punctuation',fix:'Punctuation marks come directly after a word — no space before them.',corr:function(t){return t.replace(/\s([,;:.])/g,'$1');}},
+  {re:/[a-zA-Z]{3,}[^.!?:;,\n"')\]}-]\s*$/m,key:'missing_end',label:'Sentence missing end punctuation',fix:'End your sentence with a full stop (.), question mark (?), or exclamation mark (!).',corr:function(t){return t.replace(/([a-zA-Z])\s*$/m,'$1.');}},
+  {re:/\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)/g,key:'proper_nouns',label:'',fix:'',skip:true,corr:null},
+  {re:/^(?:after|before|since|when|while|although|because|however|moreover|furthermore|in addition|as a result|for example|in conclusion|on the other hand)\b[^,]/im,key:'comma_after_intro',label:'Missing comma after introductory phrase',fix:'Add a comma after an introductory phrase at the start of a sentence.',corr:function(t){return t.replace(/^(after|before|since|when|while|although|because|however|moreover|furthermore|in addition|as a result|for example|in conclusion|on the other hand)\b([^,])/im,function(m,p,r){return p+','+r;});}}
 ];
 
 function pdCheck(){
   var text=wVal('pdInput');
   if(!text){alert('Please paste some text first.');return;}
-  var errors=[],highlighted=text;
+  var errors=[],highlighted=text,corrected=text;
   PD_RULES.forEach(function(r){
+    if(r.skip)return;
+    r.re.lastIndex=0;
     if(r.re.test(text)){
       r.re.lastIndex=0;
       errors.push(r);
-      highlighted=highlighted.replace(r.re,function(m){return'<mark style="background:rgba(52,211,153,0.25);color:#34D399;border-radius:3px;padding:1px 3px;font-weight:700;border-bottom:2px solid #34D399">'+m+'</mark>';});
+      highlighted=highlighted.replace(r.re,function(m){return'<mark style="background:rgba(255,107,107,0.30);color:#FF6B6B;border-radius:3px;padding:1px 3px;font-weight:700;border-bottom:2px solid #FF6B6B">'+m+'</mark>';});
       r.re.lastIndex=0;
+      if(r.corr){try{r.re.lastIndex=0;corrected=r.corr(corrected);}catch(e){}}
     }
   });
-  if(errors.length===0){wHtml('pdResult','<div style="background:rgba(52,211,153,0.10);border:1.5px solid rgba(52,211,153,0.30);border-radius:12px;padding:14px;text-align:center"><div style="font-size:22px;margin-bottom:6px">✅</div><div style="font-size:14px;font-weight:700;color:#34D399">No punctuation errors detected!</div><div style="font-size:12px;color:rgba(255,255,255,0.55);margin-top:4px">In '+lang+': Punctuation సరిగ్గా ఉంది — బాగుంది!</div></div>');return;}
-  var h='<div style="background:rgba(52,211,153,0.07);border:1.5px solid rgba(52,211,153,0.22);border-radius:12px;padding:14px;margin-bottom:12px"><div style="font-size:10px;font-weight:800;color:rgba(52,211,153,0.70);text-transform:uppercase;margin-bottom:8px">Errors highlighted:</div><div style="font-size:13px;line-height:1.75;color:rgba(255,255,255,0.85)">'+highlighted+'</div></div>';
-  h+='<div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.40);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">'+errors.length+' issue'+(errors.length>1?'s':'')+' found:</div>';
+  if(errors.length===0){wHtml('pdResult','<div style="background:rgba(52,211,153,0.10);border:1.5px solid rgba(52,211,153,0.30);border-radius:12px;padding:16px;text-align:center"><div style="font-size:26px;margin-bottom:8px">✅</div><div style="font-size:14px;font-weight:700;color:#34D399">No punctuation errors detected!</div><div style="font-size:12px;color:rgba(255,255,255,0.55);margin-top:6px">'+pdNat('missing_end').replace('End your sentence with','Punctuation looks correct —')+'</div></div>');return;}
+  var h='';
+  h+='<div style="background:rgba(255,107,107,0.07);border:1.5px solid rgba(255,107,107,0.25);border-radius:12px;padding:14px;margin-bottom:10px">';
+  h+='<div style="font-size:10px;font-weight:800;color:rgba(255,107,107,0.70);text-transform:uppercase;margin-bottom:8px">❌ Your text — errors marked:</div>';
+  h+='<div style="font-size:13px;line-height:1.85;color:rgba(255,255,255,0.85)">'+highlighted+'</div></div>';
+  if(corrected!==text){
+    h+='<div style="background:rgba(52,211,153,0.07);border:1.5px solid rgba(52,211,153,0.28);border-radius:12px;padding:14px;margin-bottom:10px">';
+    h+='<div style="font-size:10px;font-weight:800;color:rgba(52,211,153,0.70);text-transform:uppercase;margin-bottom:8px">✅ Suggested correction:</div>';
+    h+='<div style="font-size:13px;line-height:1.85;font-weight:600;color:#4ADE80">'+corrected+'</div></div>';
+  }
+  h+='<div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.40);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">'+errors.length+' issue'+(errors.length>1?'s':'')+' explained:</div>';
   errors.forEach(function(e){
+    if(!e.label)return;
     h+='<div style="background:rgba(255,255,255,0.04);border:1px solid rgba(52,211,153,0.18);border-radius:10px;padding:11px;margin-bottom:7px">';
     h+='<div style="font-size:12px;font-weight:700;color:#34D399;margin-bottom:4px">🩺 '+e.label+'</div>';
-    h+='<div style="font-size:12px;color:rgba(255,255,255,0.70);margin-bottom:5px">'+e.fix+'</div>';
-    h+='<div style="font-size:11.5px;font-style:italic;color:rgba(245,200,66,0.65)">'+e.nat+'</div></div>';
+    h+='<div style="font-size:12.5px;color:rgba(255,255,255,0.80);margin-bottom:6px;line-height:1.60">'+e.fix+'</div>';
+    h+='<div style="font-size:12px;font-style:italic;color:rgba(245,200,66,0.80);padding:7px 10px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.40);border-radius:0 7px 7px 0">'+pdNat(e.key)+'</div></div>';
   });
   wHtml('pdResult',h);
 }
-function pdExample(){var d=document.getElementById('pdInput');if(d)d.value='She went to the shop,she bought milk. The dog lost its way,but its owner found it. I cant believe it happened,and now we dont know what to do.';pdCheck();}
+function pdExample(){var d=document.getElementById('pdInput');if(d)d.value='after the meeting john said we should review the proposal again before friday';pdCheck();}
+
 
 // ── W5: REDUNDANCY CUTTER ──
 var RC_DATA=[
@@ -5011,7 +5241,7 @@ function rcCheck(){
       re.lastIndex=0;
     }
   });
-  if(found.length===0){wHtml('rcResult','<div style="background:rgba(244,114,182,0.10);border:1.5px solid rgba(244,114,182,0.30);border-radius:12px;padding:14px;text-align:center"><div style="font-size:22px;margin-bottom:6px">✂️</div><div style="font-size:14px;font-weight:700;color:#F472B6">Writing is concise — no wordy phrases found!</div><div style="font-size:12px;color:rgba(255,255,255,0.55);margin-top:4px">In '+lang+': మీ writing concise గా ఉంది — Wordy phrases లేవు!</div></div>');return;}
+  if(found.length===0){wHtml('rcResult','<div style="background:rgba(244,114,182,0.10);border:1.5px solid rgba(244,114,182,0.30);border-radius:12px;padding:14px;text-align:center"><div style="font-size:22px;margin-bottom:6px">✂️</div><div style="font-size:14px;font-weight:700;color:#F472B6">Writing is concise — no wordy phrases found!</div><div style="font-size:12px;color:rgba(255,255,255,0.55);margin-top:4px">In '+lang+': '+ml('rc_clean')+'</div></div>');return;}
   var tightened=changed.replace(/\[\[([^\]]+)\]\]/g,'$1');
   var h='<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">';
   h+='<div style="background:rgba(255,107,107,0.07);border:1px solid rgba(255,107,107,0.22);border-radius:11px;padding:12px"><div style="font-size:10px;font-weight:800;color:rgba(255,107,107,0.70);text-transform:uppercase;margin-bottom:6px">⬅ Wordy version</div><div style="font-size:13px;color:rgba(255,255,255,0.75);line-height:1.70">'+text+'</div></div>';
@@ -5023,101 +5253,270 @@ function rcCheck(){
     h+='<span style="color:rgba(255,255,255,0.40)">→</span>';
     h+='<span style="padding:3px 10px;border-radius:6px;font-size:12px;font-weight:700;background:rgba(244,114,182,0.15);color:#F472B6">'+p[1]+'</span></div>';
   });
-  h+='<div style="margin-top:8px;font-size:11.5px;font-style:italic;color:rgba(245,200,66,0.65);padding:8px 11px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.30);border-radius:0 7px 7px 0">In '+lang+': Professional writing లో words తక్కువగా వాడి meaning ఎక్కువ చెప్పాలి. Wordy phrases తొలగించడం వల్ల writing మరింత native గా అవుతుంది.</div>';
+  h+='<div style="margin-top:8px;font-size:11.5px;font-style:italic;color:rgba(245,200,66,0.65);padding:8px 11px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.30);border-radius:0 7px 7px 0">In '+lang+': '+ml('rc_pro')+'</div>';
   wHtml('rcResult',h);
 }
 function rcExample(){var d=document.getElementById('rcInput');if(d)d.value='Due to the fact that she was in close proximity to the office, she decided that in order to save time she would, in the near future, make advance planning for each and every meeting she had on a daily basis.';rcCheck();}
 
-// ── W6: GHOST WORD TRACKER ──
-var GW_HISTORY=JSON.parse(localStorage.getItem('gw_history')||'{}');
 
-function gwAnalyse(){
-  var text=wVal('gwInput');
-  if(!text){alert('Please paste some text first.');return;}
-  var words=text.toLowerCase().replace(/[^a-z\s]/g,'').split(/\s+/);
-  var stopWords=['the','a','an','and','or','but','in','on','at','to','for','of','is','are','was','were','be','been','being','have','has','had','do','does','did','will','would','could','should','may','might','shall','it','its','this','that','these','those','i','you','he','she','we','they','my','your','his','her','our','their','with','from','by','as','if','so','then','than','when','where','which','who','what','how'];
-  var freq={};
-  words.forEach(function(w){if(w.length>2&&stopWords.indexOf(w)===-1){freq[w]=(freq[w]||0)+1;}});
-  // Update global history
-  Object.keys(freq).forEach(function(w){GW_HISTORY[w]=(GW_HISTORY[w]||0)+freq[w];});
-  localStorage.setItem('gw_history',JSON.stringify(GW_HISTORY));
-  // Top words from this session
-  var sorted=Object.keys(freq).sort(function(a,b){return freq[b]-freq[a];}).slice(0,10);
-  var h='<div style="font-size:11px;font-weight:700;color:rgba(96,165,250,0.70);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">This session — top words:</div>';
-  h+='<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px">';
-  sorted.forEach(function(w,i){
-    var pct=Math.round((freq[w]/words.length)*100);
-    var col=pct>5?'#FF6B6B':pct>2?'#F59E0B':'#60A5FA';
-    h+='<div style="padding:6px 12px;border-radius:9px;background:rgba(96,165,250,0.08);border:1px solid rgba(96,165,250,0.20)"><span style="font-size:13px;font-weight:700;color:'+col+'">'+w+'</span><span style="font-size:10px;color:rgba(255,255,255,0.40);margin-left:5px">×'+freq[w]+' ('+pct+'%)</span></div>';
+
+// ══════════════════════════════════════════════════════
+// NEW FEATURE 1: COLLOCATIONS COACH
+// ══════════════════════════════════════════════════════
+var COLL_DATA={
+  verbs:[
+    {verb:'make',nouns:['a decision','a mistake','a difference','a noise','an effort','progress','money','friends','a speech','a plan','a choice','a point'],wrong:'do a decision / do a mistake',tip:'MAKE = create or produce. You MAKE a cake, MAKE a decision, MAKE a mistake.'},
+    {verb:'do',nouns:['your homework','business','damage','research','someone a favour','the dishes','exercise','your best','harm','nothing','good'],wrong:'make your homework / make research',tip:'DO = an action or activity. You DO homework, DO exercise, DO research.'},
+    {verb:'take',nouns:['a photo','a break','a risk','responsibility','an exam','a taxi','notes','time','care','action','a look','a step'],wrong:'make a photo / do an exam',tip:'TAKE = receive or experience. You TAKE a photo, TAKE an exam, TAKE a risk.'},
+    {verb:'have',nouns:['a meeting','a look','a problem','fun','a conversation','lunch','a shower','an argument','experience','a chance','doubts'],wrong:'make a meeting / do fun',tip:'HAVE = possess or experience. You HAVE fun, HAVE a meeting, HAVE lunch.'},
+    {verb:'get',nouns:['permission','a job','married','angry','bored','dressed','ready','stuck','lost','better','worse','involved'],wrong:'become married / take permission',tip:'GET = receive or become. You GET permission, GET married, GET better.'},
+    {verb:'give',nouns:['advice','a speech','permission','a presentation','feedback','support','a warning','an example','birth'],wrong:'make advice / tell a speech',tip:'GIVE = transfer to another person. You GIVE advice (not make advice).'},
+    {verb:'pay',nouns:['attention','a visit','a compliment','a bill','a fine','respects','tribute'],wrong:'give attention / make a visit',tip:'PAY attention — not give attention. PAY a visit — not make a visit.'},
+    {verb:'keep',nouns:['a promise','a secret','quiet','in touch','track of','an eye on','a diary','notes'],wrong:'maintain a promise / do quiet',tip:'KEEP a promise — not maintain or do. KEEP quiet — not be/stay quiet.'},
+    {verb:'come',nouns:['to an end','to terms with','across','to a conclusion','to mind','to power'],wrong:'go to an end / arrive to a conclusion',tip:'COME to a conclusion — not arrive at. COME to mind — not go to mind.'},
+    {verb:'set',nouns:['a goal','a record','an example','fire to','limits','free','sail','aside time'],wrong:'put a goal / make a record',tip:'SET a goal — not make or put. SET a record — not break (break = exceed a record).'}
+  ],
+  adj:[
+    {adj:'strong',nouns:['opinion','evidence','argument','accent','coffee','smell','wind','feeling'],wrong:'heavy opinion / big argument',tip:'STRONG opinion — not big or heavy. A STRONG argument — not a powerful argument (both ok but strong is more natural).'},
+    {adj:'heavy',nouns:['rain','traffic','smoker','drinker','responsibility','accent','meal','suitcase','burden'],wrong:'strong rain / big traffic',tip:'HEAVY rain — not strong rain. HEAVY traffic — not big traffic.'},
+    {adj:'deep',nouns:['breath','sleep','thought','knowledge','feeling','voice','water','regret'],wrong:'high knowledge / strong feeling',tip:'DEEP breath — not strong breath. DEEP knowledge — not high knowledge.'},
+    {adj:'high',nouns:['price','quality','standard','speed','temperature','risk','level','demand'],wrong:'big price / strong quality',tip:'HIGH price — not big or large. HIGH quality — not good quality (both ok, high is more specific).'},
+    {adj:'great',nouns:['deal','success','importance','pleasure','opportunity','difficulty'],wrong:'big deal (informal only) / strong success',tip:'GREAT deal of effort — not big or large. GREAT success — not big success.'},
+    {adj:'close',nouns:['friend','relationship','look','attention','call','connection','resemblance'],wrong:'near friend / tight relationship',tip:'CLOSE friend — not near friend. CLOSE relationship — not tight relationship.'},
+    {adj:'common',nouns:['mistake','ground','sense','language','problem','belief','factor'],wrong:'usual mistake / normal sense',tip:'COMMON mistake — not usual mistake. COMMON sense — not normal sense.'},
+    {adj:'sharp',nouns:['increase','decline','contrast','taste','mind','turn'],wrong:'high increase / strong contrast',tip:'SHARP increase — not high or big. SHARP contrast — not strong contrast.'}
+  ],
+  adv:[
+    {adv:'deeply',adj:['concerned','moved','committed','grateful','regret','sorry'],wrong:'highly concerned / strongly moved'},
+    {adv:'highly',adj:['recommended','skilled','unlikely','effective','competitive','qualified'],wrong:'deeply recommended / very skilled (ok but highly is more natural)'},
+    {adv:'widely',adj:['available','used','known','accepted','recognised','regarded'],wrong:'highly available / commonly known (both ok)'},
+    {adv:'bitterly',adj:['cold','disappointed','regret','complain'],wrong:'very disappointed / strongly cold'},
+    {adv:'perfectly',adj:['normal','clear','fine','reasonable','valid'],wrong:'completely normal (ok) / very normal (sounds unnatural)'},
+    {adv:'strongly',adj:['recommend','suggest','believe','oppose','support'],wrong:'highly recommend (both ok) / deeply suggest'},
+    {adv:'barely',adj:['visible','audible','awake','recognisable','enough'],wrong:'hardly visible (same) / almost not visible'},
+    {adv:'utterly',adj:['exhausted','ridiculous','useless','convinced','devastated'],wrong:'very exhausted / completely ridiculous (ok)'}
+  ],
+  mistakes:[
+    {wrong:'I am having a car',right:'I have a car',rule:'State verbs (have, know, like, own) do not use continuous form for possession.'},
+    {wrong:'She is knowing the answer',right:'She knows the answer',rule:'KNOW is a state verb — use simple present, not present continuous.'},
+    {wrong:'I am agree',right:'I agree',rule:'AGREE is a verb — not an adjective. Never say "I am agree."'},
+    {wrong:'We discussed about it',right:'We discussed it',rule:'DISCUSS does not need "about" — it already includes the meaning.'},
+    {wrong:'She explained me',right:'She explained it to me',rule:'EXPLAIN needs the object first: explain something to someone.'},
+    {wrong:'He suggested me to go',right:'He suggested that I go / He suggested going',rule:'SUGGEST is not followed by object + infinitive.'},
+    {wrong:'I reached to the station',right:'I reached the station',rule:'REACH does not need a preposition — it already means "to arrive at".'},
+    {wrong:'She married with him',right:'She married him',rule:'MARRY does not need "with" — "She married him" is correct.'},
+    {wrong:'I entered into the room',right:'I entered the room',rule:'ENTER does not need "into".'},
+    {wrong:'Can you tell me where is the station?',right:'Can you tell me where the station is?',rule:'Indirect questions use statement word order: where IS becomes where the station IS.'},
+    {wrong:'I have seen him yesterday',right:'I saw him yesterday',rule:'Use Simple Past (not Present Perfect) with specific past time words like yesterday.'},
+    {wrong:'She is more beautiful than me',right:'She is more beautiful than I am',rule:'Comparisons after THAN use subject pronouns (I, he, she) not object (me, him, her).'},
+    {wrong:'The informations are useful',right:'The information is useful',rule:'INFORMATION is uncountable — no plural form and takes singular verb.'},
+    {wrong:'He gave me an advice',right:'He gave me some advice / a piece of advice',rule:'ADVICE is uncountable — no "an advice". Use some advice or a piece of advice.'},
+    {wrong:'I am boring',right:'I am bored',rule:'BORED = how you feel. BORING = describes the thing causing the feeling.'}
+  ]
+};
+
+var collCurrentCat='verbs';
+function collFilter(cat,btn){
+  collCurrentCat=cat;
+  document.querySelectorAll('#collCatBtns button').forEach(function(b){
+    b.style.background='transparent';b.style.borderColor='rgba(255,255,255,0.15)';b.style.color='rgba(255,255,255,0.50)';
   });
-  h+='</div>';
-  gwRenderHistory(h);
+  if(btn){btn.style.background='rgba(96,165,250,0.15)';btn.style.borderColor='rgba(96,165,250,0.40)';btn.style.color='#60A5FA';}
+  renderCollocations();
 }
 
-function gwRenderHistory(prefix){
-  var allSorted=Object.keys(GW_HISTORY).sort(function(a,b){return GW_HISTORY[b]-GW_HISTORY[a];}).slice(0,15);
-  var h=(prefix||'')+'<div style="background:rgba(96,165,250,0.07);border:1.5px solid rgba(96,165,250,0.20);border-radius:12px;padding:14px"><div style="font-size:11px;font-weight:700;color:rgba(96,165,250,0.70);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px">👻 Your all-time ghost words (across all sessions):</div>';
-  if(allSorted.length===0){h+='<div style="font-size:12px;color:rgba(255,255,255,0.40)">Paste more text to build your ghost word history.</div>';}
-  else{
-    h+='<div style="display:flex;flex-direction:column;gap:6px">';
-    allSorted.forEach(function(w,i){
-      var max=GW_HISTORY[allSorted[0]];
-      var pct=Math.round((GW_HISTORY[w]/max)*100);
-      var col=i<3?'#FF6B6B':i<7?'#F59E0B':'#60A5FA';
-      h+='<div style="display:flex;align-items:center;gap:9px"><span style="font-size:12px;font-weight:700;color:'+col+';min-width:90px">'+w+'</span><div style="flex:1;height:6px;background:rgba(255,255,255,0.07);border-radius:3px;overflow:hidden"><div style="width:'+pct+'%;height:100%;background:'+col+';border-radius:3px;transition:width .8s ease"></div></div><span style="font-size:10.5px;color:rgba(255,255,255,0.40);min-width:30px;text-align:right">×'+GW_HISTORY[w]+'</span></div>';
+function renderCollocations(){
+  // Native language intro
+  var natIntro='<div style="background:rgba(245,200,66,0.07);border:1px solid rgba(245,200,66,0.20);border-radius:10px;padding:10px 12px;margin-bottom:10px;font-size:12.5px;color:rgba(255,255,255,0.80)"><span style="font-weight:700;color:var(--gold)">🌐 In '+lang+':</span> '+NL.get('coll_intro')+'</div>';
+  var list=document.getElementById('collList');if(!list)return;
+  var data=COLL_DATA[collCurrentCat]||[];
+  var h='';
+  if(collCurrentCat==='mistakes'){
+    h+='<div style="font-size:12px;color:rgba(255,255,255,0.50);margin-bottom:8px">15 mistakes '+lang+' speakers make — learn the correct collocations</div>';
+    data.forEach(function(item,i){
+      h+='<div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:12px;padding:12px;margin-bottom:6px">';
+      h+='<div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:7px">';
+      h+='<div style="background:rgba(255,107,107,0.15);color:#FF6B6B;padding:4px 10px;border-radius:7px;font-size:12px;font-weight:700;flex-shrink:0">❌ Wrong</div>';
+      h+='<div style="font-size:13px;font-weight:600;color:#FF6B6B;line-height:1.4">'+item.wrong+'</div></div>';
+      h+='<div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:7px">';
+      h+='<div style="background:rgba(74,222,128,0.15);color:#4ADE80;padding:4px 10px;border-radius:7px;font-size:12px;font-weight:700;flex-shrink:0">✅ Right</div>';
+      h+='<div style="font-size:13px;font-weight:700;color:#4ADE80;line-height:1.4">'+item.right+'</div></div>';
+      h+='<div style="font-size:12px;color:rgba(255,255,255,0.60);padding:7px 10px;background:rgba(255,255,255,0.03);border-radius:7px">📌 Rule: '+item.rule+'</div>';
+      h+='</div>';
     });
-    h+='</div><div style="margin-top:10px;font-size:11.5px;font-style:italic;color:rgba(245,200,66,0.65)">In '+lang+': ఎరుపు color లో ఉన్న words మీరు చాలా frequently వాడుతున్నారు. వీటిని vary చేయండి.</div>';
+  } else if(collCurrentCat==='verbs'||collCurrentCat==='adj'){
+    var keyName=collCurrentCat==='verbs'?'verb':'adj';
+    data.forEach(function(item){
+      h+='<div style="background:rgba(255,255,255,0.04);border:1px solid rgba(96,165,250,0.15);border-radius:12px;padding:13px;margin-bottom:8px">';
+      h+='<div style="font-family:Fraunces,serif;font-size:18px;font-weight:700;color:#60A5FA;margin-bottom:8px">'+item[keyName].toUpperCase()+'</div>';
+      h+='<div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px">';
+      item.nouns.forEach(function(n){h+='<span style="background:rgba(96,165,250,0.12);color:#60A5FA;border:1px solid rgba(96,165,250,0.28);border-radius:7px;padding:3px 10px;font-size:12.5px;font-weight:600">'+item[keyName]+' '+n+'</span>';});
+      h+='</div>';
+      if(item.wrong)h+='<div style="font-size:11.5px;color:rgba(255,107,107,0.80);margin-bottom:5px">❌ Not: '+item.wrong+'</div>';
+      h+='<div style="font-size:11.5px;color:rgba(245,200,66,0.70);font-style:italic">💡 '+item.tip+'</div>';
+      h+='<div style="font-size:12px;color:rgba(255,255,255,0.65);padding:6px 10px;background:rgba(245,200,66,0.06);border-left:2px solid rgba(245,200,66,0.25);border-radius:0 7px 7px 0;margin-top:7px">In '+lang+': '+(collCurrentCat==='verbs'?(item.verb==='make'?NL.get('coll_make'):item.verb==='do'?NL.get('coll_do'):NL.get('coll_intro')):NL.get('coll_intro'))+'</div>';
+      h+='</div>';
+    });
+  } else { // adv
+    data.forEach(function(item){
+      h+='<div style="background:rgba(255,255,255,0.04);border:1px solid rgba(96,165,250,0.15);border-radius:12px;padding:13px;margin-bottom:8px">';
+      h+='<div style="font-family:Fraunces,serif;font-size:18px;font-weight:700;color:#A78BFA;margin-bottom:8px">'+item.adv.toUpperCase()+' + adjective</div>';
+      h+='<div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px">';
+      item.adj.forEach(function(a){h+='<span style="background:rgba(167,139,250,0.12);color:#A78BFA;border:1px solid rgba(167,139,250,0.28);border-radius:7px;padding:3px 10px;font-size:12.5px;font-weight:600">'+item.adv+' '+a+'</span>';});
+      h+='</div>';
+      if(item.wrong)h+='<div style="font-size:11.5px;color:rgba(255,107,107,0.80)">❌ Avoid: '+item.wrong+'</div>';
+      h+='</div>';
+    });
   }
-  h+='</div>';
-  wHtml('gwResult',h);
+  list.innerHTML=natIntro+h||'<div style="padding:20px;text-align:center;color:rgba(255,255,255,0.40)">Click a category above to explore collocations.</div>';
 }
-function gwClear(){GW_HISTORY={};localStorage.removeItem('gw_history');wHtml('gwResult','<div style="text-align:center;padding:20px;color:rgba(255,255,255,0.40);font-size:13px">History cleared. Paste text above to start tracking again.</div>');}
 
-// ── W7: SENTENCE RHYTHM MAP ──
-function rmAnalyse(){
-  var text=wVal('rmInput');
-  if(!text){alert('Please paste a paragraph first.');return;}
-  var sents=text.match(/[^.!?]+[.!?]+/g)||[text];
-  if(sents.length<2){wHtml('rmResult','<div style="background:rgba(251,191,36,0.10);border:1.5px solid rgba(251,191,36,0.28);border-radius:12px;padding:14px;text-align:center"><div style="font-size:13px;color:#FBBF24">Please paste a paragraph with at least 2 sentences.</div></div>');return;}
-  var lengths=sents.map(function(s){return s.trim().split(/\s+/).length;});
-  var avg=Math.round(lengths.reduce(function(a,b){return a+b;},0)/lengths.length);
-  var max=Math.max.apply(null,lengths);
-  var tips=[];
-  if(avg>22)tips.push({t:'Sentences are too long on average ('+avg+' words). Aim for 15–20 words.',n:'In '+lang+': Average sentence '+avg+' words — చాలా long. 15-20 words ideal.'});
-  if(avg<8)tips.push({t:'Sentences are very short ('+avg+' words average). Add some longer sentences for variety.',n:'In '+lang+': Sentences చాలా short గా ఉన్నాయి. Longer sentences కూడా వాడండి.'});
-  if(max>40)tips.push({t:'One sentence is '+max+' words — too long. Split it into two shorter sentences.',n:'In '+lang+': '+max+' words ఉన్న sentence చాలా long — రెండుగా విడగొట్టండి.'});
-  var variance=Math.round(Math.sqrt(lengths.reduce(function(a,b){return a+Math.pow(b-avg,2);},0)/lengths.length));
-  if(variance<3)tips.push({t:'All sentences are similar length (variance: '+variance+'). Vary your sentence lengths for better rhythm.',n:'In '+lang+': అన్ని sentences same length — variety add చేయండి.'});
-  var readScore=Math.max(0,Math.min(100,Math.round(206.835-1.015*avg-84.6*(avg/Math.max(avg,1)))));
-  var readLabel=readScore>70?'Easy to read':readScore>50?'Moderate':'Difficult to read';
-  var readColor=readScore>70?'#4ADE80':readScore>50?'#F59E0B':'#FF6B6B';
-  var h='<div style="display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap">';
-  h+='<div style="background:rgba(251,191,36,0.10);border:1px solid rgba(251,191,36,0.25);border-radius:10px;padding:10px 14px;flex:1;text-align:center"><div style="font-size:20px;font-weight:700;font-family:Fraunces,serif;color:#FBBF24">'+avg+'</div><div style="font-size:10px;color:rgba(255,255,255,0.45);font-weight:600;text-transform:uppercase">Avg words/sentence</div></div>';
-  h+='<div style="background:rgba(96,165,250,0.10);border:1px solid rgba(96,165,250,0.25);border-radius:10px;padding:10px 14px;flex:1;text-align:center"><div style="font-size:20px;font-weight:700;font-family:Fraunces,serif;color:#60A5FA">'+sents.length+'</div><div style="font-size:10px;color:rgba(255,255,255,0.45);font-weight:600;text-transform:uppercase">Sentences</div></div>';
-  h+='<div style="background:rgba(52,211,153,0.10);border:1px solid rgba(52,211,153,0.25);border-radius:10px;padding:10px 14px;flex:1;text-align:center"><div style="font-size:20px;font-weight:700;font-family:Fraunces,serif;color:'+readColor+'">'+readScore+'</div><div style="font-size:10px;color:rgba(255,255,255,0.45);font-weight:600;text-transform:uppercase">'+readLabel+'</div></div>';
-  h+='</div>';
-  // Bar chart
-  h+='<div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:12px;padding:14px;margin-bottom:12px"><div style="font-size:10px;font-weight:700;color:rgba(255,255,255,0.40);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px">Sentence length map:</div>';
-  h+='<div style="display:flex;align-items:flex-end;gap:4px;height:70px">';
-  lengths.forEach(function(l,i){
-    var barH=Math.round((l/Math.max(max,1))*60)+10;
-    var col=l>30?'#FF6B6B':l>20?'#F59E0B':l<8?'#60A5FA':'#4ADE80';
-    h+='<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px"><div style="width:100%;background:'+col+';border-radius:3px 3px 0 0;height:'+barH+'px;min-height:8px;transition:height .5s ease"></div><div style="font-size:8px;color:rgba(255,255,255,0.35)">'+l+'</div></div>';
+// ══════════════════════════════════════════════════════
+// NEW FEATURE 2: ERROR PATTERN DECODER
+// ══════════════════════════════════════════════════════
+var ERROR_PATTERNS=[
+  {re:/\b(am|is|are)\s+(having|knowing|liking|believing|understanding|wanting|loving|hating|preferring|owning|belonging|needing|containing|seeming|appearing)\b/i,
+   type:'State Verb Error',rule:'State verbs (have, know, like, believe, understand, want, love, hate) are NOT used in continuous form.',correct:function(s){return s.replace(/\b(am|is|are)\s+(having|knowing|liking|believing|understanding|wanting|loving|hating|preferring|owning|belonging|needing|seeming)\b/gi,function(m,be,v){var map={having:'have',knowing:'know',liking:'like',believing:'believe',understanding:'understand',wanting:'want',loving:'love',hating:'hate',preferring:'prefer',owning:'own',belonging:'belong',needing:'need',seeming:'seem'};return map[v.toLowerCase()]||v;});}},
+  {re:/\bI\s+am\s+agree\b/i,type:'Verb/Adjective Confusion',rule:'AGREE is a verb, not an adjective. Say "I agree" not "I am agree".',correct:function(s){return s.replace(/\bI\s+am\s+agree\b/gi,'I agree');}},
+  {re:/\b(discuss|enter|reach|marry|await|approach)\s+(about|into|to|with)\b/i,type:'False Preposition Error',rule:'Some English verbs do NOT take a preposition: discuss it (not about), reach it (not to), marry him (not with), enter the room (not into).',correct:function(s){return s.replace(/\b(discuss|enter|reach|marry|await|approach)\s+(about|into|to|with)\b/gi,'$1');}},
+  {re:/\bcan\s+you\s+tell\s+me\s+where\s+(?:is|are|was|were)\s+the\b/i,type:'Indirect Question Word Order',rule:'In indirect questions, use statement word order: "Can you tell me where the station IS?" not "...where IS the station?"',correct:function(s){return s.replace(/\b(tell\s+me|know|wonder|ask)\s+(where|when|what|how|why|who)\s+(is|are|was|were)\s+(the|a|an|this|that)\b/gi,function(m,v,wh,be,art){return v+' '+wh+' '+art+' ...'+be;});}},
+  {re:/\bhave\s+seen\b.*\byesterday\b|\byesterday\b.*\bhave\s+seen\b/i,type:'Present Perfect vs Simple Past',rule:'Use SIMPLE PAST (saw, went, ate) with specific past time words: yesterday, last week, in 2020, ago. Present Perfect (have seen) has no specific time.',correct:function(s){return s.replace(/\bhave\s+seen\b/gi,'saw').replace(/\bhave\s+gone\b/gi,'went').replace(/\bhave\s+eaten\b/gi,'ate');}},
+  {re:/\binformations\b|\badvices\b|\bfurnitures\b|\bworks\b(?=\s+of\s+art)|\beverydatas\b/i,type:'Uncountable Noun Error',rule:'Some nouns have no plural: information, advice, furniture, luggage, equipment, progress, research.',correct:function(s){return s.replace(/\binformations\b/gi,'information').replace(/\badvices\b/gi,'advice').replace(/\bfurnitures\b/gi,'furniture');}},
+  {re:/\bmore\s+(good|bad|fast|hard|far|big|small)\b/i,type:'Irregular Comparative Error',rule:'Some adjectives have irregular comparatives: good→better, bad→worse, far→farther/further. Do not use more + adjective with these.',correct:function(s){return s.replace(/\bmore\s+good\b/gi,'better').replace(/\bmore\s+bad\b/gi,'worse').replace(/\bmore\s+far\b/gi,'farther');}},
+  {re:/\b(bored|tired|excited|interested|confused|surprised|disappointed)\s+of\b/i,type:'Wrong Preposition with Feeling',rule:'"Bored of/with" (both ok), but: tired OF, interested IN, excited ABOUT, confused ABOUT, surprised BY, disappointed WITH.',correct:null},
+  {re:/\bsince\s+\d+\s+(days|weeks|months|years)\b/i,type:'Since vs For Confusion',rule:'SINCE + a point in time (since Monday, since 2020). FOR + a duration (for 3 days, for two weeks).',correct:function(s){return s.replace(/\bsince\s+(\d+\s+(?:days|weeks|months|years))\b/gi,'for $1');}},
+  {re:/\b(she|he|it)\s+(don't|didn't|can't|won't|haven't|hasn't)\b/i,type:'Subject-Verb Agreement',rule:'With he/she/it use DOES NOT (not don\'t), HAS NOT (not haven\'t).',correct:function(s){return s.replace(/\bshe\s+don't\b/gi,"she doesn't").replace(/\bhe\s+don't\b/gi,"he doesn't").replace(/\bshe\s+haven't\b/gi,"she hasn't").replace(/\bhe\s+haven't\b/gi,"he hasn't");}},
+  {re:/\bif\s+I\s+will\s+have\b|\bif\s+she\s+will\s+be\b|\bif\s+you\s+will\s+come\b/i,type:'First/Second Conditional Error',rule:'After IF in conditionals, do NOT use WILL. Use present tense: "If I have" not "If I will have". "If she is" not "if she will be".',correct:function(s){return s.replace(/\bif\s+(I|you|he|she|we|they)\s+will\s+(\w+)\b/gi,'if $1 $2');}},
+  {re:/\bI\s+am\s+(\d+\s+)?years?\s+old\s+since\s+(\d+)\s+years?/i,type:'Age Expression Error',rule:'For age: "I am 25 years old" or "I have been working for 5 years." Do not mix since/for with age.',correct:null}
+];
+
+function decodeError(){
+  var text=document.getElementById('errorInput').value.trim();
+  if(!text){alert('Please paste a sentence first.');return;}
+  var found=[];
+  ERROR_PATTERNS.forEach(function(p){
+    p.re.lastIndex=0;
+    if(p.re.test(text))found.push(p);
   });
-  h+='</div></div>';
-  if(tips.length>0){
-    h+='<div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.40);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">Tips to improve rhythm:</div>';
-    tips.forEach(function(t){
-      h+='<div style="background:rgba(251,191,36,0.07);border:1px solid rgba(251,191,36,0.20);border-radius:10px;padding:11px;margin-bottom:7px"><div style="font-size:12.5px;color:rgba(255,255,255,0.80);margin-bottom:5px">📌 '+t.t+'</div><div style="font-size:11.5px;font-style:italic;color:rgba(245,200,66,0.65)">'+t.n+'</div></div>';
-    });
+  var corrected=text;
+  found.forEach(function(p){if(p.correct)try{corrected=p.correct(corrected);}catch(e){}});
+  var h='';
+  if(found.length===0){
+    h='<div style="background:rgba(74,222,128,0.10);border:1.5px solid rgba(74,222,128,0.28);border-radius:12px;padding:16px;text-align:center">';
+    h+='<div style="font-size:22px;margin-bottom:8px">✅</div>';
+    h+='<div style="font-size:14px;font-weight:700;color:#4ADE80">No common grammar error patterns detected!</div>';
+    h+='<div style="font-size:12px;color:rgba(255,255,255,0.55);margin-top:6px">Try checking spelling or punctuation using Punct Doctor.</div></div>';
   } else {
-    h+='<div style="background:rgba(74,222,128,0.10);border:1.5px solid rgba(74,222,128,0.28);border-radius:10px;padding:12px;text-align:center"><div style="font-size:13px;font-weight:700;color:#4ADE80">Excellent rhythm — good sentence variety!</div><div style="font-size:11.5px;color:rgba(255,255,255,0.50);margin-top:4px">In '+lang+': మీ sentence lengths చాలా balanced గా ఉన్నాయి!</div></div>';
+    h+='<div style="background:rgba(255,107,107,0.07);border:1.5px solid rgba(255,107,107,0.25);border-radius:12px;padding:14px;margin-bottom:10px">';
+    h+='<div style="font-size:10px;font-weight:800;color:rgba(255,107,107,0.70);text-transform:uppercase;margin-bottom:6px">❌ Your sentence:</div>';
+    h+='<div style="font-size:13px;color:rgba(255,255,255,0.85)">'+text+'</div></div>';
+    if(corrected!==text){
+      h+='<div style="background:rgba(74,222,128,0.07);border:1.5px solid rgba(74,222,128,0.28);border-radius:12px;padding:14px;margin-bottom:10px">';
+      h+='<div style="font-size:10px;font-weight:800;color:rgba(74,222,128,0.70);text-transform:uppercase;margin-bottom:6px">✅ Corrected version:</div>';
+      h+='<div style="font-size:13px;font-weight:700;color:#4ADE80">'+corrected+'</div></div>';
+    }
+    found.forEach(function(p){
+      h+='<div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,107,107,0.20);border-radius:12px;padding:13px;margin-bottom:8px">';
+      h+='<div style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,107,107,0.15);border-radius:7px;padding:4px 10px;font-size:11px;font-weight:800;color:#FF6B6B;margin-bottom:8px">🔬 '+p.type+'</div>';
+      h+='<div style="font-size:13px;color:rgba(255,255,255,0.85);line-height:1.65;margin-bottom:8px">'+p.rule+'</div>';
+      // Map error type to native language explanation
+      var errNatKey={'State Verb Error':'err_state_verb','False Preposition Error':'err_preposition',
+        'Indirect Question Word Order':'err_indirect','Present Perfect vs Simple Past':'err_tense',
+        'Uncountable Noun Error':'err_uncountable','First/Second Conditional Error':'err_conditional',
+        'Subject-Verb Agreement':'err_state_verb','Irregular Comparative Error':'err_tense',
+        'Since vs For Confusion':'err_tense','Wrong Preposition with Feeling':'err_preposition',
+        'Verb/Adjective Confusion':'err_state_verb','Age Expression Error':'err_tense'};
+      var nlKey=errNatKey[p.type]||'err_state_verb';
+      var natExpl=NL.get(nlKey);
+      h+='<div style="font-size:12px;font-style:italic;color:rgba(245,200,66,0.80);padding:8px 11px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.40);border-radius:0 7px 7px 0"><strong>In '+lang+':</strong> '+natExpl+'</div>';
+      h+='</div>';
+    });
   }
-  wHtml('rmResult',h);
+  document.getElementById('errorResult').innerHTML=h;
 }
-function rmExample(){var d=document.getElementById('rmInput');if(d)d.value='She went to the market. She bought vegetables. She came home. She cooked dinner. She ate. The entire experience of going to the market on a busy Saturday morning when everyone else in the neighbourhood seemed to have decided that they too would go to the very same market at precisely the same time was something that she found to be particularly overwhelming and stressful given her general preference for quiet and orderly environments.';rmAnalyse();}
+function errorExample(){
+  var examples=['She is knowing the answer to this question.','I am having a very big house near the station.','Can you tell me where is the nearest hospital?','We discussed about the project yesterday.','I have seen this film yesterday evening.','If I will have time, I will call you.'];
+  var d=document.getElementById('errorInput');
+  if(d)d.value=examples[Math.floor(Math.random()*examples.length)];
+  decodeError();
+}
+
+// ══════════════════════════════════════════════════════
+// NEW FEATURE 3: WORD BUILDER
+// ══════════════════════════════════════════════════════
+var WB_DATA={
+  prefix:[
+    {fix:'un-',meaning:'not / opposite',color:'#FF6B6B',words:[{w:'unhappy',base:'happy',def:'not happy'},{w:'unusual',base:'usual',def:'not usual'},{w:'unlikely',base:'likely',def:'not likely'},{w:'unfair',base:'fair',def:'not fair'},{w:'undo',base:'do',def:'reverse an action'},{w:'unclear',base:'clear',def:'not clear'},{w:'uncomfortable',base:'comfortable',def:'not comfortable'},{w:'unable',base:'able',def:'not able'}]},
+    {fix:'re-',meaning:'again / back',color:'#60A5FA',words:[{w:'redo',base:'do',def:'do again'},{w:'return',base:'turn',def:'go/come back'},{w:'review',base:'view',def:'look at again'},{w:'rewrite',base:'write',def:'write again'},{w:'rebuild',base:'build',def:'build again'},{w:'reconsider',base:'consider',def:'think about again'},{w:'replace',base:'place',def:'put back / substitute'},{w:'refresh',base:'fresh',def:'make fresh again'}]},
+    {fix:'pre-',meaning:'before',color:'#A78BFA',words:[{w:'preview',base:'view',def:'view before'},{w:'prepare',base:'pare',def:'make ready before'},{w:'predict',base:'dict',def:'say before it happens'},{w:'prevent',base:'vent',def:'stop before it happens'},{w:'previous',base:'vious',def:'coming before'},{w:'premature',base:'mature',def:'before the right time'},{w:'preorder',base:'order',def:'order in advance'}]},
+    {fix:'dis-',meaning:'not / opposite / remove',color:'#F59E0B',words:[{w:'disagree',base:'agree',def:'not agree'},{w:'disappear',base:'appear',def:'vanish'},{w:'dislike',base:'like',def:'not like'},{w:'disconnect',base:'connect',def:'separate'},{w:'discover',base:'cover',def:'find for first time'},{w:'disable',base:'able',def:'make unable'},{w:'dishonest',base:'honest',def:'not honest'}]},
+    {fix:'over-',meaning:'too much / above',color:'#4ADE80',words:[{w:'overwork',base:'work',def:'work too much'},{w:'overeat',base:'eat',def:'eat too much'},{w:'overlook',base:'look',def:'fail to notice'},{w:'overcome',base:'come',def:'succeed against difficulty'},{w:'overestimate',base:'estimate',def:'estimate too high'},{w:'overwhelm',base:'whelm',def:'have too much effect'},{w:'overdue',base:'due',def:'past the expected time'}]},
+    {fix:'mis-',meaning:'wrongly / badly',color:'#C084FC',words:[{w:'misunderstand',base:'understand',def:'understand wrongly'},{w:'mistake',base:'take',def:'wrong action'},{w:'mislead',base:'lead',def:'give wrong information'},{w:'mispronounce',base:'pronounce',def:'pronounce wrongly'},{w:'misspell',base:'spell',def:'spell incorrectly'},{w:'misuse',base:'use',def:'use incorrectly'},{w:'miscommunicate',base:'communicate',def:'communicate poorly'}]},
+    {fix:'inter-',meaning:'between / among',color:'#34D399',words:[{w:'international',base:'national',def:'between nations'},{w:'interact',base:'act',def:'act between people'},{w:'interview',base:'view',def:'meet face to face'},{w:'interfere',base:'fere',def:'involve in others affairs'},{w:'internet',base:'net',def:'network between networks'},{w:'interpret',base:'pret',def:'explain between languages'}]},
+    {fix:'sub-',meaning:'under / below',color:'#FB923C',words:[{w:'subway',base:'way',def:'way underground'},{w:'submarine',base:'marine',def:'under the sea'},{w:'subtitle',base:'title',def:'secondary title'},{w:'subscribe',base:'scribe',def:'sign up below'},{w:'submit',base:'mit',def:'send below (to authority)'},{w:'subtract',base:'tract',def:'take away from below'}]}
+  ],
+  suffix:[
+    {fix:'-tion/-sion',meaning:'turns a verb into a noun',color:'#60A5FA',words:[{w:'education',base:'educate',def:'the process of educating'},{w:'information',base:'inform',def:'the act of informing'},{w:'communication',base:'communicate',def:'the process of communicating'},{w:'decision',base:'decide',def:'the act of deciding'},{w:'discussion',base:'discuss',def:'the act of discussing'},{w:'preparation',base:'prepare',def:'getting ready'}]},
+    {fix:'-ment',meaning:'turns a verb into a noun (state/result)',color:'#A78BFA',words:[{w:'improvement',base:'improve',def:'the act of improving'},{w:'development',base:'develop',def:'the process of developing'},{w:'achievement',base:'achieve',def:'something achieved'},{w:'management',base:'manage',def:'the act of managing'},{w:'commitment',base:'commit',def:'dedication to something'},{w:'argument',base:'argue',def:'a disagreement'}]},
+    {fix:'-ful',meaning:'full of / having',color:'#F59E0B',words:[{w:'helpful',base:'help',def:'giving help'},{w:'careful',base:'care',def:'giving attention'},{w:'beautiful',base:'beauty',def:'having beauty'},{w:'powerful',base:'power',def:'having great power'},{w:'successful',base:'success',def:'having success'},{w:'meaningful',base:'meaning',def:'full of meaning'}]},
+    {fix:'-less',meaning:'without',color:'#FF6B6B',words:[{w:'helpless',base:'help',def:'without help'},{w:'careless',base:'care',def:'without care'},{w:'hopeless',base:'hope',def:'without hope'},{w:'useless',base:'use',def:'without use'},{w:'endless',base:'end',def:'without end'},{w:'worthless',base:'worth',def:'without value'}]},
+    {fix:'-ly',meaning:'turns adjective into adverb',color:'#4ADE80',words:[{w:'quickly',base:'quick',def:'in a quick manner'},{w:'carefully',base:'careful',def:'in a careful manner'},{w:'obviously',base:'obvious',def:'in an obvious way'},{w:'recently',base:'recent',def:'not long ago'},{w:'strongly',base:'strong',def:'with strength'},{w:'clearly',base:'clear',def:'in a clear way'}]},
+    {fix:'-able/-ible',meaning:'can be done / worthy of',color:'#34D399',words:[{w:'comfortable',base:'comfort',def:'able to give comfort'},{w:'reliable',base:'rely',def:'can be relied on'},{w:'flexible',base:'flex',def:'can be bent / adapted'},{w:'responsible',base:'respond',def:'able to answer for actions'},{w:'incredible',base:'credible',def:'beyond belief'},{w:'valuable',base:'value',def:'having great value'}]},
+    {fix:'-er/-or',meaning:'a person who does something',color:'#C084FC',words:[{w:'teacher',base:'teach',def:'one who teaches'},{w:'writer',base:'write',def:'one who writes'},{w:'manager',base:'manage',def:'one who manages'},{w:'director',base:'direct',def:'one who directs'},{w:'investor',base:'invest',def:'one who invests'},{w:'creator',base:'create',def:'one who creates'}]},
+    {fix:'-ness',meaning:'state or quality of being',color:'#FBBF24',words:[{w:'happiness',base:'happy',def:'state of being happy'},{w:'darkness',base:'dark',def:'state of being dark'},{w:'kindness',base:'kind',def:'quality of being kind'},{w:'weakness',base:'weak',def:'state of being weak'},{w:'awareness',base:'aware',def:'state of knowing'},{w:'loneliness',base:'lonely',def:'state of being alone'}]}
+  ],
+  root:[
+    {fix:'dict (Latin: say/speak)',meaning:'say, speak, tell',color:'#60A5FA',words:[{w:'dictionary',def:'book of words'},{w:'predict',def:'say before'},{w:'contradict',def:'speak against'},{w:'diction',def:'manner of speaking'},{w:'verdict',def:'official saying'},{w:'indicate',def:'point out'}]},
+    {fix:'port (Latin: carry)',meaning:'carry',color:'#4ADE80',words:[{w:'transport',def:'carry across'},{w:'import',def:'carry in'},{w:'export',def:'carry out'},{w:'report',def:'carry back'},{w:'support',def:'carry from below'},{w:'portable',def:'can be carried'}]},
+    {fix:'rupt (Latin: break)',meaning:'break',color:'#FF6B6B',words:[{w:'interrupt',def:'break into'},{w:'disrupt',def:'break apart'},{w:'corrupt',def:'broken together'},{w:'erupt',def:'break out'},{w:'bankrupt',def:'financially broken'},{w:'rupture',def:'a break'}]},
+    {fix:'scribe/script (Latin: write)',meaning:'write',color:'#A78BFA',words:[{w:'describe',def:'write about'},{w:'prescription',def:'written instruction'},{w:'manuscript',def:'written by hand'},{w:'subscribe',def:'sign below'},{w:'transcript',def:'written copy'},{w:'inscribe',def:'write into'}]},
+    {fix:'struct (Latin: build)',meaning:'build',color:'#F59E0B',words:[{w:'structure',def:'something built'},{w:'construct',def:'build together'},{w:'instruct',def:'build knowledge into'},{w:'destroy (de+struct)',def:'un-build'},{w:'infrastructure',def:'underlying structure'},{w:'obstruct',def:'build a barrier'}]},
+    {fix:'vis/vid (Latin: see)',meaning:'see, look',color:'#34D399',words:[{w:'visible',def:'able to be seen'},{w:'television',def:'seeing from far'},{w:'video',def:'I see (Latin)'},{w:'evidence',def:'something seen'},{w:'supervise',def:'look over'},{w:'vision',def:'the ability to see'}]},
+    {fix:'graph (Greek: write)',meaning:'write, draw',color:'#C084FC',words:[{w:'paragraph',def:'a written section'},{w:'photograph',def:'light writing'},{w:'biography',def:'life writing'},{w:'geography',def:'earth writing'},{w:'autograph',def:'self writing'},{w:'diagram',def:'a drawn figure'}]},
+    {fix:'chron (Greek: time)',meaning:'time',color:'#FB923C',words:[{w:'chronology',def:'order in time'},{w:'synchronise',def:'same time'},{w:'chronic',def:'lasting long time'},{w:'anachronism',def:'out of time'},{w:'chronicle',def:'record of time'},{w:'chronological',def:'in time order'}]}
+  ]
+};
+
+var wbCurrentCat='prefix';
+function wbFilter(cat,btn){
+  wbCurrentCat=cat;
+  document.querySelectorAll('#wbPrefixBtns button').forEach(function(b){
+    b.style.background='transparent';b.style.borderColor='rgba(255,255,255,0.15)';b.style.color='rgba(255,255,255,0.50)';
+  });
+  if(btn){btn.style.background='rgba(52,211,153,0.15)';btn.style.borderColor='rgba(52,211,153,0.40)';btn.style.color='#34D399';}
+  renderWordBuilder();
+}
+
+function renderWordBuilder(){
+  var list=document.getElementById('wbList');if(!list)return;
+  var data=WB_DATA[wbCurrentCat]||[];
+  var h='';
+  data.forEach(function(item){
+    h+='<div style="background:rgba(255,255,255,0.04);border:1px solid rgba(52,211,153,0.15);border-radius:13px;padding:14px;margin-bottom:8px">';
+    h+='<div style="display:flex;align-items:baseline;gap:10px;margin-bottom:6px">';
+    h+='<span style="font-family:Fraunces,serif;font-size:20px;font-weight:800;color:'+item.color+'">'+item.fix+'</span>';
+    h+='<span style="font-size:12px;color:rgba(255,255,255,0.50)">= '+item.meaning+'</span></div>';
+    h+='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px">';
+    (item.words||[]).forEach(function(w){
+      var wordStr=typeof w==='string'?w:w.w;
+      var defStr=typeof w==='object'&&w.def?w.def:'';
+      var baseStr=typeof w==='object'&&w.base?w.base:'';
+      h+='<div style="background:'+item.color+'12;border:1px solid '+item.color+'35;border-radius:9px;padding:8px 10px">';
+      h+='<div style="font-size:13px;font-weight:700;color:'+item.color+'">'+wordStr+'</div>';
+      if(baseStr)h+='<div style="font-size:10px;color:rgba(255,255,255,0.40)">← '+baseStr+'</div>';
+      if(defStr)h+='<div style="font-size:11px;color:rgba(255,255,255,0.70);margin-top:2px">'+defStr+'</div>';
+      h+='</div>';
+    });
+    h+='</div></div>';
+  });
+  // Add native language intro
+  var wbNatKey={'prefix':'wb_prefix_intro','suffix':'wb_suffix_intro','root':'wb_root_intro'};
+  var natNote='<div style="background:rgba(52,211,153,0.07);border:1px solid rgba(52,211,153,0.20);border-radius:10px;padding:10px 12px;margin-bottom:10px;font-size:12.5px;color:rgba(255,255,255,0.80)"><span style="font-weight:700;color:#34D399">🌐 In '+lang+':</span> '+NL.get(wbNatKey[wbCurrentCat]||'wb_prefix_intro')+'</div>';
+  list.innerHTML=natNote+(h||'<div style="padding:20px;text-align:center;color:rgba(255,255,255,0.40)">Click a category to explore.</div>');
+}
 
 window.onload=function(){
+  loadWelcomeTrans();loadWord();
   setTimeout(buildPreps,1600);setTimeout(renderVocab,300);setTimeout(renderIdioms,1600);
   setTimeout(renderChallenge,500);setTimeout(renderMistakes,1200);setTimeout(renderConfuse,700);
   setTimeout(renderPhrases,1600);setTimeout(buildTimeline,900);setTimeout(buildCheatSheet,1000);

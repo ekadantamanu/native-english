@@ -1077,6 +1077,7 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
 
 <!-- PROGRESS -->
 <div id="panel-diary" class="panel" style="overflow-y:auto;padding:14px;gap:14px;flex-direction:column">
+  <div style="font-size:12.5px;color:rgba(245,200,66,0.80);padding:8px 12px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.30);border-radius:0 8px 8px 0;margin-bottom:12px;font-style:italic" id="nat-diary"><!-- native note --></div>
   <div class="stats-grid">
     <div class="stat-card" style="background:linear-gradient(135deg,#fff8e8,var(--gold-dim))"><div class="stat-num" style="color:var(--gold)" id="dSess">0</div><div class="stat-label">Sessions</div></div>
     <div class="stat-card" style="background:linear-gradient(135deg,#e8f5f0,var(--teal-dim))"><div class="stat-num" style="color:var(--teal)" id="dWords">0</div><div class="stat-label">Words Learned</div></div>
@@ -1098,6 +1099,7 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
       <div>
         <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:#4ADE80;line-height:1.1">Speed Listener</div>
         <div style="font-size:11px;color:rgba(255,255,255,0.50)">Train your ear at variable pace — quiz after every passage — bilingual feedback</div>
+        <div style="font-size:12px;color:rgba(245,200,66,0.75);padding:6px 10px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.28);border-radius:0 7px 7px 0;margin-top:8px;font-style:italic" id="nat-speedlisten"><!-- native note --></div>
       </div>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px">
@@ -1141,6 +1143,7 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
       <div>
         <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:#60A5FA;line-height:1.1">Dictation Challenge</div>
         <div style="font-size:11px;color:rgba(255,255,255,0.50)">Hear it — type it — see every mistake highlighted instantly</div>
+        <div style="font-size:12px;color:rgba(245,200,66,0.75);padding:6px 10px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.28);border-radius:0 7px 7px 0;margin-top:8px;font-style:italic" id="nat-dictation"><!-- native note --></div>
       </div>
     </div>
     <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
@@ -1183,7 +1186,8 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
       <button onclick="csFilter('assimilation',this)" class="cs-filter-btn" style="padding:5px 13px;border-radius:100px;border:1px solid rgba(255,255,255,0.15);background:transparent;color:rgba(255,255,255,0.55);font-size:11px;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif">🔄 Assimilation</button>
     </div>
   </div>
-  <div style="flex:1;overflow-y:auto;padding:13px" id="csGrid"></div>
+  
+  <div style="font-size:12px;color:rgba(245,200,66,0.75);padding:7px 11px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.28);border-radius:0 7px 7px 0;margin:8px 14px 0;font-style:italic" id="nat-connected"><!-- native note --></div><div style="flex:1;overflow-y:auto;padding:13px" id="csGrid"></div>
 </div>
 
 <!-- ═══════ L4: STRESS TRAINER ═══════ -->
@@ -1194,6 +1198,7 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
       <div>
         <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:#C084FC;line-height:1.1">Stress &amp; Intonation Trainer</div>
         <div style="font-size:11px;color:rgba(255,255,255,0.50)">One sentence — 7 different meanings — click the stressed word</div>
+        <div style="font-size:12px;color:rgba(245,200,66,0.75);padding:6px 10px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.28);border-radius:0 7px 7px 0;margin-top:8px;font-style:italic" id="nat-stress"><!-- native note --></div>
       </div>
     </div>
     <div style="display:flex;gap:8px;align-items:center">
@@ -1218,6 +1223,7 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
       <div>
         <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:#FF6B6B;line-height:1.1">Minimal Pairs Ear Trainer</div>
         <div style="font-size:11px;color:rgba(255,255,255,0.50)">Fix what your ear cannot hear — targeted to your native language</div>
+        <div style="font-size:12px;color:rgba(245,200,66,0.75);padding:6px 10px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.28);border-radius:0 7px 7px 0;margin-top:8px;font-style:italic" id="nat-minimalpairs"><!-- native note --></div>
       </div>
     </div>
     <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
@@ -1244,6 +1250,7 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
       <div>
         <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:#3DDED4;line-height:1.1">Listening Gap Test</div>
         <div style="font-size:11px;color:rgba(255,255,255,0.50)">Find your exact comprehension ceiling — tracked weekly</div>
+        <div style="font-size:12px;color:rgba(245,200,66,0.75);padding:6px 10px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.28);border-radius:0 7px 7px 0;margin-top:8px;font-style:italic" id="nat-listeninggap"><!-- native note --></div>
       </div>
     </div>
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
@@ -3516,7 +3523,7 @@ function buildSys(extra){
 }
 function setLang(l){
   lang=l;var el=document.getElementById('wcNatLbl');if(el)el.textContent=l+' example';
-  loadWelcomeTrans();loadWord();renderDNAQs();renderVocab();renderIdioms();renderMistakes();renderPhrases();buildCheatSheet();
+  loadWelcomeTrans();loadWord();injectListeningNotes();renderDNAQs();renderVocab();renderIdioms();renderMistakes();renderPhrases();buildCheatSheet();
 }
 
 async function loadWelcomeTrans(){
@@ -3731,6 +3738,185 @@ var NL={
   }
 };
 
+
+// ── EXTENDED NATIVE LANGUAGE NOTES for all remaining features ──
+// These are appended into the existing NL.data object after it loads
+(function(){
+  var ext={
+    // ── VOCABULARY (flip card back) ──
+    vocab_flip:{
+      Spanish:'Toca la tarjeta para ver la definición completa, el ejemplo y la traducción.',
+      Telugu:'Card తో touch చేయండి — definition, example, మరియు translation చూసేందుకు.',
+      Tamil:'அட்டையை தொடுங்கள் — definition, example மற்றும் translation பாருங்கள்.',
+      Hindi:'कार्ड को टच करें — definition, example और translation देखने के लिए।',
+      Arabic:'اضغط على البطاقة لرؤية التعريف والمثال والترجمة.',
+      Kannada:'Card ಟಚ್ ಮಾಡಿ — definition, example ಮತ್ತು translation ನೋಡಲು.',
+      Malayalam:'കാർഡ് touch ചെയ്യൂ — definition, example, translation കാണാൻ.',
+      default:'Tap the card to see the full definition, example and translation in your language.'
+    },
+    vocab_pos:{
+      Spanish:'Parte del discurso: sustantivo = nombre, verbo = acción, adjetivo = descripción, adverbio = modificador.',
+      Telugu:'Parts of speech: noun = పేరు, verb = action, adjective = description, adverb = modifier.',
+      Tamil:'Parts of speech: noun = பெயர்ச்சொல், verb = வினைச்சொல், adjective = உரிச்சொல்.',
+      Hindi:'Parts of speech: noun = संज्ञा, verb = क्रिया, adjective = विशेषण, adverb = क्रियाविशेषण।',
+      Arabic:'أجزاء الكلام: اسم = noun, فعل = verb, صفة = adjective, ظرف = adverb.',
+      default:'Parts of speech: noun = naming word, verb = action word, adjective = describing word, adverb = modifying word.'
+    },
+    // ── TENSE TIMELINE ──
+    tense_tip:{
+      Spanish:'La línea de tiempo muestra cuándo ocurre cada acción. Toca cualquier tiempo verbal para ver la fórmula y el ejemplo.',
+      Telugu:'Timeline లో ప్రతి action ఎప్పుడు జరిగిందో చూపిస్తుంది. ఏదైనా tense tap చేయి — formula మరియు example చూడు.',
+      Tamil:'Timeline ஒவ்வொரு செயல் எப்போது நடந்தது என்பதைக் காட்டுகிறது. எந்த tense ஐயும் tap செய்து formula மற்றும் example பாருங்கள்.',
+      Hindi:'Timeline बताती है कि हर क्रिया कब होती है। कोई भी tense tap करें — formula और example देखें।',
+      Arabic:'يُظهر الخط الزمني متى تحدث كل حدث. اضغط على أي زمن لرؤية الصيغة والمثال.',
+      Kannada:'Timeline ಪ್ರತಿ ಕ್ರಿಯೆ ಯಾವಾಗ ನಡೆಯಿತು ಎಂದು ತೋರಿಸುತ್ತದೆ. ಯಾವುದೇ tense tap ಮಾಡಿ.',
+      Malayalam:'Timeline ഓരോ പ്രവർത്തനവും എപ്പോൾ നടക്കുന്നു എന്ന് കാണിക്കുന്നു. ഏതെങ്കിലും tense tap ചെയ്യൂ.',
+      default:'The timeline shows when each action happens. Tap any tense to see its formula, example and explanation.'
+    },
+    tense_when:{
+      Spanish:'CUÁNDO usar este tiempo: la clave está en la relación entre el momento de la acción y el momento en que hablas.',
+      Telugu:'ఈ tense ఎప్పుడు వాడాలి: action జరిగిన time మరియు మీరు మాట్లాడుతున్న time మధ్య relationship ని అర్థం చేసుకో.',
+      Tamil:'இந்த tense எப்போது பயன்படுத்த வேண்டும்: செயல் நடந்த நேரத்திற்கும் நீங்கள் பேசும் நேரத்திற்கும் உள்ள தொடர்பைப் புரிந்துகொள்ளுங்கள்.',
+      Hindi:'यह tense कब use करें: action होने के समय और बात करने के समय के बीच relationship को समझें।',
+      Arabic:'متى تستخدم هذا الزمن: افهم العلاقة بين وقت الحدث ووقت الكلام.',
+      default:'When to use this tense: understand the relationship between when the action happens and when you are speaking.'
+    },
+    // ── PHRASE OF THE DAY ──
+    phrase_use:{
+      Spanish:'Aprende esta frase hoy. Úsala en al menos una conversación o mensaje antes de mañana.',
+      Telugu:'ఈ phrase ఈరోజు నేర్చుకో. రేపటి లోపు కనీసం ఒక conversation లేదా message లో వాడు.',
+      Tamil:'இந்த சொற்றொடரை இன்று கற்றுக்கொள்ளுங்கள். நாளைக்கு முன் ஒரு conversation அல்லது message-ல் பயன்படுத்துங்கள்.',
+      Hindi:'आज यह phrase सीखें। कल से पहले कम से कम एक बातचीत या message में इसे use करें।',
+      Arabic:'تعلّم هذه العبارة اليوم. استخدمها في محادثة أو رسالة واحدة على الأقل قبل الغد.',
+      Kannada:'ಈ phrase ಇಂದು ಕಲಿಯಿರಿ. ನಾಳೆಗೆ ಮೊದಲು ಒಂದು conversation ಅಥವಾ message ನಲ್ಲಿ ಬಳಸಿ.',
+      Malayalam:'ഈ phrase ഇന്ന് പഠിക്കൂ. നാളെക്ക് മുൻപ് ഒരു conversation അല്ലെങ്കിൽ message-ൽ ഉപയോഗിക്കൂ.',
+      default:'Learn this phrase today. Use it in at least one conversation or message before tomorrow.'
+    },
+    phrase_register:{
+      Spanish:'Registro: formal = documentos y correos profesionales. Informal = amigos y mensajes. Neutro = uso general.',
+      Telugu:'Register: formal = professional emails. Informal = friends/messages. Neutral = general use.',
+      Tamil:'Register: formal = professional emails. Informal = நண்பர்கள். Neutral = பொது பயன்பாடு.',
+      Hindi:'Register: formal = professional emails. Informal = दोस्तों के साथ। Neutral = सामान्य उपयोग।',
+      Arabic:'المستوى اللغوي: رسمي = بريد احترافي. غير رسمي = أصدقاء. محايد = استخدام عام.',
+      default:'Register: formal = professional emails and documents. Informal = friends and messages. Neutral = general use.'
+    },
+    // ── ERROR SPOTTER ──
+    spotter_tip:{
+      Spanish:'Lee el párrafo completo primero. Luego vuelve a leerlo despacio y toca las palabras que crees que son incorrectas.',
+      Telugu:'ముందు పూర్తి paragraph చదువు. తర్వాత నెమ్మదిగా మళ్ళీ చదివి తప్పని అనిపించే words tap చేయి.',
+      Tamil:'முதலில் முழு paragraph ஐ படியுங்கள். பிறகு மெதுவாக மீண்டும் படித்து தவறான வார்த்தைகளை tap செய்யுங்கள்.',
+      Hindi:'पहले पूरा paragraph पढ़ें। फिर धीरे-धीरे दोबारा पढ़ें और जो शब्द गलत लगें उन्हें tap करें।',
+      Arabic:'اقرأ الفقرة كاملة أولاً. ثم أعد قراءتها ببطء واضغط على الكلمات التي تعتقد أنها خاطئة.',
+      Kannada:'ಮೊದಲು ಪೂರ್ಣ paragraph ಓದಿ. ನಂತರ ನಿಧಾನವಾಗಿ ಮತ್ತೆ ಓದಿ ತಪ್ಪು ಅನ್ನಿಸಿದ words tap ಮಾಡಿ.',
+      Malayalam:'ആദ്യം പൂർണ്ണ paragraph വായിക്കൂ. പിന്നെ പതുക്കെ വീണ്ടും വായിച്ച് തെറ്റ് എന്ന് തോന്നുന്ന words tap ചെയ്യൂ.',
+      default:'Read the full paragraph first. Then re-read slowly and tap the words you think are incorrect.'
+    },
+    spotter_err:{
+      Spanish:'Los errores en este texto representan los más comunes cometidos por estudiantes de inglés. Reconocerlos aquí te ayuda a no cometerlos en tu propia escritura.',
+      Telugu:'ఈ text లో ఉన్న errors English learners చేసే అత్యంత common mistakes. వాటిని ఇక్కడ recognize చేయడం మీ writing లో వాటిని avoid చేయడానికి help అవుతుంది.',
+      Tamil:'இந்த text-ல் உள்ள errors ஆங்கில கற்பவர்கள் செய்யும் மிகவும் பொதுவான தவறுகள். இவற்றை இங்கே அடையாளம் காண்பது உங்கள் writing-ல் அவற்றை தவிர்க்க உதவும்.',
+      Hindi:'इस text में errors English learners की सबसे सामान्य गलतियाँ हैं। इन्हें यहाँ पहचानना आपकी writing में इन्हें avoid करने में मदद करता है।',
+      Arabic:'الأخطاء في هذا النص هي الأكثر شيوعاً بين متعلمي الإنجليزية. التعرف عليها هنا يساعدك على تجنبها في كتابتك.',
+      default:'The errors in this text are the most common ones made by English learners. Recognising them here helps you avoid them in your own writing.'
+    },
+    // ── CHEAT SHEET ──
+    cheat_use:{
+      Spanish:'Toca cualquier tema para ver un resumen de una página. Luego toca Imprimir para tener una copia física en tu escritorio.',
+      Telugu:'ఏదైనా topic tap చేయి — ఒక page summary చూసేందుకు. తర్వాత Print tap చేసి desk దగ్గర physical copy ఉంచు.',
+      Tamil:'எந்த topic ஐயும் tap செய்யுங்கள் — ஒரு page summary பார்க்க. பிறகு Print செய்து desk-ல் வைத்துக்கொள்ளுங்கள்.',
+      Hindi:'कोई भी topic tap करें — एक page summary देखने के लिए। फिर Print करें और desk के पास रखें।',
+      Arabic:'اضغط على أي موضوع لرؤية ملخص من صفحة واحدة. ثم اطبعه واحتفظ به على مكتبك.',
+      Kannada:'ಯಾವುದೇ topic tap ಮಾಡಿ — ಒಂದು page summary ನೋಡಲು. ನಂತರ Print ಮಾಡಿ desk ಬಳಿ ಇಡಿ.',
+      Malayalam:'ഏതെങ്കിലും topic tap ചെയ്യൂ — ഒരു page summary കാണാൻ. പിന്നെ Print ചെയ്ത് desk-ൽ വയ്ക്കൂ.',
+      default:'Tap any topic to see a one-page summary. Then tap Print to keep a physical copy at your desk.'
+    },
+    // ── SPEED LISTENER ──
+    speed_tip:{
+      Spanish:'La comprensión auditiva mejora cuando entrenas tu oído a velocidades reales, no lentas. Empieza cómodo y ve aumentando la velocidad.',
+      Telugu:'Listening comprehension improve అవుతుంది real speed లో practice చేస్తే — slow speed తో కాదు. Comfortable గా start చేసి నెమ్మదిగా speed పెంచు.',
+      Tamil:'Listening comprehension மெல்ல வேகத்தில் அல்ல, உண்மையான வேகத்தில் பயிற்சி செய்யும்போது மேம்படுகிறது. Comfortable-ஆக தொடங்கி வேகத்தை அதிகரியுங்கள்.',
+      Hindi:'Listening comprehension तब improve होती है जब real speed पर practice करें — slow speed पर नहीं। Comfortable से शुरू करें और speed बढ़ाएं।',
+      Arabic:'تتحسن مهارة الاستماع عند التدريب على السرعة الحقيقية لا البطيئة. ابدأ بسرعة مريحة ثم زدها تدريجياً.',
+      Kannada:'Listening comprehension real speed ನಲ್ಲಿ practice ಮಾಡಿದಾಗ improve ಆಗುತ್ತದೆ. Comfortable ಆಗಿ start ಮಾಡಿ speed ಹೆಚ್ಚಿಸಿ.',
+      Malayalam:'Listening comprehension real speed-ൽ practice ചെയ്യുമ്പോൾ improve ആകും. Comfortable ആഗ്ഗ start ചെയ്ത് speed കൂട്ടൂ.',
+      default:'Listening comprehension improves when you train at real speed — not slow speed. Start comfortable and gradually increase the speed.'
+    },
+    // ── MINIMAL PAIRS ──
+    mp_tip:{
+      Spanish:'Los pares mínimos son dos palabras que difieren en un solo sonido. Tu oído necesita aprender a distinguirlos antes de que puedas producirlos.',
+      Telugu:'Minimal pairs అంటే ఒక్క sound మాత్రమే different అయిన రెండు words. వాటిని produce చేయడానికి ముందు మీ ear వాటిని distinguish చేయడం నేర్చుకోవాలి.',
+      Tamil:'Minimal pairs என்பது ஒரே ஒரு ஒலியில் மட்டும் வேறுபடும் இரண்டு வார்த்தைகள். அவற்றை உச்சரிக்கும் முன் உங்கள் காது அவற்றை வேறுபடுத்த கற்றுக்கொள்ள வேண்டும்.',
+      Hindi:'Minimal pairs वे दो शब्द हैं जो केवल एक sound में भिन्न होते हैं। उन्हें produce करने से पहले आपके कान को उन्हें अलग पहचानना सीखना होगा।',
+      Arabic:'الأزواج الصغيرة هي كلمتان تختلفان في صوت واحد فقط. يجب أن تتعلم أذنك التمييز بينهما قبل أن تتمكن من نطقهما.',
+      Kannada:'Minimal pairs ಒಂದೇ ಒಂದು sound ನಲ್ಲಿ different ಆಗಿರುವ ಎರಡು words. ಅವನ್ನು produce ಮಾಡುವ ಮೊದಲು ನಿಮ್ಮ ear distinguish ಮಾಡಲು ಕಲಿಯಬೇಕು.',
+      Malayalam:'Minimal pairs ഒരൊറ്റ sound-ൽ മാത്രം വ്യത്യസ്തമായ രണ്ട് words ആണ്. അവ produce ചെയ്യുന്നതിന് മുൻപ് നിങ്ങളുടെ ear distinguish ചെയ്യാൻ പഠിക്കണം.',
+      default:'Minimal pairs are two words that differ by just one sound. Your ear must learn to distinguish them before you can produce them correctly.'
+    },
+    // ── DICTATION ──
+    dict_tip:{
+      Spanish:'La dictación entrena tu procesamiento auditivo. Escucha → escribe lo que oyes → comprueba. La diferencia entre lo que oyes y lo que está escrito es exactamente lo que necesitas practicar.',
+      Telugu:'Dictation మీ listening processing ని train చేస్తుంది. విను → వినింది రాయి → check చేయి. మీరు విన్నది మరియు written version మధ్య difference exactly మీరు practice చేయాల్సింది.',
+      Tamil:'Dictation உங்கள் listening processing ஐ train செய்கிறது. கேளுங்கள் → கேட்டதை எழுதுங்கள் → சரிபாருங்கள். நீங்கள் கேட்டது மற்றும் எழுதப்பட்டது இடையே உள்ள வித்தியாசம் நீங்கள் practice செய்ய வேண்டியது.',
+      Hindi:'Dictation आपकी listening processing को train करती है। सुनें → जो सुना उसे लिखें → जाँचें। आपने जो सुना और जो लिखा है उनके बीच का अंतर ही वह है जिसे आपको practice करना है।',
+      Arabic:'الإملاء يدرّب معالجة الاستماع لديك. استمع ← اكتب ما سمعت ← تحقق. الفرق بين ما تسمعه وما هو مكتوب هو بالضبط ما تحتاج إلى تدريبه.',
+      default:'Dictation trains your listening processing. Listen → write what you hear → check. The difference between what you heard and the written version is exactly what you need to practise.'
+    },
+    // ── GAP TEST ──
+    gap_tip:{
+      Spanish:'Cuando escuchas inglés real, tu cerebro rellena constantemente los huecos — palabras perdidas por el ruido, la velocidad o el acento. Este ejercicio entrena ese músculo.',
+      Telugu:'Real English వినేటప్పుడు, మీ brain constantly gaps fill చేస్తుంది — noise, speed లేదా accent వల్ల miss అయిన words. ఈ exercise ఆ muscle ని train చేస్తుంది.',
+      Tamil:'Real English கேட்கும்போது, உங்கள் மூளை தொடர்ந்து gaps-ஐ நிரப்புகிறது — noise, speed அல்லது accent காரணமாக தவறிய வார்த்தைகள். இந்த exercise அந்த muscle ஐ train செய்கிறது.',
+      Hindi:'Real English सुनते समय, आपका brain लगातार gaps भरता है — noise, speed या accent के कारण छूटे शब्द। यह exercise उस muscle को train करती है।',
+      Arabic:'عند الاستماع إلى الإنجليزية الحقيقية، يملأ دماغك الفجوات باستمرار — الكلمات الضائعة بسبب الضوضاء أو السرعة أو اللهجة. هذا التمرين يدرّب تلك العضلة.',
+      Kannada:'Real English ಕೇಳುವಾಗ, ನಿಮ್ಮ brain ಸತತವಾಗಿ gaps fill ಮಾಡುತ್ತದೆ. ಈ exercise ಆ muscle ಅನ್ನು train ಮಾಡುತ್ತದೆ.',
+      Malayalam:'Real English കേൾക്കുമ്പോൾ, നിങ്ങളുടെ brain തുടർച്ചയായി gaps fill ചെയ്യുന്നു. ഈ exercise ആ muscle train ചെയ്യുന്നു.',
+      default:'When listening to real English, your brain constantly fills gaps — words missed due to noise, speed or accent. This exercise trains that muscle deliberately.'
+    },
+    // ── CONNECTED SPEECH ──
+    connected_why:{
+      Spanish:'El habla conectada explica por qué el inglés real suena tan diferente al inglés escrito. Los sonidos se unen, se reducen y desaparecen en el habla natural.',
+      Telugu:'Connected speech explain చేస్తుంది real English written English కంటే ఎందుకు చాలా different గా sound అవుతుందో. Natural speech లో sounds link అవుతాయి, reduce అవుతాయి, disappear అవుతాయి.',
+      Tamil:'Connected speech, real English ஏன் written English-ஐ விட மிகவும் வேறுபட்டு sound ஆகுது என்று விளக்குகிறது. Natural speech-ல் sounds link ஆகின்றன, குறைகின்றன, மறைகின்றன.',
+      Hindi:'Connected speech बताता है कि real English written English से इतनी अलग क्यों सुनाई देती है। Natural speech में sounds link होती हैं, reduce होती हैं और disappear हो जाती हैं।',
+      Arabic:'يشرح الكلام المتصل لماذا يبدو الإنجليزي الحقيقي مختلفاً جداً عن الإنجليزي المكتوب. في الكلام الطبيعي تتصل الأصوات وتختزل وتختفي.',
+      default:'Connected speech explains why real English sounds so different from written English. Sounds link, reduce and disappear in natural speech.'
+    },
+    // ── STRESS TRAINER ──
+    stress_why:{
+      Spanish:'El inglés es un idioma de tiempo acentuado: algunas sílabas son largas y fuertes, otras son cortas y rápidas. El acento incorrecto es la razón principal por la que el inglés suena extranjero.',
+      Telugu:'English stress-timed language: కొన్ని syllables long మరియు strong, కొన్ని short మరియు fast. Wrong stress English ని foreign గా sound చేయడానికి main reason.',
+      Tamil:'English stress-timed language: சில syllables நீளமாகவும் வலுவாகவும் உள்ளன, சில குறுகியவை மற்றும் வேகமானவை. தவறான stress-ஆல் English foreign ஆக ஒலிக்கும்.',
+      Hindi:'English stress-timed language है: कुछ syllables लंबे और मजबूत होते हैं, कुछ छोटे और तेज। गलत stress की वजह से English foreign sound करती है।',
+      Arabic:'الإنجليزية لغة ذات نبر زمني: بعض المقاطع طويلة وقوية، وبعضها قصيرة وسريعة. النبر الخاطئ هو السبب الرئيسي لظهور لهجة أجنبية.',
+      default:'English is stress-timed: some syllables are long and strong, others are short and fast. Wrong stress is the main reason English sounds foreign.'
+    },
+    // ── PROGRESS DIARY ──
+    diary_tip:{
+      Spanish:'Tu diario muestra el progreso real. Las palabras guardadas, los días practicados y las herramientas usadas son evidencia de que el trabajo se está acumulando.',
+      Telugu:'Diary real progress చూపిస్తుంది. Save చేసిన words, practice చేసిన days, వాడిన tools — పని accumulate అవుతుందని proof.',
+      Tamil:'உங்கள் diary உண்மையான progress-ஐ காட்டுகிறது. சேமித்த வார்த்தைகள், பயிற்சி செய்த நாட்கள், பயன்படுத்திய tools — வேலை குவிகிறது என்பதன் சான்று.',
+      Hindi:'आपकी diary real progress दिखाती है। Save किए गए words, practice किए दिन, इस्तेमाल किए tools — सबूत है कि काम accumulate हो रहा है।',
+      Arabic:'سجلك يُظهر التقدم الحقيقي. الكلمات المحفوظة وأيام التدريب والأدوات المستخدمة دليل على تراكم العمل.',
+      Kannada:'Diary real progress ತೋರಿಸುತ್ತದೆ. Save ಮಾಡಿದ words, practice days, ಬಳಸಿದ tools — ಕೆಲಸ accumulate ಆಗುತ್ತಿದೆ ಎಂಬ proof.',
+      Malayalam:'Diary real progress കാണിക്കുന്നു. Save ചെയ്ത words, practice ദിവസങ്ങൾ, ഉപയോഗിച്ച tools — ജോലി accumulate ആകുന്നു എന്നതിന്റെ proof.',
+      default:'Your diary shows real progress. Saved words, days practised and tools used are evidence that the work is accumulating into something real.'
+    },
+    // ── FORMALITY SLIDER (missing from NL) ──
+    fs_register:{
+      Spanish:'Cada nivel representa un contexto diferente: Very Casual = amigos íntimos. Casual = conversación normal. Neutral = uso diario. Professional = entorno laboral. Formal = documentos y cartas oficiales.',
+      Telugu:'ప్రతి level different context represent చేస్తుంది: Very Casual = close friends. Casual = normal conversation. Neutral = daily use. Professional = workplace. Formal = official letters.',
+      Tamil:'ஒவ்வொரு level ஒரு வேறு context ஐ குறிக்கிறது: Very Casual = நெருங்கிய நண்பர்கள். Casual = சாதாரண conversation. Neutral = daily use. Professional = workplace. Formal = official letters.',
+      Hindi:'हर level एक अलग context represent करता है: Very Casual = करीबी दोस्त। Casual = सामान्य बातचीत। Neutral = रोज़मर्रा। Professional = कार्यस्थल। Formal = आधिकारिक पत्र।',
+      Arabic:'كل مستوى يمثل سياقاً مختلفاً: Very Casual = أصدقاء مقربون. Casual = محادثة عادية. Neutral = استخدام يومي. Professional = بيئة العمل. Formal = وثائق رسمية.',
+      Kannada:'ಪ್ರತಿ level different context represent ಮಾಡುತ್ತದೆ: Very Casual = ಆಪ್ತ ಸ್ನೇಹಿತರು. Casual = ಸಾಮಾನ್ಯ conversation. Professional = workplace. Formal = official letters.',
+      Malayalam:'ഓരോ level-ഉം ഒരു വ്യത്യസ്ത context represent ചെയ്യുന്നു: Very Casual = അടുത്ത സുഹൃത്തുക്കൾ. Casual = സാധാരണ conversation. Professional = workplace. Formal = official letters.',
+      default:'Each level represents a different context: Very Casual = close friends. Casual = normal conversation. Neutral = daily use. Professional = workplace. Formal = official documents and letters.'
+    }
+  };
+  // Merge into NL.data
+  Object.keys(ext).forEach(function(k){NL.data[k]=ext[k];});
+})();
+
 var PREP_DB={
   'at':{def:'Used for precise points in time or place.',rules:['Time: at 3pm, at noon, at midnight, at sunrise','Place: at the door, at school, at the bus stop, at home','Events: at a party, at a meeting, at a concert'],examples:['She arrived at 7am.','I am at the office.','We met at the airport.','Meet me at the corner.'],doSay:['at the station','at midnight','at work','at school'],dontSay:['at the morning (use in)','at Monday (use on)','at the bedroom (use in)'],tip:'AT = a precise point. Think of a pin on a map or a clock hand pointing exactly.'},
   'in':{def:'Inside something, or within a larger area or period of time.',rules:['Time: in January, in 2024, in the morning, in an hour','Place: in London, in the room, in the car, in a box','Abstract: in trouble, in love, in pain'],examples:['She was born in 1995.','I live in Mumbai.','The keys are in my bag.','We will arrive in 10 minutes.'],doSay:['in the morning','in December','in India','in a meeting'],dontSay:['in Monday (use on)','in the station (use at)','in the weekend (use at/on)'],tip:'IN = inside a container or within a space. Think of being inside a box.'},
@@ -3867,7 +4053,7 @@ function renderVocabGrid(){
       +'<div style="font-family:Fraunces,serif;font-size:18px;font-weight:700;color:'+v.col+';margin-bottom:4px">'+v.w+'</div>'
       +'<div style="font-size:11.5px;color:rgba(255,255,255,0.80);margin-bottom:7px">'+safeDef+'</div>'
       +'<div style="font-size:12px;font-style:italic;color:'+v.col+';margin-bottom:8px;padding:6px 10px;background:rgba(0,0,0,0.2);border-radius:7px;border-left:2px solid '+v.col+'">"'+safeEx+'"</div>'
-      +'<div style="font-size:11px;color:var(--teal);font-style:italic" id="vn-'+safeW+'">Tap translate to see in '+lang+'</div>'
+      +'<div style="font-size:11.5px;color:rgba(245,200,66,0.80);font-style:italic;padding:6px 9px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.30);border-radius:0 7px 7px 0;margin-bottom:5px">'      +'<strong>In '+lang+':</strong> '+NL.get('vocab_pos')+'</div>'      +'<div style="font-size:11px;color:var(--teal);font-style:italic" id="vn-'+safeW+'"></div>'
       +"<button data-w='"+safeW+"' onclick='translateVocWord(this,this.dataset.w)' style='margin-top:6px;padding:3px 10px;border-radius:20px;border:1.5px solid "+v.col+";background:transparent;color:"+v.col+";cursor:pointer;font-size:10px;font-weight:700;'>Explain in "+lang+"</button>"
       +'</div>';
     card.addEventListener('click',function(e){
@@ -4058,7 +4244,7 @@ function renderMistakes(){
   var mistakes=MISTAKES_DATA[lang]||MISTAKES_DATA['Spanish'];
   var colors=['#c49a1a','#0e6655','#1a5276','#6c3483','#1e8449','#d35400','#c0392b','#1565c0'];
   var bgs=['var(--gold-dim)','linear-gradient(135deg,#e8f5f0,#d4ede6)','rgba(96,165,250,0.12)','var(--teal-dim)','rgba(74,222,128,0.12)','var(--coral-dim)','18px','rgba(167,139,250,0.12)'];
-  area.innerHTML='<div style="font-size:13px;font-weight:700;color:var(--teal);margin-bottom:12px">Top 15 mistakes by '+lang+' speakers - corrections in English and '+lang+'</div>';
+  area.innerHTML='<div style="font-size:13px;font-weight:700;color:var(--teal);margin-bottom:8px">Top 15 mistakes by '+lang+' speakers - corrections in English and '+lang+'</div>'    +'<div style="font-size:12px;color:rgba(245,200,66,0.80);padding:8px 12px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.30);border-radius:0 8px 8px 0;margin-bottom:12px;font-style:italic"><strong>In '+lang+':</strong> '+NL.get('coll_mistake')+'</div>';
   mistakes.forEach(function(m,i){
     var col=colors[i%colors.length],bg=bgs[i%bgs.length];
     var parts=m.split(' should be ');
@@ -4105,6 +4291,11 @@ function toggleConfuseEx(id,btn){var el=document.getElementById(id);if(!el)retur
 function buildTimeline(){
   var track=document.getElementById('tlTrack');if(!track||track.children.length>0)return;
   var sections=[{key:'past',label:'PAST',col:'#c0392b'},{key:'present',label:'PRESENT',col:'#1e8449'},{key:'future',label:'FUTURE',col:'#1a5276'}];
+  // Add native tip above timeline
+  var tipDiv=document.createElement('div');
+  tipDiv.style.cssText='font-size:12px;color:rgba(245,200,66,0.75);padding:8px 12px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.30);border-radius:0 8px 8px 0;margin-bottom:12px;font-style:italic';
+  tipDiv.innerHTML='<strong>In '+lang+':</strong> '+NL.get('tense_tip');
+  track.parentElement.insertBefore(tipDiv,track);
   sections.forEach(function(sec){
     var div=document.createElement('div');div.style.cssText='flex:1;display:flex;flex-direction:column;gap:5px;position:relative;z-index:1';
     var lbl=document.createElement('div');
@@ -4126,6 +4317,7 @@ function showTlPopup(t){
   var p=document.getElementById('tlPopup');p.className='tl-popup show';p.style.background=t.bg;p.style.borderLeft='4px solid '+t.col;
   p.innerHTML='<div style="font-family:Fraunces,serif;font-size:20px;font-weight:700;color:'+t.col+';margin-bottom:8px">'+t.name+'</div>'
     +'<div style="margin-bottom:10px"><span style="background:'+t.col+'15;color:'+t.col+';padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700;font-family:DM Mono,monospace">Formula: '+t.formula+'</span></div>'
+    +'<div style="font-size:12px;color:rgba(245,200,66,0.80);padding:7px 10px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.30);border-radius:0 7px 7px 0;margin-bottom:8px;font-style:italic"><strong>In '+lang+':</strong> '+NL.get('tense_when')+'</div>'
     +'<div style="font-size:14px;font-style:italic;color:var(--txt-1);padding:8px 12px;background:rgba(255,255,255,0.6);border-radius:8px;margin-bottom:8px;border-left:3px solid '+t.col+'"><strong style="color:'+t.col+'">Example:</strong> '+t.ex+'</div>'
     +'<div style="font-size:13px;line-height:1.65;margin-bottom:8px"><strong style="color:'+t.col+'">When to use:</strong> '+t.when+'</div>'
     +'<div style="font-size:12px;color:var(--txt-3);padding:8px 10px;background:rgba(0,0,0,0.04);border-radius:7px" id="tlNative"><strong style="color:'+t.col+'">In '+lang+':</strong> Click below to explain</div>'
@@ -4152,7 +4344,7 @@ function renderPhrases(){
       +'<div class="phrase-meaning" style="color:var(--txt-1)">'+p.meaning+'</div>'
       +'<div class="phrase-example" style="border-color:'+col+';background:rgba(255,255,255,0.6)"><strong style="color:'+col+'">Example:</strong> '+p.example+'</div>'
       +'<div style="font-size:12px;color:var(--txt-3);margin-bottom:8px;padding:5px 10px;background:rgba(0,0,0,0.04);border-radius:6px"><strong style="color:'+col+'">When to use:</strong> '+p.ctx+'</div>'
-      +'<div id="pn-'+idx+'" style="font-size:12px;padding:7px 10px;background:rgba(0,0,0,0.05);border-radius:7px"><button onclick="translatePhrase('+idx+',\''+col+'\',\''+safeText+'\',\''+safeMeaning+'\')" style="font-size:11px;padding:3px 10px;border-radius:20px;border:1.5px solid '+col+';background:transparent;color:'+col+';cursor:pointer;font-family:inherit;font-weight:600">Translate to '+lang+'</button></div>';
+      +'<div style="font-size:12px;color:rgba(245,200,66,0.80);padding:7px 10px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.30);border-radius:0 7px 7px 0;margin-top:6px">'      +'<strong>In '+lang+':</strong> '+NL.get('phrase_use')+'</div>'      +'<div id="pn-'+idx+'" style="font-size:11px;color:rgba(255,255,255,0.45);padding:4px 10px">'+NL.get('phrase_register')+'</div>';
     area.appendChild(card);
   }
 }
@@ -4214,7 +4406,7 @@ function renderSpotter(){
   var area=document.getElementById('spotterArea');if(!area)return;
   var s=SPOTTER_DATA[currentSpotter%SPOTTER_DATA.length];
   area.innerHTML='<div style="background:'+s.bg+';border-left:4px solid '+s.col+';border-radius:9px;padding:12px;margin-bottom:12px">'
-    +'<div style="font-size:10px;font-weight:700;text-transform:uppercase;color:'+s.col+';margin-bottom:6px">Paragraph '+(currentSpotter%SPOTTER_DATA.length+1)+' of '+SPOTTER_DATA.length+' - Tap words you think are errors</div>'
+    +'<div style="font-size:10px;font-weight:700;text-transform:uppercase;color:'+s.col+';margin-bottom:6px">Paragraph '+(currentSpotter%SPOTTER_DATA.length+1)+' of '+SPOTTER_DATA.length+'</div>'    +'<div style="font-size:12px;color:rgba(245,200,66,0.75);padding:6px 10px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.28);border-radius:0 7px 7px 0;margin-bottom:8px;font-style:italic"><strong>In '+lang+':</strong> '+NL.get('spotter_tip')+'</div>'
     +'<div id="errorPara" style="font-size:14px;line-height:2.4;padding:12px;background:rgba(255,255,255,0.7);border-radius:8px"></div>'
     +'</div>'
     +'<div style="display:flex;gap:8px;margin-bottom:10px">'
@@ -4259,6 +4451,11 @@ function nextSpotter(){currentSpotter++;renderSpotter();}
 
 function buildCheatSheet(){
   var topics=document.getElementById('csTopics');if(!topics||topics.children.length>0)return;
+  // Native tip before topics
+  var natTip=document.createElement('div');
+  natTip.style.cssText='font-size:12.5px;color:rgba(245,200,66,0.80);padding:8px 12px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.30);border-radius:0 8px 8px 0;margin-bottom:12px;font-style:italic';
+  natTip.innerHTML='<strong>In '+lang+':</strong> '+NL.get('cheat_use');
+  topics.parentElement.insertBefore(natTip, topics);
   CS_TOPICS.forEach(function(t,i){
     var btn=document.createElement('button');
     btn.style.cssText='padding:10px;border-radius:10px;border:1.5px solid var(--bdr);background:var(--bg-2);font-size:12px;font-weight:600;cursor:pointer;text-align:center;font-family:inherit;transition:all .15s;color:'+CS_COLORS[i];
@@ -5130,7 +5327,7 @@ function fsRender(level){
     h+='<div onclick="fsRender('+i+')" style="padding:9px 12px;border-radius:9px;border:1px solid '+(i===level?FS_COLORS[i]:'rgba(255,255,255,0.09)')+';background:'+(i===level?'rgba(167,139,250,0.12)':'rgba(255,255,255,0.03)')+';margin-bottom:5px;cursor:pointer;transition:all .13s">';
     h+='<div style="display:flex;align-items:center;gap:8px"><span style="font-size:11px;font-weight:700;color:'+FS_COLORS[i]+';min-width:100px">'+FS_LABELS[i]+'</span><span style="font-size:12.5px;color:rgba(255,255,255,0.75)">'+l+'</span></div></div>';
   });
-  h+='<div style="margin-top:10px;font-size:11.5px;font-style:italic;color:rgba(245,200,66,0.70);padding:8px 11px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.35);border-radius:0 8px 8px 0">In '+lang+': '+({'Spanish':'"Register" = estilo de lenguaje según el contexto. Casual=amigos. Professional=trabajo. Formal=documentos oficiales.','Telugu':'"Register" = context కి తగ్గ language style. Casual=friends. Professional=office. Formal=letters.','Tamil':'"Register" = context-க்கு ஏற்ற language style.','Hindi':'"Register" = context के अनुसार भाषा शैली।','Arabic':'"Register" = أسلوب اللغة حسب السياق.','default':'"Register" = language style suited to context. Casual=friends. Professional=workplace. Formal=documents.'})[lang]||'Register = language style suited to context.'+'</div>';
+  h+='<div style="margin-top:10px;font-size:11.5px;font-style:italic;color:rgba(245,200,66,0.70);padding:8px 11px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.35);border-radius:0 8px 8px 0"><strong>In '+lang+':</strong> '+NL.get('fs_register')+'</div>';
   h+='</div>';
   wHtml('fsResult',h);
 }
@@ -5516,6 +5713,23 @@ function renderWordBuilder(){
 }
 
 window.onload=function(){
+// ── Inject native notes into listening panels ──
+function injectListeningNotes(){
+  var pairs=[
+    ['nat-speedlisten',  'speed_tip'],
+    ['nat-diary',        'diary_tip'],
+    ['nat-dictation',    'dict_tip'],
+    ['nat-stress',       'stress_why'],
+    ['nat-minimalpairs', 'mp_tip'],
+    ['nat-listeninggap', 'gap_tip'],
+    ['nat-connected',    'connected_why']
+  ];
+  pairs.forEach(function(p){
+    var el=document.getElementById(p[0]);
+    if(el)el.innerHTML='<strong>In '+lang+':</strong> '+NL.get(p[1]);
+  });
+}
+
   loadWelcomeTrans();loadWord();
   setTimeout(buildPreps,1600);setTimeout(renderVocab,300);setTimeout(renderIdioms,1600);
   setTimeout(renderChallenge,500);setTimeout(renderMistakes,1200);setTimeout(renderConfuse,700);

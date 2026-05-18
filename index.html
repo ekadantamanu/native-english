@@ -6222,242 +6222,535 @@ var PD_NAT={
 function pdNat(key){var o=PD_NAT[key];if(!o)return '';return 'In '+lang+': '+(o[lang]||o['default']);}
 
 var PD_RULES=[
-  // ── APOSTROPHE RULES ──
-  {re:/\bwont\b/g,     key:'wont',   label:"Missing apostrophe: won't",
-   fix:"'won\'t' is a contraction of 'will not'. Always written with an apostrophe: won't",
-   corr:function(t){return t.replace(/\bwont\b/g,"won't");}},
-  {re:/\bdont\b/g,     key:'dont',   label:"Missing apostrophe: don't",
-   fix:"'don\'t' is a contraction of 'do not'. Always written with an apostrophe: don't",
-   corr:function(t){return t.replace(/\bdont\b/g,"don't");}},
-  {re:/\bcant\b/g,     key:'cant',   label:"Missing apostrophe: can't",
-   fix:"'can\'t' is a contraction of 'cannot'. Always written with an apostrophe: can't",
-   corr:function(t){return t.replace(/\bcant\b/g,"can't");}},
-  {re:/\bwouldnt\b/g,  key:'wdnt',   label:"Missing apostrophe: wouldn't",
-   fix:"'wouldn\'t' is the contraction of 'would not'. Needs an apostrophe: wouldn't",
-   corr:function(t){return t.replace(/\bwouldnt\b/g,"wouldn't");}},
-  {re:/\bcouldnt\b/g,  key:'cdnt',   label:"Missing apostrophe: couldn't",
-   fix:"'couldn\'t' is the contraction of 'could not'. Needs an apostrophe: couldn't",
-   corr:function(t){return t.replace(/\bcouldnt\b/g,"couldn't");}},
-  {re:/\bshouldnt\b/g, key:'sdnt',   label:"Missing apostrophe: shouldn't",
-   fix:"'shouldn\'t' is the contraction of 'should not'. Needs an apostrophe: shouldn't",
-   corr:function(t){return t.replace(/\bshouldnt\b/g,"shouldn't");}},
-  {re:/\bdidnt\b/g,    key:'didnt',  label:"Missing apostrophe: didn't",
-   fix:"'didn\'t' is the contraction of 'did not'. Needs an apostrophe: didn't",
-   corr:function(t){return t.replace(/\bdidnt\b/g,"didn't");}},
-  {re:/\bhasnt\b/g,    key:'hasnt',  label:"Missing apostrophe: hasn't",
-   fix:"'hasn\'t' is the contraction of 'has not'. Needs an apostrophe: hasn't",
-   corr:function(t){return t.replace(/\bhasnt\b/g,"hasn't");}},
-  {re:/\bhavent\b/g,   key:'havnt',  label:"Missing apostrophe: haven't",
-   fix:"'haven\'t' is the contraction of 'have not'. Needs an apostrophe: haven't",
-   corr:function(t){return t.replace(/\bhavent\b/g,"haven't");}},
-  {re:/\bisnt\b/g,     key:'isnt',   label:"Missing apostrophe: isn't",
-   fix:"'isn\'t' is the contraction of 'is not'. Needs an apostrophe: isn't",
-   corr:function(t){return t.replace(/\bisnt\b/g,"isn't");}},
-  {re:/\barent\b/g,    key:'arent',  label:"Missing apostrophe: aren't",
-   fix:"'aren\'t' is the contraction of 'are not'. Needs an apostrophe: aren't",
-   corr:function(t){return t.replace(/\barent\b/g,"aren't");}},
-  // ── CAPITALISATION ──
-  {re:/\b\s+i\s+/g,    key:'lc_i',   label:"Lowercase 'i' (should be 'I')",
-   fix:"The pronoun 'I' in English is ALWAYS capitalised, whether at the start or middle of a sentence.",
-   corr:function(t){return t.replace(/ i /g,' I ');}},
-  {re:/^[a-z]/,          key:'lc_start',label:'Sentence starts with lowercase letter',
-   fix:'Every sentence must begin with a capital letter. Check the very first character.',
-   corr:function(t){return t.charAt(0).toUpperCase()+t.slice(1);}},
-  // ── COMMA ERRORS ──
-  {re:/([a-z]),([A-Z][a-z])/g, key:'comma_splice', label:'Comma splice (two sentences joined by a comma)',
-   fix:'Two complete sentences cannot be joined by a comma alone. Use a full stop (.) or a semicolon (;) or a conjunction like "and", "but", "so".',
-   corr:function(t){return t.replace(/([a-z]),([A-Z][a-z])/g,function(m,a,b){return a+'. '+b;});}},
-  {re:/,and /gi,         key:'comma_and',label:'Missing comma before conjunctions in lists',
-   fix:'In a series of three or more items, use a comma before the final "and": apples, oranges, and bananas.',
-   corr:null},
-  {re:/\si,\s/g,        key:'no_comma_i',label:'Comma after "I" at start of clause',
-   fix:'Do not place a comma directly after "I" unless there is a parenthetical clause. "I, think you are right" is wrong. "I think you are right" is correct.',
-   corr:function(t){return t.replace(/ I, /g,' I ');}},
-  // ── SPACING ERRORS ──
-  {re:/\s{2,}/g,         key:'dbl_space',label:'Double space between words',
-   fix:'Use exactly one space between words. Double spaces are invisible on screen but visible to document editors and professional readers.',
-   corr:function(t){return t.replace(/\s{2,}/g,' ');}},
-  {re:/\s[.,;:!?]/g,     key:'space_b4', label:'Space before punctuation mark',
-   fix:'Punctuation marks (. , ; : ! ?) come directly after the word with no space before them: "Hello !" is wrong. "Hello!" is correct.',
-   corr:function(t){return t.replace(/\s([.,;:!?])/g,'$1');}},
-  {re:/[.,;:!?]{2,}/g,   key:'dbl_punc', label:'Double punctuation mark',
-   fix:'Use only one punctuation mark at a time. "Really?!" and "Hello!!" are informal. In formal writing use a single mark: "Really?" or "Hello!"',
-   corr:function(t){return t.replace(/([.,;:!?])\1+/g,'$1');}},
-  // ── QUOTATION MARKS ──
-  {re:/"[^"]{1,200}"/g,  key:'dbl_quotes',label:'Check quotation mark style',
-   fix:'British English uses single quotation marks for speech (single quotes). American English uses double: "Hello". Be consistent — do not mix styles.',
-   corr:null},
-  // ── ARTICLE ERRORS ──
-  {re:/\ba [aeiouAEIOU]/g, key:'a_vowel',  label:'Use "an" before vowel sounds',
-   fix:'Use "an" (not "a") before words that begin with a vowel sound: an apple, an hour, an honest mistake. Exception: "a university" (sounds like "you-niversity").',
-   corr:function(t){return t.replace(/\ba ([aeiouAEIOU])/g,'an $1');}},
-  {re:/\ban [bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]/g, key:'an_cons', label:'Use "a" before consonant sounds',
-   fix:'Use "a" (not "an") before words that begin with a consonant sound: a book, a car, a uniform (sounds like "you-niform").',
-   corr:function(t){return t.replace(/\ban ([bcdfghjklmnpqrstvwxyz])/gi,'a $1');}},
-  // ── COMMON WRITING ERRORS ──
-  {re:/\btheir\s+is\b/gi, key:'their_is',  label:'"their" vs "there" confusion',
-   fix:'"Their" shows possession: their book, their car. "There" refers to place: over there, there is a problem. Different words, different meanings.',
-   corr:function(t){return t.replace(/\btheir\s+is\b/gi,"there is");}},
-  {re:/\byour\s+welcome\b/gi, key:'your_wlc', label:'"your" vs "you are" confusion',
-   fix:'"You are welcome" is the correct phrase. "Your" shows possession: your bag, your idea. Do not confuse the two.',
-   corr:function(t){return t.replace(/\byour\s+welcome\b/gi,"you're welcome");}},
-  {re:/\bto\s+much\b/gi,    key:'to_much',  label:'"too" vs "to" confusion',
-   fix:'"Too much" uses "too" (= excessively). "To" is a preposition (go to school). "Too" means also or excessively: I am too tired. Me too.',
-   corr:function(t){return t.replace(/\bto\s+much\b/gi,"too much");}},
-  {re:/\bshould\s+of\b/gi,  key:'shd_of',   label:'"should of" — incorrect',
-   fix:'"Should of" is a mishearing of "should have". Always write: should have, could have, would have — NEVER should of, could of, would of.',
-   corr:function(t){return t.replace(/\bshould of\b/gi,"should have");}},
-  {re:/\bcould\s+of\b/gi,   key:'cld_of',   label:'"could of" — incorrect',
-   fix:'"Could of" is a mishearing of "could have". Always write: could have — never could of.',
-   corr:function(t){return t.replace(/\bcould of\b/gi,"could have");}},
-  {re:/\bwould\s+of\b/gi,   key:'wld_of',   label:'"would of" — incorrect',
-   fix:'"Would of" is a mishearing of "would have". Always write: would have — never would of.',
-   corr:function(t){return t.replace(/\bwould of\b/gi,"would have");}},
-  {re:/\balot\b/gi,           key:'alot',     label:'"alot" is not a word',
-   fix:'"A lot" is always two words. "Alot" does not exist in standard English. Write: a lot of, a lot more.',
-   corr:function(t){return t.replace(/\balot\b/gi,"a lot");}},
-  {re:/\bdeffinetly\b|\bdefinately\b|\bdefenitely\b/gi, key:'def_spell', label:'Misspelling of "definitely"',
-   fix:'"Definitely" is frequently misspelled. Remember: de-FINITE-ly — it contains the word FINITE.',
-   corr:function(t){return t.replace(/\bdeffinetly\b|\bdefinately\b|\bdefenitely\b/gi,"definitely");}},
-  {re:/\brecieve\b|\breciept\b/gi, key:'ei_ie', label:'ie/ei spelling error',
-   fix:'Remember the rule: i before e except after c. So: receive (after c → ei), receipt (after c → ei). But: believe, achieve, piece (no c → ie).',
-   corr:function(t){return t.replace(/\brecieve\b/gi,"receive").replace(/\breciept\b/gi,"receipt");}},
-  {re:/\boccured\b|\boccuring\b/gi, key:'occ',  label:'Misspelling of "occurred/occurring"',
-   fix:'"Occur" doubles the r when adding -ed or -ing: occurred, occurring. Rule: short vowel + single consonant at end → double before suffix.',
-   corr:function(t){return t.replace(/\boccured\b/gi,"occurred").replace(/\boccuring\b/gi,"occurring");}},
-  {re:/\bteh\b/gi,              key:'teh',    label:'Typo: "teh" should be "the"',
-   fix:'Common keyboard typo. "teh" → "the". Always proofread before sending.',
-   corr:function(t){return t.replace(/\bteh\b/gi,"the");}},
-  {re:/\badn\b/gi,              key:'adn',    label:'Typo: "adn" should be "and"',
-   fix:'Common keyboard typo. "adn" → "and". Always proofread before sending.',
-   corr:function(t){return t.replace(/\badn\b/gi,"and");}},
+
+  // ══════════════════════════════════════════════════════
+  // TIER 1 — COMMA SPLICE & RUN-ON SENTENCES
+  // The most common structural errors in non-native writing
+  // ══════════════════════════════════════════════════════
+
+  // Comma splice: "...beach, it started..." — comma joining two independent clauses
+  // Detects: comma + subject pronoun starting a new independent clause
+  {re:/([a-zA-Z]{3,}),\s+(I\b|you |he |she |it |we |they |there |then |this |that |those |these |the [a-z])/g,
+   key:'comma_splice_pro',
+   label:'Comma splice — two complete sentences joined by only a comma',
+   fix:'Two independent clauses cannot be joined by a comma alone. Fix options:\n1. Add a coordinating conjunction: "..., but it started..." / "..., so it started..."\n2. Use a semicolon: "...; it started..."\n3. Split into two sentences: ".... It started..."',
+   corr:null,
+   example:'"I wanted to go, it was raining." → "I wanted to go, but it was raining." or "I wanted to go. It was raining."',
+   severity:'high'},
+
+  // Comma splice variant: capital letter after comma (original rule, still useful)
+  {re:/([a-z]{3,}),\s+([A-Z][a-z]{2,}\s+(is|are|was|were|has|have|had|will|would|can|could|should|must|may|might|shall))/g,
+   key:'comma_splice_cap',
+   label:'Comma splice — two sentences joined by a comma (capital letter variant)',
+   fix:'Two complete sentences cannot be joined by a comma alone. Use a full stop, semicolon, or add a conjunction (and, but, so, yet, for, nor, or).',
+   corr:null,
+   example:'"She was tired, She decided to sleep." → "She was tired, so she decided to sleep."',
+   severity:'high'},
+
+  // Missing conjunction: comma before coordinating clause without FANBOYS
+  // Detects: ,[space]and/but/or/so/yet/for/nor followed by subject+verb
+  {re:/,\s+(and then|but then|so then)\s+[a-z]/gi,
+   key:'comma_conj_then',
+   label:'Weak conjunction — "and then / but then" can be tightened',
+   fix:'Phrases like "and then" or "but then" after a comma are often wordy. Consider: "..., then..." or split into two sentences.',
+   corr:null,
+   example:'"She arrived, and then she sat down." → "She arrived and sat down."',
+   severity:'low'},
+
+  // ══════════════════════════════════════════════════════
+  // TIER 2 — MISSING CONJUNCTION (FANBOYS rule)
+  // Comma + independent clause needs a conjunction
+  // ══════════════════════════════════════════════════════
+
+  // Missing comma + conjunction before independent clause
+  // Pattern: independent clause + [no conjunction] + independent clause
+  {re:/\b(and|but|or|so|yet|nor|for)\s+(I |you |he |she |it |we |they )/gi,
+   key:'conj_no_comma',
+   label:'Possible missing comma before conjunction',
+   fix:'When a coordinating conjunction (and, but, or, so, yet, nor, for) joins two independent clauses, place a comma BEFORE the conjunction: "She studied hard, but she failed." — not "She studied hard but she failed."',
+   corr:null,
+   example:'"She was tired but she kept working." → "She was tired, but she kept working."',
+   severity:'medium'},
+
+  // ══════════════════════════════════════════════════════
+  // TIER 3 — APOSTROPHE ERRORS (comprehensive)
+  // ══════════════════════════════════════════════════════
+
+  {re:/\bits\s+[a-z]/g,
+   key:'its_confusion',
+   label:'"its" vs "it\'s" — possible confusion',
+   fix:'"It\'s" (with apostrophe) = it is OR it has. "Its" (no apostrophe) = belonging to it. Check: can you say "it is" or "it has" in place of it? If yes, use it\'s. If no, use its.',
+   corr:null,
+   example:'"The dog wagged its tail." (correct — belonging to dog) vs "It\'s raining." (correct — it is raining)',
+   severity:'medium'},
+
+  {re:/\bwont\b/g,   key:'wont',   label:'Missing apostrophe: "wont" should be "won\'t"',
+   fix:'"Won\'t" is the contraction of "will not". Always written with an apostrophe: won\'t.',
+   corr:function(t){return t.replace(/\bwont\b/g,"won't");}, severity:'medium'},
+  {re:/\bdont\b/g,   key:'dont',   label:'Missing apostrophe: "dont" should be "don\'t"',
+   fix:'"Don\'t" = do not. Always needs an apostrophe.',
+   corr:function(t){return t.replace(/\bdont\b/g,"don't");}, severity:'medium'},
+  {re:/\bcant\b/g,   key:'cant',   label:'Missing apostrophe: "cant" should be "can\'t"',
+   fix:'"Can\'t" = cannot. Always needs an apostrophe.',
+   corr:function(t){return t.replace(/\bcant\b/g,"can't");}, severity:'medium'},
+  {re:/\bwont\b/g,   key:'wont2',  label:'Missing apostrophe: "wont" should be "won\'t"',
+   fix:'"Won\'t" = will not.',
+   corr:function(t){return t.replace(/\bwont\b/g,"won't");}, severity:'medium'},
+  {re:/\bwouldnt\b/g,key:'wdnt',   label:'Missing apostrophe: "wouldnt" should be "wouldn\'t"',
+   fix:'"Wouldn\'t" = would not.',
+   corr:function(t){return t.replace(/\bwouldnt\b/g,"wouldn't");}, severity:'medium'},
+  {re:/\bcouldnt\b/g,key:'cdnt',   label:'Missing apostrophe: "couldnt" should be "couldn\'t"',
+   fix:'"Couldn\'t" = could not.',
+   corr:function(t){return t.replace(/\bcouldnt\b/g,"couldn't");}, severity:'medium'},
+  {re:/\bshouldnt\b/g,key:'sdnt',  label:'Missing apostrophe: "shouldnt" should be "shouldn\'t"',
+   fix:'"Shouldn\'t" = should not.',
+   corr:function(t){return t.replace(/\bshouldnt\b/g,"shouldn't");}, severity:'medium'},
+  {re:/\bdidnt\b/g,  key:'didnt',  label:'Missing apostrophe: "didnt" should be "didn\'t"',
+   fix:'"Didn\'t" = did not.',
+   corr:function(t){return t.replace(/\bdidnt\b/g,"didn't");}, severity:'medium'},
+  {re:/\bhasnt\b/g,  key:'hasnt',  label:'Missing apostrophe: "hasnt" should be "hasn\'t"',
+   fix:'"Hasn\'t" = has not.',
+   corr:function(t){return t.replace(/\bhasnt\b/g,"hasn't");}, severity:'medium'},
+  {re:/\bhavent\b/g, key:'havnt',  label:'Missing apostrophe: "havent" should be "haven\'t"',
+   fix:'"Haven\'t" = have not.',
+   corr:function(t){return t.replace(/\bhavent\b/g,"haven't");}, severity:'medium'},
+  {re:/\bisnt\b/g,   key:'isnt',   label:'Missing apostrophe: "isnt" should be "isn\'t"',
+   fix:'"Isn\'t" = is not.',
+   corr:function(t){return t.replace(/\bisnt\b/g,"isn't");}, severity:'medium'},
+  {re:/\barent\b/g,  key:'arent',  label:'Missing apostrophe: "arent" should be "aren\'t"',
+   fix:'"Aren\'t" = are not.',
+   corr:function(t){return t.replace(/\barent\b/g,"aren't");}, severity:'medium'},
+  {re:/\bwerent\b/g, key:'werent', label:'Missing apostrophe: "werent" should be "weren\'t"',
+   fix:'"Weren\'t" = were not.',
+   corr:function(t){return t.replace(/\bwerent\b/g,"weren't");}, severity:'medium'},
+  {re:/\bwasnt\b/g,  key:'wasnt',  label:'Missing apostrophe: "wasnt" should be "wasn\'t"',
+   fix:'"Wasn\'t" = was not.',
+   corr:function(t){return t.replace(/\bwasnt\b/g,"wasn't");}, severity:'medium'},
+  {re:/\bhadnt\b/g,  key:'hadnt',  label:'Missing apostrophe: "hadnt" should be "hadn\'t"',
+   fix:'"Hadn\'t" = had not.',
+   corr:function(t){return t.replace(/\bhadnt\b/g,"hadn't");}, severity:'medium'},
+  {re:/\bmusnt\b/g,  key:'musnt',  label:'Missing apostrophe: "musnt" should be "mustn\'t"',
+   fix:'"Mustn\'t" = must not.',
+   corr:function(t){return t.replace(/\bmusnt\b/g,"mustn't");}, severity:'medium'},
+  {re:/\bdoesnt\b/g, key:'doesnt', label:'Missing apostrophe: "doesnt" should be "doesn\'t"',
+   fix:'"Doesn\'t" = does not.',
+   corr:function(t){return t.replace(/\bdoesnt\b/g,"doesn't");}, severity:'medium'},
+  {re:/\bwhose\s+(is|are|was|were)\b/gi, key:'whos',
+   label:'Possible "who\'s" vs "whose" confusion',
+   fix:'"Who\'s" (apostrophe) = who is or who has. "Whose" (no apostrophe) = belonging to whom. "Whose book is this?" (possession) vs "Who\'s coming tonight?" (who is).',
+   corr:null, severity:'medium'},
+
+  // ══════════════════════════════════════════════════════
+  // TIER 4 — CAPITALISATION ERRORS
+  // ══════════════════════════════════════════════════════
+
+  {re:/\b i \b/g,
+   key:'lc_i',
+   label:'Lowercase "i" — the pronoun I must always be capitalised',
+   fix:'The pronoun "I" is ALWAYS capitalised in English, wherever it appears in a sentence. "I" (capital) — not "i" (lowercase).',
+   corr:function(t){return t.replace(/ i /g,' I ');}, severity:'high'},
+
+  {re:/^[a-z]/,
+   key:'lc_start',
+   label:'Sentence starts with a lowercase letter',
+   fix:'Every English sentence must begin with a capital letter. Check the very first word.',
+   corr:function(t){return t.charAt(0).toUpperCase()+t.slice(1);}, severity:'high'},
+
+  // Days of the week must be capitalised
+  {re:/\b(monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b/g,
+   key:'day_cap',
+   label:'Day of the week must be capitalised',
+   fix:'Days of the week are proper nouns in English — always capitalised: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday.',
+   corr:function(t){return t.replace(/\b(monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b/gi,function(m){return m.charAt(0).toUpperCase()+m.slice(1);});}, severity:'medium'},
+
+  // Months must be capitalised
+  {re:/\b(january|february|march|april|may|june|july|august|september|october|november|december)\b/g,
+   key:'month_cap',
+   label:'Month name must be capitalised',
+   fix:'Months are proper nouns — always capitalised: January, February, March, April, May, June, July, August, September, October, November, December.',
+   corr:function(t){return t.replace(/\b(january|february|march|april|may|june|july|august|september|october|november|december)\b/gi,function(m){return m.charAt(0).toUpperCase()+m.slice(1);});}, severity:'medium'},
+
+  // ══════════════════════════════════════════════════════
+  // TIER 5 — SPACING AND FORMATTING ERRORS
+  // ══════════════════════════════════════════════════════
+
+  {re:/\s{2,}/g,
+   key:'dbl_space',
+   label:'Double space between words',
+   fix:'Use exactly one space between words. Double spaces are invisible to the eye but show in document editors and are considered unprofessional.',
+   corr:function(t){return t.replace(/\s{2,}/g,' ');}, severity:'low'},
+
+  {re:/\s[.,;:!?]/g,
+   key:'space_b4_punc',
+   label:'Space before punctuation mark',
+   fix:'Punctuation marks (. , ; : ! ?) attach directly to the word before them — no space. "Hello !" is wrong. "Hello!" is correct.',
+   corr:function(t){return t.replace(/\s([.,;:!?])/g,'$1');}, severity:'medium'},
+
+  {re:/[.,;:!?]{2,}/g,
+   key:'dbl_punc',
+   label:'Double or repeated punctuation mark',
+   fix:'Use only one punctuation mark at a time in formal writing. "Really?!" and "Yes!!" are informal. Write "Really?" or "Yes!" in professional contexts.',
+   corr:function(t){return t.replace(/([.,;:!?])\1+/g,'$1');}, severity:'low'},
+
+  {re:/\.\.\s/g,
+   key:'ellipsis',
+   label:'Incomplete ellipsis — should be three dots (...)',
+   fix:'An ellipsis (pause or omission) uses exactly THREE dots: ... — not two (..) and not four or more. "He said... he was tired." Correct.',
+   corr:function(t){return t.replace(/\.\.\s/g,'... ');}, severity:'low'},
+
+  {re:/--/g,
+   key:'double_hyphen',
+   label:'Double hyphen (--) — consider using an em dash (—)',
+   fix:'Two hyphens (--) are a typewriter substitute for an em dash (—). In polished writing, use a proper em dash: "She waited -- as usual" → "She waited — as usual". Copy the em dash: —',
+   corr:function(t){return t.replace(/--/g,'—');}, severity:'low'},
+
+  // ══════════════════════════════════════════════════════
+  // TIER 6 — COLON AND SEMICOLON ERRORS
+  // ══════════════════════════════════════════════════════
+
+  {re:/:\s*[a-z]/g,
+   key:'colon_lc',
+   label:'After a colon — capitalise only when introducing an independent clause',
+   fix:'After a colon, use a capital letter only if what follows is a complete sentence. If it introduces a list or phrase, use lowercase: "She had one goal: to win." (phrase → lowercase) vs "There was one problem: The roof was leaking." (sentence → capital optional but consistent).',
+   corr:null, severity:'low'},
+
+  {re:/;\s*[A-Z]/g,
+   key:'semicolon_cap',
+   label:'After a semicolon — use lowercase (semicolons join related clauses, not new sentences)',
+   fix:'After a semicolon, use a lowercase letter. "She was tired; She went home." is wrong — "She was tired; she went home." is correct. A semicolon is not a full stop.',
+   corr:function(t){return t.replace(/;\s*([A-Z])/g,function(m,c){return '; '+c.toLowerCase();});}, severity:'medium'},
+
+  // ══════════════════════════════════════════════════════
+  // TIER 7 — ARTICLE ERRORS
+  // ══════════════════════════════════════════════════════
+
+  {re:/\ba [aeiouAEIOU][a-z]/g,
+   key:'a_vowel',
+   label:'Use "an" before vowel sounds — not "a"',
+   fix:'Use "an" before words beginning with a VOWEL SOUND: an apple, an hour, an honest person, an engineer. Use "a" before consonant sounds: a book, a university (sounds like "you-niversity"), a European (sounds like "you-ropean").',
+   corr:function(t){return t.replace(/\ba ([aeiouAEIOU])/g,'an $1');}, severity:'high'},
+
+  {re:/\ban [bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ][a-z]/g,
+   key:'an_cons',
+   label:'Use "a" before consonant sounds — not "an"',
+   fix:'Use "a" before consonant sounds: a book, a car, a uniform (sounds like "you-niform"). Use "an" before vowel sounds: an apple, an hour.',
+   corr:function(t){return t.replace(/\ban ([bcdfghjklmnpqrstvwxyz])/gi,'a $1');}, severity:'high'},
+
+  // ══════════════════════════════════════════════════════
+  // TIER 8 — WORD CONFUSION ERRORS
+  // ══════════════════════════════════════════════════════
+
+  {re:/\btheir\s+(is|are|was|were|will|would|has|have|had)\b/gi,
+   key:'their_there',
+   label:'"their" vs "there" — word confusion',
+   fix:'"Their" = belonging to them (their book, their house). "There" = a place or to introduce a clause (over there, there is a problem). "They\'re" = they are. Check which meaning you need.',
+   corr:function(t){return t.replace(/\btheir\s+(is|are|was|were|will|would|has|have|had)\b/gi,'there $1');}, severity:'high'},
+
+  {re:/\byour\s+welcome\b/gi,
+   key:'your_wlc',
+   label:'"your welcome" — should be "you\'re welcome"',
+   fix:'"You\'re welcome" uses "you\'re" (= you are). "Your" shows possession: your bag, your idea. Test: can you say "you are welcome"? Yes — so use "you\'re".',
+   corr:function(t){return t.replace(/\byour\s+welcome\b/gi,"you're welcome");}, severity:'high'},
+
+  {re:/\bto\s+much\b/gi,
+   key:'to_much',
+   label:'"to much" — should be "too much"',
+   fix:'"Too much" uses "too" (= excessively, more than needed). "To" is a preposition or part of an infinitive: go to school, want to sleep. "Too" = also or excessively: I am too tired. Me too.',
+   corr:function(t){return t.replace(/\bto\s+much\b/gi,"too much");}, severity:'high'},
+
+  {re:/\bto\s+many\b/gi,
+   key:'to_many',
+   label:'"to many" — should be "too many"',
+   fix:'"Too many" uses "too" (= excessively). "Too many mistakes" = more mistakes than acceptable.',
+   corr:function(t){return t.replace(/\bto\s+many\b/gi,"too many");}, severity:'high'},
+
+  {re:/\bthen\b(?=\s+[a-z]+er\b)/gi,
+   key:'then_than',
+   label:'"then" vs "than" — possible confusion in comparisons',
+   fix:'"Than" is used in comparisons: bigger THAN, faster THAN, more expensive THAN. "Then" refers to time: first this, THEN that. Common error: "She is taller then him" → "She is taller THAN him".',
+   corr:null, severity:'high'},
+
+  {re:/\bloose\b(?=\s+(weight|the|a|your|my|his|her|their|this|that))/gi,
+   key:'loose_lose',
+   label:'"loose" vs "lose" — possible confusion',
+   fix:'"Lose" (verb) = to not win, or to misplace: lose weight, lose the game, lose your keys. "Loose" (adjective) = not tight: loose trousers, a loose tooth. Common error: "I want to loose weight" → "I want to LOSE weight".',
+   corr:null, severity:'medium'},
+
+  {re:/\beffect\b(?=\s+(the|a|an|your|my|his|her|their|its|this|that)\s)/gi,
+   key:'affect_effect',
+   label:'"effect" vs "affect" — check word class',
+   fix:'"Affect" is usually a VERB: the cold affects my skin. "Effect" is usually a NOUN: the effect of stress on health. Common error: "The rain effected our plans" → "The rain AFFECTED our plans". Remember: Affect=Action (verb), Effect=End result (noun).',
+   corr:null, severity:'medium'},
+
+  // ══════════════════════════════════════════════════════
+  // TIER 9 — GRAMMAR CONSTRUCTION ERRORS
+  // ══════════════════════════════════════════════════════
+
+  {re:/\bshould\s+of\b/gi,
+   key:'shd_of',
+   label:'"should of" — incorrect, should be "should have"',
+   fix:'"Should of" is a mishearing of "should have". Always write: should have, could have, would have — NEVER should of, could of, would of. These are called perfect modal constructions.',
+   corr:function(t){return t.replace(/\bshould\s+of\b/gi,"should have");}, severity:'high'},
+  {re:/\bcould\s+of\b/gi,
+   key:'cld_of',
+   label:'"could of" — incorrect, should be "could have"',
+   fix:'"Could of" is a mishearing of "could have". Always write: could have.',
+   corr:function(t){return t.replace(/\bcould\s+of\b/gi,"could have");}, severity:'high'},
+  {re:/\bwould\s+of\b/gi,
+   key:'wld_of',
+   label:'"would of" — incorrect, should be "would have"',
+   fix:'"Would of" is a mishearing of "would have". Always write: would have.',
+   corr:function(t){return t.replace(/\bwould\s+of\b/gi,"would have");}, severity:'high'},
+  {re:/\bmight\s+of\b/gi,
+   key:'mght_of',
+   label:'"might of" — incorrect, should be "might have"',
+   fix:'"Might of" is a mishearing of "might have". Always write: might have.',
+   corr:function(t){return t.replace(/\bmight\s+of\b/gi,"might have");}, severity:'high'},
+  {re:/\bmust\s+of\b/gi,
+   key:'must_of',
+   label:'"must of" — incorrect, should be "must have"',
+   fix:'"Must of" is a mishearing of "must have". Always write: must have.',
+   corr:function(t){return t.replace(/\bmust\s+of\b/gi,"must have");}, severity:'high'},
+
+  // Alot
+  {re:/\balot\b/gi,
+   key:'alot',
+   label:'"alot" — not a word, should be "a lot"',
+   fix:'"A lot" is always two separate words. "Alot" does not exist in English.',
+   corr:function(t){return t.replace(/\balot\b/gi,"a lot");}, severity:'medium'},
+
+  // Everyday vs every day
+  {re:/\beveryday\s+(I|we|you|he|she|they|it)\b/gi,
+   key:'everyday',
+   label:'"everyday" vs "every day" — check usage',
+   fix:'"Everyday" (one word) is an ADJECTIVE meaning ordinary: "everyday life", "everyday problems". "Every day" (two words) is an adverb phrase meaning each day: "I walk every day". "I go everyday" → "I go every day".',
+   corr:function(t){return t.replace(/\beveryday\s+(I|we|you|he|she|they|it)\b/gi,'every day $1');}, severity:'medium'},
+
+  // ══════════════════════════════════════════════════════
+  // TIER 10 — SPELLING ERRORS (common non-native mistakes)
+  // ══════════════════════════════════════════════════════
+
+  {re:/\bdeffinetly\b|\bdefinately\b|\bdefenitely\b|\bdefiantly\b(?=\s+(?:going|not|a|the))/gi,
+   key:'def_spell',
+   label:'Misspelling of "definitely"',
+   fix:'"Definitely" — remember: de-FINITE-ly (it contains the word FINITE). Common misspellings: definately, deffinetly, defenitely.',
+   corr:function(t){return t.replace(/\bdeffinetly\b|\bdefinately\b|\bdefenitely\b/gi,"definitely");}, severity:'medium'},
+
+  {re:/\brecieve\b|\breciept\b|\breciever\b/gi,
+   key:'ei_ie',
+   label:'ie/ei spelling: "receive" not "recieve"',
+   fix:'Remember: i before e EXCEPT after c. So: receive (c before → ei), receipt, perceive. But: believe, achieve, piece (no c → ie).',
+   corr:function(t){return t.replace(/\brecieve\b/gi,"receive").replace(/\breciept\b/gi,"receipt").replace(/\breciever\b/gi,"receiver");}, severity:'medium'},
+
+  {re:/\boccured\b|\boccuring\b|\bocurrence\b/gi,
+   key:'occ',
+   label:'Misspelling: "occurred/occurring" — double r',
+   fix:'"Occur" doubles the r when adding -ed or -ing: occurred, occurring, occurrence. Rule: short vowel + single consonant at end → double before suffix (run→running, stop→stopped).',
+   corr:function(t){return t.replace(/\boccured\b/gi,"occurred").replace(/\boccuring\b/gi,"occurring").replace(/\bocurrence\b/gi,"occurrence");}, severity:'medium'},
+
+  {re:/\bseperate\b|\bseperation\b/gi,
+   key:'separate',
+   label:'Misspelling: "separate" not "seperate"',
+   fix:'"Separate" — there is A RAT in separ-a-te. Common memory trick: "There is a rat in sep-a-rate".',
+   corr:function(t){return t.replace(/\bseperate\b/gi,"separate").replace(/\bseperation\b/gi,"separation");}, severity:'medium'},
+
+  {re:/\baccommodate\b|\baccommodation\b/g, skip:true,   // correct, don't flag
+   key:'accommodate_ok', label:'', fix:'', corr:null, severity:'info'},
+
+  {re:/\baccomodate\b|\bacomodate\b|\baccommodation\b/gi,
+   key:'accommodate',
+   label:'Misspelling: "accommodate" — double c and double m',
+   fix:'"Accommodate" has double c and double m: ac-com-mo-date. Think: it can accommodate TWO c\'s and TWO m\'s.',
+   corr:function(t){return t.replace(/\baccomodate\b|\bacomodate\b/gi,"accommodate");}, severity:'medium'},
+
+  {re:/\bneccessary\b|\bnecessery\b|\bneccessery\b/gi,
+   key:'necessary',
+   label:'Misspelling: "necessary" — one c, two s\'s',
+   fix:'"Necessary" = one Collar and two Socks = 1 c and 2 s\'s: ne-c-e-ss-ary. Common misspellings: neccessary, necessery.',
+   corr:function(t){return t.replace(/\bneccessary\b|\bnecessery\b|\bneccessery\b/gi,"necessary");}, severity:'medium'},
+
+  {re:/\bexistance\b|\bexistense\b/gi,
+   key:'existence',
+   label:'Misspelling: "existence" not "existance"',
+   fix:'"Existence" ends in -ence not -ance. Tip: exist → existence (add -ence). Compare: important → importance (-ance after ant).',
+   corr:function(t){return t.replace(/\bexistance\b|\bexistense\b/gi,"existence");}, severity:'medium'},
+
+  {re:/\buntill\b/gi,
+   key:'until',
+   label:'Misspelling: "until" has one l — not "untill"',
+   fix:'"Until" is spelled with one l. "Untill" is a common misspelling. Note: "till" (two l\'s) is an informal alternative to "until" — but "untill" is never correct.',
+   corr:function(t){return t.replace(/\buntill\b/gi,"until");}, severity:'medium'},
+
+  {re:/\bwierd\b/gi,
+   key:'weird',
+   label:'Misspelling: "weird" — e before i (exception to rule)',
+   fix:'"Weird" is an exception to the i-before-e rule. It is we-i-rd, not wi-erd. Other exceptions: seize, either, neither, height, foreign.',
+   corr:function(t){return t.replace(/\bwierd\b/gi,"weird");}, severity:'medium'},
+
+  {re:/\bcomittee\b|\bcommitee\b|\bcomittee\b/gi,
+   key:'committee',
+   label:'Misspelling: "committee" — double m, double t, double e',
+   fix:'"Committee" has three doubled letters: comm-itt-ee. It is the most doubled word in common English.',
+   corr:function(t){return t.replace(/\bcomittee\b|\bcommitee\b/gi,"committee");}, severity:'medium'},
+
+  {re:/\bgoverment\b|\bgovernement\b/gi,
+   key:'government',
+   label:'Misspelling: "government" — do not drop the n',
+   fix:'"Government" = govern + ment. The n must stay: govern-ment. Common error: dropping the n → "goverment".',
+   corr:function(t){return t.replace(/\bgoverment\b|\bgovernement\b/gi,"government");}, severity:'medium'},
+
+  {re:/\benviroment\b|\benvironment\b/g, skip:true,   // correct
+   key:'environment_ok', label:'', fix:'', corr:null, severity:'info'},
+
+  {re:/\benviroment\b|\benviornment\b/gi,
+   key:'environment',
+   label:'Misspelling: "environment" — the n is in the middle',
+   fix:'"Environment" = environ + ment. Both n\'s must appear: envi-ron-ment. Common error: dropping the middle n → "enviroment".',
+   corr:function(t){return t.replace(/\benviroment\b|\benviornment\b/gi,"environment");}, severity:'medium'},
+
+  // Common typos
+  {re:/\bteh\b/gi,
+   key:'teh',
+   label:'Typo: "teh" → "the"',
+   fix:'Common keyboard typo: "teh" should be "the".',
+   corr:function(t){return t.replace(/\bteh\b/gi,"the");}, severity:'low'},
+  {re:/\badn\b/gi,
+   key:'adn',
+   label:'Typo: "adn" → "and"',
+   fix:'Common keyboard typo: "adn" should be "and".',
+   corr:function(t){return t.replace(/\badn\b/gi,"and");}, severity:'low'},
+  {re:/\bform\s+the\b/gi,
+   key:'from_the',
+   label:'Possible typo: "form the" → "from the"',
+   fix:'"Form the" is a common typo for "from the". Check if you meant "from the".',
+   corr:null, severity:'low'},
+
 ];
 
+// ══════════════════════════════════════════════════════════════════
+// THE COMPLETE pdCheck FUNCTION
+// Severity-tiered, scored, with corrected output and bilingual
+// explanations. No API key required — 100% pattern-based.
+// ══════════════════════════════════════════════════════════════════
 function pdCheck(){
   var text=wVal('pdInput');
-  if(!text||text.trim().length<5){alert('Please paste some text first (at least 5 characters).');return;}
+  if(!text||text.trim().length<5){alert('Please paste some text first (minimum 5 characters).');return;}
+
   var errors=[],highlighted=text,corrected=text;
-  
+  var sentences=text.split(/(?<=[.!?])\s+/).filter(Boolean);
+
   PD_RULES.forEach(function(r){
+    if(r.skip||!r.key||!r.label)return;
     r.re.lastIndex=0;
     if(r.re.test(text)){
       r.re.lastIndex=0;
       errors.push(r);
-      // Build highlighted version
+      // Highlight in original text
       highlighted=highlighted.replace(r.re,function(m){
-        return '<mark style="background:rgba(255,80,80,0.30);color:#FF6B6B;border-bottom:2px solid #FF6B6B;border-radius:3px;padding:0 2px">'+m+'</mark>';
+        return'<mark style="background:rgba(255,80,80,0.28);color:#FF8080;border-bottom:2px solid #FF6B6B;border-radius:2px;padding:0 2px">'+m+'</mark>';
       });
-      // Build corrected version
-      if(r.corr){
-        try{corrected=r.corr(corrected);}catch(e){}
-      }
+      // Auto-correct where possible
+      if(r.corr){try{corrected=r.corr(corrected);}catch(e){}}
     }
   });
-  
+
   if(errors.length===0){
     wHtml('pdResult',
-      '<div style="background:rgba(74,222,128,0.10);border:1.5px solid rgba(74,222,128,0.30);border-radius:12px;padding:16px;text-align:center">'+
-      '<div style="font-size:28px;margin-bottom:8px">✅</div>'+
-      '<div style="font-weight:700;color:#4ADE80;font-size:15px;margin-bottom:6px">No issues detected</div>'+
-      '<div style="font-size:13px;color:rgba(255,255,255,0.65)">Your text passed all '+PD_RULES.length+' punctuation and grammar checks.</div>'+
-      '<div data-nt="Your text looks clean. No punctuation, spelling or grammar issues were found." style="font-size:12px;color:rgba(74,222,128,0.75);margin-top:8px;font-style:italic"></div>'+
-      '</div>');
-    ntBatch();return;
+      '<div style="background:rgba(74,222,128,0.10);border:1.5px solid rgba(74,222,128,0.30);border-radius:12px;padding:20px;text-align:center">'
+      +'<div style="font-size:32px;margin-bottom:8px">✅</div>'
+      +'<div style="font-weight:700;color:#4ADE80;font-size:16px;margin-bottom:8px">No issues detected</div>'
+      +'<div style="font-size:13px;color:rgba(255,255,255,0.65)">Your text passed all '+PD_RULES.filter(function(r){return !r.skip&&r.key;}).length+' punctuation and grammar checks.</div>'
+      +'<div data-nt="Your text looks clean. No punctuation, spelling or grammar issues were found in this check." style="font-size:12px;color:rgba(74,222,128,0.70);margin-top:8px;font-style:italic"></div>'
+      +'</div>');
+    ntBatch();
+    var el=document.getElementById('pdResult');if(el){el.style.display='block';el.scrollIntoView({behavior:'smooth',block:'nearest'});}
+    return;
   }
-  
+
+  // Score calculation — weighted by severity
+  var severityWeight={high:3,medium:2,low:1,info:0};
+  var maxScore=100;
+  var deductions=errors.reduce(function(sum,e){return sum+(severityWeight[e.severity]||1)*7;},0);
+  var score=Math.max(0,Math.min(100,maxScore-deductions));
+  var scoreCol=score>=80?'#4ADE80':score>=60?'#F5C842':score>=40?'#FB923C':'#FF6B6B';
+  var scoreLabel=score>=80?'Good':score>=60?'Fair':score>=40?'Needs work':'Needs attention';
+
   var h='';
-  // Score bar
-  var score = Math.max(0, 100 - errors.length*8);
-  var scoreCol = score>=80?'#4ADE80':score>=60?'#F5C842':'#FF6B6B';
-  h+='<div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;padding:10px 13px;background:rgba(255,255,255,0.04);border-radius:10px">';
-  h+='<div style="width:48px;height:48px;border-radius:50%;background:conic-gradient('+scoreCol+' '+score+'%, rgba(255,255,255,0.1) 0);display:flex;align-items:center;justify-content:center;flex-shrink:0">';
-  h+='<div style="width:36px;height:36px;border-radius:50%;background:var(--bg-1);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:'+scoreCol+'">'+score+'</div></div>';
-  h+='<div><div style="font-size:13px;font-weight:700;color:'+scoreCol+'">'+errors.length+' issue'+(errors.length>1?'s':'')+' found</div>';
-  h+='<div style="font-size:11.5px;color:rgba(255,255,255,0.50)">Checked against '+PD_RULES.length+' rules</div></div></div>';
-  
+
+  // Score and summary bar
+  h+='<div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;padding:12px 14px;background:rgba(255,255,255,0.04);border-radius:12px">';
+  h+='<div style="width:56px;height:56px;border-radius:50%;background:conic-gradient('+scoreCol+' '+score+'%, rgba(255,255,255,0.08) 0);display:flex;align-items:center;justify-content:center;flex-shrink:0">';
+  h+='<div style="width:44px;height:44px;border-radius:50%;background:var(--bg-1);display:flex;flex-direction:column;align-items:center;justify-content:center">';
+  h+='<div style="font-size:16px;font-weight:900;color:'+scoreCol+'">'+score+'</div></div></div>';
+  h+='<div>';
+  h+='<div style="font-size:14px;font-weight:700;color:'+scoreCol+'">'+scoreLabel+' — '+errors.length+' issue'+(errors.length>1?'s':'')+' found</div>';
+  h+='<div style="font-size:11.5px;color:rgba(255,255,255,0.45)">Checked against '+PD_RULES.filter(function(r){return !r.skip&&r.key;}).length+' rules · '+sentences.length+' sentence'+(sentences.length>1?'s':'')+' analysed</div>';
+  h+='</div></div>';
+
+  // Severity breakdown
+  var highErrs=errors.filter(function(e){return e.severity==='high';});
+  var medErrs=errors.filter(function(e){return e.severity==='medium';});
+  var lowErrs=errors.filter(function(e){return e.severity==='low';});
+  if(highErrs.length||medErrs.length||lowErrs.length){
+    h+='<div style="display:flex;gap:7px;margin-bottom:14px;flex-wrap:wrap">';
+    if(highErrs.length)h+='<span style="padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;background:rgba(255,107,107,0.15);color:#FF6B6B">🔴 '+highErrs.length+' Critical</span>';
+    if(medErrs.length)h+='<span style="padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;background:rgba(251,146,60,0.15);color:#FB923C">🟡 '+medErrs.length+' Important</span>';
+    if(lowErrs.length)h+='<span style="padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;background:rgba(96,165,250,0.15);color:#60A5FA">🔵 '+lowErrs.length+' Minor</span>';
+    h+='</div>';
+  }
+
   // Highlighted original
   h+='<div style="margin-bottom:12px">';
-  h+='<div style="font-size:10px;font-weight:800;text-transform:uppercase;color:rgba(255,107,107,0.70);margin-bottom:6px;letter-spacing:.07em">Your text — errors highlighted in red</div>';
-  h+='<div style="font-size:13.5px;line-height:1.90;padding:12px 14px;background:rgba(255,255,255,0.04);border-radius:10px;border:1px solid rgba(255,107,107,0.20)">'+highlighted+'</div>';
+  h+='<div style="font-size:10px;font-weight:800;text-transform:uppercase;color:rgba(255,107,107,0.70);letter-spacing:.07em;margin-bottom:6px">Your text — issues highlighted</div>';
+  h+='<div style="font-size:13.5px;line-height:2.0;padding:13px 14px;background:rgba(255,255,255,0.04);border-radius:10px;border:1px solid rgba(255,107,107,0.18)">'+highlighted+'</div>';
   h+='</div>';
-  
-  // Corrected version
+
+  // Auto-corrected version (if any corrections were made)
   if(corrected!==text){
     h+='<div style="margin-bottom:14px">';
-    h+='<div style="font-size:10px;font-weight:800;text-transform:uppercase;color:rgba(74,222,128,0.70);margin-bottom:6px;letter-spacing:.07em">Corrected version</div>';
-    h+='<div style="font-size:13.5px;line-height:1.90;padding:12px 14px;background:rgba(74,222,128,0.05);border-radius:10px;border:1px solid rgba(74,222,128,0.20)">'+corrected+'</div>';
-    h+='<button onclick="navigator.clipboard.writeText('+JSON.stringify(corrected)+').then(function(){this.textContent=\'Copied!\';}.bind(this))" style="margin-top:7px;font-size:11px;padding:4px 12px;border-radius:20px;border:1px solid rgba(74,222,128,0.35);background:transparent;color:#4ADE80;cursor:pointer;font-family:inherit">Copy corrected text</button>';
+    h+='<div style="font-size:10px;font-weight:800;text-transform:uppercase;color:rgba(74,222,128,0.70);letter-spacing:.07em;margin-bottom:6px">Auto-corrected version</div>';
+    h+='<div style="font-size:13.5px;line-height:2.0;padding:13px 14px;background:rgba(74,222,128,0.05);border-radius:10px;border:1px solid rgba(74,222,128,0.20)">'+corrected+'</div>';
+    h+='<button id="pdCopyBtn" style="margin-top:7px;font-size:11.5px;padding:5px 14px;border-radius:20px;border:1px solid rgba(74,222,128,0.35);background:transparent;color:#4ADE80;cursor:pointer;font-family:inherit" onclick="var b=this;navigator.clipboard.writeText(corrected).then(function(){b.textContent=\'Copied!\';setTimeout(function(){b.textContent=\'Copy corrected text\';},2000);})">Copy corrected text</button>';
     h+='</div>';
   }
-  
-  // Error explanations
-  h+='<div style="font-size:10px;font-weight:800;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:8px;letter-spacing:.07em">Explanation of each issue</div>';
-  errors.forEach(function(e,ei){
-    h+='<div style="margin-bottom:8px;padding:10px 13px;background:rgba(255,255,255,0.04);border-radius:10px;border-left:3px solid #FF6B6B">';
-    h+='<div style="font-size:12.5px;font-weight:700;color:rgba(255,255,255,0.90);margin-bottom:4px">'+e.label+'</div>';
-    h+='<div style="font-size:12px;color:rgba(255,255,255,0.70);line-height:1.60;margin-bottom:4px">'+e.fix+'</div>';
-    h+='<div data-nt="'+ntSafe(e.fix)+'" style="font-size:11.5px;color:rgba(245,200,66,0.85);font-style:italic;line-height:1.55"></div>';
+
+  // Detailed explanation for each issue
+  h+='<div style="font-size:10px;font-weight:800;text-transform:uppercase;color:rgba(255,255,255,0.35);letter-spacing:.07em;margin-bottom:8px">Detailed explanation of each issue</div>';
+
+  // Sort: high severity first
+  var sortedErrors=[].concat(highErrs,medErrs,lowErrs);
+  sortedErrors.forEach(function(e,ei){
+    var sevCol=e.severity==='high'?'#FF6B6B':e.severity==='medium'?'#FB923C':'#60A5FA';
+    var sevLabel=e.severity==='high'?'Critical':e.severity==='medium'?'Important':'Minor';
+    h+='<div style="margin-bottom:9px;padding:11px 13px;background:rgba(255,255,255,0.04);border-radius:10px;border-left:3px solid '+sevCol+'">';
+    h+='<div style="display:flex;align-items:center;gap:7px;margin-bottom:5px">';
+    h+='<span style="font-size:10px;font-weight:700;color:'+sevCol+';background:'+sevCol+'18;padding:2px 8px;border-radius:10px">'+sevLabel+'</span>';
+    h+='<span style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.90)">'+e.label+'</span>';
+    h+='</div>';
+    // Rule explanation
+    var fixLines=e.fix.split('\n');
+    fixLines.forEach(function(line){
+      h+='<div style="font-size:12.5px;color:rgba(255,255,255,0.75);line-height:1.65">'+line+'</div>';
+    });
+    // Example if present
+    if(e.example){
+      h+='<div style="font-size:12px;color:rgba(96,165,250,0.80);margin-top:5px;padding:5px 8px;background:rgba(96,165,250,0.07);border-radius:6px">💡 Example: '+e.example+'</div>';
+    }
+    // Native language translation
+    h+='<div data-nt="'+ntSafe(e.fix.split('\n')[0])+'" style="font-size:12px;color:rgba(245,200,66,0.80);margin-top:5px;font-style:italic;line-height:1.55"></div>';
     h+='</div>';
   });
-  
+
   wHtml('pdResult',h);
   ntBatch();
   var el=document.getElementById('pdResult');
-  if(el)el.scrollIntoView({behavior:'smooth',block:'nearest'});
+  if(el){el.style.display='block';setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'nearest'});},100);}
 }
 
-function pdExample(){var d=document.getElementById('pdInput');if(d)d.value='after the meeting john said we should review the proposal again before friday';pdCheck();}
-
-
-// ── W5: REDUNDANCY CUTTER ──
-var RC_DATA=[
-  ['due to the fact that','because'],['in the event that','if'],['at this point in time','now'],
-  ['in the near future','soon'],['on a daily basis','daily'],['with the exception of','except'],
-  ['in spite of the fact that','although'],['in order to','to'],['for the purpose of','to'],
-  ['in the process of','while'],['in close proximity to','near'],['a large number of','many'],
-  ['in the majority of cases','usually'],['at the present time','currently'],['in the final analysis','finally'],
-  ['each and every','every'],['first and foremost','first'],['basic and fundamental','basic'],
-  ['end result','result'],['future plan','plan'],['advance planning','planning'],
-  ['past history','history'],['repeat again','repeat'],['join together','join'],
-  ['return back','return'],['completely finished','finished'],['absolutely essential','essential'],
-  ['very unique','unique'],['very first','first'],['personally I think','I think'],
-  ['it goes without saying','clearly'],['the fact that','that'],['in terms of','regarding'],
-  ['with regard to','regarding'],['as a matter of fact','in fact'],['at the end of the day','ultimately'],
-  ['for all intents and purposes','essentially'],['in actual fact','in fact'],['needless to say','clearly'],
-  ['it is worth noting that','notably']
-];
-
-function rcCheck(){
-  var text=wVal('rcInput');
-  if(!text){alert('Please paste some text first.');return;}
-  var found=[],changed=text;
-  RC_DATA.forEach(function(pair){
-    var re=new RegExp(pair[0].replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi');
-    if(re.test(text)){
-      re.lastIndex=0;
-      found.push(pair);
-      changed=changed.replace(re,'[['+pair[1]+']]');
-      re.lastIndex=0;
-    }
-  });
-  if(found.length===0){
-    wHtml('rcResult','<div style="background:rgba(244,114,182,0.10);border:1.5px solid rgba(244,114,182,0.30);border-radius:12px;padding:14px;text-align:center"><div style="font-size:22px;margin-bottom:6px">✅</div><div style="font-weight:700;color:#F472B6;font-size:14px;margin-bottom:6px">No redundancy found</div><div style="font-size:12.5px;color:rgba(255,255,255,0.60)">Your writing is tight and clear.</div></div>');
-    var _r2=document.getElementById('rcResult');if(_r2)setTimeout(function(){_r2.scrollIntoView({behavior:'smooth',block:'nearest'});},100);
-    return;
-  }
-  var tightened=changed.replace(/\[\[([^\]]+)\]\]/g,'$1');
-  var h='<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">';
-  h+='<div style="background:rgba(255,107,107,0.07);border:1px solid rgba(255,107,107,0.22);border-radius:11px;padding:12px"><div style="font-size:10px;font-weight:800;color:rgba(255,107,107,0.70);text-transform:uppercase;margin-bottom:6px">⬅ Wordy version</div><div style="font-size:13px;color:rgba(255,255,255,0.75);line-height:1.70">'+text+'</div></div>';
-  h+='<div style="background:rgba(244,114,182,0.07);border:1px solid rgba(244,114,182,0.22);border-radius:11px;padding:12px"><div style="font-size:10px;font-weight:800;color:rgba(244,114,182,0.70);text-transform:uppercase;margin-bottom:6px">✓ Tight version</div><div style="font-size:13px;color:#F472B6;line-height:1.70;font-weight:500">'+tightened+'</div></div>';
-  h+='</div><div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.40);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">'+found.length+' wordy phrase'+(found.length>1?'s':'')+' replaced:</div>';
-  found.forEach(function(p){
-    h+='<div style="background:rgba(255,255,255,0.04);border:1px solid rgba(244,114,182,0.15);border-radius:9px;padding:9px 11px;margin-bottom:6px;display:flex;align-items:center;gap:9px;flex-wrap:wrap">';
-    h+='<span style="padding:3px 10px;border-radius:6px;font-size:12px;background:rgba(255,107,107,0.12);color:#FF6B6B;text-decoration:line-through">'+p[0]+'</span>';
-    h+='<span style="color:rgba(255,255,255,0.40)">→</span>';
-    h+='<span style="padding:3px 10px;border-radius:6px;font-size:12px;font-weight:700;background:rgba(244,114,182,0.15);color:#F472B6">'+p[1]+'</span></div>';
-  });
-  h+='<div style="margin-top:8px;font-size:11.5px;font-style:italic;color:rgba(245,200,66,0.65);padding:8px 11px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.30);border-radius:0 7px 7px 0">In '+lang+': '+ml('rc_pro')+'</div>';
-  wHtml('rcResult',h);
+function pdExample(){
+  var d=document.getElementById('pdInput');
+  if(d)d.value='I really wanted to go to the beach, it started raining heavily. She dont like coffee and alot of people agrees with her. We should of gone to the shop yesterday but i forgot. The enviroment is very important, we must protect it.';
+  pdCheck();
 }
 function rcExample(){var d=document.getElementById('rcInput');if(d)d.value='Due to the fact that she was in close proximity to the office, she decided that in order to save time she would, in the near future, make advance planning for each and every meeting she had on a daily basis.';rcCheck();}
 

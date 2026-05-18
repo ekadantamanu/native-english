@@ -554,47 +554,88 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
   <!-- STATS ROW -->
   <div class="hero-stats">
     <div class="hstat"><div class="hstat-num">16</div><div class="hstat-lbl">Native Languages</div></div>
-    <div class="hstat"><div class="hstat-num">9</div><div class="hstat-lbl">Free Tools Always</div></div>
+    <div class="hstat"><div class="hstat-num">30</div><div class="hstat-lbl">Free Tools Always</div></div>
     <div class="hstat"><div class="hstat-num">375+</div><div class="hstat-lbl">Vocabulary Words</div></div>
     <div class="hstat"><div class="hstat-num">$0</div><div class="hstat-lbl">To Start</div></div>
   </div>
 
 </div></div>
 
-<div class="tabs-wrap"><div class="tabs">
-  <button class="tbtn active" onclick="showTab('chat',this)">🤖 Tutor</button>
-  <button class="tbtn" onclick="showTab('speaking',this)">🔭 Vocab Context</button>
-  <button class="tbtn" onclick="showTab('grammar',this)">📖 Grammar</button>
+<!-- ── UNIQUE FEATURES SHOWCASE STRIP ─────────────────────────── -->
+<div style="background:linear-gradient(135deg,rgba(245,200,66,0.08),rgba(167,139,250,0.06));border-bottom:1px solid rgba(245,200,66,0.20);padding:10px 14px">
+  <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:rgba(245,200,66,0.65);margin-bottom:7px">⭐ Only on NativeEnglish — features no other app offers</div>
+  <div style="display:flex;flex-wrap:wrap;gap:6px">
+    <button onclick="switchGroup('write',document.querySelector('[data-group=write]'));showTab('beforeafter')" style="padding:4px 11px;border-radius:20px;border:1px solid rgba(245,158,11,0.45);background:rgba(245,158,11,0.10);color:#F59E0B;font-size:11.5px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .15s" onmouseover="this.style.background='rgba(245,158,11,0.20)'" onmouseout="this.style.background='rgba(245,158,11,0.10)'">✨ Before &amp; After Mirror</button>
+    <button onclick="switchGroup('write',document.querySelector('[data-group=write]'));showTab('errordecoder')" style="padding:4px 11px;border-radius:20px;border:1px solid rgba(255,107,107,0.45);background:rgba(255,107,107,0.10);color:#FF6B6B;font-size:11.5px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .15s" onmouseover="this.style.background='rgba(255,107,107,0.20)'" onmouseout="this.style.background='rgba(255,107,107,0.10)'">🔬 Error Pattern Decoder</button>
+    <button onclick="switchGroup('write',document.querySelector('[data-group=write]'));showTab('collocations')" style="padding:4px 11px;border-radius:20px;border:1px solid rgba(96,165,250,0.45);background:rgba(96,165,250,0.10);color:#60A5FA;font-size:11.5px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .15s" onmouseover="this.style.background='rgba(96,165,250,0.20)'" onmouseout="this.style.background='rgba(96,165,250,0.10)'">🔗 Collocations Coach</button>
+    <button onclick="switchGroup('write',document.querySelector('[data-group=write]'));showTab('formalslider')" style="padding:4px 11px;border-radius:20px;border:1px solid rgba(167,139,250,0.45);background:rgba(167,139,250,0.10);color:#A78BFA;font-size:11.5px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .15s" onmouseover="this.style.background='rgba(167,139,250,0.20)'" onmouseout="this.style.background='rgba(167,139,250,0.10)'">🎚️ 5-Level Formality Slider</button>
+    <button onclick="switchGroup('explore',document.querySelector('[data-group=explore]'));showTab('speaking')" style="padding:4px 11px;border-radius:20px;border:1px solid rgba(167,139,250,0.45);background:rgba(167,139,250,0.10);color:#A78BFA;font-size:11.5px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .15s" onmouseover="this.style.background='rgba(167,139,250,0.20)'" onmouseout="this.style.background='rgba(167,139,250,0.10)'">🔭 Vocab in Context</button>
+    <button onclick="switchGroup('listen',document.querySelector('[data-group=listen]'));showTab('connected')" style="padding:4px 11px;border-radius:20px;border:1px solid rgba(245,200,66,0.45);background:rgba(245,200,66,0.08);color:#F5C842;font-size:11.5px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .15s" onmouseover="this.style.background='rgba(245,200,66,0.18)'" onmouseout="this.style.background='rgba(245,200,66,0.08)'">🔗 Connected Speech</button>
+    <button onclick="openDNA()" style="padding:4px 11px;border-radius:20px;border:1px solid rgba(180,140,11,0.45);background:rgba(180,140,11,0.10);color:var(--gold);font-size:11.5px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .15s" onmouseover="this.style.background='rgba(180,140,11,0.20)'" onmouseout="this.style.background='rgba(180,140,11,0.10)'">🧬 30-Question Grammar Diagnostic</button>
+  </div>
+</div>
+
+<div class="tabs-wrap">
+
+<!-- ── GROUP SELECTOR ── -->
+<div class="tab-groups" style="display:flex;gap:4px;padding:8px 12px 0;overflow-x:auto;border-bottom:1px solid rgba(255,255,255,0.07)">
+  <button class="tgrp active" data-group="learn" onclick="switchGroup('learn',this)" style="padding:5px 14px;border-radius:20px;border:none;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;background:rgba(96,165,250,0.20);color:#60A5FA;white-space:nowrap">🧠 Learn</button>
+  <button class="tgrp" data-group="write" onclick="switchGroup('write',this)" style="padding:5px 14px;border-radius:20px;border:none;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.60);white-space:nowrap">✍️ Write</button>
+  <button class="tgrp" data-group="test" onclick="switchGroup('test',this)" style="padding:5px 14px;border-radius:20px;border:none;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.60);white-space:nowrap">🎯 Test</button>
+  <button class="tgrp" data-group="listen" onclick="switchGroup('listen',this)" style="padding:5px 14px;border-radius:20px;border:none;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.60);white-space:nowrap">👂 Listen</button>
+  <button class="tgrp" data-group="explore" onclick="switchGroup('explore',this)" style="padding:5px 14px;border-radius:20px;border:none;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.60);white-space:nowrap">🔭 Explore</button>
+</div>
+
+<!-- ── LEARN TABS ── -->
+<div id="tabs-learn" class="tabs" style="display:flex">
+  <button class="tbtn active" onclick="showTab('grammar',this)">📖 Grammar</button>
   <button class="tbtn" onclick="showTab('prepositions',this)">📌 Prepositions</button>
   <button class="tbtn" onclick="showTab('vocabulary',this)">📚 Vocabulary</button>
   <button class="tbtn" onclick="showTab('idioms',this)">💬 Idioms</button>
-  <button class="tbtn" onclick="showTab('writing',this)">✍️ Writing</button>
-  <button class="tbtn" onclick="showTab('beforeafter',this)" style="color:#F59E0B;border-left:2px solid rgba(245,158,11,0.40)">✨ Before &amp; After</button>
-  <button class="tbtn" onclick="showTab('formalslider',this)" style="color:#A78BFA">🎚️ Formality Slider</button>
-  <button class="tbtn" onclick="showTab('collocations',this)" style="color:#60A5FA">🔗 Collocations</button>
-  <button class="tbtn" onclick="showTab('errordecoder',this)" style="color:#FF6B6B">🔬 Error Decoder</button>
-  <button class="tbtn" onclick="showTab('wordbuilder',this)" style="color:#34D399">🧩 Word Builder</button>
-  <button class="tbtn" onclick="showTab('punctdoctor',this)" style="color:#34D399">🩺 Punctuation</button>
-  <button class="tbtn" onclick="showTab('redundancy',this)" style="color:#F472B6">✂️ Redundancy</button>
-  <button class="tbtn" onclick="showTab('accents',this)">🗣️ Accents</button>
-  <button class="tbtn" onclick="showTab('challenge',this)">🎯 Daily Challenge</button>
-  <button class="tbtn" onclick="showTab('mistakes',this)">⚠️ Mistakes</button>
-  <button class="tbtn" onclick="showTab('confusable',this)">🔀 Confusable</button>
   <button class="tbtn" onclick="showTab('timeline',this)">⏱️ Tense Timeline</button>
-  <button class="tbtn" onclick="showTab('phrases',this)">💡 Phrases</button>
-  <button class="tbtn" onclick="showTab('puzzle',this)">🧩 Puzzle</button>
+  <button class="tbtn" onclick="showTab('confusable',this)">🔀 Confusable Words</button>
+  <button class="tbtn" onclick="showTab('mistakes',this)">⚠️ Common Mistakes</button>
+  <button class="tbtn" onclick="showTab('phrases',this)">💡 Phrase of Day</button>
+  <button class="tbtn" onclick="showTab('wordbuilder',this)" style="color:#34D399">🧩 Word Builder</button>
+  <button class="tbtn" onclick="showTab('cheatsheet',this)">📋 Grammar Cheat Sheet</button>
+  <button class="tbtn" onclick="showTab('accents',this)">🗣️ Accents</button>
+</div>
+
+<!-- ── WRITE TABS ── -->
+<div id="tabs-write" class="tabs" style="display:none">
+  <button class="tbtn" onclick="showTab('beforeafter',this)" style="color:#F59E0B">✨ Before &amp; After <span style="font-size:9px;background:#F59E0B;color:#000;padding:1px 5px;border-radius:8px;margin-left:3px;font-weight:800">UNIQUE</span></button>
+  <button class="tbtn" onclick="showTab('formalslider',this)" style="color:#A78BFA">🎚️ Formality Slider</button>
+  <button class="tbtn" onclick="showTab('writing',this)">✍️ Writing Practice</button>
+  <button class="tbtn" onclick="showTab('punctdoctor',this)" style="color:#4ADE80">🩺 Punctuation Doctor</button>
+  <button class="tbtn" onclick="showTab('collocations',this)" style="color:#60A5FA">🔗 Collocations Coach <span style="font-size:9px;background:#60A5FA;color:#000;padding:1px 5px;border-radius:8px;margin-left:3px;font-weight:800">UNIQUE</span></button>
+  <button class="tbtn" onclick="showTab('errordecoder',this)" style="color:#FF6B6B">🔬 Error Pattern Decoder <span style="font-size:9px;background:#FF6B6B;color:#000;padding:1px 5px;border-radius:8px;margin-left:3px;font-weight:800">UNIQUE</span></button>
+  <button class="tbtn" onclick="showTab('redundancy',this)" style="color:#F472B6">✂️ Redundancy Cutter</button>
+</div>
+
+<!-- ── TEST TABS ── -->
+<div id="tabs-test" class="tabs" style="display:none">
+  <button class="tbtn" onclick="showTab('challenge',this)">🎯 Daily Challenge</button>
+  <button class="tbtn" onclick="openDNA()" style="color:var(--gold)">🧬 Grammar Diagnostic <span style="font-size:9px;background:var(--gold);color:#000;padding:1px 5px;border-radius:8px;margin-left:3px;font-weight:800">NEW</span></button>
   <button class="tbtn" onclick="showTab('spotter',this)">🔍 Error Spotter</button>
-  <button class="tbtn" onclick="showTab('cheatsheet',this)">📋 Cheat Sheet</button>
-  <button class="tbtn" onclick="showTab('diary',this)">📊 Progress</button>
-  <button class="tbtn" onclick="showTab('speedlisten',this)" style="color:#4ADE80;border-left:2px solid rgba(74,222,128,0.40)">🎧 Speed Listener</button>
+  <button class="tbtn" onclick="showTab('puzzle',this)">🧩 Sentence Puzzle</button>
+  <button class="tbtn" onclick="showTab('diary',this)">📊 Progress Diary</button>
+</div>
+
+<!-- ── LISTEN TABS ── -->
+<div id="tabs-listen" class="tabs" style="display:none">
+  <button class="tbtn" onclick="showTab('speedlisten',this)" style="color:#4ADE80">🎧 Speed Listener</button>
   <button class="tbtn" onclick="showTab('dictation',this)" style="color:#60A5FA">✍ Dictation</button>
   <button class="tbtn" onclick="showTab('listeninggap',this)">📊 Gap Test</button>
-  <button class="tbtn" onclick="showTab('connected',this)" style="color:#F5C842">🔗 Connected Speech</button>
-  
+  <button class="tbtn" onclick="showTab('connected',this)" style="color:#F5C842">🔗 Connected Speech <span style="font-size:9px;background:#F5C842;color:#000;padding:1px 5px;border-radius:8px;margin-left:3px;font-weight:800">UNIQUE</span></button>
   <button class="tbtn" onclick="showTab('minimalpairs',this)" style="color:#FF6B6B">👂 Minimal Pairs</button>
-  
-    <p style="font-size:11px;color:rgba(255,255,255,0.35);margin-top:12px">While you wait — explore 30+ free tools using the tabs above ↑</p>
-  </div>
+</div>
+
+<!-- ── EXPLORE TABS ── -->
+<div id="tabs-explore" class="tabs" style="display:none">
+  <button class="tbtn" onclick="showTab('speaking',this)" style="color:#A78BFA">🔭 Vocabulary in Context <span style="font-size:9px;background:#A78BFA;color:#000;padding:1px 5px;border-radius:8px;margin-left:3px;font-weight:800">UNIQUE</span></button>
+  <button class="tbtn" onclick="showTab('chat',this)">🤖 AI Tutor</button>
+</div>
+
 </div>
 
 <!-- SPEAKING -->
@@ -6625,6 +6666,134 @@ var PD_RULES=[
    fix:'"Form the" is a common typo for "from the". Check if you meant "from the".',
    corr:null, severity:'low'},
 
+,
+
+  // ══════════════════════════════════════════════════════
+  // TIER 11 — LIST COMMA (Oxford / Serial Comma)
+  // Detect 3+ items in a series without comma separation
+  // "apples bananas and oranges" → "apples, bananas, and oranges"
+  // ══════════════════════════════════════════════════════
+
+  {re:/([A-Za-z]{2,})\s+([A-Za-z]{2,})\s+(and|or)\s+([A-Za-z]{2,})(?=[^,]|$)/g,
+   key:'list_no_comma',
+   label:'Missing commas in a list — items need commas between them',
+   fix:'When listing three or more items, separate each with a comma. The comma before "and" or "or" is called the Oxford comma.\nWrong:  "apples bananas and oranges"\nCorrect: "apples, bananas, and oranges"\nRule: Item 1, Item 2, and Item 3. (Always comma before the final "and" or "or")',
+   corr:null,
+   example:'"She is kind smart and talented." → "She is kind, smart, and talented."',
+   severity:'high'},
+
+  // Oxford comma specifically missing (has some commas but not the final one)
+  // "apples, bananas and oranges" → missing comma before "and"
+  {re:/,\s*[A-Za-z]{2,}\s+(and|or)\s+[A-Za-z]{2,}(?![,.])/g,
+   key:'oxford_comma',
+   label:'Missing Oxford comma — add a comma before the final "and" or "or" in a list',
+   fix:'The Oxford comma (also called serial comma) is placed before "and" or "or" in a list of three or more items. It prevents ambiguity.\nWrong:  "apples, bananas and oranges"\nCorrect: "apples, bananas, and oranges"\nThe Oxford comma is standard in American English and strongly recommended in all formal writing.',
+   corr:null,
+   example:'"I love my parents, Lady Gaga and Humpty Dumpty." (ambiguous!) → "I love my parents, Lady Gaga, and Humpty Dumpty."',
+   severity:'medium'},
+
+  // ══════════════════════════════════════════════════════
+  // TIER 12 — MISSING END PUNCTUATION
+  // Sentence that ends without . ! or ?
+  // ══════════════════════════════════════════════════════
+
+  {re:/[a-zA-Z]\s*$/,
+   key:'missing_period',
+   label:'Missing end punctuation — sentence should end with . ! or ?',
+   fix:'Every complete English sentence must end with a punctuation mark:\n• Full stop (.) for statements: "She went home."\n• Question mark (?) for questions: "Where are you?"\n• Exclamation mark (!) for exclamations: "That is amazing!"\nMissing end punctuation makes writing look incomplete and unprofessional.',
+   corr:function(t){return t.trimEnd()+'.';},
+   example:'"My favorite fruits are apples and oranges" → "My favorite fruits are apples and oranges."',
+   severity:'medium'},
+
+  // ══════════════════════════════════════════════════════
+  // TIER 13 — INTRODUCTORY PHRASE COMMA
+  // Comma after introductory words and phrases
+  // "However she decided..." → "However, she decided..."
+  // ══════════════════════════════════════════════════════
+
+  {re:/^(However|Nevertheless|Therefore|Furthermore|Moreover|Additionally|Consequently|Meanwhile|Otherwise|Nonetheless|Indeed|In fact|In addition|As a result|For example|For instance|In other words|On the other hand|In conclusion|In summary|First|Firstly|Second|Secondly|Third|Thirdly|Finally|Above all|After all|At first|At last|By contrast|In contrast|In particular|In short|To begin with|To sum up|In the end|On the contrary|Of course|Naturally|Clearly|Obviously|Importantly|Surprisingly|Unfortunately|Fortunately|Interestingly|Admittedly)\s+(?=[A-Za-z])/mg,
+   key:'intro_no_comma',
+   label:'Missing comma after introductory word or phrase',
+   fix:'When a sentence begins with a transitional word or phrase (However, Therefore, Furthermore, In conclusion, etc.), place a comma directly after it.\nWrong:  "However she decided to stay."\nCorrect: "However, she decided to stay."\nThis pause signals to the reader that the introductory word is complete and the main clause is beginning.',
+   corr:null,
+   example:'"Therefore the meeting was cancelled." → "Therefore, the meeting was cancelled."',
+   severity:'high'},
+
+  // ══════════════════════════════════════════════════════
+  // TIER 14 — WHICH vs THAT (Non-restrictive clause comma)
+  // "The book which I read was good" should be
+  // "The book, which I read, was good" (non-restrictive)
+  // OR "The book that I read was good" (restrictive, no commas needed)
+  // ══════════════════════════════════════════════════════
+
+  {re:/[A-Za-z]{3,}\s+which\s+[A-Za-z]/g,
+   key:'which_comma',
+   label:'Possible missing comma before "which" — non-restrictive clause',
+   fix:'"Which" introduces NON-RESTRICTIVE clauses (extra information) and needs commas on both sides.\n"That" introduces RESTRICTIVE clauses (essential information) and needs no commas.\n\nNon-restrictive (use which + commas): "The book, which I read last year, was excellent." (The book is already identified.)\nRestrictive (use that, no commas): "The book that I read last year was excellent." (Identifies WHICH book.)\n\nQuick test: Can you remove the clause and still identify the noun? If yes → which + commas.',
+   corr:null,
+   example:'"The car which is red is mine." → "The car, which is red, is mine." OR "The car that is red is mine."',
+   severity:'low'},
+
+  // ══════════════════════════════════════════════════════
+  // TIER 15 — QUOTATION MARK ISSUES
+  // ══════════════════════════════════════════════════════
+
+  // Unclosed quotation marks — simplified reliable pattern
+  {re:/"[^"]*$/m,
+   key:'unclosed_quote',
+   label:'Possible unclosed quotation mark',
+   fix:'Every opening quotation mark needs a matching closing quotation mark. Check your text for unpaired " marks.\nAmerican English: "Hello," she said. (punctuation inside quotes)\nBritish English: \'Hello\', she said. (punctuation outside quotes)',
+   corr:null,
+   example:'"She said, \"Hello. → She said, \"Hello.\"',
+   severity:'medium'},
+
+  // Punctuation outside quotes (American standard)
+  {re:/[a-z][,.]"\s/g,
+   key:'punc_outside_quote',
+   label:'Punctuation should go inside quotation marks (American standard)',
+   fix:'In American English, commas and full stops go INSIDE the closing quotation mark.\nWrong:  She said "Hello".\nCorrect: She said "Hello."\nWrong:  He replied "Of course", and smiled.\nCorrect: He replied "Of course," and smiled.\n(British English places punctuation outside — choose one standard consistently.)',
+   corr:null,
+   example:'"She said "yes". → She said "yes."',
+   severity:'low'},
+
+  // ══════════════════════════════════════════════════════
+  // TIER 16 — HYPHEN AND COMPOUND ADJECTIVE ERRORS
+  // ══════════════════════════════════════════════════════
+
+  // Compound adjective before noun needs hyphen
+  {re:/\b(well|high|long|short|hard|fast|full|half|self|cross|over|under|far|free|part|time|wide|large|small|light|heavy|low|top|best|new|old)\s+(known|made|paid|spoken|written|educated|trained|respected|established|regarded|designed|defined|maintained|managed|motivated|qualified|experienced|built|founded|developed|planned|structured|prepared|tested|reviewed|implemented|informed|received|approved|rejected)\s+(?=[a-z])/gi,
+   key:'compound_adj',
+   label:'Compound adjective before a noun may need a hyphen',
+   fix:'When two words combine as an adjective BEFORE a noun, they are usually hyphenated. Wrong: "a well known author". Correct: "a well-known author". But after the noun, no hyphen: "The author is well known."',
+   corr:null,
+   example:'"a well known author" → "a well-known author"',
+   severity:'low'},
+
+  // ══════════════════════════════════════════════════════
+  // TIER 17 — PARENTHESIS AND BRACKET BALANCE
+  // ══════════════════════════════════════════════════════
+
+  {re:/\([^)]*$/,
+   key:'unclosed_bracket',
+   label:'Unclosed parenthesis — opening ( without matching closing )',
+   fix:'Every opening parenthesis ( must have a matching closing parenthesis ). Check your text: count the ( and ) marks — they must be equal.\nExample: "She called (it was urgent and left." → "She called (it was urgent) and left."',
+   corr:null,
+   example:'"The meeting (postponed was rescheduled." → "The meeting (postponed) was rescheduled."',
+   severity:'high'},
+
+  
+
+  // ══════════════════════════════════════════════════════
+  // TIER 18 — COMMA BEFORE RESTRICTIVE CLAUSE (incorrect)
+  // ══════════════════════════════════════════════════════
+
+  {re:/,\s+that\s+[a-z]/g,
+   key:'comma_before_that',
+   label:'Unnecessary comma before "that" — restrictive clauses do not need a comma',
+   fix:'"That" introduces restrictive clauses — essential information that identifies which one. Restrictive clauses do NOT need a comma before them.\nWrong:  "The car, that I bought is red."\nCorrect: "The car that I bought is red."\nCompare: "The car, which is red, is mine." (which = non-restrictive = needs commas)',
+   corr:function(t){return t.replace(/,\s+(that\s+[a-z])/g,' $1');},
+   example:'"The book, that she recommended is great." → "The book that she recommended is great."',
+   severity:'medium'}
 ];
 
 // ══════════════════════════════════════════════════════════════════
@@ -6749,7 +6918,7 @@ function pdCheck(){
 
 function pdExample(){
   var d=document.getElementById('pdInput');
-  if(d)d.value='I really wanted to go to the beach, it started raining heavily. She dont like coffee and alot of people agrees with her. We should of gone to the shop yesterday but i forgot. The enviroment is very important, we must protect it.';
+  if(d)d.value='My favorite fruits are apples bananas and oranges\nHowever she decided to stay home.\nI really wanted to go to the beach, it started raining heavily.\nShe dont like coffee and should of told us.';
   pdCheck();
 }
 function rcExample(){var d=document.getElementById('rcInput');if(d)d.value='Due to the fact that she was in close proximity to the office, she decided that in order to save time she would, in the near future, make advance planning for each and every meeting she had on a daily basis.';rcCheck();}
@@ -7156,6 +7325,33 @@ function vicRender(word, filterCat){
 // Show featured words on first load of this panel
 function initVIC(){
   vicShowFeatured();
+}
+
+
+// ── Tab Group Switcher ───────────────────────────────────────────
+function switchGroup(group, btn) {
+  // Update group button styles
+  document.querySelectorAll('.tgrp').forEach(function(b) {
+    b.style.background = 'rgba(255,255,255,0.06)';
+    b.style.color = 'rgba(255,255,255,0.60)';
+  });
+  var grpCols = {learn:'#60A5FA', write:'#F59E0B', test:'#F5C842', listen:'#4ADE80', explore:'#A78BFA'};
+  var col = grpCols[group] || '#60A5FA';
+  btn.style.background = col + '33';
+  btn.style.color = col;
+
+  // Show/hide tab rows
+  ['learn','write','test','listen','explore'].forEach(function(g) {
+    var el = document.getElementById('tabs-'+g);
+    if (el) el.style.display = g === group ? 'flex' : 'none';
+  });
+
+  // Auto-activate the first tab in the group
+  var tabRow = document.getElementById('tabs-'+group);
+  if (tabRow) {
+    var firstBtn = tabRow.querySelector('.tbtn');
+    if (firstBtn) firstBtn.click();
+  }
 }
 
 window.onload=function(){

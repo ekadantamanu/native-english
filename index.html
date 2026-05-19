@@ -553,6 +553,15 @@ button, .tbtn, .tgrp { -webkit-tap-highlight-color: transparent; }
 .tabs .tbtn { color:rgba(255,255,255,0.88) !important; }
 .tabs .tbtn:hover { color:#fff !important; background:rgba(255,255,255,0.09) !important; }
 .tabs .tbtn.active { color:#fff !important; font-weight:800; }
+
+/* ── Translate Mine pills ── */
+.tm-pill { outline:none; }
+.tm-pill.active {
+  border-color: rgba(45,212,191,0.85) !important;
+  background:   rgba(45,212,191,0.22) !important;
+  color:        var(--teal)            !important;
+  font-weight:  700                    !important;
+}
 </style>
 </head>
 <body>
@@ -955,70 +964,97 @@ button, .tbtn, .tgrp { -webkit-tap-highlight-color: transparent; }
     </div>
     <div id="mirrorOut"></div>
   </div>
-  <div class="wp active" id="wm-translate">
-    <!-- Header -->
-    <div class="ib ib-teal">
-      <strong style="color:var(--teal)">Translate Mine</strong> — Write a sentence in your native language. The app shows you the correct English. Then write your own version and see how close you are. <span style="color:rgba(45,212,191,0.70)">100% free — no account needed.</span>
+  <div class="wp active" id="wm-translate" style="flex-direction:column;gap:12px;padding:10px 0">
+
+    <div class="ib ib-teal" style="margin:0 2px">
+      <strong style="color:var(--teal)">Translate Mine</strong> — Write in your language → see correct English → write your own → compare. Free, no account needed.
     </div>
 
-    <!-- Language selector — inline, all 16 languages -->
-    <div style="background:rgba(45,212,191,0.06);border:1px solid rgba(45,212,191,0.25);border-radius:11px;padding:10px 12px">
-      <div style="font-size:11px;font-weight:700;color:rgba(45,212,191,0.70);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">🌐 Select your native language</div>
-      <div style="display:flex;flex-wrap:wrap;gap:5px" id="tmLangPills">
-        <!-- populated by tmInit() -->
+    <!-- Language pills — pure HTML, no JS init needed -->
+    <div style="background:rgba(45,212,191,0.06);border:1px solid rgba(45,212,191,0.22);border-radius:11px;padding:10px 12px">
+      <div style="font-size:11px;font-weight:700;color:rgba(45,212,191,0.70);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px">🌐 Select your language</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+        <button type="button" class="tm-lang-btn" data-lang="Telugu" data-code="te" onclick="tmPickLang(this)" style="border-color:rgba(45,212,191,0.80);background:rgba(45,212,191,0.22);color:var(--teal);font-weight:700">Telugu</button>
+        <button type="button" class="tm-lang-btn" data-lang="Tamil" data-code="ta" onclick="tmPickLang(this)">Tamil</button>
+        <button type="button" class="tm-lang-btn" data-lang="Hindi" data-code="hi" onclick="tmPickLang(this)">Hindi</button>
+        <button type="button" class="tm-lang-btn" data-lang="Kannada" data-code="kn" onclick="tmPickLang(this)">Kannada</button>
+        <button type="button" class="tm-lang-btn" data-lang="Malayalam" data-code="ml" onclick="tmPickLang(this)">Malayalam</button>
+        <button type="button" class="tm-lang-btn" data-lang="Arabic" data-code="ar" onclick="tmPickLang(this)">Arabic</button>
+        <button type="button" class="tm-lang-btn" data-lang="Spanish" data-code="es" onclick="tmPickLang(this)">Spanish</button>
+        <button type="button" class="tm-lang-btn" data-lang="French" data-code="fr" onclick="tmPickLang(this)">French</button>
+        <button type="button" class="tm-lang-btn" data-lang="German" data-code="de" onclick="tmPickLang(this)">German</button>
+        <button type="button" class="tm-lang-btn" data-lang="Chinese" data-code="zh-CN" onclick="tmPickLang(this)">Chinese</button>
+        <button type="button" class="tm-lang-btn" data-lang="Japanese" data-code="ja" onclick="tmPickLang(this)">Japanese</button>
+        <button type="button" class="tm-lang-btn" data-lang="Russian" data-code="ru" onclick="tmPickLang(this)">Russian</button>
+        <button type="button" class="tm-lang-btn" data-lang="Portuguese" data-code="pt" onclick="tmPickLang(this)">Portuguese</button>
+        <button type="button" class="tm-lang-btn" data-lang="Italian" data-code="it" onclick="tmPickLang(this)">Italian</button>
+        <button type="button" class="tm-lang-btn" data-lang="Korean" data-code="ko" onclick="tmPickLang(this)">Korean</button>
+        <button type="button" class="tm-lang-btn" data-lang="Turkish" data-code="tr" onclick="tmPickLang(this)">Turkish</button>
       </div>
-      <div style="font-size:11.5px;color:rgba(255,255,255,0.40);margin-top:7px">
-        Selected: <strong id="tmLangLabel" style="color:var(--teal)">—</strong>
-      </div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.45);margin-top:7px">Selected: <strong id="tmLangLabel" style="color:var(--teal)">Telugu</strong></div>
     </div>
 
-    <!-- STEP 1: Native language input -->
+    <!-- Input -->
     <div>
-      <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--teal);margin-bottom:5px">
-        Step 1 — Write in your native language
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--teal);margin-bottom:5px">Step 1 — Write in your language</div>
+      <textarea id="nativeText" class="wta" spellcheck="false" style="min-height:80px"
+        placeholder="Type in native script or romanized — e.g. nenu market ki veltanu OR నేను మార్కెట్‌కి వెళ్తాను"
+        oninput="window._tmCorrectAnswer=null;document.getElementById('tmResultArea').style.display='none'"></textarea>
+      <div style="font-size:11.5px;color:rgba(45,212,191,0.55);margin-top:5px;line-height:1.5">
+        💡 Both native script and romanized (phonetic) text work.
       </div>
-      <textarea class="wta" id="nativeText" spellcheck="false"
-        placeholder="Write any sentence in your language here — e.g. in Telugu: నేను రేపు మార్కెట్‌కి వెళ్తాను"
-        style="min-height:80px"
-        oninput="clearTranslateOut()"></textarea>
-
-      <!-- Practice sentence suggestions -->
-      <div style="margin-top:7px">
-        <div style="font-size:11px;color:rgba(255,255,255,0.35);margin-bottom:5px">Or pick a practice sentence:</div>
-        <div id="tmSuggestions" style="display:flex;flex-wrap:wrap;gap:5px"></div>
-      </div>
-
-      <!-- Translate button -->
-      <button onclick="tmShowCorrectEnglish()" style="margin-top:10px;width:100%;padding:10px;border-radius:10px;background:rgba(45,212,191,0.15);border:1.5px solid rgba(45,212,191,0.50);color:var(--teal);font-family:inherit;font-size:13.5px;font-weight:700;cursor:pointer;transition:all .2s" onmouseover="this.style.background='rgba(45,212,191,0.25)'" onmouseout="this.style.background='rgba(45,212,191,0.15)'">
-        🔄 Show me the correct English →
-      </button>
     </div>
 
-    <!-- STEP 2: Correct English revealed -->
-    <div id="tmCorrectBox" style="display:none;padding:12px 14px;background:rgba(45,212,191,0.08);border:1.5px solid rgba(45,212,191,0.35);border-radius:11px">
-      <div style="font-size:10px;font-weight:800;text-transform:uppercase;color:var(--teal);letter-spacing:.07em;margin-bottom:6px">✅ Correct English translation</div>
-      <div id="tmCorrectText" style="font-size:15px;font-weight:600;color:#fff;line-height:1.65;margin-bottom:8px"></div>
-      <button onclick="tmCopyCorrect()" style="font-size:11px;padding:4px 12px;border-radius:16px;border:1px solid rgba(45,212,191,0.35);background:transparent;color:var(--teal);cursor:pointer;font-family:inherit">Copy</button>
-    </div>
-
-    <!-- STEP 3: Learner's own attempt -->
-    <div id="tmAttemptSection" style="display:none">
-      <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:rgba(245,200,66,0.80);margin-bottom:5px">
-        Step 2 — Now write your own English version
+    <!-- Practice chips -->
+    <div>
+      <div style="font-size:11px;color:rgba(255,255,255,0.35);margin-bottom:5px">Or tap a practice sentence:</div>
+      <div id="tmSuggestions" style="display:flex;flex-wrap:wrap;gap:5px">
+        <button type="button" onclick="tmLoadSentence('I went to the market yesterday.')" style="padding:4px 10px;border-radius:14px;border:1px solid rgba(45,212,191,0.30);background:transparent;color:rgba(45,212,191,0.75);font-size:11.5px;cursor:pointer;font-family:inherit">I went to the market...</button>
+        <button type="button" onclick="tmLoadSentence('She has been living here for three years.')" style="padding:4px 10px;border-radius:14px;border:1px solid rgba(45,212,191,0.30);background:transparent;color:rgba(45,212,191,0.75);font-size:11.5px;cursor:pointer;font-family:inherit">She has been living...</button>
+        <button type="button" onclick="tmLoadSentence('Please send me the report as soon as possible.')" style="padding:4px 10px;border-radius:14px;border:1px solid rgba(45,212,191,0.30);background:transparent;color:rgba(45,212,191,0.75);font-size:11.5px;cursor:pointer;font-family:inherit">Please send me the report...</button>
+        <button type="button" onclick="tmLoadSentence('I would like to improve my English skills.')" style="padding:4px 10px;border-radius:14px;border:1px solid rgba(45,212,191,0.30);background:transparent;color:rgba(45,212,191,0.75);font-size:11.5px;cursor:pointer;font-family:inherit">I would like to improve...</button>
+        <button type="button" onclick="tmLoadSentence('The weather has been very hot this week.')" style="padding:4px 10px;border-radius:14px;border:1px solid rgba(45,212,191,0.30);background:transparent;color:rgba(45,212,191,0.75);font-size:11.5px;cursor:pointer;font-family:inherit">The weather has been...</button>
+        <button type="button" onclick="tmLoadSentence('He could not come because he was unwell.')" style="padding:4px 10px;border-radius:14px;border:1px solid rgba(45,212,191,0.30);background:transparent;color:rgba(45,212,191,0.75);font-size:11.5px;cursor:pointer;font-family:inherit">He could not come...</button>
       </div>
-      <div style="font-size:12px;color:rgba(255,255,255,0.50);margin-bottom:7px">Don't copy the translation above — try to write it yourself first, then compare.</div>
-      <textarea class="wta" id="engAttempt" spellcheck="true"
-        placeholder="Write your English translation here..."
-        style="min-height:80px"></textarea>
-      <button onclick="tmCompare()" style="margin-top:8px;width:100%;padding:10px;border-radius:10px;background:rgba(245,200,66,0.15);border:1.5px solid rgba(245,200,66,0.45);color:var(--gold);font-family:inherit;font-size:13.5px;font-weight:700;cursor:pointer" onmouseover="this.style.background='rgba(245,200,66,0.25)'" onmouseout="this.style.background='rgba(245,200,66,0.15)'">
-        🔍 Compare my attempt →
-      </button>
     </div>
 
-    <!-- STEP 4: Comparison result -->
-    <div id="translateOut"></div>
+    <!-- Translate button -->
+    <button type="button" id="tmTranslateBtn" onclick="tmShowCorrectEnglish(this)"
+      style="width:100%;padding:11px;border-radius:10px;background:rgba(45,212,191,0.15);border:1.5px solid rgba(45,212,191,0.55);color:var(--teal);font-family:inherit;font-size:14px;font-weight:700;cursor:pointer">
+      🔄 Show me the correct English →
+    </button>
+
+    <!-- Result area — shown after translation -->
+    <div id="tmResultArea" style="display:none;flex-direction:column;gap:10px">
+
+      <div style="padding:13px;background:rgba(45,212,191,0.10);border:1.5px solid rgba(45,212,191,0.40);border-radius:11px">
+        <div style="font-size:10px;font-weight:800;text-transform:uppercase;color:var(--teal);letter-spacing:.07em;margin-bottom:6px">✅ Correct English</div>
+        <div id="tmCorrectText" style="font-size:15px;font-weight:600;color:#fff;line-height:1.65;margin-bottom:8px"></div>
+        <button type="button" onclick="navigator.clipboard.writeText(document.getElementById('tmCorrectText').textContent)" style="font-size:11.5px;padding:4px 12px;border-radius:14px;border:1px solid rgba(45,212,191,0.35);background:transparent;color:var(--teal);cursor:pointer;font-family:inherit">Copy</button>
+      </div>
+
+      <div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(245,200,66,0.80);margin-bottom:5px">Step 2 — Write your own English version</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.45);margin-bottom:6px">Try without copying above — then compare.</div>
+        <textarea id="engAttempt" class="wta" spellcheck="true" style="min-height:70px"
+          placeholder="Write your English translation here..."></textarea>
+        <button type="button" onclick="tmCompare()"
+          style="margin-top:8px;width:100%;padding:10px;border-radius:10px;background:rgba(245,200,66,0.15);border:1.5px solid rgba(245,200,66,0.45);color:var(--gold);font-family:inherit;font-size:13.5px;font-weight:700;cursor:pointer">
+          🔍 Compare my attempt →
+        </button>
+      </div>
+
+      <div id="translateOut"></div>
+
+      <div style="display:flex;gap:8px">
+        <button type="button" onclick="document.getElementById('engAttempt').value='';document.getElementById('translateOut').innerHTML=''" style="flex:1;padding:8px;border-radius:9px;border:1px solid rgba(255,255,255,0.15);background:transparent;color:rgba(255,255,255,0.55);font-family:inherit;font-size:12px;cursor:pointer">↺ Try again</button>
+        <button type="button" onclick="document.getElementById('nativeText').value='';document.getElementById('tmResultArea').style.display='none';window._tmCorrectAnswer=null;" style="flex:1;padding:8px;border-radius:9px;border:1px solid rgba(45,212,191,0.30);background:rgba(45,212,191,0.08);color:var(--teal);font-family:inherit;font-size:12px;font-weight:600;cursor:pointer">New sentence →</button>
+      </div>
+
+    </div>
 
   </div>
+
   <div class="wp" id="wm-proofread">
     <div class="ib ib-forest"><strong style="color:var(--forest)">Proofread</strong> &mdash; Paste any English writing. Get every mistake corrected sentence by sentence with full bilingual explanations.</div>
     <textarea class="wta" id="proofIn" spellcheck="true" placeholder="Paste your English text here..." style="min-height:110px"></textarea>
@@ -7686,277 +7722,152 @@ function switchGroup(group, btn) {
 }
 
 
-// ══ TRANSLATE MINE — Complete Free Implementation ════════════════
-// Uses Google Translate free API (same as rest of app)
-// No API key, no account, no cost — works for all 16 languages
+// ══ TRANSLATE MINE ═══════════════════════════════════════════════
+var tmSelectedLang = 'Telugu';
+var tmSelectedCode = 'te';
 
-// 50 practice sentences that work well across all languages
-var TM_SENTENCES=[
-  "I went to the market to buy vegetables yesterday.",
-  "She has been living in this city for three years.",
-  "We need to finish this work before the meeting starts.",
-  "He could not come because he was feeling unwell.",
-  "Please send me the report as soon as possible.",
-  "I would like to improve my English speaking skills.",
-  "The train was delayed by almost two hours today.",
-  "My mother prepares delicious food every Sunday.",
-  "I am looking for a job in the IT sector.",
-  "Can you explain this grammar rule again please?",
-  "The weather has been very hot this week.",
-  "I have not spoken to my friend in a long time.",
-  "She told me that she would arrive by seven o'clock.",
-  "We visited the museum and it was very interesting.",
-  "I need to submit this application by Friday evening.",
-  "He works very hard but never complains about it.",
-  "The children were playing in the park after school.",
-  "I forgot to bring my umbrella and got completely wet.",
-  "Could you please help me understand this paragraph?",
-  "They have decided to move to a new city next month.",
-];
-
-// Store selected TM language separately from global lang
-var tmSelectedLang=null;
-var TM_LANG_NAMES=['Telugu','Tamil','Hindi','Kannada','Malayalam','Arabic',
-  'Spanish','French','German','Chinese','Japanese','Russian',
-  'Portuguese','Italian','Korean','Turkish'];
-
-function tmInit(){
-  // Build language pills
-  var pills=document.getElementById('tmLangPills');
-  if(pills&&pills.children.length===0){
-    TM_LANG_NAMES.forEach(function(l){
-      var btn=document.createElement('button');
-      var isActive=(tmSelectedLang||lang)===l;
-      btn.style.cssText='padding:4px 11px;border-radius:16px;border:1px solid rgba(45,212,191,'+(isActive?'0.70':'0.30')+');background:'+(isActive?'rgba(45,212,191,0.20)':'transparent')+';color:'+(isActive?'var(--teal)':'rgba(255,255,255,0.60)')+';font-size:12px;cursor:pointer;font-family:inherit;font-weight:'+(isActive?'700':'400');
-      btn.textContent=l;
-      btn.dataset.lang=l;
-      btn.onclick=function(){
-        tmSelectedLang=l;
-        // Update all pill styles
-        document.querySelectorAll('#tmLangPills button').forEach(function(b){
-          var active=b.dataset.lang===l;
-          b.style.borderColor=active?'rgba(45,212,191,0.70)':'rgba(45,212,191,0.30)';
-          b.style.background=active?'rgba(45,212,191,0.20)':'transparent';
-          b.style.color=active?'var(--teal)':'rgba(255,255,255,0.60)';
-          b.style.fontWeight=active?'700':'400';
-        });
-        var label=document.getElementById('tmLangLabel');
-        if(label)label.textContent=l;
-        // Reset the form
-        clearTranslateOut();
-        document.getElementById('nativeText').value='';
-        // Reload suggestions in new language
-        tmLoadSuggestions();
-      };
-      pills.appendChild(btn);
-    });
-  }
-
-  // Set current lang label
-  var activeLang=tmSelectedLang||lang;
-  var label=document.getElementById('tmLangLabel');
-  if(label)label.textContent=activeLang||'Select a language above';
-
-  tmLoadSuggestions();
+function tmPickLang(btn) {
+  // Deactivate all pills
+  document.querySelectorAll('.tm-lang-btn').forEach(function(b) {
+    b.style.borderColor = 'rgba(45,212,191,0.30)';
+    b.style.background  = 'transparent';
+    b.style.color       = 'rgba(255,255,255,0.65)';
+    b.style.fontWeight  = '500';
+  });
+  // Activate clicked pill
+  btn.style.borderColor = 'rgba(45,212,191,0.80)';
+  btn.style.background  = 'rgba(45,212,191,0.22)';
+  btn.style.color       = 'var(--teal)';
+  btn.style.fontWeight  = '700';
+  // Store selection
+  tmSelectedLang = btn.dataset.lang;
+  tmSelectedCode = btn.dataset.code;
+  var lbl = document.getElementById('tmLangLabel');
+  if (lbl) lbl.textContent = tmSelectedLang;
+  // Reset form
+  var ta = document.getElementById('nativeText');
+  if (ta) ta.value = '';
+  window._tmCorrectAnswer = null;
+  var ra = document.getElementById('tmResultArea');
+  if (ra) ra.style.display = 'none';
 }
 
-function tmLoadSuggestions(){
-  var sug=document.getElementById('tmSuggestions');
-  if(!sug)return;
-  sug.innerHTML='';
-  var picks=TM_SENTENCES.slice().sort(function(){return Math.random()-.5;}).slice(0,6);
-  picks.forEach(function(sent){
-    var btn=document.createElement('button');
-    btn.style.cssText='padding:4px 10px;border-radius:16px;border:1px solid rgba(45,212,191,0.30);background:transparent;color:rgba(45,212,191,0.75);font-size:11.5px;cursor:pointer;font-family:inherit;text-align:left;line-height:1.4';
-    var words=sent.split(' ').slice(0,5).join(' ')+'...';
-    btn.textContent=words;
-    btn.title=sent;
-    btn.onclick=function(){tmLoadSentence(sent);};
-    sug.appendChild(btn);
+function tmInit() {
+  // Nothing to init — pills are hardcoded in HTML
+  // Just ensure Telugu is highlighted on load
+  var teluguBtn = document.querySelector('.tm-lang-btn[data-lang="Telugu"]');
+  if (teluguBtn && !document.querySelector('.tm-lang-btn[data-code="' + tmSelectedCode + '"]')) {
+    tmPickLang(teluguBtn);
+  }
+}
+
+function tmLoadSentence(englishSentence) {
+  window._tmCorrectAnswer = englishSentence;
+  var code = tmSelectedCode;
+  if (!code || code === 'en') {
+    var ta = document.getElementById('nativeText');
+    if (ta) ta.value = englishSentence;
+    document.getElementById('tmResultArea').style.display = 'none';
+    return;
+  }
+  // Translate English → selected native language
+  var url = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=' +
+    encodeURIComponent(code) + '&dt=t&q=' + encodeURIComponent(englishSentence);
+  fetch(url).then(function(r) { return r.json(); }).then(function(d) {
+    var native = d[0].map(function(x) { return x[0]; }).join('');
+    var ta = document.getElementById('nativeText');
+    if (ta) ta.value = native;
+    document.getElementById('tmResultArea').style.display = 'none';
+    window._tmCorrectAnswer = englishSentence;
+  }).catch(function() {
+    var ta = document.getElementById('nativeText');
+    if (ta) ta.value = englishSentence;
   });
 }
 
-function tmLoadSentence(englishSentence){
-  var activeLang=tmSelectedLang||lang;
-  var code=NT_CODES[activeLang];
-  if(!code||activeLang==='English'){
-    // If language is English, show raw sentence in box
-    var box=document.getElementById('nativeText');
-    if(box){box.value=englishSentence;}
-    clearTranslateOut();
+function tmShowCorrectEnglish(btn) {
+  var ta = document.getElementById('nativeText');
+  if (!ta || !ta.value.trim()) {
+    alert('Please write a sentence in your language first.');
     return;
   }
-  // Translate English → native language
-  var url='https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl='+
-    encodeURIComponent(code)+'&dt=t&q='+encodeURIComponent(englishSentence);
-  fetch(url).then(function(r){return r.json();}).then(function(d){
-    var translated=d[0].map(function(x){return x[0];}).join('');
-    var box=document.getElementById('nativeText');
-    if(box){box.value=translated;}
-    // Store the correct English answer for comparison
-    window._tmCorrectAnswer=englishSentence;
-    clearTranslateOut();
-  }).catch(function(){
-    // Fallback: show English
-    var box=document.getElementById('nativeText');
-    if(box){box.value=englishSentence;}
-  });
-}
+  var text = ta.value.trim();
+  var ra   = document.getElementById('tmResultArea');
+  var ct   = document.getElementById('tmCorrectText');
 
-function clearTranslateOut(){
-  var out=document.getElementById('translateOut');
-  if(out)out.innerHTML='';
-  var cb=document.getElementById('tmCorrectBox');
-  var as=document.getElementById('tmAttemptSection');
-  if(cb)cb.style.display='none';
-  if(as)as.style.display='none';
-  window._tmCorrectAnswer=null;
-}
-
-function tmShowCorrectEnglish(){
-  var nativeInput=document.getElementById('nativeText');
-  if(!nativeInput||!nativeInput.value.trim()){
-    alert('Please write a sentence in your native language first.');
-    return;
-  }
-  var nativeText=nativeInput.value.trim();
-  var activeLang=tmSelectedLang||lang;
-  var code=NT_CODES[activeLang];
-  var correctBox=document.getElementById('tmCorrectBox');
-  var correctText=document.getElementById('tmCorrectText');
-  var attemptSection=document.getElementById('tmAttemptSection');
-  var btn=event.target;
-
-  // If we already have the correct answer (from suggestion load), use it directly
-  if(window._tmCorrectAnswer){
-    if(correctText)correctText.textContent=window._tmCorrectAnswer;
-    if(correctBox)correctBox.style.display='block';
-    if(attemptSection)attemptSection.style.display='block';
-    // Translate explanation into native language
-    nt(correctText.nextElementSibling||correctText,
-      'This is the correct English translation of what you wrote.',''
-    );
-    if(correctText)correctText.scrollIntoView({behavior:'smooth',block:'nearest'});
+  // If we have stored answer (from suggestion chip), show it directly
+  if (window._tmCorrectAnswer) {
+    if (ct) ct.textContent = window._tmCorrectAnswer;
+    if (ra) { ra.style.display = 'flex'; ra.style.flexDirection = 'column'; }
+    var panel = document.getElementById('panel-writing');
+    if (panel) setTimeout(function() { panel.scrollTop = panel.scrollHeight; }, 100);
     return;
   }
 
-  if(!code||lang==='English'){
-    // Language is English — cannot translate from English to English
-    // Show a helpful message
-    var out=document.getElementById('translateOut');
-    if(out)out.innerHTML='<div style="padding:12px;background:rgba(245,200,66,0.10);border:1px solid rgba(245,200,66,0.30);border-radius:10px;font-size:13px;color:rgba(245,200,66,0.80)">Please select your native language from the top selector, then type a sentence in that language.</div>';
-    return;
-  }
-
-  // Show loading state
-  if(btn){btn.textContent='🔄 Translating...';btn.disabled=true;}
-
-  // Translate native → English using Google Translate free API
-  var url='https://translate.googleapis.com/translate_a/single?client=gtx&sl='+
-    encodeURIComponent(code)+'&tl=en&dt=t&q='+encodeURIComponent(nativeText);
+  // Translate to English
+  if (btn) { btn.textContent = '⏳ Translating...'; btn.disabled = true; }
+  var code = tmSelectedCode || 'te';
+  var url  = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=' +
+    encodeURIComponent(code) + '&tl=en&dt=t&q=' + encodeURIComponent(text);
 
   fetch(url)
-    .then(function(r){return r.json();})
-    .then(function(d){
-      var translated=d[0].map(function(x){return x[0];}).join('');
-      window._tmCorrectAnswer=translated;
-
-      if(correctText)correctText.textContent=translated;
-      if(correctBox)correctBox.style.display='block';
-      if(attemptSection)attemptSection.style.display='block';
-
-      if(btn){btn.textContent='🔄 Show me the correct English →';btn.disabled=false;}
-      if(correctBox)correctBox.scrollIntoView({behavior:'smooth',block:'nearest'});
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+      var translated = d[0].map(function(x) { return x[0]; }).join('');
+      // Detect if translation failed (same as input)
+      if (translated.trim().toLowerCase() === text.trim().toLowerCase()) {
+        // Retry with auto-detect
+        var url2 = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=en&dt=t&q=' +
+          encodeURIComponent(text);
+        return fetch(url2).then(function(r2) { return r2.json(); }).then(function(d2) {
+          return d2[0].map(function(x) { return x[0]; }).join('');
+        });
+      }
+      return translated;
     })
-    .catch(function(){
-      if(btn){btn.textContent='🔄 Show me the correct English →';btn.disabled=false;}
-      var out=document.getElementById('translateOut');
-      if(out)out.innerHTML='<div style="padding:10px;color:rgba(255,107,107,0.80);font-size:13px">Translation failed. Please check your internet connection and try again.</div>';
+    .then(function(final) {
+      window._tmCorrectAnswer = final;
+      if (ct) ct.textContent = final;
+      if (ra) { ra.style.display = 'flex'; ra.style.flexDirection = 'column'; }
+      if (btn) { btn.textContent = '🔄 Show me the correct English →'; btn.disabled = false; }
+      var panel = document.getElementById('panel-writing');
+      if (panel) setTimeout(function() { panel.scrollTop = panel.scrollHeight; }, 100);
+    })
+    .catch(function(e) {
+      if (btn) { btn.textContent = '🔄 Show me the correct English →'; btn.disabled = false; }
+      if (ra) {
+        ra.style.display = 'flex';
+        if (ct) ct.textContent = 'Translation error — check internet connection and try again.';
+      }
     });
 }
 
-function tmCopyCorrect(){
-  var t=document.getElementById('tmCorrectText');
-  if(t&&t.textContent){
-    navigator.clipboard.writeText(t.textContent).then(function(){
-      var btn=event.target;
-      btn.textContent='Copied!';
-      setTimeout(function(){btn.textContent='Copy';},2000);
-    });
-  }
-}
+function tmCompare() {
+  var attempt = document.getElementById('engAttempt');
+  var correct = window._tmCorrectAnswer;
+  var out = document.getElementById('translateOut');
+  if (!attempt || !attempt.value.trim()) { alert('Please write your English version first.'); return; }
+  if (!correct) { alert('Please click "Show me the correct English" first.'); return; }
 
-function tmCompare(){
-  var attempt=document.getElementById('engAttempt');
-  var correct=window._tmCorrectAnswer;
-  var out=document.getElementById('translateOut');
+  var u = attempt.value.trim();
+  var cWords = correct.toLowerCase().replace(/[^a-z0-9\s]/g,'').split(/\s+/);
+  var uWords = u.toLowerCase().replace(/[^a-z0-9\s]/g,'').split(/\s+/);
+  var matched = 0;
+  cWords.forEach(function(w) { if (uWords.indexOf(w) >= 0) matched++; });
+  var pct = Math.round((matched / cWords.length) * 100);
+  var col = pct >= 80 ? '#4ADE80' : pct >= 50 ? '#F5C842' : '#FF6B6B';
+  var msg = pct >= 90 ? 'Excellent!' : pct >= 70 ? 'Very good — small differences.' : pct >= 50 ? 'Good effort — compare carefully.' : 'Keep practising!';
 
-  if(!attempt||!attempt.value.trim()){
-    alert('Please write your English translation first.');
-    return;
-  }
-  if(!correct){
-    alert('Please click "Show me the correct English" first.');
-    return;
-  }
-
-  var userText=attempt.value.trim();
-  var correctLower=correct.toLowerCase().replace(/[^a-z0-9\s]/g,'');
-  var userLower=userText.toLowerCase().replace(/[^a-z0-9\s]/g,'');
-
-  // Simple word-by-word comparison
-  var correctWords=correctLower.split(/\s+/);
-  var userWords=userLower.split(/\s+/);
-
-  var matched=0;
-  correctWords.forEach(function(w){
-    if(userWords.indexOf(w)>=0)matched++;
-  });
-  var similarity=Math.round((matched/correctWords.length)*100);
-
-  var scoreCol=similarity>=80?'#4ADE80':similarity>=50?'#F5C842':'#FF6B6B';
-  var scoreMsg=similarity>=90?'Excellent! Almost perfect.':
-               similarity>=70?'Very good — small differences only.':
-               similarity>=50?'Good effort — review the key differences below.':
-               'Keep practising — compare each word carefully.';
-
-  var h='';
-
-  // Score circle
-  h+='<div style="text-align:center;margin:12px 0">';
-  h+='<div style="display:inline-flex;align-items:center;justify-content:center;width:72px;height:72px;border-radius:50%;background:conic-gradient('+scoreCol+' '+similarity+'%,rgba(255,255,255,0.08) 0)">';
-  h+='<div style="width:56px;height:56px;border-radius:50%;background:var(--bg-1);display:flex;flex-direction:column;align-items:center;justify-content:center">';
-  h+='<div style="font-size:18px;font-weight:900;color:'+scoreCol+'">'+similarity+'%</div>';
-  h+='</div></div>';
-  h+='<div style="font-size:13px;font-weight:700;color:'+scoreCol+';margin-top:6px">'+scoreMsg+'</div>';
-  h+='</div>';
-
-  // Side by side comparison
-  h+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">';
-  h+='<div style="padding:10px 12px;background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.25);border-radius:10px">';
-  h+='<div style="font-size:10px;font-weight:700;color:#4ADE80;text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px">Correct English</div>';
-  h+='<div style="font-size:13px;color:rgba(255,255,255,0.85);line-height:1.60">'+correct+'</div>';
-  h+='</div>';
-  h+='<div style="padding:10px 12px;background:rgba(245,200,66,0.08);border:1px solid rgba(245,200,66,0.25);border-radius:10px">';
-  h+='<div style="font-size:10px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px">Your version</div>';
-  h+='<div style="font-size:13px;color:rgba(255,255,255,0.85);line-height:1.60">'+userText+'</div>';
-  h+='</div></div>';
-
-  // Native language explanation
-  var expText='Your score is '+similarity+'%. Compare your sentence with the correct version word by word. Try to notice which words you used differently and why the correct version sounds more natural in English.';
-  h+='<div data-nt="'+ntSafe(expText)+'" style="font-size:12.5px;color:rgba(245,200,66,0.80);font-style:italic;line-height:1.60;padding:8px 10px;background:rgba(245,200,66,0.07);border-radius:8px">'+expText+'</div>';
-
-  // Try again button
-  h+='<div style="display:flex;gap:8px;margin-top:10px">';
-  h+='<button onclick="document.getElementById(\'engAttempt\').value=\'\';document.getElementById(\'translateOut\').innerHTML=\'\'" style="flex:1;padding:9px;border-radius:9px;border:1px solid rgba(255,255,255,0.15);background:transparent;color:rgba(255,255,255,0.60);font-family:inherit;font-size:12.5px;cursor:pointer">↺ Try again</button>';
-  h+='<button onclick="tmInit()" style="flex:1;padding:9px;border-radius:9px;border:1px solid rgba(45,212,191,0.35);background:rgba(45,212,191,0.10);color:var(--teal);font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer">Next sentence →</button>';
-  h+='</div>';
-
-  if(out){
-    out.innerHTML=h;
-    ntBatch();
-    out.scrollIntoView({behavior:'smooth',block:'nearest'});
-  }
+  var h = '<div style="text-align:center;padding:10px 0">';
+  h += '<div style="display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:50%;background:conic-gradient('+col+' '+pct+'%,rgba(255,255,255,0.08) 0)">';
+  h += '<div style="width:50px;height:50px;border-radius:50%;background:var(--bg-1);display:flex;flex-direction:column;align-items:center;justify-content:center">';
+  h += '<div style="font-size:16px;font-weight:900;color:'+col+'">'+pct+'%</div></div></div>';
+  h += '<div style="font-size:13px;font-weight:700;color:'+col+';margin-top:5px">'+msg+'</div></div>';
+  h += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px">';
+  h += '<div style="padding:9px;background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.25);border-radius:9px"><div style="font-size:9.5px;font-weight:700;color:#4ADE80;text-transform:uppercase;margin-bottom:4px">Correct</div><div style="font-size:13px;color:rgba(255,255,255,0.85)">'+correct+'</div></div>';
+  h += '<div style="padding:9px;background:rgba(245,200,66,0.08);border:1px solid rgba(245,200,66,0.25);border-radius:9px"><div style="font-size:9.5px;font-weight:700;color:var(--gold);text-transform:uppercase;margin-bottom:4px">Yours</div><div style="font-size:13px;color:rgba(255,255,255,0.85)">'+u+'</div></div>';
+  h += '</div>';
+  if (out) out.innerHTML = h;
 }
 
 window.onload=function(){

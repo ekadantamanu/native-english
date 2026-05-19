@@ -721,9 +721,9 @@ button, .tbtn, .tgrp { -webkit-tap-highlight-color: transparent; }
 
 <!-- ── WRITE TABS ── -->
 <div id="tabs-write" class="tabs" style="display:none">
+  <button class="tbtn active" onclick="showTab('writing',this)" style="color:#2DD4BF">🌐 Translate Practice</button>
   <button class="tbtn" onclick="showTab('beforeafter',this)" style="color:#F59E0B">✨ Before &amp; After <span style="font-size:9px;background:#F59E0B;color:#000;padding:1px 5px;border-radius:8px;margin-left:3px;font-weight:800">UNIQUE</span></button>
   <button class="tbtn" onclick="showTab('formalslider',this)" style="color:#A78BFA">🎚️ Formality Slider</button>
-  <button class="tbtn" onclick="showTab('writing',this)">✍️ Writing Practice</button>
   
   <button class="tbtn" onclick="showTab('collocations',this)" style="color:#60A5FA">🔗 Collocations Coach <span style="font-size:9px;background:#60A5FA;color:#000;padding:1px 5px;border-radius:8px;margin-left:3px;font-weight:800">UNIQUE</span></button>
   <button class="tbtn" onclick="showTab('errordecoder',this)" style="color:#FF6B6B">🔬 Error Pattern Decoder <span style="font-size:9px;background:#FF6B6B;color:#000;padding:1px 5px;border-radius:8px;margin-left:3px;font-weight:800">UNIQUE</span></button>
@@ -937,16 +937,16 @@ button, .tbtn, .tgrp { -webkit-tap-highlight-color: transparent; }
 </div>
 
 <!-- WRITING -->
-<div id="panel-writing" class="panel" style="overflow-y:auto;padding:14px;gap:12px;flex-direction:column">
-  <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--amber);margin-bottom:4px">Writing Practice</div>
-  <p style="font-size:12px;color:var(--txt-3);margin-bottom:4px">Four free writing modes &mdash; all explained in English and your language</p>
+<div id="panel-writing" class="panel active" style="overflow-y:auto;padding:14px;gap:12px;flex-direction:column">
+  <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--amber);margin-bottom:4px">🌐 Translate Practice</div>
+  <p style="font-size:12px;color:rgba(45,212,191,0.65);margin-bottom:4px">Write in your language → see correct English → write your attempt → compare. All 16 languages. 100% free.</p>
   <div class="write-modes">
-    <button class="wm-btn active" onclick="setWM('mirror',this)"><span class="wm-icon">Mirror</span>See It Native</button>
-    <button class="wm-btn" onclick="setWM('translate',this)"><span class="wm-icon">Globe</span>Translate Mine</button>
+    <button class="wm-btn" onclick="setWM('mirror',this)"><span class="wm-icon">Mirror</span>See It Native</button>
+    <button class="wm-btn active" onclick="setWM('translate',this)"><span class="wm-icon">🌐</span>Translate Mine (16 Languages)</button>
     <button class="wm-btn" onclick="setWM('proofread',this)"><span class="wm-icon">Check</span>Proofread</button>
     <button class="wm-btn" onclick="setWM('tone',this)"><span class="wm-icon">Tone</span>Change Tone</button>
   </div>
-  <div class="wp active" id="wm-mirror">
+  <div class="wp" id="wm-mirror">
     <div class="ib ib-gold"><strong style="color:var(--gold)">See It Native</strong> &mdash; Type any sentence. See it rewritten at B1, B2, C1 and Native level instantly.</div>
     <textarea class="wta" id="mirrorIn" spellcheck="true" placeholder="Type any English sentence..."></textarea>
     <div class="wa-row">
@@ -955,17 +955,21 @@ button, .tbtn, .tgrp { -webkit-tap-highlight-color: transparent; }
     </div>
     <div id="mirrorOut"></div>
   </div>
-  <div class="wp" id="wm-translate">
+  <div class="wp active" id="wm-translate">
     <!-- Header -->
     <div class="ib ib-teal">
       <strong style="color:var(--teal)">Translate Mine</strong> — Write a sentence in your native language. The app shows you the correct English. Then write your own version and see how close you are. <span style="color:rgba(45,212,191,0.70)">100% free — no account needed.</span>
     </div>
 
-    <!-- Language indicator -->
-    <div style="display:flex;align-items:center;gap:8px;padding:7px 11px;background:rgba(45,212,191,0.08);border-radius:9px;border:1px solid rgba(45,212,191,0.25)">
-      <span style="font-size:13px">🌐</span>
-      <span style="font-size:12.5px;color:rgba(255,255,255,0.70)">Your current language: <strong id="tmLangLabel" style="color:var(--teal)">English</strong></span>
-      <span style="font-size:11px;color:rgba(255,255,255,0.40)">(change in top selector)</span>
+    <!-- Language selector — inline, all 16 languages -->
+    <div style="background:rgba(45,212,191,0.06);border:1px solid rgba(45,212,191,0.25);border-radius:11px;padding:10px 12px">
+      <div style="font-size:11px;font-weight:700;color:rgba(45,212,191,0.70);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">🌐 Select your native language</div>
+      <div style="display:flex;flex-wrap:wrap;gap:5px" id="tmLangPills">
+        <!-- populated by tmInit() -->
+      </div>
+      <div style="font-size:11.5px;color:rgba(255,255,255,0.40);margin-top:7px">
+        Selected: <strong id="tmLangLabel" style="color:var(--teal)">—</strong>
+      </div>
     </div>
 
     <!-- STEP 1: Native language input -->
@@ -3868,7 +3872,8 @@ function buildSys(extra){
 }
 function setLang(l){
   lang=l;var el=document.getElementById('wcNatLbl');if(el)el.textContent=l+' example';
-  loadWelcomeTrans();loadWord();injectListeningNotes();renderDNAQs();initVIC();renderVocab();renderIdioms();renderMistakes();renderPhrases();buildCheatSheet();
+  loadWelcomeTrans();loadWord();injectListeningNotes();renderDNAQs();initVIC();
+  setTimeout(tmInit, 600);renderVocab();renderIdioms();renderMistakes();renderPhrases();buildCheatSheet();
   // Re-translate all visible translated elements
   setTimeout(function(){ntRefresh();},300);
 }
@@ -7709,36 +7714,72 @@ var TM_SENTENCES=[
   "They have decided to move to a new city next month.",
 ];
 
-function tmInit(){
-  // Update language label
-  var label=document.getElementById('tmLangLabel');
-  if(label)label.textContent=lang||'English';
+// Store selected TM language separately from global lang
+var tmSelectedLang=null;
+var TM_LANG_NAMES=['Telugu','Tamil','Hindi','Kannada','Malayalam','Arabic',
+  'Spanish','French','German','Chinese','Japanese','Russian',
+  'Portuguese','Italian','Korean','Turkish'];
 
-  // Build suggestion chips from TM_SENTENCES (show 6 at a time)
+function tmInit(){
+  // Build language pills
+  var pills=document.getElementById('tmLangPills');
+  if(pills&&pills.children.length===0){
+    TM_LANG_NAMES.forEach(function(l){
+      var btn=document.createElement('button');
+      var isActive=(tmSelectedLang||lang)===l;
+      btn.style.cssText='padding:4px 11px;border-radius:16px;border:1px solid rgba(45,212,191,'+(isActive?'0.70':'0.30')+');background:'+(isActive?'rgba(45,212,191,0.20)':'transparent')+';color:'+(isActive?'var(--teal)':'rgba(255,255,255,0.60)')+';font-size:12px;cursor:pointer;font-family:inherit;font-weight:'+(isActive?'700':'400');
+      btn.textContent=l;
+      btn.dataset.lang=l;
+      btn.onclick=function(){
+        tmSelectedLang=l;
+        // Update all pill styles
+        document.querySelectorAll('#tmLangPills button').forEach(function(b){
+          var active=b.dataset.lang===l;
+          b.style.borderColor=active?'rgba(45,212,191,0.70)':'rgba(45,212,191,0.30)';
+          b.style.background=active?'rgba(45,212,191,0.20)':'transparent';
+          b.style.color=active?'var(--teal)':'rgba(255,255,255,0.60)';
+          b.style.fontWeight=active?'700':'400';
+        });
+        var label=document.getElementById('tmLangLabel');
+        if(label)label.textContent=l;
+        // Reset the form
+        clearTranslateOut();
+        document.getElementById('nativeText').value='';
+        // Reload suggestions in new language
+        tmLoadSuggestions();
+      };
+      pills.appendChild(btn);
+    });
+  }
+
+  // Set current lang label
+  var activeLang=tmSelectedLang||lang;
+  var label=document.getElementById('tmLangLabel');
+  if(label)label.textContent=activeLang||'Select a language above';
+
+  tmLoadSuggestions();
+}
+
+function tmLoadSuggestions(){
   var sug=document.getElementById('tmSuggestions');
   if(!sug)return;
   sug.innerHTML='';
-  // Pick 6 random sentences
   var picks=TM_SENTENCES.slice().sort(function(){return Math.random()-.5;}).slice(0,6);
   picks.forEach(function(sent){
     var btn=document.createElement('button');
     btn.style.cssText='padding:4px 10px;border-radius:16px;border:1px solid rgba(45,212,191,0.30);background:transparent;color:rgba(45,212,191,0.75);font-size:11.5px;cursor:pointer;font-family:inherit;text-align:left;line-height:1.4';
-    // Show first 5 words as chip label
     var words=sent.split(' ').slice(0,5).join(' ')+'...';
     btn.textContent=words;
     btn.title=sent;
-    btn.onclick=function(){
-      tmLoadSentence(sent);
-    };
+    btn.onclick=function(){tmLoadSentence(sent);};
     sug.appendChild(btn);
   });
 }
 
 function tmLoadSentence(englishSentence){
-  // Translate the English sentence INTO the learner's native language
-  // so they see it in their language and must translate back to English
-  var code=NT_CODES[lang];
-  if(!code||lang==='English'){
+  var activeLang=tmSelectedLang||lang;
+  var code=NT_CODES[activeLang];
+  if(!code||activeLang==='English'){
     // If language is English, show raw sentence in box
     var box=document.getElementById('nativeText');
     if(box){box.value=englishSentence;}
@@ -7779,7 +7820,8 @@ function tmShowCorrectEnglish(){
     return;
   }
   var nativeText=nativeInput.value.trim();
-  var code=NT_CODES[lang];
+  var activeLang=tmSelectedLang||lang;
+  var code=NT_CODES[activeLang];
   var correctBox=document.getElementById('tmCorrectBox');
   var correctText=document.getElementById('tmCorrectText');
   var attemptSection=document.getElementById('tmAttemptSection');

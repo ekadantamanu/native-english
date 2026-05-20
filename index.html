@@ -1000,8 +1000,14 @@ button, .tbtn, .tgrp { -webkit-tap-highlight-color: transparent; }
       <textarea id="nativeText" class="wta" spellcheck="false" style="min-height:80px"
         placeholder="Type in native script or romanized — e.g. nenu market ki veltanu OR నేను మార్కెట్‌కి వెళ్తాను"
         oninput="window._tmCorrectAnswer=null;document.getElementById('tmResultArea').style.display='none'"></textarea>
-      <div style="font-size:11.5px;color:rgba(45,212,191,0.55);margin-top:5px;line-height:1.5">
-        💡 Both native script and romanized (phonetic) text work.
+      <div style="font-size:11.5px;color:rgba(45,212,191,0.55);margin-top:5px;line-height:1.6;padding:7px 10px;background:rgba(45,212,191,0.05);border-radius:8px">
+        💡 <strong style="color:rgba(45,212,191,0.80)">Best results:</strong> Type in your native script (నేను, நான், मैं, أنا).<br>
+        <span style="font-size:11px;color:rgba(255,255,255,0.40)">Romanized text (nenu, naan, main) also works for Hindi, Tamil, Telugu, Kannada, Malayalam, Arabic.</span>
+      </div>
+      <!-- Quick keyboard guide -->
+      <div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:5px;align-items:center">
+        <span style="font-size:10.5px;color:rgba(255,255,255,0.30)">No native keyboard?</span>
+        <a href="https://translate.google.com" target="_blank" style="font-size:11px;color:rgba(45,212,191,0.65);text-decoration:none;padding:3px 8px;border:1px solid rgba(45,212,191,0.25);border-radius:10px">Type in Google Translate → copy the script → paste here</a>
       </div>
     </div>
 
@@ -7795,7 +7801,7 @@ function tmShowCorrectEnglish(btn) {
   var ra   = document.getElementById('tmResultArea');
   var ct   = document.getElementById('tmCorrectText');
 
-  // If we have stored answer (from suggestion chip), show it directly
+  // Fast path: stored answer from chip selection
   if (window._tmCorrectAnswer) {
     if (ct) ct.textContent = window._tmCorrectAnswer;
     if (ra) { ra.style.display = 'flex'; ra.style.flexDirection = 'column'; }
@@ -7804,43 +7810,133 @@ function tmShowCorrectEnglish(btn) {
     return;
   }
 
-  // Translate to English
   if (btn) { btn.textContent = '⏳ Translating...'; btn.disabled = true; }
   var code = tmSelectedCode || 'te';
-  var url  = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=' +
-    encodeURIComponent(code) + '&tl=en&dt=t&q=' + encodeURIComponent(text);
 
-  fetch(url)
-    .then(function(r) { return r.json(); })
-    .then(function(d) {
-      var translated = d[0].map(function(x) { return x[0]; }).join('');
-      // Detect if translation failed (same as input)
-      if (translated.trim().toLowerCase() === text.trim().toLowerCase()) {
-        // Retry with auto-detect
-        var url2 = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=en&dt=t&q=' +
-          encodeURIComponent(text);
-        return fetch(url2).then(function(r2) { return r2.json(); }).then(function(d2) {
-          return d2[0].map(function(x) { return x[0]; }).join('');
+  // Detect if input is in native script or romanized (Latin) letters
+  // Native scripts have Unicode > 127; romanized text is all ASCII
+  var isRomanized = !/[^\u0000-\u007F]/.test(text);
+
+  function showResult(translated, warn) {
+    window._tmCorrectAnswer = translated;
+    if (ct) ct.textContent = translated;
+    if (ra) { ra.style.display = 'flex'; ra.style.flexDirection = 'column'; }
+    if (btn) { btn.textContent = '🔄 Show me the correct English →'; btn.disabled = false; }
+    // Show romanized warning if needed
+    var warnEl = document.getElementById('tmRomanWarn');
+    if (warnEl) warnEl.style.display = warn ? 'block' : 'none';
+    var panel = document.getElementById('panel-writing');
+    if (panel) setTimeout(function() { panel.scrollTop = panel.scrollHeight; }, 100);
+  }
+
+  function showRomanizedHelp() {
+    if (btn) { btn.textContent = '🔄 Show me the correct English →'; btn.disabled = false; }
+    // Show the result area with a helpful guide
+    if (ct) {
+      ct.innerHTML = '<span style="color:rgba(255,200,0,0.90);font-size:13px">Could not auto-translate romanized text.<br><br>'
+        + '<strong>For best results, type in your native script:</strong><br>'
+        + '<span style="color:rgba(255,255,255,0.65);font-size:12px">'
+        + '• On iPhone/Android: Go to Settings → Keyboard → Add Telugu/Tamil/Hindi keyboard<br>'
+        + '• On Mac: System Settings → Keyboard → Input Sources → Add Telugu<br>'
+        + '• Or: <a href="https://translate.google.com/#view=home&op=translate&sl=te&tl=en" '
+        + 'target="_blank" style="color:var(--teal)">Open Google Translate</a> → type romanized → copy the native script → paste here</span></span>';
+    }
+    if (ra) { ra.style.display = 'flex'; ra.style.flexDirection = 'column'; }
+    var panel = document.getElementById('panel-writing');
+    if (panel) setTimeout(function() { panel.scrollTop = panel.scrollHeight; }, 100);
+  }
+
+  if (isRomanized) {
+    // STEP 1: Try Google Input Tools to convert Roman → Native script first
+    var itc = {
+      te:'te-t-i0-und', ta:'ta-t-i0-und', hi:'hi-t-i0-und',
+      kn:'kn-t-i0-und', ml:'ml-t-i0-und', ar:'ar-t-i0-und'
+    }[code] || null;
+
+    if (itc) {
+      // Try transliteration: Roman → Native script
+      var words = text.split(' ');
+      var translitUrl = 'https://inputtools.google.com/request?text='
+        + encodeURIComponent(text) + '&itc=' + itc + '&num=1&cp=0&cs=1&ie=utf-8&oe=utf-8';
+
+      fetch(translitUrl)
+        .then(function(r) { return r.json(); })
+        .then(function(d) {
+          // inputtools returns: ["SUCCESS", [["word", ["transliteration"]]]]
+          var nativeScript = '';
+          if (d && d[0] === 'SUCCESS' && d[1]) {
+            nativeScript = d[1].map(function(item) {
+              return (item[1] && item[1][0]) ? item[1][0] : item[0];
+            }).join('');
+          }
+          if (nativeScript && nativeScript !== text) {
+            // Got native script — now translate it
+            var tUrl = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl='
+              + encodeURIComponent(code) + '&tl=en&dt=t&q=' + encodeURIComponent(nativeScript);
+            return fetch(tUrl)
+              .then(function(r2) { return r2.json(); })
+              .then(function(d2) {
+                var result = d2[0].map(function(x) { return x[0]; }).join('');
+                if (result && result.toLowerCase() !== text.toLowerCase()) {
+                  showResult(result, false);
+                } else {
+                  showRomanizedHelp();
+                }
+              });
+          } else {
+            // Transliteration failed — try direct auto-detect
+            return tryAutoDetect();
+          }
+        })
+        .catch(function() {
+          tryAutoDetect();
         });
-      }
-      return translated;
-    })
-    .then(function(final) {
-      window._tmCorrectAnswer = final;
-      if (ct) ct.textContent = final;
-      if (ra) { ra.style.display = 'flex'; ra.style.flexDirection = 'column'; }
-      if (btn) { btn.textContent = '🔄 Show me the correct English →'; btn.disabled = false; }
-      var panel = document.getElementById('panel-writing');
-      if (panel) setTimeout(function() { panel.scrollTop = panel.scrollHeight; }, 100);
-    })
-    .catch(function(e) {
-      if (btn) { btn.textContent = '🔄 Show me the correct English →'; btn.disabled = false; }
-      if (ra) {
-        ra.style.display = 'flex';
-        if (ct) ct.textContent = 'Translation error — check internet connection and try again.';
-      }
-    });
+    } else {
+      tryAutoDetect();
+    }
+  } else {
+    // Native script — translate directly
+    var url = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl='
+      + encodeURIComponent(code) + '&tl=en&dt=t&q=' + encodeURIComponent(text);
+    fetch(url)
+      .then(function(r) { return r.json(); })
+      .then(function(d) {
+        var result = d[0].map(function(x) { return x[0]; }).join('');
+        if (result && result.toLowerCase() !== text.toLowerCase()) {
+          showResult(result, false);
+        } else {
+          // Try auto-detect as fallback
+          tryAutoDetect();
+        }
+      })
+      .catch(function() {
+        if (btn) { btn.textContent = '🔄 Show me the correct English →'; btn.disabled = false; }
+        if (ct) ct.textContent = 'Connection error. Please check internet and try again.';
+        if (ra) { ra.style.display = 'flex'; ra.style.flexDirection = 'column'; }
+      });
+  }
+
+  function tryAutoDetect() {
+    var url = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=en&dt=t&q='
+      + encodeURIComponent(text);
+    fetch(url)
+      .then(function(r) { return r.json(); })
+      .then(function(d) {
+        var result = d[0].map(function(x) { return x[0]; }).join('');
+        var detectedLang = d[2] || '';
+        // If auto-detect returns something meaningful (not same as input, not 'en')
+        if (result && result.toLowerCase() !== text.toLowerCase() && detectedLang !== 'en') {
+          showResult(result, false);
+        } else {
+          showRomanizedHelp();
+        }
+      })
+      .catch(function() {
+        showRomanizedHelp();
+      });
+  }
 }
+
 
 function tmCompare() {
   var attempt = document.getElementById('engAttempt');

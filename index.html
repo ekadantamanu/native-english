@@ -7294,45 +7294,32 @@ function pdExample(){
   if(d)d.value='My favorite fruits are apples bananas and oranges\nHowever she decided to stay home.\nI really wanted to go to the beach, it started raining heavily.\nShe dont like coffee and should of told us.';
   pdCheck();
 }
-function rcCheck(){
+async function rcCheck(){
   var txt=(document.getElementById('rcInput')||{}).value||'';
-  if(!txt.trim()){
-    wHtml('rcResult','<div style="color:rgba(255,255,255,0.45);font-size:13px;padding:10px 0">Please paste some text first.</div>');
-    return;
+  if(!txt.trim()){wHtml('rcResult','<div style="color:rgba(255,255,255,0.45);font-size:13px;padding:10px 0">Please paste some text first.</div>');return;}
+  wHtml('rcResult','<div style="color:#F472B6;font-size:13px;padding:10px 0">\u2702\ufe0f Cutting the fat\u2026</div>');
+  var r=await gatedApi(
+    'Find every wordy phrase in this text and replace with tight native English. Text: "'+txt+'" Return ONLY valid JSON: {"annotated":"full text as HTML with each wordy phrase as <span style=\'background:rgba(244,114,182,0.25);color:#F9A8D4;border-radius:3px;padding:0 2px;text-decoration:line-through\'>wordy</span> <strong style=\'color:#34D399\'>tight</strong>","summary":"one replacement per line: wordy \u2192 tight"}. If none found set summary to No redundancies found \u2014 your writing is already tight!',
+    buildSys(''),
+    1200
+  );
+  if(r===null){wHtml('rcResult','<div style="color:#F87171;font-size:13px">Usage limit reached.</div>');return;}
+  var obj;
+  try{obj=JSON.parse(r.replace(/```json|```/g,'').trim());}
+  catch(e){wHtml('rcResult','<div style="font-size:13px;line-height:1.7;color:rgba(255,255,255,0.85)">'+r+'</div>');return;}
+  var html='';
+  if(obj.annotated)html+='<div style="background:rgba(244,114,182,0.08);border:1.5px solid rgba(244,114,182,0.22);border-radius:12px;padding:14px 16px;font-size:13.5px;line-height:1.85;color:rgba(255,255,255,0.90)">'+obj.annotated+'</div>';
+  if(obj.summary){
+    html+='<div style="margin-top:12px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.10);border-radius:10px;padding:12px 14px">';
+    html+='<div style="font-size:11px;font-weight:700;color:#F472B6;letter-spacing:0.08em;margin-bottom:8px">REPLACEMENTS MADE</div>';
+    obj.summary.split('\n').filter(function(l){return l.trim();}).forEach(function(l){
+      html+='<div style="font-size:12px;color:rgba(255,255,255,0.70);padding:3px 0;border-bottom:1px solid rgba(255,255,255,0.06)">'+l+'</div>';
+    });
+    html+='</div>';
   }
-  wHtml('rcResult','<div style="color:#F472B6;font-size:13px;padding:10px 0">✂️ Cutting the fat…</div>');
-  var lang=getLang&&getLang()||'English';
-  gatedApi(
-    'You are a redundancy-cutting expert. The user has written the following text:\n\n"""+txt+"""\n\nFind every wordy phrase (e.g. "due to the fact that", "in close proximity to", "each and every", "in order to", "at this point in time", etc.) and replace each with its tight native English equivalent. Return ONLY a JSON object with two keys:\n1. "annotated": the full text as an HTML string where each replaced phrase is wrapped like <mark style=\'background:rgba(244,114,182,0.28);color:#F9A8D4;border-radius:4px;padding:0 3px;text-decoration:line-through\'>wordy phrase</mark><strong style=\'color:#34D399;margin-left:4px\'>tight replacement</strong>\n2. "summary": a plain-text list of replacements made, one per line, format: wordy → tight\nIf no redundancies found, set annotated to the original text and summary to "No redundancies found — your writing is already tight!"\nRespond ONLY with the JSON object, no markdown, no preamble.'.replace('"""+txt+"""', JSON.stringify(txt)),
-    buildSys(''),1200
-  ).then(function(raw){
-    if(!raw){wHtml('rcResult','<div style="color:#F87171;font-size:13px">Error — please try again.</div>');return;}
-    var obj;
-    try{
-      var clean=raw.replace(/^```json\s*/,'').replace(/^```\s*/,'').replace(/```\s*$/,'').trim();
-      obj=JSON.parse(clean);
-    }catch(e){
-      // fallback: just show raw
-      wHtml('rcResult','<div style="font-size:13px;line-height:1.7;color:rgba(255,255,255,0.85)">'+raw+'</div>');
-      return;
-    }
-    var html='';
-    if(obj.annotated){
-      html+='<div style="background:rgba(244,114,182,0.08);border:1.5px solid rgba(244,114,182,0.22);border-radius:12px;padding:14px 16px;font-size:13.5px;line-height:1.85;color:rgba(255,255,255,0.90)">'+obj.annotated+'</div>';
-    }
-    if(obj.summary){
-      html+='<div style="margin-top:12px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.10);border-radius:10px;padding:12px 14px">';
-      html+='<div style="font-size:11px;font-weight:700;color:#F472B6;letter-spacing:0.08em;margin-bottom:8px">REPLACEMENTS MADE</div>';
-      var lines=obj.summary.split('\n').filter(function(l){return l.trim();});
-      lines.forEach(function(l){
-        html+='<div style="font-size:12px;color:rgba(255,255,255,0.70);padding:3px 0;border-bottom:1px solid rgba(255,255,255,0.06)">'+l+'</div>';
-      });
-      html+='</div>';
-    }
-    wHtml('rcResult', html||'<div style="color:rgba(255,255,255,0.5);font-size:13px">Done — no changes needed.</div>');
-    var el=document.getElementById('rcResult');
-    if(el)setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'nearest'});},100);
-  });
+  wHtml('rcResult',html||'<div style="color:rgba(255,255,255,0.5);font-size:13px">Done \u2014 no changes needed.</div>');
+  var el=document.getElementById('rcResult');
+  if(el)setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'nearest'});},100);
 }
 
 function rcExample(){var d=document.getElementById('rcInput');if(d)d.value='Due to the fact that she was in close proximity to the office, she decided that in order to save time she would, in the near future, make advance planning for each and every meeting she had on a daily basis.';rcCheck();}

@@ -448,7 +448,7 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
 @media(max-width:480px){
   .announce-bar{font-size:10px;flex-direction:column;gap:4px;padding:7px 10px;text-align:center}
   header{gap:5px}
-  #nativeLang{display:none}
+  #nativeLang{display:block;font-size:10px;padding:4px 6px;max-width:90px}
   .hero h1{font-size:27px;letter-spacing:-.8px}
   .hero-sub{font-size:13px}
   .hero-cta{flex-direction:column;align-items:stretch}
@@ -4378,16 +4378,7 @@ var NL={
   data:{
     // ── PREPOSITIONS ──
     prep_tip:{
-      German:'💡 Tipp: Englische Präpositionen lassen sich selten direkt aus dem Deutschen übersetzen. Lerne jede Kombination als feste Einheit.',
-      French:'💡 Conseil : Les prépositions anglaises ne se traduisent pas toujours directement du français. Apprenez chaque combinaison comme une unité.',
       Spanish:'💡 Consejo: Las preposiciones en inglés no siempre coinciden con el español. Memoriza cada combinación (collocation) como una unidad.',
-      Chinese:'💡 提示：英语介词很少能直接从中文翻译过来。请把每个搭配作为一个整体来学习。',
-      Japanese:'💡 ヒント：英語の前置詞は日本語から直接訳せないことが多いです。各コロケーションを一つの単位として覚えましょう。',
-      Russian:'💡 Совет: Английские предлоги редко переводятся напрямую с русского. Учите каждое сочетание как единое целое.',
-      Portuguese:'💡 Dica: As preposições inglesas raramente se traduzem diretamente do português. Aprenda cada combinação como uma unidade.',
-      Italian:'💡 Suggerimento: Le preposizioni inglesi raramente si traducono direttamente dall\'italiano. Impara ogni combinazione come un\'unità.',
-      Korean:'💡 팁: 영어 전치사는 한국어에서 직접 번역되지 않는 경우가 많습니다. 각 결합을 하나의 단위로 학습하세요.',
-      Turkish:'💡 İpucu: İngilizce edatlar Türkçeden doğrudan çevrilmez. Her kombinasyonu bir bütün olarak öğrenin.',
       Telugu:'💡 గుర్తుంచుకో: English prepositions Telugu లో ఉండే లాగా directly translate కావు. ప్రతి collocation ని ఒక unit గా నేర్చుకో.',
       Tamil:'💡 குறிப்பு: ஆங்கில prepositions தமிழில் உள்ளதுபோல் நேரடியாக மொழிபெயர்க்கப்படுவதில்லை. ஒவ்வொரு சேர்க்கையையும் ஒரு அலகாக கற்றுக்கொள்.',
       Hindi:'💡 याद रखें: अंग्रेजी prepositions सीधे हिंदी में translate नहीं होतीं। हर combination को एक unit की तरह सीखें।',
@@ -4397,16 +4388,7 @@ var NL={
       default:'💡 Tip: English prepositions rarely translate directly from your language. Learn each combination as one unit.'
     },
     prep_rule:{
-      German:'Regel auf Deutsch: Vergleiche diese Verwendung mit dem Deutschen. Manchmal stimmen sie überein, manchmal nicht.',
-      French:'Règle en français : Comparez cet usage avec le français. Parfois ils correspondent, parfois non.',
       Spanish:'Regla en tu idioma: Compara este uso con el español. A veces coincide, a veces no.',
-      Chinese:'用你的语言理解规则：将此用法与中文进行比较。有时相同，有时不同。',
-      Japanese:'あなたの言語でのルール：この使い方を日本語と比べてみましょう。同じ場合もあれば、違う場合もあります。',
-      Russian:'Правило на русском: Сравни это использование с русским языком. Иногда совпадает, иногда отличается.',
-      Portuguese:'Regra no seu idioma: Compare este uso com o português. Às vezes coincide, às vezes não.',
-      Italian:'Regola nella tua lingua: Confronta questo uso con l\'italiano. A volte coincide, a volte no.',
-      Korean:'당신의 언어로 된 규칙: 이 사용법을 한국어와 비교해 보세요. 때로는 같고, 때로는 다릅니다.',
-      Turkish:'Kendi dilinizdeki kural: Bu kullanımı Türkçe ile karşılaştırın. Bazen aynı, bazen farklı.',
       Telugu:'నీ భాషలో rule: ఈ usage ని Telugu తో compare చేయి. కొన్నిసార్లు same గా ఉంటుంది, కొన్నిసార్లు different గా.',
       Tamil:'உன் மொழியில் விதி: இந்த usage-ஐ தமிழுடன் ஒப்பிடுங்கள். சில நேரம் ஒரே மாதிரி இருக்கும், சில நேரம் மாறுபடும்.',
       Hindi:'अपनी भाषा में नियम: इस usage को हिंदी से compare करें। कभी-कभी मिलता है, कभी अलग होता है।',

@@ -448,7 +448,7 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
 @media(max-width:480px){
   .announce-bar{font-size:10px;flex-direction:column;gap:4px;padding:7px 10px;text-align:center}
   header{gap:5px}
-  #nativeLang{display:none}
+  #nativeLang{display:block;font-size:10px;padding:4px 6px;max-width:90px}
   .hero h1{font-size:27px;letter-spacing:-.8px}
   .hero-sub{font-size:13px}
   .hero-cta{flex-direction:column;align-items:stretch}
@@ -2431,13 +2431,17 @@ function submitWaitlist(){
   if(btn){btn.textContent='Registering...';btn.disabled=true;btn.style.opacity='0.7';}
 
   // Submit to Google Forms
-  var SCRIPT_URL='https://script.google.com/macros/s/AKfycbwhNqmYwb1WIb0X3R1hCZ0VdtmjVsWfXtp8nF_DByC42UPkTMYWMQFjbkWnAB1vYnL4/exec';
-  fetch(SCRIPT_URL,{
-    method:'POST',
-    body:JSON.stringify({name:name,email:email,language:langSel,country:country,loved:liked,improve:improve,remove:remove}),
-    headers:{'Content-Type':'application/json'},
-    mode:'no-cors'
-  }).catch(function(){});
+  var GOOGLE_FORM_URL='https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse';
+  var fd=new FormData();
+  fd.append('entry.NAME',name);
+  fd.append('entry.EMAIL',email);
+  fd.append('entry.PHONE',phone);
+  fd.append('entry.LANGUAGE',langSel);
+  fd.append('entry.COUNTRY',country);
+  fd.append('entry.LEVEL',level);
+  fd.append('entry.GOAL',goal);
+  fd.append('entry.FEEDBACK',feedback);
+  fetch(GOOGLE_FORM_URL,{method:'POST',body:fd,mode:'no-cors'}).catch(function(){});
 
   // Increment waitlist counter
   waitlistCount++;

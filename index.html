@@ -448,7 +448,7 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
 @media(max-width:480px){
   .announce-bar{font-size:10px;flex-direction:column;gap:4px;padding:7px 10px;text-align:center}
   header{gap:5px}
-  #nativeLang{display:block;font-size:10px;padding:4px 6px;max-width:90px}
+  #nativeLang{display:none}
   .hero h1{font-size:27px;letter-spacing:-.8px}
   .hero-sub{font-size:13px}
   .hero-cta{flex-direction:column;align-items:stretch}
@@ -2431,16 +2431,15 @@ function submitWaitlist(){
   if(btn){btn.textContent='Registering...';btn.disabled=true;btn.style.opacity='0.7';}
 
   // Submit to Google Forms
-  var GOOGLE_FORM_URL='https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse';
+  var GOOGLE_FORM_URL='https://docs.google.com/forms/d/e/1FAIpQLSe1JqhBMoId2tPtwyV_zvHuXINrYS3RtT92g-mLIKWl7Ko/formResponse';
   var fd=new FormData();
-  fd.append('entry.NAME',name);
-  fd.append('entry.EMAIL',email);
-  fd.append('entry.PHONE',phone);
-  fd.append('entry.LANGUAGE',langSel);
-  fd.append('entry.COUNTRY',country);
-  fd.append('entry.LEVEL',level);
-  fd.append('entry.GOAL',goal);
-  fd.append('entry.FEEDBACK',feedback);
+  fd.append('entry.1035833558',name);
+  fd.append('entry.100545395',email);
+  fd.append('entry.2059170971',langSel);
+  fd.append('entry.868439332',country);
+  fd.append('entry.1435570515',liked);
+  fd.append('entry.465367834',improve);
+  fd.append('entry.1800789372',remove);
   fetch(GOOGLE_FORM_URL,{method:'POST',body:fd,mode:'no-cors'}).catch(function(){});
 
   // Increment waitlist counter

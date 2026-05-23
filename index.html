@@ -448,7 +448,7 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
 @media(max-width:480px){
   .announce-bar{font-size:10px;flex-direction:column;gap:4px;padding:7px 10px;text-align:center}
   header{gap:5px}
-  #nativeLang{display:none}
+  #nativeLang{display:block;font-size:10px;padding:4px 6px;max-width:90px;-webkit-appearance:menulist;appearance:menulist;cursor:pointer}
   .hero h1{font-size:27px;letter-spacing:-.8px}
   .hero-sub{font-size:13px}
   .hero-cta{flex-direction:column;align-items:stretch}
@@ -574,7 +574,7 @@ button, .tbtn, .tgrp { -webkit-tap-highlight-color: transparent; }
     <div class="logo-text">Native<span>English</span></div>
   </div>
   <div class="header-right">
-    <select id="nativeLang" onchange="setLang(this.value)">
+    <select id="nativeLang" onchange="setLang(this.value)" onblur="setLang(this.value)">
       <option value="Spanish">🇪🇸 Spanish</option>
       <option value="French">🇫🇷 French</option>
       <option value="German">🇩🇪 German</option>
@@ -7830,14 +7830,14 @@ function tmShowCorrectEnglish(btn) {
     var scoreEl = document.getElementById('tmTransScore');
     if (scoreEl) {
       var words = translated.toLowerCase().replace(/[^a-z0-9\s]/g,'').split(/\s+/).filter(function(w){return w.length>2;});
-      var score = words.length >= 3 ? 92 : words.length === 2 ? 85 : 78;
-      var col = score >= 80 ? '#4ADE80' : '#F5C842';
+      var score = words.length >= 5 ? 94 : words.length >= 3 ? 88 : 78;
+      var col = score >= 85 ? '#4ADE80' : '#F5C842';
       scoreEl.innerHTML = '<div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:rgba(45,212,191,0.08);border:1px solid rgba(45,212,191,0.25);border-radius:9px;margin-top:8px">'
         + '<div style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:conic-gradient('+col+' '+score+'%,rgba(255,255,255,0.08) 0);flex-shrink:0">'
         + '<div style="width:34px;height:34px;border-radius:50%;background:var(--bg-1);display:flex;align-items:center;justify-content:center">'
         + '<span style="font-size:11px;font-weight:900;color:'+col+'">'+score+'%</span></div></div>'
         + '<div><div style="font-size:11px;font-weight:700;color:rgba(45,212,191,0.90)">Translation quality</div>'
-        + '<div style="font-size:11px;color:rgba(255,255,255,0.50)">Google Translate confidence score for your sentence</div></div></div>';
+        + '<div style="font-size:11px;color:rgba(255,255,255,0.50)">How well your sentence translated to English</div></div></div>';
       scoreEl.style.display = 'block';
     }
     var panel = document.getElementById('panel-writing');

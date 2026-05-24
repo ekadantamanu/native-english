@@ -448,7 +448,7 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
 @media(max-width:480px){
   .announce-bar{font-size:10px;flex-direction:column;gap:4px;padding:7px 10px;text-align:center}
   header{gap:5px}
-  #nativeLang{display:none}
+  #nativeLang{display:block;font-size:10px;padding:4px 6px;max-width:90px;-webkit-appearance:menulist;appearance:menulist;cursor:pointer}
   .hero h1{font-size:27px;letter-spacing:-.8px}
   .hero-sub{font-size:13px}
   .hero-cta{flex-direction:column;align-items:stretch}
@@ -574,7 +574,7 @@ button, .tbtn, .tgrp { -webkit-tap-highlight-color: transparent; }
     <div class="logo-text">Native<span>English</span></div>
   </div>
   <div class="header-right">
-    <select id="nativeLang" onchange="setLang(this.value)">
+    <select id="nativeLang" onchange="setLang(this.value)" onblur="setLang(this.value)">
       <option value="Spanish">🇪🇸 Spanish</option>
       <option value="French">🇫🇷 French</option>
       <option value="German">🇩🇪 German</option>
@@ -2431,17 +2431,13 @@ function submitWaitlist(){
   if(btn){btn.textContent='Registering...';btn.disabled=true;btn.style.opacity='0.7';}
 
   // Submit to Google Forms
-  var GOOGLE_FORM_URL='https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse';
-  var fd=new FormData();
-  fd.append('entry.NAME',name);
-  fd.append('entry.EMAIL',email);
-  fd.append('entry.PHONE',phone);
-  fd.append('entry.LANGUAGE',langSel);
-  fd.append('entry.COUNTRY',country);
-  fd.append('entry.LEVEL',level);
-  fd.append('entry.GOAL',goal);
-  fd.append('entry.FEEDBACK',feedback);
-  fetch(GOOGLE_FORM_URL,{method:'POST',body:fd,mode:'no-cors'}).catch(function(){});
+  var SCRIPT_URL='https://script.google.com/macros/s/AKfycbwhNqmYwb1WIb0X3R1hCZ0VdtmjVsWfXtp8nF_DByC42UPkTMYWMQFjbkWnAB1vYnL4/exec';
+  fetch(SCRIPT_URL,{
+    method:'POST',
+    body:JSON.stringify({name:name,email:email,language:langSel,country:country,loved:liked,improve:improve,remove:remove}),
+    headers:{'Content-Type':'application/json'},
+    mode:'no-cors'
+  }).catch(function(){});
 
   // Increment waitlist counter
   waitlistCount++;
@@ -4378,7 +4374,16 @@ var NL={
   data:{
     // ── PREPOSITIONS ──
     prep_tip:{
+      German:'💡 Tipp: Englische Präpositionen lassen sich selten direkt aus dem Deutschen übersetzen. Lerne jede Kombination als feste Einheit.',
+      French:'💡 Conseil : Les prépositions anglaises ne se traduisent pas toujours directement du français. Apprenez chaque combinaison comme une unité.',
       Spanish:'💡 Consejo: Las preposiciones en inglés no siempre coinciden con el español. Memoriza cada combinación (collocation) como una unidad.',
+      Chinese:'💡 提示：英语介词很少能直接从中文翻译过来。请把每个搭配作为一个整体来学习。',
+      Japanese:'💡 ヒント：英語の前置詞は日本語から直接訳せないことが多いです。各コロケーションを一つの単位として覚えましょう。',
+      Russian:'💡 Совет: Английские предлоги редко переводятся напрямую с русского. Учите каждое сочетание как единое целое.',
+      Portuguese:'💡 Dica: As preposições inglesas raramente se traduzem diretamente do português. Aprenda cada combinação como uma unidade.',
+      Italian:'💡 Suggerimento: Le preposizioni inglesi raramente si traducono direttamente dall\'italiano. Impara ogni combinazione come un\'unità.',
+      Korean:'💡 팁: 영어 전치사는 한국어에서 직접 번역되지 않는 경우가 많습니다. 각 결합을 하나의 단위로 학습하세요.',
+      Turkish:'💡 İpucu: İngilizce edatlar Türkçeden doğrudan çevrilmez. Her kombinasyonu bir bütün olarak öğrenin.',
       Telugu:'💡 గుర్తుంచుకో: English prepositions Telugu లో ఉండే లాగా directly translate కావు. ప్రతి collocation ని ఒక unit గా నేర్చుకో.',
       Tamil:'💡 குறிப்பு: ஆங்கில prepositions தமிழில் உள்ளதுபோல் நேரடியாக மொழிபெயர்க்கப்படுவதில்லை. ஒவ்வொரு சேர்க்கையையும் ஒரு அலகாக கற்றுக்கொள்.',
       Hindi:'💡 याद रखें: अंग्रेजी prepositions सीधे हिंदी में translate नहीं होतीं। हर combination को एक unit की तरह सीखें।',
@@ -4388,7 +4393,16 @@ var NL={
       default:'💡 Tip: English prepositions rarely translate directly from your language. Learn each combination as one unit.'
     },
     prep_rule:{
+      German:'Regel auf Deutsch: Vergleiche diese Verwendung mit dem Deutschen. Manchmal stimmen sie überein, manchmal nicht.',
+      French:'Règle en français : Comparez cet usage avec le français. Parfois ils correspondent, parfois non.',
       Spanish:'Regla en tu idioma: Compara este uso con el español. A veces coincide, a veces no.',
+      Chinese:'用你的语言理解规则：将此用法与中文进行比较。有时相同，有时不同。',
+      Japanese:'あなたの言語でのルール：この使い方を日本語と比べてみましょう。同じ場合もあれば、違う場合もあります。',
+      Russian:'Правило на русском: Сравни это использование с русским языком. Иногда совпадает, иногда отличается.',
+      Portuguese:'Regra no seu idioma: Compare este uso com o português. Às vezes coincide, às vezes não.',
+      Italian:'Regola nella tua lingua: Confronta questo uso con l\'italiano. A volte coincide, a volte no.',
+      Korean:'당신의 언어로 된 규칙: 이 사용법을 한국어와 비교해 보세요. 때로는 같고, 때로는 다릅니다.',
+      Turkish:'Kendi dilinizdeki kural: Bu kullanımı Türkçe ile karşılaştırın. Bazen aynı, bazen farklı.',
       Telugu:'నీ భాషలో rule: ఈ usage ని Telugu తో compare చేయి. కొన్నిసార్లు same గా ఉంటుంది, కొన్నిసార్లు different గా.',
       Tamil:'உன் மொழியில் விதி: இந்த usage-ஐ தமிழுடன் ஒப்பிடுங்கள். சில நேரம் ஒரே மாதிரி இருக்கும், சில நேரம் மாறுபடும்.',
       Hindi:'अपनी भाषा में नियम: इस usage को हिंदी से compare करें। कभी-कभी मिलता है, कभी अलग होता है।',
@@ -5360,10 +5374,219 @@ function showTlPopup(t){
     +'<button onclick="translateTense(\''+t.name+'\',\''+t.formula+'\',\''+t.when+'\',\''+t.col+'\')" style="margin-top:8px;padding:5px 14px;border-radius:20px;border:1.5px solid '+t.col+';background:transparent;color:'+t.col+';font-size:11px;cursor:pointer;font-family:inherit;font-weight:600">Explain in '+lang+'</button>';
 }
 
+
+// ══════════════════════════════════════════════════════
+// LOCAL TENSE EXPLANATIONS — pure native language
+// 12 tenses × 14 languages — zero API, zero cost
+// ══════════════════════════════════════════════════════
+var TENSE_LOCAL={
+  'Simple Past':{
+    German:'Das Simple Past beschreibt Handlungen, die zu einem bestimmten Zeitpunkt in der Vergangenheit abgeschlossen wurden. Es entspricht dem deutschen Präteritum. Bildung: Verb + -ed (regelmäßig) oder unregelmäßige Form (V2). Beispiel: "She walked to school." = "Sie ging zur Schule."',
+    French:'Le Simple Past exprime une action terminée dans le passé à un moment précis. Il correspond au passé composé ou passé simple français. Formation: verbe + -ed (régulier) ou forme irrégulière. Exemple: "She walked to school." = "Elle est allée à l\'école."',
+    Spanish:'El Simple Past expresa acciones completadas en un momento específico del pasado. Equivale al pretérito indefinido. Formación: verbo + -ed (regular) o forma irregular. Ejemplo: "She walked to school." = "Ella fue a la escuela."',
+    Chinese:'简单过去时表示在过去某个特定时间完成的动作。构成：动词+ed（规则动词）或不规则动词第二形式。例句："She walked to school."（她走路去学校了。）用于描述已经结束的过去动作。',
+    Japanese:'過去形は過去のある時点で完了した動作を表します。作り方：動詞の過去形（規則動詞は+ed、不規則動詞は第2形）。例：「She walked to school.」＝「彼女は学校まで歩いていった。」',
+    Russian:'Simple Past описывает действие, завершённое в определённый момент прошлого. Соответствует русскому прошедшему времени. Образование: глагол + -ed (правильные) или неправильная форма. Пример: "She walked to school." = "Она шла в школу."',
+    Portuguese:'O Simple Past expressa ações concluídas num momento específico do passado. Equivale ao pretérito perfeito. Formação: verbo + -ed (regular) ou forma irregular. Exemplo: "She walked to school." = "Ela foi à escola."',
+    Italian:'Il Simple Past esprime azioni concluse in un momento specifico del passato. Corrisponde al passato remoto o prossimo. Formazione: verbo + -ed (regolare) o forma irregolare. Esempio: "She walked to school." = "Lei andò a scuola."',
+    Korean:'단순 과거시제는 과거의 특정 시점에 완료된 동작을 나타냅니다. 형성: 동사+ed(규칙) 또는 불규칙 형태. 예시: "She walked to school." = "그녀는 학교까지 걸어갔다."',
+    Turkish:'Simple Past (Geniş Geçmiş), geçmişte belirli bir anda tamamlanan eylemleri ifade eder. Türkçedeki -di\'li geçmiş zamana karşılık gelir. Yapısı: fiil+ed (düzenli) veya düzensiz form. Örnek: "She walked to school." = "Okula yürüyerek gitti."',
+    Arabic:'الماضي البسيط يصف حدثاً اكتمل في وقت محدد في الماضي. يشبه الماضي في العربية. التكوين: الفعل + ed (المنتظم) أو الشكل الشاذ. مثال: "She walked to school." = "ذهبت إلى المدرسة مشياً."',
+    Hindi:'Simple Past उन कार्यों को व्यक्त करता है जो अतीत में किसी निश्चित समय पर पूरे हो गए। बनावट: verb + ed (नियमित) या अनियमित रूप। उदाहरण: "She walked to school." = "वह स्कूल तक चली गई।"',
+    Tamil:'Simple Past கடந்த காலத்தில் குறிப்பிட்ட நேரத்தில் முடிந்த செயல்களை வெளிப்படுத்துகிறது. உருவாக்கம்: verb + ed (regular) அல்லது irregular வடிவம். எடுத்துக்காட்டு: "She walked to school." = "அவள் பள்ளிக்கு நடந்து சென்றாள்."',
+    Telugu:'Simple Past గతంలో నిర్దిష్ట సమయంలో పూర్తయిన చర్యలను వ్యక్తపరుస్తుంది. నిర్మాణం: verb + ed (regular) లేదా irregular రూపం. ఉదాహరణ: "She walked to school." = "ఆమె పాఠశాలకు నడిచి వెళ్ళింది."',
+  },
+  'Past Continuous':{
+    German:'Das Past Continuous beschreibt eine Handlung, die zu einem bestimmten Zeitpunkt in der Vergangenheit im Gange war, oft durch eine andere Handlung unterbrochen. Bildung: was/were + Verb-ing. Beispiel: "She was walking when it rained." = "Sie ging gerade spazieren, als es regnete."',
+    French:'Le Past Continuous exprime une action en cours dans le passé, souvent interrompue par une autre action. Formation: was/were + verbe-ing. Exemple: "She was walking when it rained." = "Elle marchait quand il a plu."',
+    Spanish:'El Past Continuous expresa una acción en progreso en el pasado, frecuentemente interrumpida. Equivale al pretérito imperfecto. Formación: was/were + verbo-ing. Ejemplo: "She was walking when it rained." = "Ella estaba caminando cuando llovió."',
+    Chinese:'过去进行时表示过去某一时刻正在进行的动作，常被另一个动作打断。构成：was/were+动词-ing。例句："She was walking when it rained."（当下雨时，她正在走路。）',
+    Japanese:'過去進行形は過去のある時点で進行中だった動作を表します（しばしば他の動作によって中断されます）。作り方：was/were + 動詞-ing。例：「彼女が雨に降られたとき、歩いていた。」',
+    Russian:'Past Continuous описывает действие, которое происходило в определённый момент прошлого, часто прерванное другим действием. Образование: was/were + глагол-ing. Пример: "She was walking when it rained." = "Она шла, когда пошёл дождь."',
+    Portuguese:'O Past Continuous descreve uma ação em progresso no passado, frequentemente interrompida. Formação: was/were + verbo-ing. Exemplo: "She was walking when it rained." = "Ela estava caminhando quando choveu."',
+    Italian:'Il Past Continuous descrive un\'azione in corso nel passato, spesso interrotta. Formazione: was/were + verbo-ing. Esempio: "She was walking when it rained." = "Stava camminando quando piovve."',
+    Korean:'과거 진행시제는 과거의 특정 시점에 진행 중이던 동작을 나타냅니다. 형성: was/were+동사ing. 예시: "She was walking when it rained." = "비가 올 때 그녀는 걷고 있었다."',
+    Turkish:'Past Continuous, geçmişte belirli bir anda devam eden, genellikle başka bir eylemle kesilen eylemleri anlatır. Yapısı: was/were + fiil-ing. Örnek: "She was walking when it rained." = "Yağmur yağdığında yürüyordu."',
+    Arabic:'الماضي المستمر يصف حدثاً كان مستمراً في الماضي، وغالباً انقطع بحدث آخر. التكوين: was/were + فعل-ing. مثال: "She was walking when it rained." = "كانت تمشي عندما بدأ المطر."',
+    Hindi:'Past Continuous उन कार्यों को दर्शाता है जो अतीत में किसी समय चल रहे थे और अक्सर बाधित हुए। बनावट: was/were + verb-ing। उदाहरण: "She was walking when it rained." = "जब बारिश हुई तो वह चल रही थी।"',
+    Tamil:'Past Continuous கடந்த காலத்தில் குறிப்பிட்ட நேரத்தில் நடந்துகொண்டிருந்த செயல்களை காட்டுகிறது. உருவாக்கம்: was/were + verb-ing. எடுத்துக்காட்டு: "She was walking when it rained." = "மழை பெய்தபோது அவள் நடந்துகொண்டிருந்தாள்."',
+    Telugu:'Past Continuous గతంలో నిర్దిష్ట సమయంలో జరుగుతున్న చర్యలను వ్యక్తపరుస్తుంది. నిర్మాణం: was/were + verb-ing. ఉదాహరణ: "She was walking when it rained." = "వర్షం పడినప్పుడు ఆమె నడుస్తోంది."',
+  },
+  'Past Perfect':{
+    German:'Das Past Perfect beschreibt eine Handlung, die abgeschlossen war, bevor eine andere Handlung in der Vergangenheit begann. Es entspricht dem deutschen Plusquamperfekt. Bildung: had + Partizip II. Beispiel: "She had walked before it rained." = "Sie war gegangen, bevor es regnete."',
+    French:'Le Past Perfect exprime une action achevée avant une autre action dans le passé. Il correspond au plus-que-parfait français. Formation: had + participe passé. Exemple: "She had walked before it rained." = "Elle avait marché avant qu\'il pleuve."',
+    Spanish:'El Past Perfect expresa una acción completada antes de otra en el pasado. Equivale al pluscuamperfecto. Formación: had + participio. Ejemplo: "She had walked before it rained." = "Ella había caminado antes de que lloviera."',
+    Chinese:'过去完成时表示在过去另一个动作发生之前已经完成的动作。构成：had+过去分词。例句："She had walked before it rained."（下雨之前她已经走完了。）相当于中文的"已经…了"。',
+    Japanese:'過去完了形は、過去の別の動作が起こる前にすでに完了していた動作を表します。作り方：had + 過去分詞。例：「雨が降る前に、彼女はすでに歩いていた。」',
+    Russian:'Past Perfect описывает действие, завершённое до другого действия в прошлом. Соответствует русскому предпрошедшему значению. Образование: had + причастие прошедшего времени. Пример: "She had walked before it rained." = "Она уже прошла до того, как пошёл дождь."',
+    Portuguese:'O Past Perfect descreve uma ação concluída antes de outra no passado. Equivale ao pretérito mais-que-perfeito. Formação: had + particípio passado. Exemplo: "She had walked before it rained." = "Ela tinha caminhado antes de chover."',
+    Italian:'Il Past Perfect esprime un\'azione completata prima di un\'altra nel passato. Corrisponde al trapassato prossimo. Formazione: had + participio passato. Esempio: "She had walked before it rained." = "Aveva camminato prima che piovesse."',
+    Korean:'과거완료시제는 과거의 다른 동작이 일어나기 전에 완료된 동작을 나타냅니다. 형성: had+과거분사. 예시: "She had walked before it rained." = "비가 오기 전에 그녀는 이미 걸어갔다."',
+    Turkish:'Past Perfect, geçmişte başka bir eylemden önce tamamlanan eylemleri anlatır. Türkçedeki geçmiş zamanın geçmişine benzer. Yapısı: had + fiil üçüncü hali. Örnek: "She had walked before it rained." = "Yağmur yağmadan önce yürümüştü."',
+    Arabic:'الماضي التام يصف حدثاً اكتمل قبل حدث آخر في الماضي. التكوين: had + الفعل المضارع التام. مثال: "She had walked before it rained." = "كانت قد مشت قبل أن يمطر."',
+    Hindi:'Past Perfect उन कार्यों को दर्शाता है जो अतीत में किसी अन्य घटना से पहले पूरे हो गए थे। बनावट: had + past participle। उदाहरण: "She had walked before it rained." = "वह चली गई थी, इससे पहले कि बारिश हो।"',
+    Tamil:'Past Perfect கடந்த காலத்தில் மற்றொரு நிகழ்வுக்கு முன்பே முடிந்த செயல்களை காட்டுகிறது. உருவாக்கம்: had + past participle. எடுத்துக்காட்டு: "She had walked before it rained." = "மழை பெய்வதற்கு முன்பே அவள் நடந்து சென்றாள்."',
+    Telugu:'Past Perfect గతంలో మరొక సంఘటన జరగడానికి ముందే పూర్తయిన చర్యలను వ్యక్తపరుస్తుంది. నిర్మాణం: had + past participle. ఉదాహరణ: "She had walked before it rained." = "వర్షం పడే ముందే ఆమె నడిచి వెళ్ళింది."',
+  },
+  'Past Perf. Cont.':{
+    German:'Das Past Perfect Continuous beschreibt eine anhaltende Handlung, die bis zu einem bestimmten Zeitpunkt in der Vergangenheit andauerte. Bildung: had been + Verb-ing. Beispiel: "She had been walking for an hour." = "Sie war eine Stunde lang gegangen."',
+    French:'Le Past Perfect Continuous décrit une action continue qui durait jusqu\'à un moment du passé. Formation: had been + verbe-ing. Exemple: "She had been walking for an hour." = "Elle marchait depuis une heure (avant ce moment)."',
+    Spanish:'El Past Perfect Continuous describe una acción continua que duró hasta un momento del pasado. Formación: had been + verbo-ing. Ejemplo: "She had been walking for an hour." = "Ella había estado caminando durante una hora."',
+    Chinese:'过去完成进行时表示在过去某一时刻之前一直持续进行的动作。构成：had been+动词-ing。例句："She had been walking for an hour."（她已经走了一个小时了。）强调动作的持续性。',
+    Japanese:'過去完了進行形は、過去の時点まで継続していた動作を表します。作り方：had been + 動詞-ing。例：「彼女は1時間歩き続けていた。」',
+    Russian:'Past Perfect Continuous описывает длительное действие, продолжавшееся до определённого момента в прошлом. Образование: had been + глагол-ing. Пример: "She had been walking for an hour." = "Она шла уже час к тому времени."',
+    Portuguese:'O Past Perfect Continuous descreve uma ação contínua que durou até um momento no passado. Formação: had been + verbo-ing. Exemplo: "She had been walking for an hour." = "Ela tinha estado a caminhar durante uma hora."',
+    Italian:'Il Past Perfect Continuous descrive un\'azione continua durata fino a un momento nel passato. Formazione: had been + verbo-ing. Esempio: "She had been walking for an hour." = "Stava camminando da un\'ora."',
+    Korean:'과거완료진행시제는 과거의 특정 시점까지 계속된 동작을 나타냅니다. 형성: had been+동사ing. 예시: "She had been walking for an hour." = "그녀는 한 시간 동안 걸어오고 있었다."',
+    Turkish:'Past Perfect Continuous, geçmişte bir ana kadar süren eylemleri anlatır. Yapısı: had been + fiil-ing. Örnek: "She had been walking for an hour." = "Bir saattir yürümekteydi."',
+    Arabic:'الماضي التام المستمر يصف حدثاً كان مستمراً حتى نقطة معينة في الماضي. التكوين: had been + فعل-ing. مثال: "She had been walking for an hour." = "كانت تمشي منذ ساعة."',
+    Hindi:'Past Perfect Continuous उन कार्यों को दर्शाता है जो अतीत में किसी बिंदु तक लगातार चलते रहे। बनावट: had been + verb-ing। उदाहरण: "She had been walking for an hour." = "वह एक घंटे से चलती आ रही थी।"',
+    Tamil:'Past Perfect Continuous கடந்த காலத்தில் ஒரு குறிப்பிட்ட நேரம் வரை தொடர்ந்து நடந்த செயல்களை காட்டுகிறது. உருவாக்கம்: had been + verb-ing. எடுத்துக்காட்டு: "She had been walking for an hour." = "அவள் ஒரு மணி நேரமாக நடந்துகொண்டிருந்தாள்."',
+    Telugu:'Past Perfect Continuous గతంలో ఒక నిర్దిష్ట సమయం వరకు కొనసాగిన చర్యలను వ్యక్తపరుస్తుంది. నిర్మాణం: had been + verb-ing. ఉదాహరణ: "She had been walking for an hour." = "ఆమె ఒక గంట సేపు నడుస్తూనే ఉంది."',
+  },
+  'Simple Present':{
+    German:'Das Simple Present wird für Gewohnheiten, allgemeine Wahrheiten und regelmäßige Handlungen verwendet. Es hat keine direkte Entsprechung im Deutschen — man benutzt meistens das Präsens. Bildung: Verb (+ s für he/she/it). Beispiel: "She walks every day." = "Sie geht jeden Tag zu Fuß."',
+    French:'Le Simple Present exprime des habitudes, des vérités générales et des faits permanents. Formation: verbe (+ s pour he/she/it). Exemple: "She walks every day." = "Elle marche tous les jours."',
+    Spanish:'El Simple Present expresa hábitos, verdades generales y acciones regulares. Formación: verbo (+ s para he/she/it). Ejemplo: "She walks every day." = "Ella camina todos los días."',
+    Chinese:'一般现在时用于表示习惯、普遍真理和规律性动作。构成：动词原形（第三人称单数加s）。例句："She walks every day."（她每天走路。）常与always、usually、every day等词连用。',
+    Japanese:'現在形は習慣、一般的な真実、定期的な動作を表します。作り方：動詞の原形（三人称単数は+s）。例：「彼女は毎日歩く。」',
+    Russian:'Simple Present используется для выражения привычек, общих истин и регулярных действий. Образование: глагол (+ s для he/she/it). Пример: "She walks every day." = "Она ходит каждый день."',
+    Portuguese:'O Simple Present expressa hábitos, verdades gerais e ações regulares. Formação: verbo (+ s para he/she/it). Exemplo: "She walks every day." = "Ela caminha todos os dias."',
+    Italian:'Il Simple Present esprime abitudini, verità generali e azioni regolari. Formazione: verbo (+ s per he/she/it). Esempio: "She walks every day." = "Lei cammina ogni giorno."',
+    Korean:'단순 현재시제는 습관, 일반적인 사실, 규칙적인 동작을 나타냅니다. 형성: 동사(he/she/it에는 +s). 예시: "She walks every day." = "그녀는 매일 걷는다."',
+    Turkish:'Simple Present alışkanlıkları, genel gerçekleri ve düzenli eylemleri anlatır. Yapısı: fiil (he/she/it için +s). Örnek: "She walks every day." = "Her gün yürür."',
+    Arabic:'المضارع البسيط يعبر عن العادات والحقائق العامة والأفعال المنتظمة. التكوين: الفعل (+ s للغائب المفرد). مثال: "She walks every day." = "هي تمشي كل يوم."',
+    Hindi:'Simple Present आदतों, सामान्य सत्यों और नियमित कार्यों को व्यक्त करता है। बनावट: verb (+ s he/she/it के लिए)। उदाहरण: "She walks every day." = "वह हर दिन चलती है।"',
+    Tamil:'Simple Present பழக்கங்கள், பொதுவான உண்மைகள் மற்றும் வழக்கமான செயல்களை வெளிப்படுத்துகிறது. உருவாக்கம்: verb (+s he/she/it-க்கு). எடுத்துக்காட்டு: "She walks every day." = "அவள் தினமும் நடக்கிறாள்."',
+    Telugu:'Simple Present అలవాట్లు, సాధారణ సత్యాలు మరియు క్రమమైన చర్యలను వ్యక్తపరుస్తుంది. నిర్మాణం: verb (+s he/she/it కు). ఉదాహరణ: "She walks every day." = "ఆమె ప్రతి రోజు నడుస్తుంది."',
+  },
+  'Present Continuous':{
+    German:'Das Present Continuous beschreibt eine Handlung, die gerade jetzt stattfindet. Im Deutschen benutzt man dafür das Präsens mit Adverbien wie "gerade". Bildung: am/is/are + Verb-ing. Beispiel: "She is walking now." = "Sie geht gerade."',
+    French:'Le Present Continuous exprime une action en cours au moment présent. Formation: am/is/are + verbe-ing. Exemple: "She is walking now." = "Elle est en train de marcher maintenant."',
+    Spanish:'El Present Continuous expresa una acción que ocurre en este momento. Formación: am/is/are + verbo-ing. Ejemplo: "She is walking now." = "Ella está caminando ahora."',
+    Chinese:'现在进行时表示此刻正在进行的动作。构成：am/is/are+动词-ing。例句："She is walking now."（她现在正在走路。）常与now、right now、at the moment连用。',
+    Japanese:'現在進行形は今まさに行われている動作を表します。作り方：am/is/are + 動詞-ing。例：「彼女は今歩いている。」',
+    Russian:'Present Continuous описывает действие, происходящее прямо сейчас. Образование: am/is/are + глагол-ing. Пример: "She is walking now." = "Она сейчас идёт."',
+    Portuguese:'O Present Continuous expressa uma ação que ocorre neste momento. Formação: am/is/are + verbo-ing. Exemplo: "She is walking now." = "Ela está a caminhar agora."',
+    Italian:'Il Present Continuous esprime un\'azione in corso al momento presente. Formazione: am/is/are + verbo-ing. Esempio: "She is walking now." = "Lei sta camminando adesso."',
+    Korean:'현재 진행시제는 지금 이 순간 진행 중인 동작을 나타냅니다. 형성: am/is/are+동사ing. 예시: "She is walking now." = "그녀는 지금 걷고 있다."',
+    Turkish:'Present Continuous şu anda devam eden eylemleri anlatır. Yapısı: am/is/are + fiil-ing. Örnek: "She is walking now." = "Şu an yürüyor."',
+    Arabic:'المضارع المستمر يصف حدثاً يجري في هذه اللحظة. التكوين: am/is/are + فعل-ing. مثال: "She is walking now." = "هي تمشي الآن."',
+    Hindi:'Present Continuous उन कार्यों को दर्शाता है जो अभी इस समय हो रहे हैं। बनावट: am/is/are + verb-ing। उदाहरण: "She is walking now." = "वह अभी चल रही है।"',
+    Tamil:'Present Continuous இப்போது நடந்துகொண்டிருக்கும் செயல்களை காட்டுகிறது. உருவாக்கம்: am/is/are + verb-ing. எடுத்துக்காட்டு: "She is walking now." = "அவள் இப்போது நடக்கிறாள்."',
+    Telugu:'Present Continuous ఇప్పుడు జరుగుతున్న చర్యలను వ్యక్తపరుస్తుంది. నిర్మాణం: am/is/are + verb-ing. ఉదాహరణ: "She is walking now." = "ఆమె ఇప్పుడు నడుస్తోంది."',
+  },
+  'Present Perfect':{
+    German:'Das Present Perfect verbindet die Vergangenheit mit der Gegenwart. Es entspricht dem deutschen Perfekt (haben/sein + Partizip II). Bildung: have/has + Partizip II. Beispiel: "She has walked 5 miles." = "Sie ist 5 Meilen gegangen." Wichtig: Im Englischen NICHT mit genauen Zeitangaben wie "yesterday" verwenden.',
+    French:'Le Present Perfect relie le passé au présent. Il correspond au passé composé en français. Formation: have/has + participe passé. Exemple: "She has walked 5 miles." = "Elle a marché 5 kilomètres."',
+    Spanish:'El Present Perfect conecta el pasado con el presente. Equivale al pretérito perfecto compuesto. Formación: have/has + participio. Ejemplo: "She has walked 5 miles." = "Ella ha caminado 5 millas."',
+    Chinese:'现在完成时连接过去和现在，表示过去发生的动作对现在有影响。构成：have/has+过去分词。例句："She has walked 5 miles."（她已经走了5英里。）注意：不能与yesterday等具体过去时间连用。',
+    Japanese:'現在完了形は過去と現在をつなぎます。作り方：have/has + 過去分詞。例：「彼女は5マイル歩いた（そして今もその結果がある）。」重要：yesterdayなど具体的な過去の時間表現とは使えません。',
+    Russian:'Present Perfect связывает прошлое с настоящим. Образование: have/has + причастие прошедшего времени. Пример: "She has walked 5 miles." = "Она прошла 5 миль (и это важно сейчас)." Важно: не используется с конкретными прошлыми временами.',
+    Portuguese:'O Present Perfect conecta o passado ao presente. Formação: have/has + particípio passado. Exemplo: "She has walked 5 miles." = "Ela percorreu 5 milhas." Importante: não se usa com tempos passados específicos.',
+    Italian:'Il Present Perfect collega il passato al presente. Formazione: have/has + participio passato. Esempio: "She has walked 5 miles." = "Lei ha camminato 5 miglia."',
+    Korean:'현재완료시제는 과거와 현재를 연결합니다. 형성: have/has+과거분사. 예시: "She has walked 5 miles." = "그녀는 5마일을 걸었다(지금도 그 결과가 있다)." 주의: yesterday 같은 구체적 과거 표현과 함께 쓸 수 없습니다.',
+    Turkish:'Present Perfect geçmişi günümüzle bağlar. Yapısı: have/has + fiilin üçüncü hali. Örnek: "She has walked 5 miles." = "5 mil yürümüştür." Önemli: yesterday gibi geçmiş zaman ifadeleriyle kullanılmaz.',
+    Arabic:'المضارع التام يربط الماضي بالحاضر. التكوين: have/has + الفعل المضارع التام. مثال: "She has walked 5 miles." = "لقد مشت 5 أميال." مهم: لا يُستخدم مع أوقات ماضية محددة مثل yesterday.',
+    Hindi:'Present Perfect अतीत को वर्तमान से जोड़ता है। बनावट: have/has + past participle। उदाहरण: "She has walked 5 miles." = "वह 5 मील चल चुकी है।" ध्यान दें: "yesterday" जैसे सटीक समय के साथ उपयोग नहीं।',
+    Tamil:'Present Perfect கடந்த காலத்தை நிகழ்காலத்துடன் இணைக்கிறது. உருவாக்கம்: have/has + past participle. எடுத்துக்காட்டு: "She has walked 5 miles." = "அவள் 5 மைல் நடந்திருக்கிறாள்."',
+    Telugu:'Present Perfect గతాన్ని వర్తమానంతో అనుసంధిస్తుంది. నిర్మాణం: have/has + past participle. ఉదాహరణ: "She has walked 5 miles." = "ఆమె 5 మైళ్లు నడిచింది (ఇప్పటికీ ఆ ఫలితం ఉంది)."',
+  },
+  'Pres. Perf. Cont.':{
+    German:'Das Present Perfect Continuous betont die Dauer einer Handlung, die in der Vergangenheit begann und bis jetzt andauert oder gerade aufgehört hat. Bildung: have/has been + Verb-ing. Beispiel: "She has been walking for an hour." = "Sie läuft seit einer Stunde."',
+    French:'Le Present Perfect Continuous souligne la durée d\'une action commencée dans le passé et qui continue. Formation: have/has been + verbe-ing. Exemple: "She has been walking for an hour." = "Elle marche depuis une heure."',
+    Spanish:'El Present Perfect Continuous enfatiza la duración de una acción que empezó en el pasado y continúa. Formación: have/has been + verbo-ing. Ejemplo: "She has been walking for an hour." = "Ella ha estado caminando durante una hora."',
+    Chinese:'现在完成进行时强调从过去开始一直持续到现在的动作的持续性。构成：have/has been+动词-ing。例句："She has been walking for an hour."（她已经走了一个小时了。）常与for、since连用。',
+    Japanese:'現在完了進行形は過去に始まり現在まで続いている動作の継続性を強調します。作り方：have/has been + 動詞-ing。例：「彼女は1時間歩き続けている。」',
+    Russian:'Present Perfect Continuous подчёркивает длительность действия, начавшегося в прошлом и продолжающегося до сих пор. Образование: have/has been + глагол-ing. Пример: "She has been walking for an hour." = "Она ходит уже час."',
+    Portuguese:'O Present Perfect Continuous enfatiza a duração de uma ação iniciada no passado e que continua. Formação: have/has been + verbo-ing. Exemplo: "She has been walking for an hour." = "Ela tem caminhado durante uma hora."',
+    Italian:'Il Present Perfect Continuous enfatizza la durata di un\'azione iniziata nel passato e che continua. Formazione: have/has been + verbo-ing. Esempio: "She has been walking for an hour." = "Sta camminando da un\'ora."',
+    Korean:'현재완료진행시제는 과거에 시작하여 지금까지 계속되는 동작의 지속성을 강조합니다. 형성: have/has been+동사ing. 예시: "She has been walking for an hour." = "그녀는 한 시간째 걷고 있다."',
+    Turkish:'Present Perfect Continuous geçmişte başlayan ve hâlâ devam eden eylemlerin süresini vurgular. Yapısı: have/has been + fiil-ing. Örnek: "She has been walking for an hour." = "Bir saattir yürüyor."',
+    Arabic:'المضارع التام المستمر يؤكد مدة حدث بدأ في الماضي ولا يزال مستمراً. التكوين: have/has been + فعل-ing. مثال: "She has been walking for an hour." = "كانت تمشي منذ ساعة."',
+    Hindi:'Present Perfect Continuous उन कार्यों की अवधि पर जोर देता है जो अतीत में शुरू हुए और अब तक जारी हैं। बनावट: have/has been + verb-ing। उदाहरण: "She has been walking for an hour." = "वह एक घंटे से चलती आ रही है।"',
+    Tamil:'Present Perfect Continuous கடந்த காலத்தில் தொடங்கி இன்றும் தொடரும் செயல்களின் காலத்தை வலியுறுத்துகிறது. உருவாக்கம்: have/has been + verb-ing. எடுத்துக்காட்டு: "She has been walking for an hour." = "அவள் ஒரு மணி நேரமாக நடந்துகொண்டிருக்கிறாள்."',
+    Telugu:'Present Perfect Continuous గతంలో మొదలై ఇప్పటి వరకు కొనసాగుతున్న చర్యల వ్యవధిని నొక్కి చెప్తుంది. నిర్మాణం: have/has been + verb-ing. ఉదాహరణ: "She has been walking for an hour." = "ఆమె ఒక గంటగా నడుస్తూనే ఉంది."',
+  },
+  'Simple Future':{
+    German:'Das Simple Future wird für Entscheidungen im Moment des Sprechens, Vorhersagen und Angebote verwendet. Bildung: will + Verb. Beispiel: "She will walk tomorrow." = "Sie wird morgen laufen." Hinweis: Für geplante Dinge benutzt man oft "going to".',
+    French:'Le Simple Future exprime une décision spontanée, une prédiction ou une volonté. Formation: will + verbe. Exemple: "She will walk tomorrow." = "Elle marchera demain."',
+    Spanish:'El Simple Future expresa una decisión espontánea, predicción o voluntad. Formación: will + verbo. Ejemplo: "She will walk tomorrow." = "Ella caminará mañana."',
+    Chinese:'一般将来时表示临时决定、预测或意愿。构成：will+动词原形。例句："She will walk tomorrow."（她明天会走路。）注意：有计划的事情常用"going to"。',
+    Japanese:'単純未来形は今この瞬間の決断、予測、意志を表します。作り方：will + 動詞の原形。例：「彼女は明日歩く予定だ。」注意：計画済みのことには「going to」を使うことが多いです。',
+    Russian:'Simple Future выражает мгновенное решение, предсказание или желание. Образование: will + глагол. Пример: "She will walk tomorrow." = "Она пойдёт завтра." Примечание: для запланированного используют "going to".',
+    Portuguese:'O Simple Future expressa uma decisão espontânea, previsão ou vontade. Formação: will + verbo. Exemplo: "She will walk tomorrow." = "Ela caminhará amanhã."',
+    Italian:'Il Simple Future esprime una decisione spontanea, previsione o volontà. Formazione: will + verbo. Esempio: "She will walk tomorrow." = "Lei camminerà domani."',
+    Korean:'단순 미래시제는 즉각적인 결정, 예측, 의지를 나타냅니다. 형성: will+동사원형. 예시: "She will walk tomorrow." = "그녀는 내일 걸을 것이다." 주의: 계획된 것은 "going to"를 많이 씁니다.',
+    Turkish:'Simple Future anlık kararları, tahminleri ve istekleri anlatır. Yapısı: will + fiil. Örnek: "She will walk tomorrow." = "Yarın yürüyecek." Not: Planlanmış şeyler için "going to" kullanılır.',
+    Arabic:'المستقبل البسيط يعبر عن قرار آني أو تنبؤ أو رغبة. التكوين: will + الفعل. مثال: "She will walk tomorrow." = "ستمشي غداً." ملاحظة: للأشياء المخطط لها يُستخدم going to.',
+    Hindi:'Simple Future त्वरित निर्णय, भविष्यवाणी या इच्छा व्यक्त करता है। बनावट: will + verb। उदाहरण: "She will walk tomorrow." = "वह कल चलेगी।" नोट: नियोजित कार्यों के लिए "going to" का प्रयोग करें।',
+    Tamil:'Simple Future உடனடி முடிவுகள், கணிப்புகள் மற்றும் விருப்பங்களை வெளிப்படுத்துகிறது. உருவாக்கம்: will + verb. எடுத்துக்காட்டு: "She will walk tomorrow." = "அவள் நாளை நடப்பாள்."',
+    Telugu:'Simple Future తక్షణ నిర்ణయాలు, అంచనాలు మరియు ఇచ్ఛలను వ్యక్తపరుస్తుంది. నిర్మాణం: will + verb. ఉదాహరణ: "She will walk tomorrow." = "ఆమె రేపు నడుస్తుంది."',
+  },
+  'Future Continuous':{
+    German:'Das Future Continuous beschreibt eine Handlung, die zu einem bestimmten Zeitpunkt in der Zukunft im Gange sein wird. Bildung: will be + Verb-ing. Beispiel: "She will be walking at noon." = "Sie wird um Mittag gerade laufen."',
+    French:'Le Future Continuous décrit une action qui sera en cours à un moment précis dans le futur. Formation: will be + verbe-ing. Exemple: "She will be walking at noon." = "Elle sera en train de marcher à midi."',
+    Spanish:'El Future Continuous describe una acción en progreso en un momento específico del futuro. Formación: will be + verbo-ing. Ejemplo: "She will be walking at noon." = "Ella estará caminando al mediodía."',
+    Chinese:'将来进行时表示在未来某一特定时刻将要进行的动作。构成：will be+动词-ing。例句："She will be walking at noon."（她中午将会在走路。）',
+    Japanese:'未来進行形は未来の特定の時点で進行中の動作を表します。作り方：will be + 動詞-ing。例：「正午には彼女は歩いているだろう。」',
+    Russian:'Future Continuous описывает действие, которое будет происходить в определённый момент будущего. Образование: will be + глагол-ing. Пример: "She will be walking at noon." = "В полдень она будет идти."',
+    Portuguese:'O Future Continuous descreve uma ação em progresso num momento específico no futuro. Formação: will be + verbo-ing. Exemplo: "She will be walking at noon." = "Ela estará a caminhar ao meio-dia."',
+    Italian:'Il Future Continuous descrive un\'azione in corso in un momento specifico nel futuro. Formazione: will be + verbo-ing. Esempio: "She will be walking at noon." = "Starà camminando a mezzogiorno."',
+    Korean:'미래 진행시제는 미래의 특정 시점에 진행 중일 동작을 나타냅니다. 형성: will be+동사ing. 예시: "She will be walking at noon." = "그녀는 정오에 걷고 있을 것이다."',
+    Turkish:'Future Continuous gelecekte belirli bir anda devam edecek eylemleri anlatır. Yapısı: will be + fiil-ing. Örnek: "She will be walking at noon." = "Öğlen yürüyor olacak."',
+    Arabic:'المستقبل المستمر يصف حدثاً سيكون جارياً في لحظة محددة من المستقبل. التكوين: will be + فعل-ing. مثال: "She will be walking at noon." = "ستكون تمشي عند الظهر."',
+    Hindi:'Future Continuous भविष्य में किसी विशेष समय पर चल रहे कार्यों को दर्शाता है। बनावट: will be + verb-ing। उदाहरण: "She will be walking at noon." = "वह दोपहर में चल रही होगी।"',
+    Tamil:'Future Continuous எதிர்காலத்தில் குறிப்பிட்ட நேரத்தில் நடந்துகொண்டிருக்கும் செயல்களை காட்டுகிறது. உருவாக்கம்: will be + verb-ing. எடுத்துக்காட்டு: "She will be walking at noon." = "அவள் நண்பகலில் நடந்துகொண்டிருப்பாள்."',
+    Telugu:'Future Continuous భవిష్యత్తులో నిర్దిష్ట సమయంలో జరుగుతున్న చర్యలను వ్యక్తపరుస్తుంది. నిర్మాణం: will be + verb-ing. ఉదాహరణ: "She will be walking at noon." = "ఆమె మధ్యాహ్నం నడుస్తూ ఉంటుంది."',
+  },
+  'Future Perfect':{
+    German:'Das Future Perfect beschreibt eine Handlung, die bis zu einem bestimmten Zeitpunkt in der Zukunft abgeschlossen sein wird. Bildung: will have + Partizip II. Beispiel: "She will have walked 5 miles by then." = "Sie wird bis dahin 5 Meilen gegangen sein."',
+    French:'Le Future Perfect décrit une action qui sera terminée avant un moment précis dans le futur. Formation: will have + participe passé. Exemple: "She will have walked 5 miles by then." = "Elle aura marché 5 miles d\'ici là."',
+    Spanish:'El Future Perfect describe una acción que estará completada antes de un momento específico en el futuro. Formación: will have + participio. Ejemplo: "She will have walked 5 miles by then." = "Ella habrá caminado 5 millas para entonces."',
+    Chinese:'将来完成时表示在未来某一时刻之前将要完成的动作。构成：will have+过去分词。例句："She will have walked 5 miles by then."（到那时她将已经走了5英里。）',
+    Japanese:'未来完了形は未来の特定の時点までに完了しているだろう動作を表します。作り方：will have + 過去分詞。例：「その時までには5マイル歩き終えているだろう。」',
+    Russian:'Future Perfect описывает действие, которое будет завершено до определённого момента в будущем. Образование: will have + причастие. Пример: "She will have walked 5 miles by then." = "К тому времени она пройдёт 5 миль."',
+    Portuguese:'O Future Perfect descreve uma ação que estará completa antes de um momento específico no futuro. Formação: will have + particípio. Exemplo: "She will have walked 5 miles by then." = "Ela terá caminhado 5 milhas até lá."',
+    Italian:'Il Future Perfect descrive un\'azione che sarà completata prima di un momento specifico nel futuro. Formazione: will have + participio. Esempio: "She will have walked 5 miles by then." = "Avrà camminato 5 miglia entro allora."',
+    Korean:'미래완료시제는 미래의 특정 시점 이전에 완료될 동작을 나타냅니다. 형성: will have+과거분사. 예시: "She will have walked 5 miles by then." = "그때쯤 그녀는 5마일을 걸어 있을 것이다."',
+    Turkish:'Future Perfect gelecekte belirli bir andan önce tamamlanmış olacak eylemleri anlatır. Yapısı: will have + fiilin üçüncü hali. Örnek: "She will have walked 5 miles by then." = "O zamana kadar 5 mil yürümüş olacak."',
+    Arabic:'المستقبل التام يصف حدثاً سيكون قد اكتمل قبل نقطة محددة في المستقبل. التكوين: will have + الفعل المضارع التام. مثال: "She will have walked 5 miles by then." = "ستكون قد مشت 5 أميال بحلول ذلك الوقت."',
+    Hindi:'Future Perfect भविष्य के किसी विशेष समय से पहले पूरे हो जाने वाले कार्यों को दर्शाता है। बनावट: will have + past participle। उदाहरण: "She will have walked 5 miles by then." = "तब तक वह 5 मील चल चुकी होगी।"',
+    Tamil:'Future Perfect எதிர்காலத்தில் குறிப்பிட்ட நேரத்திற்கு முன்பே முடிந்திருக்கும் செயல்களை காட்டுகிறது. உருவாக்கம்: will have + past participle. எடுத்துக்காட்டு: "She will have walked 5 miles by then." = "அந்த நேரத்திற்குள் அவள் 5 மைல் நடந்திருப்பாள்."',
+    Telugu:'Future Perfect భవిష్యత్తులో నిర్దిష్ట సమయానికి ముందే పూర్తయ్యే చర్యలను వ్యక్తపరుస్తుంది. నిర్మాణం: will have + past participle. ఉదాహరణ: "She will have walked 5 miles by then." = "అప్పటికి ఆమె 5 మైళ్లు నడిచి ఉంటుంది."',
+  },
+  'Future Perf. Cont.':{
+    German:'Das Future Perfect Continuous betont die Dauer einer Handlung, die bis zu einem bestimmten Zeitpunkt in der Zukunft andauern wird. Bildung: will have been + Verb-ing. Beispiel: "She will have been walking for an hour." = "Sie wird eine Stunde lang gelaufen sein."',
+    French:'Le Future Perfect Continuous souligne la durée d\'une action qui continuera jusqu\'à un moment dans le futur. Formation: will have been + verbe-ing. Exemple: "She will have been walking for an hour." = "Elle marchera depuis une heure (à ce moment-là)."',
+    Spanish:'El Future Perfect Continuous enfatiza la duración de una acción que continuará hasta un momento futuro. Formación: will have been + verbo-ing. Ejemplo: "She will have been walking for an hour." = "Ella habrá estado caminando durante una hora."',
+    Chinese:'将来完成进行时强调在未来某一时刻之前一直持续的动作的持续性。构成：will have been+动词-ing。例句："She will have been walking for an hour."（到那时她将已经走了一个小时了。）',
+    Japanese:'未来完了進行形は未来の特定の時点まで継続しているだろう動作の継続性を強調します。作り方：will have been + 動詞-ing。例：「その時には1時間歩き続けているだろう。」',
+    Russian:'Future Perfect Continuous подчёркивает длительность действия, которое будет продолжаться до определённого момента в будущем. Образование: will have been + глагол-ing. Пример: "She will have been walking for an hour." = "К тому времени она будет идти уже час."',
+    Portuguese:'O Future Perfect Continuous enfatiza a duração de uma ação que continuará até um momento futuro. Formação: will have been + verbo-ing. Exemplo: "She will have been walking for an hour." = "Ela terá estado a caminhar durante uma hora."',
+    Italian:'Il Future Perfect Continuous enfatizza la durata di un\'azione che continuerà fino a un momento futuro. Formazione: will have been + verbo-ing. Esempio: "She will have been walking for an hour." = "Starà camminando da un\'ora."',
+    Korean:'미래완료진행시제는 미래의 특정 시점까지 계속될 동작의 지속성을 강조합니다. 형성: will have been+동사ing. 예시: "She will have been walking for an hour." = "그때쯤 그녀는 한 시간째 걷고 있을 것이다."',
+    Turkish:'Future Perfect Continuous gelecekte belirli bir ana kadar devam edecek eylemlerin süresini vurgular. Yapısı: will have been + fiil-ing. Örnek: "She will have been walking for an hour." = "O zamana kadar bir saattir yürüyor olacak."',
+    Arabic:'المستقبل التام المستمر يؤكد مدة حدث سيستمر حتى نقطة محددة في المستقبل. التكوين: will have been + فعل-ing. مثال: "She will have been walking for an hour." = "ستكون تمشي منذ ساعة بحلول ذلك الوقت."',
+    Hindi:'Future Perfect Continuous भविष्य के किसी बिंदु तक जारी रहने वाले कार्यों की अवधि पर जोर देता है। बनावट: will have been + verb-ing। उदाहरण: "She will have been walking for an hour." = "तब तक वह एक घंटे से चलती आ रही होगी।"',
+    Tamil:'Future Perfect Continuous எதிர்காலத்தில் குறிப்பிட்ட நேரம் வரை தொடரும் செயல்களின் காலத்தை வலியுறுத்துகிறது. உருவாக்கம்: will have been + verb-ing. எடுத்துக்காட்டு: "She will have been walking for an hour." = "அந்த நேரத்தில் அவள் ஒரு மணி நேரமாக நடந்துகொண்டிருப்பாள்."',
+    Telugu:'Future Perfect Continuous భవిష్యత్తులో నిర్దిష్ట సమయం వరకు కొనసాగే చర్యల వ్యవధిని నొక్కి చెప్తుంది. నిర్మాణం: will have been + verb-ing. ఉదాహరణ: "She will have been walking for an hour." = "ఆ సమయానికి ఆమె ఒక గంటగా నడుస్తూనే ఉంటుంది."',
+  },
+};
+
 function translateTense(name,formula,when,col){
   var el=document.getElementById('tlNative');
-  if(el)el.innerHTML='<strong style="color:'+col+'">'+name+'</strong><br>Formula: <strong>'+formula+'</strong><br>When: '+when+'<br><span style="font-size:11px;color:rgba(245,200,66,0.65)">In '+lang+': Bilingual explanation — Premium coming soon.</span>';
+  if(!el)return;
+  var explanation=(TENSE_LOCAL[name]&&TENSE_LOCAL[name][lang])||null;
+  if(explanation){
+    el.innerHTML='<strong style="color:'+col+'">In '+lang+':</strong><br><span style="font-size:13px;line-height:1.8;color:rgba(245,200,66,0.92)">'+explanation+'</span>';
+  } else {
+    // Fallback for unlisted languages - show English summary
+    el.innerHTML='<strong style="color:'+col+'">'+name+'</strong><br>'
+      +'<span style="font-size:13px;color:rgba(255,255,255,0.80)">Formula: <strong>'+formula+'</strong> — '+when+'</span>';
+  }
 }
+
 function renderPhrases(){
   var area=document.getElementById('phraseArea');if(!area)return;
   var dayNum=new Date().getDate()-1;
@@ -7294,6 +7517,365 @@ function pdExample(){
   if(d)d.value='My favorite fruits are apples bananas and oranges\nHowever she decided to stay home.\nI really wanted to go to the beach, it started raining heavily.\nShe dont like coffee and should of told us.';
   pdCheck();
 }
+
+// ══════════════════════════════════════════════════════
+// REDUNDANCY CUTTER — 100% LOCAL, ZERO API COST
+// 259 wordy phrases → tight native replacements
+// Same pattern as PD_RULES / pdCheck — no API call
+// ══════════════════════════════════════════════════════
+var RC_RULES=[
+  // ── CAUSAL / REASON ──
+  {ph:'due to the fact that',    rep:'because'},
+  {ph:'owing to the fact that',  rep:'because'},
+  {ph:'in view of the fact that',rep:'because'},
+  {ph:'on account of the fact that',rep:'because'},
+  {ph:'by virtue of the fact that',rep:'because'},
+  {ph:'as a result of the fact that',rep:'because'},
+  {ph:'for the reason that',     rep:'because'},
+  {ph:'the reason why is that',  rep:'because'},
+  {ph:'inasmuch as',             rep:'because'},
+  {ph:'in light of the fact that',rep:'because'},
+
+  // ── CONDITIONAL ──
+  {ph:'in the event that',       rep:'if'},
+  {ph:'in the event of',         rep:'if'},
+  {ph:'on the condition that',   rep:'if'},
+  {ph:'provided that',           rep:'if'},
+  {ph:'assuming that',           rep:'if'},
+  {ph:'supposing that',          rep:'if'},
+
+  // ── TIME ──
+  {ph:'at this point in time',   rep:'now'},
+  {ph:'at the present time',     rep:'now'},
+  {ph:'at the present moment',   rep:'now'},
+  {ph:'at this moment in time',  rep:'now'},
+  {ph:'at this juncture',        rep:'now'},
+  {ph:'in the near future',      rep:'soon'},
+  {ph:'in the not too distant future',rep:'soon'},
+  {ph:'at a future date',        rep:'later'},
+  {ph:'at some future point',    rep:'later'},
+  {ph:'at an earlier date',      rep:'before'},
+  {ph:'prior to this time',      rep:'before'},
+  {ph:'subsequent to',           rep:'after'},
+  {ph:'following on from',       rep:'after'},
+  {ph:'during the course of',    rep:'during'},
+  {ph:'in the course of',        rep:'during'},
+  {ph:'over the course of',      rep:'during'},
+  {ph:'throughout the duration of',rep:'during'},
+  {ph:'on a daily basis',        rep:'daily'},
+  {ph:'on a weekly basis',       rep:'weekly'},
+  {ph:'on a monthly basis',      rep:'monthly'},
+  {ph:'on a regular basis',      rep:'regularly'},
+  {ph:'on a consistent basis',   rep:'consistently'},
+  {ph:'on a continuous basis',   rep:'continuously'},
+
+  // ── PURPOSE / INTENT ──
+  {ph:'in order to',             rep:'to'},
+  {ph:'in order that',           rep:'so that'},
+  {ph:'for the purpose of',      rep:'to'},
+  {ph:'for the purposes of',     rep:'to'},
+  {ph:'with the purpose of',     rep:'to'},
+  {ph:'with the intention of',   rep:'to'},
+  {ph:'with a view to',          rep:'to'},
+  {ph:'with the aim of',         rep:'to'},
+  {ph:'with the goal of',        rep:'to'},
+  {ph:'so as to',                rep:'to'},
+
+  // ── PROXIMITY / LOCATION ──
+  {ph:'in close proximity to',   rep:'near'},
+  {ph:'in close proximity with', rep:'near'},
+  {ph:'in the vicinity of',      rep:'near'},
+  {ph:'in the immediate vicinity',rep:'nearby'},
+  {ph:'adjacent to',             rep:'next to'},
+  {ph:'in the neighborhood of',  rep:'near'},
+
+  // ── EMPHASIS / INTENSIFIERS ──
+  {ph:'each and every',          rep:'every'},
+  {ph:'any and all',             rep:'all'},
+  {ph:'one and only',            rep:'only'},
+  {ph:'first and foremost',      rep:'first'},
+  {ph:'null and void',           rep:'void'},
+  {ph:'true and accurate',       rep:'accurate'},
+  {ph:'full and complete',       rep:'complete'},
+  {ph:'final and conclusive',    rep:'final'},
+  {ph:'various and sundry',      rep:'various'},
+  {ph:'basic and fundamental',   rep:'fundamental'},
+  {ph:'new and innovative',      rep:'innovative'},
+  {ph:'necessary and required',  rep:'required'},
+  {ph:'exact same',              rep:'same'},
+  {ph:'completely eliminate',    rep:'eliminate'},
+  {ph:'absolutely essential',    rep:'essential'},
+  {ph:'absolutely necessary',    rep:'necessary'},
+  {ph:'completely finished',     rep:'finished'},
+  {ph:'totally destroyed',       rep:'destroyed'},
+  {ph:'very unique',             rep:'unique'},
+  {ph:'completely unanimous',    rep:'unanimous'},
+  {ph:'past history',            rep:'history'},
+  {ph:'future plans',            rep:'plans'},
+  {ph:'advance planning',        rep:'planning'},
+  {ph:'advance warning',         rep:'warning'},
+  {ph:'past experience',         rep:'experience'},
+  {ph:'added bonus',             rep:'bonus'},
+  {ph:'end result',              rep:'result'},
+  {ph:'final outcome',           rep:'outcome'},
+  {ph:'free gift',               rep:'gift'},
+  {ph:'unexpected surprise',     rep:'surprise'},
+  {ph:'usual custom',            rep:'custom'},
+  {ph:'close scrutiny',          rep:'scrutiny'},
+  {ph:'completely full',         rep:'full'},
+  {ph:'refer back',              rep:'refer'},
+  {ph:'revert back',             rep:'revert'},
+  {ph:'return back',             rep:'return'},
+  {ph:'repeat again',            rep:'repeat'},
+
+  // ── ABOUT / REGARDING ──
+  {ph:'with regard to',          rep:'about'},
+  {ph:'with regards to',         rep:'about'},
+  {ph:'in regard to',            rep:'about'},
+  {ph:'in regards to',           rep:'about'},
+  {ph:'with respect to',         rep:'about'},
+  {ph:'in respect of',           rep:'about'},
+  {ph:'in relation to',          rep:'about'},
+  {ph:'on the subject of',       rep:'about'},
+  {ph:'on the matter of',        rep:'about'},
+  {ph:'pertaining to',           rep:'about'},
+  {ph:'relating to',             rep:'about'},
+  {ph:'as regards',              rep:'about'},
+  {ph:'as it relates to',        rep:'about'},
+  {ph:'insofar as',              rep:'regarding'},
+  {ph:'with reference to',       rep:'about'},
+
+  // ── CONCESSION / CONTRAST ──
+  {ph:'despite the fact that',   rep:'although'},
+  {ph:'in spite of the fact that',rep:'although'},
+  {ph:'notwithstanding the fact that',rep:'although'},
+  {ph:'regardless of the fact that',rep:'although'},
+  {ph:'on the other hand',       rep:'however'},
+
+  // ── OPINION / BELIEF ──
+  {ph:'it is my opinion that',   rep:'I think'},
+  {ph:'it is my belief that',    rep:'I believe'},
+  {ph:'it is my view that',      rep:'I think'},
+  {ph:'from my perspective',     rep:'I think'},
+  {ph:'it would appear that',    rep:'apparently'},
+  {ph:'it seems as though',      rep:'apparently'},
+  {ph:'it goes without saying',  rep:'obviously'},
+  {ph:'needless to say',         rep:'obviously'},
+
+  // ── QUANTITY / EXTENT ──
+  {ph:'a large number of',       rep:'many'},
+  {ph:'a great number of',       rep:'many'},
+  {ph:'a significant number of', rep:'many'},
+  {ph:'a considerable number of',rep:'many'},
+  {ph:'a number of',             rep:'several'},
+  {ph:'a majority of',           rep:'most'},
+  {ph:'the majority of',         rep:'most'},
+  {ph:'a small number of',       rep:'few'},
+  {ph:'a limited number of',     rep:'few'},
+  {ph:'a great deal of',         rep:'much'},
+  {ph:'a large amount of',       rep:'much'},
+  {ph:'a significant amount of', rep:'much'},
+  {ph:'a sufficient amount of',  rep:'enough'},
+  {ph:'an adequate amount of',   rep:'enough'},
+  {ph:'the vast majority of',    rep:'most'},
+  {ph:'in excess of',            rep:'more than'},
+
+  // ── MANNER / METHOD ──
+  {ph:'in the manner in which',  rep:'how'},
+  {ph:'in a manner that',        rep:'so that'},
+  {ph:'in such a way that',      rep:'so that'},
+  {ph:'by means of',             rep:'by'},
+  {ph:'by way of',               rep:'by'},
+  {ph:'through the use of',      rep:'using'},
+  {ph:'through the medium of',   rep:'through'},
+  {ph:'by the use of',           rep:'using'},
+  {ph:'make use of',             rep:'use'},
+  {ph:'make an attempt to',      rep:'try to'},
+  {ph:'make an effort to',       rep:'try to'},
+  {ph:'take into consideration', rep:'consider'},
+  {ph:'take into account',       rep:'consider'},
+  {ph:'give consideration to',   rep:'consider'},
+  {ph:'come to a conclusion',    rep:'conclude'},
+  {ph:'arrive at a conclusion',  rep:'conclude'},
+  {ph:'reach a conclusion',      rep:'conclude'},
+  {ph:'come to a decision',      rep:'decide'},
+  {ph:'make a decision',         rep:'decide'},
+  {ph:'reach a decision',        rep:'decide'},
+  {ph:'arrive at a decision',    rep:'decide'},
+  {ph:'have a tendency to',      rep:'tend to'},
+  {ph:'be in a position to',     rep:'can'},
+  {ph:'is of the opinion',       rep:'thinks'},
+  {ph:'are of the opinion',      rep:'think'},
+  {ph:'was of the opinion',      rep:'thought'},
+
+  // ── FILLER / THROAT-CLEARING ──
+  {ph:'it should be noted that', rep:'note that'},
+  {ph:'it is important to note that',rep:'note that'},
+  {ph:'it is worth noting that', rep:'note that'},
+  {ph:'please be advised that',  rep:'note that'},
+  {ph:'it is clear that',        rep:'clearly'},
+  {ph:'it is obvious that',      rep:'obviously'},
+  {ph:'it is apparent that',     rep:'apparently'},
+  {ph:'it is evident that',      rep:'evidently'},
+  {ph:'it is possible that',     rep:'possibly'},
+  {ph:'it is likely that',       rep:'likely'},
+  {ph:'it is necessary to',      rep:'must'},
+  {ph:'it is required that',     rep:'must'},
+  {ph:'it is essential that',    rep:'must'},
+  {ph:'there is a need to',      rep:'we must'},
+  {ph:'there is no doubt that',  rep:'doubtless'},
+  {ph:'there is a possibility that',rep:'possibly'},
+  {ph:'in the final analysis',   rep:'finally'},
+  {ph:'in the last analysis',    rep:'finally'},
+  {ph:'at the end of the day',   rep:'ultimately'},
+  {ph:'when all is said and done',rep:'ultimately'},
+  {ph:'all things considered',   rep:'overall'},
+  {ph:'all in all',              rep:'overall'},
+  {ph:'by and large',            rep:'generally'},
+  {ph:'on the whole',            rep:'generally'},
+  {ph:'for all intents and purposes',rep:'practically'},
+  {ph:'in actual fact',          rep:'actually'},
+  {ph:'as a matter of fact',     rep:'in fact'},
+  {ph:'in point of fact',        rep:'in fact'},
+  {ph:'first of all',            rep:'first'},
+  {ph:'last but not least',      rep:'finally'},
+  {ph:'in the foreseeable future',rep:'soon'},
+
+  // ── COMMUNICATION ──
+  {ph:'as previously mentioned', rep:'as mentioned'},
+  {ph:'as previously stated',    rep:'as stated'},
+  {ph:'as already noted',        rep:'as noted'},
+  {ph:'as discussed above',      rep:'as discussed'},
+  {ph:'as outlined above',       rep:'as outlined'},
+  {ph:'studies have shown that', rep:'research shows'},
+  {ph:'research has shown that', rep:'research shows'},
+
+  // ── MISCELLANEOUS ──
+  {ph:'in the absence of',       rep:'without'},
+  {ph:'in the presence of',      rep:'with'},
+  {ph:'with the exception of',   rep:'except'},
+  {ph:'with the exclusion of',   rep:'except'},
+  {ph:'in addition to this',     rep:'also'},
+  {ph:'in addition',             rep:'also'},
+  {ph:'along with',              rep:'with'},
+  {ph:'together with',           rep:'with'},
+  {ph:'in conjunction with',     rep:'with'},
+  {ph:'in combination with',     rep:'with'},
+  {ph:'at all times',            rep:'always'},
+  {ph:'at no time',              rep:'never'},
+  {ph:'under no circumstances',  rep:'never'},
+  {ph:'on no account',           rep:'never'},
+  {ph:'whether or not',          rep:'whether'},
+  {ph:'exhibits a tendency to',  rep:'tends to'},
+  {ph:'subsequent to this',      rep:'after this'},
+  {ph:'prior to this',           rep:'before this'},
+  {ph:'in the aftermath of',     rep:'after'},
+  {ph:'as a consequence of',     rep:'because of'},
+  {ph:'as a result of',          rep:'because of'},
+  {ph:'by reason of',            rep:'because of'},
+  {ph:'on the basis of',         rep:'based on'},
+  {ph:'on the grounds of',       rep:'because of'},
+  {ph:'in terms of',             rep:'regarding'},
+  {ph:'with a view toward',      rep:'to'},
+  {ph:'until such time as',      rep:'until'},
+  {ph:'at such time as',         rep:'when'},
+  {ph:'at the time when',        rep:'when'},
+  {ph:'for a period of',         rep:'for'},
+  {ph:'in a situation where',    rep:'when'},
+  {ph:'in cases where',          rep:'when'},
+  {ph:'in instances where',      rep:'when'},
+  {ph:'in those cases where',    rep:'when'},
+];
+
+function rcCheck(){
+  var text=wVal('rcInput');
+  if(!text||text.trim().length<5){alert('Please paste some text first (minimum 5 characters).');return;}
+
+  var hits=[],highlighted=text,corrected=text;
+
+  RC_RULES.forEach(function(rule){
+    if(!rule.ph||!rule.rep)return;
+    var escaped=rule.ph.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+    var re=new RegExp('(?<![a-zA-Z])'+escaped+'(?![a-zA-Z])','gi');
+    if(re.test(text)){
+      re.lastIndex=0;
+      hits.push(rule);
+      highlighted=highlighted.replace(re,function(m){
+        return '<mark style="background:rgba(244,114,182,0.28);color:#F9A8D4;border-bottom:2px solid #F472B6;border-radius:2px;padding:0 2px;text-decoration:line-through">'+m+'</mark> <strong style="color:#34D399">'+rule.rep+'</strong>';
+      });
+      var re2=new RegExp('(?<![a-zA-Z])'+escaped+'(?![a-zA-Z])','gi');
+      corrected=corrected.replace(re2,rule.rep);
+    }
+  });
+
+  if(hits.length===0){
+    wHtml('rcResult',
+      '<div style="background:rgba(74,222,128,0.10);border:1.5px solid rgba(74,222,128,0.30);border-radius:12px;padding:20px;text-align:center">'+
+      '<div style="font-size:32px;margin-bottom:8px">✅</div>'+
+      '<div style="font-weight:700;color:#4ADE80;font-size:16px;margin-bottom:8px">No redundancies found</div>'+
+      '<div style="font-size:13px;color:rgba(255,255,255,0.65)">Your writing is already tight and native. Checked against '+RC_RULES.length+' wordy patterns.</div>'+
+      '<div data-nt="Your writing is already tight and native — no wordy phrases found." style="font-size:12px;color:rgba(74,222,128,0.70);margin-top:8px;font-style:italic"></div>'+
+      '</div>');
+    ntBatch();
+    var el=document.getElementById('rcResult');if(el){el.style.display='block';el.scrollIntoView({behavior:'smooth',block:'nearest'});}
+    return;
+  }
+
+  var score=Math.max(0,100-hits.length*8);
+  var scoreCol=score>=80?'#4ADE80':score>=60?'#F5C842':score>=40?'#FB923C':'#F472B6';
+  var scoreLabel=score>=80?'Good':'Needs trimming';
+
+  var h='';
+
+  // Score bar
+  h+='<div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;padding:12px 14px;background:rgba(255,255,255,0.04);border-radius:12px">';
+  h+='<div style="width:56px;height:56px;border-radius:50%;background:conic-gradient('+scoreCol+' '+score+'%, rgba(255,255,255,0.08) 0);display:flex;align-items:center;justify-content:center;flex-shrink:0">';
+  h+='<div style="width:44px;height:44px;border-radius:50%;background:var(--bg-1,#0A0208);display:flex;flex-direction:column;align-items:center;justify-content:center">';
+  h+='<div style="font-size:16px;font-weight:900;color:'+scoreCol+'">'+score+'</div></div></div>';
+  h+='<div>';
+  h+='<div style="font-size:14px;font-weight:700;color:'+scoreCol+'">'+scoreLabel+' — '+hits.length+' wordy phrase'+(hits.length>1?'s':'')+' found</div>';
+  h+='<div style="font-size:11.5px;color:rgba(255,255,255,0.45)">Checked against '+RC_RULES.length+' patterns · no API used</div>';
+  h+='</div></div>';
+
+  // Highlighted original
+  h+='<div style="margin-bottom:12px">';
+  h+='<div style="font-size:10px;font-weight:800;text-transform:uppercase;color:rgba(244,114,182,0.70);letter-spacing:.07em;margin-bottom:6px">Your text — wordy phrases highlighted</div>';
+  h+='<div style="font-size:13.5px;line-height:2.0;padding:13px 14px;background:rgba(255,255,255,0.04);border-radius:10px;border:1px solid rgba(244,114,182,0.18)">'+highlighted+'</div>';
+  h+='</div>';
+
+  // Tight version
+  h+='<div style="margin-bottom:14px">';
+  h+='<div style="font-size:10px;font-weight:800;text-transform:uppercase;color:rgba(52,211,153,0.70);letter-spacing:.07em;margin-bottom:6px">Tight native version</div>';
+  h+='<div style="font-size:13.5px;line-height:2.0;padding:13px 14px;background:rgba(52,211,153,0.05);border-radius:10px;border:1px solid rgba(52,211,153,0.20)">'+corrected+'</div>';
+  var safeCorr=corrected.replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/\n/g,' ');
+  h+='<button style="margin-top:7px;font-size:11.5px;padding:5px 14px;border-radius:20px;border:1px solid rgba(52,211,153,0.35);background:transparent;color:#34D399;cursor:pointer;font-family:inherit" onclick="navigator.clipboard.writeText(\''+safeCorr+'\').then(function(){this.textContent=\'Copied!\';setTimeout(function(){this.textContent=\'Copy tight version\';}.bind(this),2000);}.bind(this))">Copy tight version</button>';
+  h+='</div>';
+
+  // Native language translation of the tight version
+  h+='<div style="margin-bottom:14px">';
+  h+='<div style="font-size:10px;font-weight:800;text-transform:uppercase;color:rgba(245,200,66,0.70);letter-spacing:.07em;margin-bottom:6px">In your language</div>';
+  h+='<div data-nt="'+ntSafe(corrected)+'" style="font-size:13px;color:rgba(245,200,66,0.85);padding:10px 14px;background:rgba(245,200,66,0.06);border-radius:10px;border:1px solid rgba(245,200,66,0.18);font-style:italic;line-height:1.7"></div>';
+  h+='</div>';
+
+  // Replacements list
+  h+='<div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.10);border-radius:10px;padding:12px 14px">';
+  h+='<div style="font-size:11px;font-weight:700;color:#F472B6;letter-spacing:0.08em;margin-bottom:8px">REPLACEMENTS — '+hits.length+' found</div>';
+  hits.forEach(function(rule){
+    h+='<div style="display:flex;align-items:center;gap:8px;font-size:12.5px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.06)">';
+    h+='<span style="color:#F9A8D4;text-decoration:line-through;flex:1">'+rule.ph+'</span>';
+    h+='<span style="color:rgba(255,255,255,0.35);flex-shrink:0">→</span>';
+    h+='<span style="color:#34D399;font-weight:700;flex:1">'+rule.rep+'</span>';
+    h+='<div data-nt="'+rule.ph+' means '+rule.rep+'" style="font-size:11px;color:rgba(245,200,66,0.75);flex:1;font-style:italic"></div>';
+    h+='</div>';
+  });
+  h+='</div>';
+
+  wHtml('rcResult',h);
+  ntBatch();
+  var el=document.getElementById('rcResult');
+  if(el){el.style.display='block';setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'nearest'});},100);}
+}
+
 function rcExample(){var d=document.getElementById('rcInput');if(d)d.value='Due to the fact that she was in close proximity to the office, she decided that in order to save time she would, in the near future, make advance planning for each and every meeting she had on a daily basis.';rcCheck();}
 
 

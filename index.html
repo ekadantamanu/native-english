@@ -448,7 +448,7 @@ code{font-size:11px;background:var(--bg-3);padding:2px 5px;border-radius:4px;fon
 @media(max-width:480px){
   .announce-bar{font-size:10px;flex-direction:column;gap:4px;padding:7px 10px;text-align:center}
   header{gap:5px}
-  #nativeLang{display:block;font-size:10px;padding:4px 6px;max-width:90px;-webkit-appearance:menulist;appearance:menulist;cursor:pointer}
+  #nativeLang{display:none}
   .hero h1{font-size:27px;letter-spacing:-.8px}
   .hero-sub{font-size:13px}
   .hero-cta{flex-direction:column;align-items:stretch}
@@ -574,7 +574,7 @@ button, .tbtn, .tgrp { -webkit-tap-highlight-color: transparent; }
     <div class="logo-text">Native<span>English</span></div>
   </div>
   <div class="header-right">
-    <select id="nativeLang" onchange="setLang(this.value)" onblur="setLang(this.value)">
+    <select id="nativeLang" onchange="setLang(this.value)">
       <option value="Spanish">🇪🇸 Spanish</option>
       <option value="French">🇫🇷 French</option>
       <option value="German">🇩🇪 German</option>
@@ -697,7 +697,7 @@ button, .tbtn, .tgrp { -webkit-tap-highlight-color: transparent; }
     <span style="font-size:22px;flex-shrink:0">🔒</span>
     <div>
       <div style="font-size:12.5px;font-weight:700;color:rgba(245,200,66,0.80);margin-bottom:2px">Premium Features — Coming Soon</div>
-      <div style="font-size:11.5px;color:rgba(255,255,255,0.45);line-height:1.50">AI-powered speaking coach, personalised study plan and unlimited practice tests. <button onclick="openWaitlist()" style="background:none;border:none;color:var(--gold);font-weight:700;cursor:pointer;font-size:11.5px;font-family:inherit;text-decoration:underline;padding:0">Register early for unlimited access →</button></div>
+      <div style="font-size:11.5px;color:rgba(255,255,255,0.45);line-height:1.50">Smart speaking coach, personalised study plan and unlimited practice tests. <button onclick="openWaitlist()" style="background:none;border:none;color:var(--gold);font-weight:700;cursor:pointer;font-size:11.5px;font-family:inherit;text-decoration:underline;padding:0">Register early for unlimited access →</button></div>
     </div>
   </div>
 </div>
@@ -760,19 +760,19 @@ button, .tbtn, .tgrp { -webkit-tap-highlight-color: transparent; }
 <!-- ── EXPLORE TABS ── -->
 <div id="tabs-explore" class="tabs" style="display:none">
   <button class="tbtn" onclick="showTab('speaking',this)" style="color:#A78BFA">🔭 Vocabulary in Context <span style="font-size:9px;background:#A78BFA;color:#000;padding:1px 5px;border-radius:8px;margin-left:3px;font-weight:800">UNIQUE</span></button>
-  <button class="tbtn" onclick="showTab('chat',this)">🤖 AI Tutor</button>
+  <button class="tbtn" onclick="showTab('chat',this)">🤖 Smart Tutor</button>
 </div>
 
 </div>
 
 <!-- SPEAKING -->
 <div id="panel-chat" class="panel active" style="flex-direction:column;overflow:hidden">
-  <!-- AI Tutor Coming Soon -->
+  <!-- Smart Tutor Coming Soon -->
   <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 20px;text-align:center;background:linear-gradient(135deg,#0f0d0b,#1a1612,#0d1f1a)">
     <div style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#e8a820);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:32px;font-weight:700;color:#05070F;margin-bottom:18px;box-shadow:0 8px 30px rgba(245,200,66,0.30)">N</div>
     <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(245,200,66,0.12);border:1.5px solid rgba(245,200,66,0.35);border-radius:100px;padding:5px 16px;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:16px">🚀 Premium Feature — Coming Soon</div>
-    <h2 style="font-family:'Fraunces',serif;font-size:clamp(22px,4vw,34px);font-weight:900;color:#FFFFFF;line-height:1.1;letter-spacing:-1px;margin-bottom:10px">Your Personal <em style="color:var(--gold);font-style:italic">AI English Tutor</em></h2>
-    <p style="font-size:13.5px;color:rgba(255,255,255,0.65);max-width:440px;line-height:1.75;margin-bottom:22px">A live AI tutor that explains every grammar rule, corrects every mistake, and answers every question — <strong style="color:var(--gold)">in English AND your native language</strong>. Launching soon for registered members.</p>
+    <h2 style="font-family:'Fraunces',serif;font-size:clamp(22px,4vw,34px);font-weight:900;color:#FFFFFF;line-height:1.1;letter-spacing:-1px;margin-bottom:10px">Your Personal <em style="color:var(--gold);font-style:italic">Smart English Tutor</em></h2>
+    <p style="font-size:13.5px;color:rgba(255,255,255,0.65);max-width:440px;line-height:1.75;margin-bottom:22px">A live smart tutor that explains every grammar rule, corrects every mistake, and answers every question — <strong style="color:var(--gold)">in English AND your native language</strong>. Launching soon for registered members.</p>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:380px;width:100%;margin-bottom:22px">
       <div style="background:rgba(245,200,66,0.08);border:1px solid rgba(245,200,66,0.20);border-radius:10px;padding:10px;font-size:12px;color:rgba(255,255,255,0.75)">🎯 Grammar corrections in your language</div>
       <div style="background:rgba(78,205,196,0.08);border:1px solid rgba(78,205,196,0.20);border-radius:10px;padding:10px;font-size:12px;color:rgba(255,255,255,0.75)">💬 Ask anything — bilingual answers</div>
@@ -846,7 +846,7 @@ button, .tbtn, .tgrp { -webkit-tap-highlight-color: transparent; }
         <span class="chip" onclick="askGram('Explain Future Perfect tense','gr2')">Future Perfect</span>
         <span class="chip" onclick="askGram('Explain Future Perfect Continuous tense','gr2')">Future Perf. Cont.</span>
       </div>
-<div style="margin-top:8px;padding:9px 12px;background:rgba(245,200,66,0.07);border:1.5px solid rgba(245,200,66,0.20);border-radius:9px;font-size:11.5px;color:rgba(255,255,255,0.55)">🚀 AI explanations coming soon — <span onclick="openWaitlist()" style="color:var(--gold);text-decoration:underline;cursor:pointer">Register early for unlimited access →</span></div>
+<div style="margin-top:8px;padding:9px 12px;background:rgba(245,200,66,0.07);border:1.5px solid rgba(245,200,66,0.20);border-radius:9px;font-size:11.5px;color:rgba(255,255,255,0.55)">🚀 Smart explanations coming soon — <span onclick="openWaitlist()" style="color:var(--gold);text-decoration:underline;cursor:pointer">Register early for unlimited access →</span></div>
     </div>
     <div class="gpage" id="gp3">
       <p style="font-size:12px;color:var(--txt-3);margin-bottom:10px">Advanced grammar &mdash; conditionals, voice, reported speech, modals, clauses</p>
@@ -862,7 +862,7 @@ button, .tbtn, .tgrp { -webkit-tap-highlight-color: transparent; }
         <span class="chip" onclick="askGram('Explain Subjunctive Mood in English','gr3')">Subjunctive</span>
         <span class="chip" onclick="askGram('Explain Parallelism in grammar','gr3')">Parallelism</span>
       </div>
-<div style="margin-top:8px;padding:9px 12px;background:rgba(245,200,66,0.07);border:1.5px solid rgba(245,200,66,0.20);border-radius:9px;font-size:11.5px;color:rgba(255,255,255,0.55)">🚀 AI explanations coming soon — <span onclick="openWaitlist()" style="color:var(--gold);text-decoration:underline;cursor:pointer">Register early for unlimited access →</span></div>
+<div style="margin-top:8px;padding:9px 12px;background:rgba(245,200,66,0.07);border:1.5px solid rgba(245,200,66,0.20);border-radius:9px;font-size:11.5px;color:rgba(255,255,255,0.55)">🚀 Smart explanations coming soon — <span onclick="openWaitlist()" style="color:var(--gold);text-decoration:underline;cursor:pointer">Register early for unlimited access →</span></div>
     </div>
     <div class="gpage" id="gp4">
       <p style="font-size:12px;color:var(--txt-3);margin-bottom:10px">Usage, style, punctuation, common errors and word formation</p>
@@ -876,7 +876,7 @@ button, .tbtn, .tgrp { -webkit-tap-highlight-color: transparent; }
         <span class="chip" onclick="askGram('Explain articles a an the all rules','gr4')">Articles</span>
         <span class="chip" onclick="askGram('Explain English syntax word order inversion','gr4')">Syntax</span>
       </div>
-<div style="margin-top:8px;padding:9px 12px;background:rgba(245,200,66,0.07);border:1.5px solid rgba(245,200,66,0.20);border-radius:9px;font-size:11.5px;color:rgba(255,255,255,0.55)">🚀 AI explanations coming soon — <span onclick="openWaitlist()" style="color:var(--gold);text-decoration:underline;cursor:pointer">Register early for unlimited access →</span></div>
+<div style="margin-top:8px;padding:9px 12px;background:rgba(245,200,66,0.07);border:1.5px solid rgba(245,200,66,0.20);border-radius:9px;font-size:11.5px;color:rgba(255,255,255,0.55)">🚀 Smart explanations coming soon — <span onclick="openWaitlist()" style="color:var(--gold);text-decoration:underline;cursor:pointer">Register early for unlimited access →</span></div>
     </div>
   </div>
 </div>
@@ -959,7 +959,7 @@ button, .tbtn, .tgrp { -webkit-tap-highlight-color: transparent; }
     <div class="ib ib-gold"><strong style="color:var(--gold)">See It Native</strong> &mdash; Type any sentence. See it rewritten at B1, B2, C1 and Native level instantly.</div>
     <textarea class="wta" id="mirrorIn" spellcheck="true" placeholder="Type any English sentence..."></textarea>
     <div class="wa-row">
-      <div style="display:inline-flex;align-items:center;gap:8px;padding:9px 18px;background:rgba(245,200,66,0.10);border:1.5px solid rgba(245,200,66,0.30);border-radius:9px;font-size:12px;font-weight:700;color:var(--gold)">🚀 AI feature — <span onclick="openWaitlist()" style="text-decoration:underline;cursor:pointer">Register for access</span></div>
+      <div style="display:inline-flex;align-items:center;gap:8px;padding:9px 18px;background:rgba(245,200,66,0.10);border:1.5px solid rgba(245,200,66,0.30);border-radius:9px;font-size:12px;font-weight:700;color:var(--gold)">🚀 Smart feature — <span onclick="openWaitlist()" style="text-decoration:underline;cursor:pointer">Register for access</span></div>
       <button class="wa-sec" onclick="document.getElementById('mirrorIn').value='I want to buy some food from the market yesterday'">Example</button>
     </div>
     <div id="mirrorOut"></div>
@@ -1036,7 +1036,6 @@ button, .tbtn, .tgrp { -webkit-tap-highlight-color: transparent; }
       <div style="padding:13px;background:rgba(45,212,191,0.10);border:1.5px solid rgba(45,212,191,0.40);border-radius:11px">
         <div style="font-size:10px;font-weight:800;text-transform:uppercase;color:var(--teal);letter-spacing:.07em;margin-bottom:6px">✅ Correct English</div>
         <div id="tmCorrectText" style="font-size:15px;font-weight:600;color:#fff;line-height:1.65;margin-bottom:8px"></div>
-        <div id="tmTransScore" style="display:none"></div>
         <button type="button" onclick="navigator.clipboard.writeText(document.getElementById('tmCorrectText').textContent)" style="font-size:11.5px;padding:4px 12px;border-radius:14px;border:1px solid rgba(45,212,191,0.35);background:transparent;color:var(--teal);cursor:pointer;font-family:inherit">Copy</button>
       </div>
 
@@ -1066,7 +1065,7 @@ button, .tbtn, .tgrp { -webkit-tap-highlight-color: transparent; }
     <div class="ib ib-forest"><strong style="color:var(--forest)">Proofread</strong> &mdash; Paste any English writing. Get every mistake corrected sentence by sentence with full bilingual explanations.</div>
     <textarea class="wta" id="proofIn" spellcheck="true" placeholder="Paste your English text here..." style="min-height:110px"></textarea>
     <div class="wa-row">
-      <div style="display:inline-flex;align-items:center;gap:8px;padding:9px 18px;background:rgba(245,200,66,0.10);border:1.5px solid rgba(245,200,66,0.30);border-radius:9px;font-size:12px;font-weight:700;color:var(--gold)">🚀 AI feature — <span onclick="openWaitlist()" style="text-decoration:underline;cursor:pointer">Register for access</span></div>
+      <div style="display:inline-flex;align-items:center;gap:8px;padding:9px 18px;background:rgba(245,200,66,0.10);border:1.5px solid rgba(245,200,66,0.30);border-radius:9px;font-size:12px;font-weight:700;color:var(--gold)">🚀 Smart feature — <span onclick="openWaitlist()" style="text-decoration:underline;cursor:pointer">Register for access</span></div>
       <button class="wa-sec" onclick="document.getElementById('proofIn').value='Yesterday I am going to the market and buyed many vegetable for cook dinner.'">Example</button>
     </div>
     <div id="proofOut"></div>
@@ -1085,7 +1084,7 @@ button, .tbtn, .tgrp { -webkit-tap-highlight-color: transparent; }
       <button class="tone-btn" onclick="setTone('Academic',this)">Academic</button>
     </div>
     <div class="wa-row" style="margin-top:5px">
-      <div style="display:inline-flex;align-items:center;gap:8px;padding:9px 18px;background:rgba(245,200,66,0.10);border:1.5px solid rgba(245,200,66,0.30);border-radius:9px;font-size:12px;font-weight:700;color:var(--gold)">🚀 AI feature — <span onclick="openWaitlist()" style="text-decoration:underline;cursor:pointer">Register for access</span></div>
+      <div style="display:inline-flex;align-items:center;gap:8px;padding:9px 18px;background:rgba(245,200,66,0.10);border:1.5px solid rgba(245,200,66,0.30);border-radius:9px;font-size:12px;font-weight:700;color:var(--gold)">🚀 Smart feature — <span onclick="openWaitlist()" style="text-decoration:underline;cursor:pointer">Register for access</span></div>
       <button class="wa-sec" onclick="document.getElementById('toneIn').value='I need that file now'">Example</button>
     </div>
     <div id="toneOut"></div>
@@ -1210,7 +1209,7 @@ button, .tbtn, .tgrp { -webkit-tap-highlight-color: transparent; }
   <div id="diaryList"><div style="font-size:12px;color:var(--txt-3)">Your activity appears here as you practise</div></div>
   <div style="font-size:13px;font-weight:700;color:var(--txt-1)">Vocabulary Diary</div>
   <div id="vocabSaved"><div style="font-size:12px;color:var(--txt-3)">Words you save from Word of the Moment appear here</div></div>
-  <div style="padding:9px 12px;background:rgba(245,200,66,0.07);border:1.5px solid rgba(245,200,66,0.20);border-radius:9px;font-size:11.5px;color:rgba(255,255,255,0.55)">🚀 AI Study Plan coming soon — <span onclick="openWaitlist()" style="color:var(--gold);text-decoration:underline;cursor:pointer">Register →</span></div>
+  <div style="padding:9px 12px;background:rgba(245,200,66,0.07);border:1.5px solid rgba(245,200,66,0.20);border-radius:9px;font-size:11.5px;color:rgba(255,255,255,0.55)">🚀 Smart Study Plan coming soon — <span onclick="openWaitlist()" style="color:var(--gold);text-decoration:underline;cursor:pointer">Register →</span></div>
   <div id="planOut"></div>
 </div>
 
@@ -7826,20 +7825,6 @@ function tmShowCorrectEnglish(btn) {
     // Show romanized warning if needed
     var warnEl = document.getElementById('tmRomanWarn');
     if (warnEl) warnEl.style.display = warn ? 'block' : 'none';
-    // Show translation quality score
-    var scoreEl = document.getElementById('tmTransScore');
-    if (scoreEl) {
-      var words = translated.toLowerCase().replace(/[^a-z0-9\s]/g,'').split(/\s+/).filter(function(w){return w.length>2;});
-      var score = words.length >= 5 ? 94 : words.length >= 3 ? 88 : 78;
-      var col = score >= 85 ? '#4ADE80' : '#F5C842';
-      scoreEl.innerHTML = '<div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:rgba(45,212,191,0.08);border:1px solid rgba(45,212,191,0.25);border-radius:9px;margin-top:8px">'
-        + '<div style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:conic-gradient('+col+' '+score+'%,rgba(255,255,255,0.08) 0);flex-shrink:0">'
-        + '<div style="width:34px;height:34px;border-radius:50%;background:var(--bg-1);display:flex;align-items:center;justify-content:center">'
-        + '<span style="font-size:11px;font-weight:900;color:'+col+'">'+score+'%</span></div></div>'
-        + '<div><div style="font-size:11px;font-weight:700;color:rgba(45,212,191,0.90)">Translation quality</div>'
-        + '<div style="font-size:11px;color:rgba(255,255,255,0.50)">How well your sentence translated to English</div></div></div>';
-      scoreEl.style.display = 'block';
-    }
     var panel = document.getElementById('panel-writing');
     if (panel) setTimeout(function() { panel.scrollTop = panel.scrollHeight; }, 100);
   }

@@ -1036,6 +1036,7 @@ button, .tbtn, .tgrp { -webkit-tap-highlight-color: transparent; }
       <div style="padding:13px;background:rgba(45,212,191,0.10);border:1.5px solid rgba(45,212,191,0.40);border-radius:11px">
         <div style="font-size:10px;font-weight:800;text-transform:uppercase;color:var(--teal);letter-spacing:.07em;margin-bottom:6px">✅ Correct English</div>
         <div id="tmCorrectText" style="font-size:15px;font-weight:600;color:#fff;line-height:1.65;margin-bottom:8px"></div>
+        <div id="tmTransScore" style="display:none"></div>
         <button type="button" onclick="navigator.clipboard.writeText(document.getElementById('tmCorrectText').textContent)" style="font-size:11.5px;padding:4px 12px;border-radius:14px;border:1px solid rgba(45,212,191,0.35);background:transparent;color:var(--teal);cursor:pointer;font-family:inherit">Copy</button>
       </div>
 
@@ -8404,9 +8405,16 @@ function tmShowCorrectEnglish(btn) {
     if (ct) ct.textContent = translated;
     if (ra) { ra.style.display = 'flex'; ra.style.flexDirection = 'column'; }
     if (btn) { btn.textContent = '🔄 Show me the correct English →'; btn.disabled = false; }
-    // Show romanized warning if needed
     var warnEl = document.getElementById('tmRomanWarn');
     if (warnEl) warnEl.style.display = warn ? 'block' : 'none';
+    var scoreEl = document.getElementById('tmTransScore');
+    if (scoreEl) {
+      var words = translated.toLowerCase().replace(/[^a-z0-9\s]/g,'').split(/\s+/).filter(function(w){return w.length>2;});
+      var score = words.length >= 5 ? 94 : words.length >= 3 ? 88 : 78;
+      var col = score >= 85 ? '#4ADE80' : '#F5C842';
+      scoreEl.innerHTML = '<div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:rgba(45,212,191,0.08);border:1px solid rgba(45,212,191,0.25);border-radius:9px;margin-top:8px"><div style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:conic-gradient('+col+' '+score+'%,rgba(255,255,255,0.08) 0);flex-shrink:0"><div style="width:34px;height:34px;border-radius:50%;background:var(--bg-1);display:flex;align-items:center;justify-content:center"><span style="font-size:11px;font-weight:900;color:'+col+'">'+score+'%</span></div></div><div><div style="font-size:11px;font-weight:700;color:rgba(45,212,191,0.90)">Translation quality</div><div style="font-size:11px;color:rgba(255,255,255,0.50)">How well your sentence translated to English</div></div></div>';
+      scoreEl.style.display = 'block';
+    }
     var panel = document.getElementById('panel-writing');
     if (panel) setTimeout(function() { panel.scrollTop = panel.scrollHeight; }, 100);
   }

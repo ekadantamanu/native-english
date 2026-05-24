@@ -4447,6 +4447,44 @@ var NL={
       Malayalam:'ഇത് നിങ്ങളുടെ ഭാഷ സംസാരിക്കുന്നവർ ചെയ്യുന്ന വളരെ സാധാരണ തെറ്റാണ്. ശരിയായ രൂപം automatic ആകുന്നതുവരെ practice ചെയ്യൂ.',
       default:'This is a very common mistake for speakers of your language. Practice the correct form until it becomes automatic.'
     },
+    mistake_avoid:{
+      German:'Vermeide es, so zu sagen. Die richtige Form ist:',
+      French:'Évitez de dire cela. La bonne façon de le dire est :',
+      Spanish:'Evita decir esto. La forma correcta es:',
+      Chinese:'避免这样说。正确的说法是：',
+      Japanese:'このように言うのは避けましょう。正しい言い方は：',
+      Russian:'Избегайте говорить так. Правильно говорить:',
+      Portuguese:'Evite dizer isso. A forma correcta é:',
+      Italian:'Evita di dirlo così. Il modo corretto è:',
+      Korean:'이렇게 말하는 것을 피하세요. 올바른 표현은:',
+      Turkish:'Böyle söylemekten kaçının. Doğru söyleyiş:',
+      Hindi:'इस तरह मत कहें। सही तरीका है:',
+      Tamil:'இப்படி சொல்வதை தவிர்க்கவும். சரியான வழி:',
+      Telugu:'ఇలా చెప్పడం మానండి. సరైన పద్ధతి:',
+      Arabic:'تجنب قول ذلك. الطريقة الصحيحة هي:',
+      Kannada:'ಹೀಗೆ ಹೇಳುವುದನ್ನು ತಪ್ಪಿಸಿ. ಸರಿಯಾದ ರೀತಿ:',
+      Malayalam:'ഇങ്ങനെ പറയുന்നதை ഒഴിവാക്കൂ. ശരിയായ രീതി:',
+      default:'Avoid saying this. The correct way is:'
+    },
+    mistake_correct:{
+      German:'✅ Richtig:',
+      French:'✅ Correct :',
+      Spanish:'✅ Correcto:',
+      Chinese:'✅ 正确：',
+      Japanese:'✅ 正しい：',
+      Russian:'✅ Правильно:',
+      Portuguese:'✅ Correcto:',
+      Italian:'✅ Corretto:',
+      Korean:'✅ 올바른:',
+      Turkish:'✅ Doğrusu:',
+      Hindi:'✅ सही:',
+      Tamil:'✅ சரியானது:',
+      Telugu:'✅ సరైనది:',
+      Arabic:'✅ الصحيح:',
+      Kannada:'✅ ಸರಿಯಾದದ್ದು:',
+      Malayalam:'✅ ശരിയായത്:',
+      default:'✅ Correct:'
+    },
     // ── ERROR DECODER ──
     err_state_verb:{
       Spanish:'Los verbos de estado (have, know, like, understand, want, love) no se usan en forma continua en inglés. En español a veces sí, pero en inglés NO.',
@@ -5311,9 +5349,18 @@ function renderMistakes(){
 
 function translateMistake(btn,idx,col,why,wrong,right){
   var el=document.getElementById('mn-'+idx);
-  if(el)el.innerHTML='<div style="font-size:12px;padding:7px 10px;border-radius:7px;background:rgba(255,255,255,0.04);border-left:2px solid '+col+'"><strong style="color:'+col+'">Why wrong:</strong> '+why+'<br><span style="color:rgba(255,255,255,0.60)">✅ Say: <strong>'+right+'</strong> ❌ Not: <strong>'+wrong+'</strong></span><br><span style="font-size:11px;color:rgba(245,200,66,0.65)">In '+lang+': Full explanation in your language — Premium coming soon.</span></div>';
+  if(!el)return;
+  var hasWhy=(why&&why!=='See explanation'&&why.trim().length>5);
+  var html='<div style="font-size:12px;padding:7px 10px;border-radius:7px;background:rgba(255,255,255,0.04);border-left:2px solid '+col+'">';
+  html+='<strong style="color:'+col+'">Why wrong:</strong> '+(hasWhy?why:('Avoid "'+wrong+'". Say "'+right+'" instead.'))+'<br>';
+  html+='<span style="color:rgba(255,255,255,0.60)">✅ Say: <strong>'+right+'</strong> ❌ Not: <strong>'+wrong+'</strong></span>';
+  html+='<div style="margin-top:6px;padding:6px 8px;background:rgba(245,200,66,0.08);border-radius:6px;border-left:2px solid rgba(245,200,66,0.40)">';
+  html+='<div style="font-size:10px;font-weight:700;color:rgba(245,200,66,0.70);letter-spacing:0.06em;margin-bottom:4px">IN '+lang.toUpperCase()+'</div>';
+  html+='<div style="font-size:12px;color:rgba(245,200,66,0.90);line-height:1.7">'+NL.get('mistake_avoid')+' <strong style="color:#34D399">'+right+'</strong></div>';
+  html+='<div style="font-size:11px;color:rgba(255,255,255,0.55);margin-top:2px">❌ '+NL.get('mistake_correct').replace('✅','')+' <strong style="color:#F87171">'+wrong+'</strong></div>';
+  html+='</div></div>';
+  el.innerHTML=html;
   btn.style.display='none';
-  ntBatch();
 }
 function filterConfuse(cat,btn){
   document.querySelectorAll('#confuseFilter .chip').forEach(function(b){b.style.borderColor='';b.style.background='';b.style.color='';});

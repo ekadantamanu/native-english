@@ -767,7 +767,7 @@ button, .tbtn, .tgrp { -webkit-tap-highlight-color: transparent; }
 
 <!-- SPEAKING -->
 <div id="panel-chat" class="panel active" style="flex-direction:column;overflow:hidden">
-  <!-- Smart Tutor Coming Soon -->
+  <!-- AI Tutor Coming Soon -->
   <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 20px;text-align:center;background:linear-gradient(135deg,#0f0d0b,#1a1612,#0d1f1a)">
     <div style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#e8a820);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:32px;font-weight:700;color:#05070F;margin-bottom:18px;box-shadow:0 8px 30px rgba(245,200,66,0.30)">N</div>
     <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(245,200,66,0.12);border:1.5px solid rgba(245,200,66,0.35);border-radius:100px;padding:5px 16px;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:16px">🚀 Premium Feature — Coming Soon</div>
@@ -2433,14 +2433,7 @@ function submitWaitlist(){
 
   // Submit to Google Forms
   var SCRIPT_URL='https://script.google.com/macros/s/AKfycbwhNqmYwb1WIb0X3R1hCZ0VdtmjVsWfXtp8nF_DByC42UPkTMYWMQFjbkWnAB1vYnL4/exec';
-  fetch(SCRIPT_URL,{
-    method:'POST',
-    body:JSON.stringify({name:name,email:email,language:langSel,country:country,loved:liked,improve:improve,remove:remove}),
-    headers:{'Content-Type':'application/json'},
-    mode:'no-cors'
-  }).catch(function(){});
-
-  // Track registration in Google Analytics
+  fetch(SCRIPT_URL,{method:'POST',body:JSON.stringify({name:name,email:email,language:langSel,country:country,loved:liked,improve:improve,remove:remove}),headers:{'Content-Type':'application/json'},mode:'no-cors'}).catch(function(){});
   if(typeof gtag!=='undefined'){gtag('event','registration',{'event_category':'lead','event_label':'early_bird'});}
 
   // Increment waitlist counter
@@ -4450,44 +4443,48 @@ var NL={
       Malayalam:'ഇത് നിങ്ങളുടെ ഭാഷ സംസാരിക്കുന്നവർ ചെയ്യുന്ന വളരെ സാധാരണ തെറ്റാണ്. ശരിയായ രൂപം automatic ആകുന്നതുവരെ practice ചെയ്യൂ.',
       default:'This is a very common mistake for speakers of your language. Practice the correct form until it becomes automatic.'
     },
-    mistake_avoid:{
-      German:'Vermeide es, so zu sagen. Die richtige Form ist:',
-      French:'Évitez de dire cela. La bonne façon de le dire est :',
-      Spanish:'Evita decir esto. La forma correcta es:',
-      Chinese:'避免这样说。正确的说法是：',
-      Japanese:'このように言うのは避けましょう。正しい言い方は：',
-      Russian:'Избегайте говорить так. Правильно говорить:',
-      Portuguese:'Evite dizer isso. A forma correcta é:',
-      Italian:'Evita di dirlo così. Il modo corretto è:',
-      Korean:'이렇게 말하는 것을 피하세요. 올바른 표현은:',
-      Turkish:'Böyle söylemekten kaçının. Doğru söyleyiş:',
-      Hindi:'इस तरह मत कहें। सही तरीका है:',
-      Tamil:'இப்படி சொல்வதை தவிர்க்கவும். சரியான வழி:',
-      Telugu:'ఇలా చెప్పడం మానండి. సరైన పద్ధతి:',
-      Arabic:'تجنب قول ذلك. الطريقة الصحيحة هي:',
-      Kannada:'ಹೀಗೆ ಹೇಳುವುದನ್ನು ತಪ್ಪಿಸಿ. ಸರಿಯಾದ ರೀತಿ:',
-      Malayalam:'ഇങ്ങനെ പറയുന்നதை ഒഴിവാക്കൂ. ശരിയായ രീതി:',
-      default:'Avoid saying this. The correct way is:'
+    mistake_avoid:{German:'Vermeide es, so zu sagen. Die richtige Form ist:',French:'Évitez de dire cela. La bonne façon est :',Spanish:'Evita decir esto. La forma correcta es:',Chinese:'避免这样说。正确的说法是：',Japanese:'このように言うのは避けましょう。正しい言い方は：',Russian:'Избегайте говорить так. Правильно:',Portuguese:'Evite dizer isso. A forma correcta é:',Italian:'Evita di dirlo. Il modo corretto è:',Korean:'이렇게 말하는 것을 피하세요. 올바른 표현은:',Turkish:'Böyle söylemekten kaçının. Doğrusu:',Hindi:'इस तरह मत कहें। सही तरीका है:',Tamil:'இப்படி சொல்வதை தவிர்க்கவும். சரியான வழி:',Telugu:'ఇలా చెప్పడం మానండి. సరైన పద్ధతి:',Arabic:'تجنب قول ذلك. الطريقة الصحيحة هي:',Kannada:'ಹೀಗೆ ಹೇಳುವುದನ್ನು ತಪ್ಪಿಸಿ. ಸರಿಯಾದ ರೀತಿ:',Malayalam:'ഇങ്ങനെ പറയുന്നതൊഴിവാക്കൂ. ശരിയായ രീതി:',default:'Avoid saying this. The correct way is:'},
+    mistake_correct:{German:'Richtig:',French:'Correct :',Spanish:'Correcto:',Chinese:'正确：',Japanese:'正しい：',Russian:'Правильно:',Portuguese:'Correcto:',Italian:'Corretto:',Korean:'올바른:',Turkish:'Doğrusu:',Hindi:'सही:',Tamil:'சரியானது:',Telugu:'సరైనది:',Arabic:'الصحيح:',Kannada:'ಸರಿಯಾದದ್ದು:',Malayalam:'ശരിയായത്:',default:'Correct:'},
+    challenge_hint:{German:['Drei Kontrastwörter korrekt verwenden.','Wann verwendest du have eaten und ate?','Make und Do je zweimal.','Gleiche Bedeutung, andere Wirkung.','4 Konditionalkonstruktionen.','Passiv: Subjekt empfängt Handlung.','Hilfsverb vor Subjekt in Fragen.','Zeitformen wechseln bei indirekter Rede.','Artikel sind schwierig.','Kollokationen lernen.'],Hindi:['तीनों contrast शब्द सही तरीके से।','have eaten और ate कब?','Make और Do दो बार।','समान अर्थ, अलग tone।','4 conditional structures।','Passive: subject क्रिया प्राप्त।','auxiliary verb subject से पहले।','Indirect speech में tenses पीछे।','Articles कठिन।','Collocations याद करें।'],Telugu:['మూడు contrast పదాలు.','have eaten మరియు ate ఎప్పుడు?','Make మరియు Do రెండుసార్లు.','ఒకే అర్థం, వేరే tone.','4 conditional structures.','Passive: subject చర్య స్వీకరిస్తుంది.','auxiliary verb subject కంటే ముందు.','Indirect speech లో tenses పెనక్కి.','Articles కష్టం.','Collocations గుర్తుంచుకో.'],Tamil:['மூன்று contrast வார்த்தைகள்.','have eaten மற்றும் ate எப்போது?','Make மற்றும் Do இரண்டுமுறை.','ஒரே அர்த்தம், வேறு tone.','4 conditional structures.','Passive: subject செயல் பெறுகிறது.','auxiliary verb subject க்கு முன்.','Indirect speech இல் tenses பின்னால்.','Articles கடினம்.','Collocations மனப்பாடம்.'],Spanish:['Tres palabras de contraste.','Have eaten vs ate cuándo?','Make y do dos veces.','Mismo significado, tono diferente.','4 condicionales.','Pasiva: sujeto recibe acción.','Auxiliar antes del sujeto.','Tiempos retroceden en indirecto.','Artículos difíciles.','Memoriza colocaciones.'],Arabic:['كلمات التباين الثلاث.','have eaten وate متى?','make وdo مرتين.','نفس المعنى، نبرة مختلفة.','4 هياكل شرطية.','مبني للمجهول.','مساعد قبل الفاعل.','أزمنة تتراجع في المنقول.','مقالات صعبة.','احفظ collocations.'],default:['Three contrast words correctly.','When to use have eaten vs ate?','Use make and do twice each.','Same meaning, different tone.','4 conditional structures.','Passive = subject receives action.','Auxiliary before subject.','Tenses shift in reported speech.','Articles are hard.','Memorise collocations.']},
+    challenge_answer:{German:['DESPITE+Nomen. ALTHOUGH+Subjekt+Verb. HOWEVER verbindet.','Simple Past=Zeitpunkt. Present Perfect=Erfahrung.','MAKE=erschaffen. DO=ausführen.','Kein Slang. Höfliche Einleitungen.','Zero=Wahrheit. First=Möglichkeit. Second=Irrealis. Third=unmöglich.','Passiv=to be+Partizip.','Fragewort+Hilfsverb+Subjekt+Verb.','Präsens→Vergangenheit, will→would.','THE=bekannt. A/AN=erstmalig.','Häufige Paare lernen.'],Hindi:['DESPITE+noun. ALTHOUGH+subject+verb. HOWEVER जोड़ता।','Simple Past=समय। Present Perfect=अनुभव।','MAKE=बनाना। DO=करना।','No slang. Polite openers.','Zero=सत्य। First=संभावना। Second=काल्पनिक। Third=असंभव।','Passive=to be+past participle.','Question word+auxiliary+subject+verb.','Present→past, will→would.','THE=विशिष्ट। A/AN=पहली बार।','Common pairs याद करें।'],Telugu:['DESPITE+noun. ALTHOUGH+subject+verb. HOWEVER కలుపుతుంది.','Simple Past=సమయం. Present Perfect=అనుభవం.','MAKE=సృష్టించడం. DO=చేయడం.','Slang వద్దు.','Zero=సత్యం. First=అవకాశం. Second=ఊహ. Third=అసాధ్యం.','Passive=to be+past participle.','Question word+auxiliary+subject+verb.','Present→past, will→would.','THE=నిర్దిష్ట. A/AN=మొదటిసారి.','Common pairs గుర్తుంచుకో.'],Tamil:['DESPITE+noun. ALTHOUGH+subject+verb. HOWEVER இணைக்கிறது.','Simple Past=நேரம். Present Perfect=அனுபவம்.','MAKE=உருவாக்க. DO=செய்ய.','Slang வேண்டாம்.','Zero=உண்மை. First=சாத்தியம். Second=கற்பனை. Third=சாத்தியமற்றது.','Passive=to be+past participle.','Question word+auxiliary+subject+verb.','Present→past, will→would.','THE=குறிப்பிட்டது. A/AN=முதல்முறை.','Common pairs மனப்பாடம்.'],Spanish:['DESPITE+sustantivo. ALTHOUGH+sujeto+verbo. HOWEVER conecta.','Simple Past=tiempo. Present Perfect=experiencia.','MAKE=crear. DO=realizar.','Sin jerga.','Zero=verdad. First=posibilidad. Second=imaginario. Third=imposible.','Pasiva=to be+participio.','Palabra+auxiliar+sujeto+verbo.','Presente→pasado, will→would.','THE=específico. A/AN=primera.','Memoriza pares comunes.'],Arabic:['DESPITE+اسم. ALTHOUGH+فاعل+فعل. HOWEVER يربط.','ماضٍ بسيط=وقت. مضارع تام=تجربة.','MAKE=إنشاء. DO=أداء.','بدون عامية.','صفر=حقيقة. أول=احتمال. ثانٍ=خيال. ثالث=مستحيل.','مبني للمجهول=to be+مفعول.','استفهام+مساعد+فاعل+فعل.','مضارع→ماضٍ، will→would.','THE=محدد. A/AN=أول.','احفظ الأزواج.'],default:['DESPITE+noun. ALTHOUGH+subject+verb. HOWEVER connects.','Simple Past=time. Present Perfect=experience.','MAKE=create. DO=perform.','No slang. Polite openers.','Zero=truth. First=possible. Second=imaginary. Third=impossible.','Passive=to be+past participle.','Question word+auxiliary+subject+verb.','Present→past, will→would.','THE=specific. A/AN=first mention.','Memorise common pairs.']},
+    spotter_note:{
+      German:'Das sind sehr häufige Grammatikfehler. Rote Wörter zeigen Fehler. Studiere jede Korrektur sorgfältig.',
+      French:'Ce sont des erreurs de grammaire tres courantes. Les mots rouges montrent les erreurs. Etudie chaque correction.',
+      Spanish:'Estos son errores gramaticales muy comunes. Las palabras rojas muestran errores. Estudia cada corrección.',
+      Chinese:'这些是非常常见的语法错误。红色单词显示错误。仔细学习每个更正。',
+      Japanese:'これらはよくある文法ミスです。赤い単語がエラーを示します。各訂正を注意深く学んでください。',
+      Russian:'Это очень распространённые грамматические ошибки. Красные слова показывают ошибки. Изучи каждое исправление.',
+      Hindi:'ये बहुत सामान्य व्याकरण की गलतियाँ हैं। लाल शब्द गलतियाँ दिखाते हैं। प्रत्येक सुधार का अध्ययन करें।',
+      Telugu:'ఇవి చాలా సాధారణ grammar తప్పులు. Red words తప్పులు చూపిస్తాయి. ప్రతి correction జాగ్రత్తగా చదవండి.',
+      Tamil:'இவை மிகவும் பொதுவான இலக்கண தவறுகள். சிவப்பு வார்த்தைகள் தவறுகளை காட்டுகின்றன. ஒவ்வொரு திருத்தத்தையும் படிக்கவும்.',
+      Arabic:'هذه أخطاء نحوية شائعة جداً. الكلمات الحمراء تظهر الأخطاء. ادرس كل تصحيح بعناية.',
+      Kannada:'ಇವು ತುಂಬಾ ಸಾಮಾನ್ಯ ವ್ಯಾಕರಣ ತಪ್ಪುಗಳು. ಕೆಂಪು ಪದಗಳು ತಪ್ಪುಗಳನ್ನು ತೋರಿಸುತ್ತವೆ.',
+      Malayalam:'ഇവ വളരെ സാധാരണ വ്യാകരണ തെറ്റുകളാണ്. ചുവന്ന വാക്കുകൾ തെറ്റുകൾ കാണിക്കുന്നു.',
+      default:'These are very common grammar mistakes. Red words show errors. Study each correction carefully.'
     },
-    mistake_correct:{
-      German:'✅ Richtig:',
-      French:'✅ Correct :',
-      Spanish:'✅ Correcto:',
-      Chinese:'✅ 正确：',
-      Japanese:'✅ 正しい：',
-      Russian:'✅ Правильно:',
-      Portuguese:'✅ Correcto:',
-      Italian:'✅ Corretto:',
-      Korean:'✅ 올바른:',
-      Turkish:'✅ Doğrusu:',
-      Hindi:'✅ सही:',
-      Tamil:'✅ சரியானது:',
-      Telugu:'✅ సరైనది:',
-      Arabic:'✅ الصحيح:',
-      Kannada:'✅ ಸರಿಯಾದದ್ದು:',
-      Malayalam:'✅ ശരിയായത്:',
-      default:'✅ Correct:'
+    puzzle_why:{
+      German:'Sehr gut! Korrektes Englisch. Die Grammatikregel lautet:',
+      French:'Tres bien! Anglais correct. La regle est:',
+      Spanish:'Muy bien! Ingles correcto. La regla es:',
+      Chinese:'非常好！正确英语。语法规则：',
+      Japanese:'よくできました！正しい英語。文法ルール：',
+      Russian:'Отлично! Грамматическое правило:',
+      Hindi:'बहुत अच्छा! व्याकरण नियम:',
+      Telugu:'చాలా బాగు! Grammar నియమం:',
+      Tamil:'மிகவும் நன்றாக! இலக்கண விதி:',
+      Arabic:'ممتاز! القاعدة النحوية:',
+      default:'Well done! That is correct English. The grammar rule is:'
     },
+    cs_1:{German:'"are you" wird zu "ya".',French:'"are you" devient "ya".',Spanish:'"are you" se convierte en "ya".',Chinese:'"are you" 变成 "ya"。',Japanese:'"are you" が "ya" になる。',Russian:'"are you" становится "ya".',Hindi:'"are you" → "ya" बन जाता है।',Telugu:'"are you" → "ya" అవుతాయి.',Tamil:'"are you" → "ya" ஆகிறது.',Arabic:'"are you" تصبح "ya".',default:'"are you" becomes "ya" in fast speech.'},
+    cs_2:{German:'"do not know" → "dunno".',French:'"do not know" → "dunno".',Spanish:'"do not know" → "dunno".',Chinese:'"do not know" → "dunno"。',Japanese:'"do not know" → "dunno"。',Russian:'"do not know" → "dunno".',Hindi:'"do not know" → "dunno"।',Telugu:'"do not know" → "dunno".',Tamil:'"do not know" → "dunno".',Arabic:'"do not know" → "dunno".',default:'"do not know" becomes "dunno".'},
+    cs_3:{German:'Das "t" fällt vor Konsonanten weg.',French:'Le "t" disparaît devant consonne.',Spanish:'La "t" desaparece antes de consonante.',Chinese:'"t" 在辅音前消失。',Japanese:'"t" が子音前で消える。',Russian:'"t" исчезает перед согласной.',Hindi:'"t" consonant से पहले गायब।',Telugu:'"t" consonant తర్వాత drop.',Tamil:'"t" மெய்யெழுத்துக்கு முன் மறைகிறது.',Arabic:'"t" تختفي قبل الساكن.',default:'"t" drops before a consonant.'},
+    cs_4:{German:'"n" verbindet sich mit folgendem Vokal.',French:'"n" se lie à la voyelle suivante.',Spanish:'"n" se une a la vocal siguiente.',Chinese:'"n" 与元音连读。',Japanese:'"n" が母音と繋がる。',Russian:'"n" связывается с гласным.',Hindi:'"n" vowel से जुड़ता है।',Telugu:'"n" తర్వాత vowel link.',Tamil:'"n" உயிரெழுத்துடன் இணைகிறது.',Arabic:'"n" تتصل بالمتحرك.',default:'"n" links to the following vowel.'},
+    cs_5:{German:'"going to" → "gonna".',French:'"going to" → "gonna".',Spanish:'"going to" → "gonna".',Chinese:'"going to" → "gonna"。',Japanese:'"going to" → "gonna"。',Russian:'"going to" → "gonna".',Hindi:'"going to" → "gonna"।',Telugu:'"going to" → "gonna".',Tamil:'"going to" → "gonna".',Arabic:'"going to" → "gonna".',default:'"going to" becomes "gonna".'},
+    cs_6:{German:'"d" assimiliert sich an "b".',French:'"d" s\'assimile à "b".',Spanish:'"d" se asimila a "b".',Chinese:'"d" 同化为 "b"。',Japanese:'"d" が "b" に同化する。',Russian:'"d" уподобляется "b".',Hindi:'"d" → "b" assimilation।',Telugu:'"d" → "b" గా మారుతుంది.',Tamil:'"d", "b"-ஆல் மாற்றப்படுகிறது.',Arabic:'"d" تتحول لـ"b".',default:'"d" assimilates to "b".'},
+    cs_7:{German:'"t" fällt aus "last" weg.',French:'"t" tombe de "last".',Spanish:'"t" cae de "last".',Chinese:'"last" 中 "t" 消失。',Japanese:'"last" の "t" が消える。',Russian:'"t" выпадает из "last".',Hindi:'"last" में "t" silent।',Telugu:'"last" లో "t" silent.',Tamil:'"last" இல் "t" மறைகிறது.',Arabic:'"t" تسقط من "last".',default:'"t" drops from "last".'},
+    cs_8:{German:'"have got to" → "gotta".',French:'"have got to" → "gotta".',Spanish:'"have got to" → "gotta".',Chinese:'"have got to" → "gotta"。',Japanese:'"have got to" → "gotta"。',Russian:'"have got to" → "gotta".',Hindi:'"have got to" → "gotta"।',Telugu:'"have got to" → "gotta".',Tamil:'"have got to" → "gotta".',Arabic:'"have got to" → "gotta".',default:'"have got to" becomes "gotta".'},
+    cs_9:{German:'"can you" → "canya".',French:'"can you" → "canya".',Spanish:'"can you" → "canya".',Chinese:'"can you" → "canya"。',Japanese:'"can you" → "canya"。',Russian:'"can you" → "canya".',Hindi:'"can you" → "canya"।',Telugu:'"can you" → "canya".',Tamil:'"can you" → "canya".',Arabic:'"can you" → "canya".',default:'"can you" merges into "canya".'},
+    cs_10:{German:'"n" verbindet mit Vokal.',French:'"n" final se lie.',Spanish:'"n" final se enlaza.',Chinese:'末尾 "n" 连读。',Japanese:'語末 "n" が繋がる。',Russian:'Конечное "n" с гласным.',Hindi:'अंत का "n" vowel से।',Telugu:'"n" తర్వాత vowel link.',Tamil:'முடிவு "n" இணைகிறது.',Arabic:'"n" مع المتحرك.',default:'Final "n" links to the following vowel.'},
     // ── ERROR DECODER ──
     err_state_verb:{
       Spanish:'Los verbos de estado (have, know, like, understand, want, love) no se usan en forma continua en inglés. En español a veces sí, pero en inglés NO.',
@@ -5309,25 +5306,93 @@ function playAllAccents(){buildAccentCards();}
 
 function renderChallenge(){
   var area=document.getElementById('challengeArea');if(!area)return;
-  var day=new Date().getDate()-1,c=CHALLENGES[day%CHALLENGES.length];
-  // Use dark-theme friendly bg
+  var day=new Date().getDate()-1,c=CHALLENGES[(day+_chalOffset)%CHALLENGES.length];
+  var i=(day+_chalOffset)%10;
+  var hints=(NL.data.challenge_hint[lang]||NL.data.challenge_hint['default']);
+  var answers=(NL.data.challenge_answer[lang]||NL.data.challenge_answer['default']);
+  var hintText=hints[i]||c.native;
+  var ansText=answers[i]||c.answerNative;
   var darkBg='linear-gradient(135deg,'+c.col+'25,'+c.col+'12)';
+  var safeAns=c.answer.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+  var safeAnsNat=ansText.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
   area.innerHTML=
     '<div class="challenge-card" style="background:'+darkBg+';border:1.5px solid '+c.col+'50;border-left:4px solid '+c.col+'">'
-    +'<div class="challenge-day" style="color:'+c.col+';font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px">Day '+(day+1)+' Challenge - '+new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'})+'</div>'
+    +'<div class="challenge-day" style="color:'+c.col+';font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px">Day '+(day+1)+' Challenge – '+new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'})+'</div>'
     +'<div style="font-family:Fraunces,serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:7px;line-height:1.3">'+c.title+'</div>'
-    +'<div style="font-size:13px;line-height:1.72;color:rgba(255,255,255,0.85);margin-bottom:10px">'+c.desc+'</div>'
-    +'<div style="font-size:12px;font-style:italic;padding:8px 12px;border-radius:9px;margin-bottom:12px;background:rgba(0,0,0,0.25);border-left:3px solid '+c.col+';color:'+c.col+'"><strong>In '+lang+':</strong> '+c.native+'</div>'
-    +'<button onclick="revealChallenge(this)" style="padding:9px 22px;border-radius:100px;border:none;background:'+c.col+';color:#fff;font-weight:800;font-size:13px;cursor:pointer;letter-spacing:-.1px">Reveal Answer</button>'
+    +'<div style="font-size:13px;line-height:1.72;color:rgba(255,255,255,0.85);margin-bottom:8px">'+c.desc+'</div>'
+    +'<div style="font-size:12px;font-style:italic;padding:8px 12px;border-radius:9px;margin-bottom:14px;background:rgba(0,0,0,0.25);border-left:3px solid '+c.col+';color:'+c.col+'">'
+    +'<strong>In '+lang+':</strong> '+hintText+'</div>'
+    +'<div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,0.55);margin-bottom:6px">✏ Write your answer below</div>'
+    +'<textarea id="chalInput" placeholder="Type your answer here..." style="width:100%;min-height:90px;background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.15);border-radius:10px;color:#fff;font-size:13px;font-family:inherit;padding:10px 12px;resize:vertical;outline:none;box-sizing:border-box;line-height:1.6"></textarea>'
+    +'<div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap">'
+    +'<button onclick="checkChallengeAnswer(this,\''+safeAns+'\',\''+safeAnsNat+'\')" style="padding:9px 22px;border-radius:100px;border:none;background:'+c.col+';color:#fff;font-weight:800;font-size:13px;cursor:pointer">✅ Check my answer</button>'
+    +'<button onclick="revealChallenge(this)" style="padding:9px 22px;border-radius:100px;border:1.5px solid '+c.col+';background:transparent;color:'+c.col+';font-weight:700;font-size:13px;cursor:pointer">Show answer directly</button>'
+    +'</div>'
+    +'<div id="chalFeedback" style="display:none;margin-top:14px"></div>'
     +'<div id="chalAns" style="display:none;margin-top:12px;padding:14px;border-radius:12px;background:rgba(0,0,0,0.30);border:1px solid '+c.col+'50">'
     +'<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:'+c.col+';margin-bottom:8px">Answer & Explanation</div>'
     +'<div style="color:rgba(255,255,255,0.92);margin-bottom:10px;line-height:1.75;font-size:13px">'+c.answer+'</div>'
-    +'<div style="color:var(--gold);font-style:italic;font-size:12px;padding:9px 12px;background:rgba(0,0,0,0.2);border-radius:8px;border-left:3px solid var(--gold)"><strong>In '+lang+':</strong> '+c.answerNative+'</div>'
+    +'<div style="color:var(--gold);font-style:italic;font-size:12px;padding:9px 12px;background:rgba(0,0,0,0.2);border-radius:8px;border-left:3px solid var(--gold)">'
+    +'<strong>In '+lang+':</strong> '+ansText+'</div>'
     +'</div>'
     +'</div>';
-  ntBatch();
 }
-function revealChallenge(btn){var a=document.getElementById('chalAns');if(a){a.style.display='block';btn.style.display='none';}}
+
+function revealChallenge(btn){
+  var a=document.getElementById('chalAns');
+  if(a)a.style.display='block';
+  var wrap=btn.parentElement;
+  if(wrap){var btns=wrap.querySelectorAll('button');btns.forEach(function(b){b.style.display='none';});}
+  addChallengeNav();
+}
+
+var _chalOffset=0;
+function addChallengeNav(){
+  var fb=document.getElementById('chalFeedback');
+  if(!fb||fb.querySelector('.chal-nav'))return;
+  var d=document.createElement('div');
+  d.className='chal-nav';
+  d.style.cssText='margin-top:14px;display:flex;gap:10px;flex-wrap:wrap';
+  d.innerHTML='<button onclick="renderChallenge()" style="padding:8px 20px;border-radius:100px;border:none;background:rgba(255,255,255,0.10);color:#fff;font-weight:700;font-size:12px;cursor:pointer">↺ Try again</button>'
+    +'<button onclick="_chalOffset++;renderChallenge()" style="padding:8px 20px;border-radius:100px;border:1.5px solid rgba(74,222,128,0.40);background:transparent;color:#4ADE80;font-weight:700;font-size:12px;cursor:pointer">→ Next challenge</button>';
+  fb.style.display='block';
+  fb.appendChild(d);
+}
+
+function checkChallengeAnswer(btn,correctAnswer,ansNative){
+  var inp=document.getElementById('chalInput');
+  var userAnswer=(inp?inp.value:'').trim();
+  if(!userAnswer||userAnswer.length<5){
+    if(inp){inp.style.borderColor='#F87171';inp.placeholder='Please write your answer first...';}
+    return;
+  }
+  if(inp)inp.style.borderColor='rgba(255,255,255,0.15)';
+  var stopWords=['the','and','is','are','was','were','a','an','to','of','in','it','or','if','i','you','we','they'];
+  var keyWords=correctAnswer.toLowerCase().replace(/[^a-z0-9 ]/g,'').split(' ').filter(function(w){return w.length>3&&stopWords.indexOf(w)===-1;});
+  var userLower=userAnswer.toLowerCase();
+  var matched=keyWords.filter(function(w){return userLower.indexOf(w)>-1;});
+  var missed=keyWords.filter(function(w){return userLower.indexOf(w)===-1;});
+  var score=keyWords.length>0?Math.round((matched.length/keyWords.length)*100):50;
+  score=Math.min(score,98);
+  var col=score>=70?'#4ADE80':score>=40?'#F5C842':'#F87171';
+  var label=score>=70?'Good effort!':score>=40?'Decent attempt':'Keep practising';
+  var encourMap={Telugu:score>=70?'చాలా బాగు!':'మళ్ళీ ప్రయత్నించండి.',Hindi:score>=70?'बहुत अच्छा!':'फिर कोशिश करें।',German:score>=70?'Sehr gut!':'Versuch es nochmal.',Spanish:score>=70?'Muy bien!':'Intentalo de nuevo.',Tamil:score>=70?'மிகவும் நன்றாக!':'மீண்டும் முயற்சி.',Arabic:score>=70?'ممتاز!':'حاول مرة أخرى.',default:score>=70?'Well done! Check the full answer below.':'Good try! Check the answer to see what you missed.'};
+  var encour=encourMap[lang]||encourMap['default'];
+  var fb=document.getElementById('chalFeedback');
+  if(!fb)return;
+  var html='<div style="background:rgba(255,255,255,0.04);border:1.5px solid '+col+'40;border-radius:12px;padding:14px">';
+  html+='<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div style="width:52px;height:52px;border-radius:50%;background:conic-gradient('+col+' '+score+'%,rgba(255,255,255,0.08) 0);display:flex;align-items:center;justify-content:center;flex-shrink:0"><div style="width:40px;height:40px;border-radius:50%;background:var(--bg-1,#0A0208);display:flex;align-items:center;justify-content:center"><span style="font-size:13px;font-weight:900;color:'+col+'">'+score+'%</span></div></div><div><div style="font-size:14px;font-weight:700;color:'+col+'">'+label+'</div><div style="font-size:11px;color:rgba(255,255,255,0.45)">'+matched.length+' of '+keyWords.length+' key concepts used</div></div></div>';
+  if(matched.length>0){html+='<div style="margin-bottom:8px"><div style="font-size:10px;font-weight:700;color:#4ADE80;letter-spacing:.06em;margin-bottom:4px">✅ CONCEPTS YOU USED</div><div style="display:flex;flex-wrap:wrap;gap:5px">';matched.slice(0,8).forEach(function(w){html+='<span style="background:rgba(74,222,128,0.15);color:#4ADE80;padding:2px 8px;border-radius:20px;font-size:11px">'+w+'</span>';});html+='</div></div>';}
+  if(missed.length>0){html+='<div style="margin-bottom:10px"><div style="font-size:10px;font-weight:700;color:#F87171;letter-spacing:.06em;margin-bottom:4px">❌ CONCEPTS TO ADD</div><div style="display:flex;flex-wrap:wrap;gap:5px">';missed.slice(0,8).forEach(function(w){html+='<span style="background:rgba(248,113,113,0.15);color:#F87171;padding:2px 8px;border-radius:20px;font-size:11px">'+w+'</span>';});html+='</div></div>';}
+  html+='<div style="margin-bottom:10px;padding:10px 12px;background:rgba(255,255,255,0.04);border-radius:8px;border-left:3px solid rgba(255,255,255,0.20)"><div style="font-size:10px;font-weight:700;color:rgba(255,255,255,0.45);margin-bottom:4px">YOUR ATTEMPT</div><div style="font-size:13px;color:rgba(255,255,255,0.80);line-height:1.6">'+userAnswer.replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</div></div>';
+  html+='<div style="font-size:12px;color:rgba(245,200,66,0.85);font-style:italic;margin-bottom:12px">'+encour+'</div>';
+  html+='<button onclick="document.getElementById(\'chalAns\').style.display=\'block\';this.style.display=\'none\'" style="padding:8px 20px;border-radius:100px;border:none;background:rgba(245,200,66,0.20);color:#F5C842;font-weight:700;font-size:12px;cursor:pointer">See full answer &amp; explanation</button>';
+  html+='</div>';
+  fb.innerHTML=html;fb.style.display='block';
+  btn.style.display='none';
+  var revBtn=btn.nextElementSibling;if(revBtn)revBtn.style.display='none';
+  setTimeout(function(){addChallengeNav();fb.scrollIntoView({behavior:'smooth',block:'nearest'});},200);
+}
 
 function renderMistakes(){
   var area=document.getElementById('mistakesArea');if(!area)return;
@@ -5354,13 +5419,14 @@ function translateMistake(btn,idx,col,why,wrong,right){
   var el=document.getElementById('mn-'+idx);
   if(!el)return;
   var hasWhy=(why&&why!=='See explanation'&&why.trim().length>5);
+  var explainText=hasWhy?why:('Avoid "'+wrong+'". Say "'+right+'" instead.');
   var html='<div style="font-size:12px;padding:7px 10px;border-radius:7px;background:rgba(255,255,255,0.04);border-left:2px solid '+col+'">';
-  html+='<strong style="color:'+col+'">Why wrong:</strong> '+(hasWhy?why:('Avoid "'+wrong+'". Say "'+right+'" instead.'))+'<br>';
+  html+='<strong style="color:'+col+'">Why wrong:</strong> '+explainText+'<br>';
   html+='<span style="color:rgba(255,255,255,0.60)">✅ Say: <strong>'+right+'</strong> ❌ Not: <strong>'+wrong+'</strong></span>';
   html+='<div style="margin-top:6px;padding:6px 8px;background:rgba(245,200,66,0.08);border-radius:6px;border-left:2px solid rgba(245,200,66,0.40)">';
   html+='<div style="font-size:10px;font-weight:700;color:rgba(245,200,66,0.70);letter-spacing:0.06em;margin-bottom:4px">IN '+lang.toUpperCase()+'</div>';
   html+='<div style="font-size:12px;color:rgba(245,200,66,0.90);line-height:1.7">'+NL.get('mistake_avoid')+' <strong style="color:#34D399">'+right+'</strong></div>';
-  html+='<div style="font-size:11px;color:rgba(255,255,255,0.55);margin-top:2px">❌ '+NL.get('mistake_correct').replace('✅','')+' <strong style="color:#F87171">'+wrong+'</strong></div>';
+  html+='<div style="font-size:11px;color:rgba(255,255,255,0.55);margin-top:2px">'+NL.get('mistake_correct')+' <strong style="color:#F87171">'+wrong+'</strong></div>';
   html+='</div></div>';
   el.innerHTML=html;
   btn.style.display='none';
@@ -5701,14 +5767,33 @@ function checkPuzzle(p){
   var target=document.getElementById('puzzleTarget'),fb=document.getElementById('puzzleFeedback');
   if(!target||!fb)return;
   var words=Array.from(target.children).map(function(c){return c.textContent;});
-  if(words.length===p.words.length){
-    var correct=(words.join(' ')===p.answer);
-    fb.innerHTML=correct
-      ?'<div style="background:rgba(74,222,128,0.12);border-left:4px solid var(--teal);padding:10px 13px;border-radius:9px"><span style="color:var(--teal);font-weight:700">Correct!</span> <em>"'+p.answer+'"</em><br><small style="color:var(--txt-3)">'+p.native+'</small></div>'
-      :'<div style="background:var(--coral-dim);border-left:4px solid rgba(251,191,36,0.12);padding:10px 13px;border-radius:9px"><span style="color:rgba(251,191,36,0.12);font-weight:700">Not quite.</span> Try rearranging the words.</div>';
-    if(correct){var nb=document.getElementById('nextPuzzleBtn');if(nb)nb.style.display='block';}
+  // Always show current attempt count
+  var total=p.words.length;
+  var placed=words.length;
+  if(placed===0){fb.innerHTML='';return;}
+  var correct=(placed===total&&words.join(' ')===p.answer);
+  var pw=(NL.data.puzzle_why&&(NL.data.puzzle_why[lang]||NL.data.puzzle_why['default']))||'Well done! That is correct English.';
+  if(correct){
+    fb.innerHTML='<div style="background:rgba(74,222,128,0.12);border-left:4px solid #4ADE80;padding:12px 14px;border-radius:9px">'
+      +'<div style="color:#4ADE80;font-weight:800;font-size:15px;margin-bottom:4px">✅ Correct!</div>'
+      +'<div style="color:rgba(255,255,255,0.85);font-style:italic;margin-bottom:10px">"'+p.answer+'"</div>'
+      +'<div style="padding:10px 12px;background:rgba(245,200,66,0.08);border-radius:8px;border-left:3px solid rgba(245,200,66,0.40)">'
+      +'<div style="font-size:10px;font-weight:700;color:rgba(245,200,66,0.70);letter-spacing:.06em;margin-bottom:4px">IN '+lang.toUpperCase()+'</div>'
+      +'<div style="font-size:12px;color:rgba(245,200,66,0.90);line-height:1.6">'+pw+'</div>'
+      +'<div style="font-size:11.5px;color:rgba(255,255,255,0.65);margin-top:4px;font-style:italic">'+p.native+'</div>'
+      +'</div></div>';
+    var nb=document.getElementById('nextPuzzleBtn');if(nb)nb.style.display='block';
+  } else if(placed===total){
+    fb.innerHTML='<div style="background:rgba(248,113,113,0.10);border-left:4px solid #F87171;padding:12px 14px;border-radius:9px">'
+      +'<div style="color:#F87171;font-weight:800;font-size:14px;margin-bottom:4px">❌ Not quite right</div>'
+      +'<div style="color:rgba(255,255,255,0.70);font-size:13px;margin-bottom:8px">Try rearranging the words. Click any word to move it back.</div>'
+      +'<div style="font-size:11px;color:rgba(245,200,66,0.70);font-style:italic">Hint: '+p.native+'</div>'
+      +'</div>';
+  } else {
+    fb.innerHTML='<div style="font-size:12px;color:rgba(255,255,255,0.40);padding:6px 0">'+placed+' of '+total+' words placed…</div>';
   }
 }
+
 
 function nextPuzzle(){currentPuzzle++;renderPuzzle();}
 
@@ -5758,9 +5843,19 @@ function checkSpotter(){
     return '<div style="margin-bottom:8px;padding:8px 12px;background:rgba(0,0,0,0.2);border-radius:8px;border-left:3px solid '+s.col+'">'    +'<strong style="color:'+s.col+'">"'+kv[0]+'":</strong> <span style="color:rgba(255,255,255,0.85)">'+kv[1]+'</span>'    +'<div data-nt="'+ntSafe(kv[1])+'" style="font-size:11.5px;color:rgba(245,200,66,0.85);margin-top:4px;font-style:italic;line-height:1.55"></div></div>';
   });
   var exps=expItems.join('');
-  fb.innerHTML='<div style="background:'+s.bg+';border-left:4px solid '+s.col+';border-radius:9px;padding:13px">'    +'<div style="font-family:Fraunces,serif;font-size:18px;font-weight:700;color:'+s.col+';margin-bottom:8px">Explanation of All Errors</div>'    +exps    +'<div style="margin-top:9px;padding:8px 12px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.30);border-radius:0 7px 7px 0;font-size:12px">'    +'<div style="font-size:10px;font-weight:800;text-transform:uppercase;color:rgba(245,200,66,0.70);margin-bottom:4px">In '+lang+'</div>'    +'<div data-nt="These are very common grammar mistakes. Red words show errors. Study each correction carefully." style="font-size:12px;color:rgba(245,200,66,0.85);font-style:italic;line-height:1.55"></div></div></div>';
+  fb.innerHTML='<div style="background:'+s.bg+';border-left:4px solid '+s.col+';border-radius:9px;padding:13px">'    +'<div style="font-family:Fraunces,serif;font-size:18px;font-weight:700;color:'+s.col+';margin-bottom:8px">Explanation of All Errors</div>'    +exps    +'<div style="margin-top:9px;padding:8px 12px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.30);border-radius:0 7px 7px 0;font-size:12px">'    +'<div style="font-size:10px;font-weight:800;text-transform:uppercase;color:rgba(245,200,66,0.70);margin-bottom:4px">IN '+lang.toUpperCase()+'</div>'    +'<div style="font-size:12px;color:rgba(245,200,66,0.85);font-style:italic;line-height:1.55">'+(NL.data.spotter_note&&(NL.data.spotter_note[lang]||NL.data.spotter_note['default']))||'These are very common grammar mistakes. Red words show errors. Study each correction carefully.'+'</div></div></div>';
   ntBatch();
+  var fbEl=document.getElementById('spotterFeedback');
+  if(fbEl&&!fbEl.querySelector('.spotter-nav')){
+    var nd=document.createElement('div');
+    nd.className='spotter-nav';
+    nd.style.cssText='margin-top:12px;display:flex;gap:10px;flex-wrap:wrap';
+    nd.innerHTML='<button onclick="nextSpotter()" style="padding:8px 20px;border-radius:100px;border:none;background:rgba(74,222,128,0.15);color:#4ADE80;font-weight:800;font-size:12px;cursor:pointer;border:1px solid rgba(74,222,128,0.35)">→ Next sentence</button>'
+      +'<button onclick="currentSpotter=0;renderSpotter()" style="padding:8px 20px;border-radius:100px;border:1px solid rgba(255,255,255,0.20);background:transparent;color:rgba(255,255,255,0.60);font-weight:700;font-size:12px;cursor:pointer">↺ Start over</button>';
+    fbEl.appendChild(nd);
+  }
 }
+
 
 function nextSpotter(){currentSpotter++;renderSpotter();}
 
@@ -6392,16 +6487,16 @@ function dictCheck() {
 
 // ── L3: CONNECTED SPEECH ──
 var CS_DATA=[
-  {type:'reduction',formal:'What are you doing?',spoken:'Whadya doing?',phon:'/ˈwɒdʒə ˈduːɪŋ/',rule:'"are you" → "ya" in fast speech',native:'In '+lang+': "are you" కలిసి "ya" అవుతాయి — చాలా సాధారణం'},
-  {type:'reduction',formal:'I do not know.',spoken:'I dunno.',phon:'/aɪ ˈdʌnəʊ/',rule:'"do not know" → "dunno" in casual speech',native:'In '+lang+': "do not know" → "dunno" — informal conversation లో commonly వినిపిస్తుంది'},
-  {type:'elision',formal:'Next day',spoken:"Nex' day",phon:'/ˈneks deɪ/',rule:'The t in "next" disappears before a consonant',native:'In '+lang+': consonant తర్వాత వచ్చే "t" తరచుగా drop అవుతుంది'},
-  {type:'linking',formal:'Turn off',spoken:'Tur-noff',phon:'/ˈtɜːnɒf/',rule:'Final n links to next vowel sound',native:'In '+lang+': word చివర n ఉండి తర్వాత vowel వస్తే అవి link అవుతాయి'},
-  {type:'reduction',formal:'He is going to eat.',spoken:"He's gonna eat.",phon:"/hiːz ˈɡɒnə iːt/",rule:'"going to" → "gonna" in casual speech',native:'In '+lang+': "going to" → "gonna" — spoken English లో చాలా common'},
-  {type:'assimilation',formal:'Good boy',spoken:'Goob boy',phon:'/ɡʊb bɔɪ/',rule:'d assimilates to b before another b',native:'In '+lang+': ఒక sound తర్వాత వచ్చే sound దాన్ని మారుస్తుంది'},
-  {type:'elision',formal:'Last night',spoken:"Las' night",phon:'/lɑːs naɪt/',rule:'t drops from "last" before another consonant',native:'In '+lang+': "last" లో "t" silent అవుతుంది ఎందుకంటే తర్వాత consonant వస్తుంది'},
-  {type:'reduction',formal:'I have got to go.',spoken:"I've gotta go.",phon:"/aɪv ˈɡɒtə ɡəʊ/",rule:'"have got to" → "gotta"',native:'In '+lang+': "have got to" → "gotta" — urgency చెప్పేటప్పుడు వాడతారు'},
-  {type:'assimilation',formal:'Can you help me?',spoken:'Canya help me?',phon:'/ˈkænjə help miː/',rule:'"can you" merges — y sound absorbs',native:'In '+lang+': "can you" → "canya" — question అడిగేటప్పుడు వినిపిస్తుంది'},
-  {type:'linking',formal:'She is interested in art.',spoken:'She interested in-nart.',phon:'/ʃiː ˈɪntrəstɪd ɪ ˈnɑːt/',rule:'"in" and "art" link — n carries over',native:'In '+lang+': "in art" అనే రెండు words కలిసి "in-nart" లా వినిపిస్తాయి'}
+  {type:'reduction',formal:'What are you doing?',spoken:'Whadya doing?',phon:'/ˈwɒdʒə ˈduːɪŋ/',rule:'"are you" → "ya" in fast speech',native:'cs_1'},
+  {type:'reduction',formal:'I do not know.',spoken:'I dunno.',phon:'/aɪ ˈdʌnəʊ/',rule:'"do not know" → "dunno" in casual speech',native:'cs_2'},
+  {type:'elision',formal:'Next day',spoken:"Nex' day",phon:'/ˈneks deɪ/',rule:'The t in "next" disappears before a consonant',native:'cs_3'},
+  {type:'linking',formal:'Turn off',spoken:'Tur-noff',phon:'/ˈtɜːnɒf/',rule:'Final n links to next vowel sound',native:'cs_4'},
+  {type:'reduction',formal:'He is going to eat.',spoken:"He's gonna eat.",phon:"/hiːz ˈɡɒnə iːt/",rule:'"going to" → "gonna" in casual speech',native:'cs_5'},
+  {type:'assimilation',formal:'Good boy',spoken:'Goob boy',phon:'/ɡʊb bɔɪ/',rule:'d assimilates to b before another b',native:'cs_6'},
+  {type:'elision',formal:'Last night',spoken:"Las' night",phon:'/lɑːs naɪt/',rule:'t drops from "last" before another consonant',native:'cs_7'},
+  {type:'reduction',formal:'I have got to go.',spoken:"I've gotta go.",phon:"/aɪv ˈɡɒtə ɡəʊ/",rule:'"have got to" → "gotta"',native:'cs_8'},
+  {type:'assimilation',formal:'Can you help me?',spoken:'Canya help me?',phon:'/ˈkænjə help miː/',rule:'"can you" merges — y sound absorbs',native:'cs_9'},
+  {type:'linking',formal:'She is interested in art.',spoken:'She interested in-nart.',phon:'/ʃiː ˈɪntərəstɪd ɪˈnɑːt/',rule:'n links to following vowel',native:'cs_10'},
 ];
 var csActiveFilter='all';
 
@@ -6428,7 +6523,9 @@ function renderCS() {
     h+='</div>';
     h+='<div style="font-size:11.5px;font-family:\'DM Mono\',monospace;color:'+c+';margin-bottom:5px">'+p.phon+'</div>';
     h+='<div style="font-size:12px;color:rgba(255,255,255,0.60);margin-bottom:6px">📌 '+p.rule+'</div>';
-    h+='<div style="font-size:11.5px;color:rgba(245,200,66,0.72);font-style:italic;padding:7px 10px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.35);border-radius:0 7px 7px 0;margin-bottom:9px">'+p.native+'</div>';
+    var nativeKey=p.native;
+    var nativeText=(NL.data[nativeKey]&&(NL.data[nativeKey][lang]||NL.data[nativeKey]['default']))||p.native;
+    h+='<div style="font-size:11.5px;color:rgba(245,200,66,0.72);font-style:italic;padding:7px 10px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.35);border-radius:0 7px 7px 0;margin-bottom:9px">'+nativeText+'</div>';
     h+='<div style="display:flex;gap:7px">';
     h+='<button onclick="spk(\''+p.formal.replace(/'/g,"\\'")+'\',1.0)" style="padding:5px 13px;background:rgba(255,107,107,0.10);color:#FF6B6B;border:1px solid rgba(255,107,107,0.28);border-radius:100px;font-size:11px;font-weight:700;cursor:pointer;font-family:\'Plus Jakarta Sans\',sans-serif">▶ Formal</button>';
     h+='<button onclick="spk(\''+p.spoken.replace(/'/g,"\\'")+'\',1.0)" style="padding:5px 13px;background:rgba(74,222,128,0.10);color:#4ADE80;border:1px solid rgba(74,222,128,0.28);border-radius:100px;font-size:11px;font-weight:700;cursor:pointer;font-family:\'Plus Jakarta Sans\',sans-serif">▶ Native</button>';
@@ -8459,10 +8556,10 @@ function tmShowCorrectEnglish(btn) {
     if (warnEl) warnEl.style.display = warn ? 'block' : 'none';
     var scoreEl = document.getElementById('tmTransScore');
     if (scoreEl) {
-      var words = translated.toLowerCase().replace(/[^a-z0-9\s]/g,'').split(/\s+/).filter(function(w){return w.length>2;});
+      var words = translated.toLowerCase().replace(/[^a-z0-9 ]/g,'').split(' ').filter(function(w){return w.length>2;});
       var score = words.length >= 5 ? 94 : words.length >= 3 ? 88 : 78;
-      var col = score >= 85 ? '#4ADE80' : '#F5C842';
-      scoreEl.innerHTML = '<div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:rgba(45,212,191,0.08);border:1px solid rgba(45,212,191,0.25);border-radius:9px;margin-top:8px"><div style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:conic-gradient('+col+' '+score+'%,rgba(255,255,255,0.08) 0);flex-shrink:0"><div style="width:34px;height:34px;border-radius:50%;background:var(--bg-1);display:flex;align-items:center;justify-content:center"><span style="font-size:11px;font-weight:900;color:'+col+'">'+score+'%</span></div></div><div><div style="font-size:11px;font-weight:700;color:rgba(45,212,191,0.90)">Translation quality</div><div style="font-size:11px;color:rgba(255,255,255,0.50)">How well your sentence translated to English</div></div></div>';
+      var tcol = score >= 85 ? '#4ADE80' : '#F5C842';
+      scoreEl.innerHTML = '<div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:rgba(45,212,191,0.08);border:1px solid rgba(45,212,191,0.25);border-radius:9px;margin-top:8px"><div style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:conic-gradient('+tcol+' '+score+'%,rgba(255,255,255,0.08) 0);flex-shrink:0"><div style="width:34px;height:34px;border-radius:50%;background:var(--bg-1);display:flex;align-items:center;justify-content:center"><span style="font-size:11px;font-weight:900;color:'+tcol+'">'+score+'%</span></div></div><div><div style="font-size:11px;font-weight:700;color:rgba(45,212,191,0.90)">Translation quality</div><div style="font-size:11px;color:rgba(255,255,255,0.50)">How well your sentence translated</div></div></div>';
       scoreEl.style.display = 'block';
     }
     var panel = document.getElementById('panel-writing');

@@ -5371,8 +5371,10 @@ function checkChallengeAnswer(btn,correctAnswer,ansNative){
   }
   if(inp)inp.style.borderColor='rgba(255,255,255,0.15)';
   var stopWords=['the','and','is','are','was','were','a','an','to','of','in','it','or','if','i','you','we','they'];
-  var keyWords=correctAnswer.toLowerCase().replace(/[^a-z0-9 ]/g,'').split(' ').filter(function(w){return w.length>3&&stopWords.indexOf(w)===-1;});
-  var userLower=userAnswer.toLowerCase();
+  // Strip grammar rule explanation - only score on the example sentences
+  var scorableAnswer=correctAnswer.replace(/Rule:.*$/i,'').replace(/Regla:.*$/i,'').replace(/Regel:.*$/i,'').replace(/Regola:.*$/i,'').replace(/Règle:.*$/i,'').replace(/Kural:.*$/i,'').replace(/Правило:.*$/i,'').replace(/قاعدة.*$/i,'').replace(/नियम.*$/i,'').replace(/விதி.*$/i,'').replace(/నియమం.*$/i,'').replace(/ನಿಯಮ.*$/i,'').replace(/നിയമം.*$/i,'').replace(/\d+[)\.]\s*/g,' ').trim();
+  var keyWords=scorableAnswer.toLowerCase().replace(/[^a-z0-9 ]/g,'').split(' ').filter(function(w){return w.length>4&&stopWords.indexOf(w)===-1;});
+  var userLower=userAnswer.toLowerCase().replace(/\d+[)\.\s]/g,' ');
   var matched=keyWords.filter(function(w){return userLower.indexOf(w)>-1;});
   var missed=keyWords.filter(function(w){return userLower.indexOf(w)===-1;});
   var score=keyWords.length>0?Math.round((matched.length/keyWords.length)*100):50;

@@ -5739,17 +5739,16 @@ function renderPuzzle(){
   window._pSel=[];// selected words in order
   var nb=document.getElementById('nextPuzzleBtn');if(nb)nb.style.display='none';
   // Shuffle words
-  var words=p.words.slice();
-  for(var i=words.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=words[i];words[i]=words[j];words[j]=t;}
+  var words=p.words.slice().sort(function(a,b){return a.localeCompare(b);});
   window._pWords=words;
   area.innerHTML=
     '<div style="background:'+p.col+'15;border:1.5px solid '+p.col+'50;border-radius:12px;padding:12px 14px;margin-bottom:14px">'
     +'<div style="font-size:10px;font-weight:700;text-transform:uppercase;color:'+p.col+';margin-bottom:4px">Puzzle '+(currentPuzzle%PUZZLES.length+1)+' of '+PUZZLES.length+'</div>'
     +'<div style="font-size:12px;font-style:italic;color:rgba(255,255,255,0.75)"><strong style="color:'+p.col+'">Grammar clue in '+lang+':</strong> '+p.native+'</div>'
     +'</div>'
-    +'<div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.50);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">\u{1}Click words below to build your sentence:</div>'
+    +'<div style="font-size:12px;font-weight:700;color:rgba(255,255,255,0.80);margin-bottom:8px">Click each word <strong style="color:#F5C842">in the correct order</strong> to build the sentence:</div>'
     +'<div id="pBank" style="display:flex;flex-wrap:wrap;gap:7px;padding:12px;background:rgba(255,255,255,0.04);border-radius:10px;border:1px solid rgba(255,255,255,0.10);margin-bottom:14px;min-height:52px"></div>'
-    +'<div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.50);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">\u{1}Your sentence (click a word to remove it):</div>'
+    +'<div style="font-size:12px;font-weight:700;color:rgba(255,255,255,0.80);margin-bottom:6px">Your sentence <span style="font-weight:400;color:rgba(255,255,255,0.45);font-size:11px">(click a word to remove it)</span>:</div>'
     +'<div id="pAnswer" style="display:flex;flex-wrap:wrap;gap:7px;padding:12px;background:rgba(255,255,255,0.04);border-radius:10px;border:2px dashed '+p.col+'60;margin-bottom:12px;min-height:52px">'
     +'<span style="color:rgba(255,255,255,0.25);font-style:italic;font-size:13px" id="pPlaceholder">Your sentence will appear here as you click words\u2026</span>'
     +'</div>'
@@ -5807,7 +5806,7 @@ function pCheck(){
   var sel=window._pSel||[];
   if(sel.length===0){fb.innerHTML='<div style="color:rgba(255,255,255,0.45);font-size:13px">Click some words first to build your sentence.</div>';return;}
   var attempt=sel.map(function(s){return s.word;}).join(' ');
-  var correct=(attempt===p.answer);
+  var correct=(attempt===p.answer.replace(/\.$/,''));
   var pw=(NL.data.puzzle_why&&(NL.data.puzzle_why[lang]||NL.data.puzzle_why['default']))||'Well done! That is correct English.';
   if(correct){
     fb.innerHTML='<div style="background:rgba(74,222,128,0.12);border-left:4px solid #4ADE80;padding:12px 14px;border-radius:10px">'
@@ -5821,12 +5820,13 @@ function pCheck(){
     var nb=document.getElementById('nextPuzzleBtn');if(nb)nb.style.display='block';
   } else {
     var missing=p.words.length-sel.length;
-    var hint=missing>0?' ('+missing+' word'+(missing>1?'s':'')+' missing)':'';
+    var missingNote=missing>0?'<div style="color:#F5C842;font-size:12px;margin-bottom:6px">'+(missing)+' word'+(missing>1?'s are':' is')+' still in the word bank above. Click '+(missing>1?'them':'it')+' to add.</div>':'';
     fb.innerHTML='<div style="background:rgba(248,113,113,0.10);border-left:4px solid #F87171;padding:12px 14px;border-radius:10px">'
-      +'<div style="color:#F87171;font-weight:800;font-size:14px;margin-bottom:6px">\u274c Not quite'+hint+'</div>'
+      +'<div style="color:#F87171;font-weight:800;font-size:14px;margin-bottom:6px">\u274c Not quite</div>'
+      +missingNote
       +'<div style="color:rgba(255,255,255,0.70);font-size:13px;margin-bottom:4px">Your attempt: <em>"'+attempt+'"</em></div>'
-      +'<div style="color:rgba(255,255,255,0.45);font-size:12px;margin-bottom:8px">Click the \u00d7 on any word in your sentence to remove it, then try again.</div>'
-      +'<div style="font-size:11px;color:rgba(245,200,66,0.70);font-style:italic">\U0001f4a1 Hint: '+p.native+'</div>'
+      +'<div style="color:rgba(255,255,255,0.45);font-size:12px;margin-bottom:8px">Click \u00d7 on a word to remove it and try a different order.</div>'
+      +'<div style="font-size:11px;color:rgba(245,200,66,0.75);font-style:italic">Hint: '+p.native+'</div>'
       +'</div>';
   }
   setTimeout(function(){fb.scrollIntoView({behavior:'smooth',block:'nearest'});},100);

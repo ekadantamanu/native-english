@@ -5736,62 +5736,100 @@ function translatePhrase(idx,col,text,meaning){
 function renderPuzzle(){
   var area=document.getElementById('puzzleArea');if(!area)return;
   var p=PUZZLES[currentPuzzle%PUZZLES.length];
-  var shuffled=p.words.slice().sort(function(){return Math.random()-0.5;});
+  window._pSel=[];// selected words in order
   var nb=document.getElementById('nextPuzzleBtn');if(nb)nb.style.display='none';
-  area.innerHTML='<div class="ib ib-gold"><div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--gold);margin-bottom:5px">Puzzle '+(currentPuzzle%PUZZLES.length+1)+' of '+PUZZLES.length+'</div><div style="font-size:12px;font-style:italic;color:var(--txt-3)"><strong style="color:'+p.col+'">Grammar clue in '+lang+':</strong> '+p.native+'</div></div>'
-    +'<div style="font-size:12px;font-weight:600;color:var(--txt-3);margin-bottom:7px">Tap the words to build the correct English sentence:</div>'
-    +'<div id="puzzleBank" style="min-height:50px;border-radius:9px;padding:8px;display:flex;flex-wrap:wrap;gap:5px;background:'+p.col+'10;border:1.5px dashed '+p.col+'55;margin-bottom:6px"></div>'
-    +'<div style="font-size:12px;font-weight:600;color:var(--txt-3);margin-bottom:5px">Your answer:</div>'
-    +'<div id="puzzleTarget" style="min-height:50px;border-radius:9px;padding:8px;display:flex;flex-wrap:wrap;gap:5px;background:rgba(255,255,255,0.5);border:2px dashed '+p.col+';margin-bottom:8px"></div>'
-    +'<div id="puzzleFeedback" style="min-height:20px"></div>';
-  var bank=document.getElementById('puzzleBank');
-  shuffled.forEach(function(word){
-    var w=document.createElement('div');
-    w.style.cssText='padding:7px 12px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;user-select:none;background:'+p.col+'18;color:'+p.col+';border:1.5px solid '+p.col+'55;transition:transform .1s;margin:2px';
-    w.textContent=word;
-    w.addEventListener('click',function(){movePWord(w,p);});
-    bank.appendChild(w);
+  // Shuffle words
+  var words=p.words.slice();
+  for(var i=words.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=words[i];words[i]=words[j];words[j]=t;}
+  window._pWords=words;
+  area.innerHTML=
+    '<div style="background:'+p.col+'15;border:1.5px solid '+p.col+'50;border-radius:12px;padding:12px 14px;margin-bottom:14px">'
+    +'<div style="font-size:10px;font-weight:700;text-transform:uppercase;color:'+p.col+';margin-bottom:4px">Puzzle '+(currentPuzzle%PUZZLES.length+1)+' of '+PUZZLES.length+'</div>'
+    +'<div style="font-size:12px;font-style:italic;color:rgba(255,255,255,0.75)"><strong style="color:'+p.col+'">Grammar clue in '+lang+':</strong> '+p.native+'</div>'
+    +'</div>'
+    +'<div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.50);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">\u{1}Click words below to build your sentence:</div>'
+    +'<div id="pBank" style="display:flex;flex-wrap:wrap;gap:7px;padding:12px;background:rgba(255,255,255,0.04);border-radius:10px;border:1px solid rgba(255,255,255,0.10);margin-bottom:14px;min-height:52px"></div>'
+    +'<div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.50);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">\u{1}Your sentence (click a word to remove it):</div>'
+    +'<div id="pAnswer" style="display:flex;flex-wrap:wrap;gap:7px;padding:12px;background:rgba(255,255,255,0.04);border-radius:10px;border:2px dashed '+p.col+'60;margin-bottom:12px;min-height:52px">'
+    +'<span style="color:rgba(255,255,255,0.25);font-style:italic;font-size:13px" id="pPlaceholder">Your sentence will appear here as you click words\u2026</span>'
+    +'</div>'
+    +'<div style="display:flex;gap:8px;flex-wrap:wrap">'
+    +'<button onclick="pCheck()" style="padding:9px 24px;border-radius:100px;border:none;background:'+p.col+';color:#fff;font-weight:800;font-size:13px;cursor:pointer">\u2705 Check answer</button>'
+    +'<button onclick="pReset()" style="padding:9px 18px;border-radius:100px;border:1.5px solid rgba(255,255,255,0.20);background:transparent;color:rgba(255,255,255,0.55);font-weight:700;font-size:13px;cursor:pointer">\u21ba Reset</button>'
+    +'</div>'
+    +'<div id="pFeedback" style="margin-top:12px"></div>';
+  // Add word buttons to bank
+  var bank=document.getElementById('pBank');
+  words.forEach(function(word,i){
+    var btn=document.createElement('button');
+    btn.textContent=word;
+    btn.id='pb'+i;
+    btn.style.cssText='padding:8px 14px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;background:'+p.col+'22;color:'+p.col+';border:1.5px solid '+p.col+'70;font-family:inherit';
+    btn.onclick=function(){pAdd(i,word,btn,p);};
+    bank.appendChild(btn);
   });
 }
 
-function movePWord(w,p){
-  var bank=document.getElementById('puzzleBank'),target=document.getElementById('puzzleTarget');
-  if(!bank||!target)return;
-  if(bank.contains(w))target.appendChild(w);else bank.appendChild(w);
-  checkPuzzle(p);
-  ntBatch();
+function pAdd(idx,word,btn,p){
+  if(btn.disabled)return;
+  // Disable in bank
+  btn.disabled=true;btn.style.opacity='0.35';btn.style.cursor='not-allowed';
+  // Track selection
+  window._pSel.push({idx:idx,word:word,btn:btn});
+  // Hide placeholder
+  var ph=document.getElementById('pPlaceholder');if(ph)ph.style.display='none';
+  // Add to answer row
+  var ans=document.getElementById('pAnswer');
+  var tag=document.createElement('button');
+  tag.textContent=word+' \u00d7';
+  tag.style.cssText='padding:7px 12px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;background:rgba(255,255,255,0.12);color:#fff;border:1.5px solid rgba(255,255,255,0.25);font-family:inherit';
+  tag.onclick=function(){pRemove(tag,idx,btn);};
+  ans.appendChild(tag);
 }
 
-function checkPuzzle(p){
-  if(!p)p=PUZZLES[currentPuzzle%PUZZLES.length];
-  var target=document.getElementById('puzzleTarget'),fb=document.getElementById('puzzleFeedback');
-  if(!target||!fb)return;
-  var words=Array.from(target.children).map(function(c){return c.textContent;});
-  // Always show current attempt count
-  var total=p.words.length;
-  var placed=words.length;
-  if(placed===0){fb.innerHTML='';return;}
-  var correct=(placed===total&&words.join(' ')===p.answer);
+function pRemove(tag,bankIdx,btn){
+  // Re-enable in bank
+  btn.disabled=false;btn.style.opacity='1';btn.style.cursor='pointer';
+  // Remove from selection
+  window._pSel=window._pSel.filter(function(s){return s.idx!==bankIdx;});
+  // Remove from answer row
+  tag.remove();
+  // Show placeholder if empty
+  var ans=document.getElementById('pAnswer');
+  if(!ans.querySelector('button')){var ph=document.getElementById('pPlaceholder');if(ph)ph.style.display='inline';}
+}
+
+function pReset(){window._pSel=[];renderPuzzle();}
+
+function pCheck(){
+  var p=PUZZLES[currentPuzzle%PUZZLES.length];
+  var fb=document.getElementById('pFeedback');if(!fb)return;
+  var sel=window._pSel||[];
+  if(sel.length===0){fb.innerHTML='<div style="color:rgba(255,255,255,0.45);font-size:13px">Click some words first to build your sentence.</div>';return;}
+  var attempt=sel.map(function(s){return s.word;}).join(' ');
+  var correct=(attempt===p.answer);
   var pw=(NL.data.puzzle_why&&(NL.data.puzzle_why[lang]||NL.data.puzzle_why['default']))||'Well done! That is correct English.';
   if(correct){
-    fb.innerHTML='<div style="background:rgba(74,222,128,0.12);border-left:4px solid #4ADE80;padding:12px 14px;border-radius:9px">'
-      +'<div style="color:#4ADE80;font-weight:800;font-size:15px;margin-bottom:4px">✅ Correct!</div>'
+    fb.innerHTML='<div style="background:rgba(74,222,128,0.12);border-left:4px solid #4ADE80;padding:12px 14px;border-radius:10px">'
+      +'<div style="color:#4ADE80;font-weight:800;font-size:15px;margin-bottom:5px">\u2705 Correct!</div>'
       +'<div style="color:rgba(255,255,255,0.85);font-style:italic;margin-bottom:10px">"'+p.answer+'"</div>'
       +'<div style="padding:10px 12px;background:rgba(245,200,66,0.08);border-radius:8px;border-left:3px solid rgba(245,200,66,0.40)">'
       +'<div style="font-size:10px;font-weight:700;color:rgba(245,200,66,0.70);letter-spacing:.06em;margin-bottom:4px">IN '+lang.toUpperCase()+'</div>'
-      +'<div style="font-size:12px;color:rgba(245,200,66,0.90);line-height:1.6">'+pw+'</div>'
-      +'<div style="font-size:11.5px;color:rgba(255,255,255,0.65);margin-top:4px;font-style:italic">'+p.native+'</div>'
+      +'<div style="font-size:12px;color:rgba(245,200,66,0.90);line-height:1.65">'+pw+'</div>'
+      +'<div style="font-size:11.5px;color:rgba(255,255,255,0.60);margin-top:4px;font-style:italic">'+p.native+'</div>'
       +'</div></div>';
     var nb=document.getElementById('nextPuzzleBtn');if(nb)nb.style.display='block';
-  } else if(placed===total){
-    fb.innerHTML='<div style="background:rgba(248,113,113,0.10);border-left:4px solid #F87171;padding:12px 14px;border-radius:9px">'
-      +'<div style="color:#F87171;font-weight:800;font-size:14px;margin-bottom:4px">❌ Not quite right</div>'
-      +'<div style="color:rgba(255,255,255,0.70);font-size:13px;margin-bottom:8px">Try rearranging the words. Click any word to move it back.</div>'
-      +'<div style="font-size:11px;color:rgba(245,200,66,0.70);font-style:italic">Hint: '+p.native+'</div>'
-      +'</div>';
   } else {
-    fb.innerHTML='<div style="font-size:12px;color:rgba(255,255,255,0.40);padding:6px 0">'+placed+' of '+total+' words placed…</div>';
+    var missing=p.words.length-sel.length;
+    var hint=missing>0?' ('+missing+' word'+(missing>1?'s':'')+' missing)':'';
+    fb.innerHTML='<div style="background:rgba(248,113,113,0.10);border-left:4px solid #F87171;padding:12px 14px;border-radius:10px">'
+      +'<div style="color:#F87171;font-weight:800;font-size:14px;margin-bottom:6px">\u274c Not quite'+hint+'</div>'
+      +'<div style="color:rgba(255,255,255,0.70);font-size:13px;margin-bottom:4px">Your attempt: <em>"'+attempt+'"</em></div>'
+      +'<div style="color:rgba(255,255,255,0.45);font-size:12px;margin-bottom:8px">Click the \u00d7 on any word in your sentence to remove it, then try again.</div>'
+      +'<div style="font-size:11px;color:rgba(245,200,66,0.70);font-style:italic">\U0001f4a1 Hint: '+p.native+'</div>'
+      +'</div>';
   }
+  setTimeout(function(){fb.scrollIntoView({behavior:'smooth',block:'nearest'});},100);
 }
 
 

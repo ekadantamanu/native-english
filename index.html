@@ -7879,16 +7879,24 @@ var FS_TRANSFORMS=[
 {input:/i hope/i,levels:["Fingers crossed for this!","I really hope this works out.","I hope this can be resolved.","I trust this matter can be resolved satisfactorily.","I trust that the matter described can be brought to a satisfactory conclusion and I look forward to your response at the earliest opportunity."]},
 {input:/please let me know/i,levels:["Just let me know yeah?","Please get back to me on this.","Please let me know your thoughts.","I would appreciate your response on this.","I would be grateful if you could respond to the points raised at your earliest convenience so that the matter can be progressed without further delay."]}
 
-,
-{input:/i need help/i,levels:["I desperately need some help here!","I really need some help with this.","Could I get some help with this please?","I would appreciate your assistance with this matter.","Your expert assistance with this matter would be greatly appreciated. I would welcome your guidance at your earliest convenience."]},
-{input:/i need/i,levels:["I really need this sorted!","I need this and it is important.","I would like to request this please.","I wish to formally request this matter be addressed.","The matter described requires prompt attention. I would be grateful if you could give this your earliest consideration."]},
-{input:/i want/i,levels:["I really want this!","I would love to have this.","I would like this please.","I wish to formally request this.","Having given the matter careful consideration, I would like to formally proceed and would welcome your confirmation at the earliest opportunity."]},
-{input:/i am/i,levels:["Just so you know!","I wanted to let you know about this.","I wanted to bring this to your attention.","I wish to formally advise you of this.","I am writing to formally draw your attention to this matter and would welcome your response at the earliest opportunity."]},
-{input:/i have/i,levels:["Got something important here!","I have something to share.","I have a matter to raise.","I wish to bring this to your attention.","I have become aware of a matter which warrants your consideration and would welcome the opportunity to discuss it."]},
-{input:/i would/i,levels:["I would really go for this!","I would like to do this please.","I would like to proceed with this.","I would like to formally request this.","Having considered the matter carefully, I would like to formally pursue this and would be grateful for your guidance on the next steps."]},
-{input:/please/i,levels:["Please just do this!","Please sort this out.","Could you please attend to this?","I would appreciate your prompt attention to this.","Your assistance with the matter outlined would be greatly appreciated. I look forward to your earliest response."]},
-{input:/can you/i,levels:["Can you sort this?","Can you help me?","Could you assist me with this?","I would appreciate your assistance with this.","Your expert guidance on this matter would be most welcome. I would be grateful for your response at the earliest convenience."]},
-{input:/could you/i,levels:["Can you help me out here?","Could you give me a hand?","Could you assist me with this please?","I would appreciate your assistance with this matter.","I would be most grateful if you could provide your expert assistance with the matter described at your earliest convenience."]}];
+];
+
+var FS_LABELS=['😄 Very Casual','🙂 Casual','😐 Neutral','👔 Professional','🎩 Formal'];
+var FS_COLORS=['#FB923C','#F59E0B','#60A5FA','#A78BFA','#C084FC'];
+var FS_CONTEXTS=[
+  'Close friends, text messages, social media, family chat',
+  'Acquaintances, casual emails, informal team messages',
+  'Everyday use, neutral emails, general communication',
+  'Workplace emails, client messages, job applications, reports',
+  'Official letters, legal documents, academic writing, senior management'
+];
+var FS_TIPS=[
+  'Use contractions freely. Slang and abbreviations are fine. Emoji are welcome.',
+  'Contractions are fine. Short sentences. Friendly but clear.',
+  'Mix of contractions and full forms. Polite and clear. No slang.',
+  'No contractions. Full sentences. Precise vocabulary. Respectful tone.',
+  'No contractions. Complex sentences acceptable. Elevated vocabulary. Third-person preferred.'
+];
 var fsCurrentLevels=null;
 
 function fsGenerate(){

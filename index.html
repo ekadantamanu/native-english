@@ -7106,27 +7106,381 @@ function renderCS() {
 
 // ── L4: STRESS TRAINER ──
 var STRESS_D=[
-  {sent:'I never said she stole the money.',words:['I','never','said','she','stole','the','money'],vars:[
-    {w:0,meaning:'Someone else said it — not me.',nat:'నేను చెప్పలేదు — వేరే ఎవరో చెప్పారు.'},
-    {w:1,meaning:'I said it but not strongly or definitely.',nat:'నేను అన్నాను — కానీ strongly కాదు.'},
-    {w:3,meaning:'Someone else did it — not she.',nat:'ఆమె కాదు — వేరే ఎవరో చేసారు.'},
-    {w:4,meaning:'She did something else — borrowed or found it.',nat:'ఆమె దొంగిలించలేదు — వేరే ఏదో చేసింది.'},
-    {w:6,meaning:'She stole something else — not the money.',nat:'డబ్బు కాదు — వేరే ఏదో.'}
-  ]},
-  {sent:'She wants to leave tomorrow.',words:['She','wants','to','leave','tomorrow'],vars:[
-    {w:0,meaning:'She wants to — not someone else.',nat:'ఆమె వెళ్ళాలనుకుంటుంది — వేరే ఎవరూ కాదు.'},
-    {w:1,meaning:'She strongly desires this.',nat:'ఆమె strongly కోరుకుంటుంది.'},
-    {w:3,meaning:'Leave — not stay or arrive.',nat:'వెళ్ళాలనుకుంటుంది — ఉండాలని కాదు.'},
-    {w:4,meaning:'Tomorrow — not today or next week.',nat:'రేపు వెళ్ళాలనుకుంటుంది — ఈ రోజు కాదు.'}
-  ]},
-  {sent:'John told Mary to buy a car.',words:['John','told','Mary','to','buy','a','car'],vars:[
-    {w:0,meaning:'John told her — not Peter or someone else.',nat:'John చెప్పాడు — వేరే ఎవరూ కాదు.'},
-    {w:1,meaning:'He told her — not asked or suggested.',nat:'అతను told చేశాడు — suggested కాదు.'},
-    {w:2,meaning:'He told Mary — not Susan.',nat:'Mary కి చెప్పాడు — వేరే ఎవరికీ కాదు.'},
-    {w:4,meaning:'Buy — not sell or rent.',nat:'కొనమని చెప్పాడు — అమ్మమని కాదు.'},
-    {w:6,meaning:'A car — not a house or bike.',nat:'Car కొనమని — ఇల్లు కాదు.'}
-  ]}
+
+// ============================================================
+// CATEGORY 1: ACCUSATION & DENIAL (8 sentences)
+// ============================================================
+{sent:'I never said she stole the money.',words:['I','never','said','she','stole','the','money'],vars:[
+  {w:0,meaning:'Someone else said it — not me.',implied:'Maybe you said it, or John did — but it was not me.',context:'Defending yourself when falsely accused of spreading a rumour.'},
+  {w:1,meaning:'I absolutely did not say this — not once.',implied:'Perhaps I implied it or hinted at it, but I never actually said the words.',context:'Insisting on the literal truth of your exact words.'},
+  {w:3,meaning:'I said something about someone — but not her.',implied:'Maybe I talked about Mary or Tom, but she was not the subject.',context:'Clarifying who you were actually talking about.'},
+  {w:4,meaning:'She did something with the money — but not steal it.',implied:'Perhaps she borrowed it, moved it, or spent it — but stealing is the wrong word.',context:'Defending someone from a specific accusation while not denying everything.'},
+  {w:6,meaning:'She stole something — but not the money.',implied:'Maybe she took something else entirely — keys, documents, time.',context:'Redirecting attention to what was actually taken.'}
+]},
+
+{sent:'He did not break the window.',words:['He','did','not','break','the','window'],vars:[
+  {w:0,meaning:'Someone else broke it — not him.',implied:'Maybe she broke it, or the wind did — but he is innocent.',context:'Defending someone from blame when another person is responsible.'},
+  {w:3,meaning:'He damaged it — but not by breaking.',implied:'Maybe he cracked it, scratched it, or weakened it over time.',context:'Arguing about the exact nature of the damage.'},
+  {w:5,meaning:'He broke something — but not the window.',implied:'Maybe he broke a plate, a rule, or a promise — but the window is fine.',context:'Clarifying what was actually damaged in a dispute.'}
+]},
+
+{sent:'She never actually meant to hurt you.',words:['She','never','actually','meant','to','hurt','you'],vars:[
+  {w:0,meaning:'Someone else meant to hurt you — not her.',implied:'Maybe the situation hurt you or someone else caused pain, but she was not the one.',context:'Defending a person who has been blamed unfairly.'},
+  {w:2,meaning:'This is the real truth — despite how it looks.',implied:'It may seem deliberate from the outside, but in reality her intention was innocent.',context:'Emphasising sincerity when defending someone whose actions seemed calculated.'},
+  {w:3,meaning:'She had no intention — it was purely accidental.',implied:'The result was harmful but the intention behind it was entirely absent.',context:'Distinguishing between accident and deliberate action in a conflict.'},
+  {w:6,meaning:'She meant to hurt someone — but not you specifically.',implied:'Perhaps she was directing frustration at a situation, not at you personally.',context:'Reassuring someone who has taken something personally that was not directed at them.'}
+]},
+
+{sent:'Nobody told me about the meeting.',words:['Nobody','told','me','about','the','meeting'],vars:[
+  {w:0,meaning:'Not a single person informed me — this was a total failure.',implied:'This was not one person forgetting — absolutely everyone failed to tell me.',context:'Expressing complete surprise and mild outrage at being excluded.'},
+  {w:2,meaning:'Others knew — only I was left out.',implied:'Someone deliberately or carelessly excluded me while informing everyone else.',context:'Feeling singled out or deliberately ignored in a workplace situation.'},
+  {w:4,meaning:'I knew there was a meeting — just not the details.',implied:'Someone mentioned a meeting but gave me no information about what it was for.',context:'Clarifying that partial information was given but not enough to be useful.'},
+  {w:5,meaning:'Something else happened — not a meeting.',implied:'Perhaps there was a call, a decision, or an event — but nobody called it a meeting.',context:'Questioning the label or nature of the event you were excluded from.'}
+]},
+
+{sent:'I only borrowed it for one day.',words:['I','only','borrowed','it','for','one','day'],vars:[
+  {w:0,meaning:'Someone else kept it longer — I personally returned it.',implied:'Whatever happened afterwards was not my doing — my part was brief and proper.',context:'Defending yourself in a situation where an item went missing after multiple people used it.'},
+  {w:1,meaning:'The duration was very short — not weeks or months.',implied:'The borrowing was minimal and temporary — any damage was not from extended use.',context:'Minimising your responsibility for wear and tear on a borrowed item.'},
+  {w:2,meaning:'I did not take it permanently — I always intended to return it.',implied:'There was no intention to keep it — this was always a temporary arrangement.',context:'Defending against an accusation of theft when you borrowed something without explicit permission.'},
+  {w:5,meaning:'I had it for exactly one day — not more.',implied:'The time limit was strictly observed — one day and one day only.',context:'Being precise about the duration when accused of keeping something too long.'}
+]},
+
+{sent:'We were not even in the country at the time.',words:['We','were','not','even','in','the','country','at','the','time'],vars:[
+  {w:0,meaning:'This group specifically was absent — others may have been here.',implied:'We as a unit were definitely not present — others cannot speak for our whereabouts.',context:'Providing a group alibi in a formal or serious dispute.'},
+  {w:3,meaning:'Being in the country at all makes this impossible.',implied:'Not just out of the city — entirely out of the country, making any involvement impossible.',context:'Emphasising the physical impossibility of involvement.'},
+  {w:9,meaning:'We were elsewhere at that specific moment.',implied:'At other times we may have been nearby, but at that exact time we were definitely absent.',context:'Providing a specific time-based alibi.'}
+]},
+
+{sent:'The report was submitted before the deadline.',words:['The','report','was','submitted','before','the','deadline'],vars:[
+  {w:0,meaning:'This specific document was submitted — not another one.',implied:'Perhaps other documents were late, but this particular report was on time.',context:'Defending the submission of one item when multiple things were due.'},
+  {w:3,meaning:'It was definitely submitted — not just prepared or saved.',implied:'The act of submission was completed — it did not just sit in drafts.',context:'Insisting on the completeness of an action when someone claims it was not done.'},
+  {w:4,meaning:'It arrived early — not just on time or late.',implied:'There was extra time to spare — this was not a last-minute submission.',context:'Countering a claim of lateness by emphasising early delivery.'}
+]},
+
+{sent:'I asked him to leave not to stay.',words:['I','asked','him','to','leave','not','to','stay'],vars:[
+  {w:0,meaning:'I made this request — not anyone else.',implied:'Whatever he chose to do cannot be blamed on anyone else — I was the one who spoke.',context:'Taking responsibility for a request that led to a consequence.'},
+  {w:2,meaning:'I spoke to him specifically — not to the group.',implied:'My request was directed at one person, not everyone in the room.',context:'Clarifying who was addressed when there is confusion about instructions.'},
+  {w:4,meaning:'The instruction was to go — the opposite of what happened.',implied:'He may have misunderstood or disobeyed, but the instruction was clear.',context:'Correcting a misrepresentation of what was actually requested.'}
+]},
+
+// ============================================================
+// CATEGORY 2: EMPHASIS & SURPRISE (8 sentences)
+// ============================================================
+{sent:'She actually passed the exam.',words:['She','actually','passed','the','exam'],vars:[
+  {w:0,meaning:'She — of all people — managed to pass.',implied:'Others may have expected her to fail, or others failed while she succeeded.',context:'Expressing surprise about a specific person overcoming expectations.'},
+  {w:1,meaning:'This really happened — despite being hard to believe.',implied:'The result is surprising or unexpected given what was known before.',context:'Emphasising genuine surprise at an outcome that seemed unlikely.'},
+  {w:2,meaning:'She passed — she did not fail, scrape through, or cheat.',implied:'The result was a genuine pass by the rules — not borderline or questionable.',context:'Confirming a clear legitimate success when there was doubt about the method or result.'}
+]},
+
+{sent:'He really does understand the problem.',words:['He','really','does','understand','the','problem'],vars:[
+  {w:0,meaning:'He specifically understands — even if others do not.',implied:'You may not understand it, or the team may not — but he genuinely does.',context:'Defending someone who has been underestimated or dismissed.'},
+  {w:1,meaning:'This is genuine — not pretending or partially grasping.',implied:'His understanding is real and deep — not superficial or performed.',context:'Countering scepticism about whether someone truly comprehends something.'},
+  {w:2,meaning:'Truly — despite all evidence to the contrary.',implied:'His past behaviour may suggest otherwise, but the understanding is actually there.',context:'Using does for emphasis in present simple — a native English pattern for strong contradiction.'},
+  {w:4,meaning:'He understands this specific issue — not a different one.',implied:'He may not understand everything, but this particular problem he has grasped fully.',context:'Being precise about what someone understands when they are being broadly dismissed.'}
+]},
+
+{sent:'This is exactly what I was looking for.',words:['This','is','exactly','what','I','was','looking','for'],vars:[
+  {w:0,meaning:'This specific thing — not something similar or close.',implied:'Other options were considered and rejected — only this one fits.',context:'Expressing satisfaction when something finally matches your requirements perfectly.'},
+  {w:2,meaning:'A perfect match — not approximately right.',implied:'There is no need to adjust, settle, or compromise — it fits precisely.',context:'Distinguishing between something that is close enough and something that is ideal.'},
+  {w:4,meaning:'I specifically needed this — nobody else told me to want it.',implied:'This is my own genuine need, not something imposed on me by others.',context:'Asserting personal ownership of a preference or requirement.'}
+]},
+
+{sent:'The whole team agreed with the decision.',words:['The','whole','team','agreed','with','the','decision'],vars:[
+  {w:1,meaning:'Every single member — not just most of them.',implied:'There were no dissenters or abstentions — complete unanimity.',context:'Emphasising total consensus when someone claims there was disagreement.'},
+  {w:2,meaning:'The team specifically — not management or clients.',implied:'It was the working team who agreed — not outside stakeholders or leadership.',context:'Clarifying whose agreement is being referenced in a dispute about support.'},
+  {w:3,meaning:'They were in agreement — they did not just tolerate or comply.',implied:'Active agreement was expressed — not silent acceptance or reluctant compliance.',context:'Distinguishing between genuine support and passive non-objection.'},
+  {w:5,meaning:'They agreed with this specific decision — not others.',implied:'Other decisions may have been contested, but this one had full support.',context:'Being precise about which decision was unanimously supported.'}
+]},
+
+{sent:'Even the manager was surprised.',words:['Even','the','manager','was','surprised'],vars:[
+  {w:0,meaning:'Including the most senior or experienced person.',implied:'If even the manager was surprised, the surprise was truly universal.',context:'Emphasising the extent of shock — if the most prepared person was caught off guard, everyone was.'},
+  {w:2,meaning:'The person in charge — not just junior staff.',implied:'It was not just new employees or outsiders who were surprised.',context:'Highlighting the significance of surprise at the highest level of authority.'},
+  {w:3,meaning:'Surprise was the reaction — not anger or disappointment.',implied:'The emotion was specifically surprise — not a negative or positive reaction.',context:'Clarifying the exact emotional response when someone assumes a different reaction.'}
+]},
+
+{sent:'They finished the project two weeks early.',words:['They','finished','the','project','two','weeks','early'],vars:[
+  {w:0,meaning:'They — not the other team or outside help.',implied:'This group did it independently and ahead of schedule.',context:'Attributing credit to the correct team when multiple groups were involved.'},
+  {w:1,meaning:'Completely finished — not just nearly done.',implied:'The project is entirely complete — not 90% there or in final review.',context:'Insisting on full completion rather than near-completion.'},
+  {w:4,meaning:'Two full weeks — not one day or one week.',implied:'The margin was significant — a substantial lead over the deadline.',context:'Emphasising the impressive scale of early completion.'},
+  {w:6,meaning:'They delivered before the deadline — not on time or late.',implied:'This was proactive and impressive, not merely adequate.',context:'Emphasising exceptional performance rather than acceptable performance.'}
+]},
+
+{sent:'I have never seen anything like this before.',words:['I','have','never','seen','anything','like','this','before'],vars:[
+  {w:0,meaning:'In my specific experience — others may have seen it.',implied:'My personal exposure has been limited — I cannot speak for everyone.',context:'Making a personal observation without claiming it is universally unprecedented.'},
+  {w:2,meaning:'In all my experience — not once.',implied:'This is not rare — it is completely outside my entire experience.',context:'Emphasising the total absence of prior exposure.'},
+  {w:4,meaning:'Nothing comes close — no partial matches exist.',implied:'Not just rare or unusual — nothing even approximates this.',context:'Emphasising the complete uniqueness rather than just rarity.'},
+  {w:6,meaning:'This specific thing is unprecedented — not everything here.',implied:'Other aspects may be familiar but this particular element is entirely new.',context:'Being precise about what is unprecedented when something has both familiar and unfamiliar elements.'}
+]},
+
+{sent:'We actually managed to save the company.',words:['We','actually','managed','to','save','the','company'],vars:[
+  {w:0,meaning:'This group specifically achieved it — through collective effort.',implied:'No external rescue was needed — the internal team did it themselves.',context:'Attributing success to the team when others doubted them or expected failure.'},
+  {w:1,meaning:'Despite all odds — this really happened.',implied:'Many thought it was impossible — yet here we are.',context:'Expressing genuine disbelief at a successful outcome against all expectations.'},
+  {w:2,meaning:'We succeeded where others thought we would fail.',implied:'Managing something difficult is an achievement in itself — not just the outcome.',context:'Celebrating the process of overcoming obstacles, not just the result.'},
+  {w:4,meaning:'Saved — not sold, restructured, or closed.',implied:'The company continues to exist in its original form — a full rescue.',context:'Distinguishing between a real rescue and a compromise solution.'}
+]},
+
+{sent:'You have already done the hard part.',words:['You','have','already','done','the','hard','part'],vars:[
+  {w:0,meaning:'You specifically have achieved this — not someone else.',implied:'Someone else may still need to do their part, but you have completed yours.',context:'Reassuring a specific person who feels they have not done enough.'},
+  {w:2,meaning:'It is already complete — right now, before you think you are ready.',implied:'You may feel unprepared, but the difficult work is genuinely behind you.',context:'Encouraging someone who underestimates their own progress.'},
+  {w:5,meaning:'The difficult portion is done — what remains is easier.',implied:'The remaining tasks are manageable — the intimidating part is over.',context:'Motivating someone who is dreading the rest of a task.'}
+]},
+
+// ============================================================
+// CATEGORY 3: CONTRAST & COMPARISON (8 sentences)
+// ============================================================
+{sent:'I prefer tea to coffee.',words:['I','prefer','tea','to','coffee'],vars:[
+  {w:0,meaning:'My personal preference — not what others prefer.',implied:'You may prefer coffee, and that is fine — but I am speaking only for myself.',context:'Asserting a personal preference without criticising others.'},
+  {w:1,meaning:'Prefer — a genuine preference, not just a slight lean.',implied:'This is not indifference — I actively choose tea over coffee.',context:'Emphasising the strength of a preference when someone suggests you are flexible.'},
+  {w:2,meaning:'Tea is the choice — not water, juice, or anything else.',implied:'If the alternative were something other than coffee, my preference might differ.',context:'Being specific about what is preferred when multiple alternatives exist.'},
+  {w:4,meaning:'Coffee is what I prefer it over — not another drink.',implied:'In a tea-versus-coffee comparison, tea wins — other comparisons may differ.',context:'Clarifying the specific comparison being made.'}
+]},
+
+{sent:'She works harder than anyone else on the team.',words:['She','works','harder','than','anyone','else','on','the','team'],vars:[
+  {w:0,meaning:'She specifically — not he or they.',implied:'Other high performers exist, but she outworks them all.',context:'Singling out one person for exceptional recognition.'},
+  {w:2,meaning:'More effort — not smarter, faster, or more talented.',implied:'Her advantage is work ethic, not natural ability or efficiency.',context:'Attributing success to effort rather than talent.'},
+  {w:4,meaning:'Every single person — no exception.',implied:'Not just most people — literally every other team member.',context:'Emphasising universality of comparison — no one is excluded.'},
+  {w:7,meaning:'Within this team specifically — not all teams.',implied:'In other contexts she may not stand out, but within this group she is exceptional.',context:'Limiting the comparison to the current context.'}
+]},
+
+{sent:'He chose the cheaper option not the better one.',words:['He','chose','the','cheaper','option','not','the','better','one'],vars:[
+  {w:0,meaning:'He made this choice — not the group or management.',implied:'Others may have recommended differently — this was his individual decision.',context:'Attributing a poor decision to a specific person.'},
+  {w:3,meaning:'Price was the deciding factor — not quality or suitability.',implied:'The decision was purely financial — other considerations were ignored.',context:'Criticising a decision-making process that prioritised cost above all else.'},
+  {w:7,meaning:'The better option existed and was available — it was rejected.',implied:'This was not a case of limited options — a better choice was consciously not taken.',context:'Highlighting that a better alternative was available and knowingly passed over.'}
+]},
+
+{sent:'This version is much better than the last one.',words:['This','version','is','much','better','than','the','last','one'],vars:[
+  {w:0,meaning:'This specific version — not the previous or the next.',implied:'Among all versions discussed, this particular one stands out.',context:'Specifying which version is being praised when multiple versions exist.'},
+  {w:3,meaning:'Significantly better — not marginally or slightly.',implied:'The improvement is substantial — not a minor upgrade.',context:'Emphasising the scale of improvement when someone suggests the difference is small.'},
+  {w:4,meaning:'An improvement has been made — quality has genuinely increased.',implied:'Not just different or newer — objectively and measurably better.',context:'Asserting objective quality improvement rather than just change.'},
+  {w:7,meaning:'Compared to the immediately previous version — not the original.',implied:'The comparison is with the most recent version, not the starting point.',context:'Being precise about which version is the baseline for comparison.'}
+]},
+
+{sent:'My brother passed but my sister failed.',words:['My','brother','passed','but','my','sister','failed'],vars:[
+  {w:1,meaning:'My brother — not my cousin or friend.',implied:'The family connection makes this particularly noteworthy.',context:'Emphasising the personal connection to the person who succeeded.'},
+  {w:2,meaning:'Passed — achieved success, not just avoided failure.',implied:'The result was genuinely positive — not borderline or lucky.',context:'Distinguishing a clear pass from a near-miss result.'},
+  {w:5,meaning:'My sister — not an acquaintance or colleague.',implied:'The failure is personal and close to home — not an abstract case.',context:'Making the emotional significance of the failure clear.'},
+  {w:6,meaning:'Failed — did not pass, did not scrape through.',implied:'The result was a definitive failure — not a deferral or incomplete.',context:'Being precise about the nature of the unsuccessful result.'}
+]},
+
+{sent:'London is expensive but incredibly exciting.',words:['London','is','expensive','but','incredibly','exciting'],vars:[
+  {w:0,meaning:'London specifically — not Paris or New York.',implied:'Other cities may be expensive without being exciting — London has both qualities.',context:'Comparing cities when discussing travel decisions.'},
+  {w:2,meaning:'The cost is high — this cannot be denied.',implied:'The price is a genuine drawback — not imagined or exaggerated.',context:'Acknowledging a real negative before presenting the positive side.'},
+  {w:4,meaning:'Very — to an extreme degree.',implied:'The excitement is not moderate — it is intense and remarkable.',context:'Emphasising the intensity of a positive quality to balance the negative.'},
+  {w:5,meaning:'The excitement is real and remarkable — not just pleasant.',implied:'This is not mild enjoyment — it is a genuinely thrilling experience.',context:'Justifying the cost of an expensive place by emphasising its exceptional quality.'}
+]},
+
+{sent:'She speaks three languages but reads only two.',words:['She','speaks','three','languages','but','reads','only','two'],vars:[
+  {w:1,meaning:'Speaking is what she does at the higher level.',implied:'Her oral skills exceed her literacy skills.',context:'Distinguishing between different language skills when discussing a multilingual person.'},
+  {w:2,meaning:'Three — a specific and impressive number.',implied:'Not two or four — exactly three, which is notable.',context:'Emphasising the precise number when discussing language ability.'},
+  {w:5,meaning:'Reading is the skill that is more limited.',implied:'She can speak more languages than she can read — an unusual combination.',context:'Highlighting the contrast between two related skills.'},
+  {w:6,meaning:'Only — a limitation worth noting.',implied:'Despite speaking three, her reading is restricted to fewer.',context:'Drawing attention to a specific limitation within an otherwise impressive set of skills.'}
+]},
+
+{sent:'The food was amazing but the service was awful.',words:['The','food','was','amazing','but','the','service','was','awful'],vars:[
+  {w:1,meaning:'The food specifically — not the atmosphere or location.',implied:'Other aspects of the experience varied — the food was the highlight.',context:'Giving specific credit in a mixed review.'},
+  {w:3,meaning:'Truly exceptional — not just good or very good.',implied:'The quality of the food reached the highest level of praise.',context:'Using the strongest positive word to balance an equally strong negative.'},
+  {w:6,meaning:'The service specifically was the problem.',implied:'Staff behaviour or responsiveness was the issue — not the food or ambience.',context:'Isolating the source of dissatisfaction in a review.'},
+  {w:8,meaning:'Extremely bad — not just disappointing or slow.',implied:'The service reached a level of failure that went beyond inconvenience.',context:'Emphasising the severity of the service failure.'}
+]},
+
+{sent:'I enjoy the work but hate the commute.',words:['I','enjoy','the','work','but','hate','the','commute'],vars:[
+  {w:1,meaning:'Genuinely enjoy — not just tolerate.',implied:'The work is a positive part of the job — not something endured for the pay.',context:'Separating genuine job satisfaction from the broader work experience.'},
+  {w:3,meaning:'The actual tasks — not the office, colleagues, or pay.',implied:'The content of the work is enjoyable even if the conditions are not.',context:'Being specific about what aspect of a job brings satisfaction.'},
+  {w:5,meaning:'Hate — the strongest negative feeling, not just dislike.',implied:'The commute is not merely inconvenient — it is genuinely miserable.',context:'Using strong language to convey the severity of the negative aspect.'},
+  {w:6,meaning:'The journey to work specifically.',implied:'Once at work everything is fine — the problem is only getting there.',context:'Identifying the commute as the specific source of unhappiness.'}
+]},
+
+// ============================================================
+// CATEGORY 4: REQUEST & INSTRUCTION (8 sentences)
+// ============================================================
+{sent:'Can you please call me tomorrow morning.',words:['Can','you','please','call','me','tomorrow','morning'],vars:[
+  {w:1,meaning:'You specifically — not your colleague or assistant.',implied:'I want to speak with you personally — not a representative.',context:'Making a personal request when there is a risk of being passed to someone else.'},
+  {w:3,meaning:'Call — not email, text, or message.',implied:'A voice conversation is specifically required — written communication is not enough.',context:'Specifying the medium of communication when it matters.'},
+  {w:4,meaning:'Contact me — not someone else in my team.',implied:'I am the person who needs to receive this call.',context:'Clarifying who should receive the communication when there could be confusion.'},
+  {w:5,meaning:'Tomorrow — not today or next week.',implied:'The timing is specific — today is too soon and later is too late.',context:'Being precise about timing when urgency and scheduling both matter.'},
+  {w:6,meaning:'In the morning — not the afternoon or evening.',implied:'Morning availability is confirmed — other times are not suitable.',context:'Specifying the time of day for a call due to availability or time zone differences.'}
+]},
+
+{sent:'Please send me the document not the link.',words:['Please','send','me','the','document','not','the','link'],vars:[
+  {w:2,meaning:'Send it to me — not to my colleague or the team.',implied:'I specifically need to receive this — do not assume others will forward it.',context:'Ensuring direct receipt of a file in a professional setting.'},
+  {w:4,meaning:'The actual file — not a shortcut, preview, or summary.',implied:'The complete document is needed — nothing less will do.',context:'Clarifying the format required when both a link and file are possible.'},
+  {w:6,meaning:'Not a URL — the actual downloadable file.',implied:'A link may break, require access, or be insufficient — the file itself is needed.',context:'Avoiding the frustration of receiving a link that requires permissions or may expire.'}
+]},
+
+{sent:'I need this finished by Friday not Monday.',words:['I','need','this','finished','by','Friday','not','Monday'],vars:[
+  {w:0,meaning:'I personally need this — it is my requirement.',implied:'This is not a suggestion from management — I am the one who needs it.',context:'Taking personal ownership of a deadline request.'},
+  {w:2,meaning:'Completed — not started, drafted, or in progress.',implied:'The finished state is the requirement — not partial completion.',context:'Being clear that only full completion is acceptable.'},
+  {w:5,meaning:'Friday is the hard deadline — not a suggestion.',implied:'Monday is too late — the work must be done before the weekend.',context:'Correcting a misunderstanding about when work is actually needed.'}
+]},
+
+{sent:'You should talk to her not to me.',words:['You','should','talk','to','her','not','to','me'],vars:[
+  {w:0,meaning:'You specifically should do this.',implied:'I cannot do it for you — this is your responsibility.',context:'Redirecting someone to take action themselves rather than expecting you to intervene.'},
+  {w:2,meaning:'Talking is the right approach — not emailing or avoiding.',implied:'A direct conversation is needed — indirect methods will not work.',context:'Encouraging direct communication when someone is avoiding a difficult conversation.'},
+  {w:4,meaning:'Her specifically — not the manager or the team.',implied:'This is a one-to-one matter — it should not be escalated or broadened.',context:'Directing someone to the right person when they are approaching the wrong one.'}
+]},
+
+{sent:'Turn left at the traffic lights not at the roundabout.',words:['Turn','left','at','the','traffic','lights','not','at','the','roundabout'],vars:[
+  {w:0,meaning:'Turn — do not go straight or right.',implied:'The action required is a turn — direction matters at this point.',context:'Clarifying the action needed at a specific point in directions.'},
+  {w:1,meaning:'Left — not right.',implied:'The direction is specific — confusion between left and right is common.',context:'Giving clear directional instructions when precision is essential.'},
+  {w:4,meaning:'At the traffic lights specifically — not before or after.',implied:'The landmark matters — the turn should happen at this exact point.',context:'Being precise about the turning point when landmarks are close together.'},
+  {w:9,meaning:'Not the roundabout — a different landmark.',implied:'Continuing to the roundabout would be going too far.',context:'Preventing a common navigation error by specifying the correct landmark.'}
+]},
+
+{sent:'Always check your work before submitting.',words:['Always','check','your','work','before','submitting'],vars:[
+  {w:0,meaning:'Every single time — not just sometimes.',implied:'This is not optional or occasional — it must happen without exception.',context:'Emphasising that a quality check is a non-negotiable habit.'},
+  {w:1,meaning:'Review it — do not just reread or skim.',implied:'A genuine check is required — not a superficial glance.',context:'Insisting on a thorough review rather than a cursory look.'},
+  {w:2,meaning:'Your own work — not someone else is checking for you.',implied:'Self-review is your responsibility before passing it on.',context:'Reinforcing personal accountability for quality before submission.'},
+  {w:4,meaning:'Before — not after.',implied:'Checking after submission is too late to fix mistakes.',context:'Emphasising the timing of the review — it must happen before not after.'}
+]},
+
+{sent:'Keep this strictly between us.',words:['Keep','this','strictly','between','us'],vars:[
+  {w:0,meaning:'Maintain the confidentiality — do not let it slip.',implied:'Active effort is needed to keep this secret — it should not accidentally come out.',context:'Requesting deliberate ongoing secrecy rather than just initial discretion.'},
+  {w:2,meaning:'Absolutely and without exception — not loosely.',implied:'Not even hinting at it to others — total confidentiality is required.',context:'Emphasising the non-negotiable nature of the secrecy.'},
+  {w:4,meaning:'Only between this specific group — no one else.',implied:'Even trusted mutual friends or family should not know.',context:'Being explicit about who is included in the circle of confidentiality.'}
+]},
+
+{sent:'Please read the whole email not just the subject.',words:['Please','read','the','whole','email','not','just','the','subject'],vars:[
+  {w:3,meaning:'The entire email — not just part of it.',implied:'Partial reading is the problem — complete reading is required.',context:'Addressing a common workplace habit of acting on emails without reading them fully.'},
+  {w:4,meaning:'The email specifically — not the attachment or calendar invite.',implied:'The information is in the email body — not elsewhere.',context:'Directing attention to the right place when multiple documents are involved.'},
+  {w:8,meaning:'The subject line alone is insufficient.',implied:'Acting on the subject line without reading the content leads to misunderstandings.',context:'Addressing the specific bad habit of judging emails by their subject line alone.'}
+]},
+
+// ============================================================
+// CATEGORY 5: EMOTION & OPINION (8 sentences)
+// ============================================================
+{sent:'I absolutely love this place.',words:['I','absolutely','love','this','place'],vars:[
+  {w:0,meaning:'I personally feel this — not just going along with others.',implied:'This is my genuine feeling — not social pressure or politeness.',context:'Asserting personal authentic enthusiasm.'},
+  {w:1,meaning:'Without any reservation — completely and wholly.',implied:'There is nothing about this place I dislike — the love is total.',context:'Emphasising completeness of positive feeling.'},
+  {w:2,meaning:'Love — the strongest positive emotion, not just like.',implied:'This is beyond appreciation or enjoyment — it reaches the highest level.',context:'Using the strongest possible positive word to convey intensity of feeling.'},
+  {w:3,meaning:'This specific place — not others like it.',implied:'Other similar places may not produce the same feeling.',context:'Specifying that the feeling is for this particular place, not the category.'}
+]},
+
+{sent:'She genuinely cares about her students.',words:['She','genuinely','cares','about','her','students'],vars:[
+  {w:0,meaning:'She — this specific teacher.',implied:'Other teachers may not, but she definitely does.',context:'Singling out one person for authentic praise when others in the same role are less dedicated.'},
+  {w:1,meaning:'Really and truly — not as a performance.',implied:'Her care is authentic — not a professional pretence or box-ticking exercise.',context:'Distinguishing genuine emotional investment from professional obligation.'},
+  {w:2,meaning:'The emotion is real — she is not just going through the motions.',implied:'She actively thinks about and invests in students — it is not passive.',context:'Emphasising active emotional engagement rather than passive duty.'},
+  {w:4,meaning:'Her own students specifically — not students in general.',implied:'Her care is personal and directed — not abstract or universal.',context:'Highlighting the personal nature of the relationship.'}
+]},
+
+{sent:'That film really made me think.',words:['That','film','really','made','me','think'],vars:[
+  {w:0,meaning:'That specific film — not others in the series or genre.',implied:'The impact was from this particular film — not film in general.',context:'Attributing intellectual impact to one specific work.'},
+  {w:2,meaning:'Genuinely — not just vaguely or politely.',implied:'The thinking was real and substantial — not a passing thought.',context:'Emphasising the genuine intellectual impact of a creative work.'},
+  {w:3,meaning:'Caused — it was not voluntary thinking.',implied:'The film provoked thought — I did not choose to think about it, it happened.',context:'Highlighting the power of art to provoke involuntary reflection.'},
+  {w:5,meaning:'Think — not feel, cry, or laugh.',implied:'The primary effect was intellectual rather than emotional.',context:'Describing the specific type of response a film produced.'}
+]},
+
+{sent:'I honestly did not expect that ending.',words:['I','honestly','did','not','expect','that','ending'],vars:[
+  {w:0,meaning:'I personally — others may have predicted it.',implied:'Perhaps with more knowledge or attention you could have seen it coming — I did not.',context:'Admitting personal surprise without criticising the film or other viewers.'},
+  {w:1,meaning:'Truthfully — this is not false modesty or performance.',implied:'The surprise was genuine — not an act to seem impressed.',context:'Emphasising authenticity of reaction when expressing genuine shock.'},
+  {w:4,meaning:'Did not anticipate at all — completely unprepared.',implied:'There was no mental preparation — the ending arrived without warning.',context:'Emphasising the totality of surprise.'},
+  {w:6,meaning:'The ending specifically — not the plot or characters.',implied:'Other elements may have been predictable — the ending was the twist.',context:'Being specific about which part of a work produced the surprise.'}
+]},
+
+{sent:'This is the best meal I have ever had.',words:['This','is','the','best','meal','I','have','ever','had'],vars:[
+  {w:0,meaning:'This specific meal — here and now.',implied:'Other great meals exist in memory — this one surpasses them all.',context:'Giving the highest praise to a current experience.'},
+  {w:3,meaning:'The best — not one of the best.',implied:'There is no equal — this stands alone at the top.',context:'Using the absolute superlative to express unmatched quality.'},
+  {w:5,meaning:'In my personal experience — not objectively.',implied:'Others may have had better meals — this is my personal record.',context:'Qualifying the claim as personal experience rather than objective fact.'},
+  {w:7,meaning:'In my entire life — not just recently.',implied:'Every meal since childhood is being compared — this wins.',context:'Emphasising the lifetime scope of the comparison.'}
+]},
+
+{sent:'We really enjoyed working together.',words:['We','really','enjoyed','working','together'],vars:[
+  {w:0,meaning:'All of us — not just one or two people.',implied:'The positive experience was shared — not one-sided.',context:'Expressing collective satisfaction in a collaborative outcome.'},
+  {w:1,meaning:'Genuinely — not as a polite exit statement.',implied:'This is sincere praise, not professional courtesy.',context:'Making post-project feedback feel authentic rather than formulaic.'},
+  {w:2,meaning:'The experience was enjoyable — not just productive.',implied:'Beyond achieving results, the process itself was pleasant.',context:'Highlighting the relational quality of a collaboration.'},
+  {w:3,meaning:'The working relationship specifically.',implied:'We may not socialise outside work, but the professional collaboration was great.',context:'Being specific about what type of experience was enjoyed.'}
+]},
+
+{sent:'I find his approach quite refreshing.',words:['I','find','his','approach','quite','refreshing'],vars:[
+  {w:0,meaning:'My personal reaction — others may feel differently.',implied:'This is not a universal view — it is my individual response.',context:'Expressing a personal opinion without presenting it as fact.'},
+  {w:2,meaning:'His approach — not his personality or results.',implied:'It is specifically how he does things — the method and style.',context:'Being specific about what is being praised when multiple aspects of a person exist.'},
+  {w:4,meaning:'Quite — more than slightly, less than extremely.',implied:'A moderate but genuine positive assessment.',context:'Using a measured qualifier to avoid over-praising.'},
+  {w:5,meaning:'Refreshing — different and energising, not just good.',implied:'The value comes from its novelty and energy — it brings something new.',context:'Choosing a specific word that captures both quality and originality.'}
+]},
+
+{sent:'That was honestly the most stressful day of my life.',words:['That','was','honestly','the','most','stressful','day','of','my','life'],vars:[
+  {w:0,meaning:'That specific day — not every bad day.',implied:'A particular day is being identified as the worst.',context:'Anchoring the experience to a specific time.'},
+  {w:2,meaning:'Truly — not exaggerating for effect.',implied:'This is not hyperbole — the stress was genuinely extreme.',context:'Distinguishing genuine distress from dramatic language.'},
+  {w:4,meaning:'The most — above all others.',implied:'Every other stressful day is surpassed by this one.',context:'Using the absolute superlative for emphasis.'},
+  {w:5,meaning:'Stressful — not sad, frightening, or exhausting.',implied:'The specific quality was stress — a particular kind of pressure.',context:'Being precise about the type of difficulty experienced.'},
+  {w:9,meaning:'My entire life is the frame of comparison.',implied:'Not just this year or this job — the whole lifetime.',context:'Emphasising the scope of the comparison to convey extreme severity.'}
+]},
+
+// ============================================================
+// CATEGORY 6: CLARIFICATION & PRECISION (5 sentences)
+// ============================================================
+{sent:'We leave on Tuesday not Wednesday.',words:['We','leave','on','Tuesday','not','Wednesday'],vars:[
+  {w:0,meaning:'All of us — the whole group.',implied:'Individual members may have different plans but the group departs together.',context:'Clarifying group travel arrangements.'},
+  {w:1,meaning:'Depart — not arrive or check in.',implied:'The leaving time is what is being clarified — not another part of the journey.',context:'Being specific about the direction of travel.'},
+  {w:3,meaning:'Tuesday — not any other day.',implied:'A specific day has been fixed — not a range or approximate time.',context:'Correcting a misunderstanding about travel dates.'},
+  {w:5,meaning:'Not Wednesday — that day is wrong.',implied:'Wednesday may have been discussed or assumed — it is incorrect.',context:'Explicitly correcting a specific wrong assumption.'}
+]},
+
+{sent:'The meeting is at three not two.',words:['The','meeting','is','at','three','not','two'],vars:[
+  {w:0,meaning:'This specific meeting — not another one.',implied:'Multiple meetings may exist — this particular one has a specific time.',context:'Clarifying which event is being discussed.'},
+  {w:3,meaning:'At three — a fixed point in time.',implied:'The time is specific and confirmed — not approximate.',context:'Giving a precise time when someone has the wrong information.'},
+  {w:4,meaning:'Three o clock — not two thirty or two forty five.',implied:'The hour is three — not the previous hour.',context:'Correcting a one-hour time confusion which is common.'},
+  {w:6,meaning:'Two is wrong — that time has passed or is incorrect.',implied:'Arriving at two would mean arriving an hour early.',context:'Preventing the specific error of arriving at the wrong time.'}
+]},
+
+{sent:'She said Friday not Thursday.',words:['She','said','Friday','not','Thursday'],vars:[
+  {w:0,meaning:'She specifically said this.',implied:'You may have heard it differently, but she is the source and she said Friday.',context:'Attributing a statement to its correct source.'},
+  {w:1,meaning:'Said — spoke the word.',implied:'This is what came out of her mouth — not what she meant or implied.',context:'Insisting on the literal words used rather than an interpretation.'},
+  {w:2,meaning:'Friday — the day after Thursday.',implied:'The specific day matters — adjacent days are easy to confuse.',context:'Correcting a one-day confusion about scheduling.'},
+  {w:4,meaning:'Thursday is the wrong day.',implied:'Thursday may feel right but it was explicitly not mentioned.',context:'Preventing attendance on the wrong day.'}
+]},
+
+{sent:'This belongs to Sarah not to Emma.',words:['This','belongs','to','Sarah','not','to','Emma'],vars:[
+  {w:0,meaning:'This specific item — not something else.',implied:'Other items may belong to Emma, but this particular one does not.',context:'Clarifying ownership of a specific object.'},
+  {w:2,meaning:'Sarah is the owner — a specific person.',implied:'The ownership is clear and specific — not shared or uncertain.',context:'Attributing ownership precisely.'},
+  {w:4,meaning:'Emma is not the owner — despite appearances.',implied:'Emma may have been holding it, using it, or found near it — but it is not hers.',context:'Correcting a wrong assumption about ownership.'}
+]},
+
+{sent:'I said I might come not that I would.',words:['I','said','I','might','come','not','that','I','would'],vars:[
+  {w:0,meaning:'I said this — take responsibility for the words.',implied:'I am not denying saying something — just clarifying what I said.',context:'Clarifying your own words when they have been misquoted.'},
+  {w:3,meaning:'Might — a possibility, not a certainty.',implied:'The word might was deliberate — it signals uncertainty.',context:'Distinguishing between possibility and commitment.'},
+  {w:4,meaning:'Come — attendance was the topic.',implied:'The uncertainty was specifically about whether I would attend.',context:'Being specific about what was uncertain.'},
+  {w:8,meaning:'Would implies commitment — that word was not used.',implied:'Would means definite future — might means possible future.',context:'Teaching the important distinction between modal verbs would and might.'}
+]},
+
+// ============================================================
+// CATEGORY 7: WORKPLACE & PROFESSIONAL (5 sentences)
+// ============================================================
+{sent:'The client approved the final version.',words:['The','client','approved','the','final','version'],vars:[
+  {w:1,meaning:'The client — not our team or the manager.',implied:'External sign-off has been received — this is not internal approval only.',context:'Confirming client sign-off in a professional project update.'},
+  {w:2,meaning:'Approved — gave positive sign-off, not just reviewed.',implied:'The client did not just look at it — they gave official approval.',context:'Distinguishing review from approval in a professional context.'},
+  {w:4,meaning:'The final version — not a draft or earlier iteration.',implied:'The approved document is the last one — not a version that will change.',context:'Confirming that the approved version is the definitive final one.'}
+]},
+
+{sent:'We need to discuss this before the launch.',words:['We','need','to','discuss','before','the','launch'],vars:[
+  {w:0,meaning:'All of us — this is a group conversation.',implied:'One person deciding alone is not sufficient — a group discussion is required.',context:'Ensuring collective decision-making before an important event.'},
+  {w:1,meaning:'Need — this is essential, not optional.',implied:'Skipping this discussion would be a mistake.',context:'Emphasising urgency in a professional pre-launch checklist.'},
+  {w:3,meaning:'Discuss — not just mention or note.',implied:'A real conversation is required — not a brief comment in passing.',context:'Insisting on substantive dialogue rather than superficial acknowledgement.'},
+  {w:4,meaning:'Before — not during or after.',implied:'The discussion must happen in advance — not reactively.',context:'Emphasising the timing of a necessary conversation.'}
+]},
+
+{sent:'Your proposal has been shortlisted.',words:['Your','proposal','has','been','shortlisted'],vars:[
+  {w:0,meaning:'Your specific proposal — not the team or company.',implied:'This result is yours personally — credit goes to you.',context:'Attributing success to the right individual.'},
+  {w:1,meaning:'The proposal specifically — not you as a person.',implied:'It is the document and ideas that impressed — not just who you are.',context:'Being precise about what was evaluated and selected.'},
+  {w:3,meaning:'Made the shortlist — not won, but progressed.',implied:'More steps remain — this is good news but not final.',context:'Managing expectations while sharing encouraging progress.'},
+  {w:4,meaning:'Shortlisted — selected for further consideration.',implied:'Not rejected and not yet selected — in the running.',context:'Explaining a specific stage in a competitive process.'}
+]},
+
+{sent:'I can only stay for an hour.',words:['I','can','only','stay','for','an','hour'],vars:[
+  {w:0,meaning:'I personally — not my colleague who may stay longer.',implied:'Others in the group may have more flexibility — I do not.',context:'Setting a personal time limit at a professional event.'},
+  {w:2,meaning:'A limitation — not a preference.',implied:'I would stay longer if I could — circumstances prevent it.',context:'Explaining a constraint rather than expressing a preference to leave.'},
+  {w:3,meaning:'Stay — remain present at this location.',implied:'My physical presence is limited — I will need to leave.',context:'Clarifying availability in terms of physical presence.'},
+  {w:5,meaning:'One hour specifically — not two or three.',implied:'The time available is exactly one hour — not more.',context:'Setting a precise time expectation.'}
+]},
+
+{sent:'The deadline has been moved to next week.',words:['The','deadline','has','been','moved','to','next','week'],vars:[
+  {w:1,meaning:'The deadline — a specific fixed point.',implied:'Other dates may have changed too, but the deadline specifically has moved.',context:'Communicating a change that affects planning and workload.'},
+  {w:4,meaning:'Moved — changed from its original position.',implied:'This is not the original date — it has been rescheduled.',context:'Emphasising that a change has occurred rather than this being the original plan.'},
+  {w:6,meaning:'Next week — a short postponement.',implied:'It has not been moved months away — just to next week.',context:'Clarifying the scale of the postponement to manage expectations.'}
+]}
+
 ];
+
+
 var stressC=null,stressV=null,stressRight=0,stressTotal=0;
 
 function stressLoad() {
@@ -7154,7 +7508,7 @@ function stressAns(wi) {
   stressC.words.forEach(function(_,i){var b=document.getElementById('sw'+i);if(b)b.disabled=true;});
   var cb=document.getElementById('sw'+wi);if(cb){cb.style.background=ok?'rgba(74,222,128,0.20)':'rgba(255,107,107,0.20)';cb.style.borderColor=ok?'#4ADE80':'#FF6B6B';cb.style.color=ok?'#4ADE80':'#FF6B6B';}
   if(!ok){var rb=document.getElementById('sw'+stressV.w);if(rb){rb.style.background='rgba(74,222,128,0.15)';rb.style.borderColor='#4ADE80';rb.style.color='#4ADE80';}}
-  document.getElementById('stressResult').innerHTML='<div style="background:rgba(192,132,252,0.08);border:1.5px solid rgba(192,132,252,0.22);border-radius:12px;padding:13px;margin-top:8px"><div style="font-size:13px;font-weight:700;color:'+(ok?'#4ADE80':'#FF6B6B')+';margin-bottom:5px">'+(ok?'✓ Correct!':'✗ The stressed word was: "'+stressC.words[stressV.w]+'"')+'</div><div style="font-size:13px;color:#fff;margin-bottom:4px">Meaning: '+stressV.meaning+'</div><div style="font-size:12px;font-style:italic;color:rgba(245,200,66,0.75);margin-bottom:10px">In '+lang+': '+stressV.nat+'</div><button onclick="stressLoad()" style="padding:7px 18px;background:rgba(192,132,252,0.12);color:#C084FC;border:1.5px solid rgba(192,132,252,0.30);border-radius:100px;font-family:\'Plus Jakarta Sans\',sans-serif;font-size:12px;font-weight:700;cursor:pointer">Next Sentence ▶</button></div>';
+  document.getElementById('stressResult').innerHTML='<div style="background:rgba(192,132,252,0.08);border:1.5px solid rgba(192,132,252,0.22);border-radius:12px;padding:14px;margin-top:8px">'  +'<div style="font-size:13px;font-weight:700;color:'+(ok?'#4ADE80':'#FF6B6B')+';margin-bottom:8px">'+(ok?'✓ Correct! The stressed word is: <strong style=\"color:#C084FC\">'+stressC.words[stressV.w].toUpperCase()+'</strong>':'✗ The stressed word was: <strong style=\"color:#C084FC\">'+stressC.words[stressV.w].toUpperCase()+'</strong>')+'</div>'  +'<div style="display:flex;flex-direction:column;gap:7px;margin-bottom:10px">'  +'<div style="padding:8px 11px;border-radius:8px;background:rgba(74,222,128,0.08);border-left:3px solid #4ADE80"><div style="font-size:9.5px;font-weight:700;color:#4ADE80;text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">📌 What it means</div><div style="font-size:12.5px;color:rgba(255,255,255,0.90)">'+stressV.meaning+'</div></div>'  +'<div style="padding:8px 11px;border-radius:8px;background:rgba(245,200,66,0.07);border-left:3px solid rgba(245,200,66,0.50)"><div style="font-size:9.5px;font-weight:700;color:rgba(245,200,66,0.80);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">💡 What it implies</div><div style="font-size:12.5px;color:rgba(255,255,255,0.85);font-style:italic">'+(stressV.implied||'')+'</div></div>'  +'<div style="padding:8px 11px;border-radius:8px;background:rgba(96,165,250,0.08);border-left:3px solid rgba(96,165,250,0.50)"><div style="font-size:9.5px;font-weight:700;color:rgba(96,165,250,0.80);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">🗣️ When natives say it</div><div style="font-size:12.5px;color:rgba(255,255,255,0.85)">'+(stressV.context||'')+'</div></div>'  +'<div style="padding:8px 11px;border-radius:8px;background:rgba(192,132,252,0.07);border-left:3px solid rgba(192,132,252,0.40)"><div style="font-size:9.5px;font-weight:700;color:rgba(192,132,252,0.80);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">In '+lang+'</div><div style="font-size:12.5px;color:rgba(255,255,255,0.80);font-style:italic">'+stressV.nat+'</div></div>'  +'</div>'  +'<button onclick="stressLoad()" style="padding:7px 18px;background:rgba(192,132,252,0.12);color:#C084FC;border:1.5px solid rgba(192,132,252,0.30);border-radius:100px;font-family:\'Plus Jakarta Sans\',sans-serif;font-size:12px;font-weight:700;cursor:pointer">Next Sentence ▶</button></div>';
 }
 
 // ── L5: MINIMAL PAIRS ──

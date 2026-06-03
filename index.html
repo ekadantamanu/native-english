@@ -3702,78 +3702,8 @@ var PHRASES=[
   {text:'To cut a long story short...',meaning:'To summarise a long explanation briefly.',cat:'Summarising',example:'To cut a long story short, we still got the contract.',ctx:'Skip details and get to the point.'}
 ];
 
-var PUZZLES = [
-
-// ============================================================
-// BEGINNER — 50 PUZZLES
-// ============================================================
-
-// --- Simple Present (8) ---
-{words:['She','drinks','coffee','every','morning'],answer:'She drinks coffee every morning.',native:'Simple Present: he/she/it + verb+s. Daily habits use simple present.',col:'#c49a1a',bg:'var(--gold-dim)',level:'beginner',topic:'Simple Present'},
-{words:['They','live','in','a','big','house'],answer:'They live in a big house.',native:'Simple Present: I/we/you/they + base verb. No -s for plural subjects.',col:'#0e6655',bg:'linear-gradient(135deg,#e8f5f0,#d4ede6)',level:'beginner',topic:'Simple Present'},
-{words:['My','brother','works','at','a','hospital'],answer:'My brother works at a hospital.',native:'Simple Present: singular subject (my brother) takes verb+s.',col:'#1a5276',bg:'rgba(96,165,250,0.12)',level:'beginner',topic:'Simple Present'},
-{words:['We','eat','lunch','at','noon'],answer:'We eat lunch at noon.',native:'Simple Present: we/they/you use base verb with no -s ending.',col:'#6c3483',bg:'var(--teal-dim)',level:'beginner',topic:'Simple Present'},
-{words:['The','cat','sleeps','on','the','sofa'],answer:'The cat sleeps on the sofa.',native:'Simple Present: singular noun (the cat) takes verb+s.',col:'#1e8449',bg:'rgba(74,222,128,0.12)',level:'beginner',topic:'Simple Present'},
-{words:['I','walk','to','school','every','day'],answer:'I walk to school every day.',native:'Simple Present: I + base verb. Never add -s after I.',col:'#d35400',bg:'var(--coral-dim)',level:'beginner',topic:'Simple Present'},
-{words:['He','plays','football','on','Sundays'],answer:'He plays football on Sundays.',native:'Simple Present: he/she/it + verb+s. Play → plays.',col:'#c0392b',bg:'18px',level:'beginner',topic:'Simple Present'},
-{words:['The','children','go','to','bed','at','nine'],answer:'The children go to bed at nine.',native:'Simple Present: plural subject (the children) uses base verb go.',col:'#1565c0',bg:'rgba(167,139,250,0.12)',level:'beginner',topic:'Simple Present'},
-
-// --- Simple Past (8) ---
-{words:['She','visited','her','grandmother','yesterday'],answer:'She visited her grandmother yesterday.',native:'Simple Past: regular verbs add -ed. Yesterday signals past tense.',col:'#c49a1a',bg:'var(--gold-dim)',level:'beginner',topic:'Simple Past'},
-{words:['They','watched','a','film','last','night'],answer:'They watched a film last night.',native:'Simple Past: watch → watched. Last night is a past time marker.',col:'#0e6655',bg:'linear-gradient(135deg,#e8f5f0,#d4ede6)',level:'beginner',topic:'Simple Past'},
-{words:['I','bought','new','shoes','on','Saturday'],answer:'I bought new shoes on Saturday.',native:'Simple Past: buy → bought. Irregular verb — must be memorised.',col:'#1a5276',bg:'rgba(96,165,250,0.12)',level:'beginner',topic:'Simple Past'},
-{words:['He','went','to','the','market','alone'],answer:'He went to the market alone.',native:'Simple Past: go → went. Irregular verb — one of the most common.',col:'#6c3483',bg:'var(--teal-dim)',level:'beginner',topic:'Simple Past'},
-{words:['We','had','a','great','time','together'],answer:'We had a great time together.',native:'Simple Past: have → had. Irregular verb used for experiences.',col:'#1e8449',bg:'rgba(74,222,128,0.12)',level:'beginner',topic:'Simple Past'},
-{words:['She','cooked','rice','and','vegetables'],answer:'She cooked rice and vegetables.',native:'Simple Past: cook → cooked. Regular verb, add -ed.',col:'#d35400',bg:'var(--coral-dim)',level:'beginner',topic:'Simple Past'},
-{words:['The','students','studied','all','night'],answer:'The students studied all night.',native:'Simple Past: study → studied. Consonant+y → change y to i and add -ed.',col:'#c0392b',bg:'18px',level:'beginner',topic:'Simple Past'},
-{words:['My','father','came','home','late'],answer:'My father came home late.',native:'Simple Past: come → came. Irregular verb — very common in daily English.',col:'#1565c0',bg:'rgba(167,139,250,0.12)',level:'beginner',topic:'Simple Past'},
-
-// --- Present Continuous (6) ---
-{words:['She','is','reading','a','book','now'],answer:'She is reading a book now.',native:'Present Continuous: is/am/are + verb-ing. NOW signals this tense.',col:'#c49a1a',bg:'var(--gold-dim)',level:'beginner',topic:'Present Continuous'},
-{words:['They','are','playing','in','the','garden'],answer:'They are playing in the garden.',native:'Present Continuous: they + are + verb-ing. Action happening right now.',col:'#0e6655',bg:'linear-gradient(135deg,#e8f5f0,#d4ede6)',level:'beginner',topic:'Present Continuous'},
-{words:['I','am','waiting','for','the','bus'],answer:'I am waiting for the bus.',native:'Present Continuous: I + am + verb-ing. Only I uses am.',col:'#1a5276',bg:'rgba(96,165,250,0.12)',level:'beginner',topic:'Present Continuous'},
-{words:['He','is','talking','on','the','phone'],answer:'He is talking on the phone.',native:'Present Continuous: he + is + verb-ing. Single consonant+vowel → double final consonant.',col:'#6c3483',bg:'var(--teal-dim)',level:'beginner',topic:'Present Continuous'},
-{words:['We','are','having','dinner','right','now'],answer:'We are having dinner right now.',native:'Present Continuous: we + are + verb-ing. Have → having (drop the e).',col:'#1e8449',bg:'rgba(74,222,128,0.12)',level:'beginner',topic:'Present Continuous'},
-{words:['The','dog','is','sleeping','under','the','table'],answer:'The dog is sleeping under the table.',native:'Present Continuous: singular subject + is + verb-ing.',col:'#d35400',bg:'var(--coral-dim)',level:'beginner',topic:'Present Continuous'},
-
-// --- Articles (6) ---
-{words:['She','wants','to','be','a','doctor'],answer:'She wants to be a doctor.',native:'Articles: a/an before singular countable nouns. Doctor starts with consonant sound → a.',col:'#c0392b',bg:'18px',level:'beginner',topic:'Articles'},
-{words:['I','saw','an','elephant','at','the','zoo'],answer:'I saw an elephant at the zoo.',native:'Articles: an before vowel sounds (elephant). The zoo = specific place we both know.',col:'#1565c0',bg:'rgba(167,139,250,0.12)',level:'beginner',topic:'Articles'},
-{words:['He','bought','a','new','car','last','week'],answer:'He bought a new car last week.',native:'Articles: a = first mention, one of many. Car starts with consonant → a.',col:'#c49a1a',bg:'var(--gold-dim)',level:'beginner',topic:'Articles'},
-{words:['The','sun','rises','in','the','east'],answer:'The sun rises in the east.',native:'Articles: the = unique things. There is only one sun and one east.',col:'#0e6655',bg:'linear-gradient(135deg,#e8f5f0,#d4ede6)',level:'beginner',topic:'Articles'},
-{words:['She','is','an','honest','person'],answer:'She is an honest person.',native:'Articles: an before vowel SOUNDS. Honest sounds like it starts with O → an honest.',col:'#1a5276',bg:'rgba(96,165,250,0.12)',level:'beginner',topic:'Articles'},
-{words:['We','live','near','a','big','park'],answer:'We live near a big park.',native:'Articles: a before singular countable noun first mentioned. Park starts with consonant → a.',col:'#6c3483',bg:'var(--teal-dim)',level:'beginner',topic:'Articles'},
-
-// --- Prepositions (6) ---
-{words:['The','keys','are','on','the','table'],answer:'The keys are on the table.',native:'Prepositions: ON for surfaces. Keys resting on top of the table.',col:'#1e8449',bg:'rgba(74,222,128,0.12)',level:'beginner',topic:'Prepositions'},
-{words:['She','lives','in','Mumbai'],answer:'She lives in Mumbai.',native:'Prepositions: IN for cities, countries, and enclosed spaces.',col:'#d35400',bg:'var(--coral-dim)',level:'beginner',topic:'Prepositions'},
-{words:['Meet','me','at','the','station','at','eight'],answer:'Meet me at the station at eight.',native:'Prepositions: AT for specific places and specific times.',col:'#c0392b',bg:'18px',level:'beginner',topic:'Prepositions'},
-{words:['The','cat','is','under','the','chair'],answer:'The cat is under the chair.',native:'Prepositions: UNDER = below/beneath something.',col:'#1565c0',bg:'rgba(167,139,250,0.12)',level:'beginner',topic:'Prepositions'},
-{words:['He','arrived','on','Monday','morning'],answer:'He arrived on Monday morning.',native:'Prepositions: ON + days of the week. ON Monday, ON Friday.',col:'#c49a1a',bg:'var(--gold-dim)',level:'beginner',topic:'Prepositions'},
-{words:['The','bank','is','next','to','the','post','office'],answer:'The bank is next to the post office.',native:'Prepositions: next to = immediately beside something.',col:'#0e6655',bg:'linear-gradient(135deg,#e8f5f0,#d4ede6)',level:'beginner',topic:'Prepositions'},
-
-// --- Plurals / Countable (6) ---
-{words:['There','are','three','children','in','the','room'],answer:'There are three children in the room.',native:'Plurals: child → children. Irregular plural — must memorise.',col:'#1a5276',bg:'rgba(96,165,250,0.12)',level:'beginner',topic:'Plurals'},
-{words:['She','bought','two','loaves','of','bread'],answer:'She bought two loaves of bread.',native:'Countable: bread is uncountable. We count loaves of bread, not breads.',col:'#6c3483',bg:'var(--teal-dim)',level:'beginner',topic:'Plurals'},
-{words:['I','need','some','information','about','the','course'],answer:'I need some information about the course.',native:'Uncountable: information has no plural. Never say informations.',col:'#1e8449',bg:'rgba(74,222,128,0.12)',level:'beginner',topic:'Plurals'},
-{words:['The','mice','ran','across','the','floor'],answer:'The mice ran across the floor.',native:'Plurals: mouse → mice. Irregular plural — must memorise.',col:'#d35400',bg:'var(--coral-dim)',level:'beginner',topic:'Plurals'},
-{words:['Can','I','have','a','glass','of','water','please'],answer:'Can I have a glass of water please.',native:'Uncountable: water has no plural. Use a glass of water, not a water.',col:'#c0392b',bg:'18px',level:'beginner',topic:'Plurals'},
-{words:['There','are','many','leaves','on','the','ground'],answer:'There are many leaves on the ground.',native:'Plurals: leaf → leaves. Words ending in f/fe → change to v and add -es.',col:'#1565c0',bg:'rgba(167,139,250,0.12)',level:'beginner',topic:'Plurals'},
-
-// --- Basic Questions (6) ---
-{words:['Where','does','she','work','every','day'],answer:'Where does she work every day.',native:'Questions: Where + does + subject + base verb. Does is used with he/she/it.',col:'#c49a1a',bg:'var(--gold-dim)',level:'beginner',topic:'Questions'},
-{words:['What','time','does','the','train','leave'],answer:'What time does the train leave.',native:'Questions: What time + does + subject + base verb. No -s on leave after does.',col:'#0e6655',bg:'linear-gradient(135deg,#e8f5f0,#d4ede6)',level:'beginner',topic:'Questions'},
-{words:['How','many','brothers','do','you','have'],answer:'How many brothers do you have.',native:'Questions: How many + plural noun + do + subject + verb.',col:'#1a5276',bg:'rgba(96,165,250,0.12)',level:'beginner',topic:'Questions'},
-{words:['Did','she','call','you','this','morning'],answer:'Did she call you this morning.',native:'Questions: Did + subject + base verb. Past tense question uses did.',col:'#6c3483',bg:'var(--teal-dim)',level:'beginner',topic:'Questions'},
-{words:['Is','he','coming','to','the','party'],answer:'Is he coming to the party.',native:'Questions: Is + subject + verb-ing. Yes/No question using present continuous.',col:'#1e8449',bg:'rgba(74,222,128,0.12)',level:'beginner',topic:'Questions'},
-{words:['Why','are','you','laughing','so','much'],answer:'Why are you laughing so much.',native:'Questions: Why + are + subject + verb-ing. Open question about reason.',col:'#d35400',bg:'var(--coral-dim)',level:'beginner',topic:'Questions'},
-
-// --- There is / There are (4) ---
-{words:['There','is','a','cat','in','the','garden'],answer:'There is a cat in the garden.',native:'There is + singular noun. One cat = is. There are + plural nouns.',col:'#c0392b',bg:'18px',level:'beginner',topic:'There is/are'},
-{words:['There','are','some','apples','on','the','table'],answer:'There are some apples on the table.',native:'There are + plural noun. Apples is plural → use are.',col:'#1565c0',bg:'rgba(167,139,250,0.12)',level:'beginner',topic:'There is/are'},
-{words:['There','is','no','milk','in','the','fridge'],answer:'There is no milk in the fridge.',native:'There is + uncountable noun. Milk is uncountable → always use is.',col:'#c49a1a',bg:'var(--gold-dim)',level:'beginner',topic:'There is/are'},
-{words:['There','are','twenty','students','in','my','class'],answer:'There are twenty students in my class.',native:'There are + plural noun. Twenty students = plural → are.',col:'#0e6655',bg:'linear-gradient(135deg,#e8f5f0,#d4ede6)',level:'beginner',topic:'There is/are'},
-
+<script src="ne_puzzles.js"></script>
+   
 // ============================================================
 // INTERMEDIATE — 50 PUZZLES
 // ============================================================

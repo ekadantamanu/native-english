@@ -7820,6 +7820,65 @@ var FS_TRANSFORMS=[
 {input:/i want to make a donation/i,levels:["I wanna give something to this cause!","I'd really like to make a donation.","I'd like to donate to this please.","I wish to make a formal donation.","I am pleased to confirm my intention to make a donation in support of this cause. Please provide the relevant payment details and confirm that a receipt will be issued for my records."]},
 {input:/i want to escalate/i,levels:["I'm going straight to the top with this!","I want to take this higher up.","I'd like to escalate this to someone senior.","I wish to formally escalate this matter.","Given the inadequate response received thus far, I am left with no alternative but to escalate this matter to the highest appropriate level. I expect a substantive and timely response."]}
 
+,
+
+// Structural catch-all patterns
+{input:/when are you/i,levels:["When you coming back then?","When are you back?","Could you let me know when you'll be available?","I would appreciate confirmation of when you expect to return.","Your confirmation of your expected availability would be most helpful in planning accordingly."]},
+{input:/when will/i,levels:["So when's this happening?","When will this actually happen?","Could you give me an idea of when this will happen?","I would appreciate an indication of the expected timeline.","An estimated timeframe for completion would assist greatly in planning. I would be grateful for your earliest response."]},
+{input:/when can/i,levels:["So when can we do this?","When can we sort this out?","Could you let me know when we can proceed?","I would like to know when this can be arranged.","Confirmation of when this matter can be progressed would be greatly appreciated at your earliest convenience."]},
+{input:/where are you/i,levels:["Oi where are you?","Where are you right now?","Could you let me know where you are?","I would appreciate an update on your whereabouts.","I would be grateful if you could advise of your current location so that arrangements can be made accordingly."]},
+{input:/where is/i,levels:["Where is it though?","Where exactly is it?","Could you tell me where it is please?","I would appreciate clarification on the location.","Precise details regarding the location would be most helpful in ensuring I arrive without difficulty."]},
+{input:/why did/i,levels:["Why did that happen though?","Why did this happen?","Could you explain why this happened?","I would appreciate an explanation for why this occurred.","An explanation of the circumstances that led to this outcome would be most helpful in understanding the situation."]},
+{input:/why didn't|why did not/i,levels:["Why didn't this happen then?","Why didn't this get done?","Could you explain why this wasn't done?","I would appreciate an explanation for why this was not actioned.","I would be grateful for a full explanation as to why this matter was not addressed in the manner agreed."]},
+{input:/why haven't|why have not/i,levels:["Why hasn't this been sorted yet?","Why hasn't this been done?","Could you explain why this hasn't been actioned?","I would like to understand why this has not yet been resolved.","The delay in addressing this matter remains unexplained. I would welcome a full account of the reasons why action has not yet been taken."]},
+{input:/why is/i,levels:["Why is this like this?","Why is this the case?","Could you explain why this is the case?","I would appreciate an explanation for the current situation.","A clear explanation of why the current situation has arisen would assist in determining the most appropriate course of action."]},
+{input:/why are/i,levels:["Why are things like this?","Why are things this way?","Could you explain why this is?","I would appreciate clarity on why this situation exists.","Understanding the reasons behind the current state of affairs would be most helpful. I would welcome your explanation at the earliest opportunity."]},
+{input:/have you/i,levels:["Have you sorted this yet?","Have you had a chance to look at this?","Have you been able to review this?","I wanted to check whether you have had an opportunity to review this.","I am writing to enquire whether you have had the opportunity to consider the matter previously raised and, if so, whether you are in a position to advise on the outcome."]},
+{input:/did you/i,levels:["Did you get this sorted?","Did you manage to do this?","Were you able to complete this?","I wanted to confirm whether you were able to action this.","I would be grateful if you could confirm whether the matter raised in my previous communication has been actioned and, if so, what the outcome was."]},
+{input:/are you/i,levels:["Are you actually free for this?","Are you available for this?","Would you be available for this?","I wanted to check whether you would be available.","I would be grateful if you could advise whether you are available for the matter in question and, if so, your preferred arrangements."]},
+{input:/is there/i,levels:["Is there anything we can do?","Is there anything that can be done?","Is there a solution to this?","I wanted to enquire whether a resolution is available.","I would be grateful if you could advise whether there is an appropriate resolution to the matter described and, if so, the steps that would be required."]},
+{input:/are there/i,levels:["Are there any options here?","Are there any options available?","Could you advise on available options?","I would appreciate an outline of the options available.","I would be most grateful if you could provide a comprehensive overview of all available options so that an informed decision can be reached."]},
+{input:/what happened/i,levels:["What actually happened here?","What happened with this?","Could you explain what happened?","I would appreciate a full explanation of what occurred.","A detailed account of the sequence of events that led to the current situation would be most helpful in understanding how best to proceed."]},
+{input:/what time/i,levels:["What time's this kicking off?","What time does this start?","Could you confirm the start time?","I would appreciate confirmation of the time.","Confirmation of the precise time at which this is scheduled to take place would allow me to make the necessary arrangements."]},
+{input:/how long/i,levels:["How long is this gonna take?","How long will this take?","Could you give me an idea of how long this will take?","I would appreciate an estimated timeframe.","An indication of the expected timeframe for completion would be most helpful in planning my schedule accordingly."]},
+{input:/how much/i,levels:["How much is all this?","How much will this cost?","Could you give me a rough idea of the cost?","I would appreciate an indication of the likely cost.","A detailed breakdown of all anticipated costs would assist in assessing the financial implications before any commitment is made."]},
+{input:/how do i|how do we/i,levels:["How do we actually do this?","How do we go about doing this?","Could you walk me through how to do this?","I would appreciate guidance on the correct procedure.","Step-by-step guidance on the correct procedure would be most helpful. I would be grateful for your assistance in ensuring this is done correctly."]},
+{input:/what is|what's/i,levels:["So what is this exactly?","What exactly is this?","Could you explain what this is?","I would appreciate clarification on what this entails.","A clear explanation of what this involves and what would be required of me would be most helpful before proceeding."]},
+{input:/who is|who's/i,levels:["Who's dealing with this then?","Who is handling this?","Could you tell me who is responsible for this?","I would appreciate confirmation of who is responsible.","Clarification of who holds responsibility for this matter would ensure that my enquiry is directed to the most appropriate person."]},
+{input:/who should/i,levels:["Who should I talk to about this?","Who should I contact about this?","Could you tell me who I should speak to?","I would appreciate guidance on who to contact.","Direction to the most appropriate person to address this matter would be most helpful. I would be grateful for your guidance."]},
+{input:/which/i,levels:["Which one should I go for?","Which option should I choose?","Could you advise which option is best?","I would welcome your recommendation on which option to select.","Your professional guidance on the most appropriate option, given the circumstances described, would be greatly appreciated before a final decision is made."]},
+
+{input:/^please/i,levels:["Please just do this yeah?","Please sort this out for me.","Could you please attend to this?","I would appreciate it if you could action this.","Your prompt attention to the matter outlined would be greatly appreciated. I trust this can be addressed without undue delay."]},
+{input:/i am|i'm/i,levels:["I'm in a bit of a situation here.","I wanted to let you know about this.","I wanted to bring this to your attention.","I am writing to advise you of the following matter.","I wish to formally draw your attention to the matter described below, which I believe warrants your prompt consideration."]},
+{input:/we need|we want|we would/i,levels:["We really need to sort this out!","We need to address this together.","We would like to resolve this matter.","We wish to formally address this matter.","We are writing to formally raise the matter described below and would welcome the opportunity to discuss a resolution at your earliest convenience."]},
+{input:/it is|it's/i,levels:["It's a real problem this!","This is a genuine issue.","This matter requires attention.","This is a matter that requires prompt attention.","The issue described represents a matter of some significance that warrants careful consideration and a timely response."]},
+{input:/there is|there are/i,levels:["There's a proper problem here!","There is a real issue here.","There appears to be a problem that needs addressing.","There is a matter that requires your urgent attention.","There exists a situation of some concern that I believe merits formal attention. I would welcome the opportunity to discuss this at your earliest convenience."]},
+{input:/i have|i've/i,levels:["I've got something important here!","I have something important to share.","I have a matter I'd like to bring to your attention.","I wish to bring a matter to your attention.","I have become aware of a matter which I believe warrants your consideration and would welcome the opportunity to discuss it further."]},
+{input:/i think|i believe/i,levels:["I reckon this needs sorting!","I think this needs to be addressed.","I believe this requires attention.","I wish to express my view that this requires action.","It is my considered opinion that the matter described requires prompt and decisive action. I would welcome the opportunity to discuss this further."]},
+{input:/i feel/i,levels:["I'm not happy about this at all!","I feel strongly about this.","I have concerns about this matter.","I wish to express my concerns regarding this.","I feel strongly that the matter described requires formal attention and I would welcome the opportunity to discuss an appropriate resolution."]},
+{input:/this is/i,levels:["This is a real mess!","This is really not acceptable.","This matter is quite concerning.","This represents a matter of genuine concern.","The situation described represents a matter of considerable concern that requires prompt attention and a substantive response."]},
+{input:/the problem/i,levels:["The problem here is really serious!","The problem needs fixing urgently.","The problem requires immediate attention.","The problem described requires prompt resolution.","The problem outlined is of sufficient significance to warrant formal attention. I trust that appropriate steps will be taken to address it without delay."]},
+{input:/i would like/i,levels:["I really wanna do this!","I'd really like to do this.","I would like to proceed with this.","I wish to formally request this.","Having given the matter careful consideration, I would like to formally proceed as described and would welcome your confirmation that this can be arranged."]},
+{input:/could you please/i,levels:["Can you just do this please?","Could you do this for me?","Could you please attend to this?","I would appreciate your attention to this matter.","Your prompt attention to the request outlined below would be most appreciated. I look forward to hearing from you at your earliest convenience."]},
+{input:/i wanted to/i,levels:["Just wanted to say something!","I wanted to bring this up.","I wanted to raise this matter.","I wished to draw your attention to this.","I am taking this opportunity to formally raise the matter described and would welcome your response at the earliest opportunity."]},
+{input:/just wanted/i,levels:["Just a quick heads up!","Just wanted to let you know.","I wanted to bring this to your attention.","I wished to formally advise you of this.","I am writing to formally advise you of the matter described below and would be grateful for your acknowledgement of receipt."]},
+{input:/i was wondering/i,levels:["Was just thinking about this actually!","I was wondering about this.","I wanted to enquire about this.","I wish to raise an enquiry regarding this.","I am writing to formally enquire about the matter described and would welcome a comprehensive response at your earliest convenience."]},
+{input:/could we/i,levels:["Can we get this sorted?","Could we sort this out?","Could we address this together?","I would like to suggest that we address this jointly.","A collaborative approach to resolving the matter described would be most productive. I would welcome the opportunity to discuss this at a mutually convenient time."]},
+{input:/i suggest/i,levels:["Here's what I reckon we should do!","I suggest we do this.","I'd like to suggest an approach.","I wish to put forward a suggestion for consideration.","Having given the matter considerable thought, I wish to formally propose the approach outlined below for your consideration. I believe it represents the most effective solution available."]},
+{input:/i confirm/i,levels:["Yeah confirmed — sorted!","Just confirming this is done.","I can confirm this has been actioned.","I wish to formally confirm this matter.","I am writing to formally confirm the matter referenced and would be grateful for your written acknowledgement of this confirmation."]},
+{input:/i understand/i,levels:["Yeah I get it — makes sense!","I understand the situation.","I appreciate the circumstances.","I understand the position as outlined.","I have noted the position as outlined and understand the circumstances that have led to the current situation. I would welcome further discussion at your convenience."]},
+{input:/i apologise|i'm sorry|i am sorry/i,levels:["My bad — totally sorry!","I'm really sorry about this.","I sincerely apologise for this.","I offer my sincere apologies for this matter.","I wish to formally and unreservedly apologise for the matter described. Steps have been taken to address the situation and prevent a recurrence."]},
+{input:/thank you|thanks/i,levels:["Cheers — you're a star!","Thanks so much for this!","Thank you genuinely for your help.","I would like to express my sincere gratitude.","The assistance provided has been invaluable and I am most grateful. I would not hesitate to recommend your help and support to others."]},
+{input:/i look forward/i,levels:["Can't wait for this!","Really looking forward to this!","I'm looking forward to this very much.","I look forward to this with great anticipation.","I look forward with great anticipation to the outcome of this matter and would welcome regular updates as the situation develops."]},
+{input:/please note/i,levels:["Heads up on this!","Just so you know about this.","Please be aware of the following.","I wish to draw your attention to the following.","I wish to formally draw your attention to the matter outlined below, which I trust will be given due consideration."]},
+{input:/i would appreciate/i,levels:["Would really love some help here!","I'd really appreciate some help.","I would appreciate your assistance with this.","I would be grateful for your assistance.","Your expert assistance with the matter described would be greatly appreciated and would ensure the best possible outcome."]},
+{input:/following up|follow up/i,levels:["Just chasing this up!","Wanted to follow up on this.","I'm following up on this matter.","I am following up on my previous communication.","As no response has yet been received, I am formally following up on the matter raised previously and would welcome a substantive response without further delay."]},
+{input:/further to/i,levels:["Following on from what we said!","Further to what we discussed.","Further to our recent discussion.","Further to my previous communication.","Further to my previous correspondence on this matter, I am writing to provide an update and to request your response to the outstanding points raised."]},
+{input:/with reference to/i,levels:["About what we talked about!","With reference to what we discussed.","With reference to the matter raised.","With reference to my previous communication.","With reference to the matter previously discussed, I am writing to formally advise you of the latest position and to request your guidance on the next steps."]},
+{input:/as discussed/i,levels:["Like we said before!","As we discussed earlier.","As discussed in our recent conversation.","As per our previous discussion.","Further to our recent discussion, I am writing to formally confirm the matters agreed and to outline the next steps as previously discussed."]},
+{input:/i hope/i,levels:["Fingers crossed for this!","I really hope this works out.","I hope this can be resolved.","I trust this matter can be resolved satisfactorily.","I trust that the matter described can be brought to a satisfactory conclusion and I look forward to your response at the earliest opportunity."]},
+{input:/please let me know/i,levels:["Just let me know yeah?","Please get back to me on this.","Please let me know your thoughts.","I would appreciate your response on this.","I would be grateful if you could respond to the points raised at your earliest convenience so that the matter can be progressed without further delay."]}
+
 ];
 
 var FS_LABELS=['😄 Very Casual','🙂 Casual','😐 Neutral','👔 Professional','🎩 Formal'];
@@ -7846,17 +7905,33 @@ function fsGenerate(){
   var match=null;
   FS_TRANSFORMS.forEach(function(t){if(text.match(t.input))match=t;});
   if(!match){
-    var base=text;
-    var t2=base.trim().replace(/[.!?]+$/,'');
-    var tLow=t2.toLowerCase();
-    var tClean=tLow.replace(/\bplease\b/gi,'').replace(/\bjust\b/gi,'').replace(/\bkind of\b/gi,'').replace(/\bbasically\b/gi,'').trim();
-    var cap=function(s){return s.charAt(0).toUpperCase()+s.slice(1);};
-    var casual=tLow.replace(/\bcould you\b/gi,'can ya').replace(/\bI would like\b/gi,'wanna').replace(/\bplease\b/gi,'').trim()+'!';
-    var friendly=cap(tLow.replace(/\bplease\b/gi,'').trim())+'.';
-    var neutral=cap(tClean)+'.';
-    var professional=cap(tClean.replace(/\bwant\b/gi,'require').replace(/\bneed\b/gi,'require').replace(/\bask\b/gi,'request').replace(/\bhelp\b/gi,'assistance'))+'.';
-    var formal='I wish to bring to your attention that '+tClean+'. I would appreciate your prompt response at your earliest convenience.';
-    fsCurrentLevels=[casual,friendly,neutral,professional,formal];
+    var base=text.trim();
+    var clean=base.replace(/[.!?]+$/,'');
+    var lower=clean.toLowerCase();
+    var isQuestion=/^(when|where|why|how|what|who|which|is|are|was|were|do|does|did|can|could|will|would|should|have|has|had)/i.test(clean);
+    var isRequest=/^(please|could you|can you|would you)/i.test(clean);
+    var l1,l2,l3,l4,l5;
+    if(isQuestion){
+      l1=clean+'?';
+      l2=clean+', please?';
+      l3='Could you let me know — '+lower+'?';
+      l4='I would appreciate clarification on the following: '+lower+'.';
+      l5='The matter below requires your attention: '+lower+'. Your prompt response would be greatly appreciated.';
+    } else if(isRequest){
+      var core=clean.replace(/^pleases*/i,'').replace(/^could yous*/i,'').replace(/^can yous*/i,'').replace(/^would yous*/i,'');
+      l1=core+'!';
+      l2='Please '+core.toLowerCase()+'.';
+      l3='Could you please '+core.toLowerCase()+'?';
+      l4='I would appreciate it if you could '+core.toLowerCase()+'.';
+      l5='Your assistance with the following would be most appreciated: '+core.toLowerCase()+'. I look forward to your earliest response.';
+    } else {
+      l1=clean+'!';
+      l2=clean+'.';
+      l3='I wanted to mention — '+lower+'.';
+      l4='I wish to advise that '+lower+'.';
+      l5='I am writing to formally draw your attention to the following: '+lower+'. I would welcome your response at the earliest opportunity.';
+    }
+    fsCurrentLevels=[l1,l2,l3,l4,l5];
   } else {fsCurrentLevels=match.levels;}
   fsRender(2);
 }

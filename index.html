@@ -7846,17 +7846,32 @@ function fsGenerate(){
   var match=null;
   FS_TRANSFORMS.forEach(function(t){if(text.match(t.input))match=t;});
   if(!match){
-    var base=text;
-    var t2=base.trim().replace(/[.!?]+$/,'');
-    var tLow=t2.toLowerCase();
-    var tClean=tLow.replace(/\bplease\b/gi,'').replace(/\bjust\b/gi,'').replace(/\bkind of\b/gi,'').replace(/\bbasically\b/gi,'').trim();
-    var cap=function(s){return s.charAt(0).toUpperCase()+s.slice(1);};
-    var casual=tLow.replace(/\bcould you\b/gi,'can ya').replace(/\bI would like\b/gi,'wanna').replace(/\bplease\b/gi,'').trim()+'!';
-    var friendly=cap(tLow.replace(/\bplease\b/gi,'').trim())+'.';
-    var neutral=cap(tClean)+'.';
-    var professional=cap(tClean.replace(/\bwant\b/gi,'require').replace(/\bneed\b/gi,'require').replace(/\bask\b/gi,'request').replace(/\bhelp\b/gi,'assistance'))+'.';
-    var formal='I wish to bring to your attention that '+tClean+'. I would appreciate your prompt response at your earliest convenience.';
-    fsCurrentLevels=[casual,friendly,neutral,professional,formal];
+    var clean=text.trim().replace(/[.!?]+$/,'');
+    var lower=clean.toLowerCase();
+    var isQ=/^(when|where|why|how|what|who|which|is|are|was|were|do|does|did|can|could|will|would|should|have|has|had|am)/i.test(clean);
+    var isR=/^(please|could you|can you|would you|i would like you to)/i.test(clean);
+    var l1,l2,l3,l4,l5;
+    if(isQ){
+      l1=clean+'?';
+      l2=clean+', please?';
+      l3='Could you let me know — '+lower+'?';
+      l4='I would appreciate your response on the following: '+lower+'.';
+      l5='The matter below requires your attention: '+lower+'. Your earliest response would be greatly appreciated.';
+    } else if(isR){
+      var core=clean.replace(/^pleases*/i,'').replace(/^could yous*/i,'').replace(/^can yous*/i,'').replace(/^would yous*/i,'').replace(/^i would like you tos*/i,'');
+      l1=core+'!';
+      l2='Please '+core.toLowerCase()+'.';
+      l3='Could you please '+core.toLowerCase()+'?';
+      l4='I would appreciate it if you could '+core.toLowerCase()+'.';
+      l5='Your assistance with the following would be most appreciated: '+core.toLowerCase()+'. I look forward to your earliest response.';
+    } else {
+      l1=clean+'!';
+      l2=clean+'.';
+      l3='I wanted to mention — '+lower+'.';
+      l4='I wish to advise that '+lower+'.';
+      l5='I am writing to draw your attention to the following: '+lower+'. I would welcome your response at the earliest opportunity.';
+    }
+    fsCurrentLevels=[l1,l2,l3,l4,l5];
   } else {fsCurrentLevels=match.levels;}
   fsRender(2);
 }

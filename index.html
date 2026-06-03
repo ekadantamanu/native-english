@@ -5961,8 +5961,7 @@ function renderPuzzle(){
   window._pWords=words;
   area.innerHTML=
     '<div style="background:'+p.col+'15;border:1.5px solid '+p.col+'50;border-radius:12px;padding:12px 14px;margin-bottom:14px">'
-    +'<div style="font-size:10px;font-weight:700;text-transform:uppercase;color:'+p.col+';margin-bottom:4px">Puzzle '+(currentPuzzle%PUZZLES.length+1)+' of '+PUZZLES.length+'</div>'
-    +'<div style="font-size:12px;font-style:italic;color:rgba(255,255,255,0.75)"><strong style="color:'+p.col+'">Grammar clue in '+lang+':</strong> '+p.native+'</div>'
+        +'<div style="font-size:12px;font-style:italic;color:rgba(255,255,255,0.75)"><strong style="color:'+p.col+'">Grammar clue in '+lang+':</strong> '+p.native+'</div>'
     +'</div>'
     +'<div style="font-size:12px;font-weight:700;color:rgba(255,255,255,0.80);margin-bottom:8px">Click each word <strong style="color:#F5C842">in the correct order</strong> to build the sentence:</div>'
     +'<div id="pBank" style="display:flex;flex-wrap:wrap;gap:7px;padding:12px;background:rgba(255,255,255,0.04);border-radius:10px;border:1px solid rgba(255,255,255,0.10);margin-bottom:14px;min-height:52px"></div>'

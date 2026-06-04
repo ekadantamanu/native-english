@@ -6153,21 +6153,26 @@ function playAllAccents(){buildAccentCards();}
 function renderChallenge(){
   var area=document.getElementById('challengeArea');if(!area)return;
   var day=new Date().getDate()-1,c=CHALLENGES[(day+_chalOffset)%CHALLENGES.length];
-  var i=(day+_chalOffset)%10;
-  var hints=(NL.data.challenge_hint[lang]||NL.data.challenge_hint['default']);
-  var answers=(NL.data.challenge_answer[lang]||NL.data.challenge_answer['default']);
-  var hintText=hints[i]||c.native;
-  var ansText=answers[i]||c.answerNative;
+  var hintText=c.native||'';
+  var ansText=c.answerNative||c.native||'';
   var darkBg='linear-gradient(135deg,'+c.col+'25,'+c.col+'12)';
   var safeAns=c.answer.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
   var safeAnsNat=ansText.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+  // Type icons
+  var typeIcons={fix:'🔧 Fix It',choose:'🎯 Choose & Justify',spot:'🔍 Spot the Difference',buildup:'🏗️ Build Up',realworld:'🌍 Real World',transform:'🔄 Transform',speed:'⚡ Speed Round'};
+  var typeLabel=c.type?typeIcons[c.type]||c.type:'';
+  var levelLabel=c.levelName?c.levelName:'';
+  var levelNum=c.level?'Level '+c.level:'';
   area.innerHTML=
     '<div class="challenge-card" style="background:'+darkBg+';border:1.5px solid '+c.col+'50;border-left:4px solid '+c.col+'">'
-    +'<div class="challenge-day" style="color:'+c.col+';font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px">Day '+(day+1)+' Challenge – '+new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'})+'</div>'
+    +'<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:8px">'
+    +'<div class="challenge-day" style="color:'+c.col+';font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em">Day '+(day+1)+' Challenge – '+new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'})+'</div>'
+    +(levelLabel?'<div style="display:flex;gap:6px"><span style="font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;background:'+c.col+'20;color:'+c.col+';border:1px solid '+c.col+'40">'+levelNum+' · '+levelLabel+'</span>'
+    +(typeLabel?'<span style="font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.70)">'+typeLabel+'</span>':'')+'</div>':'')
+    +'</div>'
     +'<div style="font-family:Fraunces,serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:7px;line-height:1.3">'+c.title+'</div>'
-    +'<div style="font-size:13px;line-height:1.72;color:rgba(255,255,255,0.85);margin-bottom:8px">'+c.desc+'</div>'
-    +'<div style="font-size:12px;font-style:italic;padding:8px 12px;border-radius:9px;margin-bottom:14px;background:rgba(0,0,0,0.25);border-left:3px solid '+c.col+';color:'+c.col+'">'
-    +'<strong>In '+lang+':</strong> '+hintText+'</div>'
+    +'<div style="font-size:13px;line-height:1.72;color:rgba(255,255,255,0.85);margin-bottom:8px;white-space:pre-line">'+c.desc+'</div>'
+    +(hintText?'<div style="font-size:12px;font-style:italic;padding:8px 12px;border-radius:9px;margin-bottom:14px;background:rgba(0,0,0,0.25);border-left:3px solid '+c.col+';color:'+c.col+'"><strong>In '+lang+':</strong> '+hintText+'</div>':'')
     +'<div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,0.55);margin-bottom:6px">✏ Write your answer below</div>'
     +'<textarea id="chalInput" placeholder="Type your answer here..." style="width:100%;min-height:90px;background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.15);border-radius:10px;color:#fff;font-size:13px;font-family:inherit;padding:10px 12px;resize:vertical;outline:none;box-sizing:border-box;line-height:1.6"></textarea>'
     +'<div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap">'
@@ -6177,9 +6182,8 @@ function renderChallenge(){
     +'<div id="chalFeedback" style="display:none;margin-top:14px"></div>'
     +'<div id="chalAns" style="display:none;margin-top:12px;padding:14px;border-radius:12px;background:rgba(0,0,0,0.30);border:1px solid '+c.col+'50">'
     +'<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:'+c.col+';margin-bottom:8px">Answer & Explanation</div>'
-    +'<div style="color:rgba(255,255,255,0.92);margin-bottom:10px;line-height:1.75;font-size:13px">'+c.answer+'</div>'
-    +'<div style="color:var(--gold);font-style:italic;font-size:12px;padding:9px 12px;background:rgba(0,0,0,0.2);border-radius:8px;border-left:3px solid var(--gold)">'
-    +'<strong>In '+lang+':</strong> '+ansText+'</div>'
+    +'<div style="color:rgba(255,255,255,0.92);margin-bottom:10px;line-height:1.75;font-size:13px;white-space:pre-line">'+c.answer+'</div>'
+    +(ansText?'<div style="color:var(--gold);font-style:italic;font-size:12px;padding:9px 12px;background:rgba(0,0,0,0.2);border-radius:8px;border-left:3px solid var(--gold)"><strong>In '+lang+':</strong> '+ansText+'</div>':'')
     +'</div>'
     +'</div>';
 }

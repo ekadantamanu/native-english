@@ -693,7 +693,45 @@ button, .tbtn, .tgrp { -webkit-tap-highlight-color: transparent; }
       <div class="feat-card-desc">Master one prefix and unlock 50 words instantly. Decode any English word you have never seen before.</div>
     </button>
   </div>
-  <div style="border:1.5px dashed rgba(245,200,66,0.25);border-radius:13px;padding:12px 16px;display:flex;align-items:center;gap:12px;background:rgba(245,200,66,0.04)">
+  <!-- Second row — also unique features -->
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;margin-top:4px">
+    <div style="height:1px;flex:1;background:rgba(255,255,255,0.08)"></div>
+    <span style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:rgba(255,255,255,0.35)">Also unique to NativeEnglish</span>
+    <div style="height:1px;flex:1;background:rgba(255,255,255,0.08)"></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,200px),1fr));gap:8px;margin-bottom:14px">
+    <button onclick="switchGroup('test',document.querySelector('[data-group=test]'));showTab('challenge')" class="feat-card" style="border-color:rgba(250,146,62,0.40);background:rgba(250,146,62,0.07)">
+      <div class="feat-card-icon">🎯</div>
+      <div class="feat-card-title" style="color:#FB923C">Daily Challenge</div>
+      <div class="feat-card-desc">50 challenges across 8 levels — Fix It, Transform, Spot the Difference and more. New challenge every day.</div>
+    </button>
+    <button onclick="switchGroup('test',document.querySelector('[data-group=test]'));showTab('spotter')" class="feat-card" style="border-color:rgba(255,107,107,0.40);background:rgba(255,107,107,0.07)">
+      <div class="feat-card-icon">🔍</div>
+      <div class="feat-card-title" style="color:#FF6B6B">Error Spotter</div>
+      <div class="feat-card-desc">151 real paragraphs with hidden mistakes — tap the errors, see exactly why they are wrong in your language.</div>
+    </button>
+    <button onclick="switchGroup('test',document.querySelector('[data-group=test]'));showTab('puzzle')" class="feat-card" style="border-color:rgba(167,139,250,0.40);background:rgba(167,139,250,0.07)">
+      <div class="feat-card-icon">🧩</div>
+      <div class="feat-card-title" style="color:#A78BFA">Sentence Puzzle</div>
+      <div class="feat-card-desc">150 scrambled sentences — drag words into the right order. 3 difficulty levels. Native translation clue included.</div>
+    </button>
+    <button onclick="switchGroup('learn',document.querySelector('[data-group=learn]'));showTab('confusable')" class="feat-card" style="border-color:rgba(52,211,153,0.40);background:rgba(52,211,153,0.07)">
+      <div class="feat-card-icon">🔀</div>
+      <div class="feat-card-title" style="color:#34D399">Confusable Words</div>
+      <div class="feat-card-desc">204 word pairs English learners always mix up — affect/effect, borrow/lend, make/do — with bilingual rules.</div>
+    </button>
+    <button onclick="switchGroup('learn',document.querySelector('[data-group=learn]'));showTab('vocabulary')" class="feat-card" style="border-color:rgba(96,165,250,0.40);background:rgba(96,165,250,0.07)">
+      <div class="feat-card-icon">📚</div>
+      <div class="feat-card-title" style="color:#60A5FA">Vocabulary Library</div>
+      <div class="feat-card-desc">1015 essential words across A1 to C2 — flip cards with definitions, examples and native translations. Filter by level.</div>
+    </button>
+    <button onclick="switchGroup('listen',document.querySelector('[data-group=listen]'));showTab('connected')" class="feat-card" style="border-color:rgba(245,200,66,0.35);background:rgba(245,200,66,0.05)">
+      <div class="feat-card-icon">🔗</div>
+      <div class="feat-card-title" style="color:#F5C842">Connected Speech</div>
+      <div class="feat-card-desc">354 patterns showing how natives link, reduce and transform sounds in real speech — fully explained in your language.</div>
+    </button>
+  </div>
+    <div style="border:1.5px dashed rgba(245,200,66,0.25);border-radius:13px;padding:12px 16px;display:flex;align-items:center;gap:12px;background:rgba(245,200,66,0.04)">
     <span style="font-size:22px;flex-shrink:0">🔒</span>
     <div>
       <div style="font-size:12.5px;font-weight:700;color:rgba(245,200,66,0.80);margin-bottom:2px">Premium Features — Coming Soon</div>
@@ -9740,28 +9778,187 @@ function baCheck(){
   var text=wVal('baInput');
   if(!text){alert('Please paste or type some text first.');return;}
   var orig=text,fixed=text,changes=[];
+  
+  // Error category tracking
+  var catCounts = {
+    'State Verbs': 0,
+    'Articles': 0,
+    'Tense Errors': 0,
+    'Subject-Verb': 0,
+    'Word Choice': 0,
+    'Prepositions': 0,
+    'Redundancy': 0
+  };
+  var catMap = {
+    'State verbs': 'State Verbs',
+    'state verb': 'State Verbs',
+    'State verb': 'State Verbs',
+    'article': 'Articles',
+    'Article': 'Articles',
+    'the definite article': 'Articles',
+    'Yesterday': 'Tense Errors',
+    'yesterday': 'Tense Errors',
+    'past tense': 'Tense Errors',
+    'past — use': 'Tense Errors',
+    'simple past': 'Tense Errors',
+    'Last week': 'Tense Errors',
+    'third person': 'Subject-Verb',
+    'Third person': 'Subject-Verb',
+    'singular': 'Subject-Verb',
+    'MAKE with': 'Word Choice',
+    'collocate': 'Word Choice',
+    'collocation': 'Word Choice',
+    'natural English': 'Word Choice',
+    'formal writing': 'Word Choice',
+    'more precise': 'Word Choice',
+    'married to': 'Prepositions',
+    'similar to': 'Prepositions',
+    'different from': 'Prepositions',
+    'interested in': 'Prepositions',
+    'depends on': 'Prepositions',
+    'arrived at': 'Prepositions',
+    'explain to': 'Prepositions',
+    'wordy': 'Redundancy',
+    'redundant': 'Redundancy',
+    'shorter': 'Redundancy'
+  };
+
   BA_FIXES.forEach(function(f){
     var m=fixed.match(f.w);
-    if(m){m.forEach(function(match){if(changes.indexOf(f.why)===-1)changes.push({orig:match,repl:f.r,why:f.why});});fixed=fixed.replace(f.w,f.r);}
+    if(m){
+      m.forEach(function(match){
+        if(changes.indexOf(f.why)===-1) {
+          changes.push({orig:match,repl:f.r,why:f.why});
+          // Categorise
+          var cat = 'Word Choice';
+          for(var k in catMap) {
+            if(f.why.indexOf(k) !== -1) { cat = catMap[k]; break; }
+          }
+          catCounts[cat] = (catCounts[cat]||0) + 1;
+        }
+      });
+      fixed=fixed.replace(f.w,f.r);
+    }
   });
+
+  // Calculate fluency score
+  var wordCount = orig.split(/\s+/).filter(function(w){return w.length>0;}).length;
+  var errorCount = changes.length;
+  var rawScore = Math.max(0, Math.round(100 - (errorCount / Math.max(wordCount, 1)) * 100 * 2.5));
+  var correctedScore = Math.min(100, rawScore + Math.round(errorCount * 8));
+  
+  // Store session stats in localStorage-like object (in-memory for session)
+  if(!window._baStats) window._baStats = {sessions:0, totalErrors:0, cats:{}};
+  window._baStats.sessions++;
+  window._baStats.totalErrors += errorCount;
+  for(var cat in catCounts) {
+    if(catCounts[cat] > 0) {
+      window._baStats.cats[cat] = (window._baStats.cats[cat]||0) + catCounts[cat];
+    }
+  }
+
   if(fixed===orig){
-    wHtml('baResult','<div style="background:rgba(74,222,128,0.10);border:1.5px solid rgba(74,222,128,0.30);border-radius:12px;padding:14px;text-align:center"><div style="font-size:22px;margin-bottom:6px">✅</div><div style="font-weight:700;color:#4ADE80;font-size:14px;margin-bottom:6px">Looking good!</div><div style="font-size:12.5px;color:rgba(255,255,255,0.60)">No common errors detected. Your writing looks natural.</div></div>');
+    // Perfect score display
+    wHtml('baResult',
+      '<div style="background:rgba(74,222,128,0.10);border:1.5px solid rgba(74,222,128,0.30);border-radius:12px;padding:16px;text-align:center">' +
+      '<div style="font-size:28px;margin-bottom:6px">🏆</div>' +
+      '<div style="font-weight:800;color:#4ADE80;font-size:16px;margin-bottom:6px">Native Level!</div>' +
+      '<div style="font-size:12.5px;color:rgba(255,255,255,0.60);margin-bottom:14px">No common errors detected. Your writing looks completely natural.</div>' +
+      _baScoreRing(100, 100, '#4ADE80') +
+      '<div style="margin-top:14px;padding:10px;background:rgba(74,222,128,0.06);border-radius:9px;font-size:12px;color:rgba(255,255,255,0.50)">' +
+      '💡 Challenge yourself — try a longer or more complex sentence to find hidden patterns.</div>' +
+      '</div>');
     var _ba=document.getElementById('baResult');if(_ba)setTimeout(function(){_ba.scrollIntoView({behavior:'smooth',block:'nearest'});},100);
     return;
   }
-  var h='<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">';
-  h+='<div style="background:rgba(255,107,107,0.08);border:1px solid rgba(255,107,107,0.25);border-radius:11px;padding:12px"><div style="font-size:10px;font-weight:800;color:rgba(255,107,107,0.80);text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px">⬅ Your version</div><div style="font-size:13px;color:rgba(255,255,255,0.80);line-height:1.70">'+orig+'</div></div>';
-  h+='<div style="background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.25);border-radius:11px;padding:12px"><div style="font-size:10px;font-weight:800;color:rgba(74,222,128,0.80);text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px">✓ Corrected version</div><div style="font-size:13px;color:#4ADE80;line-height:1.70">'+fixed+'</div></div>';
-  h+='</div><div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">'+changes.length+' correction'+(changes.length>1?'s':'')+' explained:</div>';
+
+  var h = '';
+
+  // Fluency score ring
+  h += '<div style="display:flex;align-items:center;gap:14px;padding:14px;background:rgba(255,255,255,0.04);border-radius:12px;border:1px solid rgba(255,255,255,0.08);margin-bottom:12px">';
+  h += _baScoreRing(rawScore, correctedScore, rawScore >= 80 ? '#4ADE80' : rawScore >= 60 ? '#F5C842' : '#FF6B6B');
+  h += '<div style="flex:1"><div style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.90);margin-bottom:4px">Fluency Score</div>';
+  h += '<div style="font-size:12px;color:rgba(255,255,255,0.50);margin-bottom:6px">Before correction: <strong style="color:'+(rawScore>=80?'#4ADE80':rawScore>=60?'#F5C842':'#FF6B6B')+'">'+rawScore+'%</strong> → After: <strong style="color:#4ADE80">'+correctedScore+'%</strong></div>';
+  h += '<div style="height:4px;background:rgba(255,255,255,0.08);border-radius:4px;overflow:hidden"><div style="height:100%;width:'+correctedScore+'%;background:linear-gradient(90deg,#F5C842,#4ADE80);border-radius:4px;transition:width 1s ease"></div></div>';
+  h += '</div></div>';
+
+  // Error pattern summary
+  var topCats = Object.entries(catCounts).filter(function(e){return e[1]>0;}).sort(function(a,b){return b[1]-a[1];});
+  if(topCats.length > 0) {
+    h += '<div style="padding:10px 12px;background:rgba(245,200,66,0.07);border:1px solid rgba(245,200,66,0.20);border-radius:10px;margin-bottom:12px">';
+    h += '<div style="font-size:10px;font-weight:800;color:rgba(245,200,66,0.80);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">📊 Your Error Pattern This Session</div>';
+    h += '<div style="display:flex;flex-wrap:wrap;gap:6px">';
+    var catColors = {'State Verbs':'#FF6B6B','Articles':'#F59E0B','Tense Errors':'#FB923C','Subject-Verb':'#A78BFA','Word Choice':'#60A5FA','Prepositions':'#34D399','Redundancy':'#F472B6'};
+    topCats.forEach(function(e){
+      var col = catColors[e[0]] || '#60A5FA';
+      h += '<span style="padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;background:'+col+'20;color:'+col+';border:1px solid '+col+'40">'+e[0]+' ('+e[1]+')</span>';
+    });
+    h += '</div>';
+    // Session pattern memory
+    if(window._baStats.sessions > 1) {
+      var topOverall = Object.entries(window._baStats.cats).sort(function(a,b){return b[1]-a[1];})[0];
+      if(topOverall) {
+        h += '<div style="margin-top:8px;font-size:11.5px;color:rgba(255,255,255,0.55)">🔁 Your most repeated pattern today: <strong style="color:rgba(245,200,66,0.80)">'+topOverall[0]+'</strong> — focus here for biggest improvement.</div>';
+      }
+    }
+    h += '</div>';
+  }
+
+  // Before/After side by side
+  h += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">';
+  h += '<div style="background:rgba(255,107,107,0.08);border:1px solid rgba(255,107,107,0.25);border-radius:11px;padding:12px"><div style="font-size:10px;font-weight:800;color:rgba(255,107,107,0.80);text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px">⬅ Your version</div><div style="font-size:13px;color:rgba(255,255,255,0.80);line-height:1.70">'+_baHighlight(orig, changes, false)+'</div></div>';
+  h += '<div style="background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.25);border-radius:11px;padding:12px"><div style="font-size:10px;font-weight:800;color:rgba(74,222,128,0.80);text-transform:uppercase;letter-spacing:.06em;margin-bottom:7px">✓ Native version</div><div style="font-size:13px;color:#4ADE80;line-height:1.70">'+_baHighlight(fixed, changes, true)+'</div></div>';
+  h += '</div>';
+
+  // Corrections explained
+  h += '<div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">'+changes.length+' correction'+(changes.length>1?'s':'')+' explained:</div>';
   changes.forEach(function(c){
+    var cat = 'Word Choice';
+    for(var k in catMap){if(c.why.indexOf(k)!==-1){cat=catMap[k];break;}}
+    var col = catColors[cat]||'#60A5FA';
     h+='<div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:10px;padding:11px;margin-bottom:7px">';
-    h+='<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap"><span style="padding:3px 9px;border-radius:6px;font-size:12px;font-weight:600;background:rgba(255,107,107,0.15);color:#FF6B6B;text-decoration:line-through">'+c.orig+'</span><span style="color:rgba(255,255,255,0.40);font-size:13px">→</span><span style="padding:3px 9px;border-radius:6px;font-size:12px;font-weight:700;background:rgba(74,222,128,0.15);color:#4ADE80">'+c.repl+'</span></div>';
+    h+='<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;flex-wrap:wrap;gap:6px">';
+    h+='<div style="display:flex;align-items:center;gap:8px"><span style="padding:3px 9px;border-radius:6px;font-size:12px;font-weight:600;background:rgba(255,107,107,0.15);color:#FF6B6B;text-decoration:line-through">'+c.orig+'</span><span style="color:rgba(255,255,255,0.40);font-size:13px">→</span><span style="padding:3px 9px;border-radius:6px;font-size:12px;font-weight:700;background:rgba(74,222,128,0.15);color:#4ADE80">'+c.repl+'</span></div>';
+    h+='<span style="padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700;background:'+col+'15;color:'+col+';border:1px solid '+col+'30">'+cat+'</span>';
+    h+='</div>';
     h+='<div style="font-size:12px;color:rgba(255,255,255,0.65);margin-bottom:5px">📌 '+c.why+'</div>';
     h+='<div style="font-size:11.5px;font-style:italic;color:rgba(245,200,66,0.70)">In '+lang+': '+c.why+'</div>';
     h+='</div>';
   });
+
+  // Try again prompt
+  h += '<div style="margin-top:4px;padding:10px 12px;background:rgba(255,255,255,0.03);border-radius:9px;border:1px solid rgba(255,255,255,0.07);font-size:12px;color:rgba(255,255,255,0.40);text-align:center">';
+  h += '✏️ Edit your text above and click <strong style="color:rgba(245,200,66,0.70)">Show Mirror</strong> again to see your score improve in real time.';
+  h += '</div>';
+
   wHtml('baResult',h);
+  var _ba=document.getElementById('baResult');if(_ba)setTimeout(function(){_ba.scrollIntoView({behavior:'smooth',block:'nearest'});},100);
+  addDiary('Before & After Mirror used');
 }
+
+function _baScoreRing(before, after, col) {
+  return '<div style="display:flex;gap:10px;flex-shrink:0">' +
+    '<div style="text-align:center"><div style="display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:50%;background:conic-gradient('+col+' '+before+'%,rgba(255,255,255,0.06) 0)"><div style="width:40px;height:40px;border-radius:50%;background:var(--bg-1);display:flex;align-items:center;justify-content:center"><span style="font-size:11px;font-weight:900;color:'+col+'">'+before+'%</span></div></div><div style="font-size:9px;color:rgba(255,255,255,0.35);margin-top:3px">Before</div></div>' +
+    '<div style="display:flex;align-items:center;color:rgba(255,255,255,0.30);font-size:14px">→</div>' +
+    '<div style="text-align:center"><div style="display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:50%;background:conic-gradient(#4ADE80 '+after+'%,rgba(255,255,255,0.06) 0)"><div style="width:40px;height:40px;border-radius:50%;background:var(--bg-1);display:flex;align-items:center;justify-content:center"><span style="font-size:11px;font-weight:900;color:#4ADE80">'+after+'%</span></div></div><div style="font-size:9px;color:rgba(255,255,255,0.35);margin-top:3px">After</div></div>' +
+    '</div>';
+}
+
+function _baHighlight(text, changes, isFixed) {
+  var result = text;
+  changes.forEach(function(c){
+    if(isFixed) {
+      result = result.replace(new RegExp('\\b'+c.repl.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\b','i'),
+        '<mark style="background:rgba(74,222,128,0.25);color:#4ADE80;border-radius:3px;padding:1px 3px">'+c.repl+'</mark>');
+    } else {
+      result = result.replace(new RegExp('\\b'+c.orig.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\b','i'),
+        '<mark style="background:rgba(255,107,107,0.20);color:#FF6B6B;border-radius:3px;padding:1px 3px;text-decoration:line-through">'+c.orig+'</mark>');
+    }
+  });
+  return result;
+}
+
+
 function baClear(){var d=document.getElementById('baInput');if(d)d.value='';wHtml('baResult','');}
 function baExample(){var d=document.getElementById('baInput');if(d)d.value='She is having good knowledge about computers. I am knowing the answer since many days. Please do the needful at the earliest.';baCheck();}
 

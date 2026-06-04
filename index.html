@@ -1238,7 +1238,9 @@ button, .tbtn, .tgrp { -webkit-tap-highlight-color: transparent; }
 
 <!-- PROGRESS -->
 <div id="panel-diary" class="panel" style="overflow-y:auto;padding:14px;gap:14px;flex-direction:column">
-  <div style="font-size:12.5px;color:rgba(245,200,66,0.80);padding:8px 12px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.30);border-radius:0 8px 8px 0;margin-bottom:12px;font-style:italic" id="nat-diary"><!-- native note --></div>
+  <div style="font-size:12.5px;color:rgba(245,200,66,0.80);padding:8px 12px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.30);border-radius:0 8px 8px 0;margin-bottom:12px;font-style:italic" id="nat-diary"><!-- native note -->
+<div id="diaryContent" style="margin-top:12px"></div>
+</div>
   <div class="stats-grid">
     <div class="stat-card" style="background:linear-gradient(135deg,#fff8e8,var(--gold-dim))"><div class="stat-num" style="color:var(--gold)" id="dSess">0</div><div class="stat-label">Sessions</div></div>
     <div class="stat-card" style="background:linear-gradient(135deg,#e8f5f0,var(--teal-dim))"><div class="stat-num" style="color:var(--teal)" id="dWords">0</div><div class="stat-label">Words Learned</div></div>
@@ -8462,6 +8464,7 @@ async function doMirror(){
     levs.forEach(function(a){html+='<div style="padding:11px 13px;border-radius:9px;background:'+a[2]+';border-left:4px solid '+a[1]+';font-size:13px;line-height:1.72"><div style="font-size:10px;font-weight:700;text-transform:uppercase;color:'+a[1]+';margin-bottom:5px">'+a[0]+'</div>'+a[3]+'</div>';});
     html+='<div style="padding:9px 12px;border-radius:8px;background:var(--gold-dim);border-left:4px solid var(--gold);font-size:12px"><strong style="color:var(--gold)">Key tip:</strong> '+(d.tip||'')+'<div style="color:var(--txt-3);font-style:italic;margin-top:4px">In '+lang+': '+(d.tipNative||'')+'</div></div></div>';
     out.innerHTML=html;addDiary('Mirror writing');
+  NE_track('formality', {uses:1, sentences:1});
   }catch(e){out.innerHTML='<div class="msg ai"><div class="av">N</div><div class="bbl">'+fmt(r)+'</div></div>';}
 }
 
@@ -8476,6 +8479,7 @@ async function doTranslate(){
   var gc={A:'gA',B:'gB',C:'gC',D:'gD'};
   out.innerHTML='<div style="margin-top:8px"><div style="display:inline-flex;align-items:center;gap:10px;margin-bottom:9px"><div class="grade-badge '+(gc[grade]||'gB')+'">Grade '+grade+'</div><div style="font-size:13px;color:var(--txt-3)">Translation score</div></div><div class="msg ai" style="max-width:100%"><div class="av">N</div><div class="bbl">'+fmt(r)+'</div></div></div>';
   addDiary('Translation graded: Grade '+grade);
+  NE_track('translate', {attempts:1, grade:grade});
 }
 
 async function doProofread(){
@@ -9934,6 +9938,13 @@ function baCheck(){
   wHtml('baResult',h);
   var _ba=document.getElementById('baResult');if(_ba)setTimeout(function(){_ba.scrollIntoView({behavior:'smooth',block:'nearest'});},100);
   addDiary('Before & After Mirror used');
+  NE_track('mirror', {uses:1, score: correctedScore || 0});
+  if(typeof topCats !== 'undefined' && topCats.length > 0) { topCats.forEach(function(e){ NE_track('mirror', {errorCat: e[0]}); }); }
+  // Track progress
+  NE_track('mirror', {uses:1, score: correctedScore});
+  if(topCats.length > 0) {
+    topCats.forEach(function(e){ NE_track('mirror', {errorCat: e[0]}); });
+  }
 }
 
 function _baScoreRing(before, after, col) {
@@ -10424,6 +10435,7 @@ function fsGenerate(){
     fsCurrentLevels=[l1,l2,l3,l4,l5];
   } else {fsCurrentLevels=match.levels;}
   fsRender(2);
+  NE_track('formality', {uses:1, sentences:1});
 }
 
 function fsRender(level){
@@ -12201,7 +12213,7 @@ function injectListeningNotes(){
 
   loadWelcomeTrans();loadWord();
   setTimeout(buildPreps,1600);setTimeout(renderVocab,300);setTimeout(renderIdioms,1600);
-  setTimeout(renderChallenge,500);setTimeout(renderMistakes,1200);setTimeout(renderConfuse,700);
+  setTimeout(renderChallenge,500);setTimeout(renderMistakes,1200);setTimeout(renderConfuse,700);setTimeout(NE_showWelcomeBanner,1500);
   setTimeout(renderPhrases,1600);setTimeout(buildTimeline,900);setTimeout(buildCheatSheet,1000);
   setTimeout(renderCS,800);
   updateUsageBar();updateWLCount();
@@ -12212,6 +12224,391 @@ function injectListeningNotes(){
     if(strip)strip.textContent='Welcome back! Full access launching very soon';
   }
 };
+
+</script>
+
+<script>
+// ============================================================
+// NativeEnglish.fyi — Unified Progress Tracker
+// Version 1.0 — localStorage with Supabase migration hook
+// ============================================================
+
+// ── CORE STORAGE ENGINE ──────────────────────────────────────
+var NE_STORAGE_KEY = 'ne_progress_v1';
+
+function NE_today() {
+  return new Date().toISOString().split('T')[0];
+}
+
+function NE_loadProgress() {
+  try {
+    var raw = localStorage.getItem(NE_STORAGE_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch(e) {}
+  // Default structure for new visitors
+  return {
+    version: 1,
+    firstVisit: NE_today(),
+    lastVisit: null,
+    streak: 0,
+    longestStreak: 0,
+    totalSessions: 0,
+    daysActive: [],
+    achievements: [],
+    features: {
+      mirror:     { uses: 0, topError: null, bestScore: 0, scoreHistory: [], errorCats: {} },
+      challenge:  { completed: 0, lastDay: 0, streak: 0, levelsReached: [] },
+      spotter:    { completed: 0, correct: 0, total: 0 },
+      puzzle:     { solved: 0, streak: 0, levels: {} },
+      confusable: { seen: 0, cats: {} },
+      vocabulary: { seen: 0, saved: 0, levels: {} },
+      formality:  { uses: 0, sentences: 0 },
+      connected:  { patterns: 0, cats: {} },
+      decoder:    { uses: 0, errorTypes: {} },
+      collocations:{ uses: 0, cats: {} },
+      wordbuilder: { uses: 0, prefixes: 0, suffixes: 0, roots: 0 },
+      speedlisten: { sessions: 0, levels: {} },
+      dictation:   { sessions: 0, totalAccuracy: 0 },
+      minimalpairs:{ sessions: 0, totalAccuracy: 0 },
+      phrases:     { seen: 0, days: [] },
+      grammar:     { topics: [] },
+      translate:   { attempts: 0, grades: {} },
+      idioms:      { seen: 0 },
+      redundancy:  { uses: 0, wordsRemoved: 0 }
+    }
+  };
+}
+
+function NE_saveProgress(p) {
+  try {
+    p.lastVisit = NE_today();
+    localStorage.setItem(NE_STORAGE_KEY, JSON.stringify(p));
+  } catch(e) {}
+}
+
+// ── STREAK CALCULATOR ─────────────────────────────────────────
+function NE_updateStreak(p) {
+  var today = NE_today();
+  var yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  var yStr = yesterday.toISOString().split('T')[0];
+
+  if (p.daysActive.indexOf(today) === -1) {
+    p.daysActive.push(today);
+    // Calculate streak
+    if (p.lastVisit === yStr || p.lastVisit === today) {
+      p.streak = (p.streak || 0) + (p.lastVisit === yStr ? 1 : 0);
+    } else if (p.lastVisit !== today) {
+      p.streak = 1; // Reset streak
+    }
+    p.longestStreak = Math.max(p.longestStreak || 0, p.streak);
+  }
+  return p;
+}
+
+// ── ACHIEVEMENT ENGINE ────────────────────────────────────────
+var NE_ACHIEVEMENTS = [
+  { id: 'first_mirror',    icon: '🪞', title: 'First Reflection',    desc: 'Used the Before & After Mirror',           check: function(p){ return p.features.mirror.uses >= 1; } },
+  { id: 'mirror_10',       icon: '✨', title: 'Mirror Master',        desc: 'Used the Mirror 10 times',                check: function(p){ return p.features.mirror.uses >= 10; } },
+  { id: 'perfect_mirror',  icon: '🏆', title: 'Native Level!',        desc: 'Got 100% fluency score in Mirror',        check: function(p){ return p.features.mirror.bestScore >= 95; } },
+  { id: 'puzzle_10',       icon: '🧩', title: 'Puzzle Solver',         desc: 'Solved 10 Sentence Puzzles',              check: function(p){ return p.features.puzzle.solved >= 10; } },
+  { id: 'puzzle_50',       icon: '🧩', title: 'Puzzle Champion',       desc: 'Solved 50 Sentence Puzzles',              check: function(p){ return p.features.puzzle.solved >= 50; } },
+  { id: 'puzzle_100',      icon: '🧩', title: 'Puzzle Legend',         desc: 'Solved 100 Sentence Puzzles',             check: function(p){ return p.features.puzzle.solved >= 100; } },
+  { id: 'challenge_7',     icon: '🎯', title: 'Week Warrior',          desc: 'Completed 7 Daily Challenges',            check: function(p){ return p.features.challenge.completed >= 7; } },
+  { id: 'challenge_30',    icon: '🎯', title: 'Monthly Champion',      desc: 'Completed 30 Daily Challenges',           check: function(p){ return p.features.challenge.completed >= 30; } },
+  { id: 'spotter_10',      icon: '🔍', title: 'Error Hunter',          desc: 'Completed 10 Error Spotter sessions',     check: function(p){ return p.features.spotter.completed >= 10; } },
+  { id: 'vocab_50',        icon: '📚', title: 'Word Collector',        desc: 'Explored 50 vocabulary words',            check: function(p){ return p.features.vocabulary.seen >= 50; } },
+  { id: 'vocab_200',       icon: '📚', title: 'Vocabulary Builder',    desc: 'Explored 200 vocabulary words',           check: function(p){ return p.features.vocabulary.seen >= 200; } },
+  { id: 'vocab_500',       icon: '📚', title: 'Vocabulary Master',     desc: 'Explored 500 vocabulary words',           check: function(p){ return p.features.vocabulary.seen >= 500; } },
+  { id: 'confusable_20',   icon: '🔀', title: 'Never Confused Again',  desc: 'Studied 20 confusable word pairs',        check: function(p){ return p.features.confusable.seen >= 20; } },
+  { id: 'streak_3',        icon: '🔥', title: '3 Day Streak!',         desc: 'Visited 3 days in a row',                 check: function(p){ return p.streak >= 3; } },
+  { id: 'streak_7',        icon: '🔥', title: 'Week Streak!',          desc: 'Visited 7 days in a row',                 check: function(p){ return p.streak >= 7; } },
+  { id: 'streak_30',       icon: '🔥', title: 'Month Streak!',         desc: 'Visited 30 days in a row',                check: function(p){ return p.streak >= 30; } },
+  { id: 'sessions_10',     icon: '⭐', title: 'Regular Learner',       desc: 'Completed 10 practice sessions',          check: function(p){ return p.totalSessions >= 10; } },
+  { id: 'sessions_50',     icon: '⭐', title: 'Dedicated Learner',     desc: 'Completed 50 practice sessions',          check: function(p){ return p.totalSessions >= 50; } },
+  { id: 'sessions_100',    icon: '🌟', title: 'English Champion',      desc: 'Completed 100 practice sessions',         check: function(p){ return p.totalSessions >= 100; } },
+  { id: 'multi_feature',   icon: '🎓', title: 'Explorer',              desc: 'Used 5 different features',               check: function(p){ return Object.values(p.features).filter(function(f){ return (f.uses||f.completed||f.solved||f.seen||f.sessions||0)>0; }).length >= 5; } },
+  { id: 'formality_5',     icon: '🎚️', title: 'Tone Master',           desc: 'Used the Formality Slider 5 times',       check: function(p){ return p.features.formality.uses >= 5; } },
+  { id: 'dictation_5',     icon: '✍️', title: 'Sharp Ears',            desc: 'Completed 5 Dictation sessions',          check: function(p){ return p.features.dictation.sessions >= 5; } },
+];
+
+function NE_checkAchievements(p) {
+  var newlyUnlocked = [];
+  NE_ACHIEVEMENTS.forEach(function(a) {
+    if (p.achievements.indexOf(a.id) === -1 && a.check(p)) {
+      p.achievements.push(a.id);
+      newlyUnlocked.push(a);
+    }
+  });
+  return newlyUnlocked;
+}
+
+function NE_showAchievementToast(achievement) {
+  var existing = document.getElementById('ne_achievement_toast');
+  if (existing) existing.remove();
+  
+  var toast = document.createElement('div');
+  toast.id = 'ne_achievement_toast';
+  toast.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:9999;background:linear-gradient(135deg,rgba(245,200,66,0.15),rgba(245,200,66,0.08));border:1.5px solid rgba(245,200,66,0.40);border-radius:14px;padding:14px 18px;max-width:280px;box-shadow:0 8px 32px rgba(0,0,0,0.40);animation:ne_slideIn 0.4s ease;font-family:Plus Jakarta Sans,sans-serif';
+  toast.innerHTML = '<div style="display:flex;align-items:center;gap:10px">'
+    + '<div style="font-size:28px;flex-shrink:0">'+achievement.icon+'</div>'
+    + '<div><div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:rgba(245,200,66,0.70);margin-bottom:2px">Achievement Unlocked!</div>'
+    + '<div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:2px">'+achievement.title+'</div>'
+    + '<div style="font-size:11px;color:rgba(255,255,255,0.55)">'+achievement.desc+'</div></div>'
+    + '<button onclick="this.parentElement.parentElement.remove()" style="background:none;border:none;color:rgba(255,255,255,0.30);font-size:16px;cursor:pointer;padding:0;flex-shrink:0;line-height:1">×</button>'
+    + '</div>';
+  
+  // Add animation style if not already there
+  if (!document.getElementById('ne_toast_style')) {
+    var style = document.createElement('style');
+    style.id = 'ne_toast_style';
+    style.textContent = '@keyframes ne_slideIn{from{transform:translateX(120%);opacity:0}to{transform:translateX(0);opacity:1}}';
+    document.head.appendChild(style);
+  }
+  
+  document.body.appendChild(toast);
+  setTimeout(function() {
+    if (toast.parentElement) {
+      toast.style.animation = 'ne_slideIn 0.4s ease reverse';
+      setTimeout(function(){ if(toast.parentElement) toast.remove(); }, 400);
+    }
+  }, 4000);
+}
+
+// ── UNIVERSAL TRACK FUNCTION ──────────────────────────────────
+// Call this from every feature with relevant data
+function NE_track(feature, data) {
+  var p = NE_loadProgress();
+  p = NE_updateStreak(p);
+  p.totalSessions = (p.totalSessions || 0) + 1;
+
+  // Merge data into feature
+  var f = p.features[feature] || {};
+  Object.keys(data).forEach(function(k) {
+    if (typeof data[k] === 'number' && data[k] > 0 && k !== 'score' && k !== 'accuracy') {
+      // Increment counters
+      f[k] = (f[k] || 0) + data[k];
+    } else if (k === 'score') {
+      // Track best score
+      f.bestScore = Math.max(f.bestScore || 0, data[k]);
+      f.scoreHistory = (f.scoreHistory || []);
+      f.scoreHistory.push({ date: NE_today(), score: data[k] });
+      if (f.scoreHistory.length > 30) f.scoreHistory.shift(); // Keep last 30
+    } else if (k === 'errorCat') {
+      // Track error categories
+      f.errorCats = f.errorCats || {};
+      f.errorCats[data[k]] = (f.errorCats[data[k]] || 0) + 1;
+      // Update topError
+      var top = Object.entries(f.errorCats).sort(function(a,b){return b[1]-a[1];})[0];
+      if (top) f.topError = top[0];
+    } else if (k === 'level') {
+      f.levels = f.levels || {};
+      f.levels[data[k]] = (f.levels[data[k]] || 0) + 1;
+    } else if (k === 'grade') {
+      f.grades = f.grades || {};
+      f.grades[data[k]] = (f.grades[data[k]] || 0) + 1;
+    } else if (k === 'topic' && typeof data[k] === 'string') {
+      f.topics = f.topics || [];
+      if (f.topics.indexOf(data[k]) === -1) f.topics.push(data[k]);
+    } else if (k === 'cat' && typeof data[k] === 'string') {
+      f.cats = f.cats || {};
+      f.cats[data[k]] = (f.cats[data[k]] || 0) + 1;
+    } else {
+      f[k] = data[k];
+    }
+  });
+  p.features[feature] = f;
+
+  // Check achievements
+  var newAchievements = NE_checkAchievements(p);
+  NE_saveProgress(p);
+
+  // Show achievement toasts (with delay between multiple)
+  newAchievements.forEach(function(a, i) {
+    setTimeout(function() { NE_showAchievementToast(a); }, i * 4500);
+  });
+
+  return p;
+}
+
+// ── WELCOME BACK BANNER ───────────────────────────────────────
+function NE_showWelcomeBanner() {
+  var p = NE_loadProgress();
+  var today = NE_today();
+  
+  // Only show if returning visitor (not first visit today)
+  if (!p.lastVisit || p.lastVisit === today || p.totalSessions < 2) return;
+  
+  // Don't show if already shown today
+  if (window._ne_banner_shown) return;
+  window._ne_banner_shown = true;
+
+  var daysSince = Math.round((new Date(today) - new Date(p.lastVisit)) / 86400000);
+  var greeting = daysSince === 1 ? 'Welcome back! 👋' : daysSince <= 3 ? 'Good to see you again! 👋' : 'You\'re back! Great to see you 👋';
+  
+  var streakHtml = p.streak >= 2 ? '<span style="margin-left:8px;padding:2px 8px;background:rgba(251,146,60,0.15);border:1px solid rgba(251,146,60,0.30);border-radius:20px;font-size:11px;font-weight:700;color:#FB923C">🔥 '+p.streak+' day streak</span>' : '';
+
+  // What they did last session
+  var recentActivity = [];
+  var f = p.features;
+  if (f.mirror.uses > 0) recentActivity.push('Mirror ×'+f.mirror.uses);
+  if (f.puzzle.solved > 0) recentActivity.push('Puzzle ×'+f.puzzle.solved);
+  if (f.challenge.completed > 0) recentActivity.push('Challenge ×'+f.challenge.completed);
+  if (f.spotter.completed > 0) recentActivity.push('Spotter ×'+f.spotter.completed);
+  if (f.vocabulary.seen > 0) recentActivity.push('Vocab ×'+f.vocabulary.seen);
+
+  // Focus recommendation based on Mirror errors
+  var focusTip = '';
+  if (f.mirror.topError) {
+    focusTip = '<div style="margin-top:8px;font-size:11.5px;color:rgba(255,255,255,0.50)">📌 Your focus area: <strong style="color:rgba(245,200,66,0.80)">'+f.mirror.topError+'</strong> — keep practising to improve.</div>';
+  }
+
+  var banner = document.createElement('div');
+  banner.id = 'ne_welcome_banner';
+  banner.style.cssText = 'background:rgba(96,165,250,0.07);border-bottom:1px solid rgba(96,165,250,0.15);padding:10px 16px;font-family:Plus Jakarta Sans,sans-serif;position:relative';
+  banner.innerHTML = '<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px">'
+    + '<div><div style="font-size:12.5px;font-weight:700;color:rgba(255,255,255,0.85)">'
+    + greeting + streakHtml
+    + '</div>'
+    + (recentActivity.length ? '<div style="font-size:11px;color:rgba(255,255,255,0.40);margin-top:2px">Total: '+p.totalSessions+' sessions · '+recentActivity.slice(0,3).join(' · ')+'</div>' : '')
+    + focusTip
+    + '</div>'
+    + '<div style="display:flex;gap:8px;align-items:center">'
+    + '<button onclick="switchGroup(\'test\',document.querySelector(\'[data-group=test]\'));showTab(\'diary\');document.getElementById(\'ne_welcome_banner\').remove()" style="padding:5px 12px;border-radius:20px;border:1px solid rgba(96,165,250,0.30);background:rgba(96,165,250,0.10);color:#60A5FA;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit">📊 My Progress</button>'
+    + '<button onclick="document.getElementById(\'ne_welcome_banner\').remove()" style="background:none;border:none;color:rgba(255,255,255,0.25);font-size:18px;cursor:pointer;padding:0;line-height:1">×</button>'
+    + '</div></div>';
+
+  // Insert at top of page
+  var firstChild = document.body.firstChild;
+  document.body.insertBefore(banner, firstChild);
+}
+
+// ── PROGRESS DIARY RENDERER ───────────────────────────────────
+function NE_renderProgressDiary() {
+  var container = document.getElementById('diaryContent');
+  if (!container) return;
+
+  var p = NE_loadProgress();
+  var f = p.features;
+  var today = NE_today();
+  var firstDate = new Date(p.firstVisit);
+  var daysSince = Math.round((new Date(today) - firstDate) / 86400000) + 1;
+
+  // Streak display
+  var streakColor = p.streak >= 7 ? '#FB923C' : p.streak >= 3 ? '#F5C842' : '#60A5FA';
+  var streakEmoji = p.streak >= 30 ? '🏆' : p.streak >= 7 ? '🔥' : p.streak >= 3 ? '⚡' : '📅';
+
+  var html = '';
+
+  // Stats overview
+  html += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,140px),1fr));gap:8px;margin-bottom:14px">';
+  html += _neStat(streakEmoji, p.streak + ' day streak', 'Current', streakColor);
+  html += _neStat('📅', daysSince + ' days', 'Since first visit', '#60A5FA');
+  html += _neStat('⭐', p.totalSessions, 'Total sessions', '#A78BFA');
+  html += _neStat('🏆', p.achievements.length + '/' + NE_ACHIEVEMENTS.length, 'Achievements', '#F5C842');
+  html += '</div>';
+
+  // Feature breakdown
+  html += '<div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,0.40);margin-bottom:8px">Your Practice History</div>';
+  html += '<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">';
+
+  var featureList = [
+    { key:'mirror',      icon:'🪞', name:'Before & After Mirror',  stat: f.mirror.uses+' uses' + (f.mirror.topError ? ' · Top error: '+f.mirror.topError : '') + (f.mirror.bestScore ? ' · Best: '+f.mirror.bestScore+'%' : '') },
+    { key:'challenge',   icon:'🎯', name:'Daily Challenge',         stat: f.challenge.completed+' completed' },
+    { key:'puzzle',      icon:'🧩', name:'Sentence Puzzle',         stat: f.puzzle.solved+' solved' },
+    { key:'spotter',     icon:'🔍', name:'Error Spotter',           stat: f.spotter.completed+' completed' + (f.spotter.total > 0 ? ' · Accuracy: '+Math.round(f.spotter.correct/f.spotter.total*100)+'%' : '') },
+    { key:'vocabulary',  icon:'📚', name:'Vocabulary',              stat: f.vocabulary.seen+' words seen · '+f.vocabulary.saved+' saved' },
+    { key:'confusable',  icon:'🔀', name:'Confusable Words',        stat: f.confusable.seen+' pairs studied' },
+    { key:'formality',   icon:'🎚️', name:'Formality Slider',        stat: f.formality.uses+' uses · '+f.formality.sentences+' sentences' },
+    { key:'connected',   icon:'🔗', name:'Connected Speech',        stat: f.connected.patterns+' patterns explored' },
+    { key:'decoder',     icon:'🔬', name:'Error Pattern Decoder',   stat: f.decoder.uses+' uses' },
+    { key:'collocations',icon:'🔗', name:'Collocations Coach',      stat: f.collocations.uses+' uses' },
+    { key:'dictation',   icon:'✍️', name:'Dictation',               stat: f.dictation.sessions+' sessions' },
+    { key:'speedlisten', icon:'🎧', name:'Speed Listener',          stat: f.speedlisten.sessions+' sessions' },
+    { key:'translate',   icon:'🌐', name:'Translate Practice',      stat: f.translate.attempts+' attempts' },
+    { key:'idioms',      icon:'💬', name:'Idioms',                  stat: f.idioms.seen+' idioms explored' },
+    { key:'redundancy',  icon:'✂️', name:'Redundancy Cutter',       stat: f.redundancy.uses+' uses' },
+  ];
+
+  var activeFeatures = featureList.filter(function(item) {
+    var fdata = f[item.key];
+    return Object.values(fdata).some(function(v){ return typeof v === 'number' && v > 0; });
+  });
+
+  if (activeFeatures.length === 0) {
+    html += '<div style="text-align:center;padding:20px;color:rgba(255,255,255,0.35);font-size:13px">Start using features above to see your progress here!</div>';
+  } else {
+    activeFeatures.forEach(function(item) {
+      html += '<div style="display:flex;align-items:center;gap:10px;padding:9px 12px;background:rgba(255,255,255,0.03);border-radius:9px;border:1px solid rgba(255,255,255,0.07)">';
+      html += '<span style="font-size:18px;flex-shrink:0">'+item.icon+'</span>';
+      html += '<div style="flex:1"><div style="font-size:12.5px;font-weight:600;color:rgba(255,255,255,0.80)">'+item.name+'</div>';
+      html += '<div style="font-size:11px;color:rgba(255,255,255,0.40)">'+item.stat+'</div></div>';
+      html += '</div>';
+    });
+  }
+  html += '</div>';
+
+  // Score history chart for Mirror
+  if (f.mirror.scoreHistory && f.mirror.scoreHistory.length > 1) {
+    html += '<div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,0.40);margin-bottom:8px">Mirror Fluency Score History</div>';
+    html += '<div style="display:flex;align-items:flex-end;gap:4px;height:50px;padding:0 4px;margin-bottom:14px">';
+    var maxScore = Math.max.apply(null, f.mirror.scoreHistory.map(function(s){return s.score;}));
+    f.mirror.scoreHistory.slice(-20).forEach(function(s) {
+      var h = Math.round((s.score / 100) * 46) + 4;
+      var col = s.score >= 90 ? '#4ADE80' : s.score >= 70 ? '#F5C842' : '#FF6B6B';
+      html += '<div title="'+s.date+': '+s.score+'%" style="flex:1;background:'+col+';border-radius:3px 3px 0 0;height:'+h+'px;min-width:8px;opacity:0.80"></div>';
+    });
+    html += '</div>';
+  }
+
+  // Achievements
+  html += '<div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,0.40);margin-bottom:8px">Achievements ('+p.achievements.length+'/'+NE_ACHIEVEMENTS.length+')</div>';
+  html += '<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px">';
+  NE_ACHIEVEMENTS.forEach(function(a) {
+    var unlocked = p.achievements.indexOf(a.id) !== -1;
+    html += '<div title="'+a.desc+'" style="padding:5px 10px;border-radius:20px;font-size:11px;font-weight:700;'
+      + (unlocked
+        ? 'background:rgba(245,200,66,0.15);color:rgba(245,200,66,0.90);border:1px solid rgba(245,200,66,0.30)'
+        : 'background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.25);border:1px solid rgba(255,255,255,0.08)')
+      + '">'+(unlocked?a.icon:'🔒')+' '+a.title+'</div>';
+  });
+  html += '</div>';
+
+  // Supabase migration hook placeholder
+  html += '<div style="padding:10px 12px;background:rgba(96,165,250,0.06);border-radius:9px;border:1px solid rgba(96,165,250,0.15);font-size:11.5px;color:rgba(255,255,255,0.40)">';
+  html += '🔒 <strong style="color:rgba(96,165,250,0.70)">Register for Premium</strong> to sync your progress across all devices and never lose your history.';
+  html += ' <button onclick="openWaitlist()" style="background:none;border:none;color:#60A5FA;font-weight:700;cursor:pointer;font-size:11.5px;font-family:inherit;padding:0;text-decoration:underline">Register free →</button>';
+  html += '</div>';
+
+  container.innerHTML = html;
+}
+
+function _neStat(icon, value, label, col) {
+  return '<div style="padding:10px 12px;background:rgba(255,255,255,0.03);border-radius:10px;border:1px solid rgba(255,255,255,0.07);text-align:center">'
+    + '<div style="font-size:20px;margin-bottom:4px">'+icon+'</div>'
+    + '<div style="font-size:15px;font-weight:800;color:'+col+'">'+value+'</div>'
+    + '<div style="font-size:10px;color:rgba(255,255,255,0.40)">'+label+'</div>'
+    + '</div>';
+}
+
+// ── SUPABASE MIGRATION HOOK ───────────────────────────────────
+// Called when visitor creates a premium account
+// Replace with actual Supabase client call when ready
+function NE_migrateToSupabase(userId) {
+  var p = NE_loadProgress();
+  // TODO: Replace with actual Supabase call:
+  // supabase.from('user_progress').upsert({ user_id: userId, ...p });
+  console.log('Migration hook ready for user:', userId, 'Progress data:', p);
+  return p; // Returns data ready for Supabase insert
+}
+
+// ── RESET (for testing) ───────────────────────────────────────
+function NE_resetProgress() {
+  if (confirm('Reset all your progress? This cannot be undone.')) {
+    localStorage.removeItem(NE_STORAGE_KEY);
+    location.reload();
+  }
+}
 
 </script>
 </body>

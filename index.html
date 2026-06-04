@@ -3614,17 +3614,338 @@ var ulHookIdx=0,ulHookTimer=null;
 
 
 var CHALLENGES=[
-  {title:"despite vs although vs however",col:"#c0392b",bg:"linear-gradient(135deg,#c0392b20,#c0392b10)",desc:"Use all three words correctly in one or two sentences about any topic.",native:"Three contrast words each must be used at least once and correctly.",answer:"DESPITE + noun phrase: Despite the rain, she went out. ALTHOUGH + clause: Although she was tired, she finished. HOWEVER connects two sentences: The plan was difficult. However, we succeeded.",answerNative:"DESPITE + noun. ALTHOUGH + subject + verb. HOWEVER connects two separate sentences. All three show contrast but are used differently."},
-  {title:"Present Perfect vs Simple Past",col:"#0e6655",bg:"rgba(26,107,94,0.12)",desc:"Write one correct sentence using each: 'I have eaten' and 'I ate'.",native:"When do you use have eaten vs ate? Write one example of each.",answer:"Simple Past (ate) = specific past time: I ate pizza yesterday. Present Perfect (have eaten) = experience without specific time: I have eaten sushi before. Rule: specific time word = Simple Past. No specific time = Present Perfect.",answerNative:"Simple Past = specific time. Present Perfect = experience without specific time. Test: can you say WHEN exactly? If yes, use Simple Past."},
-  {title:"Make vs Do",col:"#1a5276",bg:"rgba(96,165,250,0.12)",desc:"Write four correct sentences: two with 'make' and two with 'do'.",native:"Make and Do are confusing for English learners. Use each correctly twice.",answer:"MAKE = create or produce: make a decision, make money, make a mistake. DO = perform a task: do homework, do your best, do business. Many pairs must be memorised.",answerNative:"MAKE = create or produce. DO = perform or carry out."},
-  {title:"Formal vs Informal English",col:"#6c3483",bg:"var(--teal-dim)",desc:"Rewrite this formally: 'Hey, can you send me that file ASAP? I really need it like NOW.'",native:"Same meaning, completely different professional tone.",answer:"Formal: Dear [Name], I hope this message finds you well. Could you please send me the file at your earliest convenience? This is quite urgent. Thank you very much. Key changes: Remove hey, ASAP, like NOW. Add polite opener and modal verbs.",answerNative:"Formal English: no slang, no abbreviations. Add polite openers, modal verbs (could you please), professional closings."},
-  {title:"Conditional sentences",col:"#1e8449",bg:"rgba(74,222,128,0.12)",desc:"Write one example of each: Zero, First, Second and Third conditional.",native:"English has 4 main conditional structures for different situations.",answer:"Zero: If you heat water to 100, it boils. First: If it rains tomorrow, I will stay home. Second: If I had more money, I would travel. Third: If I had studied, I would have passed.",answerNative:"Zero = general truth. First = real future possibility. Second = imaginary now. Third = impossible past regret."},
-  {title:"Passive voice",col:"#d35400",bg:"var(--coral-dim)",desc:"Change to passive: 1)Shakespeare wrote Hamlet. 2)They are building a new road. 3)Police have caught the thief.",native:"Passive = subject receives the action. Formula: to be + past participle.",answer:"1)Hamlet was written by Shakespeare. 2)A new road is being built. 3)The thief has been caught. Rule: passive = to be + past participle.",answerNative:"Passive = to be + past participle. Tense lives in the to be verb."},
-  {title:"Question formation",col:"#c49a1a",bg:"var(--gold-dim)",desc:"Form the question for: 1)She goes by bus. 2)They have been married ten years. 3)He was reading when it rang.",native:"English question word order: auxiliary verb comes before the subject.",answer:"1)How does she go to work? 2)How long have they been married? 3)What was he doing when the phone rang? Rule: Question word + auxiliary + subject + main verb.",answerNative:"English questions: Question word + auxiliary + subject + main verb."},
-  {title:"Reported speech",col:"#1565c0",bg:"rgba(167,139,250,0.12)",desc:"Report: 1)She said I am tired. 2)He said I will call you. 3)They asked Are you coming?",native:"Tenses shift back one step when reporting what someone said.",answer:"1)She said she was tired. 2)He said he would call me. 3)They asked if I was coming. Rule: tenses move one step into the past.",answerNative:"Present to past, will to would, is doing to was doing. Yes/No questions use if or whether."},
-  {title:"Articles a an the",col:"#c0392b",bg:"linear-gradient(135deg,#c0392b20,#c0392b10)",desc:"Fill in: __ sun rises in __ east. She is __ honest person. I need __ advice. He bought __ new car.",native:"Articles are one of the hardest parts for speakers of languages without them.",answer:"THE sun. THE east. AN honest (vowel sound). ADVICE no article (uncountable). A new car (first mention). Rule: THE=specific. A/AN=first mention. No article=uncountable.",answerNative:"THE = specific or unique. A/AN = one of many. No article = uncountable nouns."},
-  {title:"Confusable collocations",col:"#0e6655",bg:"rgba(26,107,94,0.12)",desc:"Choose: 1)make/do homework 2)make/do a mistake 3)make/take a photo 4)make/do your best",native:"Collocations must be memorised. Often no logical rule.",answer:"1)DO homework. 2)MAKE a mistake. 3)TAKE a photo. 4)DO your best. Memorise: do homework, do business, make a decision, make money, take a photo.",answerNative:"No perfect rule. Memorise the most common pairs."}
+
+// ============================================================
+// LEVEL 1 — FOUNDATIONS (Single rule, recognition)
+// ============================================================
+
+{title:"Fix It: Simple Present",col:"#c0392b",bg:"linear-gradient(135deg,#c0392b20,#c0392b10)",
+type:"fix",level:1,levelName:"Foundations",
+desc:"Find and fix ALL errors in this sentence:\n\n'She work in a hospital and go there every day by bus.'",
+native:"Simple Present: he/she/it + verb+s. Third person singular always needs -s.",
+answer:"She WORKS in a hospital and GOES there every day by bus.\n\nTwo errors fixed:\n1. work → works (third person singular)\n2. go → goes (third person singular)\n\nRule: With he/she/it in Simple Present — always add -s or -es to the verb."},
+
+{title:"Choose & Justify: A or An",col:"#0e6655",bg:"rgba(26,107,94,0.12)",
+type:"choose",level:1,levelName:"Foundations",
+desc:"Choose the correct article AND explain why:\n\n'She is ___ honest woman who works as ___ engineer.'",
+native:"A or An depends on the SOUND of the next word, not the letter.",
+answer:"She is AN honest woman who works as AN engineer.\n\nBoth use AN:\n• AN honest — 'honest' starts with a vowel SOUND /ɒ/ — the H is silent\n• AN engineer — 'engineer' starts with a vowel SOUND /ɛ/\n\nRule: Use AN before any vowel sound, not just vowel letters. The word 'hour' also uses AN for this reason."},
+
+{title:"Spot the Difference: There is vs There are",col:"#1a5276",bg:"rgba(96,165,250,0.12)",
+type:"spot",level:1,levelName:"Foundations",
+desc:"Explain the difference between these two sentences:\n\nA) 'There is some milk in the fridge.'\nB) 'There are some eggs in the fridge.'",
+native:"There is vs There are depends on whether the noun is singular or uncountable vs plural.",
+answer:"A) THERE IS = singular or uncountable noun. Milk is uncountable → use IS.\nB) THERE ARE = plural countable noun. Eggs is plural → use ARE.\n\nKey rule: Uncountable nouns (milk, water, money, information) always use IS, never ARE.\nPlural countable nouns (eggs, books, people) always use ARE.\n\nCommon mistake: 'There are informations' ❌ → 'There is information' ✅"},
+
+{title:"Fix It: Plural Nouns",col:"#6c3483",bg:"var(--teal-dim)",
+type:"fix",level:1,levelName:"Foundations",
+desc:"Fix all errors in this paragraph:\n\n'I need three informations about the course. Are there any homeworks this week? The staffs were very helpful.'",
+native:"Uncountable nouns have no plural. Some words look plural but are singular.",
+answer:"Corrections:\n1. 'three informations' → 'some information' (uncountable — no plural)\n2. 'any homeworks' → 'any homework' (uncountable — no plural)\n3. 'The staffs' → 'The staff' (staff is already collective — no -s)\n\nOther uncountable nouns: advice, furniture, luggage, equipment, news, progress, research."},
+
+{title:"Build Up: Present Continuous",col:"#1e8449",bg:"rgba(74,222,128,0.12)",
+type:"buildup",level:1,levelName:"Foundations",
+desc:"Start with these 3 words and build 3 complete sentences of increasing length:\n\nStart: 'She is studying...'\nVersion 1: Add where (5-6 words)\nVersion 2: Add what subject (7-8 words)\nVersion 3: Add why (10+ words)",
+native:"Present Continuous: is/am/are + verb-ing. Used for actions happening NOW.",
+answer:"Version 1: She is studying at home. (happening now + location)\nVersion 2: She is studying English grammar. (happening now + subject)\nVersion 3: She is studying English grammar because she has an exam tomorrow. (complete context)\n\nNotice: Each version adds more information but the core structure stays the same — is + studying."},
+
+{title:"Choose & Justify: Much or Many",col:"#d35400",bg:"var(--coral-dim)",
+type:"choose",level:1,levelName:"Foundations",
+desc:"Choose much or many for each gap AND explain your reasoning:\n\n1. I don't have ___ time.\n2. She doesn't have ___ friends.\n3. We didn't make ___ progress.\n4. There aren't ___ options.",
+native:"Much = uncountable nouns. Many = countable nouns.",
+answer:"1. MUCH time — time is uncountable\n2. MANY friends — friends is countable (one friend, two friends)\n3. MUCH progress — progress is uncountable\n4. MANY options — options is countable (one option, two options)\n\nQuick test: Can you put a number in front of it? If yes → many. If no → much.\nFriends: two friends ✅ → MANY\nProgress: two progresses ❌ → MUCH"},
+
+{title:"Real World: Introductions",col:"#c49a1a",bg:"var(--gold-dim)",
+type:"realworld",level:1,levelName:"Foundations",
+desc:"Write a short introduction (3-4 sentences) about yourself for a new colleague.\n\nMust include:\n• Your name and job\n• How long you have worked there\n• One thing you enjoy about the work",
+native:"First meeting English: simple present for facts, present perfect for duration.",
+answer:"Model answer:\n'My name is Priya and I work as a software engineer. I have been with the company for two years. I really enjoy solving complex problems and working with the team.'\n\nKey structures:\n• My name is / I work as = simple present facts\n• I have been here for = present perfect + FOR + duration\n• I enjoy + verb-ing = like/enjoy always followed by gerund"},
+
+// ============================================================
+// LEVEL 2 — BUILDING (Two rules combined)
+// ============================================================
+
+{title:"Transform: Active to Passive",col:"#1565c0",bg:"rgba(167,139,250,0.12)",
+type:"transform",level:2,levelName:"Building",
+desc:"Transform ALL THREE sentences from active to passive:\n\n1. Shakespeare wrote Hamlet.\n2. They are building a new bridge.\n3. Someone has stolen my wallet.",
+native:"Passive = to be + past participle. The tense lives in the 'to be' verb.",
+answer:"1. Hamlet WAS WRITTEN by Shakespeare. (simple past passive)\n2. A new bridge IS BEING BUILT. (present continuous passive)\n3. My wallet HAS BEEN STOLEN. (present perfect passive)\n\nFormula: Object → Subject + [to be in same tense] + past participle\nTense guide: wrote→was, are building→is being built, has stolen→has been stolen"},
+
+{title:"Fix It: Reported Speech",col:"#c0392b",bg:"linear-gradient(135deg,#c0392b20,#c0392b10)",
+type:"fix",level:2,levelName:"Building",
+desc:"Fix the reported speech errors:\n\n1. She said that she is tired.\n2. He told that he will call later.\n3. They said me to wait outside.",
+native:"Reported speech: tenses shift back. Tell always needs a person object.",
+answer:"1. She said that she WAS tired. (is → was, one step back)\n2. He told ME that he WOULD call later. (will → would + ME is required after told)\n3. They TOLD me to wait outside. OR They SAID I should wait outside. (told = correct, said me = wrong)\n\nKey rules:\n• say → no person after it: she said (that)...\n• tell → person must follow: she told ME/HIM/HER...\n• Tenses shift: is→was, will→would, can→could"},
+
+{title:"Spot the Difference: Will vs Going to",col:"#0e6655",bg:"rgba(26,107,94,0.12)",
+type:"spot",level:2,levelName:"Building",
+desc:"Explain the meaning difference between:\n\nA) 'Look at those clouds — it is going to rain.'\nB) 'Don't worry, I will help you with that later.'",
+native:"Going to = evidence-based prediction or prior plan. Will = spontaneous decision or promise.",
+answer:"A) GOING TO = you can SEE the evidence right now (the clouds). Used for predictions based on visible evidence.\nB) WILL = spontaneous decision made at the moment of speaking. No prior plan — you just decided.\n\nAnother difference:\n• 'I am going to visit Paris next month.' = already planned, ticket booked\n• 'Maybe I will visit Paris one day.' = vague future thought, no plan\n\nMemory tip: GOING TO = evidence or plan already exists. WILL = decision made now."},
+
+{title:"Build Up: Conditionals",col:"#1a5276",bg:"rgba(96,165,250,0.12)",
+type:"buildup",level:2,levelName:"Building",
+desc:"Using the topic 'studying English', write one sentence for each conditional:\n\nZero Conditional: general truth\nFirst Conditional: real future possibility\nSecond Conditional: imaginary present",
+native:"Zero = always true. First = real possibility. Second = imaginary/unlikely.",
+answer:"Zero: If you study English every day, your vocabulary improves. (always true — scientific fact)\nFirst: If I study tonight, I will pass tomorrow's test. (real — I might actually study)\nSecond: If I studied 8 hours a day, I would be fluent in a year. (imaginary — unrealistic amount)\n\nKey grammar:\nZero: if + present, present\nFirst: if + present, will + base verb\nSecond: if + past, would + base verb\n\nNote: Second conditional uses WERE for all persons in formal English: If I WERE you..."},
+
+{title:"Real World: Professional Email Opening",col:"#6c3483",bg:"var(--teal-dim)",
+type:"realworld",level:2,levelName:"Building",
+desc:"Write the opening paragraph of a professional email to a client you have never met.\n\nYour purpose: request a 30-minute meeting to discuss a new product.\nTone: formal but friendly.\nMust use: a polite opening, your purpose, and a modal verb.",
+native:"Professional emails: indirect language, modal verbs for politeness, clear purpose.",
+answer:"Model answer:\n'Dear Mr Chen,\nI hope this email finds you well. My name is [Name] from [Company] and I am writing to request a brief meeting at your earliest convenience. I would like to discuss our new product range, which I believe could be of significant interest to your business. Would you be available for a 30-minute call next week?'\n\nKey features:\n• I hope this email finds you well = professional opener\n• I am writing to = states purpose immediately\n• Would you be available = modal verb for polite request\n• At your earliest convenience = formal time expression"},
+
+{title:"Speed Round: Verb Forms",col:"#1e8449",bg:"rgba(74,222,128,0.12)",
+type:"speed",level:2,levelName:"Building",
+desc:"Complete all 5 in 2 minutes:\n\n1. Write the past simple of: go, take, buy, think, write\n2. Write the past participle of: break, choose, know, rise, fall\n3. Which verb is wrong: I have wrote / she has spoken / they have took?\n4. 'She has gone to Paris' vs 'She went to Paris' — which implies she is still there?\n5. Fill in: He has ___ (work) here ___ 2018.",
+native:"Irregular verbs and present perfect are tested together here.",
+answer:"1. went, took, bought, thought, wrote\n2. broken, chosen, known, risen, fallen\n3. Two are wrong: I have WRITTEN (not wrote) / they have TAKEN (not took)\n4. 'She HAS GONE to Paris' = she is still there. 'She WENT to Paris' = she came back.\n5. He has WORKED here SINCE 2018. (present perfect + since + starting point)"},
+
+{title:"Choose & Justify: Gerund or Infinitive",col:"#d35400",bg:"var(--coral-dim)",
+type:"choose",level:2,levelName:"Building",
+desc:"Choose gerund (-ing) or infinitive (to+verb) for each gap:\n\n1. She enjoys ___ (cook) for her family.\n2. He decided ___ (leave) early.\n3. They avoided ___ (make) eye contact.\n4. I forgot ___ (lock) the door.\n5. She stopped ___ (smoke) last year.",
+native:"Some verbs always take gerund, others always take infinitive — must be memorised.",
+answer:"1. enjoys COOKING (enjoy always + gerund)\n2. decided TO LEAVE (decide always + infinitive)\n3. avoided MAKING (avoid always + gerund)\n4. forgot TO LOCK (forgot + infinitive = failed to do it)\n5. stopped SMOKING (stopped + gerund = permanently quit)\n\nNote: 'I stopped to smoke' = different meaning — stopped another activity IN ORDER TO smoke\n\nGerund verbs: enjoy, avoid, finish, consider, suggest, deny, risk\nInfinitive verbs: decide, want, hope, plan, refuse, manage, agree"},
+
+// ============================================================
+// LEVEL 3 — CONNECTING (Using cohesion and linking)
+// ============================================================
+
+{title:"Transform: Simple to Complex",col:"#c49a1a",bg:"var(--gold-dim)",
+type:"transform",level:3,levelName:"Connecting",
+desc:"Combine each pair of simple sentences into ONE complex sentence using the connector in brackets:\n\n1. She studied hard. She failed the exam. (despite)\n2. He finished work. He went to the gym. (after + -ing)\n3. The weather was bad. We had a great time. (although)\n4. She called three times. Nobody answered. (but)",
+native:"Sentence connectors show relationships between ideas. Each has a different grammar rule.",
+answer:"1. Despite studying hard, she failed the exam. (despite + gerund)\n2. After finishing work, he went to the gym. (after + gerund — same subject)\n3. Although the weather was bad, we had a great time. (although + full clause)\n4. She called three times but nobody answered. (but joins two clauses)\n\nKey rule: DESPITE + noun/gerund (NOT despite + clause)\nWrong: Despite she studied hard ❌\nRight: Despite studying hard ✅ OR Despite her hard work ✅"},
+
+{title:"Fix It: Cohesion in a Paragraph",col:"#1565c0",bg:"rgba(167,139,250,0.12)",
+type:"fix",level:3,levelName:"Connecting",
+desc:"This paragraph is grammatically correct but reads very badly. Rewrite it using connectors, pronouns and varied sentence structure:\n\n'English is hard. English has many rules. The rules are confusing. I study English every day. I am improving. My teacher says I am improving. My teacher is happy.'",
+native:"Good writing uses connectors, avoids repetition, and varies sentence length.",
+answer:"Model rewrite:\n'English has many rules and can be quite challenging. However, I study every day and I am steadily improving as a result. My teacher, who is very encouraging, says she is pleased with my progress.'\n\nTechniques used:\n• however = contrast connector\n• as a result = result connector\n• who = relative clause to avoid repetition\n• steadily = adverb for nuance\n• Combined short sentences into longer flowing ones"},
+
+{title:"Real World: Complaint Email",col:"#c0392b",bg:"linear-gradient(135deg,#c0392b20,#c0392b10)",
+type:"realworld",level:3,levelName:"Connecting",
+desc:"Write a formal complaint email (5-6 sentences) about a product that arrived damaged.\n\nMust include:\n• Passive voice for what happened\n• A modal verb expressing expectation\n• A connector showing contrast\n• A clear request for action",
+native:"Formal complaints use passive voice, modal verbs, and precise language.",
+answer:"Model answer:\n'Dear Customer Service,\nI am writing to complain about an order that was delivered to my address on 3rd June. Upon opening the package, I discovered that the item had been damaged during transit. Although the outer packaging appeared intact, the product inside was completely broken. I would expect a replacement to be sent within five working days. Could you please confirm receipt of this complaint and advise on the next steps?'\n\nFeatures:\n• Passive: was delivered, had been damaged, be sent\n• Modal: would expect, Could you please\n• Contrast connector: Although\n• Clear request: confirm receipt and advise"},
+
+{title:"Spot the Difference: Since and For",col:"#0e6655",bg:"rgba(26,107,94,0.12)",
+type:"spot",level:3,levelName:"Connecting",
+desc:"All four sentences use Present Perfect but two use SINCE and two use FOR incorrectly. Find and fix them:\n\n1. I have lived here since three years.\n2. She has worked there for she graduated.\n3. He has been married since twenty years.\n4. They have known each other for 2015.",
+native:"FOR + duration (length of time). SINCE + starting point (specific time).",
+answer:"Fixed:\n1. I have lived here FOR three years. (three years = duration → FOR)\n2. She has worked there SINCE she graduated. (she graduated = starting point → SINCE)\n3. He has been married FOR twenty years. (twenty years = duration → FOR)\n4. They have known each other SINCE 2015. (2015 = starting point → SINCE)\n\nMemory rule:\nFOR answers 'how long?' → FOR three years, FOR a week\nSINCE answers 'from when?' → SINCE Monday, SINCE 2018, SINCE she left"},
+
+{title:"Build Up: Relative Clauses",col:"#1a5276",bg:"rgba(96,165,250,0.12)",
+type:"buildup",level:3,levelName:"Connecting",
+desc:"Expand each sentence by adding a relative clause using who, which, or where:\n\nBase sentences:\n1. The man spoke for an hour.\n2. The book changed my life.\n3. The city has a famous tower.\n\nThen write one sentence using whose.",
+native:"Relative clauses add information about a noun. Who=people, which=things, where=places, whose=possession.",
+answer:"1. The man WHO gave the presentation spoke for an hour.\n2. The book WHICH I read last year changed my life.\n3. The city WHERE I grew up has a famous tower.\nBonus: The woman WHOSE daughter won the competition was crying with joy.\n\nDefining vs Non-defining:\n• 'The man who called is waiting.' = defines which man (no commas)\n• 'My brother, who lives in London, called yesterday.' = adds extra info (commas needed)\n\nIn non-defining clauses: never use THAT — always WHO or WHICH."},
+
+{title:"Speed Round: Prepositions",col:"#6c3483",bg:"var(--teal-dim)",
+type:"speed",level:3,levelName:"Connecting",
+desc:"Complete all 5 quickly:\n\n1. She arrived ___ Monday ___ 9am.\n2. I have lived here ___ three years.\n3. He is good ___ mathematics.\n4. She is interested ___ photography.\n5. We arrived ___ the airport ___ time.",
+native:"Prepositions are often fixed combinations — good AT, interested IN, arrive AT.",
+answer:"1. on Monday AT 9am (on + day, at + time)\n2. FOR three years (duration)\n3. good AT mathematics (fixed: good at)\n4. interested IN photography (fixed: interested in)\n5. arrived AT the airport ON time (arrive at + place, on time = not late)\n\nCommon fixed prepositions:\nGood at / bad at / interested in / excited about / afraid of / responsible for / depend on / congratulate on / apologise for"},
+
+{title:"Choose & Justify: Modal Verbs",col:"#1e8449",bg:"rgba(74,222,128,0.12)",
+type:"choose",level:3,levelName:"Connecting",
+desc:"Choose the best modal verb AND explain the difference in meaning:\n\n1. You ___ wear a seatbelt. (must/should)\n2. She ___ be at home — I can see her car. (must/might)\n3. You ___ bring food — we have plenty. (mustn't/don't have to)\n4. ___ you help me with this? (Can/Could)",
+native:"Modal verbs express different degrees of obligation, possibility and politeness.",
+answer:"1. MUST — legal obligation, no choice (should = advice, not law)\n2. MUST — logical deduction from evidence (might = possibility without evidence)\n3. DON'T HAVE TO — no obligation but allowed (mustn't = forbidden/prohibited)\n4. COULD — more polite (can = correct but less formal)\n\nCritical distinction:\nMUST NOT = forbidden: You mustn't park here. (it is illegal)\nDON'T HAVE TO = no obligation: You don't have to come. (but you can if you want)"},
+
+// ============================================================
+// LEVEL 4 — NUANCING (Same rule, subtle differences)
+// ============================================================
+
+{title:"Spot the Difference: Present Perfect Nuance",col:"#d35400",bg:"var(--coral-dim)",
+type:"spot",level:4,levelName:"Nuancing",
+desc:"Explain the subtle meaning difference between each pair:\n\nA1) 'I have lost my keys.' vs A2) 'I lost my keys.'\nB1) 'She has worked here for years.' vs B2) 'She worked here for years.'\nC1) 'Have you eaten?' vs C2) 'Did you eat?'",
+native:"Present Perfect connects past to present. Simple Past describes a completed past event.",
+answer:"A1) I HAVE LOST my keys = still lost NOW, relevant to present (I cannot find them)\nA2) I LOST my keys = past event, possibly already found them\n\nB1) She HAS WORKED here = she still works here now\nB2) She WORKED here = she no longer works here (past only)\n\nC1) Have you eaten? = asking about an experience relevant to now (are you hungry?)\nC2) Did you eat? = asking about a specific completed past event (at a specific meal)\n\nKey insight: Present Perfect always has a CONNECTION to the present moment. Simple Past is purely historical."},
+
+{title:"Transform: Emphasis Structures",col:"#c49a1a",bg:"var(--gold-dim)",
+type:"transform",level:4,levelName:"Nuancing",
+desc:"Rewrite each sentence to emphasise the word in brackets using a cleft sentence:\n\n1. JOHN broke the window. (not someone else)\n2. She needs REST. (not medicine)\n3. He succeeded because of HARD WORK. (not luck)",
+native:"Cleft sentences: 'It was X that/who...' — used to emphasise one element.",
+answer:"1. It was JOHN who broke the window.\n2. What she needs is REST.\n3. It was HARD WORK that led to his success.\n\nCleft sentence patterns:\n• It was/is + [focus] + who/that + rest of sentence\n• What + subject + verb + is/was + [focus]\n\nNative usage: Cleft sentences are extremely common in spoken English for natural emphasis.\nWithout cleft: 'John broke the window.' (neutral)\nWith cleft: 'It was JOHN who broke it.' (John, not anyone else)"},
+
+{title:"Fix It: False Friends and Wrong Collocations",col:"#1565c0",bg:"rgba(167,139,250,0.12)",
+type:"fix",level:4,levelName:"Nuancing",
+desc:"Find and fix the collocation and vocabulary errors:\n\n1. She made a research on climate change.\n2. Can you give me an information about the schedule?\n3. He did a good travel to Japan.\n4. We need to find a solution for this problem.\n5. She assisted to the conference last week.",
+native:"Many verb+noun combinations are fixed in English and must be memorised.",
+answer:"1. She DID/CONDUCTED research on climate change. (not make research)\n2. Can you give me SOME information about the schedule? (information is uncountable, no 'an')\n3. He HAD a wonderful TRIP/JOURNEY to Japan. (not 'do a travel' — travel is usually a verb)\n4. We need to find a solution TO this problem. (solution TO, not for)\n5. She ATTENDED the conference last week. (assist = help someone; attend = be present at)\n\nFixed collocations to remember:\ndo research / make a decision / make a mistake / do homework / take a photo / have a meeting"},
+
+{title:"Build Up: Inversion for Emphasis",col:"#c0392b",bg:"linear-gradient(135deg,#c0392b20,#c0392b10)",
+type:"buildup",level:4,levelName:"Nuancing",
+desc:"Rewrite these sentences using inversion to make them more emphatic and formal:\n\n1. I have never seen such talent.\n2. She had no sooner arrived than problems began.\n3. Not only did he fail, but he also lied about it.\n4. We had barely started when the power cut out.",
+native:"Inversion: negative/limiting adverb at start forces auxiliary before subject. Very formal and emphatic.",
+answer:"1. NEVER HAVE I seen such talent. (Never + have + subject)\n2. NO SOONER HAD she arrived THAN problems began. (No sooner + had + subject)\n3. This is already inverted correctly. ✅ Not only did he fail, but he also lied.\n4. BARELY HAD we started WHEN the power cut out. (Barely + had + subject)\n\nInversion patterns:\nNever have I... / Rarely does she... / Not only did he... / No sooner had she... / Hardly had they...\n\nWhen to use: formal writing, speeches, emphasising something surprising or emphatic. Very impressive in IELTS/TOEFL writing."},
+
+{title:"Real World: Negotiation Language",col:"#0e6655",bg:"rgba(26,107,94,0.12)",
+type:"realworld",level:4,levelName:"Nuancing",
+desc:"Rewrite these blunt statements as polite professional negotiation language:\n\n1. 'That price is too high.'\n2. 'We can't do that.'\n3. 'Your deadline is impossible.'\n4. 'I want a 20% discount.'",
+native:"Professional negotiation uses softeners, hedges, and indirect language.",
+answer:"1. 'I wonder if there might be some flexibility on the price?'\n2. 'I'm afraid that might present some challenges for us at this stage.'\n3. 'We would need to discuss the timeline — it may be quite ambitious as it stands.'\n4. 'We were hoping to explore the possibility of a revised pricing structure.'\n\nSoftening techniques:\n• I wonder if... / I'm afraid... / We were hoping...\n• Might/may instead of can't/won't\n• Quite/rather/somewhat instead of very/extremely\n• Passive voice: 'some challenges' instead of 'we can't'\n• Nominalisation: 'a revised pricing structure' instead of 'a discount'"},
+
+{title:"Speed Round: Confusable Words",col:"#1a5276",bg:"rgba(96,165,250,0.12)",
+type:"speed",level:4,levelName:"Nuancing",
+desc:"Choose the correct word for each sentence:\n\n1. The weather will (affect/effect) our plans.\n2. She (lent/borrowed) her umbrella to a colleague.\n3. I need your (advice/advise) on this matter.\n4. The film had a powerful (affect/effect) on me.\n5. Can you (learn/teach) me how to drive?",
+native:"These pairs are among the most commonly confused words in English.",
+answer:"1. AFFECT (verb — to influence something)\n2. LENT (she gave it — lend = give temporarily)\n3. ADVICE (noun — what you receive)\n4. EFFECT (noun — the result or impact)\n5. TEACH (you give knowledge to someone — learn = you receive knowledge)\n\nMemory tricks:\nAFFECT = Action (verb). EFFECT = End result (noun)\nLEND = give. BORROW = take\nADVICE = noun (rhymes with ice). ADVISE = verb (rhymes with rise)\nTEACH = give knowledge. LEARN = gain knowledge"},
+
+{title:"Choose & Justify: Verb Patterns",col:"#6c3483",bg:"var(--teal-dim)",
+type:"choose",level:4,levelName:"Nuancing",
+desc:"These pairs of sentences have different meanings. Explain the difference:\n\n1a) 'I remember locking the door.' vs 1b) 'I remember to lock the door.'\n2a) 'She stopped smoking.' vs 2b) 'She stopped to smoke.'\n3a) 'He tried opening the window.' vs 3b) 'He tried to open the window.'",
+native:"Some verbs change meaning depending on whether gerund or infinitive follows.",
+answer:"1a) REMEMBER + gerund = I have a memory of doing it (it happened, I recall it)\n1b) REMEMBER + infinitive = I must not forget to do it (future obligation)\n\n2a) STOP + gerund = she permanently quit the habit\n2b) STOP + infinitive = she paused what she was doing IN ORDER TO smoke\n\n3a) TRY + gerund = experiment — she tried it as a possible solution\n3b) TRY + infinitive = make an effort — she attempted but may have failed\n\nOther pairs with meaning change: forget doing/to do, regret doing/to do"},
+
+// ============================================================
+// LEVEL 5 — APPLYING (Real professional context)
+// ============================================================
+
+{title:"Real World: Job Interview",col:"#1e8449",bg:"rgba(74,222,128,0.12)",
+type:"realworld",level:5,levelName:"Applying",
+desc:"You are in a job interview. Write natural professional answers (2-3 sentences each) to:\n\n1. 'Tell me about a challenge you overcame at work.'\n2. 'Where do you see yourself in five years?'\n3. 'Why should we hire you?'",
+native:"Job interview English uses past narrative, future ambition language, and confident assertions.",
+answer:"Model answers:\n1. 'In my previous role, I was faced with a tight deadline when a team member left unexpectedly. I reorganised the workload and communicated clearly with the client, and we delivered the project on time. It taught me a lot about resilience and prioritisation.'\n\n2. 'In five years, I hope to have developed significantly in my area of expertise and to be taking on greater responsibility within the organisation. I am particularly interested in developing my leadership skills.'\n\n3. 'I bring a combination of technical expertise and strong communication skills, which I believe are both essential for this role. I am highly motivated, I adapt quickly to new environments, and I have a strong track record of delivering results.'\n\nKey structures: faced with (passive), I hope to have (future perfect), I bring / I am (present simple for qualities)"},
+
+{title:"Fix It: Academic Writing",col:"#d35400",bg:"var(--coral-dim)",
+type:"fix",level:5,levelName:"Applying",
+desc:"This paragraph is too informal for academic writing. Rewrite it in formal academic style:\n\n'Social media is really bad for teenagers. Lots of studies show that kids who use it too much get depressed. We should probably do something about it. Companies need to stop making it addictive.'",
+native:"Academic writing: formal vocabulary, hedging language, passive voice, no contractions.",
+answer:"Model rewrite:\n'Research suggests that excessive social media use may have detrimental effects on adolescent mental health. A number of studies have indicated a correlation between prolonged use and increased rates of depression among young people. It has been argued that regulatory measures should be considered. Furthermore, technology companies could be required to address the addictive design features of their platforms.'\n\nChanges made:\n• 'really bad' → 'detrimental effects'\n• 'lots of studies' → 'a number of studies'\n• 'kids' → 'adolescents/young people'\n• 'We should probably' → 'It has been argued' (impersonal/passive)\n• 'stop making it addictive' → 'address addictive design features'"},
+
+{title:"Transform: Register Shifting",col:"#c49a1a",bg:"var(--gold-dim)",
+type:"transform",level:5,levelName:"Applying",
+desc:"Rewrite this casual text message as:\n1. A formal business email\n2. A spoken presentation opener\n3. A social media post\n\nOriginal: 'Hey everyone, just wanted to say our new product is out and it is honestly amazing. You should totally try it!'",
+native:"The same message needs completely different language for different audiences.",
+answer:"1. Business email: 'Dear Valued Customers, We are delighted to announce the launch of our latest product. We would be pleased to invite you to explore its features at your earliest convenience.'\n\n2. Presentation opener: 'Good morning, ladies and gentlemen. Today marks an exciting milestone for our company — the official launch of our newest product, which we believe represents a significant advancement in our field.'\n\n3. Social media: '🚀 Big news! Our brand new product just dropped and we are OBSESSED. Tap the link in bio to try it first — you are going to love it! 🔥'\n\nKey differences:\n• Business: passive voice, formal vocabulary, no contractions\n• Presentation: structured opening, first person plural (we), dramatic pausing\n• Social media: emojis, short punchy sentences, direct address (you), exclamation"},
+
+{title:"Spot the Difference: Subjunctive",col:"#1565c0",bg:"rgba(167,139,250,0.12)",
+type:"spot",level:5,levelName:"Applying",
+desc:"Explain why these sentences use 'were' instead of 'was', and complete the pattern:\n\n1. 'If I were you, I would apologise immediately.'\n2. 'I wish I were taller.'\n3. Complete: 'She acts as if she ___ the boss.' (be)\n4. Complete: 'It is essential that he ___ present.' (be)",
+native:"Subjunctive mood: used for hypothetical, wished, or formally required situations.",
+answer:"1. IF I WERE = subjunctive — hypothetical/unreal situation (I am not you)\n2. I WISH I WERE = subjunctive after wish — expressing unreal desire\n3. She acts as if she WERE the boss. (she is not — hypothetical)\n4. It is essential that he BE present. (bare subjunctive — formal requirement)\n\nSubjunctive rules:\n• If I were / as if she were = unreal present conditions\n• I wish I were = unreal wishes\n• It is essential/important/vital THAT + subject + BASE VERB (no -s, no -ed)\n• It is essential that she BE there ✅ (not 'is')\n\nThis is a mark of advanced English — most native speakers use it naturally without realising."},
+
+{title:"Build Up: Cause and Effect Chains",col:"#c0392b",bg:"linear-gradient(135deg,#c0392b20,#c0392b10)",
+type:"buildup",level:5,levelName:"Applying",
+desc:"Build a cause-and-effect chain of 4 connected sentences using these connectors:\n\nStart with: 'She did not sleep well last night.'\nUse: therefore / which meant that / as a result / consequently",
+native:"Sophisticated writing chains causes and effects using varied connectors.",
+answer:"Model chain:\n'She did not sleep well last night. She was therefore exhausted when she arrived at work, which meant that her concentration was significantly impaired. As a result, she made several errors in her report. Consequently, her manager asked her to stay late to correct them.'\n\nConnector guide:\n• Therefore = formal cause → effect (used mid-sentence)\n• Which meant that = natural spoken/written link\n• As a result = starts new sentence, shows result\n• Consequently = formal, starts new sentence\n\nNote: Do not overuse therefore — vary with hence, thus, as a consequence, this led to."},
+
+{title:"Speed Round: Punctuation",col:"#0e6655",bg:"rgba(26,107,94,0.12)",
+type:"speed",level:5,levelName:"Applying",
+desc:"Add correct punctuation to all five:\n\n1. however she decided to go anyway\n2. its a beautiful day isnt it\n3. She bought milk bread eggs and butter\n4. After finishing his work he went home\n5. The report which took three weeks was finally complete",
+native:"Punctuation in English is rule-based. Commas, apostrophes, and capital letters have specific rules.",
+answer:"1. However, she decided to go anyway. (comma after however when starting a sentence)\n2. It's a beautiful day, isn't it? (it's = apostrophe; comma before tag question)\n3. She bought milk, bread, eggs, and butter. (Oxford comma before and in a list)\n4. After finishing his work, he went home. (comma after introductory phrase)\n5. The report, which took three weeks, was finally complete. (commas around non-defining relative clause)\n\nKey rules:\n• However/Nevertheless/Therefore at sentence start → always followed by comma\n• Non-defining relative clauses → commas around them\n• Tag questions → comma before them"},
+
+// ============================================================
+// LEVEL 6 — TRANSFORMING (Restructure completely)
+// ============================================================
+
+{title:"Transform: Nominalisation",col:"#1a5276",bg:"rgba(96,165,250,0.12)",
+type:"transform",level:6,levelName:"Transforming",
+desc:"Transform these simple sentences into formal written English using nominalisation (turning verbs into nouns):\n\n1. 'The economy grew rapidly last year.'\n2. 'They decided to invest in renewable energy.'\n3. 'The government failed to act on climate change.'",
+native:"Nominalisation makes writing more formal and precise. Common in academic and business writing.",
+answer:"1. 'There was rapid GROWTH in the economy last year.' (grew → growth)\n2. 'A DECISION was made to INVEST in renewable energy.' (decided → decision; also passive)\n3. 'The government's FAILURE TO ACT on climate change...' (failed → failure)\n\nNominalisation patterns:\n• decide → decision\n• grow → growth\n• fail → failure\n• invest → investment\n• improve → improvement\n• discover → discovery\n\nWhy use it: Creates distance between the writer and the statement — more objective and academic sounding."},
+
+{title:"Fix It: Mixed Conditionals",col:"#6c3483",bg:"var(--teal-dim)",
+type:"fix",level:6,levelName:"Transforming",
+desc:"Fix these mixed conditional errors:\n\n1. 'If I would have studied medicine, I would be a doctor now.'\n2. 'If she is more confident, she would have applied for the job.'\n3. 'Had he took the earlier flight, he would be here now.'",
+native:"Mixed conditionals: past condition + present result, or present state + past result.",
+answer:"1. 'If I HAD STUDIED medicine, I would be a doctor now.' (past condition → present result)\nRemove WOULD from the if-clause — never 'if I would have'\n\n2. 'If she WERE more confident, she would have applied for the job.' (present state → past result)\nWere not is — subjunctive for unreal present\n\n3. 'Had he TAKEN the earlier flight, he would be here now.' (inverted third conditional → present result)\nTook → taken (past participle after had)\n\nMixed conditional logic:\nType 1: IF + past perfect → WOULD + base verb (past cause, present effect)\nType 2: IF + past simple → WOULD HAVE + past participle (present state, past missed chance)"},
+
+{title:"Real World: Persuasive Writing",col:"#1e8449",bg:"rgba(74,222,128,0.12)",
+type:"realworld",level:6,levelName:"Transforming",
+desc:"Write a persuasive paragraph (5-6 sentences) arguing that companies should allow employees to work from home.\n\nMust include:\n• A strong topic sentence\n• Two supporting arguments with evidence language\n• A counterargument acknowledged and dismissed\n• A concluding call to action",
+native:"Persuasive writing: topic sentence, evidence, concession, conclusion. Formal but engaging.",
+answer:"Model paragraph:\n'There is compelling evidence to suggest that remote working benefits both employees and organisations alike. Research has consistently shown that employees who work from home report higher levels of job satisfaction and produce measurably greater output. Furthermore, companies that offer flexible working arrangements tend to attract and retain talent more effectively, reducing costly staff turnover. While some argue that remote working undermines team cohesion, this concern can be readily addressed through regular virtual meetings and periodic in-person gatherings. It is therefore time for organisations to embrace flexible working not merely as a perk but as a strategic necessity.'\n\nStructure:\n• Topic sentence: There is compelling evidence...\n• Evidence 1: Research has consistently shown...\n• Evidence 2: Furthermore, companies that...\n• Counterargument: While some argue... this concern can be...\n• Conclusion: It is therefore time..."},
+
+{title:"Spot the Difference: Participle Clauses",col:"#d35400",bg:"var(--coral-dim)",
+type:"spot",level:6,levelName:"Transforming",
+desc:"Explain why sentence B is incorrect and fix it:\n\n1A) 'Walking into the room, she noticed something unusual.'\n1B) 'Walking into the room, the phone rang.'\n\n2A) 'Having finished her work, she went home.'\n2B) 'Having finished her work, a party was organised.'\n\nThen write your own correct participle clause sentence.",
+native:"Participle clauses share their subject with the main clause. Dangling modifiers are a common error.",
+answer:"1B) WRONG — the phone did not walk into the room. The subject of 'walking' must match the subject of the main clause.\nFix: 'Walking into the room, SHE heard the phone ring.' OR 'As she walked into the room, the phone rang.'\n\n2B) WRONG — the party did not finish her work. The implied subject of 'having finished' must be the subject of the main clause.\nFix: 'Having finished her work, SHE organised a party.' OR 'After she finished her work, a party was organised.'\n\nThis error is called a DANGLING MODIFIER — one of the most common advanced errors even in native writing.\n\nYour sentence model: 'Having studied for three hours, she felt ready for the exam.'"},
+
+{title:"Build Up: Discourse Markers for Essays",col:"#c49a1a",bg:"var(--gold-dim)",
+type:"buildup",level:6,levelName:"Transforming",
+desc:"Write a 6-sentence mini-essay on 'the benefits of learning a second language' using each of these discourse markers exactly once:\n\nFirstly / Furthermore / However / Nevertheless / In conclusion / It could be argued that",
+native:"Discourse markers organise argument and signal logical relationships between ideas.",
+answer:"Model essay:\n'Firstly, learning a second language significantly enhances cognitive ability, improving memory and problem-solving skills. Furthermore, bilingual individuals consistently demonstrate greater cultural empathy and communication flexibility in professional settings. However, the process requires substantial time and sustained commitment, which many learners find challenging. It could be argued that language learning apps and online resources have made this process more accessible than ever before. Nevertheless, true fluency still requires meaningful interaction with native speakers and real-world practice. In conclusion, the personal, professional and cognitive benefits of bilingualism far outweigh the initial difficulties involved.'\n\nNote the logical flow:\nFirstly = first argument\nFurthermore = adds second argument\nHowever = introduces challenge\nIt could be argued that = introduces alternative view\nNevertheless = dismisses challenge\nIn conclusion = summarises"},
+
+// ============================================================
+// LEVEL 7 — ANALYSING (Explain the WHY)
+// ============================================================
+
+{title:"Choose & Justify: Advanced Vocabulary",col:"#1565c0",bg:"rgba(167,139,250,0.12)",
+type:"choose",level:7,levelName:"Analysing",
+desc:"For each sentence, choose the more precise word AND explain why it is better:\n\n1. The politician's speech was (good/compelling).\n2. She felt (sad/devastated) when she heard the news.\n3. The evidence (shows/substantiates) the theory.\n4. His behaviour was (bad/reprehensible).",
+native:"Precise vocabulary shows mastery. Every word has a specific meaning beyond its general category.",
+answer:"1. COMPELLING — it does not just mean good, it means impossible to ignore or look away from. More precise and powerful.\n2. DEVASTATED — not just sad but completely overwhelmed with grief. The intensity is important.\n3. SUBSTANTIATES — formal and specific: provides evidence that proves or supports. 'Shows' is vague.\n4. REPREHENSIBLE — not just bad but morally deserving of strong criticism. Carries a moral judgment.\n\nWhy precision matters:\nThe difference between good and compelling is the difference between a basic student and a sophisticated writer. Examiners, employers and native speakers notice word choice immediately.\n\nChallenge: Replace 'nice', 'big', 'very', 'a lot of' and 'good' in your writing — they are almost always improvable."},
+
+{title:"Fix It: Complex Error Analysis",col:"#c0392b",bg:"linear-gradient(135deg,#c0392b20,#c0392b10)",
+type:"fix",level:7,levelName:"Analysing",
+desc:"This paragraph has 6 errors. Find them ALL, fix them, and name the error type:\n\n'The data which was collect last year suggest that exercise improve mental health. Participants who exercised regular were found to sleep more better and report less anxiety. These findings, that were publish in a medical journal, has provoked considerable debate.'",
+native:"Advanced error identification: passive voice, subject-verb agreement, adverbs, comparatives.",
+answer:"1. 'was collect' → WAS COLLECTED (passive: was + past participle) — Passive Voice Error\n2. 'suggest' → SUGGESTS (the data = uncountable singular) — Subject-Verb Agreement\n3. 'improve' → IMPROVES (singular subject) — Subject-Verb Agreement\n4. 'regular' → REGULARLY (adverb needed to modify verb 'exercised') — Adverb Error\n5. 'more better' → BETTER (never more with comparative adjective) — Comparative Error\n6. 'that were publish' → WHICH WERE PUBLISHED (non-defining relative clause = which; passive = past participle) — Two errors: Relative Pronoun + Passive Voice\n\nBonus: 'has provoked' should be HAVE PROVOKED (findings = plural subject)"},
+
+{title:"Spot the Difference: Register and Tone",col:"#0e6655",bg:"rgba(26,107,94,0.12)",
+type:"spot",level:7,levelName:"Analysing",
+desc:"Analyse the difference in register, vocabulary, grammar and tone between these two versions of the same message:\n\nVersion A: 'Hey! Can't make the meeting tomorrow — something came up. Let me know what I missed. Cheers'\n\nVersion B: 'Dear colleagues, I regret to inform you that I am unfortunately unable to attend tomorrow's meeting due to a prior commitment. I would be grateful if someone could forward the minutes at their earliest convenience. Kind regards'",
+native:"Register analysis: vocabulary, grammar structures, tone markers, and social distance all vary.",
+answer:"VERSION A (informal):\n• Vocabulary: Hey, Can't, came up, missed, Cheers — casual contractions and idioms\n• Grammar: Incomplete sentences ('Something came up' — no subject explanation)\n• Tone: Friendly, casual, implies close relationship\n• Social distance: Small — equal peers or friends\n\nVERSION B (formal):\n• Vocabulary: regret to inform, unfortunately, prior commitment, grateful, earliest convenience\n• Grammar: Full sentences, no contractions, passive mood\n• Tone: Professional, slightly distant, apologetic\n• Social distance: Large — formal hierarchy or unknown recipient\n\nKey markers of formality: 'I regret to' vs 'can't', 'prior commitment' vs 'something came up', 'Kind regards' vs 'Cheers', full name vs first name only"},
+
+{title:"Real World: Interview Feedback",col:"#1a5276",bg:"rgba(96,165,250,0.12)",
+type:"realworld",level:7,levelName:"Analysing",
+desc:"You are a manager writing feedback for a job applicant who was NOT selected.\n\nWrite 4-5 sentences that:\n• Thank them professionally\n• Give honest but kind feedback\n• Encourage them appropriately\n• Use diplomatic language throughout\n\nChallenge: use at least 3 of these diplomacy techniques: hedging, positive framing, passive voice, softened negatives",
+native:"Diplomatic English: softening bad news is a sophisticated and essential professional skill.",
+answer:"Model feedback:\n'Thank you for taking the time to interview for this position — it was a pleasure to learn more about your background and experience. On this occasion, we have decided to proceed with a candidate whose profile more closely matches our current requirements, though we were genuinely impressed by your communication skills and enthusiasm. It may be worth developing your experience in project management, as this is an area where the successful candidate was particularly strong. We would certainly encourage you to apply again in the future, as we believe you have considerable potential.'\n\nDiplomacy techniques used:\n• Hedging: 'It may be worth...' (not 'you must')\n• Positive framing: 'we were genuinely impressed' before the negative\n• Passive voice: 'we have decided to proceed' (impersonal)\n• Softened negative: 'more closely matches' instead of 'you were not good enough'"},
+
+{title:"Build Up: Argumentation Chain",col:"#6c3483",bg:"var(--teal-dim)",
+type:"buildup",level:7,levelName:"Analysing",
+desc:"Build a complete argument chain on the topic 'Technology in Education' with exactly 5 steps:\n\nStep 1: Make a claim\nStep 2: Support with evidence\nStep 3: Give a real example\nStep 4: Acknowledge a counterargument\nStep 5: Refute it and conclude",
+native:"Academic argumentation: claim, evidence, example, counterargument, refutation.",
+answer:"Step 1 — Claim: 'Technology has fundamentally transformed the educational experience for learners across the world.'\n\nStep 2 — Evidence: 'Research consistently demonstrates that students who have access to digital learning tools perform measurably better in both comprehension and retention of material.'\n\nStep 3 — Example: 'A 2023 study of secondary schools in Finland found that students using adaptive learning software improved their mathematics scores by 23% over one academic year.'\n\nStep 4 — Counterargument: 'Critics, however, contend that excessive screen time reduces attention spans and diminishes the quality of face-to-face teacher interaction.'\n\nStep 5 — Refutation and conclusion: 'While this concern has merit, it addresses implementation rather than the technology itself. When integrated thoughtfully, digital tools complement rather than replace human teaching, producing outcomes that neither approach achieves alone.'\n\nThis 5-step structure is the foundation of all strong academic and professional argument."},
+
+// ============================================================
+// LEVEL 8 — MASTERING (Native-level precision)
+// ============================================================
+
+{title:"Transform: Three Ways to Say the Same Thing",col:"#1e8449",bg:"rgba(74,222,128,0.12)",
+type:"transform",level:8,levelName:"Mastering",
+desc:"Express this idea in THREE grammatically different but equally correct ways. Then explain the subtle difference between them:\n\nIdea: 'The meeting happened before I arrived.'",
+native:"Native speakers have multiple structures for the same idea and choose based on focus and emphasis.",
+answer:"1. 'By the time I arrived, the meeting had already started.' (past perfect — emphasises sequence, my lateness)\n2. 'The meeting had started before I arrived.' (past perfect — neutral, factual sequence)\n3. 'I arrived to find the meeting already underway.' (arrived + to find — emphasises my discovery/surprise)\n4. Bonus: 'The meeting was in progress when I arrived.' (past continuous — emphasises ongoing action)\n\nSubtle differences:\n• Version 1 emphasises consequence of my timing\n• Version 2 is purely factual\n• Version 3 adds a sense of discovery and mild surprise\n• Version 4 focuses on the ongoing state\n\nNative speakers choose between these instinctively based on what they want to emphasise. This flexibility is the mark of true fluency."},
+
+{title:"Fix It: Native-Level Precision",col:"#d35400",bg:"var(--coral-dim)",
+type:"fix",level:8,levelName:"Mastering",
+desc:"These sentences are grammatically correct but sound unnatural to a native speaker. Identify WHY and rewrite them naturally:\n\n1. 'I am very agree with what you said.'\n2. 'She is very interesting in learning guitar.'\n3. 'He made me to feel very comfortable.'\n4. 'I am looking forward to meet you.'\n5. 'This is a very good information.'",
+native:"Grammatically plausible but unnatural — these reveal non-native patterns that advanced learners still make.",
+answer:"1. 'I completely agree with what you said.' (agree is a VERB — never 'am agree')\n2. 'She is very interested in learning guitar.' (interested, not interesting — she feels it)\n3. 'He made me feel very comfortable.' (make + object + BASE VERB — no 'to')\n4. 'I am looking forward to MEETING you.' (look forward to + GERUND — 'to' is a preposition here, not part of infinitive)\n5. 'This is very useful information.' (information is uncountable — no 'a')\n\nWhy these are hard:\nAll five follow plausible logic but violate fixed English patterns.\nNative speakers would immediately notice each one — not because of grammar rules but because of what 'feels right' from years of exposure.\n\nThis is the gap between B2 and C1 English — knowing the rules vs knowing how it actually sounds."},
+
+{title:"Real World: Difficult Conversation",col:"#c49a1a",bg:"var(--gold-dim)",
+type:"realworld",level:8,levelName:"Mastering",
+desc:"Write the script for a manager telling an employee their performance needs to improve.\n\nRequirements:\n• Acknowledge something positive first\n• Be specific about the problem without being personal\n• Use diplomatic but clear language\n• End with a constructive path forward\n• Must feel natural and human — not robotic or corporate",
+native:"Difficult conversations in English require precise word choice, emotional intelligence, and diplomatic clarity.",
+answer:"Model script:\n'Thanks for coming in, [Name]. I want to start by saying that your technical work on the last project was genuinely impressive — the client noticed. What I do want to talk about, and I think you know this is coming, is the timekeeping. Over the last six weeks, there have been seven late arrivals and two missed deadlines. I am not raising this to make things uncomfortable — I am raising it because I think you are capable of more, and I want us to find out together what is getting in the way. Is there something going on that is making it harder to manage your time at the moment?'\n\nTechniques used:\n• 'I want to start by saying...' = positive framing before criticism\n• 'the timekeeping' not 'you are always late' = issue-focused not person-focused\n• Specific evidence: 'seven late arrivals, two missed deadlines'\n• 'I am raising it because I think you are capable of more' = positive reframe\n• Ends with a question = opens dialogue rather than closing it down"},
+
+{title:"Spot the Difference: Connotation",col:"#c0392b",bg:"linear-gradient(135deg,#c0392b20,#c0392b10)",
+type:"spot",level:8,levelName:"Mastering",
+desc:"Explain the connotation difference between these words that have similar dictionary meanings:\n\n1. slim vs skinny vs slender\n2. confident vs arrogant vs assertive\n3. unique vs strange vs unusual\n4. economical vs cheap vs frugal",
+native:"Connotation is the emotional or cultural meaning beyond the dictionary definition. Native-level awareness.",
+answer:"1. SLIM = neutral/positive (healthy and lean). SKINNY = slightly negative (too thin, unhealthy). SLENDER = positive and elegant (graceful thinness).\n\n2. CONFIDENT = positive (believes in themselves appropriately). ARROGANT = negative (believes they are better than others). ASSERTIVE = positive/neutral (expresses views clearly and directly).\n\n3. UNIQUE = positive (one of a kind, special). STRANGE = negative/curious (odd, unexpected, possibly unsettling). UNUSUAL = neutral (not common, neither positive nor negative).\n\n4. ECONOMICAL = positive (uses resources wisely). CHEAP = negative (values money over quality or generosity). FRUGAL = positive/neutral (deliberately careful with money, often a lifestyle choice).\n\nWhy this matters: Native speakers choose words for their connotation, not just their meaning. Calling someone 'skinny' instead of 'slim' can cause offence even though both mean 'thin'. This is C2 level language awareness."},
+
+{title:"Build Up: Complete Writing Portfolio",col:"#0e6655",bg:"rgba(26,107,94,0.12)",
+type:"buildup",level:8,levelName:"Mastering",
+desc:"Write the SAME piece of information in 4 completely different formats:\n\nInformation: A company is reducing its workforce by 15% due to economic pressures.\n\nFormat 1: Official company announcement (3 sentences)\nFormat 2: Newspaper headline + opening paragraph (2 sentences)\nFormat 3: Employee WhatsApp message (2 sentences)\nFormat 4: Academic analysis (3 sentences)",
+native:"True mastery means adapting the same content to any format, audience or purpose instantly.",
+answer:"Format 1 — Official announcement: 'Following a thorough review of our operational requirements, the Board has made the difficult decision to reduce our workforce by 15%. This decision reflects the sustained economic pressures facing our industry and was not taken lightly. Affected employees will be informed individually and supported throughout the transition process.'\n\nFormat 2 — Newspaper: 'TECH FIRM AXES 200 JOBS AMID PROFIT WARNINGS. [Company] announced yesterday that it would cut 15% of its global workforce, citing mounting economic pressures and declining revenues in its core markets.'\n\nFormat 3 — WhatsApp: 'Just heard the company is letting 15% of staff go 😬 Apparently it is the economy. Really hoping we are OK...'\n\nFormat 4 — Academic: 'Corporate downsizing, defined as the strategic reduction of an organisation's workforce, has become an increasingly prevalent response to macroeconomic instability. The decision to reduce headcount by 15% reflects broader structural pressures affecting the sector. Such measures, while economically rational in the short term, carry significant implications for employee wellbeing and organisational culture.'\n\nThis exercise tests your complete command of English across all registers — the ultimate test of true language mastery."}
+
+,
+{title:"Speed Round: C1 Mixed Mastery",col:"#c49a1a",bg:"var(--gold-dim)",type:"speed",level:8,levelName:"Mastering",desc:"Five C1-level challenges:\n\n1. Difference between 'I wish I had gone' and 'If only I had gone'?\n2. Rewrite using a cleft: 'Hard work made her successful.'\n3. Name 3 verbs changing meaning with gerund vs infinitive.\n4. What does 'notwithstanding' mean? Give an example.\n5. Which is correct: 'The committee have decided' or 'has decided'?",native:"C1 mastery: nuance, precision, rare structures, native-level awareness.",answer:"1. Almost identical — both express past regret. If only is slightly more emphatic.\n\n2. It was hard work that made her successful.\n\n3. Remember, stop, try — all change meaning with gerund vs infinitive.\n\n4. Notwithstanding = despite. Example: Notwithstanding the difficulties, we succeeded.\n\n5. Both correct. British English uses HAVE (committee as individuals). American English uses HAS (committee as one unit)."}
+
 ];
+
 
 var MISTAKES_DATA={
   Spanish:["Saying 'I am agree' should be 'I agree' (agree is a verb not an adjective)","'since 5 years' should be 'for 5 years' (for = duration, since = starting point)","'She said me' should be 'She told me' (tell requires a person object)","'She work' should be 'She works' (third person singular needs -s)","'make homework' should be 'do homework'","'embarrassed' means ashamed NOT pregnant (false cognate)","'I am knowing' should be 'I know' (stative verbs no continuous)","'I don't know nothing' should be 'I don't know anything' (no double negatives)","'a house big' should be 'a big house' (adjectives come before nouns)","'actually' means 'in fact' not 'currently'","'I am having a car' should be 'I have a car' (possession not continuous)","Overusing 'very': try 'extremely' or 'incredibly' for stronger emphasis","'I am not agree' should be 'I disagree'","'I did it by you' should be 'I did it for you'","'I assisted the meeting' should be 'I attended the meeting'"],

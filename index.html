@@ -1505,6 +1505,10 @@ button, .tbtn, .tgrp { -webkit-tap-highlight-color: transparent; }
     </div>
   </div>
   <div style="flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:8px" id="collList"></div>
+<div style="margin-top:16px;border-top:1px solid rgba(255,255,255,0.08);padding-top:14px">
+<div id="ccGame"></div>
+</div>
+
 </div>
 
 <!-- ═══════ NEW W4: ERROR PATTERN DECODER ═══════ -->
@@ -8901,7 +8905,7 @@ function showTab(name,btn){
   if(name==='cheatsheet')setTimeout(buildCheatSheet,50);
   if(name==='connected')setTimeout(renderCS,50);
   if(name==='minimalpairs')setTimeout(function(){mpMode('identify',document.getElementById('mpM1'));},50);
-  if(name==='collocations')setTimeout(function(){renderCollocations();},50);
+  if(name==='collocations')setTimeout(function(){renderCollocations();ccInit();},50);
   if(name==='wordbuilder')setTimeout(function(){renderWordBuilder();},50);
 
   // Auto-render accent cards when accents panel opened
@@ -13444,6 +13448,718 @@ EPC_DATA['collocations'] = {
     { wrong: 'Please make a research before deciding.', right: 'Please do research before deciding.', error: 'make a research', fix: 'do research', explanation: 'DO research — fixed collocation. Also: research is uncountable — no "a". Do research.' },
   ]
 };
+
+</script>
+
+<script>
+// ============================================================
+// COLLOCATIONS COACH — Dynamic Match Game Engine
+// Never repeats — infinite combinations from existing data
+// 5 game modes rotate randomly for variety
+// ============================================================
+
+var CC_GAME = {
+
+  // ── STATE ─────────────────────────────────────────────────
+  state: {
+    mode: null,
+    score: 0,
+    total: 0,
+    streak: 0,
+    bestStreak: 0,
+    round: 0,
+    answered: false,
+    sessionSeen: [], // track what was shown this session
+    allTime: []      // track across sessions via localStorage
+  },
+
+  // ── 5 GAME MODES ──────────────────────────────────────────
+  modes: [
+    { id: 'which_verb',    name: 'Which verb fits?',      icon: '🎯', color: '#60A5FA',  desc: 'Choose the correct verb for each noun phrase' },
+    { id: 'odd_one_out',   name: 'Odd One Out',           icon: '🔍', color: '#F59E0B',  desc: 'Find the noun that does NOT collocate with this verb' },
+    { id: 'wrong_or_right',name: 'Wrong or Right?',       icon: '⚡', color: '#4ADE80',  desc: 'Is this collocation natural English?' },
+    { id: 'complete_it',   name: 'Complete the sentence', icon: '✍️', color: '#A78BFA',  desc: 'Choose the correct collocation to complete the sentence' },
+    { id: 'adj_match',     name: 'Adjective Match',       icon: '🎨', color: '#FB923C',  desc: 'Which adjective collocates with all these nouns?' },
+  ],
+
+  // ── QUESTION GENERATORS ───────────────────────────────────
+
+  // MODE 1: Which verb fits? — show a noun, choose the right verb
+  gen_which_verb: function() {
+    var verbs = COLL_DATA.verbs;
+    // Pick a random target verb
+    var target = verbs[Math.floor(Math.random() * verbs.length)];
+    var noun = target.nouns[Math.floor(Math.random() * target.nouns.length)];
+    
+    // Get 3 wrong verbs
+    var others = verbs.filter(function(v){ return v.verb !== target.verb; });
+    others.sort(function(){ return Math.random() - 0.5; });
+    var wrong = others.slice(0, 3).map(function(v){ return v.verb; });
+    
+    // Shuffle options
+    var options = [target.verb].concat(wrong).sort(function(){ return Math.random() - 0.5; });
+    
+    return {
+      question: 'Which verb goes with <strong style="color:#F5C842">"' + noun + '"</strong>?',
+      options: options,
+      correct: target.verb,
+      explanation: target.tip,
+      wrongTip: target.wrong,
+      type: 'single'
+    };
+  },
+
+  // MODE 2: Odd One Out — show a verb + 4 nouns, one doesn't fit
+  gen_odd_one_out: function() {
+    var verbs = COLL_DATA.verbs;
+    var target = verbs[Math.floor(Math.random() * verbs.length)];
+    
+    // Pick 3 correct nouns
+    var shuffled = target.nouns.slice().sort(function(){ return Math.random()-0.5; });
+    var correct3 = shuffled.slice(0, 3);
+    
+    // Pick 1 wrong noun from another verb
+    var others = verbs.filter(function(v){ return v.verb !== target.verb; });
+    var wrongVerb = others[Math.floor(Math.random() * others.length)];
+    var wrongNoun = wrongVerb.nouns[Math.floor(Math.random() * wrongVerb.nouns.length)];
+    
+    // Make sure wrongNoun isn't accidentally correct
+    while(target.nouns.indexOf(wrongNoun) !== -1) {
+      wrongNoun = wrongVerb.nouns[Math.floor(Math.random() * wrongVerb.nouns.length)];
+    }
+    
+    var options = correct3.concat([wrongNoun]).sort(function(){ return Math.random()-0.5; });
+    
+    return {
+      question: 'Which of these does NOT go with <strong style="color:#60A5FA">' + target.verb.toUpperCase() + '</strong>?',
+      options: options,
+      correct: wrongNoun,
+      explanation: '"' + target.verb + ' ' + wrongNoun + '" is not natural. Use "' + wrongVerb.verb + ' ' + wrongNoun + '" instead.',
+      wrongTip: 'The odd one out is "' + wrongNoun + '" — it goes with ' + wrongVerb.verb.toUpperCase() + ', not ' + target.verb.toUpperCase() + '.',
+      type: 'single'
+    };
+  },
+
+  // MODE 3: Wrong or Right? — show a collocation, say if natural or not
+  gen_wrong_or_right: function() {
+    var mistakes = COLL_DATA.mistakes;
+    var verbs = COLL_DATA.verbs;
+    
+    // 50/50 chance of wrong or right
+    var isWrong = Math.random() > 0.5;
+    
+    if(isWrong) {
+      var item = mistakes[Math.floor(Math.random() * mistakes.length)];
+      return {
+        question: 'Is this natural English? <br><div style="font-size:16px;font-weight:700;padding:10px 14px;background:rgba(255,255,255,0.06);border-radius:10px;margin-top:8px;color:rgba(255,255,255,0.90)">"' + item.wrong + '"</div>',
+        options: ['✅ Natural English', '❌ Not natural'],
+        correct: '❌ Not natural',
+        explanation: '❌ "' + item.wrong + '" is not natural. ✅ Say: "' + item.right + '"',
+        wrongTip: item.rule,
+        type: 'single'
+      };
+    } else {
+      var verb = verbs[Math.floor(Math.random() * verbs.length)];
+      var noun = verb.nouns[Math.floor(Math.random() * verb.nouns.length)];
+      var phrase = verb.verb + ' ' + noun;
+      return {
+        question: 'Is this natural English? <br><div style="font-size:16px;font-weight:700;padding:10px 14px;background:rgba(255,255,255,0.06);border-radius:10px;margin-top:8px;color:rgba(255,255,255,0.90)">"' + phrase + '"</div>',
+        options: ['✅ Natural English', '❌ Not natural'],
+        correct: '✅ Natural English',
+        explanation: '✅ "' + phrase + '" is perfectly natural English!',
+        wrongTip: verb.tip,
+        type: 'single'
+      };
+    }
+  },
+
+  // MODE 4: Complete the sentence — fill in the right collocation
+  gen_complete_it: function() {
+    var sentences = [
+      { sentence: 'She _____ a lot of progress in her English.', correct: 'made', wrong: ['did','took','got'], explanation: 'MAKE progress — fixed collocation. Never DO progress.' },
+      { sentence: 'He _____ his homework before dinner every evening.', correct: 'did', wrong: ['made','took','finished'], explanation: 'DO homework — always. Never MAKE homework.' },
+      { sentence: 'They _____ a decision to move to a new city.', correct: 'made', wrong: ['did','took','gave'], explanation: 'MAKE a decision — fixed. Never DO a decision.' },
+      { sentence: 'Can you _____ me a favour and post this letter?', correct: 'do', wrong: ['make','give','get'], explanation: 'DO someone a favour — always. Never make a favour.' },
+      { sentence: 'She _____ a photo of the sunset on her phone.', correct: 'took', wrong: ['made','did','got'], explanation: 'TAKE a photo — fixed. Never MAKE a photo.' },
+      { sentence: 'He _____ a speech at his daughter\'s wedding.', correct: 'gave', wrong: ['made','did','took'], explanation: 'GIVE a speech — natural English. Also acceptable: make a speech.' },
+      { sentence: 'Please _____ attention during the safety briefing.', correct: 'pay', wrong: ['give','take','make'], explanation: 'PAY attention — always. Never give attention.' },
+      { sentence: 'She _____ a promise to call every week.', correct: 'made', wrong: ['did','gave','kept'], explanation: 'MAKE a promise — to create the promise. KEEP a promise = honour it.' },
+      { sentence: 'We need to _____ a meeting before the deadline.', correct: 'have', wrong: ['make','do','take'], explanation: 'HAVE a meeting — fixed. Never MAKE a meeting.' },
+      { sentence: 'He _____ a risk by investing all his savings.', correct: 'took', wrong: ['made','did','gave'], explanation: 'TAKE a risk — fixed collocation. Never MAKE a risk.' },
+      { sentence: 'She _____ advice from her mentor every month.', correct: 'took', wrong: ['got','received','made'], explanation: 'TAKE advice — or SEEK advice. GIVE advice is for the person giving it.' },
+      { sentence: 'The new policy _____ a big difference to our workflow.', correct: 'made', wrong: ['did','gave','created'], explanation: 'MAKE a difference — fixed. Never DO a difference.' },
+      { sentence: 'He _____ great difficulty understanding the accent.', correct: 'had', wrong: ['faced','took','made'], explanation: 'HAVE difficulty — natural collocation. Also: experience difficulty.' },
+      { sentence: 'Let\'s _____ a break and continue after lunch.', correct: 'take', wrong: ['have','make','do'], explanation: 'TAKE a break — standard. HAVE a break is also acceptable in British English.' },
+      { sentence: 'She _____ notes during the entire lecture.', correct: 'took', wrong: ['made','did','wrote'], explanation: 'TAKE notes — fixed collocation. Never MAKE notes (though write notes is ok).' },
+      { sentence: 'They _____ an agreement after three hours of talks.', correct: 'reached', wrong: ['made','did','found'], explanation: 'REACH an agreement — or COME TO an agreement. MAKE an agreement is also used.' },
+      { sentence: 'He _____ research into renewable energy sources.', correct: 'did', wrong: ['made','conducted','took'], explanation: 'DO research — most natural everyday English. Also: conduct research (formal).' },
+      { sentence: 'The storm _____ a lot of damage to the coastline.', correct: 'caused', wrong: ['made','did','gave'], explanation: 'CAUSE damage — most precise. DO damage is also correct collocation.' },
+      { sentence: 'She _____ her best to finish the report on time.', correct: 'did', wrong: ['made','gave','tried'], explanation: 'DO your best — fixed expression. Never MAKE your best.' },
+      { sentence: 'He _____ an impression on everyone at the interview.', correct: 'made', wrong: ['gave','did','left'], explanation: 'MAKE an impression — fixed. Also: LEAVE an impression (both are natural).' },
+    ];
+    
+    // Filter out seen ones this session
+    var seen = CC_GAME.state.sessionSeen;
+    var unseen = sentences.filter(function(s,i){ return seen.indexOf('complete_'+i) === -1; });
+    if(unseen.length < 3) {
+      CC_GAME.state.sessionSeen = CC_GAME.state.sessionSeen.filter(function(s){ return s.indexOf('complete_') === -1; });
+      unseen = sentences.slice();
+    }
+    
+    var item = unseen[Math.floor(Math.random() * unseen.length)];
+    var idx = sentences.indexOf(item);
+    CC_GAME.state.sessionSeen.push('complete_' + idx);
+    
+    var options = [item.correct].concat(item.wrong).sort(function(){ return Math.random()-0.5; });
+    
+    return {
+      question: item.sentence.replace('_____', '<span style="border-bottom:2px solid rgba(245,200,66,0.60);padding:0 8px;color:rgba(245,200,66,0.80)">_____</span>'),
+      options: options,
+      correct: item.correct,
+      explanation: item.explanation,
+      wrongTip: item.explanation,
+      type: 'single'
+    };
+  },
+
+  // MODE 5: Adjective Match — which adj goes with ALL these nouns?
+  gen_adj_match: function() {
+    var adjs = COLL_DATA.adj;
+    var target = adjs[Math.floor(Math.random() * adjs.length)];
+    
+    // Show 3 nouns from the target adj
+    var shuffled = target.nouns.slice().sort(function(){ return Math.random()-0.5; });
+    var shown = shuffled.slice(0, 3);
+    
+    // Get 3 wrong adjectives
+    var others = adjs.filter(function(a){ return a.adj !== target.adj; });
+    others.sort(function(){ return Math.random()-0.5; });
+    var wrong = others.slice(0, 3).map(function(a){ return a.adj; });
+    
+    var options = [target.adj].concat(wrong).sort(function(){ return Math.random()-0.5; });
+    
+    return {
+      question: 'Which adjective goes with <strong>ALL</strong> of these?<br><div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px">' +
+        shown.map(function(n){ return '<span style="padding:4px 10px;background:rgba(251,146,60,0.12);border:1px solid rgba(251,146,60,0.30);border-radius:7px;font-size:13px;font-weight:600;color:#FB923C">_____ ' + n + '</span>'; }).join('') +
+        '</div>',
+      options: options,
+      correct: target.adj,
+      explanation: '"' + target.adj.toUpperCase() + '" goes with: ' + shown.map(function(n){ return target.adj + ' ' + n; }).join(', ') + '.',
+      wrongTip: target.tip,
+      type: 'single'
+    };
+  },
+
+  // ── GENERATE NEXT QUESTION ────────────────────────────────
+  nextQuestion: function() {
+    // Rotate through modes randomly but not same mode twice in a row
+    var modes = CC_GAME.modes;
+    var lastMode = CC_GAME.state.mode;
+    var available = modes.filter(function(m){ return m.id !== lastMode; });
+    var picked = available[Math.floor(Math.random() * available.length)];
+    CC_GAME.state.mode = picked.id;
+    CC_GAME.state.answered = false;
+    CC_GAME.state.round++;
+
+    var q;
+    switch(picked.id) {
+      case 'which_verb':    q = CC_GAME.gen_which_verb(); break;
+      case 'odd_one_out':   q = CC_GAME.gen_odd_one_out(); break;
+      case 'wrong_or_right':q = CC_GAME.gen_wrong_or_right(); break;
+      case 'complete_it':   q = CC_GAME.gen_complete_it(); break;
+      case 'adj_match':     q = CC_GAME.gen_adj_match(); break;
+    }
+    q.mode = picked;
+    CC_GAME.renderQuestion(q);
+  },
+
+  // ── RENDER QUESTION ───────────────────────────────────────
+  renderQuestion: function(q) {
+    var container = document.getElementById('ccGame');
+    if(!container) return;
+
+    var mode = q.mode;
+    var s = CC_GAME.state;
+
+    var html =
+      // Score bar
+      '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">' +
+      '<div style="display:flex;align-items:center;gap:8px">' +
+      '<span style="padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800;background:'+mode.color+'20;color:'+mode.color+';border:1px solid '+mode.color+'40">'+mode.icon+' '+mode.name+'</span>' +
+      '</div>' +
+      '<div style="display:flex;gap:12px">' +
+      '<span style="font-size:12px;font-weight:700;color:rgba(255,255,255,0.60)">Score: <strong style="color:#4ADE80">'+s.score+'</strong></span>' +
+      '<span style="font-size:12px;font-weight:700;color:rgba(255,255,255,0.60)">🔥 '+s.streak+'</span>' +
+      '</div></div>' +
+
+      // Question
+      '<div style="padding:14px 16px;background:rgba(255,255,255,0.05);border:1.5px solid rgba(255,255,255,0.10);border-radius:13px;margin-bottom:12px;font-size:13.5px;color:rgba(255,255,255,0.90);line-height:1.70">' +
+      q.question +
+      '</div>' +
+
+      // Options
+      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:8px">';
+
+    q.options.forEach(function(opt) {
+      html += '<button onclick="ccAnswer(this,\''+opt.replace(/'/g,"\\'").replace(/"/g,'&quot;')+'\','+JSON.stringify(q.correct).replace(/"/g,'&quot;')+')" ' +
+        'style="padding:10px 12px;border-radius:11px;border:1.5px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.85);font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;text-align:left;transition:all .15s" ' +
+        'onmouseover="this.style.borderColor=\''+mode.color+'\';this.style.background=\''+mode.color+'15\'" ' +
+        'onmouseout="if(!this.dataset.answered){this.style.borderColor=\'rgba(255,255,255,0.12)\';this.style.background=\'rgba(255,255,255,0.05)\'}">' +
+        opt + '</button>';
+    });
+
+    html += '</div><div id="ccFeedback"></div>';
+
+    container.innerHTML = html;
+    CC_GAME.currentQ = q;
+  },
+
+  // ── SHOW RESULTS SUMMARY ─────────────────────────────────
+  showMiniStats: function() {
+    var s = CC_GAME.state;
+    var pct = s.total > 0 ? Math.round((s.score/s.total)*100) : 0;
+
+    // Save to localStorage
+    try {
+      var hist = JSON.parse(localStorage.getItem('ne_cc_hist')||'[]');
+      hist.push({ date: new Date().toISOString().split('T')[0], score: pct, rounds: s.total });
+      if(hist.length > 30) hist.shift();
+      localStorage.setItem('ne_cc_hist', JSON.stringify(hist));
+    } catch(e){}
+
+    // Track in NE progress
+    if(typeof NE_track === 'function') NE_track('collocations', {uses:1, score: pct});
+  }
+
+};
+
+// ── GLOBAL FUNCTIONS ──────────────────────────────────────
+function ccAnswer(btn, selected, correct) {
+  if(CC_GAME.state.answered) return;
+  CC_GAME.state.answered = true;
+  CC_GAME.state.total++;
+
+  var isCorrect = selected === correct;
+  if(isCorrect) {
+    CC_GAME.state.score++;
+    CC_GAME.state.streak++;
+    CC_GAME.state.bestStreak = Math.max(CC_GAME.state.bestStreak, CC_GAME.state.streak);
+  } else {
+    CC_GAME.state.streak = 0;
+  }
+
+  // Style the buttons
+  var allBtns = btn.parentElement.querySelectorAll('button');
+  allBtns.forEach(function(b) {
+    b.dataset.answered = '1';
+    b.style.cursor = 'default';
+    var bText = b.textContent.trim();
+    if(bText === correct) {
+      b.style.background = 'rgba(74,222,128,0.15)';
+      b.style.borderColor = '#4ADE80';
+      b.style.color = '#4ADE80';
+    } else if(b === btn && !isCorrect) {
+      b.style.background = 'rgba(255,107,107,0.15)';
+      b.style.borderColor = '#FF6B6B';
+      b.style.color = '#FF6B6B';
+    }
+    b.onmouseover = null;
+    b.onmouseout = null;
+  });
+
+  var q = CC_GAME.currentQ;
+  var s = CC_GAME.state;
+  var feedback = document.getElementById('ccFeedback');
+  if(!feedback) return;
+
+  // Get native explanation
+  var natNote = NL.get ? NL.get('coll_intro') : '';
+
+  feedback.innerHTML =
+    '<div style="margin-top:8px;padding:12px 14px;border-radius:12px;background:'+(isCorrect?'rgba(74,222,128,0.08)':'rgba(255,107,107,0.08)')+';border:1.5px solid '+(isCorrect?'rgba(74,222,128,0.25)':'rgba(255,107,107,0.25)')+'">' +
+    '<div style="font-size:13px;font-weight:800;color:'+(isCorrect?'#4ADE80':'#FF6B6B')+';margin-bottom:6px">' +
+    (isCorrect ? '✅ Correct! +1' : '❌ Not quite') +
+    (s.streak > 2 ? ' &nbsp;🔥 '+s.streak+' in a row!' : '') +
+    '</div>' +
+    '<div style="font-size:12.5px;color:rgba(255,255,255,0.75);margin-bottom:7px;line-height:1.65">📌 ' + q.explanation + '</div>' +
+    (natNote ? '<div style="font-size:12px;color:rgba(245,200,66,0.75);padding:6px 10px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.30);border-radius:0 7px 7px 0;font-style:italic">🌐 In '+lang+': '+natNote+'</div>' : '') +
+    '</div>' +
+    '<div style="display:flex;gap:8px;margin-top:10px">' +
+    '<button onclick="ccNext()" style="flex:1;padding:10px;border-radius:10px;border:none;background:'+q.mode.color+';color:#05070F;font-family:inherit;font-size:13px;font-weight:800;cursor:pointer">Next challenge →</button>' +
+    '<button onclick="ccShowStats()" style="padding:10px 14px;border-radius:10px;border:1.5px solid rgba(255,255,255,0.12);background:transparent;color:rgba(255,255,255,0.60);font-family:inherit;font-size:12px;cursor:pointer">📊 '+s.score+'/'+s.total+'</button>' +
+    '</div>';
+
+  // Auto-save after every 5 rounds
+  if(s.total % 5 === 0) CC_GAME.showMiniStats();
+}
+
+function ccNext() {
+  CC_GAME.nextQuestion();
+}
+
+function ccShowStats() {
+  var s = CC_GAME.state;
+  var pct = s.total > 0 ? Math.round((s.score/s.total)*100) : 0;
+  var container = document.getElementById('ccGame');
+  if(!container) return;
+
+  // Score history
+  var histHtml = '';
+  try {
+    var hist = JSON.parse(localStorage.getItem('ne_cc_hist')||'[]');
+    if(hist.length > 1) {
+      var bars = hist.slice(-10).map(function(h) {
+        var hh = Math.max(4, Math.round(h.score * 0.46));
+        var col = h.score >= 80 ? '#4ADE80' : h.score >= 60 ? '#F5C842' : '#FF6B6B';
+        return '<div title="'+h.date+': '+h.score+'%" style="flex:1;background:'+col+';border-radius:3px 3px 0 0;height:'+hh+'px;min-width:8px"></div>';
+      }).join('');
+      histHtml = '<div style="font-size:10px;font-weight:700;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:6px">Your history</div>' +
+        '<div style="display:flex;align-items:flex-end;gap:3px;height:50px;margin-bottom:14px">'+bars+'</div>';
+    }
+  } catch(e){}
+
+  container.innerHTML =
+    '<div style="text-align:center;padding:16px 0 10px">' +
+    '<div style="font-size:36px;margin-bottom:6px">'+(pct>=80?'🏆':pct>=60?'⭐':'💪')+'</div>' +
+    '<div style="font-size:22px;font-weight:800;color:#60A5FA;margin-bottom:4px">'+pct+'%</div>' +
+    '<div style="font-size:13px;color:rgba(255,255,255,0.50);margin-bottom:4px">'+s.score+' correct of '+s.total+' · Best streak: '+s.bestStreak+'</div>' +
+    '</div>' +
+    histHtml +
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px">' +
+    '<button onclick="ccStartFresh()" style="padding:10px;border-radius:10px;border:none;background:#60A5FA;color:#05070F;font-family:inherit;font-size:13px;font-weight:800;cursor:pointer">🔄 Keep playing</button>' +
+    '<button onclick="ccResetAndStart()" style="padding:10px;border-radius:10px;border:1.5px solid rgba(255,255,255,0.15);background:transparent;color:rgba(255,255,255,0.70);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer">🆕 Fresh start</button>' +
+    '</div>';
+}
+
+function ccStartFresh() {
+  // Continue with existing score
+  CC_GAME.nextQuestion();
+}
+
+function ccResetAndStart() {
+  // Reset scores and start new
+  CC_GAME.state.score = 0;
+  CC_GAME.state.total = 0;
+  CC_GAME.state.streak = 0;
+  CC_GAME.state.bestStreak = 0;
+  CC_GAME.state.round = 0;
+  CC_GAME.state.sessionSeen = [];
+  CC_GAME.nextQuestion();
+}
+
+function ccInit() {
+  var container = document.getElementById('ccGame');
+  if(!container) return;
+
+  // Show best score if available
+  var bestScore = null;
+  try {
+    var hist = JSON.parse(localStorage.getItem('ne_cc_hist')||'[]');
+    if(hist.length > 0) bestScore = Math.max.apply(null, hist.map(function(h){return h.score;}));
+  } catch(e){}
+
+  container.innerHTML =
+    '<div style="padding:14px 16px;background:rgba(96,165,250,0.07);border:1.5px solid rgba(96,165,250,0.20);border-radius:13px;margin-bottom:12px">' +
+    '<div style="font-size:13px;font-weight:800;color:#60A5FA;margin-bottom:6px">🔗 Collocations Match Game</div>' +
+    '<div style="font-size:12px;color:rgba(255,255,255,0.60);line-height:1.65;margin-bottom:10px">5 different challenge types — rotates automatically so every round feels different. No repetition, no boring drills.</div>' +
+    '<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">' +
+    CC_GAME.modes.map(function(m){
+      return '<span style="padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700;background:'+m.color+'15;color:'+m.color+';border:1px solid '+m.color+'30">'+m.icon+' '+m.name+'</span>';
+    }).join('') +
+    '</div>' +
+    (bestScore !== null ? '<div style="font-size:11.5px;color:rgba(255,255,255,0.45);margin-bottom:10px">Your best score: <strong style="color:#4ADE80">'+bestScore+'%</strong></div>' : '') +
+    '<button onclick="CC_GAME.state.score=0;CC_GAME.state.total=0;CC_GAME.state.streak=0;CC_GAME.state.bestStreak=0;CC_GAME.state.round=0;CC_GAME.nextQuestion()" style="width:100%;padding:11px;border-radius:10px;border:none;background:#60A5FA;color:#05070F;font-family:inherit;font-size:14px;font-weight:800;cursor:pointer">▶ Start Challenge</button>' +
+    '</div>';
+}
+
+</script>
+
+<script>
+// ============================================================
+// EXPANDED COLLOCATIONS DATA
+// Adds to existing COLL_DATA after page load
+// ============================================================
+
+(function expandCollData() {
+
+// ── EXTRA VERBS (10 new verbs × 12 nouns each = 120 new) ────
+var extraVerbs = [
+  {verb:'break',nouns:['a record','a promise','the law','a habit','the silence','news','a rule','free','ground','even','away','down'],
+   wrong:'destroy a record / stop a promise',
+   tip:'BREAK a record = exceed it. BREAK a promise = fail to keep it. BREAK the law = disobey it.'},
+  {verb:'run',nouns:['a business','a risk','out of time','late','a marathon','errands','a campaign','for office','a fever','tests','a meeting','smoothly'],
+   wrong:'make a business / do a marathon',
+   tip:'RUN a business = operate it. RUN a risk = take a chance. RUN late = be delayed.'},
+  {verb:'hold',nouns:['a meeting','a conversation','a position','your breath','responsibility','an event','someone accountable','talks','a record','your ground','back','on'],
+   wrong:'make a conversation / do a meeting',
+   tip:'HOLD a meeting = conduct it. HOLD your breath = stop breathing. HOLD a position = occupy a role.'},
+  {verb:'raise',nouns:['a question','awareness','funds','children','your voice','an objection','standards','concerns','money','hopes','eyebrows','the alarm'],
+   wrong:'lift a question / increase awareness',
+   tip:'RAISE a question = bring it up. RAISE awareness = increase knowledge of something. RAISE children = bring them up.'},
+  {verb:'draw',nouns:['a conclusion','attention','a distinction','inspiration','a crowd','criticism','comparisons','a line','breath','a blank','on experience','near'],
+   wrong:'make a conclusion / take attention',
+   tip:'DRAW a conclusion = reach one through reasoning. DRAW attention = attract notice. DRAW a distinction = identify a difference.'},
+  {verb:'reach',nouns:['a conclusion','an agreement','a decision','a target','a compromise','your potential','a deadline','out','a verdict','new heights','a turning point','maturity'],
+   wrong:'arrive a conclusion / get an agreement',
+   tip:'REACH a conclusion = arrive at one. REACH an agreement = come to one. REACH a target = achieve it.'},
+  {verb:'meet',nouns:['a deadline','requirements','expectations','a challenge','someone halfway','your match','an obligation','costs','resistance','approval','a need','criteria'],
+   wrong:'do a deadline / finish requirements',
+   tip:'MEET a deadline = complete by the time. MEET requirements = satisfy them. MEET expectations = fulfil them.'},
+  {verb:'face',nouns:['a challenge','consequences','the facts','criticism','difficulty','a dilemma','reality','charges','opposition','a decision','pressure','competition'],
+   wrong:'meet a challenge / take consequences',
+   tip:'FACE a challenge = confront it. FACE consequences = deal with results of actions. FACE facts = accept reality.'},
+  {verb:'build',nouns:['confidence','a reputation','a relationship','trust','momentum','bridges','a career','a case','consensus','skills','a team','on success'],
+   wrong:'make confidence / create a reputation',
+   tip:'BUILD confidence = develop it gradually. BUILD a reputation = establish it over time. BUILD trust = develop it slowly.'},
+  {verb:'play',nouns:['a role','a part','safe','tricks','by the rules','a key role','catch-up','devil\'s advocate','for time','on words','into someone\'s hands','a game'],
+   wrong:'do a role / make a part',
+   tip:'PLAY a role = have a function. PLAY safe = avoid risk. PLAY by the rules = follow them correctly.'},
+];
+
+// Add existing nouns to existing verbs too
+var verbExtras = {
+  'make': ['an exception','an appointment','a living','a comeback','headlines','matters worse','yourself heard','the most of','ends meet','a stand'],
+  'do': ['wonders','justice to','without','away with','up','the trick','credit to','time','battle','the rounds'],
+  'take': ['for granted','into account','pride in','offence','effect','turns','a stand','the lead','charge','initiative'],
+  'have': ['a say','second thoughts','mixed feelings','a word','the nerve','a go','an edge','in common','a field day','the upper hand'],
+  'get': ['the hang of','carried away','rid of','in touch','out of hand','the wrong end of','cold feet','a grip','nowhere','to grips with'],
+  'give': ['the benefit of the doubt','rise to','way to','the green light','credit to','someone a hand','a wide berth','it a go','the go-ahead','a thumbs up'],
+};
+
+// ── EXTRA ADJECTIVES (7 new × 10 nouns each = 70 new) ────────
+var extraAdjs = [
+  {adj:'broad',nouns:['knowledge','support','agreement','shoulders','daylight','outline','smile','range','perspective','experience'],
+   wrong:'wide knowledge (both ok) / big support',
+   tip:'BROAD knowledge = wide-ranging. BROAD support = from many groups. BROAD daylight = full daylight, openly.'},
+  {adj:'firm',nouns:['believer','decision','foundation','grip','offer','commitment','favourite','ground','evidence','hand'],
+   wrong:'strong decision (both ok) / hard believer',
+   tip:'FIRM believer = strong conviction. FIRM decision = definite. FIRM grip = tight. FIRM offer = definite, not tentative.'},
+  {adj:'bitter',nouns:['disappointment','experience','rivalry','cold','truth','blow','irony','end','dispute','feud'],
+   wrong:'strong disappointment / hard experience',
+   tip:'BITTER disappointment = very painful. BITTER rivalry = intense and hostile. BITTER truth = unpleasant reality.'},
+  {adj:'strong',nouns:['candidate','position','performance','emphasis','ties','suit','language','objection','case','tradition'],
+   wrong:'powerful candidate / big performance',
+   tip:'STRONG candidate = well-qualified. STRONG performance = impressive. STRONG emphasis = great importance placed on something.'},
+  {adj:'wide',nouns:['range','variety','audience','gap','margin','experience','selection','implications','coverage','circulation'],
+   wrong:'big range / large variety (both ok)',
+   tip:'WIDE range = many different types. WIDE audience = many different people. WIDE gap = large difference.'},
+  {adj:'heavy',nouns:['investment','reliance','penalty','criticism','toll','influence','workload','losses','emphasis','price'],
+   wrong:'big investment / strong criticism',
+   tip:'HEAVY investment = large amount. HEAVY reliance = depending too much. HEAVY toll = great cost or damage.'},
+  {adj:'open',nouns:['mind','question','secret','door','competition','debate','arms','wound','invitation','verdict'],
+   wrong:'free mind / public question',
+   tip:'OPEN mind = willing to consider new ideas. OPEN question = not yet resolved. OPEN secret = known by many though officially secret.'},
+];
+
+// ── EXTRA ADVERBS (7 new × 8 each = 56 new) ──────────────────
+var extraAdvs = [
+  {adv:'completely',adj:['different','unaware','wrong','satisfied','overwhelmed','transformed','lost','unnecessary'],
+   wrong:'fully different / totally unaware (both ok)'},
+  {adv:'fully',adj:['aware','committed','responsible','functional','recovered','qualified','prepared','justified'],
+   wrong:'completely aware (both ok) / totally committed'},
+  {adv:'seriously',adj:['consider','damage','injured','concerned','affect','undermine','question','mislead'],
+   wrong:'badly consider / heavily damage'},
+  {adv:'entirely',adj:['different','new','responsible','dependent','up to you','justified','reasonable','voluntary'],
+   wrong:'completely different (both ok) / fully new'},
+  {adv:'genuinely',adj:['concerned','surprised','interested','believe','care','impressed','shocked','committed'],
+   wrong:'truly concerned (both ok) / really surprised (informal)'},
+  {adv:'remarkably',adj:['similar','well','resilient','consistent','calm','effective','different','talented'],
+   wrong:'very similar (informal) / extremely well'},
+  {adv:'fiercely',adj:['competitive','independent','loyal','protective','oppose','resist','defend','proud'],
+   wrong:'very competitive / strongly independent'},
+];
+
+// ── EXTRA COMMON MISTAKES (25 more) ──────────────────────────
+var extraMistakes = [
+  {wrong:'I am boring',right:'I am bored',rule:'BORED = how you feel. BORING = causes the feeling. Never "I am boring" unless you cause others to feel bored.'},
+  {wrong:'She is very interested',right:'She is very interested in it',rule:'INTERESTED requires IN: interested IN something. Not just "interested" without the object.'},
+  {wrong:'He is a very good cooker',right:'He is a very good cook',rule:'COOK = person who cooks. COOKER = the appliance (British English). He is a good COOK.'},
+  {wrong:'I need an advice',right:'I need some advice / a piece of advice',rule:'ADVICE is uncountable — never "an advice". Use: some advice, a piece of advice.'},
+  {wrong:'She made a research',right:'She did research / conducted research',rule:'DO research or CONDUCT research. Never MAKE research. Also: research has no article "a".'},
+  {wrong:'He took a decision',right:'He made a decision',rule:'MAKE a decision = everyday English. TAKE a decision = formal British English (also accepted).'},
+  {wrong:'We did a party',right:'We had a party / threw a party',rule:'HAVE a party or THROW a party. Never DO a party.'},
+  {wrong:'She did a complaint',right:'She made a complaint',rule:'MAKE a complaint — fixed collocation. File a complaint (formal/official).'},
+  {wrong:'He made jogging',right:'He went jogging',rule:'GO + activity ending in -ing: go jogging, go swimming, go shopping. Never MAKE jogging.'},
+  {wrong:'I am doing an effort',right:'I am making an effort',rule:'MAKE an effort — always. Never DO an effort.'},
+  {wrong:'She gave a suggestion',right:'She made a suggestion',rule:'MAKE a suggestion — fixed. GIVE a suggestion is less standard. MAKE a recommendation also.'},
+  {wrong:'He did an impression',right:'He made an impression',rule:'MAKE an impression — on someone. Leave an impression also natural.'},
+  {wrong:'They made business',right:'They did business',rule:'DO business — fixed collocation. Do business with someone, do business in a country.'},
+  {wrong:'I will make my best',right:'I will do my best',rule:'DO your best — always fixed. Never MAKE your best.'},
+  {wrong:'She took a mistake',right:'She made a mistake',rule:'MAKE a mistake — always. Never take or do a mistake.'},
+  {wrong:'He did a speech',right:'He made a speech / gave a speech',rule:'MAKE a speech or GIVE a speech — both natural. Never DO a speech.'},
+  {wrong:'I made exercise this morning',right:'I did exercise / I exercised this morning',rule:'DO exercise — fixed. Or simply: I exercised. Never MAKE exercise.'},
+  {wrong:'She took an effort',right:'She made an effort',rule:'MAKE an effort — always fixed. Never take an effort.'},
+  {wrong:'He gave a mistake',right:'He made a mistake',rule:'MAKE a mistake — always. Never give a mistake.'},
+  {wrong:'We made a damage',right:'We caused damage / did damage',rule:'CAUSE damage or DO damage — both natural. Never MAKE damage. Also no article: damage (uncountable).'},
+  {wrong:'She did a decision',right:'She made a decision',rule:'MAKE a decision — standard. Never DO a decision.'},
+  {wrong:'He made the shopping',right:'He did the shopping',rule:'DO the shopping — fixed. Do the cleaning, do the cooking, do the washing.'},
+  {wrong:'I took a promise',right:'I made a promise',rule:'MAKE a promise = create it. KEEP a promise = honour it. BREAK a promise = fail to keep it.'},
+  {wrong:'She did a noise',right:'She made a noise',rule:'MAKE a noise — always. Make a sound, make a mess.'},
+  {wrong:'He made a favour',right:'He did someone a favour',rule:'DO someone a favour — fixed. Never make a favour. Could you DO me a favour?'},
+];
+
+// ── EXTRA COMPLETE-IT SENTENCES (30 more) ────────────────────
+var extraSentences = [
+  {sentence:'The scandal _____ a lot of damage to his reputation.',correct:'caused',wrong:['made','did','gave'],explanation:'CAUSE damage — most precise. DO damage is also correct.'},
+  {sentence:'She _____ a key role in the success of the project.',correct:'played',wrong:['did','made','had'],explanation:'PLAY a role/part — fixed collocation. Never DO or MAKE a role.'},
+  {sentence:'He _____ a conclusion after reviewing all the data.',correct:'reached',wrong:['made','came to','found'],explanation:'REACH a conclusion — or COME TO a conclusion. Both natural.'},
+  {sentence:'The company _____ significant progress last quarter.',correct:'made',wrong:['did','had','achieved'],explanation:'MAKE progress — always. Never DO progress.'},
+  {sentence:'She _____ a lot of experience working abroad.',correct:'gained',wrong:['got','made','took'],explanation:'GAIN experience — formal. GET experience also natural in conversation.'},
+  {sentence:'The manager _____ the team accountable for results.',correct:'held',wrong:['made','kept','took'],explanation:'HOLD someone accountable — fixed collocation. Never MAKE accountable.'},
+  {sentence:'He _____ a deep breath before starting his speech.',correct:'took',wrong:['had','made','drew'],explanation:'TAKE a deep breath — most common. DRAW a deep breath also natural.'},
+  {sentence:'She _____ a strong case for changing the policy.',correct:'made',wrong:['built','gave','argued'],explanation:'MAKE a case — present arguments. BUILD a case is also natural.'},
+  {sentence:'The new policy _____ a lot of resistance from staff.',correct:'faced',wrong:['met','got','received'],explanation:'FACE resistance — confront it. MEET resistance also natural.'},
+  {sentence:'He always _____ his promises — you can trust him.',correct:'keeps',wrong:['does','fulfils','maintains'],explanation:'KEEP a promise — honour it. BREAK a promise = fail. MAKE a promise = create it.'},
+  {sentence:'She _____ a complaint about the poor service.',correct:'made',wrong:['gave','did','filed'],explanation:'MAKE a complaint — everyday. FILE a complaint — formal/official.'},
+  {sentence:'They _____ a deal after weeks of negotiation.',correct:'struck',wrong:['made','did','reached'],explanation:'STRIKE a deal — most natural. MAKE a deal also widely used.'},
+  {sentence:'He _____ attention to detail in all his work.',correct:'pays',wrong:['gives','shows','takes'],explanation:'PAY attention — always fixed. PAY attention to detail.'},
+  {sentence:'The team _____ a remarkable comeback in the second half.',correct:'made',wrong:['did','had','achieved'],explanation:'MAKE a comeback — fixed collocation in sports and general use.'},
+  {sentence:'She _____ her children with strong values.',correct:'raised',wrong:['brought up','taught','grew'],explanation:'RAISE children — formal. BRING UP children — also correct, slightly informal.'},
+  {sentence:'The project _____ behind schedule due to delays.',correct:'fell',wrong:['went','ran','got'],explanation:'FALL behind schedule — fixed. RUN behind schedule also natural.'},
+  {sentence:'He _____ a blank when asked the question.',correct:'drew',wrong:['got','had','made'],explanation:'DRAW a blank = be unable to remember. Fixed collocation.'},
+  {sentence:'The new regulations _____ into effect next month.',correct:'come',wrong:['go','get','take'],explanation:'COME into effect — fixed. Also: TAKE effect, COME into force.'},
+  {sentence:'She _____ her ground despite heavy criticism.',correct:'held',wrong:['kept','maintained','stood'],explanation:'HOLD your ground = refuse to change your position. STAND your ground also natural.'},
+  {sentence:'The scandal _____ the company\'s reputation into question.',correct:'called',wrong:['put','brought','took'],explanation:'CALL something into question = cast doubt on it. Fixed collocation.'},
+  {sentence:'He _____ his temper during the difficult meeting.',correct:'lost',wrong:['broke','got','had'],explanation:'LOSE your temper = become angry. Fixed collocation. Never BREAK your temper.'},
+  {sentence:'She _____ the initiative to solve the problem herself.',correct:'took',wrong:['had','made','showed'],explanation:'TAKE the initiative = act without being asked. Fixed collocation.'},
+  {sentence:'The government _____ steps to address the crisis.',correct:'took',wrong:['made','did','gave'],explanation:'TAKE steps = take action. Also: TAKE measures. Never MAKE steps.'},
+  {sentence:'He _____ second thoughts about accepting the offer.',correct:'had',wrong:['got','made','took'],explanation:'HAVE second thoughts = reconsider. Fixed collocation. Never MAKE second thoughts.'},
+  {sentence:'She _____ the most of every opportunity she was given.',correct:'made',wrong:['took','got','used'],explanation:'MAKE the most of = use fully to your advantage. Fixed collocation.'},
+  {sentence:'The new system _____ wonders for our productivity.',correct:'did',wrong:['made','worked','gave'],explanation:'DO wonders = have a very positive effect. Fixed collocation.'},
+  {sentence:'He _____ pride in his work and always delivers quality.',correct:'takes',wrong:['has','makes','shows'],explanation:'TAKE pride in = feel proud of. Fixed collocation. Never MAKE pride.'},
+  {sentence:'She _____ a lasting impression on everyone she met.',correct:'made',wrong:['left','gave','had'],explanation:'MAKE an impression — fixed. LEAVE an impression also natural.'},
+  {sentence:'The team _____ on its previous success to grow further.',correct:'built',wrong:['used','based','relied'],explanation:'BUILD on success = use it as a foundation for further growth.'},
+  {sentence:'He _____ a long face when he heard the bad news.',correct:'made',wrong:['had','showed','pulled'],explanation:'MAKE/PULL a long face = look unhappy or disappointed. Both natural.'},
+];
+
+// ── MERGE ALL INTO COLL_DATA ──────────────────────────────────
+// Add extra verbs
+extraVerbs.forEach(function(v) {
+  // Check not already there
+  var exists = COLL_DATA.verbs.some(function(existing){ return existing.verb === v.verb; });
+  if(!exists) COLL_DATA.verbs.push(v);
+});
+
+// Add extra nouns to existing verbs
+Object.keys(verbExtras).forEach(function(verb) {
+  var existing = COLL_DATA.verbs.find(function(v){ return v.verb === verb; });
+  if(existing && verbExtras[verb]) {
+    verbExtras[verb].forEach(function(noun) {
+      if(existing.nouns.indexOf(noun) === -1) existing.nouns.push(noun);
+    });
+  }
+});
+
+// Add extra adjectives
+extraAdjs.forEach(function(a) {
+  var exists = COLL_DATA.adj.some(function(existing){ return existing.adj === a.adj; });
+  if(!exists) COLL_DATA.adj.push(a);
+});
+
+// Add extra adverbs
+extraAdvs.forEach(function(a) {
+  var exists = COLL_DATA.adv.some(function(existing){ return existing.adv === a.adv; });
+  if(!exists) COLL_DATA.adv.push(a);
+});
+
+// Add extra mistakes
+extraMistakes.forEach(function(m) {
+  var exists = COLL_DATA.mistakes.some(function(existing){ return existing.wrong === m.wrong; });
+  if(!exists) COLL_DATA.mistakes.push(m);
+});
+
+// Add extra complete-it sentences to CC_GAME
+if(typeof CC_GAME !== 'undefined') {
+  // Store extra sentences for gen_complete_it to use
+  CC_GAME.extraSentences = extraSentences;
+  
+  // Patch gen_complete_it to include extra sentences
+  var origGenComplete = CC_GAME.gen_complete_it.bind(CC_GAME);
+  CC_GAME.gen_complete_it = function() {
+    var allSentences = CC_GAME.extraSentences || [];
+    if(allSentences.length === 0) return origGenComplete();
+    
+    var seen = CC_GAME.state.sessionSeen;
+    var unseen = allSentences.filter(function(s,i){ return seen.indexOf('extra_'+i) === -1; });
+    if(unseen.length < 3) {
+      CC_GAME.state.sessionSeen = CC_GAME.state.sessionSeen.filter(function(s){ return s.indexOf('extra_') === -1; });
+      unseen = allSentences.slice();
+    }
+    
+    // 50/50 between original and extra
+    if(Math.random() > 0.5) return origGenComplete();
+    
+    var item = unseen[Math.floor(Math.random() * unseen.length)];
+    var idx = allSentences.indexOf(item);
+    CC_GAME.state.sessionSeen.push('extra_' + idx);
+    
+    var options = [item.correct].concat(item.wrong).sort(function(){ return Math.random()-0.5; });
+    return {
+      question: item.sentence.replace('_____', '<span style="border-bottom:2px solid rgba(245,200,66,0.60);padding:0 8px;color:rgba(245,200,66,0.80)">_____</span>'),
+      options: options,
+      correct: item.correct,
+      explanation: item.explanation,
+      wrongTip: item.explanation,
+      type: 'single'
+    };
+  };
+}
+
+// ── PRINT SUMMARY TO CONSOLE ─────────────────────────────────
+var totalVerbs = COLL_DATA.verbs.length;
+var totalVerbNouns = COLL_DATA.verbs.reduce(function(s,v){return s+v.nouns.length;},0);
+var totalAdjs = COLL_DATA.adj.length;
+var totalAdjNouns = COLL_DATA.adj.reduce(function(s,a){return s+a.nouns.length;},0);
+var totalAdvs = COLL_DATA.adv.length;
+var totalMistakes = COLL_DATA.mistakes.length;
+// console.log('COLL_DATA expanded: '+totalVerbs+' verbs ('+totalVerbNouns+' combos), '+totalAdjs+' adjs ('+totalAdjNouns+' combos), '+totalAdvs+' advs, '+totalMistakes+' mistakes');
+
+})(); // end self-executing function
+
+
+// ── PREMIUM UPSELL — shown after 10 rounds ───────────────────
+var _ccRoundsToday = 0;
+var _ccOrigNext = typeof ccNext === 'function' ? ccNext : null;
+
+function ccNext() {
+  _ccRoundsToday++;
+  
+  // Show premium teaser after every 15 rounds
+  if(_ccRoundsToday > 0 && _ccRoundsToday % 15 === 0) {
+    ccShowPremiumTeaser();
+    return;
+  }
+  CC_GAME.nextQuestion();
+}
+
+function ccShowPremiumTeaser() {
+  var container = document.getElementById('ccGame');
+  if(!container) return;
+
+  var s = CC_GAME.state;
+  var pct = s.total > 0 ? Math.round((s.score/s.total)*100) : 0;
+
+  container.innerHTML =
+    '<div style="padding:20px 16px;text-align:center">' +
+    '<div style="font-size:32px;margin-bottom:10px">🔗</div>' +
+    '<div style="font-size:18px;font-weight:800;color:#60A5FA;margin-bottom:6px">Great session!</div>' +
+    '<div style="font-size:13px;color:rgba(255,255,255,0.60);margin-bottom:16px">'+_ccRoundsToday+' rounds played · Score: '+pct+'% · Streak: '+s.bestStreak+'</div>' +
+    '</div>' +
+    '<div style="padding:14px 16px;background:rgba(245,200,66,0.07);border:1.5px solid rgba(245,200,66,0.25);border-radius:13px;margin-bottom:14px">' +
+    '<div style="font-size:12px;font-weight:800;color:rgba(245,200,66,0.80);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">🚀 Coming in Premium</div>' +
+    '<div style="font-size:12.5px;color:rgba(255,255,255,0.65);line-height:1.70;margin-bottom:10px">' +
+    '• <strong style="color:rgba(255,255,255,0.85)">500+ advanced collocations</strong> — business, academic and professional English<br>' +
+    '• <strong style="color:rgba(255,255,255,0.85)">Personalised weak area report</strong> — tracks exactly which patterns you miss most<br>' +
+    '• <strong style="color:rgba(255,255,255,0.85)">Phrase builder</strong> — type any word and see all its natural collocations instantly<br>' +
+    '• <strong style="color:rgba(255,255,255,0.85)">Progress certificate</strong> — shareable proof of your collocation mastery' +
+    '</div>' +
+    '<button onclick="openWaitlist()" style="width:100%;padding:9px;border-radius:9px;border:none;background:rgba(245,200,66,0.15);color:rgba(245,200,66,0.90);font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer;border:1px solid rgba(245,200,66,0.30)">Register free for early access →</button>' +
+    '</div>' +
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">' +
+    '<button onclick="CC_GAME.nextQuestion()" style="padding:11px;border-radius:10px;border:none;background:#60A5FA;color:#05070F;font-family:inherit;font-size:13px;font-weight:800;cursor:pointer">▶ Keep playing free</button>' +
+    '<button onclick="ccShowStats()" style="padding:11px;border-radius:10px;border:1.5px solid rgba(255,255,255,0.15);background:transparent;color:rgba(255,255,255,0.70);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer">📊 My stats</button>' +
+    '</div>';
+}
 
 </script>
 </body>

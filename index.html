@@ -1512,7 +1512,10 @@ button, .tbtn, .tgrp { -webkit-tap-highlight-color: transparent; }
   <div style="background:linear-gradient(135deg,#0A0300,#140500);padding:14px 16px 12px;border-bottom:1.5px solid rgba(255,107,107,0.28);flex-shrink:0">
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
       <div style="width:40px;height:40px;border-radius:12px;background:rgba(255,107,107,0.18);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🔬</div>
-      <div><div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:#FF6B6B">Error Pattern Decoder</div><div style="font-size:11px;color:rgba(255,255,255,0.50)">Identifies grammar error types — tells you the rule you broke — shows the fix</div></div>
+      <div>
+        <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:#FF6B6B">Error Pattern Decoder</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.50)">A specialist tool — checks the 10 most common patterns for your language</div>
+      </div>
     </div>
     <div style="display:flex;gap:8px;flex-wrap:wrap">
       <button onclick="decodeError()" style="padding:8px 20px;background:#FF6B6B;color:#05070F;border:none;border-radius:9px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:800;cursor:pointer">🔬 Decode My Error</button>
@@ -1520,7 +1523,22 @@ button, .tbtn, .tgrp { -webkit-tap-highlight-color: transparent; }
     </div>
   </div>
   <div style="flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px">
-    <textarea id="errorInput" spellcheck="true" placeholder="Paste a sentence you think has a grammar error — e.g. 'She don't likes coffee' or 'I am having a car'" rows="3" style="width:100%;background:rgba(255,255,255,0.05);border:1.5px solid rgba(255,107,107,0.20);border-radius:10px;padding:11px 13px;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;resize:none;outline:none;line-height:1.70" onfocus="this.style.borderColor='rgba(255,107,107,0.50)'" onblur="this.style.borderColor='rgba(255,107,107,0.20)'"></textarea>
+    <div style="margin-bottom:12px;padding:11px 13px;background:rgba(255,107,107,0.06);border:1px solid rgba(255,107,107,0.20);border-radius:11px">
+  <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,107,107,0.70);margin-bottom:8px">🔬 What this specialist tool checks</div>
+  <div style="display:flex;flex-wrap:wrap;gap:5px">
+    <span style="padding:3px 9px;border-radius:20px;font-size:11px;font-weight:600;background:rgba(255,107,107,0.10);color:rgba(255,107,107,0.80);border:1px solid rgba(255,107,107,0.20)">State Verbs</span>
+    <span style="padding:3px 9px;border-radius:20px;font-size:11px;font-weight:600;background:rgba(251,146,60,0.10);color:rgba(251,146,60,0.80);border:1px solid rgba(251,146,60,0.20)">Articles</span>
+    <span style="padding:3px 9px;border-radius:20px;font-size:11px;font-weight:600;background:rgba(245,200,66,0.10);color:rgba(245,200,66,0.80);border:1px solid rgba(245,200,66,0.20)">Tense Errors</span>
+    <span style="padding:3px 9px;border-radius:20px;font-size:11px;font-weight:600;background:rgba(74,222,128,0.10);color:rgba(74,222,128,0.80);border:1px solid rgba(74,222,128,0.20)">Prepositions</span>
+    <span style="padding:3px 9px;border-radius:20px;font-size:11px;font-weight:600;background:rgba(96,165,250,0.10);color:rgba(96,165,250,0.80);border:1px solid rgba(96,165,250,0.20)">Subject-Verb</span>
+    <span style="padding:3px 9px;border-radius:20px;font-size:11px;font-weight:600;background:rgba(167,139,250,0.10);color:rgba(167,139,250,0.80);border:1px solid rgba(167,139,250,0.20)">Word Order</span>
+    <span style="padding:3px 9px;border-radius:20px;font-size:11px;font-weight:600;background:rgba(245,158,11,0.10);color:rgba(245,158,11,0.80);border:1px solid rgba(245,158,11,0.20)">Countable Nouns</span>
+    <span style="padding:3px 9px;border-radius:20px;font-size:11px;font-weight:600;background:rgba(103,232,249,0.10);color:rgba(103,232,249,0.80);border:1px solid rgba(103,232,249,0.20)">Conditionals</span>
+    <span style="padding:3px 9px;border-radius:20px;font-size:11px;font-weight:600;background:rgba(52,211,153,0.10);color:rgba(52,211,153,0.80);border:1px solid rgba(52,211,153,0.20)">Confusable Words</span>
+    <span style="padding:3px 9px;border-radius:20px;font-size:11px;font-weight:600;background:rgba(192,132,252,0.10);color:rgba(192,132,252,0.80);border:1px solid rgba(192,132,252,0.20)">Collocations</span>
+  </div>
+</div>
+<textarea id="errorInput" spellcheck="true" placeholder="Paste a sentence you think has a grammar error — e.g. 'She don't likes coffee' or 'I am having a car'" rows="3" style="width:100%;background:rgba(255,255,255,0.05);border:1.5px solid rgba(255,107,107,0.20);border-radius:10px;padding:11px 13px;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;resize:none;outline:none;line-height:1.70" onfocus="this.style.borderColor='rgba(255,107,107,0.50)'" onblur="this.style.borderColor='rgba(255,107,107,0.20)'"></textarea>
     <div id="errorResult"><div style="text-align:center;padding:16px;color:rgba(255,255,255,0.35);font-size:12.5px;border:1px dashed rgba(255,107,107,0.20);border-radius:10px">🔬 Paste a sentence and click <strong style="color:#FF6B6B">Decode My Error</strong> — or try an example</div>
 <div style="margin-top:16px;border-top:1px solid rgba(255,255,255,0.08);padding-top:14px">
 <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,0.40);margin-bottom:10px">🎮 Error Pattern Challenge — Find the mistake, know your pattern</div>
@@ -11686,10 +11704,11 @@ function decodeError(){
   found.forEach(function(p){if(p.correct)try{corrected=p.correct(corrected);}catch(e){}});
   var h='';
   if(found.length===0){
-    h='<div style="background:rgba(74,222,128,0.10);border:1.5px solid rgba(74,222,128,0.28);border-radius:12px;padding:16px;text-align:center">';
-    h+='<div style="font-size:22px;margin-bottom:8px">✅</div>';
-    h+='<div style="font-size:14px;font-weight:700;color:#4ADE80">No common grammar error patterns detected!</div>';
-    h+='<div style="font-size:12px;color:rgba(255,255,255,0.55);margin-top:6px">Try checking spelling or punctuation using Punct Doctor.</div></div>';
+    h='<div style="background:rgba(74,222,128,0.08);border:1.5px solid rgba(74,222,128,0.25);border-radius:12px;padding:16px">';
+    h+='<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><div style="font-size:26px">✅</div><div><div style="font-size:14px;font-weight:800;color:#4ADE80">Passed our specialist check!</div><div style="font-size:11.5px;color:rgba(255,255,255,0.50);margin-top:2px">None of the 10 specialist patterns were found in your sentence.</div></div></div>';
+    h+='<div style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.65;padding:10px 12px;background:rgba(255,255,255,0.04);border-radius:9px;margin-bottom:10px">💡 This means your sentence is free from the most common errors that <strong style="color:rgba(255,255,255,0.80)">'+lang+'</strong> speakers make. That is a strong result — well done!</div>';
+    h+='<div style="padding:10px 13px;background:rgba(245,200,66,0.07);border:1px solid rgba(245,200,66,0.20);border-radius:9px;font-size:12px;color:rgba(255,255,255,0.55)">🚀 <strong style="color:rgba(245,200,66,0.80)">Full sentence analysis</strong> — checks every grammar aspect including complex structures, punctuation and advanced usage — <span onclick="openWaitlist()" style="color:var(--gold);font-weight:700;cursor:pointer;text-decoration:underline">coming in Premium. Register free →</span></div>';
+    h+='</div>';
   } else {
     h+='<div style="background:rgba(255,107,107,0.07);border:1.5px solid rgba(255,107,107,0.25);border-radius:12px;padding:14px;margin-bottom:10px">';
     h+='<div style="font-size:10px;font-weight:800;color:rgba(255,107,107,0.70);text-transform:uppercase;margin-bottom:6px">❌ Your sentence:</div>';

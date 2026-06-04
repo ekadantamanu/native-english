@@ -6167,7 +6167,7 @@ function renderChallenge(){
     '<div class="challenge-card" style="background:'+darkBg+';border:1.5px solid '+c.col+'50;border-left:4px solid '+c.col+'">'
     +'<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:8px">'
     +'<div class="challenge-day" style="color:'+c.col+';font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em">Day '+(day+1)+' Challenge – '+new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'})+'</div>'
-    +(levelLabel?'<div style="display:flex;gap:6px"><span style="font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;background:'+c.col+'20;color:'+c.col+';border:1px solid '+c.col+'40">'+levelNum+' · '+levelLabel+'</span>'
+    +(levelLabel?'<div style="display:flex;gap:6px"><span style="font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;background:rgba(255,255,255,0.10);color:#ffffff;border:1px solid rgba(255,255,255,0.30)">'+levelNum+' · '+levelLabel+'</span>'
     +(typeLabel?'<span style="font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.70)">'+typeLabel+'</span>':'')+'</div>':'')
     +'</div>'
     +'<div style="font-family:Fraunces,serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:7px;line-height:1.3">'+c.title+'</div>'

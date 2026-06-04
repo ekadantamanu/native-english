@@ -14162,5 +14162,312 @@ function ccShowPremiumTeaser() {
 }
 
 </script>
+
+<script>
+// ============================================================
+// UNIVERSAL RULE LIBRARY — 10 rules × 16 languages
+// Zero tokens, works for ALL languages forever
+// Each question maps to a rule type automatically
+// ============================================================
+
+var CC_RULES = {
+
+  // ── RULE 1: VERB COLLOCATION FIXED ──────────────────────
+  verb_collocation_fixed: {
+    Telugu: "ఈ verb తో ఈ noun తప్పనిసరిగా కలుస్తుంది. English లో collocations directly translate అవ్వవు — unit గా నేర్చుకోవాలి. MAKE, DO, TAKE, HAVE లాంటి verbs కి fixed partners ఉన్నాయి.",
+    Hindi: "इस verb के साथ यह noun हमेशा साथ आता है। English collocations directly translate नहीं होतीं — इन्हें एक unit के रूप में याद करें। MAKE, DO, TAKE, HAVE जैसे verbs के fixed partners होते हैं।",
+    Tamil: "இந்த verb உடன் இந்த noun எப்போதும் சேர்ந்து வரும். English collocations நேரடியாக translate ஆகாது — unit ஆக கற்றுக்கொள்ளுங்கள்.",
+    Arabic: "هذا الفعل يأتي دائماً مع هذا الاسم. التعابير الإنجليزية لا تُترجم مباشرة — تعلّمها كوحدة واحدة. أفعال مثل MAKE وDO وTAKE لها شركاء ثابتون.",
+    Kannada: "ಈ verb ಜೊತೆ ಈ noun ಯಾವಾಗಲೂ ಬರುತ್ತದೆ. English collocations ನೇರವಾಗಿ translate ಆಗುವುದಿಲ್ಲ — unit ಆಗಿ ಕಲಿಯಿರಿ.",
+    Malayalam: "ഈ verb-നൊപ്പം ഈ noun എപ്പോഴും വരും. English collocations നേരിട്ട് translate ആകില്ല — ഒരു unit ആയി പഠിക്കൂ.",
+    Spanish: "Este verbo siempre va con este sustantivo. Las colocaciones inglesas no se traducen directamente — apréndelas como una unidad. Verbos como MAKE, DO, TAKE tienen compañeros fijos.",
+    French: "Ce verbe va toujours avec ce nom. Les collocations anglaises ne se traduisent pas directement — apprenez-les comme une unité. Des verbes comme MAKE, DO, TAKE ont des partenaires fixes.",
+    German: "Dieses Verb geht immer mit diesem Substantiv. Englische Kollokationen lassen sich nicht direkt übersetzen — lerne sie als Einheit. Verben wie MAKE, DO, TAKE haben feste Partner.",
+    Portuguese: "Este verbo sempre vem com este substantivo. As colocações em inglês não se traduzem diretamente — aprenda-as como uma unidade.",
+    Indonesian: "Kata kerja ini selalu berpasangan dengan kata benda ini. Kolokasi bahasa Inggris tidak bisa diterjemahkan langsung — pelajari sebagai satu unit.",
+    Malay: "Kata kerja ini sentiasa berpasangan dengan kata nama ini. Kolokasi bahasa Inggeris tidak boleh diterjemahkan secara langsung — pelajari sebagai satu unit.",
+    Swahili: "Kitenzi hiki daima kinakwenda na nomino hii. Collocations za Kiingereza hazitafsiriwi moja kwa moja — jifunze kama kitengo kimoja.",
+    Bengali: "এই verb সবসময় এই noun এর সাথে আসে। English collocations সরাসরি translate হয় না — unit হিসেবে শিখুন।",
+    Urdu: "یہ verb ہمیشہ اس noun کے ساتھ آتی ہے۔ English collocations کا براہ راست ترجمہ نہیں ہوتا — انہیں ایک unit کے طور پر یاد کریں۔",
+    default: "This verb always pairs with this noun as a fixed unit. English collocations cannot be translated literally — memorise them as complete phrases."
+  },
+
+  // ── RULE 2: ODD ONE OUT ──────────────────────────────────
+  odd_one_out: {
+    Telugu: "ఒక noun మాత్రం ఈ verb తో సహజంగా రాదు. Collocations లో ఒక్కో verb దానికే specific partners ఉంటాయి. తప్పు combination వింటే నాటివ్ speakers కి awkward గా అనిపిస్తుంది.",
+    Hindi: "एक noun इस verb के साथ naturally नहीं आता। Collocations में हर verb के specific partners होते हैं। गलत combination सुनने पर native speakers को awkward लगता है।",
+    Tamil: "ஒரு noun மட்டும் இந்த verb உடன் இயல்பாக வராது. ஒவ்வொரு verb-க்கும் specific partners உண்டு. தவறான combination-ஐ native speakers கேட்கும்போது awkward-ஆக உணர்வார்கள்.",
+    Arabic: "اسم واحد فقط لا يأتي بشكل طبيعي مع هذا الفعل. كل فعل له شركاء محددون في التعابير. الجمع الخاطئ يبدو غريباً للناطقين الأصليين.",
+    Kannada: "ಒಂದು noun ಮಾತ್ರ ಈ verb ಜೊತೆ ಸಹಜವಾಗಿ ಬರುವುದಿಲ್ಲ. ಪ್ರತಿ verb ಗೂ ನಿರ್ದಿಷ್ಟ partners ಇರುತ್ತವೆ.",
+    Malayalam: "ഒരു noun മാത്രം ഈ verb-നൊപ്പം സ്വാഭാവികമായി വരില്ല. ഓരോ verb-നും specific partners ഉണ്ട്.",
+    Spanish: "Solo un sustantivo no va naturalmente con este verbo. Cada verbo tiene compañeros específicos en las colocaciones.",
+    French: "Un seul nom ne va pas naturellement avec ce verbe. Chaque verbe a des partenaires spécifiques dans les collocations.",
+    German: "Nur ein Substantiv passt nicht natürlich zu diesem Verb. Jedes Verb hat spezifische Partner in Kollokationen.",
+    Portuguese: "Apenas um substantivo não combina naturalmente com este verbo. Cada verbo tem parceiros específicos.",
+    Indonesian: "Hanya satu kata benda yang tidak berpasangan secara alami dengan kata kerja ini.",
+    Malay: "Hanya satu kata nama yang tidak berpasangan secara semula jadi dengan kata kerja ini.",
+    Swahili: "Nomino moja tu haifanyi kazi vizuri na kitenzi hiki.",
+    Bengali: "শুধু একটি noun এই verb-এর সাথে স্বাভাবিকভাবে আসে না।",
+    Urdu: "صرف ایک noun اس verb کے ساتھ قدرتی طور پر نہیں آتا۔",
+    default: "One noun does not pair naturally with this verb. Each verb has specific fixed partners — the odd one belongs with a different verb."
+  },
+
+  // ── RULE 3: WRONG OR NATURAL ────────────────────────────
+  wrong_or_natural: {
+    Telugu: "ఈ combination సహజంగా ఉందా లేదా అని judge చేయడం నాటివ్ స్పీకర్ కి instinctively తెలుసు. మనకి rule లేకుండా memorise చేసుకోవాలి. వినేటప్పుడు natural గా అనిపించేది correct.",
+    Hindi: "यह combination natural है या नहीं — native speaker को instinctively पता होता है। हमें rules के बिना memorise करना होगा। जो सुनने में natural लगे वो correct है।",
+    Tamil: "இந்த combination இயல்பாக உள்ளதா என்பது native speaker-க்கு instinctively தெரியும். rules இல்லாமல் memorise செய்ய வேண்டும்.",
+    Arabic: "هل هذا التعبير طبيعي أم لا؟ الناطق الأصلي يعرف ذلك بشكل تلقائي. نحتاج لحفظها بدون قواعد.",
+    Kannada: "ಈ combination ಸಹಜವಾಗಿದೆಯೇ ಎಂದು native speaker ಗೆ instinctively ತಿಳಿದಿರುತ್ತದೆ.",
+    Malayalam: "ഈ combination സ്വാഭാവികമാണോ എന്ന് native speaker-ന് instinctively അറിയാം.",
+    Spanish: "Si esta combinación suena natural o no — el hablante nativo lo sabe instintivamente. Hay que memorizarlas sin reglas.",
+    French: "Si cette combinaison est naturelle ou non — le locuteur natif le sait instinctivement. Il faut les mémoriser sans règles.",
+    German: "Ob diese Kombination natürlich klingt — ein Muttersprachler weiß es instinktiv. Man muss sie ohne Regeln auswendig lernen.",
+    Portuguese: "Se esta combinação soa natural ou não — o falante nativo sabe instintivamente.",
+    Indonesian: "Apakah kombinasi ini terdengar alami atau tidak — penutur asli tahu secara instinktif.",
+    Malay: "Sama ada kombinasi ini kedengaran semula jadi atau tidak — penutur asli tahu secara naluri.",
+    Swahili: "Mchanganyiko huu unasikika wa kawaida au la — mzungumzaji wa asili anajua kwa hisia.",
+    Bengali: "এই combination স্বাভাবিক কিনা — native speaker instinctively জানেন।",
+    Urdu: "یہ combination قدرتی ہے یا نہیں — native speaker کو instinctively معلوم ہوتا ہے۔",
+    default: "Whether this sounds natural is something native speakers know instinctively. Collocations must be memorised as fixed units, not guessed from logic."
+  },
+
+  // ── RULE 4: ADJECTIVE COLLOCATION ───────────────────────
+  adj_collocation: {
+    Telugu: "ఈ adjective ఈ nouns అన్నింటితో కలిసి వస్తుంది. STRONG rain కాదు — HEAVY rain. HIGH quality అనవచ్చు, TALL quality అనకూడదు. Adjective + noun pairs fixed గా ఉంటాయి.",
+    Hindi: "यह adjective इन सभी nouns के साथ आती है। STRONG rain नहीं — HEAVY rain। HIGH quality कह सकते हैं, TALL quality नहीं। Adjective + noun pairs fixed होती हैं।",
+    Tamil: "இந்த adjective இந்த nouns எல்லாவற்றுடனும் சேர்ந்து வரும். STRONG rain இல்லை — HEAVY rain. Adjective + noun pairs fixed-ஆக இருக்கும்.",
+    Arabic: "هذه الصفة تأتي مع كل هذه الأسماء. ليس STRONG rain بل HEAVY rain. أزواج الصفة والاسم ثابتة.",
+    Kannada: "ಈ adjective ಈ nouns ಎಲ್ಲದರೊಂದಿಗೆ ಬರುತ್ತದೆ. STRONG rain ಅಲ್ಲ — HEAVY rain. Adjective + noun ಜೋಡಿಗಳು fixed.",
+    Malayalam: "ഈ adjective ഈ nouns എല്ലാത്തിനൊപ്പവും വരും. STRONG rain അല്ല — HEAVY rain. Adjective + noun pairs fixed ആണ്.",
+    Spanish: "Este adjetivo va con todos estos sustantivos. No STRONG rain sino HEAVY rain. Los pares adjetivo+sustantivo son fijos.",
+    French: "Cet adjectif va avec tous ces noms. Pas STRONG rain mais HEAVY rain. Les paires adjectif+nom sont fixes.",
+    German: "Dieses Adjektiv geht mit all diesen Substantiven. Nicht STRONG rain sondern HEAVY rain. Adjektiv+Substantiv-Paare sind fest.",
+    Portuguese: "Este adjetivo combina com todos estes substantivos. Não STRONG rain mas HEAVY rain.",
+    Indonesian: "Kata sifat ini berpasangan dengan semua kata benda ini. Bukan STRONG rain tapi HEAVY rain.",
+    Malay: "Kata sifat ini berpasangan dengan semua kata nama ini. Bukan STRONG rain tetapi HEAVY rain.",
+    Swahili: "Kivumishi hiki kinaenda na nomino hizi zote. Si STRONG rain bali HEAVY rain.",
+    Bengali: "এই adjective এই nouns সবার সাথে আসে। STRONG rain নয় — HEAVY rain।",
+    Urdu: "یہ adjective ان تمام nouns کے ساتھ آتی ہے۔ STRONG rain نہیں — HEAVY rain۔",
+    default: "This adjective collocates with all these nouns as a fixed group. Adjective-noun pairs are fixed in English and cannot be swapped with similar adjectives."
+  },
+
+  // ── RULE 5: COMPLETE THE SENTENCE ───────────────────────
+  sentence_complete: {
+    Telugu: "Sentence లో సరైన verb fill చేయాలంటే ఆ verb యొక్క fixed collocations తెలిసి ఉండాలి. Grammar కాదు — memory. ఎక్కువ English వినడం మరియు చదవడం ద్వారా ఈ patterns naturally వస్తాయి.",
+    Hindi: "Sentence में सही verb fill करने के लिए उस verb के fixed collocations याद होने चाहिए। Grammar नहीं — memory। ज्यादा English सुनने और पढ़ने से ये patterns naturally आते हैं।",
+    Tamil: "Sentence-ல் சரியான verb நிரப்ப அந்த verb-ன் fixed collocations தெரிந்திருக்க வேண்டும். Grammar இல்லை — memory. அதிக English கேட்பதன் மூலம் இந்த patterns இயல்பாக வரும்.",
+    Arabic: "لملء الفعل الصحيح في الجملة يجب معرفة التعابير الثابتة لذلك الفعل. ليس قواعد — بل حفظ.",
+    Kannada: "Sentence ನಲ್ಲಿ ಸರಿಯಾದ verb ತುಂಬಲು ಆ verb ನ fixed collocations ಗೊತ್ತಿರಬೇಕು. Grammar ಅಲ್ಲ — memory.",
+    Malayalam: "Sentence-ൽ ശരിയായ verb fill ചെയ്യാൻ ആ verb-ന്റെ fixed collocations അറിഞ്ഞിരിക്കണം.",
+    Spanish: "Para completar la oración con el verbo correcto, hay que conocer las colocaciones fijas de ese verbo. No es gramática — es memoria.",
+    French: "Pour compléter la phrase avec le bon verbe, il faut connaître les collocations fixes de ce verbe. Ce n'est pas de la grammaire — c'est de la mémoire.",
+    German: "Um den richtigen Verb einzusetzen, muss man die festen Kollokationen kennen. Keine Grammatik — Gedächtnis.",
+    Portuguese: "Para completar a frase com o verbo correto, é preciso conhecer as colocações fixas desse verbo.",
+    Indonesian: "Untuk melengkapi kalimat dengan kata kerja yang benar, perlu mengetahui kolokasi tetap kata kerja tersebut.",
+    Malay: "Untuk melengkapkan ayat dengan kata kerja yang betul, perlu mengetahui kolokasi tetap kata kerja tersebut.",
+    Swahili: "Kukamilisha sentensi na kitenzi sahihi, unahitaji kujua collocations za kitenzi hicho.",
+    Bengali: "Sentence-এ সঠিক verb fill করতে সেই verb-এর fixed collocations জানতে হবে।",
+    Urdu: "Sentence میں صحیح verb بھرنے کے لیے اس verb کی fixed collocations جاننی ضروری ہیں۔",
+    default: "To fill the correct verb, you need to know its fixed collocations. This is not grammar — it is memory. More exposure to natural English builds these patterns automatically."
+  },
+
+  // ── RULE 6: MAKE vs DO ───────────────────────────────────
+  make_do: {
+    Telugu: "MAKE = create చేయడం లేదా produce చేయడం (mistake, decision, progress). DO = activity చేయడం (homework, exercise, business). ఈ రెండు తేడా direct rule లేదు — memorise చేయాలి.",
+    Hindi: "MAKE = कुछ बनाना या produce करना (mistake, decision, progress)। DO = activity करना (homework, exercise, business)। इन दोनों में direct rule नहीं है — memorise करना होगा।",
+    Tamil: "MAKE = உருவாக்குதல் அல்லது produce செய்தல் (mistake, decision). DO = செயல் செய்தல் (homework, exercise). நேரடி rule இல்லை — memorise செய்யுங்கள்.",
+    Arabic: "MAKE = إنشاء أو إنتاج (mistake, decision). DO = أداء نشاط (homework, exercise). لا توجد قاعدة مباشرة — يجب الحفظ.",
+    Kannada: "MAKE = ಏನಾದರೂ ರಚಿಸುವುದು (mistake, decision). DO = ಚಟುವಟಿಕೆ ನಡೆಸುವುದು (homework, exercise). ನೇರ rule ಇಲ್ಲ — ಕಂಠಪಾಠ ಮಾಡಿ.",
+    Malayalam: "MAKE = എന്തെങ്കിലും സൃഷ്ടിക്കുക (mistake, decision). DO = ഒരു activity ചെയ്യുക (homework, exercise). നേരിട്ടുള്ള rule ഇല്ല — memorise ചെയ്യൂ.",
+    Spanish: "MAKE = crear o producir (mistake, decision). DO = realizar una actividad (homework, exercise). No hay regla directa — hay que memorizar.",
+    French: "MAKE = créer ou produire (mistake, decision). DO = effectuer une activité (homework, exercise). Pas de règle directe — il faut mémoriser.",
+    German: "MAKE = etwas erstellen oder produzieren (mistake, decision). DO = eine Aktivität ausführen (homework, exercise). Keine direkte Regel — auswendig lernen.",
+    Portuguese: "MAKE = criar ou produzir (mistake, decision). DO = realizar uma atividade (homework, exercise). Sem regra direta — memorize.",
+    Indonesian: "MAKE = membuat atau menghasilkan. DO = melakukan aktivitas. Tidak ada aturan langsung — hafal saja.",
+    Malay: "MAKE = mencipta atau menghasilkan. DO = melakukan aktiviti. Tiada peraturan langsung — hafal sahaja.",
+    Swahili: "MAKE = kuunda au kuzalisha. DO = kufanya shughuli. Hakuna kanuni ya moja kwa moja — kumbuka tu.",
+    Bengali: "MAKE = তৈরি করা বা উৎপাদন করা। DO = কার্যকলাপ সম্পাদন করা। সরাসরি rule নেই — মুখস্থ করুন।",
+    Urdu: "MAKE = کچھ بنانا یا produce کرنا۔ DO = کوئی activity کرنا۔ کوئی direct rule نہیں — memorise کریں۔",
+    default: "MAKE = create or produce something. DO = perform an activity. There is no simple rule — these must be memorised as fixed pairs."
+  },
+
+  // ── RULE 7: ADJECTIVE FEELING (-ED vs -ING) ─────────────
+  adj_feeling: {
+    Telugu: "BORED = మీరు feel అవుతున్న విధానం. BORING = ఆ feeling కలిగించేది. 'I am boring' అంటే మీరు ఇతరులకు boring గా ఉన్నారు అని అర్థం — అది wrong! 'I am bored' అని చెప్పాలి.",
+    Hindi: "BORED = आप कैसा feel कर रहे हैं। BORING = जो वो feeling पैदा करता है। 'I am boring' का मतलब है आप दूसरों को boring feel कराते हैं — यह गलत! 'I am bored' कहें।",
+    Tamil: "BORED = நீங்கள் feel ஆவது. BORING = அந்த feeling-ஐ உண்டாக்குவது. 'I am boring' என்றால் நீங்கள் மற்றவர்களை boring-ஆக feel வைக்கிறீர்கள் — தவறு! 'I am bored' சொல்லுங்கள்.",
+    Arabic: "BORED = كيف تشعر أنت. BORING = ما يسبب هذا الشعور. 'I am boring' تعني أنك تجعل الآخرين يشعرون بالملل — خطأ! قل 'I am bored'.",
+    Kannada: "BORED = ನೀವು ಹೇಗೆ feel ಮಾಡುತ್ತಿದ್ದೀರಿ. BORING = ಆ feeling ಉಂಟು ಮಾಡುವುದು.",
+    Malayalam: "BORED = നിങ്ങൾ feel ചെയ്യുന്നത്. BORING = ആ feeling ഉണ്ടാക്കുന്നത്.",
+    Spanish: "BORED = cómo te sientes tú. BORING = lo que causa ese sentimiento. 'I am boring' significa que aburres a los demás — ¡incorrecto! Di 'I am bored'.",
+    French: "BORED = comment vous vous sentez. BORING = ce qui cause ce sentiment. 'I am boring' signifie que vous ennuyez les autres — incorrect! Dites 'I am bored'.",
+    German: "BORED = wie Sie sich fühlen. BORING = was dieses Gefühl verursacht. 'I am boring' bedeutet, dass Sie andere langweilen — falsch! Sagen Sie 'I am bored'.",
+    Portuguese: "BORED = como você se sente. BORING = o que causa esse sentimento.",
+    Indonesian: "BORED = bagaimana perasaan Anda. BORING = apa yang menyebabkan perasaan itu.",
+    Malay: "BORED = bagaimana perasaan anda. BORING = apa yang menyebabkan perasaan itu.",
+    Swahili: "BORED = jinsi unavyohisi. BORING = kinachosababisha hisia hiyo.",
+    Bengali: "BORED = আপনি কেমন feel করছেন। BORING = যা সেই feeling সৃষ্টি করে।",
+    Urdu: "BORED = آپ کیسا محسوس کر رہے ہیں۔ BORING = جو وہ feeling پیدا کرتا ہے۔",
+    default: "-ED = describes how a person feels. -ING = describes what causes the feeling. 'I am boring' means YOU cause boredom in others. Always say 'I am bored'."
+  },
+
+  // ── RULE 8: PREPOSITION FIXED ───────────────────────────
+  preposition_fixed: {
+    Telugu: "English లో prepositions fixed గా ఉంటాయి. 'interested IN', 'good AT', 'afraid OF' — ఇవి rules కాదు, నేరుగా memorise చేయాలి. మీ language నుండి translate చేస్తే తప్పు వస్తుంది.",
+    Hindi: "English में prepositions fixed होते हैं। 'interested IN', 'good AT', 'afraid OF' — ये rules नहीं, directly memorise करें। अपनी language से translate करने पर गलती होती है।",
+    Tamil: "English-ல் prepositions fixed-ஆக இருக்கும். 'interested IN', 'good AT', 'afraid OF' — இவை rules இல்லை, நேரடியாக memorise செய்யுங்கள்.",
+    Arabic: "في الإنجليزية حروف الجر ثابتة. 'interested IN'، 'good AT'، 'afraid OF' — هذه ليست قواعد، احفظها مباشرة.",
+    Kannada: "English ನಲ್ಲಿ prepositions fixed. 'interested IN', 'good AT', 'afraid OF' — ಇವು rules ಅಲ್ಲ, ನೇರವಾಗಿ ಕಂಠಪಾಠ ಮಾಡಿ.",
+    Malayalam: "English-ൽ prepositions fixed ആണ്. 'interested IN', 'good AT', 'afraid OF' — ഇവ rules അല്ല, നേരിട്ട് memorise ചെയ്യൂ.",
+    Spanish: "En inglés las preposiciones son fijas. 'interested IN', 'good AT', 'afraid OF' — no son reglas, memorícelas directamente.",
+    French: "En anglais les prépositions sont fixes. 'interested IN', 'good AT', 'afraid OF' — ce ne sont pas des règles, mémorisez-les directement.",
+    German: "Im Englischen sind Präpositionen fest. 'interested IN', 'good AT', 'afraid OF' — keine Regeln, direkt auswendig lernen.",
+    Portuguese: "Em inglês as preposições são fixas. Memorize-as diretamente sem tentar traduzi-las.",
+    Indonesian: "Dalam bahasa Inggris, preposisi bersifat tetap. Hafalkan langsung tanpa mencoba menerjemahkannya.",
+    Malay: "Dalam bahasa Inggeris, preposisi adalah tetap. Hafal terus tanpa cuba menterjemahkannya.",
+    Swahili: "Katika Kiingereza, vihusishi ni vya kudumu. Vikumbuke moja kwa moja bila kujaribu kuvitafsiri.",
+    Bengali: "English-এ prepositions fixed। সরাসরি memorise করুন, translate করার চেষ্টা করবেন না।",
+    Urdu: "English میں prepositions fixed ہوتی ہیں۔ انہیں براہ راست memorise کریں۔",
+    default: "English prepositions are fixed and cannot be translated from your language. 'interested IN', 'good AT', 'afraid OF' must be memorised as complete units."
+  },
+
+  // ── RULE 9: UNCOUNTABLE NOUNS ────────────────────────────
+  uncountable: {
+    Telugu: "INFORMATION, ADVICE, FURNITURE, LUGGAGE, PROGRESS — ఇవి plural form లేని nouns. 'informations' అని చెప్పకూడదు. 'some information', 'a piece of advice' అని చెప్పాలి. మీ language లో count చేయవచ్చు అని అనిపించినా English లో count చేయలేము.",
+    Hindi: "INFORMATION, ADVICE, FURNITURE, LUGGAGE, PROGRESS — इनका plural form नहीं होता। 'informations' नहीं कहते। 'some information', 'a piece of advice' कहें। आपकी language में count हो सकती हैं लेकिन English में नहीं।",
+    Tamil: "INFORMATION, ADVICE, FURNITURE — இவற்றுக்கு plural form இல்லை. 'informations' என்று சொல்லக்கூடாது. 'some information' என்று சொல்லுங்கள்.",
+    Arabic: "INFORMATION وADVICE وFURNITURE — هذه لا صيغة جمع لها. لا تقل 'informations'. قل 'some information'.",
+    Kannada: "INFORMATION, ADVICE, FURNITURE — ಇವುಗಳಿಗೆ plural form ಇಲ್ಲ. 'informations' ಎನ್ನಬೇಡಿ.",
+    Malayalam: "INFORMATION, ADVICE, FURNITURE — ഇവയ്ക്ക് plural form ഇല്ല. 'informations' പറയരുത്.",
+    Spanish: "INFORMATION, ADVICE, FURNITURE — estos sustantivos no tienen forma plural. No digas 'informations'. Di 'some information'.",
+    French: "INFORMATION, ADVICE, FURNITURE — ces noms n'ont pas de forme plurielle. Ne dites pas 'informations'. Dites 'some information'.",
+    German: "INFORMATION, ADVICE, FURNITURE — diese Substantive haben keine Pluralform. Sag nicht 'informations'. Sag 'some information'.",
+    Portuguese: "INFORMATION, ADVICE, FURNITURE — esses substantivos não têm forma plural.",
+    Indonesian: "INFORMATION, ADVICE, FURNITURE — kata benda ini tidak memiliki bentuk jamak.",
+    Malay: "INFORMATION, ADVICE, FURNITURE — kata nama ini tidak mempunyai bentuk jamak.",
+    Swahili: "INFORMATION, ADVICE, FURNITURE — nomino hizi hazina wingi.",
+    Bengali: "INFORMATION, ADVICE, FURNITURE — এই nouns-এর plural form নেই।",
+    Urdu: "INFORMATION, ADVICE, FURNITURE — ان nouns کی plural form نہیں ہوتی۔",
+    default: "These nouns have no plural form in English. Never say 'informations' or 'advices'. Use: some information, a piece of advice, much furniture."
+  },
+
+  // ── RULE 10: NATURAL ENGLISH EXPRESSION ─────────────────
+  natural_expression: {
+    Telugu: "కొన్ని English expressions logic follow చేయవు — అవి fixed phrases. Native speakers వాటిని automatically use చేస్తారు. మీరు ఎంత ఎక్కువ natural English వింటే, read చేస్తే అంత తొందరగా ఈ patterns మీకు familiar అవుతాయి.",
+    Hindi: "कुछ English expressions logic follow नहीं करते — वे fixed phrases हैं। Native speakers उन्हें automatically use करते हैं। जितना ज्यादा natural English सुनें और पढ़ें, उतनी जल्दी ये patterns familiar होंगे।",
+    Tamil: "சில English expressions logic-ஐ பின்பற்றுவதில்லை — அவை fixed phrases. நீங்கள் எவ்வளவு அதிக natural English கேட்கிறீர்களோ, அவ்வளவு விரைவில் இந்த patterns பழக்கமாகும்.",
+    Arabic: "بعض التعابير الإنجليزية لا تتبع المنطق — إنها عبارات ثابتة. كلما سمعت وقرأت الإنجليزية الطبيعية أكثر، كلما أصبحت هذه الأنماط مألوفة.",
+    Kannada: "ಕೆಲವು English expressions logic follow ಮಾಡುವುದಿಲ್ಲ — ಅವು fixed phrases. ಹೆಚ್ಚು natural English ಕೇಳಿದಷ್ಟು ಈ patterns familiar ಆಗುತ್ತವೆ.",
+    Malayalam: "ചില English expressions logic follow ചെയ്യില്ല — അവ fixed phrases. കൂടുതൽ natural English കേൾക്കുന്തോറും ഈ patterns familiar ആകും.",
+    Spanish: "Algunas expresiones inglesas no siguen la lógica — son frases fijas. Cuanto más inglés natural escuches y leas, más familiares serán estos patrones.",
+    French: "Certaines expressions anglaises ne suivent pas la logique — ce sont des phrases fixes. Plus vous écoutez et lisez l'anglais naturel, plus ces patterns deviendront familiers.",
+    German: "Manche englischen Ausdrücke folgen keiner Logik — sie sind feste Phrasen. Je mehr natürliches Englisch man hört und liest, desto vertrauter werden diese Muster.",
+    Portuguese: "Algumas expressões inglesas não seguem a lógica — são frases fixas. Quanto mais inglês natural você ouvir, mais familiares serão esses padrões.",
+    Indonesian: "Beberapa ekspresi bahasa Inggris tidak mengikuti logika — mereka adalah frasa tetap.",
+    Malay: "Sesetengah ungkapan bahasa Inggeris tidak mengikuti logik — ia adalah frasa tetap.",
+    Swahili: "Baadhi ya misemo ya Kiingereza haifuati mantiki — ni misemo ya kudumu.",
+    Bengali: "কিছু English expressions logic follow করে না — এগুলো fixed phrases।",
+    Urdu: "کچھ English expressions logic follow نہیں کرتیں — یہ fixed phrases ہیں۔",
+    default: "Some English expressions do not follow logic — they are fixed phrases that native speakers use automatically. More exposure to natural English builds these patterns."
+  }
+};
+
+// ── RULE MAPPER — maps each question type to the right rule ──
+function CC_getRule(questionMode, explanation) {
+  var rule;
+  
+  // Map question mode to rule type
+  if(questionMode === 'which_verb' || questionMode === 'wrong_or_right') {
+    // Check if it's a make/do question
+    if(explanation && (explanation.indexOf('MAKE') !== -1 || explanation.indexOf('DO ') !== -1)) {
+      rule = CC_RULES.make_do;
+    } else if(explanation && explanation.indexOf('preposition') !== -1) {
+      rule = CC_RULES.preposition_fixed;
+    } else {
+      rule = CC_RULES.verb_collocation_fixed;
+    }
+  } else if(questionMode === 'odd_one_out') {
+    rule = CC_RULES.odd_one_out;
+  } else if(questionMode === 'complete_it') {
+    if(explanation && (explanation.indexOf('MAKE') !== -1 || explanation.indexOf('DO ') !== -1)) {
+      rule = CC_RULES.make_do;
+    } else {
+      rule = CC_RULES.sentence_complete;
+    }
+  } else if(questionMode === 'adj_match') {
+    rule = CC_RULES.adj_collocation;
+  } else {
+    rule = CC_RULES.natural_expression;
+  }
+  
+  // Get the right language
+  return rule[lang] || rule.default || '';
+}
+
+// ── PATCH ccAnswer to use the rule library ────────────────────
+var _origCcAnswer = typeof ccAnswer === 'function' ? ccAnswer : null;
+
+function ccAnswer(btn, selected, correct) {
+  if(CC_GAME.state.answered) return;
+  CC_GAME.state.answered = true;
+  CC_GAME.state.total++;
+
+  var isCorrect = selected === correct;
+  if(isCorrect) {
+    CC_GAME.state.score++;
+    CC_GAME.state.streak++;
+    CC_GAME.state.bestStreak = Math.max(CC_GAME.state.bestStreak, CC_GAME.state.streak);
+  } else {
+    CC_GAME.state.streak = 0;
+  }
+
+  // Style buttons
+  var allBtns = btn.parentElement.querySelectorAll('button');
+  allBtns.forEach(function(b) {
+    b.dataset.answered = '1';
+    b.style.cursor = 'default';
+    var bText = b.textContent.trim();
+    if(bText === correct) {
+      b.style.background = 'rgba(74,222,128,0.15)';
+      b.style.borderColor = '#4ADE80';
+      b.style.color = '#4ADE80';
+    } else if(b === btn && !isCorrect) {
+      b.style.background = 'rgba(255,107,107,0.15)';
+      b.style.borderColor = '#FF6B6B';
+      b.style.color = '#FF6B6B';
+    }
+    b.onmouseover = null;
+    b.onmouseout = null;
+  });
+
+  var q = CC_GAME.currentQ;
+  var s = CC_GAME.state;
+  
+  // Get rule explanation in visitor's language
+  var nativeRule = CC_getRule(CC_GAME.state.mode, q.explanation);
+  var feedback = document.getElementById('ccFeedback');
+  if(!feedback) return;
+
+  feedback.innerHTML =
+    '<div style="margin-top:8px;padding:12px 14px;border-radius:12px;background:'+(isCorrect?'rgba(74,222,128,0.08)':'rgba(255,107,107,0.08)')+';border:1.5px solid '+(isCorrect?'rgba(74,222,128,0.25)':'rgba(255,107,107,0.25)')+'">' +
+    '<div style="font-size:13px;font-weight:800;color:'+(isCorrect?'#4ADE80':'#FF6B6B')+';margin-bottom:6px">' +
+    (isCorrect ? '✅ Correct! +1' : '❌ Not quite') +
+    (s.streak > 2 ? ' &nbsp;🔥 '+s.streak+' in a row!' : '') +
+    '</div>' +
+    // English explanation
+    '<div style="font-size:12.5px;color:rgba(255,255,255,0.80);margin-bottom:8px;line-height:1.65;padding:8px 10px;background:rgba(255,255,255,0.04);border-radius:8px">📌 ' + q.explanation + '</div>' +
+    // Native language rule — shows for ALL 16 languages
+    (nativeRule ? '<div style="font-size:12px;color:rgba(245,200,66,0.85);padding:8px 11px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.35);border-radius:0 8px 8px 0;line-height:1.65">🌐 <strong>'+lang+':</strong> ' + nativeRule + '</div>' : '') +
+    '</div>' +
+    '<div style="display:flex;gap:8px;margin-top:10px">' +
+    '<button onclick="ccNext()" style="flex:1;padding:10px;border-radius:10px;border:none;background:'+q.mode.color+';color:#05070F;font-family:inherit;font-size:13px;font-weight:800;cursor:pointer">Next challenge →</button>' +
+    '<button onclick="ccShowStats()" style="padding:10px 14px;border-radius:10px;border:1.5px solid rgba(255,255,255,0.12);background:transparent;color:rgba(255,255,255,0.60);font-family:inherit;font-size:12px;cursor:pointer">📊 '+s.score+'/'+s.total+'</button>' +
+    '</div>';
+
+  if(s.total % 5 === 0) CC_GAME.showMiniStats();
+}
+
+</script>
 </body>
 </html>

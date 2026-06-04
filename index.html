@@ -2402,7 +2402,7 @@ var IDIOM_DATA = [
 // One live API call per visitor per day - tracked in localStorage
 // All static features (DNA, vocab, idioms, parts of speech) are unlimited
 
-var DAILY_LIMIT = 1;  // One live interactive session per day per visitor
+var DAILY_LIMIT = 3;  // Three AI sessions per day per visitor
 var waitlistCount = 0;  // Starting waitlist counter
 
 
@@ -4222,7 +4222,7 @@ var IDIOM_DATA = [
 // One live API call per visitor per day - tracked in localStorage
 // All static features (DNA, vocab, idioms, parts of speech) are unlimited
 
-var DAILY_LIMIT = 1;  // One live interactive session per day per visitor
+var DAILY_LIMIT = 3;  // Three AI sessions per day per visitor
 var waitlistCount = 0;  // Starting waitlist counter
 
 
@@ -8516,6 +8516,24 @@ async function genPlan(){
 
 async function loadWord(){
   document.getElementById('wcWord').textContent='...';
+  
+  // Check cache first — generate once per day per language
+  var cacheKey = 'ne_word_' + lang + '_' + new Date().toISOString().split('T')[0];
+  try {
+    var cached = localStorage.getItem(cacheKey);
+    if(cached) {
+      var w = JSON.parse(cached);
+      document.getElementById('wcWord').textContent=w.word||'--';
+      document.getElementById('wcPhon').textContent=w.phonetic||'';
+      document.getElementById('wcDef').textContent=w.definition||'';
+      document.getElementById('wcEnEx').textContent='"'+(w.englishExample||'')+'"';
+      document.getElementById('wcNatEx').textContent='"'+(w.nativeExample||'')+'"';
+      document.getElementById('wcAnt').textContent=(w.antonymsEN||'--')+' / '+(w.antonymsNative||'--');
+      wordsLearned++;document.getElementById('dWords').textContent=wordsLearned;
+      return;
+    }
+  } catch(e) {}
+  
   var r=await api('Give me one useful intermediate-level English word.','Return ONLY valid JSON:{"word":"...","phonetic":"...","definition":"...","englishExample":"...","nativeExample":"example in '+lang+'","antonymsEN":"two antonyms","antonymsNative":"same in '+lang+'"}. No markdown.',220);
   try{
     var w=JSON.parse(r.replace(/```json|```/g,'').trim());
@@ -8526,6 +8544,8 @@ async function loadWord(){
     document.getElementById('wcNatEx').textContent='"'+(w.nativeExample||'')+'"';
     document.getElementById('wcAnt').textContent=(w.antonymsEN||'--')+' / '+(w.antonymsNative||'--');
     wordsLearned++;document.getElementById('dWords').textContent=wordsLearned;
+    // Save to cache for today
+    try { localStorage.setItem('ne_word_'+lang+'_'+new Date().toISOString().split('T')[0], JSON.stringify(w)); } catch(e) {}
   }catch(e){
     document.getElementById('wcWord').textContent='serendipity';
     document.getElementById('wcPhon').textContent='/ser.en.DIP.i.tee/';

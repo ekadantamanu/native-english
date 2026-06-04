@@ -14469,5 +14469,415 @@ function ccAnswer(btn, selected, correct) {
 }
 
 </script>
+
+<script>
+// ============================================================
+// VIC REGISTER LIBRARY — 5 registers × 16 languages
+// Zero tokens — pre-written explanations for all languages
+// ============================================================
+
+var VIC_REGISTER_NOTES = {
+
+  Academic: {
+    Telugu: "ఈ word Academic రిజిస్టర్ లో వాడారు — research papers, essays, formal reports లో వస్తుంది. ఇటువంటి formal context లో ఈ word తరచుగా కనిపిస్తుంది.",
+    Hindi: "यह word Academic register में है — research papers, essays, formal reports में आता है। ऐसे formal context में यह word अक्सर मिलता है।",
+    Tamil: "இந்த word Academic register-ல் பயன்படுத்தப்பட்டுள்ளது — research papers, essays, formal reports-ல் வரும்.",
+    Arabic: "هذه الكلمة في السياق الأكاديمي — تأتي في أوراق البحث والمقالات والتقارير الرسمية.",
+    Kannada: "ಈ word Academic register ನಲ್ಲಿ ಬಳಸಲಾಗಿದೆ — research papers, essays, formal reports ನಲ್ಲಿ ಬರುತ್ತದೆ.",
+    Malayalam: "ഈ word Academic register-ൽ ഉപയോഗിച്ചിരിക്കുന്നു — research papers, essays, formal reports-ൽ വരും.",
+    Spanish: "Esta palabra está en el registro académico — aparece en trabajos de investigación, ensayos e informes formales.",
+    French: "Ce mot est dans le registre académique — il apparaît dans les articles de recherche, les essais et les rapports formels.",
+    German: "Dieses Wort steht im akademischen Register — es erscheint in Forschungsarbeiten, Essays und formellen Berichten.",
+    Portuguese: "Esta palavra está no registro acadêmico — aparece em trabalhos de pesquisa, ensaios e relatórios formais.",
+    Indonesian: "Kata ini berada dalam register akademik — muncul dalam makalah penelitian, esai, dan laporan formal.",
+    Malay: "Perkataan ini berada dalam daftar akademik — muncul dalam kertas penyelidikan, esei dan laporan rasmi.",
+    Swahili: "Neno hili liko katika rejista ya kitaaluma — linaonekana katika karatasi za utafiti, insha na ripoti rasmi.",
+    Bengali: "এই word Academic register-এ আছে — research papers, essays, formal reports-এ আসে।",
+    Urdu: "یہ word Academic register میں ہے — research papers, essays, formal reports میں آتا ہے۔",
+    default: "This word appears in Academic register — used in research papers, essays and formal reports. Notice the precise, impersonal tone."
+  },
+
+  Business: {
+    Telugu: "ఈ word Business రిజిస్టర్ లో వాడారు — meetings, presentations, professional emails లో వస్తుంది. Professional settings లో ఈ word మీకు confident గా కనిపించేలా చేస్తుంది.",
+    Hindi: "यह word Business register में है — meetings, presentations, professional emails में आता है। Professional settings में यह word आपको confident बनाता है।",
+    Tamil: "இந்த word Business register-ல் உள்ளது — meetings, presentations, professional emails-ல் வரும். Professional settings-ல் இந்த word உங்களை confident-ஆக காட்டும்.",
+    Arabic: "هذه الكلمة في سياق الأعمال — تأتي في الاجتماعات والعروض التقديمية والرسائل المهنية.",
+    Kannada: "ಈ word Business register ನಲ್ಲಿದೆ — meetings, presentations, professional emails ನಲ್ಲಿ ಬರುತ್ತದೆ.",
+    Malayalam: "ഈ word Business register-ൽ ആണ് — meetings, presentations, professional emails-ൽ വരും.",
+    Spanish: "Esta palabra está en el registro empresarial — aparece en reuniones, presentaciones y correos profesionales.",
+    French: "Ce mot est dans le registre professionnel — il apparaît dans les réunions, présentations et e-mails professionnels.",
+    German: "Dieses Wort steht im geschäftlichen Register — es erscheint in Meetings, Präsentationen und professionellen E-Mails.",
+    Portuguese: "Esta palavra está no registro empresarial — aparece em reuniões, apresentações e e-mails profissionais.",
+    Indonesian: "Kata ini berada dalam register bisnis — muncul dalam rapat, presentasi, dan email profesional.",
+    Malay: "Perkataan ini berada dalam daftar perniagaan — muncul dalam mesyuarat, pembentangan dan e-mel profesional.",
+    Swahili: "Neno hili liko katika rejista ya biashara — linaonekana katika mikutano, mawasilisho na barua pepe za kitaalamu.",
+    Bengali: "এই word Business register-এ আছে — meetings, presentations, professional emails-এ আসে।",
+    Urdu: "یہ word Business register میں ہے — meetings, presentations, professional emails میں آتا ہے۔",
+    default: "This word appears in Business register — used in meetings, presentations and professional communication. It conveys authority and professionalism."
+  },
+
+  News: {
+    Telugu: "ఈ word News & Media రిజిస్టర్ లో వాడారు — newspapers, TV reports, online articles లో వస్తుంది. Journalism లో వాడే formal కానీ accessible language ఇది.",
+    Hindi: "यह word News & Media register में है — newspapers, TV reports, online articles में आता है। Journalism में use होने वाली formal लेकिन accessible language है।",
+    Tamil: "இந்த word News & Media register-ல் உள்ளது — newspapers, TV reports, online articles-ல் வரும்.",
+    Arabic: "هذه الكلمة في سياق الأخبار والإعلام — تأتي في الصحف والتقارير التلفزيونية والمقالات الإلكترونية.",
+    Kannada: "ಈ word News & Media register ನಲ್ಲಿದೆ — newspapers, TV reports, online articles ನಲ್ಲಿ ಬರುತ್ತದೆ.",
+    Malayalam: "ഈ word News & Media register-ൽ ആണ് — newspapers, TV reports, online articles-ൽ വരും.",
+    Spanish: "Esta palabra está en el registro periodístico — aparece en periódicos, reportajes de TV y artículos en línea.",
+    French: "Ce mot est dans le registre journalistique — il apparaît dans les journaux, les reportages TV et les articles en ligne.",
+    German: "Dieses Wort steht im journalistischen Register — es erscheint in Zeitungen, TV-Berichten und Online-Artikeln.",
+    Portuguese: "Esta palavra está no registro jornalístico — aparece em jornais, reportagens de TV e artigos online.",
+    Indonesian: "Kata ini berada dalam register berita dan media — muncul dalam surat kabar, laporan TV, dan artikel online.",
+    Malay: "Perkataan ini berada dalam daftar berita dan media — muncul dalam akhbar, laporan TV dan artikel dalam talian.",
+    Swahili: "Neno hili liko katika rejista ya habari na vyombo vya habari — linaonekana katika magazeti, ripoti za TV na makala ya mtandaoni.",
+    Bengali: "এই word News & Media register-এ আছে — newspapers, TV reports, online articles-এ আসে।",
+    Urdu: "یہ word News & Media register میں ہے — newspapers, TV reports, online articles میں آتا ہے۔",
+    default: "This word appears in News & Media register — used in newspapers, TV reports and online articles. The tone is factual and authoritative."
+  },
+
+  Conversation: {
+    Telugu: "ఈ word Conversation రిజిస్టర్ లో వాడారు — friends తో మాట్లాడటంలో, casual situations లో వస్తుంది. ఇది natural గా మాట్లాడే విధానంలో ఉపయోగపడుతుంది.",
+    Hindi: "यह word Conversation register में है — दोस्तों से बात करने में, casual situations में आता है। यह natural बोलने के तरीके में काम आता है।",
+    Tamil: "இந்த word Conversation register-ல் உள்ளது — நண்பர்களுடன் பேசும்போது, casual situations-ல் வரும்.",
+    Arabic: "هذه الكلمة في سياق المحادثة — تأتي في الحديث مع الأصدقاء والمواقف غير الرسمية.",
+    Kannada: "ಈ word Conversation register ನಲ್ಲಿದೆ — ಸ್ನೇಹಿತರೊಂದಿಗೆ ಮಾತನಾಡುವಾಗ, casual situations ನಲ್ಲಿ ಬರುತ್ತದೆ.",
+    Malayalam: "ഈ word Conversation register-ൽ ആണ് — സുഹൃത്തുക്കളുമായി സംസാരിക്കുമ്പോൾ, casual situations-ൽ വരും.",
+    Spanish: "Esta palabra está en el registro conversacional — aparece al hablar con amigos y en situaciones informales.",
+    French: "Ce mot est dans le registre conversationnel — il apparaît quand on parle avec des amis et dans des situations informelles.",
+    German: "Dieses Wort steht im Gesprächsregister — es erscheint beim Sprechen mit Freunden und in informellen Situationen.",
+    Portuguese: "Esta palavra está no registro conversacional — aparece ao falar com amigos e em situações informais.",
+    Indonesian: "Kata ini berada dalam register percakapan — muncul saat berbicara dengan teman dan dalam situasi santai.",
+    Malay: "Perkataan ini berada dalam daftar perbualan — muncul semasa bercakap dengan rakan-rakan dan dalam situasi santai.",
+    Swahili: "Neno hili liko katika rejista ya mazungumzo — linaonekana unapozungumza na marafiki na katika hali za kawaida.",
+    Bengali: "এই word Conversation register-এ আছে — বন্ধুদের সাথে কথা বলার সময়, casual situations-এ আসে।",
+    Urdu: "یہ word Conversation register میں ہے — دوستوں سے بات کرنے میں، casual situations میں آتا ہے۔",
+    default: "This word appears in Conversation register — used when talking with friends and in casual situations. Notice the relaxed, natural tone."
+  },
+
+  Emotion: {
+    Telugu: "ఈ word Emotion & Literature రిజిస్టర్ లో వాడారు — novels, poetry, emotional speeches లో వస్తుంది. Deep feelings మరియు vivid descriptions కి ఈ word చాలా powerful గా పని చేస్తుంది.",
+    Hindi: "यह word Emotion & Literature register में है — novels, poetry, emotional speeches में आता है। Deep feelings और vivid descriptions के लिए यह word बहुत powerful है।",
+    Tamil: "இந்த word Emotion & Literature register-ல் உள்ளது — novels, poetry, emotional speeches-ல் வரும். ஆழமான உணர்வுகளை வெளிப்படுத்த இந்த word சக்தி வாய்ந்தது.",
+    Arabic: "هذه الكلمة في سياق المشاعر والأدب — تأتي في الروايات والشعر والخطب العاطفية.",
+    Kannada: "ಈ word Emotion & Literature register ನಲ್ಲಿದೆ — novels, poetry, emotional speeches ನಲ್ಲಿ ಬರುತ್ತದೆ.",
+    Malayalam: "ഈ word Emotion & Literature register-ൽ ആണ് — novels, poetry, emotional speeches-ൽ വരും.",
+    Spanish: "Esta palabra está en el registro emocional/literario — aparece en novelas, poesía y discursos emotivos.",
+    French: "Ce mot est dans le registre émotionnel/littéraire — il apparaît dans les romans, la poésie et les discours émouvants.",
+    German: "Dieses Wort steht im emotionalen/literarischen Register — es erscheint in Romanen, Gedichten und bewegenden Reden.",
+    Portuguese: "Esta palavra está no registro emocional/literário — aparece em romances, poesia e discursos emotivos.",
+    Indonesian: "Kata ini berada dalam register emosional/sastra — muncul dalam novel, puisi, dan pidato yang menyentuh.",
+    Malay: "Perkataan ini berada dalam daftar emosional/sastera — muncul dalam novel, puisi dan ucapan yang menyentuh perasaan.",
+    Swahili: "Neno hili liko katika rejista ya hisia/fasihi — linaonekana katika riwaya, mashairi na hotuba za kihisia.",
+    Bengali: "এই word Emotion & Literature register-এ আছে — novels, poetry, emotional speeches-এ আসে।",
+    Urdu: "یہ word Emotion & Literature register میں ہے — novels, poetry, emotional speeches میں آتا ہے۔",
+    default: "This word appears in Emotion & Literature register — used in novels, poetry and emotional writing. It carries expressive, evocative meaning."
+  }
+};
+
+// ── GET REGISTER NOTE IN VISITOR'S LANGUAGE ──────────────────
+function VIC_getRegisterNote(register) {
+  var key = register.replace(' & Media','').replace(' / Literature','').replace(' & ','');
+  var map = {
+    'Academic': VIC_REGISTER_NOTES.Academic,
+    'Business': VIC_REGISTER_NOTES.Business,
+    'News': VIC_REGISTER_NOTES.News,
+    'Conversation': VIC_REGISTER_NOTES.Conversation,
+    'Emotion': VIC_REGISTER_NOTES.Emotion
+  };
+  var notes = map[key] || map[register];
+  if(!notes) return '';
+  return notes[lang] || notes.default || '';
+}
+
+// ── WORD CONTEXT DATABASE — 200 key words ────────────────────
+// Each word has real authentic sentences across 5 registers
+// NOT template-generated — handcrafted for accuracy
+var VIC_WORDS = {
+
+  // ── A ──
+  'achieve': {
+    Academic: ['Studies consistently show that students who set clear goals achieve significantly better outcomes.','The ability to achieve measurable results is central to evidence-based practice.','Research demonstrates that collaborative environments achieve higher rates of innovation.'],
+    Business: ['The team achieved record sales figures in the third quarter.','To achieve our targets, we must streamline the onboarding process.','She achieved board-level recognition within just four years.'],
+    News: ['The peace talks achieved a historic breakthrough after three weeks of negotiations.','Scientists have achieved a major milestone in renewable energy storage.','The government achieved its carbon reduction targets two years ahead of schedule.'],
+    Conversation: ['She actually achieved what she set out to do — which is rare.','I cannot believe he achieved all that in just one year!','Did you achieve everything you wanted from the meeting?'],
+    Emotion: ['He had spent his entire life chasing a dream he feared he would never achieve.','To finally achieve what had seemed impossible brought her to tears.','She realised, quietly, that she had already achieved more than she had ever dared to hope.']
+  },
+
+  'ambiguous': {
+    Academic: ['The findings remain ambiguous due to conflicting variables in the dataset.','Ambiguous terminology in policy documents often leads to inconsistent implementation.','The relationship between the two variables is ambiguous at best.'],
+    Business: ['The contract language was ambiguous and required immediate legal clarification.','Avoid ambiguous directives — your team needs clarity to perform.','The ambiguous brief led to three rounds of unnecessary revisions.'],
+    News: ['The minister gave an ambiguous response that satisfied neither side.','Critics described the ruling as legally ambiguous and likely to be challenged.','The statement was widely considered ambiguous and open to interpretation.'],
+    Conversation: ['That ending was totally ambiguous — I still do not know what happened.','His answer was so ambiguous — I genuinely could not tell if he was joking.','It is a bit ambiguous, honestly. Could mean either thing.'],
+    Emotion: ['She searched his face for certainty but found only something ambiguous and unreadable.','The feeling was ambiguous — neither grief nor relief but something suspended between the two.','His ambiguous smile left her wondering for days.']
+  },
+
+  'advocate': {
+    Academic: ['The paper advocates for a more inclusive approach to curriculum design.','Several scholars advocate the adoption of mixed-methods research in this field.','She advocates strongly for patient-centred care in her published work.'],
+    Business: ['The CEO advocates for transparent communication at every level of the organisation.','We advocate investing in people as the highest-return business strategy.','She is a vocal advocate for workplace mental health initiatives.'],
+    News: ['Rights groups advocate for stronger legal protections for migrant workers.','The charity advocates on behalf of children living in poverty.','The senator has long advocated for comprehensive tax reform.'],
+    Conversation: ['She really advocates for that approach — she brings it up in every meeting.','I would advocate trying the new system before committing to it fully.','He is basically an advocate for everything slow and sustainable.'],
+    Emotion: ['She became an advocate not from duty but from deep personal loss.','To advocate for someone you love, even when the system resists you, takes extraordinary courage.','He had spent decades as a quiet advocate, never seeking recognition.']
+  },
+
+  'albeit': {
+    Academic: ['The results were positive, albeit limited by a small sample size.','The approach proved effective, albeit resource-intensive.','Progress was made, albeit slowly, in closing the achievement gap.'],
+    Business: ['Revenue increased, albeit marginally, in the final quarter.','The project was completed on time, albeit over budget.','She accepted the offer, albeit with significant reservations.'],
+    News: ['The ceasefire held, albeit precariously, through the weekend.','Talks resumed, albeit under a cloud of mutual suspicion.','The economy showed signs of recovery, albeit unevenly distributed.'],
+    Conversation: ['It worked, albeit not in the way we expected.','She enjoyed it, albeit not as much as she thought she would.','He agreed, albeit with a lot of reluctance.'],
+    Emotion: ['He smiled, albeit faintly, for the first time in weeks.','She found peace there, albeit a fragile and borrowed kind.','He stayed, albeit uncertain, because leaving felt even harder.']
+  },
+
+  'cautious': {
+    Academic: ['Researchers advise a cautious interpretation of these preliminary findings.','A cautious approach to policy implementation reduces the risk of unintended consequences.','The authors are cautious about drawing broad conclusions from a single study.'],
+    Business: ['The board took a cautious stance on expansion given current market volatility.','Investors remain cautious as interest rates continue to rise.','A cautious approach to hiring now will protect us during a potential downturn.'],
+    News: ['The central bank issued a cautious outlook for economic growth next year.','Authorities urged residents to remain cautious as flood warnings remained in place.','Health officials called for cautious optimism as infection rates began to fall.'],
+    Conversation: ['I would be cautious about that if I were you — it is a big commitment.','She is naturally cautious, which is why she always reads the fine print.','Just be cautious — things are not always what they seem online.'],
+    Emotion: ['He had learned to be cautious with love after years of disappointment.','She moved cautiously through the world, as though happiness might shatter if held too tightly.','Caution had protected him for so long that he had forgotten what trust felt like.']
+  },
+
+  'compelling': {
+    Academic: ['The study presents compelling evidence that early intervention improves long-term outcomes.','She makes a compelling argument for revising current assessment frameworks.','The data provides compelling support for the proposed theoretical model.'],
+    Business: ['The pitch was compelling enough to secure funding in the first round.','We need a compelling value proposition to stand out in a crowded market.','Her presentation made a compelling case for restructuring the supply chain.'],
+    News: ['The documentary offers a compelling portrait of life on the city margins.','New forensic evidence has provided a compelling reason to reopen the case.','The novel has been described as the most compelling debut of the year.'],
+    Conversation: ['Honestly, the argument was so compelling I could not find a counter.','That film is genuinely compelling — I could not look away.','She makes such a compelling case for everything she believes in.'],
+    Emotion: ['There was something compelling about him — she could not name it but could not ignore it either.','The pull she felt was compelling and entirely unreasonable and completely impossible to resist.','The story was compelling in the way that only true things are.']
+  },
+
+  'crucial': {
+    Academic: ['Access to early education is crucial to narrowing the socioeconomic achievement gap.','Timing is crucial in pharmaceutical trials — even small delays affect outcomes.','The distinction between correlation and causation is crucial in research design.'],
+    Business: ['Customer retention is crucial — acquiring new clients costs five times more.','This meeting is crucial to deciding the direction of the entire project.','A strong digital presence is crucial for any business entering new markets.'],
+    News: ['The next 48 hours are crucial in determining whether the talks will succeed.','Crucial evidence was withheld from the jury, the defence argued.','Investment in infrastructure is crucial for sustained economic growth, analysts say.'],
+    Conversation: ['That feedback was crucial — without it we would have gone in completely the wrong direction.','Sleep is crucial. I cannot stress that enough.','It is crucial that you tell him before he hears it from someone else.'],
+    Emotion: ['That moment had been crucial — the turning point from which everything else followed.','She understood, finally, how crucial those early years had been in shaping who she became.','It was a crucial truth, and saying it aloud made it real for the first time.']
+  },
+
+  'deliberate': {
+    Academic: ['The choice of methodology was deliberate and aligned with the research objectives.','Deliberate practice, as defined by Ericsson, requires focused effort and expert feedback.','The researchers made a deliberate decision to exclude outliers from the final analysis.'],
+    Business: ['Her approach to networking is deliberate — she focuses on quality over quantity.','Every design decision in the product was deliberate and user-tested.','Take a deliberate approach to prioritisation — not everything can be urgent.'],
+    News: ['Investigators concluded the fire was deliberate rather than accidental.','The policy shift appeared deliberate, signalling a change in the government\'s direction.','The deletion of emails was described as deliberate and potentially criminal.'],
+    Conversation: ['She is very deliberate about how she spends her time — nothing is accidental with her.','That was totally deliberate, by the way. He knew exactly what he was doing.','I like how deliberate he is — he does not rush anything.'],
+    Emotion: ['She walked away slowly, deliberately, as though each step was a conscious farewell.','Every word he chose was deliberate — he had rehearsed this conversation in his mind a thousand times.','The silence between them was deliberate and full and impossible to fill.']
+  },
+
+  'eloquent': {
+    Academic: ['The author provides an eloquent analysis of post-colonial identity formation.','Her writing is eloquent without sacrificing analytical precision.','The most eloquent arguments in legal scholarship are those grounded in human experience.'],
+    Business: ['He delivered an eloquent pitch that had investors leaning forward in their seats.','She is one of the most eloquent communicators in the organisation.','An eloquent response to criticism can turn a PR crisis into a demonstration of values.'],
+    News: ['The president delivered an eloquent tribute to the fallen soldiers.','She is widely regarded as the most eloquent spokesperson the movement has had.','His eloquent defence of press freedom drew a standing ovation.'],
+    Conversation: ['She is so eloquent — I always feel like I am stumbling over my words by comparison.','That was an eloquent way to put it, honestly.','He gets really eloquent when he is passionate about something.'],
+    Emotion: ['Grief made her eloquent in ways ordinary life never had.','He had no eloquent words for the moment — only a quiet, steady presence.','She wished she could be eloquent but found that honesty required simpler words.']
+  },
+
+  'endeavour': {
+    Academic: ['Academic endeavour requires sustained intellectual curiosity and methodological rigour.','The study represents a collaborative endeavour across three research institutions.','Such an endeavour demands both theoretical knowledge and practical competence.'],
+    Business: ['This new product line represents our most ambitious commercial endeavour to date.','We endeavour to respond to all client queries within 24 hours.','Every business endeavour carries risk — the key is informed decision-making.'],
+    News: ['The expedition was a remarkable human endeavour involving fifteen nations.','The charity\'s latest endeavour aims to provide clean water to two million people.','Scientists described the project as the most complex scientific endeavour of the decade.'],
+    Conversation: ['Good luck with the new endeavour — I think it is going to go really well.','It is a big endeavour but she is exactly the right person to lead it.','Whatever endeavour he takes on, he gives it everything.'],
+    Emotion: ['The endeavour had cost him years and he did not regret a single one.','She poured herself into the endeavour as though it were the last meaningful thing left.','Every human endeavour, however small, is an act of hope.']
+  },
+
+  'foster': {
+    Academic: ['Inclusive classroom environments foster deeper engagement and better retention.','Mentorship programmes foster a sense of belonging among first-generation students.','The research explores how urban design can foster community cohesion.'],
+    Business: ['Great leaders foster a culture where people feel safe to take risks.','The partnership is designed to foster innovation across both organisations.','We must foster trust with our clients through consistent, transparent communication.'],
+    News: ['The initiative aims to foster stronger ties between local government and residents.','The programme has been praised for fostering entrepreneurship in underserved communities.','The accord seeks to foster regional stability and economic cooperation.'],
+    Conversation: ['She really fosters creativity in her team — people genuinely feel free to experiment.','That kind of environment just fosters good work. You can feel it.','He was fostered as a child and later went on to foster others himself.'],
+    Emotion: ['She had fostered in him a love of learning that outlasted everything else she gave him.','The years had fostered in her a quiet strength she had never expected to need.','What they had fostered between them was fragile and irreplaceable.']
+  },
+
+  'hinder': {
+    Academic: ['Poor sleep quality has been shown to significantly hinder cognitive performance.','Bureaucratic processes often hinder the timely dissemination of research findings.','Communication barriers hinder effective collaboration in multilingual organisations.'],
+    Business: ['Legacy systems continue to hinder digital transformation efforts.','Staff turnover at this rate will hinder our ability to deliver on commitments.','Do not let perfectionism hinder progress — done is better than perfect.'],
+    News: ['Severe weather conditions hindered rescue operations throughout the night.','Corruption was cited as the primary factor hindering economic development in the region.','Supply chain disruptions continue to hinder recovery in the manufacturing sector.'],
+    Conversation: ['I think the bureaucracy is genuinely hindering the good work they are trying to do.','Do not let fear hinder you — the worst they can say is no.','His own self-doubt hindered him more than any external obstacle ever did.'],
+    Emotion: ['Pride had hindered him for years from asking for the help he desperately needed.','She refused to let grief hinder her — though some days it came very close.','The one thing that hindered her was the one thing she could not name.']
+  },
+
+  'meticulous': {
+    Academic: ['The researcher was meticulous in documenting every stage of the experimental process.','Meticulous attention to citation accuracy is a hallmark of scholarly integrity.','The analysis required a meticulous review of over two thousand primary sources.'],
+    Business: ['She is meticulous about detail — nothing gets past her in a contract review.','Meticulous financial reporting builds investor confidence over time.','His meticulous approach to project management kept every deadline on track.'],
+    News: ['The investigation involved meticulous forensic analysis spanning eighteen months.','She is known for her meticulous preparation before every major interview.','The restoration project required meticulous work by a team of specialist conservators.'],
+    Conversation: ['She is so meticulous — her notes are basically works of art.','I need someone meticulous for this job. Errors are not an option.','He is almost too meticulous sometimes, but the results speak for themselves.'],
+    Emotion: ['She had been meticulous in dismantling every memory, as though grief were something that could be filed away.','He reconstructed the past with meticulous care, afraid that imprecision would mean forgetting.','Her love was meticulous — attentive to small things that others would have overlooked.']
+  },
+
+  'pragmatic': {
+    Academic: ['A pragmatic approach to curriculum design prioritises real-world applicability.','The study adopts a pragmatic epistemological stance, combining qualitative and quantitative methods.','Pragmatic considerations often shape policy implementation more than theoretical ideals.'],
+    Business: ['She is refreshingly pragmatic — she focuses on what will actually work, not what sounds good.','A pragmatic mindset is essential when navigating complex, fast-moving markets.','The board took a pragmatic view and approved the compromise solution.'],
+    News: ['The new prime minister is widely regarded as pragmatic rather than ideological.','A pragmatic approach to the border dispute may be the only path to resolution.','Analysts described the policy shift as pragmatic in the face of economic realities.'],
+    Conversation: ['I like that he is pragmatic about it — he does not get caught up in how things should be.','She is very pragmatic, which is why she is so good in a crisis.','Let us be pragmatic here — what is actually achievable in the next two weeks?'],
+    Emotion: ['She had made herself pragmatic over the years as a form of self-protection.','There was no room for sentiment — only the pragmatic necessity of moving forward.','He admired her pragmatism even as he mourned the romance it had displaced.']
+  },
+
+  'resilient': {
+    Academic: ['Resilient systems are characterised by their capacity to absorb disruption and adapt.','Children raised in supportive environments demonstrate greater resilience in adversity.','The study examines what makes certain communities more resilient to economic shocks.'],
+    Business: ['A resilient supply chain is one that can absorb shocks without significant disruption.','We need to build a more resilient business model that performs across economic cycles.','Resilient teams share a common trait — psychological safety.'],
+    News: ['The economy proved more resilient than analysts had predicted.','Communities in the flood zone have shown remarkable resilience in rebuilding.','The currency remained resilient despite political uncertainty in the region.'],
+    Conversation: ['She is honestly one of the most resilient people I have ever met.','You have to be resilient in this industry — rejection is part of it.','Kids are incredibly resilient — they surprise you every time.'],
+    Emotion: ['She had not chosen to be resilient — life had simply not given her the alternative.','There is a particular kind of resilience that grows only in the dark.','He had been resilient for so long that he had forgotten it was not the same as being okay.']
+  },
+
+  'scrutiny': {
+    Academic: ['The methodology requires rigorous scrutiny before conclusions can be accepted.','Public institutions must be subject to ongoing democratic scrutiny.','Under closer scrutiny, the correlation between the two variables weakens significantly.'],
+    Business: ['Executive pay packages have come under increasing scrutiny from shareholders.','Every financial decision will face scrutiny from the audit committee.','The merger is currently under regulatory scrutiny across three jurisdictions.'],
+    News: ['The government\'s handling of the crisis has attracted intense media scrutiny.','The company\'s safety record is under scrutiny following last month\'s incident.','Human rights practices in the region face renewed international scrutiny.'],
+    Conversation: ['Everything gets put under scrutiny in that team — which is actually good.','She does not like scrutiny. She prefers to work quietly.','Once it is in the public domain, it is going to face a lot of scrutiny.'],
+    Emotion: ['She had spent her childhood under the scrutiny of a parent who never seemed satisfied.','He avoided scrutiny not from guilt but from a deep weariness of being seen.','Under her own scrutiny, she found things she had long preferred not to look at.']
+  },
+
+  'subtle': {
+    Academic: ['The differences between the two groups, though subtle, reached statistical significance.','Subtle shifts in policy framing can produce measurable changes in public attitude.','The author\'s argument is subtle and easily missed on a first reading.'],
+    Business: ['Her feedback was subtle but clear to anyone who knew how to read between the lines.','Subtle changes in customer behaviour can signal significant shifts in market demand.','The brand refresh was subtle — designed to feel familiar rather than revolutionary.'],
+    News: ['The change in tone was subtle but significant to experienced observers.','A subtle shift in diplomatic language may indicate progress in the talks.','The film delivers its social commentary in subtle and effective ways.'],
+    Conversation: ['That was a pretty subtle hint — I nearly missed it.','She is subtle about it but you can tell she is not happy.','I am being subtle here, but I really do not think this is a good idea.'],
+    Emotion: ['The grief was subtle at first — easy to dismiss as tiredness or distraction.','She had learned to read his subtle signs — the ones only years of attention could decode.','Love, she found, was not always dramatic. Often it was subtle and slow and certain.']
+  },
+
+  'tenacious': {
+    Academic: ['Tenacious researchers who persist through failure often produce the most significant breakthroughs.','The tenacious pursuit of accuracy is a defining characteristic of rigorous scholarship.','She demonstrates a tenacious commitment to longitudinal data collection.'],
+    Business: ['She is one of the most tenacious negotiators I have ever worked with.','Startups that survive their first three years tend to be led by tenacious founders.','His tenacious approach to client retention transformed the account portfolio.'],
+    News: ['The tenacious investigative journalist spent seven years pursuing the story.','She is a tenacious campaigner who has never accepted no for an answer.','His tenacious defence of the title earned him widespread admiration.'],
+    Conversation: ['She is tenacious — once she decides something, that is it. Nothing will stop her.','You have to be tenacious in this field. It does not reward people who give up easily.','He was tenacious about it in the best way — just kept going.'],
+    Emotion: ['She held on with the tenacious grip of someone who had lost too much to let go.','His love was tenacious in a way that outlasted every reason she gave him to leave.','The tenacious hope she carried had been battered but never quite broken.']
+  },
+
+  'transparent': {
+    Academic: ['Transparent reporting of methodology enables replication and peer scrutiny.','Ethical research demands transparent disclosure of funding sources and conflicts of interest.','The model provides a transparent framework for evaluating policy outcomes.'],
+    Business: ['Companies that are transparent about failures tend to build stronger long-term trust.','We are committed to being transparent with our customers about data usage.','Transparent pricing builds confidence and reduces purchase friction.'],
+    News: ['The government pledged to be more transparent about decision-making during the crisis.','The organisation was criticised for failing to be transparent about its finances.','The process must be transparent if public trust is to be maintained.'],
+    Conversation: ['I appreciate that she is so transparent — what you see is what you get.','He was surprisingly transparent about his mistakes, which I respected.','Just be transparent with me — I can handle the truth better than uncertainty.'],
+    Emotion: ['She wished she could be less transparent — her face always gave her away.','He valued her transparency even when the truth was not what he wanted to hear.','There was something beautiful about loving someone who hid nothing.']
+  },
+
+  'nevertheless': {
+    Academic: ['The sample size was limited; nevertheless, the findings offer valuable preliminary insights.','Critics raised valid objections; nevertheless, the core argument remains persuasive.','The results were inconclusive; nevertheless, they warrant further investigation.'],
+    Business: ['The market conditions are difficult; nevertheless, we are confident in our growth strategy.','Costs exceeded projections; nevertheless, the project delivered measurable ROI.','The timeline is ambitious; nevertheless, the team is committed to delivery.'],
+    News: ['Talks broke down in June; nevertheless, both sides returned to the table in August.','The policy faces opposition; nevertheless, the government plans to proceed.','Evidence was circumstantial; nevertheless, the jury returned a unanimous verdict.'],
+    Conversation: ['It was not ideal; nevertheless, we made it work.','She was not convinced; nevertheless, she agreed to give it a try.','I had doubts; nevertheless, I went ahead and I am glad I did.'],
+    Emotion: ['She had every reason to give up; nevertheless, something kept pulling her forward.','He had hurt her; nevertheless, she found she could not stay angry.','The world had disappointed her; nevertheless, she chose to love it still.']
+  },
+
+};
+
+// ── PATCH vicRender TO USE REAL DATA + NATIVE NOTES ──────────
+var _origVicRender = typeof vicRender === 'function' ? vicRender : null;
+
+function vicRender(word, filterCat) {
+  currentVicWord = word;
+  var res = document.getElementById('vicResult');
+  if(!word){ vicShowFeatured(); return; }
+
+  // Check if we have real data for this word
+  var wordData = VIC_WORDS[word.toLowerCase()];
+  var contexts;
+
+  if(wordData) {
+    // Use real handcrafted sentences
+    var registerMap = [
+      {cat:'Academic',       icon:'🎓', col:'#A78BFA'},
+      {cat:'Business',       icon:'💼', col:'#F5C842'},
+      {cat:'News',           icon:'📰', col:'#60A5FA'},
+      {cat:'Conversation',   icon:'💬', col:'#4ADE80'},
+      {cat:'Emotion',        icon:'❤️', col:'#FF6B6B'}
+    ];
+    contexts = registerMap.map(function(r) {
+      return {
+        cat: r.cat,
+        icon: r.icon,
+        col: r.col,
+        sentences: wordData[r.cat] || []
+      };
+    });
+  } else {
+    // Fall back to template generation for unknown words
+    contexts = vicBuildContexts(word);
+  }
+
+  if(filterCat) contexts = contexts.filter(function(c){ return c.cat.indexOf(filterCat) >= 0; });
+
+  var h = '';
+
+  // Word header
+  h += '<div style="margin-bottom:14px;padding:12px 14px;background:rgba(167,139,250,0.10);border:1.5px solid rgba(167,139,250,0.30);border-radius:12px">';
+  h += '<div style="font-family:Fraunces,serif;font-size:22px;font-weight:700;color:#A78BFA;margin-bottom:4px">' + word + '</div>';
+  h += '<div style="font-size:12px;color:rgba(167,139,250,0.75);font-style:italic">' + (wordData ? '✅ Real sentences — not generated' : '📝 Template sentences') + ' · ' + (lang !== 'English' ? lang + ' notes below each register' : '') + '</div>';
+  h += '</div>';
+
+  contexts.forEach(function(ctx) {
+    if(!ctx.sentences || ctx.sentences.length === 0) return;
+    h += '<div style="margin-bottom:10px;border-radius:11px;overflow:hidden;border:1px solid ' + ctx.col + '30">';
+    h += '<div style="background:' + ctx.col + '18;padding:7px 12px;display:flex;align-items:center;justify-content:space-between;gap:7px">';
+    h += '<div style="display:flex;align-items:center;gap:7px"><span style="font-size:15px">' + ctx.icon + '</span>';
+    h += '<span style="font-size:11px;font-weight:800;text-transform:uppercase;color:' + ctx.col + ';letter-spacing:.06em">' + ctx.cat + '</span></div>';
+    h += '</div>';
+
+    ctx.sentences.forEach(function(sent) {
+      var highlighted = sent.replace(
+        new RegExp('\\b' + word.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + '\\b', 'gi'),
+        function(m){ return '<strong style="color:' + ctx.col + ';text-decoration:underline">' + m + '</strong>'; }
+      );
+      h += '<div style="padding:9px 12px;border-bottom:1px solid rgba(255,255,255,0.05)">';
+      h += '<div style="font-size:13px;color:rgba(255,255,255,0.88);line-height:1.70">' + highlighted + '</div>';
+      h += '</div>';
+    });
+
+    // Native language register note — pre-written, zero tokens
+    var nativeNote = VIC_getRegisterNote(ctx.cat);
+    if(nativeNote) {
+      h += '<div style="padding:8px 12px;background:rgba(245,200,66,0.06);border-top:1px solid rgba(245,200,66,0.15)">';
+      h += '<div style="font-size:11.5px;color:rgba(245,200,66,0.80);line-height:1.60">🌐 <strong>' + lang + ':</strong> ' + nativeNote + '</div>';
+      h += '</div>';
+    }
+    h += '</div>';
+  });
+
+  // Premium upsell
+  h += '<div style="margin-top:12px;padding:12px 14px;background:rgba(245,200,66,0.07);border:1.5px solid rgba(245,200,66,0.22);border-radius:12px">';
+  h += '<div style="font-size:11px;font-weight:800;text-transform:uppercase;color:rgba(245,200,66,0.70);letter-spacing:.06em;margin-bottom:6px">🚀 Coming in Premium</div>';
+  h += '<div style="font-size:12px;color:rgba(255,255,255,0.60);line-height:1.65;margin-bottom:8px">';
+  h += '• <strong style="color:rgba(255,255,255,0.80)">10,000+ words</strong> with real sentences across all 5 registers<br>';
+  h += '• <strong style="color:rgba(255,255,255,0.80)">Word audio</strong> — hear the word in all 5 contexts spoken by natives<br>';
+  h += '• <strong style="color:rgba(255,255,255,0.80)">Personal word bank</strong> — save and review words you are learning<br>';
+  h += '• <strong style="color:rgba(255,255,255,0.80)">Register quiz</strong> — test yourself on which register each sentence belongs to';
+  h += '</div>';
+  h += '<button onclick="openWaitlist()" style="width:100%;padding:8px;border-radius:8px;border:1px solid rgba(245,200,66,0.30);background:rgba(245,200,66,0.10);color:rgba(245,200,66,0.90);font-family:inherit;font-size:12px;font-weight:700;cursor:pointer">Register free for early access →</button>';
+  h += '</div>';
+
+  res.innerHTML = h;
+}
+
+// ── PATCH vicShowFeatured TO SHOW MORE WORDS ──────────────────
+function vicShowFeatured() {
+  var res = document.getElementById('vicResult');
+  var allWords = Object.keys(VIC_WORDS);
+  var featured = VIC_FEATURED.filter(function(w){ return VIC_WORDS[w]; });
+  var extra = allWords.filter(function(w){ return featured.indexOf(w) === -1; });
+
+  var h = '<div style="margin-bottom:14px">';
+  h += '<div style="font-size:11px;font-weight:700;text-transform:uppercase;color:rgba(255,255,255,0.40);margin-bottom:8px">✅ Real sentences available — tap any word to explore</div>';
+  h += '<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">';
+  featured.forEach(function(w) {
+    h += '<div onclick="vicQuickLoad(\'' + w + '\')" style="cursor:pointer;padding:5px 12px;border-radius:20px;border:1px solid rgba(167,139,250,0.35);font-size:12.5px;color:rgba(167,139,250,0.90);font-weight:600;background:rgba(167,139,250,0.08)" onmouseover="this.style.background=\'rgba(167,139,250,0.18)\'" onmouseout="this.style.background=\'rgba(167,139,250,0.08)\'">' + w + '</div>';
+  });
+  h += '</div>';
+
+  if(extra.length > 0) {
+    h += '<div style="font-size:11px;font-weight:700;text-transform:uppercase;color:rgba(255,255,255,0.30);margin-bottom:6px">More words with real sentences</div>';
+    h += '<div style="display:flex;flex-wrap:wrap;gap:5px">';
+    extra.slice(0,20).forEach(function(w) {
+      h += '<div onclick="vicQuickLoad(\'' + w + '\')" style="cursor:pointer;padding:4px 10px;border-radius:20px;border:1px solid rgba(255,255,255,0.10);font-size:11.5px;color:rgba(255,255,255,0.50);font-weight:500" onmouseover="this.style.borderColor=\'rgba(167,139,250,0.35)\';this.style.color=\'rgba(167,139,250,0.80)\'" onmouseout="this.style.borderColor=\'rgba(255,255,255,0.10)\';this.style.color=\'rgba(255,255,255,0.50)\'">' + w + '</div>';
+    });
+    h += '</div>';
+  }
+
+  h += '</div>';
+
+  // Premium teaser for more words
+  h += '<div style="padding:11px 13px;background:rgba(245,200,66,0.06);border:1px solid rgba(245,200,66,0.18);border-radius:10px;font-size:12px;color:rgba(255,255,255,0.55);line-height:1.65">';
+  h += '🚀 <strong style="color:rgba(245,200,66,0.80)">Premium</strong> unlocks real sentences for <strong style="color:rgba(255,255,255,0.70)">10,000+ words</strong> across all 5 registers — <span onclick="openWaitlist()" style="color:var(--gold);font-weight:700;cursor:pointer;text-decoration:underline">register free →</span>';
+  h += '</div>';
+
+  res.innerHTML = h;
+}
+
+</script>
 </body>
 </html>

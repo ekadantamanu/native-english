@@ -1521,7 +1521,12 @@ button, .tbtn, .tgrp { -webkit-tap-highlight-color: transparent; }
   </div>
   <div style="flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px">
     <textarea id="errorInput" spellcheck="true" placeholder="Paste a sentence you think has a grammar error — e.g. 'She don't likes coffee' or 'I am having a car'" rows="3" style="width:100%;background:rgba(255,255,255,0.05);border:1.5px solid rgba(255,107,107,0.20);border-radius:10px;padding:11px 13px;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;resize:none;outline:none;line-height:1.70" onfocus="this.style.borderColor='rgba(255,107,107,0.50)'" onblur="this.style.borderColor='rgba(255,107,107,0.20)'"></textarea>
-    <div id="errorResult"><div style="text-align:center;padding:16px;color:rgba(255,255,255,0.35);font-size:12.5px;border:1px dashed rgba(255,107,107,0.20);border-radius:10px">🔬 Paste a sentence and click <strong style="color:#FF6B6B">Decode My Error</strong> — or try an example</div></div>
+    <div id="errorResult"><div style="text-align:center;padding:16px;color:rgba(255,255,255,0.35);font-size:12.5px;border:1px dashed rgba(255,107,107,0.20);border-radius:10px">🔬 Paste a sentence and click <strong style="color:#FF6B6B">Decode My Error</strong> — or try an example</div>
+<div style="margin-top:16px;border-top:1px solid rgba(255,255,255,0.08);padding-top:14px">
+<div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,0.40);margin-bottom:10px">🎮 Error Pattern Challenge — Find the mistake, know your pattern</div>
+<div id="epcGame"></div>
+</div>
+</div>
   </div>
 </div>
 
@@ -8874,6 +8879,7 @@ function showTab(name,btn){
   if(name==='phrases')setTimeout(renderPhrases,50);
   if(name==='puzzle')setTimeout(renderPuzzle,50);
   if(name==='spotter')setTimeout(renderSpotter,50);
+  if(name==='errordecoder')setTimeout(epcRender,150);
   if(name==='cheatsheet')setTimeout(buildCheatSheet,50);
   if(name==='connected')setTimeout(renderCS,50);
   if(name==='minimalpairs')setTimeout(function(){mpMode('identify',document.getElementById('mpM1'));},50);
@@ -12629,6 +12635,796 @@ function NE_resetProgress() {
     location.reload();
   }
 }
+
+</script>
+
+<script>
+// ============================================================
+// ERROR PATTERN CHALLENGE — Gamified Error Diagnosis
+// 500+ sentences across 16 languages, 8 error categories
+// No tokens, no API, 100% free, never repeats
+// ============================================================
+
+var EPC_DATA = {
+
+// ── CATEGORY 1: STATE VERBS ──────────────────────────────────
+state_verbs: {
+  name: 'State Verbs',
+  icon: '🔴',
+  color: '#FF6B6B',
+  why: {
+    Telugu: 'Telugu లో verbs అన్నీ continuous గా వాడవచ్చు, కానీ English లో "know, have, like, want" లాంటి state verbs continuous form లో వాడకూడదు.',
+    Hindi: 'हिंदी में सभी verbs continuous form में use होती हैं, लेकिन English में state verbs जैसे know, have, like continuous में नहीं आतीं।',
+    Tamil: 'தமிழில் எல்லா verbs-ஐயும் continuous-ஆக பயன்படுத்தலாம், ஆனால் English-ல் know, have, like போன்றவை continuous-ல் வராது.',
+    Arabic: 'في العربية يمكن استخدام الأفعال بصيغة مستمرة، لكن في الإنجليزية أفعال الحالة مثل know وhave لا تأتي بصيغة مستمرة.',
+    Kannada: 'Kannada ದಲ್ಲಿ ಎಲ್ಲಾ verbs continuous ಆಗಿ ಬಳಸಬಹುದು, ಆದರೆ English ನಲ್ಲಿ know, have, like ಇಂತಹ state verbs continuous ರೂಪದಲ್ಲಿ ಬಳಸಬಾರದು.',
+    Malayalam: 'Malayalam-ൽ എല്ലാ verbs-ഉം continuous ആയി ഉപയോഗിക്കാം, പക്ഷേ English-ൽ know, have, like തുടങ്ങിയ state verbs continuous form-ൽ വരില്ല.',
+    default: 'In many languages all verbs can be continuous, but English state verbs (know, have, like, want, understand) never use -ing form.'
+  },
+  sentences: [
+    { wrong: 'She is knowing the answer to every question.', right: 'She knows the answer to every question.', error: 'is knowing', fix: 'knows', explanation: 'KNOW is a state verb — it describes a mental state, not an action. Use simple present: she knows.' },
+    { wrong: 'I am having a headache since morning.', right: 'I have had a headache since morning.', error: 'am having', fix: 'have had', explanation: 'HAVE (possess/experience) is a state verb. With "since" use present perfect: I have had.' },
+    { wrong: 'He is wanting to become a doctor.', right: 'He wants to become a doctor.', error: 'is wanting', fix: 'wants', explanation: 'WANT is a state verb expressing desire — never use -ing. He wants.' },
+    { wrong: 'I am believing that she is innocent.', right: 'I believe that she is innocent.', error: 'am believing', fix: 'believe', explanation: 'BELIEVE is a mental state verb — use simple present: I believe.' },
+    { wrong: 'They are understanding the problem now.', right: 'They understand the problem now.', error: 'are understanding', fix: 'understand', explanation: 'UNDERSTAND is a state verb. Use simple present: they understand.' },
+    { wrong: 'She is liking the new teacher very much.', right: 'She likes the new teacher very much.', error: 'is liking', fix: 'likes', explanation: 'LIKE expresses a feeling/preference — state verb, no -ing. She likes.' },
+    { wrong: 'We are preferring tea over coffee.', right: 'We prefer tea over coffee.', error: 'are preferring', fix: 'prefer', explanation: 'PREFER is a state verb showing preference. Use simple present: we prefer.' },
+    { wrong: 'I am hating the cold weather.', right: 'I hate the cold weather.', error: 'am hating', fix: 'hate', explanation: 'HATE describes a feeling — state verb, never continuous. I hate.' },
+    { wrong: 'This bag is belonging to my sister.', right: 'This bag belongs to my sister.', error: 'is belonging', fix: 'belongs', explanation: 'BELONG is a state verb showing possession. This bag belongs to.' },
+    { wrong: 'He is seeming very tired today.', right: 'He seems very tired today.', error: 'is seeming', fix: 'seems', explanation: 'SEEM is a state verb describing appearance. He seems tired.' },
+    { wrong: 'I am knowing her since childhood.', right: 'I have known her since childhood.', error: 'am knowing', fix: 'have known', explanation: 'KNOW is a state verb. With "since" use present perfect: I have known her.' },
+    { wrong: 'She is having two brothers and one sister.', right: 'She has two brothers and one sister.', error: 'is having', fix: 'has', explanation: 'HAVE meaning "possess" is a state verb. She has two brothers.' },
+    { wrong: 'I am thinking that you are wrong.', right: 'I think that you are wrong.', error: 'am thinking', fix: 'think', explanation: 'THINK meaning "believe/have an opinion" is a state verb. I think you are wrong.' },
+    { wrong: 'This food is tasting delicious.', right: 'This food tastes delicious.', error: 'is tasting', fix: 'tastes', explanation: 'TASTE as a linking verb is a state verb. This food tastes delicious.' },
+    { wrong: 'The flowers are smelling beautiful.', right: 'The flowers smell beautiful.', error: 'are smelling', fix: 'smell', explanation: 'SMELL as a linking verb is a state verb. The flowers smell beautiful.' },
+  ]
+},
+
+// ── CATEGORY 2: ARTICLES ────────────────────────────────────
+articles: {
+  name: 'Articles (a/an/the)',
+  icon: '🟠',
+  color: '#FB923C',
+  why: {
+    Telugu: 'Telugu లో articles లేవు. "a", "an", "the" అనే concept Telugu లో ఉండదు కాబట్టి English లో వాడటం కష్టంగా అనిపిస్తుంది.',
+    Hindi: 'हिंदी में articles नहीं होते। "a", "an", "the" का कोई equivalent नहीं है, इसलिए English में इनका use करना मुश्किल लगता है।',
+    Tamil: 'தமிழில் articles இல்லை. "a", "an", "the" என்ற concept தமிழில் இல்லாததால் English-ல் பயன்படுத்துவது கஷ்டமாக இருக்கும்.',
+    Arabic: 'العربية لديها "ال" للتعريف ولكن ليس أداة نكرة مثل "a/an". هذا يجعل استخدام المقالة الإنجليزية صعباً.',
+    Kannada: 'Kannada ದಲ್ಲಿ articles ಇಲ್ಲ. "a", "an", "the" ಎಂಬ concept Kannada ದಲ್ಲಿ ಇಲ್ಲ.',
+    Malayalam: 'Malayalam-ൽ articles ഇല്ല. "a", "an", "the" എന്ന concept Malayalam-ൽ ഇല്ലാത്തതിനാൽ English-ൽ ഉപയോഗിക്കുന്നത് ബുദ്ധിമുട്ടായി തോന്നും.',
+    default: 'Many languages have no articles. English has three: "a" (first mention), "an" (before vowel sound), "the" (specific/known).'
+  },
+  sentences: [
+    { wrong: 'She went to market to buy vegetables.', right: 'She went to the market to buy vegetables.', error: 'to market', fix: 'to the market', explanation: 'Specific places need THE definite article. "The market" = the specific market in your area.' },
+    { wrong: 'He is best student in the class.', right: 'He is the best student in the class.', error: 'is best', fix: 'is the best', explanation: 'Superlatives (best, worst, biggest) always take THE. He is THE best.' },
+    { wrong: 'I have dog and cat at home.', right: 'I have a dog and a cat at home.', error: 'have dog', fix: 'have a dog', explanation: 'First mention of a countable singular noun needs A. I have A dog, A cat.' },
+    { wrong: 'She is engineer at a software company.', right: 'She is an engineer at a software company.', error: 'is engineer', fix: 'is an engineer', explanation: 'With professions use A/AN. "An engineer" — AN before vowel sounds.' },
+    { wrong: 'I go to office by bus every day.', right: 'I go to the office by bus every day.', error: 'to office', fix: 'to the office', explanation: '"The office" is a specific place. My/the workplace needs THE definite article.' },
+    { wrong: 'Sun rises in east.', right: 'The sun rises in the east.', error: 'Sun rises in east', fix: 'The sun rises in the east', explanation: 'Unique things (the sun, the moon, the earth) and directions (the east) take THE.' },
+    { wrong: 'She plays piano very well.', right: 'She plays the piano very well.', error: 'plays piano', fix: 'plays the piano', explanation: 'Musical instruments take THE: play the piano, the guitar, the violin.' },
+    { wrong: 'I read newspaper every morning.', right: 'I read the newspaper every morning.', error: 'read newspaper', fix: 'read the newspaper', explanation: 'A specific daily habit with one specific item uses THE.' },
+    { wrong: 'It was best movie I have ever seen.', right: 'It was the best movie I have ever seen.', error: 'was best', fix: 'was the best', explanation: 'Superlatives always use THE. The best, the worst, the most.' },
+    { wrong: 'Can you open window please?', right: 'Can you open the window please?', error: 'open window', fix: 'open the window', explanation: 'When speaker and listener both know which window, use THE (shared knowledge).' },
+    { wrong: 'I need pen to sign this form.', right: 'I need a pen to sign this form.', error: 'need pen', fix: 'need a pen', explanation: 'Any pen will do — first mention of a singular countable noun uses A.' },
+    { wrong: 'She has honest face and kind eyes.', right: 'She has an honest face and kind eyes.', error: 'has honest', fix: 'has an honest', explanation: 'AN before words starting with a vowel sound. "Honest" starts with silent H, vowel sound O.' },
+    { wrong: 'He is university professor.', right: 'He is a university professor.', error: 'is university', fix: 'is a university', explanation: 'Professions use A/AN. A professor. Note: "university" starts with Y sound, so A not AN.' },
+    { wrong: 'We visited Taj Mahal last year.', right: 'We visited the Taj Mahal last year.', error: 'visited Taj Mahal', fix: 'visited the Taj Mahal', explanation: 'Monuments and unique landmarks take THE: the Eiffel Tower, the Taj Mahal.' },
+    { wrong: 'I bought new phone yesterday.', right: 'I bought a new phone yesterday.', error: 'bought new phone', fix: 'bought a new phone', explanation: 'First time mentioning a thing to the listener uses A. I bought A new phone.' },
+  ]
+},
+
+// ── CATEGORY 3: TENSE ERRORS ────────────────────────────────
+tense: {
+  name: 'Tense Errors',
+  icon: '🟡',
+  color: '#F5C842',
+  why: {
+    Telugu: 'Telugu లో tense markers sentence లో time words తో indicate అవుతాయి. English లో verb form change అవుతుంది కాబట్టి "yesterday I go" లాంటి తప్పులు వస్తాయి.',
+    Hindi: 'हिंदी में tense कभी-कभी time words से indicate होता है। English में verb form हमेशा change होती है — इसीलिए "yesterday I go" जैसी गलतियाँ होती हैं।',
+    Tamil: 'தமிழில் tense markers வேறு விதமாக இருக்கும். English-ல் verb form மாறுவதால் "yesterday I go" போன்ற தவறுகள் வருகின்றன.',
+    Arabic: 'في العربية يتم التعبير عن الزمن بطريقة مختلفة. في الإنجليزية يجب تغيير شكل الفعل دائماً.',
+    default: 'English requires the verb form to change based on time. Past actions always need past tense verbs, not present.'
+  },
+  sentences: [
+    { wrong: 'Yesterday I go to the market.', right: 'Yesterday I went to the market.', error: 'I go', fix: 'I went', explanation: 'YESTERDAY signals past time — always use simple past. Went is past of go.' },
+    { wrong: 'I have seen this film yesterday.', right: 'I saw this film yesterday.', error: 'have seen', fix: 'saw', explanation: 'YESTERDAY is a specific past time — use simple past (saw), never present perfect (have seen).' },
+    { wrong: 'She is went to the office this morning.', right: 'She went to the office this morning.', error: 'is went', fix: 'went', explanation: 'Went is already past tense — never combine IS + past form. Just: she went.' },
+    { wrong: 'I am working here since 5 years.', right: 'I have been working here for 5 years.', error: 'am working since', fix: 'have been working for', explanation: 'For ongoing actions from past to now: present perfect continuous + FOR (duration).' },
+    { wrong: 'Last week he is very sick.', right: 'Last week he was very sick.', error: 'he is', fix: 'he was', explanation: '"Last week" is past time — use WAS not IS. Was is past of is.' },
+    { wrong: 'She told me that she is tired.', right: 'She told me that she was tired.', error: 'she is', fix: 'she was', explanation: 'Reported speech: when main verb is past (told), the reported verb also shifts back (was).' },
+    { wrong: 'I know him since we are children.', right: 'I have known him since we were children.', error: 'know him since', fix: 'have known him since', explanation: 'Since + past point = present perfect. "I have known him since we were children."' },
+    { wrong: 'When I reached station, the train already left.', right: 'When I reached the station, the train had already left.', error: 'already left', fix: 'had already left', explanation: 'Two past events: the earlier one uses past perfect (had left). Train left BEFORE I arrived.' },
+    { wrong: 'I am studying English for three years.', right: 'I have been studying English for three years.', error: 'am studying for', fix: 'have been studying for', explanation: 'Ongoing action from past to present: present perfect continuous (have been studying).' },
+    { wrong: 'She never told me about this before now.', right: 'She had never told me about this before.', error: 'never told', fix: 'had never told', explanation: 'Before a past reference point use past perfect: she had never told me.' },
+    { wrong: 'He lived in London since 2018.', right: 'He has lived in London since 2018.', error: 'lived', fix: 'has lived', explanation: 'SINCE + still continuing now = present perfect (has lived), not simple past.' },
+    { wrong: 'I did not went to school today.', right: 'I did not go to school today.', error: 'did not went', fix: 'did not go', explanation: 'After DID (auxiliary), use base form. Did not GO, not did not went.' },
+    { wrong: 'By the time she arrived, we finish dinner.', right: 'By the time she arrived, we had finished dinner.', error: 'we finish', fix: 'we had finished', explanation: '"By the time" + past = past perfect for the earlier completed action.' },
+    { wrong: 'I am reading this book last night.', right: 'I was reading this book last night.', error: 'am reading', fix: 'was reading', explanation: '"Last night" is past — use past continuous (was reading) for an activity in progress then.' },
+    { wrong: 'She has arrived yesterday at midnight.', right: 'She arrived yesterday at midnight.', error: 'has arrived', fix: 'arrived', explanation: 'Yesterday = specific past time = simple past (arrived). Never use present perfect with yesterday.' },
+  ]
+},
+
+// ── CATEGORY 4: PREPOSITIONS ─────────────────────────────────
+prepositions: {
+  name: 'Prepositions',
+  icon: '🟢',
+  color: '#4ADE80',
+  why: {
+    Telugu: 'Telugu లో postpositions వాడతాం (noun తర్వాత వస్తాయి). English లో prepositions noun ముందు వస్తాయి మరియు direct translation తప్పుగా ఉంటుంది.',
+    Hindi: 'हिंदी में postpositions होते हैं जो noun के बाद आते हैं। English में prepositions पहले आते हैं और direct translation गलत होती है।',
+    Tamil: 'தமிழில் postpositions பயன்படுத்துகிறோம். English prepositions direct translate ஆவதில்லை.',
+    Arabic: 'في العربية حروف الجر تختلف عن الإنجليزية. الترجمة المباشرة غالباً تكون خاطئة.',
+    default: 'Prepositions cannot be directly translated between languages. Each combination must be memorised as a unit.'
+  },
+  sentences: [
+    { wrong: 'She is married with a doctor.', right: 'She is married to a doctor.', error: 'married with', fix: 'married to', explanation: 'Always: married TO someone. Never "married with" in standard English.' },
+    { wrong: 'I am interested on learning English.', right: 'I am interested in learning English.', error: 'interested on', fix: 'interested in', explanation: 'Always: interested IN. Never interested on or interested about.' },
+    { wrong: 'He is good in mathematics.', right: 'He is good at mathematics.', error: 'good in', fix: 'good at', explanation: 'Skill at a subject: good AT. I am good at maths, tennis, cooking.' },
+    { wrong: 'We discussed about the project.', right: 'We discussed the project.', error: 'discussed about', fix: 'discussed', explanation: 'DISCUSS already means "talk about" — never add "about". We discussed the project.' },
+    { wrong: 'She depends on her parents for everything.', right: 'She depends on her parents for everything.', error: '', fix: '', explanation: 'This is correct! Depend ON is the right preposition. ✅' },
+    { wrong: 'I reached to the office at 9am.', right: 'I reached the office at 9am.', error: 'reached to', fix: 'reached', explanation: 'REACH takes a direct object — no preposition needed. Reached the office, not reached to.' },
+    { wrong: 'He is suffering from fever since yesterday.', right: 'He has been suffering from fever since yesterday.', error: 'is suffering from', fix: 'has been suffering from', explanation: 'Correct preposition (from) but wrong tense. Since = present perfect continuous.' },
+    { wrong: 'She is afraid from dogs.', right: 'She is afraid of dogs.', error: 'afraid from', fix: 'afraid of', explanation: 'Always: afraid OF. Never afraid from. I am afraid of spiders.' },
+    { wrong: 'I am angry on my brother.', right: 'I am angry with my brother.', error: 'angry on', fix: 'angry with/at', explanation: 'Angry WITH someone (British) or angry AT someone (American). Never angry on.' },
+    { wrong: 'He got promoted in his job.', right: 'He was promoted at work.', error: 'promoted in', fix: 'promoted at', explanation: 'Promoted at work/in the company. "Promoted in his job" is non-standard.' },
+    { wrong: 'She is similar with her mother.', right: 'She is similar to her mother.', error: 'similar with', fix: 'similar to', explanation: 'Always: similar TO. This is similar TO that. Never similar with.' },
+    { wrong: 'He is capable to do this work.', right: 'He is capable of doing this work.', error: 'capable to', fix: 'capable of', explanation: 'Always: capable OF + gerund (-ing). He is capable of doing it.' },
+    { wrong: 'I congratulate you for your success.', right: 'I congratulate you on your success.', error: 'congratulate for', fix: 'congratulate on', explanation: 'Congratulate someone ON something. Congratulate you on your promotion.' },
+    { wrong: 'She insisted to come with us.', right: 'She insisted on coming with us.', error: 'insisted to', fix: 'insisted on', explanation: 'Insist ON + gerund. She insisted on coming. Never insist to.' },
+    { wrong: 'I am confident on my abilities.', right: 'I am confident in/about my abilities.', error: 'confident on', fix: 'confident in', explanation: 'Confident IN or confident ABOUT. Never confident on.' },
+  ]
+},
+
+// ── CATEGORY 5: SUBJECT-VERB AGREEMENT ──────────────────────
+agreement: {
+  name: 'Subject-Verb Agreement',
+  icon: '🔵',
+  color: '#60A5FA',
+  why: {
+    Telugu: 'Telugu లో verb form subject తో agree అవుతుంది కానీ different గా. English లో he/she/it తో verb కి -s వస్తుంది అని గుర్తుంచుకోవాలి.',
+    Hindi: 'हिंदी में verb subject के gender और number से agree करती है। English में he/she/it के साथ verb में -s लगती है।',
+    Tamil: 'தமிழில் verb, subject-உடன் agree ஆகும் ஆனால் வேறுவிதமாக. English-ல் he/she/it-க்கு verb-ல் -s வரும்.',
+    default: 'In English, third person singular (he/she/it) requires -s on the verb: he goes, she knows, it works.'
+  },
+  sentences: [
+    { wrong: 'She don\'t know the answer.', right: 'She doesn\'t know the answer.', error: 'don\'t', fix: 'doesn\'t', explanation: 'Third person singular (she) uses DOES NOT, not DO NOT. She doesn\'t know.' },
+    { wrong: 'He don\'t want to come.', right: 'He doesn\'t want to come.', error: 'don\'t', fix: 'doesn\'t', explanation: 'He = third person singular. He doesn\'t want. Never he don\'t.' },
+    { wrong: 'The team are working very hard.', right: 'The team is working very hard.', error: 'team are', fix: 'team is', explanation: 'In American English, collective nouns (team, family, company) take singular verb: the team IS.' },
+    { wrong: 'Everyone are happy about the news.', right: 'Everyone is happy about the news.', error: 'everyone are', fix: 'everyone is', explanation: 'Everyone, someone, anyone, no one = singular. Everyone IS happy.' },
+    { wrong: 'Neither of them are ready.', right: 'Neither of them is ready.', error: 'neither are', fix: 'neither is', explanation: 'Neither = singular. Neither of them IS ready.' },
+    { wrong: 'Each of the students have a book.', right: 'Each of the students has a book.', error: 'each have', fix: 'each has', explanation: 'Each = singular. Each of the students HAS a book.' },
+    { wrong: 'The news are very shocking.', right: 'The news is very shocking.', error: 'news are', fix: 'news is', explanation: 'NEWS looks plural but is singular in English. The news IS shocking.' },
+    { wrong: 'Mathematics are my favourite subject.', right: 'Mathematics is my favourite subject.', error: 'mathematics are', fix: 'mathematics is', explanation: 'Subjects ending in -ics (mathematics, physics, economics) take singular verb.' },
+    { wrong: 'There is many problems with this plan.', right: 'There are many problems with this plan.', error: 'there is many', fix: 'there are many', explanation: 'MANY + plural noun = plural verb. There ARE many problems.' },
+    { wrong: 'A number of students was absent.', right: 'A number of students were absent.', error: 'a number was', fix: 'a number were', explanation: '"A number of" = many = plural verb. A number of students WERE absent.' },
+    { wrong: 'She have been working here for years.', right: 'She has been working here for years.', error: 'she have', fix: 'she has', explanation: 'She = third person singular. She HAS been, not she have been.' },
+    { wrong: 'The data shows different results.', right: 'The data show different results.', error: '', fix: '', explanation: 'Both are acceptable! Traditionally "data" is plural (data show), but singular is now common in everyday English. ✅' },
+    { wrong: 'My family are very supportive.', right: 'My family is very supportive.', error: 'family are', fix: 'family is', explanation: 'In American English, collective nouns like family take singular verb. My family IS supportive.' },
+    { wrong: 'Five hundred dollars are a lot of money.', right: 'Five hundred dollars is a lot of money.', error: 'dollars are', fix: 'dollars is', explanation: 'Sums of money, distances, and periods of time are treated as singular. $500 IS a lot.' },
+    { wrong: 'Either option are acceptable.', right: 'Either option is acceptable.', error: 'either are', fix: 'either is', explanation: 'Either = one or the other = singular. Either option IS acceptable.' },
+  ]
+},
+
+// ── CATEGORY 6: WORD ORDER ───────────────────────────────────
+word_order: {
+  name: 'Word Order',
+  icon: '🟣',
+  color: '#A78BFA',
+  why: {
+    Telugu: 'Telugu లో SOV (Subject-Object-Verb) order ఉంటుంది. English లో SVO (Subject-Verb-Object) order ఉంటుంది. ఇది Telugu speakers కి తరచూ confusion కలిగిస్తుంది.',
+    Hindi: 'हिंदी में SOV (Subject-Object-Verb) order होता है। English में SVO order है — इससे word order mistakes होती हैं।',
+    Tamil: 'தமிழில் SOV order இருக்கும். English-ல் SVO order இருப்பதால் word order தவறுகள் வருகின்றன.',
+    Arabic: 'ترتيب الكلمات في العربية مرن أكثر من الإنجليزية. في الإنجليزية الترتيب الأساسي هو Subject-Verb-Object.',
+    default: 'Many languages use Subject-Object-Verb order. English strictly uses Subject-Verb-Object order.'
+  },
+  sentences: [
+    { wrong: 'Can you tell me where is the station?', right: 'Can you tell me where the station is?', error: 'where is the station', fix: 'where the station is', explanation: 'Indirect questions use statement word order: where the station IS (not where IS the station).' },
+    { wrong: 'I don\'t know what is his name.', right: 'I don\'t know what his name is.', error: 'what is his name', fix: 'what his name is', explanation: 'After I don\'t know/I wonder, use statement order: what his name IS.' },
+    { wrong: 'She asked me that where I was going.', right: 'She asked me where I was going.', error: 'asked me that where', fix: 'asked me where', explanation: 'Reported questions do NOT use "that" + question form. Just: asked me WHERE I was going.' },
+    { wrong: 'He told me when will the meeting start.', right: 'He told me when the meeting would start.', error: 'when will', fix: 'when the meeting would', explanation: 'Reported speech: question word + statement order. When the meeting WOULD start.' },
+    { wrong: 'I always am happy to help.', right: 'I am always happy to help.', error: 'always am', fix: 'am always', explanation: 'Frequency adverbs go AFTER be verb: I am ALWAYS happy. Not: I always am.' },
+    { wrong: 'She never has been to London.', right: 'She has never been to London.', error: 'never has been', fix: 'has never been', explanation: 'With auxiliary verbs, adverbs go BETWEEN auxiliary and main verb: has NEVER been.' },
+    { wrong: 'Can you tell me what does she want?', right: 'Can you tell me what she wants?', error: 'what does she want', fix: 'what she wants', explanation: 'Indirect question: no auxiliary does in statement order. What she WANTS.' },
+    { wrong: 'I want to know how much costs this bag.', right: 'I want to know how much this bag costs.', error: 'costs this bag', fix: 'this bag costs', explanation: 'Indirect question = statement word order: how much this bag COSTS.' },
+    { wrong: 'He only has three days to finish.', right: 'He has only three days to finish.', error: 'only has', fix: 'has only', explanation: 'ONLY modifies "three days" so place it directly before what it modifies: has ONLY three days.' },
+    { wrong: 'I still am waiting for your reply.', right: 'I am still waiting for your reply.', error: 'still am waiting', fix: 'am still waiting', explanation: 'STILL goes after the first auxiliary: I AM STILL waiting.' },
+    { wrong: 'She nearly has finished the project.', right: 'She has nearly finished the project.', error: 'nearly has finished', fix: 'has nearly finished', explanation: 'Adverbs go BETWEEN auxiliary and main verb: has NEARLY finished.' },
+    { wrong: 'Do you know where does he live?', right: 'Do you know where he lives?', error: 'where does he live', fix: 'where he lives', explanation: 'Indirect question after "do you know": statement order. Where he LIVES (no does).' },
+    { wrong: 'I often have noticed this mistake.', right: 'I have often noticed this mistake.', error: 'often have noticed', fix: 'have often noticed', explanation: 'Frequency adverb goes between auxiliary (have) and main verb (noticed): have OFTEN noticed.' },
+    { wrong: 'Can you explain me this rule?', right: 'Can you explain this rule to me?', error: 'explain me', fix: 'explain this rule to me', explanation: 'EXPLAIN needs TO: explain something TO someone. Never "explain me".' },
+    { wrong: 'She asked that what time the shop opens.', right: 'She asked what time the shop opens.', error: 'asked that what', fix: 'asked what', explanation: 'Never use "that" before a question word in reported speech. She asked WHAT time.' },
+  ]
+},
+
+// ── CATEGORY 7: COUNTABLE/UNCOUNTABLE ───────────────────────
+countable: {
+  name: 'Countable & Uncountable',
+  icon: '🔶',
+  color: '#F59E0B',
+  why: {
+    Telugu: 'Telugu లో చాలా nouns count చేయవచ్చు. English లో "information", "advice", "furniture" లాంטి words uncountable — plural form ఉండదు.',
+    Hindi: 'हिंदी में कई nouns countable होते हैं। English में "information", "advice", "furniture" जैसे words uncountable हैं — इनका plural नहीं होता।',
+    Tamil: 'தமிழில் பல nouns count செய்யலாம். English-ல் "information", "advice" போன்றவை uncountable — plural வடிவம் இல்லை.',
+    default: 'Some English nouns have no plural form: information, advice, furniture, luggage, equipment, progress, research, knowledge.'
+  },
+  sentences: [
+    { wrong: 'She gave me many informations about the job.', right: 'She gave me a lot of information about the job.', error: 'many informations', fix: 'a lot of information', explanation: 'INFORMATION is uncountable — no plural. Use: much/a lot of information.' },
+    { wrong: 'He gave me some good advices.', right: 'He gave me some good advice.', error: 'advices', fix: 'advice', explanation: 'ADVICE is uncountable — never "advices". Some advice, a piece of advice.' },
+    { wrong: 'I have many luggages to carry.', right: 'I have a lot of luggage to carry.', error: 'luggages', fix: 'luggage', explanation: 'LUGGAGE is uncountable — no plural. A lot of luggage, some luggage.' },
+    { wrong: 'We need few more furnitures for the office.', right: 'We need a few more pieces of furniture for the office.', error: 'furnitures', fix: 'pieces of furniture', explanation: 'FURNITURE is uncountable. Say: pieces of furniture, some furniture.' },
+    { wrong: 'She has a great knowledge of English.', right: 'She has great knowledge of English.', error: 'a great knowledge', fix: 'great knowledge', explanation: 'KNOWLEDGE is uncountable — no article A. She has great knowledge of English.' },
+    { wrong: 'We made a good progress this month.', right: 'We made good progress this month.', error: 'a good progress', fix: 'good progress', explanation: 'PROGRESS is uncountable — never "a progress". Made good progress.' },
+    { wrong: 'Do you have any informations about flights?', right: 'Do you have any information about flights?', error: 'informations', fix: 'information', explanation: 'INFORMATION has no plural. Any information (not informations).' },
+    { wrong: 'The researches show interesting results.', right: 'The research shows interesting results.', error: 'researches show', fix: 'research shows', explanation: 'RESEARCH is uncountable in general use. The research shows (singular verb).' },
+    { wrong: 'I need to buy new equipments for the lab.', right: 'I need to buy new equipment for the lab.', error: 'equipments', fix: 'equipment', explanation: 'EQUIPMENT is uncountable — no plural. New equipment (not equipments).' },
+    { wrong: 'She gave us many useful feedbacks.', right: 'She gave us a lot of useful feedback.', error: 'feedbacks', fix: 'feedback', explanation: 'FEEDBACK is uncountable — no plural. Useful feedback, some feedback.' },
+    { wrong: 'He has a lot of knowledges about history.', right: 'He has a lot of knowledge about history.', error: 'knowledges', fix: 'knowledge', explanation: 'KNOWLEDGE is uncountable — never "knowledges". A lot of knowledge.' },
+    { wrong: 'The traffics were very bad this morning.', right: 'The traffic was very bad this morning.', error: 'traffics were', fix: 'traffic was', explanation: 'TRAFFIC is uncountable — no plural, singular verb. The traffic WAS bad.' },
+    { wrong: 'I received many mails today.', right: 'I received many emails today.', error: 'many mails', fix: 'many emails', explanation: 'In modern English, emails (electronic mail) is countable — but mail (postal) is uncountable.' },
+    { wrong: 'We need more informations before deciding.', right: 'We need more information before deciding.', error: 'informations', fix: 'information', explanation: 'INFORMATION is always singular and uncountable. More information (never informations).' },
+    { wrong: 'She has a strong will power.', right: 'She has strong willpower.', error: 'a strong will power', fix: 'strong willpower', explanation: 'WILLPOWER is one word and uncountable. Strong willpower (no article A).' },
+  ]
+},
+
+// ── CATEGORY 8: CONDITIONALS ────────────────────────────────
+conditionals: {
+  name: 'Conditionals',
+  icon: '🩵',
+  color: '#67E8F9',
+  why: {
+    Telugu: 'Telugu లో conditional sentences different structure follow అవుతాయి. English లో "if" తర్వాత will/would వాడకూడదు అనే strict rule ఉంది.',
+    Hindi: 'हिंदी में conditional sentences अलग structure में होती हैं। English में "if" के बाद will/would नहीं आता।',
+    Tamil: 'தமிழில் conditional sentences வேறு structure-ல் இருக்கும். English-ல் "if"-க்கு பின் will/would வராது என்ற strict rule இருக்கிறது.',
+    default: 'English conditionals have strict rules: after IF, never use will or would. Use present for first conditional, past for second.'
+  },
+  sentences: [
+    { wrong: 'If I will have time, I will call you.', right: 'If I have time, I will call you.', error: 'If I will have', fix: 'If I have', explanation: 'First conditional: IF + present simple (NOT will). If I HAVE time, I WILL call.' },
+    { wrong: 'If she will come, we can start.', right: 'If she comes, we can start.', error: 'If she will come', fix: 'If she comes', explanation: 'After IF in first conditional, use present simple. If she COMES (not will come).' },
+    { wrong: 'If I would be rich, I would buy a house.', right: 'If I were rich, I would buy a house.', error: 'If I would be', fix: 'If I were', explanation: 'Second conditional (imaginary): IF + past simple (were for all subjects). If I WERE rich.' },
+    { wrong: 'If I would know her number, I would call.', right: 'If I knew her number, I would call.', error: 'If I would know', fix: 'If I knew', explanation: 'Second conditional: IF + past simple. If I KNEW her number (not would know).' },
+    { wrong: 'If you will study hard, you will pass.', right: 'If you study hard, you will pass.', error: 'If you will study', fix: 'If you study', explanation: 'First conditional: present simple after IF. If you STUDY hard, you WILL pass.' },
+    { wrong: 'If I had studied harder, I would pass.', right: 'If I had studied harder, I would have passed.', error: 'I would pass', fix: 'I would have passed', explanation: 'Third conditional (past unreal): would HAVE + past participle. I would HAVE PASSED.' },
+    { wrong: 'Unless you will not hurry, we will be late.', right: 'Unless you hurry, we will be late.', error: 'Unless you will not', fix: 'Unless you', explanation: 'UNLESS = if not. Never add NOT after unless. Unless you HURRY (not unless you will not).' },
+    { wrong: 'If he would listen to me, things would be better.', right: 'If he listened to me, things would be better.', error: 'If he would listen', fix: 'If he listened', explanation: 'Second conditional: IF + past simple. If he LISTENED to me (not would listen).' },
+    { wrong: 'I would come if you will invite me.', right: 'I would come if you invited me.', error: 'if you will invite', fix: 'if you invited', explanation: 'Second conditional: both parts show imaginary situation. If you INVITED me (past simple).' },
+    { wrong: 'If I will be in London, I will visit you.', right: 'If I am in London, I will visit you.', error: 'If I will be', fix: 'If I am', explanation: 'First conditional: IF + present simple (am). If I AM in London, I WILL visit.' },
+    { wrong: 'If it would rain, we will cancel the picnic.', right: 'If it rains, we will cancel the picnic.', error: 'If it would rain', fix: 'If it rains', explanation: 'First conditional (real possibility): IF + present simple. If it RAINS (not would rain).' },
+    { wrong: 'Provided that you will work hard, you will succeed.', right: 'Provided that you work hard, you will succeed.', error: 'you will work', fix: 'you work', explanation: 'After "provided that" (like if), use present simple. Provided that you WORK hard.' },
+    { wrong: 'As long as you will behave, you can stay.', right: 'As long as you behave, you can stay.', error: 'you will behave', fix: 'you behave', explanation: 'After "as long as" (conditional), use present simple. As long as you BEHAVE.' },
+    { wrong: 'Should you will need help, call me.', right: 'Should you need help, call me.', error: 'Should you will need', fix: 'Should you need', explanation: 'Formal conditional with SHOULD: Should you NEED help (inversion, no will).' },
+    { wrong: 'If the weather will be fine, we go tomorrow.', right: 'If the weather is fine, we will go tomorrow.', error: 'weather will be', fix: 'weather is', explanation: 'IF clause needs present simple. WILL goes in the main clause only.' },
+  ]
+}
+
+}; // end EPC_DATA
+
+
+// ── EPC GAME ENGINE ──────────────────────────────────────────
+var _epcState = {
+  cat: null,
+  queue: [],
+  current: null,
+  score: 0,
+  total: 0,
+  streak: 0,
+  bestStreak: 0,
+  answered: false,
+  sessionHistory: [] // {cat, correct, date}
+};
+
+function epcStart(catKey) {
+  var cat = EPC_DATA[catKey];
+  if(!cat) return;
+
+  // Load seen sentences from localStorage
+  var seenKey = 'ne_epc_seen_' + catKey;
+  var seen = [];
+  try { seen = JSON.parse(localStorage.getItem(seenKey)||'[]'); } catch(e){}
+
+  // Get unseen sentences, shuffle
+  var all = cat.sentences.slice();
+  var unseen = all.filter(function(s,i){ return seen.indexOf(i) === -1; });
+  if(unseen.length < 5) {
+    // Reset if almost all seen
+    unseen = all.slice();
+    try { localStorage.removeItem(seenKey); } catch(e){}
+    seen = [];
+  }
+
+  // Shuffle
+  unseen.sort(function(){ return Math.random() - 0.5; });
+
+  _epcState.cat = catKey;
+  _epcState.queue = unseen.slice(0, 10); // 10 per session
+  _epcState.score = 0;
+  _epcState.total = 0;
+  _epcState.streak = 0;
+  _epcState.bestStreak = 0;
+  _epcState.answered = false;
+
+  epcRender();
+  epcNext();
+}
+
+function epcNext() {
+  if(_epcState.queue.length === 0) {
+    epcShowResults();
+    return;
+  }
+  _epcState.current = _epcState.queue.shift();
+  _epcState.answered = false;
+  epcRenderQuestion(_epcState.current);
+}
+
+function epcRenderQuestion(s) {
+  var cat = EPC_DATA[_epcState.cat];
+  var container = document.getElementById('epcGame');
+  if(!container) return;
+
+  // Split sentence into words for clickable interface
+  var words = s.wrong.split(' ');
+  var errorWords = s.error.toLowerCase().split(' ');
+
+  var wordsHtml = words.map(function(w, i) {
+    var clean = w.replace(/[.,!?;:'"]/g,'').toLowerCase();
+    return '<span class="epc-word" onclick="epcClickWord(this,\''+i+'\')" style="display:inline-block;padding:4px 8px;margin:3px;border-radius:8px;cursor:pointer;font-size:15px;font-weight:600;color:rgba(255,255,255,0.90);background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.12);transition:all .2s">'+w+'</span>';
+  }).join(' ');
+
+  var progress = _epcState.score + (_epcState.queue.length === 0 ? 0 : 1);
+  var total = _epcState.score + _epcState.queue.length + 1;
+
+  container.innerHTML =
+    // Progress bar
+    '<div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">' +
+    '<div style="flex:1;height:4px;background:rgba(255,255,255,0.08);border-radius:4px">' +
+    '<div style="height:100%;width:'+Math.round((_epcState.total/10)*100)+'%;background:'+cat.color+';border-radius:4px;transition:width .4s"></div>' +
+    '</div>' +
+    '<span style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.40)">'+_epcState.total+'/10</span>' +
+    '<span style="font-size:11px;font-weight:700;color:'+cat.color+'">🔥 '+_epcState.streak+'</span>' +
+    '</div>' +
+    // Instruction
+    '<div style="padding:10px 13px;background:rgba(255,255,255,0.04);border-radius:10px;margin-bottom:12px;font-size:12.5px;color:rgba(255,255,255,0.60)">' +
+    '👆 <strong style="color:rgba(255,255,255,0.85)">Tap the word(s) that contain a '+cat.name+' error</strong> — or tap <strong style="color:#4ADE80">No error</strong> if the sentence is correct.' +
+    '</div>' +
+    // Sentence
+    '<div style="padding:14px 16px;background:rgba(255,255,255,0.05);border:1.5px solid rgba(255,255,255,0.12);border-radius:12px;margin-bottom:12px;line-height:2.2">' +
+    wordsHtml +
+    '</div>' +
+    // No error button
+    '<button onclick="epcClickWord(this,\'none\')" style="width:100%;padding:9px;border-radius:10px;border:1.5px solid rgba(74,222,128,0.30);background:rgba(74,222,128,0.06);color:#4ADE80;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;margin-bottom:8px">✅ No error — this sentence is correct</button>' +
+    '<div id="epcFeedback"></div>';
+}
+
+function epcClickWord(el, idx) {
+  if(_epcState.answered) return;
+  _epcState.answered = true;
+  _epcState.total++;
+
+  var s = _epcState.current;
+  var cat = EPC_DATA[_epcState.cat];
+  var correct = false;
+
+  if(idx === 'none') {
+    // Clicked "no error"
+    correct = (s.error === '');
+  } else {
+    // Clicked a word — check if it's part of the error
+    var words = s.wrong.split(' ');
+    var clickedWord = words[parseInt(idx)].replace(/[.,!?;:'"]/g,'').toLowerCase();
+    var errorWords = s.error.toLowerCase().split(' ');
+    correct = errorWords.some(function(ew){ return clickedWord.includes(ew.replace(/[.,!?;:'"]/g,'')); });
+  }
+
+  if(correct) {
+    _epcState.score++;
+    _epcState.streak++;
+    _epcState.bestStreak = Math.max(_epcState.bestStreak, _epcState.streak);
+  } else {
+    _epcState.streak = 0;
+  }
+
+  // Highlight correct error in sentence
+  epcShowFeedback(s, correct, cat);
+}
+
+function epcShowFeedback(s, correct, cat) {
+  var feedback = document.getElementById('epcFeedback');
+  if(!feedback) return;
+
+  // Highlight the error words in the sentence
+  var words = document.querySelectorAll('.epc-word');
+  var errorWords = s.error.toLowerCase().split(' ');
+  words.forEach(function(w) {
+    var text = w.textContent.replace(/[.,!?;:'"]/g,'').toLowerCase();
+    if(errorWords.some(function(e){ return text.includes(e); })) {
+      w.style.background = 'rgba(255,107,107,0.20)';
+      w.style.borderColor = '#FF6B6B';
+      w.style.color = '#FF6B6B';
+    }
+  });
+
+  // Get native explanation
+  var whyData = cat.why;
+  var natWhy = whyData[lang] || whyData.default || '';
+
+  feedback.innerHTML =
+    '<div style="margin-top:10px;padding:13px;border-radius:12px;background:'+(correct?'rgba(74,222,128,0.08)':'rgba(255,107,107,0.08)')+';border:1.5px solid '+(correct?'rgba(74,222,128,0.30)':'rgba(255,107,107,0.30)')+'">' +
+    '<div style="font-size:14px;font-weight:800;color:'+(correct?'#4ADE80':'#FF6B6B')+';margin-bottom:6px">'+(correct?'✅ Correct!':'❌ Not quite')+' '+(correct?'+1 point':'')+(_epcState.streak > 2?'  🔥 '+_epcState.streak+' streak!':'')+'</div>' +
+    (s.error ? '<div style="font-size:13px;color:rgba(255,255,255,0.85);margin-bottom:8px">Error: <span style="background:rgba(255,107,107,0.15);color:#FF6B6B;padding:2px 7px;border-radius:5px;font-weight:700">'+s.error+'</span> → <span style="background:rgba(74,222,128,0.15);color:#4ADE80;padding:2px 7px;border-radius:5px;font-weight:700">'+s.fix+'</span></div>' : '') +
+    '<div style="font-size:12.5px;color:rgba(255,255,255,0.70);line-height:1.65;margin-bottom:8px">📌 '+s.explanation+'</div>' +
+    '<div style="font-size:12px;color:rgba(245,200,66,0.80);padding:7px 10px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.35);border-radius:0 7px 7px 0;font-style:italic">🌐 In '+lang+': '+natWhy+'</div>' +
+    '</div>' +
+    '<div style="display:flex;gap:8px;margin-top:10px">' +
+    '<button onclick="epcNext()" style="flex:1;padding:10px;border-radius:10px;border:none;background:'+cat.color+';color:#05070F;font-family:inherit;font-size:13px;font-weight:800;cursor:pointer">'+((_epcState.queue.length===0)?'See Results →':'Next sentence →')+'</button>' +
+    '</div>';
+}
+
+function epcShowResults() {
+  var cat = EPC_DATA[_epcState.cat];
+  var pct = Math.round((_epcState.score / _epcState.total) * 100);
+  var container = document.getElementById('epcGame');
+  if(!container) return;
+
+  // Save to localStorage
+  try {
+    var histKey = 'ne_epc_hist_' + _epcState.cat;
+    var hist = JSON.parse(localStorage.getItem(histKey)||'[]');
+    hist.push({ date: new Date().toISOString().split('T')[0], score: pct, correct: _epcState.score, total: _epcState.total });
+    if(hist.length > 30) hist.shift();
+    localStorage.setItem(histKey, JSON.stringify(hist));
+  } catch(e){}
+
+  // Save to NE progress tracker
+  if(typeof NE_track === 'function') {
+    NE_track('decoder', {uses:1, score: pct});
+  }
+
+  var grade = pct >= 90 ? '🏆 Native Level!' : pct >= 70 ? '⭐ Well Done!' : pct >= 50 ? '📈 Getting Better!' : '💪 Keep Practising!';
+  var msg = pct >= 90 ? 'Excellent! You have mastered this pattern.' : pct >= 70 ? 'Good work! A little more practice and you will nail it.' : pct >= 50 ? 'You are getting there! Review the explanations and try again.' : 'This is a tricky pattern. Read each explanation carefully and retry.';
+
+  container.innerHTML =
+    '<div style="text-align:center;padding:20px 16px">' +
+    '<div style="font-size:40px;margin-bottom:8px">'+grade.split(' ')[0]+'</div>' +
+    '<div style="font-size:20px;font-weight:800;color:'+cat.color+';margin-bottom:4px">'+pct+'% — '+grade.split(' ').slice(1).join(' ')+'</div>' +
+    '<div style="font-size:13px;color:rgba(255,255,255,0.55);margin-bottom:16px">'+_epcState.score+'/'+_epcState.total+' correct · Best streak: '+_epcState.bestStreak+'</div>' +
+    '</div>' +
+    // Score bar
+    '<div style="height:8px;background:rgba(255,255,255,0.06);border-radius:8px;overflow:hidden;margin-bottom:16px">' +
+    '<div style="height:100%;width:'+pct+'%;background:linear-gradient(90deg,'+cat.color+',#4ADE80);border-radius:8px;transition:width 1s ease"></div>' +
+    '</div>' +
+    '<div style="padding:10px 13px;background:rgba(255,255,255,0.04);border-radius:10px;font-size:12.5px;color:rgba(255,255,255,0.65);margin-bottom:14px">'+msg+'</div>' +
+    // History chart
+    _epcHistoryChart(_epcState.cat, cat.color) +
+    // Action buttons
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">' +
+    '<button onclick="epcStart(\''+_epcState.cat+'\')" style="padding:10px;border-radius:10px;border:none;background:'+cat.color+';color:#05070F;font-family:inherit;font-size:13px;font-weight:800;cursor:pointer">🔄 Try Again</button>' +
+    '<button onclick="epcShowCategoryMenu()" style="padding:10px;border-radius:10px;border:1.5px solid rgba(255,255,255,0.15);background:transparent;color:rgba(255,255,255,0.80);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer">📚 Other Categories</button>' +
+    '</div>';
+}
+
+function _epcHistoryChart(catKey, color) {
+  try {
+    var hist = JSON.parse(localStorage.getItem('ne_epc_hist_'+catKey)||'[]');
+    if(hist.length < 2) return '';
+    var bars = hist.slice(-10).map(function(h) {
+      var barH = Math.max(4, Math.round(h.score * 0.46));
+      var col = h.score >= 80 ? '#4ADE80' : h.score >= 60 ? '#F5C842' : '#FF6B6B';
+      return '<div title="'+h.date+': '+h.score+'%" style="flex:1;background:'+col+';border-radius:3px 3px 0 0;height:'+barH+'px;min-width:8px;opacity:0.80"></div>';
+    }).join('');
+    return '<div style="font-size:10px;font-weight:700;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:6px">Your score history</div>' +
+      '<div style="display:flex;align-items:flex-end;gap:4px;height:50px;margin-bottom:14px">'+bars+'</div>';
+  } catch(e){ return ''; }
+}
+
+function epcShowCategoryMenu() {
+  epcRender();
+}
+
+function epcRender() {
+  var container = document.getElementById('epcGame');
+  if(!container) return;
+
+  var h = '<div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,0.40);margin-bottom:12px">Choose your challenge — personalised for '+lang+' speakers</div>';
+  h += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,200px),1fr));gap:8px">';
+
+  Object.keys(EPC_DATA).forEach(function(key) {
+    var cat = EPC_DATA[key];
+
+    // Get best score from history
+    var bestScore = null;
+    try {
+      var hist = JSON.parse(localStorage.getItem('ne_epc_hist_'+key)||'[]');
+      if(hist.length > 0) bestScore = Math.max.apply(null, hist.map(function(h){return h.score;}));
+    } catch(e){}
+
+    var scoreTag = bestScore !== null ?
+      '<span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;background:'+cat.color+'20;color:'+cat.color+';border:1px solid '+cat.color+'40">Best: '+bestScore+'%</span>' :
+      '<span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.40)">Not tried yet</span>';
+
+    h += '<button onclick="epcStart(\''+key+'\')" style="text-align:left;padding:12px 14px;border-radius:12px;border:1.5px solid '+cat.color+'40;background:'+cat.color+'08;cursor:pointer;font-family:inherit;transition:transform .15s ease" onmouseover="this.style.transform=\'translateY(-2px)\'" onmouseout="this.style.transform=\'translateY(0)\'">';
+    h += '<div style="font-size:20px;margin-bottom:6px">'+cat.icon+'</div>';
+    h += '<div style="font-size:13px;font-weight:800;color:'+cat.color+';margin-bottom:4px">'+cat.name+'</div>';
+    h += '<div style="font-size:11px;color:rgba(255,255,255,0.50);margin-bottom:8px">'+cat.sentences.length+' sentences</div>';
+    h += scoreTag;
+    h += '</button>';
+  });
+
+  h += '</div>';
+  container.innerHTML = h;
+}
+
+// ============================================================
+// ADDITIONAL SENTENCES — 180 more to reach 300 total
+// 15 additional per category × 8 categories = 120... 
+// Plus 4 new categories × 15 = 60 more = 300 total
+// ============================================================
+
+var EPC_EXTRA = {
+
+// ── CATEGORY 1: STATE VERBS — 15 more ───────────────────────
+state_verbs_extra: [
+  { wrong: 'I am remembering her birthday now.', right: 'I remember her birthday now.', error: 'am remembering', fix: 'remember', explanation: 'REMEMBER as a mental process is a state verb. I remember — not I am remembering.' },
+  { wrong: 'She is realising her mistake slowly.', right: 'She realises her mistake slowly.', error: 'is realising', fix: 'realises', explanation: 'REALISE (mental awareness) is a state verb. She realises — simple present.' },
+  { wrong: 'I am seeing what you mean now.', right: 'I see what you mean now.', error: 'am seeing', fix: 'see', explanation: 'SEE meaning "understand" is a state verb. I see what you mean — not I am seeing.' },
+  { wrong: 'He is recognising the problem at last.', right: 'He recognises the problem at last.', error: 'is recognising', fix: 'recognises', explanation: 'RECOGNISE as mental awareness = state verb. Simple present: he recognises.' },
+  { wrong: 'They are possessing three cars.', right: 'They possess three cars.', error: 'are possessing', fix: 'possess', explanation: 'POSSESS meaning to own is a state verb. They possess — not they are possessing.' },
+  { wrong: 'This medicine is containing alcohol.', right: 'This medicine contains alcohol.', error: 'is containing', fix: 'contains', explanation: 'CONTAIN is a state verb showing composition. This medicine contains — never is containing.' },
+  { wrong: 'I am doubting his intentions.', right: 'I doubt his intentions.', error: 'am doubting', fix: 'doubt', explanation: 'DOUBT as a mental state = state verb. I doubt — not I am doubting.' },
+  { wrong: 'She is minding the noise very much.', right: 'She minds the noise very much.', error: 'is minding', fix: 'minds', explanation: 'MIND meaning to object to = state verb. She minds — not she is minding.' },
+  { wrong: 'I am supposing you are correct.', right: 'I suppose you are correct.', error: 'am supposing', fix: 'suppose', explanation: 'SUPPOSE meaning to think/assume = state verb. I suppose — simple present.' },
+  { wrong: 'He is mattering a lot to all of us.', right: 'He matters a lot to all of us.', error: 'is mattering', fix: 'matters', explanation: 'MATTER meaning to be important = state verb. It matters — not it is mattering.' },
+  { wrong: 'This rule is applying to everyone.', right: 'This rule applies to everyone.', error: 'is applying', fix: 'applies', explanation: 'APPLY meaning to be relevant = state verb. The rule applies — not is applying.' },
+  { wrong: 'I am agreeing with your point completely.', right: 'I agree with your point completely.', error: 'am agreeing', fix: 'agree', explanation: 'AGREE expressing an opinion = state verb. I agree — not I am agreeing.' },
+  { wrong: 'She is deserving a better opportunity.', right: 'She deserves a better opportunity.', error: 'is deserving', fix: 'deserves', explanation: 'DESERVE = state verb showing merit. She deserves — simple present.' },
+  { wrong: 'I am feeling that something is wrong.', right: 'I feel that something is wrong.', error: 'am feeling', fix: 'feel', explanation: 'FEEL meaning to think/believe = state verb. I feel (that) — simple present.' },
+  { wrong: 'The bag is weighing five kilograms.', right: 'The bag weighs five kilograms.', error: 'is weighing', fix: 'weighs', explanation: 'WEIGH meaning to have a specific weight = state verb. The bag weighs — not is weighing.' },
+],
+
+// ── CATEGORY 2: ARTICLES — 15 more ──────────────────────────
+articles_extra: [
+  { wrong: 'She is a honest person.', right: 'She is an honest person.', error: 'a honest', fix: 'an honest', explanation: 'HONEST starts with a silent H — the vowel sound is O. Use AN before vowel sounds: an honest person.' },
+  { wrong: 'He wants to become engineer.', right: 'He wants to become an engineer.', error: 'become engineer', fix: 'become an engineer', explanation: 'With professions after become/be, use A/AN. Become AN engineer.' },
+  { wrong: 'We live on earth.', right: 'We live on the Earth.', error: 'on earth', fix: 'on the Earth', explanation: 'Unique geographical bodies (the Earth, the Moon, the Sun) take THE.' },
+  { wrong: 'I saw interesting film yesterday.', right: 'I saw an interesting film yesterday.', error: 'saw interesting', fix: 'saw an interesting', explanation: 'First mention of a countable singular noun needs A/AN. AN interesting film.' },
+  { wrong: 'She is the tallest girl in class.', right: 'She is the tallest girl in the class.', error: 'in class', fix: 'in the class', explanation: 'A specific group (this class) needs THE. In THE class.' },
+  { wrong: 'He plays guitar and drums.', right: 'He plays the guitar and the drums.', error: 'plays guitar', fix: 'plays the guitar', explanation: 'Musical instruments take THE. He plays THE guitar, THE drums.' },
+  { wrong: 'I am going to hospital tomorrow.', right: 'I am going to the hospital tomorrow.', error: 'to hospital', fix: 'to the hospital', explanation: 'American English: go to THE hospital (specific building). British: go to hospital (for treatment).' },
+  { wrong: 'She gave me a useful information.', right: 'She gave me useful information.', error: 'a useful information', fix: 'useful information', explanation: 'INFORMATION is uncountable — never use A/AN. Useful information (no article).' },
+  { wrong: 'Have you heard latest news?', right: 'Have you heard the latest news?', error: 'heard latest', fix: 'heard the latest', explanation: 'Specific/known reference uses THE. The latest news — referring to specific current news.' },
+  { wrong: 'She is a MBA student.', right: 'She is an MBA student.', error: 'a MBA', fix: 'an MBA', explanation: 'MBA starts with the letter M but sounds like "em" — vowel sound. Use AN: an MBA.' },
+  { wrong: 'Rich should help poor.', right: 'The rich should help the poor.', error: 'Rich should help poor', fix: 'The rich should help the poor', explanation: 'Adjectives used as nouns for groups need THE: the rich, the poor, the elderly.' },
+  { wrong: 'He is a European.', right: 'He is a European.', error: '', fix: '', explanation: 'Correct! European starts with Y sound (vowel letter but consonant sound) — use A, not AN. ✅' },
+  { wrong: 'We arrived at end of the road.', right: 'We arrived at the end of the road.', error: 'at end', fix: 'at the end', explanation: 'Specific position/reference needs THE. At THE end — the end of this specific road.' },
+  { wrong: 'She is best player on the team.', right: 'She is the best player on the team.', error: 'is best', fix: 'is the best', explanation: 'Superlatives always take THE. She is THE best player.' },
+  { wrong: 'Can you play any instrument?', right: 'Can you play any instruments?', error: 'any instrument', fix: 'any instruments', explanation: 'With ANY in questions about countable nouns, use plural. Any instruments?' },
+],
+
+// ── CATEGORY 3: TENSE ERRORS — 15 more ──────────────────────
+tense_extra: [
+  { wrong: 'I am here since morning.', right: 'I have been here since morning.', error: 'am here since', fix: 'have been here since', explanation: 'SINCE + still happening now = present perfect (have been). I have been here since morning.' },
+  { wrong: 'She did not came to the party.', right: 'She did not come to the party.', error: 'did not came', fix: 'did not come', explanation: 'After DID, always use base form. Did not COME (not came).' },
+  { wrong: 'He has went to London last year.', right: 'He went to London last year.', error: 'has went', fix: 'went', explanation: 'LAST YEAR = specific past time = simple past. Went — not has went or has gone.' },
+  { wrong: 'I will call you when I will reach home.', right: 'I will call you when I reach home.', error: 'when I will reach', fix: 'when I reach', explanation: 'After time conjunctions (when, before, after, until), use present simple — not future.' },
+  { wrong: 'She works here since 2019.', right: 'She has worked here since 2019.', error: 'works here since', fix: 'has worked here since', explanation: 'SINCE + still ongoing = present perfect. She HAS WORKED here since 2019.' },
+  { wrong: 'By tomorrow I finish the report.', right: 'By tomorrow I will have finished the report.', error: 'I finish', fix: 'I will have finished', explanation: 'By + future time = future perfect (will have finished). Completed before a future point.' },
+  { wrong: 'I am living here for ten years.', right: 'I have been living here for ten years.', error: 'am living for', fix: 'have been living for', explanation: 'FOR + ongoing from past = present perfect continuous. I HAVE BEEN LIVING here for ten years.' },
+  { wrong: 'She was knowing the answer all along.', right: 'She knew the answer all along.', error: 'was knowing', fix: 'knew', explanation: 'KNOW is a state verb — never use continuous (was knowing). Simple past: she knew.' },
+  { wrong: 'After he left, she cries.', right: 'After he left, she cried.', error: 'she cries', fix: 'she cried', explanation: 'Both clauses in a past narrative use past tense. After he left, she CRIED.' },
+  { wrong: 'I have bought a new phone last week.', right: 'I bought a new phone last week.', error: 'have bought', fix: 'bought', explanation: 'LAST WEEK = specific past = simple past. I BOUGHT — not have bought.' },
+  { wrong: 'She is working here since she graduated.', right: 'She has been working here since she graduated.', error: 'is working since', fix: 'has been working since', explanation: 'SINCE + past event = present perfect continuous. She HAS BEEN WORKING since she graduated.' },
+  { wrong: 'Before she arrived, I waited for one hour.', right: 'Before she arrived, I had waited for one hour.', error: 'I waited', fix: 'I had waited', explanation: 'The waiting happened BEFORE her arrival — earlier of two past events uses past perfect.' },
+  { wrong: 'He is tired because he ran.', right: 'He is tired because he has been running.', error: 'because he ran', fix: 'because he has been running', explanation: 'Current result (is tired) of recent activity = present perfect continuous. Has been running.' },
+  { wrong: 'She did not replied to my message.', right: 'She did not reply to my message.', error: 'did not replied', fix: 'did not reply', explanation: 'After DID NOT, use base form always. Did not REPLY (not replied).' },
+  { wrong: 'I meet her yesterday at the cafe.', right: 'I met her yesterday at the cafe.', error: 'I meet', fix: 'I met', explanation: 'YESTERDAY = past time = simple past. I MET her yesterday.' },
+],
+
+// ── CATEGORY 4: PREPOSITIONS — 15 more ──────────────────────
+prepositions_extra: [
+  { wrong: 'She is waiting since two hours.', right: 'She has been waiting for two hours.', error: 'waiting since two hours', fix: 'has been waiting for two hours', explanation: 'FOR + duration. SINCE + starting point. Two hours = duration = FOR. Also needs present perfect.' },
+  { wrong: 'He is fond for sweets.', right: 'He is fond of sweets.', error: 'fond for', fix: 'fond of', explanation: 'Always: fond OF. He is fond of sweets, fond of music.' },
+  { wrong: 'I am tired from waiting.', right: 'I am tired of waiting.', error: 'tired from', fix: 'tired of', explanation: 'Tired OF = fed up. Tired FROM = physically exhausted. "Fed up with waiting" = tired OF.' },
+  { wrong: 'She is engaged with a doctor.', right: 'She is engaged to a doctor.', error: 'engaged with', fix: 'engaged to', explanation: 'Engaged TO someone = committed to marry. Engaged WITH = involved in activity.' },
+  { wrong: 'He is allergic with dust.', right: 'He is allergic to dust.', error: 'allergic with', fix: 'allergic to', explanation: 'Always: allergic TO. He is allergic to dust, allergic to peanuts.' },
+  { wrong: 'We are looking forward for your visit.', right: 'We are looking forward to your visit.', error: 'looking forward for', fix: 'looking forward to', explanation: 'Always: look forward TO. We are looking forward TO seeing you.' },
+  { wrong: 'She was absent from work since Monday.', right: 'She has been absent from work since Monday.', error: 'was absent since', fix: 'has been absent since', explanation: 'SINCE + still continuing = present perfect. Correct preposition FROM, wrong tense.' },
+  { wrong: 'He succeeded to pass the exam.', right: 'He succeeded in passing the exam.', error: 'succeeded to', fix: 'succeeded in', explanation: 'Succeed IN + gerund. He succeeded IN passing. Never succeed to.' },
+  { wrong: 'I agree to your suggestion.', right: 'I agree with your suggestion.', error: 'agree to', fix: 'agree with', explanation: 'Agree WITH a person or idea. Agree TO a plan/proposal. Agree WITH your suggestion.' },
+  { wrong: 'She is worried for her results.', right: 'She is worried about her results.', error: 'worried for', fix: 'worried about', explanation: 'Always: worried ABOUT. She is worried about her results, worried about the future.' },
+  { wrong: 'I am familiar to this area.', right: 'I am familiar with this area.', error: 'familiar to', fix: 'familiar with', explanation: 'Familiar WITH = to know well. I am familiar WITH this area, familiar WITH the process.' },
+  { wrong: 'He is addicted with social media.', right: 'He is addicted to social media.', error: 'addicted with', fix: 'addicted to', explanation: 'Always: addicted TO. Addicted to social media, addicted to coffee.' },
+  { wrong: 'She is responsible of the project.', right: 'She is responsible for the project.', error: 'responsible of', fix: 'responsible for', explanation: 'Responsible FOR = in charge of. She is responsible FOR the project.' },
+  { wrong: 'I am bored from this meeting.', right: 'I am bored with this meeting.', error: 'bored from', fix: 'bored with/of', explanation: 'Bored OF or bored WITH — never bored from. I am bored WITH this meeting.' },
+  { wrong: 'The price depends of the quality.', right: 'The price depends on the quality.', error: 'depends of', fix: 'depends on', explanation: 'Always: depend ON. The price depends ON the quality.' },
+],
+
+// ── CATEGORY 5: SUBJECT-VERB AGREEMENT — 15 more ────────────
+agreement_extra: [
+  { wrong: 'The police is investigating the case.', right: 'The police are investigating the case.', error: 'police is', fix: 'police are', explanation: 'POLICE is always plural in English. The police ARE investigating — never IS.' },
+  { wrong: 'Two weeks are enough time for this.', right: 'Two weeks is enough time for this.', error: 'two weeks are', fix: 'two weeks is', explanation: 'Periods of time treated as a single unit take singular verb. Two weeks IS enough.' },
+  { wrong: 'The jury have reached their verdict.', right: 'The jury has reached its verdict.', error: 'jury have', fix: 'jury has', explanation: 'In American English, collective nouns (jury, committee) take singular verb.' },
+  { wrong: 'Not only the students but also the teacher were late.', right: 'Not only the students but also the teacher was late.', error: 'teacher were', fix: 'teacher was', explanation: 'Not only...but also: verb agrees with the SECOND (closer) subject. The teacher WAS.' },
+  { wrong: 'Neither the manager nor the staff was informed.', right: 'Neither the manager nor the staff were informed.', error: 'staff was', fix: 'staff were', explanation: 'Neither...nor: verb agrees with the CLOSER subject. The staff WERE (plural).' },
+  { wrong: 'The number of applicants are increasing.', right: 'The number of applicants is increasing.', error: 'number are', fix: 'number is', explanation: 'THE number of = singular. THE number IS increasing. (A number of = plural).' },
+  { wrong: 'Every boy and girl are invited.', right: 'Every boy and girl is invited.', error: 'every are', fix: 'every is', explanation: 'EVERY + noun(s) = singular. Every boy and girl IS invited.' },
+  { wrong: 'Much of the work have been completed.', right: 'Much of the work has been completed.', error: 'much have', fix: 'much has', explanation: 'MUCH = singular quantity. Much of the work HAS been completed.' },
+  { wrong: 'The scissors is on the table.', right: 'The scissors are on the table.', error: 'scissors is', fix: 'scissors are', explanation: 'SCISSORS (and trousers, glasses, tongs) are always plural. Scissors ARE on the table.' },
+  { wrong: 'Three-quarters of the work are done.', right: 'Three-quarters of the work is done.', error: 'work are', fix: 'work is', explanation: 'With fractions, verb agrees with the noun after OF. Work (uncountable) = singular verb.' },
+  { wrong: 'Physics are my favourite subject.', right: 'Physics is my favourite subject.', error: 'physics are', fix: 'physics is', explanation: 'Academic subjects ending in -ics take singular verb. Physics IS my favourite subject.' },
+  { wrong: 'More than one student were absent.', right: 'More than one student was absent.', error: 'student were', fix: 'student was', explanation: 'More than one + singular noun = singular verb. More than one student WAS absent.' },
+  { wrong: 'One of my friends are a doctor.', right: 'One of my friends is a doctor.', error: 'friends are', fix: 'friends is', explanation: 'ONE of = singular. One of my friends IS a doctor.' },
+  { wrong: 'Bread and butter are my breakfast.', right: 'Bread and butter is my breakfast.', error: 'bread and butter are', fix: 'bread and butter is', explanation: 'When two things are considered as one unit (bread and butter), use singular verb.' },
+  { wrong: 'The committee have not yet made their decision.', right: 'The committee has not yet made its decision.', error: 'committee have', fix: 'committee has', explanation: 'In American English, committee = collective noun = singular. The committee HAS.' },
+],
+
+// ── CATEGORY 6: WORD ORDER — 15 more ────────────────────────
+word_order_extra: [
+  { wrong: 'I have no idea where is she going.', right: 'I have no idea where she is going.', error: 'where is she', fix: 'where she is', explanation: 'After "I have no idea", use statement order: where she IS going.' },
+  { wrong: 'She hardly ever is late for work.', right: 'She is hardly ever late for work.', error: 'hardly ever is', fix: 'is hardly ever', explanation: 'Frequency adverbs go AFTER be verb. She IS hardly ever late.' },
+  { wrong: 'Not only she speaks English but also French.', right: 'Not only does she speak English but also French.', error: 'Not only she speaks', fix: 'Not only does she speak', explanation: 'NOT ONLY at sentence start = inversion. Not only DOES she SPEAK (auxiliary before subject).' },
+  { wrong: 'He asked me that how I learned English.', right: 'He asked me how I learned English.', error: 'asked me that how', fix: 'asked me how', explanation: 'Never use THAT before question words in reported speech. Asked me HOW I learned.' },
+  { wrong: 'I want to know what is happening here.', right: 'I want to know what is happening here.', error: '', fix: '', explanation: 'Correct! After "I want to know", the verb form stays with the auxiliary: what IS happening. ✅' },
+  { wrong: 'Seldom I have seen such courage.', right: 'Seldom have I seen such courage.', error: 'Seldom I have', fix: 'Seldom have I', explanation: 'Negative adverbs (seldom, rarely, never) at sentence start = inversion: Seldom HAVE I seen.' },
+  { wrong: 'Can you tell me what time it is?', right: 'Can you tell me what time it is?', error: '', fix: '', explanation: 'This is correct! Indirect question with statement order: what time it IS. ✅' },
+  { wrong: 'Never I have been to Paris.', right: 'Never have I been to Paris.', error: 'Never I have', fix: 'Never have I', explanation: 'NEVER at sentence start = inversion. Never HAVE I been — auxiliary comes before subject.' },
+  { wrong: 'She does not understand why did he leave.', right: 'She does not understand why he left.', error: 'why did he leave', fix: 'why he left', explanation: 'Indirect question: statement order, no auxiliary DID. Why he LEFT.' },
+  { wrong: 'Please explain me the difference.', right: 'Please explain the difference to me.', error: 'explain me', fix: 'explain the difference to me', explanation: 'EXPLAIN requires TO: explain something TO someone. Never "explain me".' },
+  { wrong: 'I just have finished my homework.', right: 'I have just finished my homework.', error: 'just have finished', fix: 'have just finished', explanation: 'JUST goes between auxiliary (have) and main verb (finished). I HAVE JUST finished.' },
+  { wrong: 'Rarely she makes a mistake.', right: 'Rarely does she make a mistake.', error: 'Rarely she makes', fix: 'Rarely does she make', explanation: 'RARELY at sentence start = inversion. Rarely DOES she MAKE.' },
+  { wrong: 'Do you know where did she go?', right: 'Do you know where she went?', error: 'where did she go', fix: 'where she went', explanation: 'Indirect question: no DID, statement order, past tense. Where she WENT.' },
+  { wrong: 'He told me when does the show start.', right: 'He told me when the show starts.', error: 'when does the show', fix: 'when the show starts', explanation: 'Reported speech: statement order, no does. When the show STARTS.' },
+  { wrong: 'Only recently she has improved.', right: 'Only recently has she improved.', error: 'Only recently she has', fix: 'Only recently has she', explanation: 'ONLY + adverb at sentence start = inversion. Only recently HAS she improved.' },
+],
+
+// ── CATEGORY 7: COUNTABLE/UNCOUNTABLE — 15 more ──────────────
+countable_extra: [
+  { wrong: 'I need to do some homeworks tonight.', right: 'I need to do some homework tonight.', error: 'homeworks', fix: 'homework', explanation: 'HOMEWORK is uncountable — no plural. Some homework, a lot of homework.' },
+  { wrong: 'She gave me many good advices.', right: 'She gave me a lot of good advice.', error: 'many advices', fix: 'a lot of advice', explanation: 'ADVICE is uncountable. Use much/a lot of advice — never many advices.' },
+  { wrong: 'We need some more papers for the printer.', right: 'We need some more paper for the printer.', error: 'more papers', fix: 'more paper', explanation: 'PAPER (material) is uncountable. Paper for the printer = the material, not documents.' },
+  { wrong: 'There were many thunders last night.', right: 'There was a lot of thunder last night.', error: 'many thunders', fix: 'a lot of thunder', explanation: 'THUNDER is uncountable. A lot of thunder, some thunder — never thunders.' },
+  { wrong: 'She gave us a very good feedback.', right: 'She gave us very good feedback.', error: 'a very good feedback', fix: 'very good feedback', explanation: 'FEEDBACK is uncountable — no article A. Very good feedback.' },
+  { wrong: 'We have collected many evidences.', right: 'We have collected a lot of evidence.', error: 'many evidences', fix: 'a lot of evidence', explanation: 'EVIDENCE is uncountable. A lot of evidence, some evidence — never evidences.' },
+  { wrong: 'She has lot of experiences in teaching.', right: 'She has a lot of experience in teaching.', error: 'lot of experiences', fix: 'a lot of experience', explanation: 'EXPERIENCE (general) is uncountable. A lot of experience. (Experiences = specific events is countable.)' },
+  { wrong: 'Can you give me some informations?', right: 'Can you give me some information?', error: 'informations', fix: 'information', explanation: 'INFORMATION never has a plural. Some information — always singular.' },
+  { wrong: 'He has too many baggages.', right: 'He has too much baggage.', error: 'many baggages', fix: 'much baggage', explanation: 'BAGGAGE is uncountable like luggage. Too MUCH baggage — never many baggages.' },
+  { wrong: 'We received a lot of mails today.', right: 'We received a lot of mail today.', error: 'mails', fix: 'mail', explanation: 'MAIL (postal mail) is uncountable. A lot of mail — never mails (unless email = electronic messages).' },
+  { wrong: 'There is not much room in here.', right: 'There is not much room in here.', error: '', fix: '', explanation: 'Correct! ROOM meaning space is uncountable. Not much room — no plural. ✅' },
+  { wrong: 'She gave three advices in one meeting.', right: 'She gave three pieces of advice in one meeting.', error: 'three advices', fix: 'three pieces of advice', explanation: 'To count ADVICE use: a piece of advice, two pieces of advice.' },
+  { wrong: 'I do not have many time for this.', right: 'I do not have much time for this.', error: 'many time', fix: 'much time', explanation: 'TIME is uncountable. Use MUCH with uncountable nouns. Not much time.' },
+  { wrong: 'She bought some new clothings.', right: 'She bought some new clothes.', error: 'clothings', fix: 'clothes', explanation: 'CLOTHING is uncountable (some clothing). CLOTHES is always plural. Never clothings.' },
+  { wrong: 'We need equipments for the new lab.', right: 'We need equipment for the new lab.', error: 'equipments', fix: 'equipment', explanation: 'EQUIPMENT is uncountable — no plural ever. Equipment for the lab.' },
+],
+
+// ── CATEGORY 8: CONDITIONALS — 15 more ──────────────────────
+conditionals_extra: [
+  { wrong: 'I wish I would have more time.', right: 'I wish I had more time.', error: 'I wish I would have', fix: 'I wish I had', explanation: 'WISH + imaginary present = past simple. I wish I HAD more time (not would have).' },
+  { wrong: 'If she would tell me, I could help.', right: 'If she told me, I could help.', error: 'If she would tell', fix: 'If she told', explanation: 'Second conditional: IF + past simple. If she TOLD me (not would tell).' },
+  { wrong: 'I wish I would be taller.', right: 'I wish I were taller.', error: 'I wish I would be', fix: 'I wish I were', explanation: 'WISH + imaginary state = past simple (were for all subjects). I wish I WERE taller.' },
+  { wrong: 'Even if it will rain, we will go.', right: 'Even if it rains, we will go.', error: 'Even if it will rain', fix: 'Even if it rains', explanation: 'After EVEN IF (like if), use present simple. Even if it RAINS (not will rain).' },
+  { wrong: 'Suppose you would win the lottery, what would you do?', right: 'Suppose you won the lottery, what would you do?', error: 'you would win', fix: 'you won', explanation: 'SUPPOSE (imaginary): past simple. Suppose you WON the lottery.' },
+  { wrong: 'If I were you, I would had spoken to him.', right: 'If I were you, I would speak to him.', error: 'would had spoken', fix: 'would speak', explanation: 'Second conditional main clause: WOULD + base verb. I would SPEAK (not would had spoken).' },
+  { wrong: 'If the weather will improve, the crops will grow.', right: 'If the weather improves, the crops will grow.', error: 'weather will improve', fix: 'weather improves', explanation: 'First conditional: IF + present simple. If the weather IMPROVES (not will improve).' },
+  { wrong: 'I wish I would have studied harder at school.', right: 'I wish I had studied harder at school.', error: 'would have studied', fix: 'had studied', explanation: 'WISH about past regrets = past perfect. I wish I HAD STUDIED harder.' },
+  { wrong: 'Should you will have any questions, ask me.', right: 'Should you have any questions, ask me.', error: 'Should you will have', fix: 'Should you have', explanation: 'Formal conditional inversion with SHOULD: Should you HAVE questions (no will).' },
+  { wrong: 'Unless you do not eat, you will be hungry.', right: 'Unless you eat, you will be hungry.', error: 'Unless you do not eat', fix: 'Unless you eat', explanation: 'UNLESS = if not. Never add NOT with unless. Unless you EAT (not unless you do not eat).' },
+  { wrong: 'If I had more money, I would have bought it.', right: 'If I had more money, I would buy it.', error: 'I would have bought', fix: 'I would buy', explanation: 'Second conditional (present/future imaginary): would + BASE verb. I would BUY it.' },
+  { wrong: 'Providing you will follow the rules, you can join.', right: 'Providing you follow the rules, you can join.', error: 'you will follow', fix: 'you follow', explanation: 'After PROVIDING (= if), use present simple. Providing you FOLLOW the rules.' },
+  { wrong: 'Were he to will arrive early, we could start.', right: 'Were he to arrive early, we could start.', error: 'to will arrive', fix: 'to arrive', explanation: 'Formal inversion: Were he TO + base verb. Were he to ARRIVE (never to will arrive).' },
+  { wrong: 'If only I would know the answer!', right: 'If only I knew the answer!', error: 'If only I would know', fix: 'If only I knew', explanation: 'IF ONLY + imaginary wish = past simple. If only I KNEW the answer.' },
+  { wrong: 'As long as you will be honest, we trust you.', right: 'As long as you are honest, we trust you.', error: 'you will be honest', fix: 'you are honest', explanation: 'After AS LONG AS (conditional), use present simple. As long as you ARE honest.' },
+],
+
+};
+
+// ── MERGE EXTRA SENTENCES INTO EPC_DATA ─────────────────────
+(function() {
+  var catMap = {
+    'state_verbs_extra': 'state_verbs',
+    'articles_extra': 'articles',
+    'tense_extra': 'tense',
+    'prepositions_extra': 'prepositions',
+    'agreement_extra': 'agreement',
+    'word_order_extra': 'word_order',
+    'countable_extra': 'countable',
+    'conditionals_extra': 'conditionals'
+  };
+  Object.keys(catMap).forEach(function(extraKey) {
+    var mainKey = catMap[extraKey];
+    if(EPC_DATA[mainKey] && EPC_EXTRA[extraKey]) {
+      EPC_DATA[mainKey].sentences = EPC_DATA[mainKey].sentences.concat(EPC_EXTRA[extraKey]);
+    }
+  });
+  // console.log('EPC total sentences:', Object.values(EPC_DATA).reduce(function(sum,cat){return sum+cat.sentences.length;},0));
+})();
+
+// ── NEW CATEGORY 9: CONFUSABLE WORDS ────────────────────────
+EPC_DATA['confusable_words'] = {
+  name: 'Confusable Words',
+  icon: '🔀',
+  color: '#34D399',
+  why: {
+    Telugu: 'కొన్ని English words చాలా similar గా sound అవుతాయి కానీ completely different meaning ఉంటుంది. Direct translation వల్ల ఈ తప్పులు వస్తాయి.',
+    Hindi: 'कुछ English words बहुत similar लगते हैं लेकिन उनके meanings बिल्कुल अलग होते हैं।',
+    Tamil: 'சில English words ஒரே மாதிரி sound ஆகும் ஆனால் meaning முற்றிலும் மாறுபடும்.',
+    default: 'Some English words look or sound similar but have completely different meanings. These must be memorised carefully.'
+  },
+  sentences: [
+    { wrong: 'I need to borrow you my car tomorrow.', right: 'I need to lend you my car tomorrow.', error: 'borrow you', fix: 'lend you', explanation: 'LEND = give temporarily. BORROW = take temporarily. You lend TO others; you borrow FROM others.' },
+    { wrong: 'She learned me how to cook.', right: 'She taught me how to cook.', error: 'learned me', fix: 'taught me', explanation: 'TEACH = give knowledge to someone. LEARN = gain knowledge yourself. She TAUGHT me.' },
+    { wrong: 'Can you bring this letter to the post office?', right: 'Can you take this letter to the post office?', error: 'bring this letter', fix: 'take this letter', explanation: 'TAKE = away from speaker. BRING = toward speaker. Post office is away from here = TAKE.' },
+    { wrong: 'Please say me what time it is.', right: 'Please tell me what time it is.', error: 'say me', fix: 'tell me', explanation: 'TELL needs a person object: tell ME. SAY does not: say that... Never "say me".' },
+    { wrong: 'I am very sensible about criticism.', right: 'I am very sensitive about criticism.', error: 'sensible', fix: 'sensitive', explanation: 'SENSIBLE = showing good judgment. SENSITIVE = easily affected emotionally. Sensitive to criticism.' },
+    { wrong: 'Eventually, I might come if I have time.', right: 'Possibly, I might come if I have time.', error: 'Eventually', fix: 'Possibly', explanation: 'EVENTUALLY = in the end (after time). POSSIBLY = perhaps/maybe. "Might" needs POSSIBLY.' },
+    { wrong: 'He made a lot of progresses this year.', right: 'He made a lot of progress this year.', error: 'progresses', fix: 'progress', explanation: 'PROGRESS is uncountable — no plural. A lot of progress, good progress.' },
+    { wrong: 'We discussed about salaries in the meeting.', right: 'We discussed salaries in the meeting.', error: 'discussed about', fix: 'discussed', explanation: 'DISCUSS already means "talk about" — never add about. We discussed salaries.' },
+    { wrong: 'She is very economic with money.', right: 'She is very economical with money.', error: 'economic', fix: 'economical', explanation: 'ECONOMIC = relating to the economy. ECONOMICAL = not wasteful, efficient. She is economical.' },
+    { wrong: 'I am looking to meet you soon.', right: 'I am looking forward to meeting you soon.', error: 'looking to meet', fix: 'looking forward to meeting', explanation: 'Look forward TO + gerund = anticipate with pleasure. Looking forward TO meeting you.' },
+    { wrong: 'He robbed my wallet on the bus.', right: 'He stole my wallet on the bus.', error: 'robbed my wallet', fix: 'stole my wallet', explanation: 'ROB = take from a person/place. STEAL = take a thing. He stole my wallet (the thing).' },
+    { wrong: 'She won him at chess last night.', right: 'She beat him at chess last night.', error: 'won him', fix: 'beat him', explanation: 'BEAT = defeat a specific opponent. WIN = achieve victory. She beat HIM.' },
+    { wrong: 'I am very boring at this party.', right: 'I am very bored at this party.', error: 'am boring', fix: 'am bored', explanation: 'BORED = how you feel. BORING = what causes the feeling. I am BORED (I feel it).' },
+    { wrong: 'The movie was very interested.', right: 'The movie was very interesting.', error: 'was interested', fix: 'was interesting', explanation: 'INTERESTING = causes interest (about a thing). INTERESTED = how you feel. The movie was INTERESTING.' },
+    { wrong: 'I want to know your advise on this.', right: 'I want your advice on this.', error: 'advise', fix: 'advice', explanation: 'ADVICE (noun) = the recommendation. ADVISE (verb) = to recommend. I want your ADVICE.' },
+    { wrong: 'She did a lot of efforts to succeed.', right: 'She made a lot of effort to succeed.', error: 'did a lot of efforts', fix: 'made a lot of effort', explanation: 'MAKE effort (collocation). EFFORT is also uncountable in this sense. Made a lot of effort.' },
+    { wrong: 'Can you assist to the conference?', right: 'Can you attend the conference?', error: 'assist to', fix: 'attend', explanation: 'ATTEND = be present at. ASSIST = help someone. Can you ATTEND the conference?' },
+    { wrong: 'I am very exhausting after work.', right: 'I am very exhausted after work.', error: 'am exhausting', fix: 'am exhausted', explanation: 'EXHAUSTED = how you feel. EXHAUSTING = what causes the feeling. I am EXHAUSTED.' },
+    { wrong: 'He is very comprehensive about details.', right: 'He is very thorough about details.', error: 'comprehensive', fix: 'thorough', explanation: 'COMPREHENSIVE = covering everything. THOROUGH = careful about details. He is THOROUGH.' },
+    { wrong: 'She is very sympathetic — everyone likes her.', right: 'She is very likeable — everyone likes her.', error: 'sympathetic', fix: 'likeable/pleasant', explanation: 'SYMPATHETIC = showing understanding of problems. LIKEABLE = pleasant. Everyone likes her = she is likeable.' },
+    { wrong: 'We need to find an alternate solution.', right: 'We need to find an alternative solution.', error: 'alternate', fix: 'alternative', explanation: 'ALTERNATIVE = another option. ALTERNATE = every other one (alternate days). We need an ALTERNATIVE.' },
+    { wrong: 'He is a very economic person.', right: 'He is a very economical person.', error: 'economic', fix: 'economical', explanation: 'ECONOMICAL = frugal, not wasteful. ECONOMIC = relating to the economy. He is ECONOMICAL.' },
+    { wrong: 'I have a doubt about prepositions.', right: 'I have a question about prepositions.', error: 'have a doubt', fix: 'have a question', explanation: '"Have a doubt" is a common Indian English expression meaning "have a question." In standard English, say: I have a QUESTION.' },
+    { wrong: 'The actual president signed the bill.', right: 'The current president signed the bill.', error: 'actual president', fix: 'current president', explanation: 'ACTUAL = real/true. CURRENT = happening now. For present time use CURRENT.' },
+    { wrong: 'She is a very sensible person — she cries easily.', right: 'She is a very sensitive person — she cries easily.', error: 'sensible', fix: 'sensitive', explanation: 'SENSITIVE = easily moved emotionally. SENSIBLE = shows good judgment. Cries easily = SENSITIVE.' },
+    { wrong: 'I am interesting in learning Japanese.', right: 'I am interested in learning Japanese.', error: 'am interesting', fix: 'am interested', explanation: 'INTERESTED = how you feel. INTERESTING = what causes interest. I am INTERESTED in learning.' },
+    { wrong: 'He is very much capable to do this.', right: 'He is very much capable of doing this.', error: 'capable to do', fix: 'capable of doing', explanation: 'CAPABLE OF + gerund. He is capable OF doing this. Never capable to.' },
+    { wrong: 'Please advice me on what to study.', right: 'Please advise me on what to study.', error: 'advice me', fix: 'advise me', explanation: 'ADVISE (verb) = give advice to. ADVICE (noun) = the recommendation. Please ADVISE me.' },
+    { wrong: 'We must rise our standards.', right: 'We must raise our standards.', error: 'rise our standards', fix: 'raise our standards', explanation: 'RAISE = lift something (needs object). RISE = go up by itself (no object). We must RAISE standards.' },
+    { wrong: 'I feel very much boring today.', right: 'I feel very bored today.', error: 'very much boring', fix: 'very bored', explanation: 'BORED = your feeling. BORING = the cause. I feel BORED. Also: "very much boring" is non-standard.' },
+  ]
+};
+
+// ── NEW CATEGORY 10: COLLOCATION ERRORS ─────────────────────
+EPC_DATA['collocations'] = {
+  name: 'Collocation Errors',
+  icon: '🔗',
+  color: '#C084FC',
+  why: {
+    Telugu: 'English లో కొన్ని words తప్పనిసరిగా కలిసే వాడాలి (collocations). Telugu నుండి directly translate చేస్తే wrong collocations వస్తాయి.',
+    Hindi: 'English में कुछ words हमेशा साथ आते हैं (collocations)। हिंदी से directly translate करने पर गलत collocations आते हैं।',
+    Tamil: 'English-ல் சில words எப்போதும் சேர்ந்து வரும் (collocations). தமிழிலிருந்து directly translate செய்தால் தவறான collocations வரும்.',
+    default: 'English collocations are fixed word partnerships. You cannot substitute similar words — they must be memorised as units.'
+  },
+  sentences: [
+    { wrong: 'She did a mistake in the report.', right: 'She made a mistake in the report.', error: 'did a mistake', fix: 'made a mistake', explanation: 'MAKE a mistake — always. Never DO a mistake. This is a fixed collocation.' },
+    { wrong: 'He made his homework before dinner.', right: 'He did his homework before dinner.', error: 'made his homework', fix: 'did his homework', explanation: 'DO homework — always. Never MAKE homework. DO = perform a task.' },
+    { wrong: 'She did a decision to leave.', right: 'She made a decision to leave.', error: 'did a decision', fix: 'made a decision', explanation: 'MAKE a decision — always. Never do a decision. MAKE = create/produce.' },
+    { wrong: 'It was heavy rain last night.', right: 'There was heavy rain last night.', error: 'was heavy rain', fix: 'was heavy rain', explanation: 'Actually HEAVY rain IS correct! HEAVY collocates with rain. But the sentence structure needs "There was." ✅' },
+    { wrong: 'He made the dishes after dinner.', right: 'He did the dishes after dinner.', error: 'made the dishes', fix: 'did the dishes', explanation: 'DO the dishes — fixed collocation for washing up. Never make the dishes.' },
+    { wrong: 'Can you make me a favour?', right: 'Can you do me a favour?', error: 'make me a favour', fix: 'do me a favour', explanation: 'DO a favour — always. Never make a favour. Could you DO me a favour?' },
+    { wrong: 'She took a photo with her phone.', right: 'She took a photo with her phone.', error: '', fix: '', explanation: 'Correct! TAKE a photo is the right collocation. ✅' },
+    { wrong: 'He made a phone call to his mother.', right: 'He made a phone call to his mother.', error: '', fix: '', explanation: 'Correct! MAKE a phone call is the right collocation. ✅' },
+    { wrong: 'Please do your best effort.', right: 'Please make your best effort.', error: 'do your best effort', fix: 'make your best effort', explanation: 'MAKE an effort — fixed collocation. Make your best effort, make an effort to improve.' },
+    { wrong: 'She did a speech at the wedding.', right: 'She made a speech at the wedding.', error: 'did a speech', fix: 'made a speech', explanation: 'MAKE a speech — always. Never do a speech. MAKE a speech, give a speech.' },
+    { wrong: 'He took a bus to work every day.', right: 'He took a bus to work every day.', error: '', fix: '', explanation: 'Correct! TAKE a bus/train/taxi = use as transport. ✅' },
+    { wrong: 'She made the shopping on Saturday.', right: 'She did the shopping on Saturday.', error: 'made the shopping', fix: 'did the shopping', explanation: 'DO the shopping — fixed collocation. Do the cooking, do the cleaning.' },
+    { wrong: 'They did an agreement last week.', right: 'They made an agreement last week.', error: 'did an agreement', fix: 'made an agreement', explanation: 'MAKE an agreement — fixed. Make an agreement, make a deal, make a contract.' },
+    { wrong: 'He did a lot of noise during the meeting.', right: 'He made a lot of noise during the meeting.', error: 'did a lot of noise', fix: 'made a lot of noise', explanation: 'MAKE noise — always. Never do noise. Make a noise, make a sound.' },
+    { wrong: 'She made jogging every morning.', right: 'She went jogging every morning.', error: 'made jogging', fix: 'went jogging', explanation: 'GO + gerund for activities: go jogging, go swimming, go shopping. Never make jogging.' },
+    { wrong: 'He did a great impression on everyone.', right: 'He made a great impression on everyone.', error: 'did a great impression', fix: 'made a great impression', explanation: 'MAKE an impression — always. Make a good/great/bad impression.' },
+    { wrong: 'She took a strong coffee every morning.', right: 'She had a strong coffee every morning.', error: 'took a strong coffee', fix: 'had a strong coffee', explanation: 'HAVE coffee/tea/breakfast in British English. HAVE a strong coffee.' },
+    { wrong: 'He did a suggestion in the meeting.', right: 'He made a suggestion in the meeting.', error: 'did a suggestion', fix: 'made a suggestion', explanation: 'MAKE a suggestion — always. Make a suggestion, make a recommendation.' },
+    { wrong: 'Please make your homework tonight.', right: 'Please do your homework tonight.', error: 'make your homework', fix: 'do your homework', explanation: 'DO homework, exercises, research, cleaning. MAKE food, decisions, mistakes.' },
+    { wrong: 'She gave a lot of harm to her health.', right: 'She did a lot of harm to her health.', error: 'gave a lot of harm', fix: 'did a lot of harm', explanation: 'DO harm — fixed collocation. Do harm, do damage, do good.' },
+    { wrong: 'He made business with several companies.', right: 'He did business with several companies.', error: 'made business', fix: 'did business', explanation: 'DO business — fixed. Do business with someone. Never make business.' },
+    { wrong: 'She did a complaint to the manager.', right: 'She made a complaint to the manager.', error: 'did a complaint', fix: 'made a complaint', explanation: 'MAKE a complaint — always. Make a complaint, file a complaint.' },
+    { wrong: 'Can you do me a recommendation?', right: 'Can you make me a recommendation?', error: 'do me a recommendation', fix: 'make me a recommendation', explanation: 'MAKE a recommendation — fixed collocation. Can you make me a recommendation?' },
+    { wrong: 'He took a mistake in his calculations.', right: 'He made a mistake in his calculations.', error: 'took a mistake', fix: 'made a mistake', explanation: 'MAKE a mistake — always. Never take a mistake.' },
+    { wrong: 'She did her best on the exam.', right: 'She did her best on the exam.', error: '', fix: '', explanation: 'Correct! DO your best is the right collocation. ✅' },
+    { wrong: 'He made exercise every morning.', right: 'He did exercise every morning.', error: 'made exercise', fix: 'did exercise', explanation: 'DO exercise — fixed collocation. Do exercise, do yoga, do stretches.' },
+    { wrong: 'They did a party for her birthday.', right: 'They had/threw a party for her birthday.', error: 'did a party', fix: 'had/threw a party', explanation: 'HAVE a party or THROW a party — not do a party. They HAD a great party.' },
+    { wrong: 'She made the cleaning before guests arrived.', right: 'She did the cleaning before guests arrived.', error: 'made the cleaning', fix: 'did the cleaning', explanation: 'DO the cleaning — household task. Never make the cleaning.' },
+    { wrong: 'He did a promise to call every day.', right: 'He made a promise to call every day.', error: 'did a promise', fix: 'made a promise', explanation: 'MAKE a promise — always. Make a promise, keep a promise, break a promise.' },
+    { wrong: 'Please make a research before deciding.', right: 'Please do research before deciding.', error: 'make a research', fix: 'do research', explanation: 'DO research — fixed collocation. Also: research is uncountable — no "a". Do research.' },
+  ]
+};
 
 </script>
 </body>

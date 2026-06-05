@@ -14879,5 +14879,764 @@ function vicShowFeatured() {
 }
 
 </script>
+
+<script>
+// ============================================================
+// VIC WORDS EXPANSION — 180 more words
+// Completes the 200 word target = 3,000 real sentences
+// ============================================================
+
+var VIC_WORDS_EXTRA = {
+
+  'abandon': {
+    Academic: ['Researchers were forced to abandon the study after funding was withdrawn mid-trial.','Several theoretical frameworks have been abandoned in light of contradictory evidence.','The paper argues that we must abandon the false binary between qualitative and quantitative approaches.'],
+    Business: ['The company abandoned the project after costs exceeded initial projections by 40%.','Do not abandon a strategy after one bad quarter — give it time to prove itself.','She abandoned her corporate career to launch a social enterprise.'],
+    News: ['Hundreds of families were forced to abandon their homes as floodwaters rose.','The government abandoned the controversial bill following widespread public opposition.','The ship was found abandoned in international waters with no crew aboard.'],
+    Conversation: ['He just abandoned the whole idea — which I think was the right call honestly.','Do not abandon it yet. Give it another week.','She abandoned her diet about three days in.'],
+    Emotion: ['She had been abandoned once before and the fear of it never fully left her.','To abandon something you have built with your own hands is a particular kind of grief.','He walked away, not because he wanted to, but because staying felt like abandonment of a different kind.']
+  },
+
+  'absorb': {
+    Academic: ['Children absorb language most efficiently during the critical period between birth and age seven.','The capacity to absorb new information diminishes when cognitive load is excessive.','Markets absorb shocks differently depending on their structural resilience.'],
+    Business: ['The larger company agreed to absorb all existing staff following the acquisition.','Can the market absorb this level of supply without a price correction?','We need to absorb these cost increases without passing them on to customers.'],
+    News: ['The health system struggled to absorb the surge in patients during the outbreak.','The economy has so far managed to absorb the impact of rising energy costs.','Local communities are being asked to absorb a disproportionate share of the burden.'],
+    Conversation: ['It is a lot to absorb all at once — give yourself time.','She absorbs information so quickly. It is almost unsettling.','I need a moment. There is a lot to absorb here.'],
+    Emotion: ['She sat quietly, absorbing the news, before allowing herself to feel anything at all.','Grief, she found, was not something you overcome — it is something you absorb.','He absorbed the criticism without showing any of the pain it caused him.']
+  },
+
+  'accelerate': {
+    Academic: ['Digital technology has dramatically accelerated the pace of knowledge dissemination.','Climate change is accelerating at a rate that exceeds most early projections.','The intervention significantly accelerated reading development in the experimental group.'],
+    Business: ['The partnership is designed to accelerate our entry into emerging markets.','Remote work has accelerated the adoption of digital collaboration tools by years.','We need to accelerate the hiring process — vacancies are costing us productivity.'],
+    News: ['Tensions accelerated following the announcement of new sanctions.','The rate of ice melt in the Arctic has accelerated sharply over the past decade.','Investment in the sector has accelerated as demand continues to grow.'],
+    Conversation: ['Things really accelerated once she joined the project.','The whole process accelerated once we stopped overthinking it.','It is accelerating faster than anyone expected — in a good way.'],
+    Emotion: ['Her pulse accelerated as she read the message a second time.','Time seemed to accelerate as the deadline approached, each day shorter than the last.','The closer he got to the truth, the more his anxiety accelerated.']
+  },
+
+  'acknowledge': {
+    Academic: ['The study acknowledges several limitations that affect the generalisability of the findings.','It is crucial to acknowledge the contributions of prior scholarship in any new work.','The authors acknowledge that further research is required to confirm these preliminary results.'],
+    Business: ['We acknowledge the delay and take full responsibility for the inconvenience caused.','It is important to acknowledge your team\'s contributions publicly.','The report acknowledges that the targets set in 2022 were not achieved.'],
+    News: ['The minister acknowledged for the first time that mistakes had been made.','The company acknowledged the data breach after days of public pressure.','She acknowledged the controversy surrounding her appointment in her opening remarks.'],
+    Conversation: ['He never acknowledges when he is wrong — it is exhausting.','At least she acknowledged it was a problem. That is a start.','I acknowledge that I could have handled it better.'],
+    Emotion: ['To acknowledge the pain was the first step toward surviving it.','She needed him to acknowledge what had happened — not to fix it, just to see it.','He quietly acknowledged to himself that he had been afraid all along.']
+  },
+
+  'adapt': {
+    Academic: ['Species that fail to adapt to changing environmental conditions face extinction.','Teachers must adapt their pedagogy to meet the diverse needs of modern learners.','The framework was adapted for use in low-resource contexts with minimal modification.'],
+    Business: ['Organisations that fail to adapt to market changes risk becoming irrelevant.','She adapted her communication style to suit different stakeholders effectively.','The business model was adapted after customer feedback revealed key friction points.'],
+    News: ['Communities are learning to adapt to the realities of a changing climate.','The legislation was adapted following consultation with industry representatives.','Athletes have had to adapt their training regimens during the pandemic.'],
+    Conversation: ['She adapts to any environment — I have never seen anyone so flexible.','You just have to adapt. That is what travel teaches you.','He adapted really quickly once he understood what was expected.'],
+    Emotion: ['She had adapted to loss the way water adapts to its container — by taking its shape.','Adapting was not the same as accepting, but sometimes it was the only option available.','He had adapted so thoroughly to loneliness that company now made him uncomfortable.']
+  },
+
+  'adequate': {
+    Academic: ['Current resources are not adequate to meet the growing demands of the sector.','Adequate preparation is essential for successful academic performance.','The study found that existing regulatory frameworks are not adequate to address emerging risks.'],
+    Business: ['The budget allocated is barely adequate for the scope of work required.','Ensure that staff receive adequate training before the system goes live.','An adequate response time is critical to maintaining customer satisfaction.'],
+    News: ['Aid agencies warned that food supplies are not adequate for the displaced population.','The government was criticised for failing to provide adequate healthcare in rural areas.','Experts say current flood defences are not adequate for future climate scenarios.'],
+    Conversation: ['It is adequate — not great, but it does the job.','Is the space adequate or do we need to find somewhere larger?','The preparation was barely adequate, honestly.'],
+    Emotion: ['No words felt adequate for what she was trying to express.','He felt his response had been inadequate — not enough to match the weight of the moment.','She wondered if any love could ever be truly adequate.']
+  },
+
+  'adhere': {
+    Academic: ['Participants were required to adhere strictly to the prescribed protocol throughout the trial.','Professional bodies require practitioners to adhere to established codes of conduct.','The research design adheres to the ethical guidelines set out by the institutional review board.'],
+    Business: ['All contractors must adhere to the company\'s health and safety standards.','Adhering to deadlines is non-negotiable in client-facing roles.','The product must adhere to all relevant regulatory requirements before launch.'],
+    News: ['Both parties agreed to adhere to the terms of the ceasefire.','The organisation was found to have failed to adhere to its own governance standards.','Athletes who fail to adhere to anti-doping regulations face lifetime bans.'],
+    Conversation: ['She adheres to her routine so strictly — even on weekends.','Just adhere to the brief and you will be fine.','He does not really adhere to any fixed schedule.'],
+    Emotion: ['She adhered to the rituals of normalcy even as everything inside her fell apart.','The grief adhered to him like something physical — present in every room he entered.','He adhered to hope with the stubbornness of someone who had nothing else left.']
+  },
+
+  'adjacent': {
+    Academic: ['The two phenomena are adjacent in their mechanisms but distinct in their outcomes.','Adjacent disciplines such as sociology and psychology offer complementary perspectives.','The study was conducted in two adjacent communities with similar demographic profiles.'],
+    Business: ['The company is exploring adjacent markets to sustain growth beyond its core business.','The new office is adjacent to the main transport hub, improving commuter access.','Adjacent opportunities in the data services sector present a significant revenue stream.'],
+    News: ['The fire spread rapidly to adjacent properties before it was brought under control.','Residents in adjacent areas were advised to remain indoors during the operation.','The new development will affect residents in adjacent neighbourhoods.'],
+    Conversation: ['The café is adjacent to the station — you cannot miss it.','It is in an adjacent field — close to what we do but not exactly the same.','I booked adjacent seats so we could all sit together.'],
+    Emotion: ['Joy and sorrow, she had found, were always adjacent — never far from one another.','The memories were adjacent in her mind, almost touching but never quite merging.','He felt something adjacent to happiness — not quite the thing itself, but close enough.']
+  },
+
+  'ambitious': {
+    Academic: ['The study sets an ambitious agenda for future research across multiple disciplines.','The policy represents an ambitious attempt to address systemic inequality in education.','While ambitious in scope, the framework lacks the empirical grounding required for practical application.'],
+    Business: ['The five-year plan is ambitious but achievable with the right investment.','She is one of the most ambitious people in the organisation — and one of the most capable.','We set ambitious targets precisely because we believe the team can exceed them.'],
+    News: ['The government unveiled its most ambitious infrastructure plan in a generation.','The project is the most ambitious conservation effort the country has undertaken.','Critics described the timetable as overly ambitious given the scale of the challenges.'],
+    Conversation: ['That is very ambitious for a first attempt — in a good way.','She has always been ambitious. She knew what she wanted from very early on.','The plan is ambitious but I think that is the point.'],
+    Emotion: ['His ambition had driven him to places he had never expected to reach — and to losses he had never expected to survive.','She had been ambitious once, before life had redirected her energy elsewhere.','To be ambitious was to carry a permanent sense of not-yet — never quite arriving.']
+  },
+
+  'analyse': {
+    Academic: ['The data was analysed using a mixed-methods approach combining survey results and interview transcripts.','To analyse this phenomenon fully, one must consider both structural and individual factors.','The paper analyses the impact of fiscal policy on income distribution over a twenty-year period.'],
+    Business: ['We need to analyse the customer data before making any further product decisions.','She analyses every scenario thoroughly before committing to a course of action.','The team will analyse the results of the pilot before scaling the programme.'],
+    News: ['Analysts are still working to analyse the full economic impact of the decision.','Forensic experts were brought in to analyse the evidence recovered from the scene.','The report analyses trends in global migration over the past two decades.'],
+    Conversation: ['You analyse everything too much sometimes. Just go with your instinct.','She analysed the situation so carefully that she almost missed the moment to act.','Let me just quickly analyse what went wrong before we move on.'],
+    Emotion: ['She had analysed the relationship a thousand times and still could not understand where it had gone wrong.','He resisted the urge to analyse his feelings, afraid of what he might find.','Grief, she had learned, does not respond well to analysis.']
+  },
+
+  'assess': {
+    Academic: ['Students are assessed through a combination of coursework and formal examinations.','The study sought to assess the long-term impact of early childhood interventions.','It is difficult to assess causality from observational data alone.'],
+    Business: ['We need to assess the risks before committing to this level of investment.','Her role involves assessing the performance of suppliers against agreed benchmarks.','The consultant was brought in to assess the efficiency of current operations.'],
+    News: ['Inspectors were sent in to assess the structural integrity of the bridge.','The government commissioned an independent review to assess the handling of the crisis.','Scientists continue to assess the long-term consequences of the oil spill.'],
+    Conversation: ['It is hard to assess without more information.','She assessed the situation in about thirty seconds and knew exactly what to do.','Take some time to assess before you commit.'],
+    Emotion: ['She assessed him quietly — the way people do when they are deciding whether to trust.','He assessed his own grief with the detached precision of someone observing a stranger.','The moment required no assessment. She knew immediately.']
+  },
+
+  'assert': {
+    Academic: ['The author asserts that current models fail to account for structural inequality.','To assert a causal relationship, one must rule out all plausible confounding variables.','The paper asserts a bold claim that will require substantial empirical validation.'],
+    Business: ['She asserts her perspective clearly in meetings — which is why she is effective.','The company asserted its market position through a series of strategic acquisitions.','Legal counsel advised asserting their intellectual property rights without delay.'],
+    News: ['The defendant asserted his innocence throughout the three-week trial.','The president asserted that the country would not be intimidated by external pressure.','Both sides assert that the other violated the terms of the agreement.'],
+    Conversation: ['He asserted himself more in this meeting than I have ever seen.','Just assert yourself — you have earned the right to speak in that room.','She asserts her opinion confidently, which I really respect.'],
+    Emotion: ['She had spent years not asserting herself, and the habit of silence had become its own kind of prison.','To assert his worth — even to himself — felt like the bravest thing he had ever done.','She asserted her needs quietly but unmistakably, the way someone does when they have finally stopped apologising for existing.']
+  },
+
+  'attain': {
+    Academic: ['Few students attain the highest grades without sustained effort and strategic study habits.','The programme aims to help participants attain professional competency in their chosen field.','The research examines what conditions allow individuals to attain social mobility.'],
+    Business: ['She attained the position of director within seven years of joining the firm.','The company attained market leadership through relentless focus on customer experience.','To attain certification, candidates must pass all three assessment stages.'],
+    News: ['The athlete attained a personal best in the final event of her career.','The region has struggled to attain the economic growth rates seen elsewhere.','She became the first woman to attain the rank of general in the country\'s history.'],
+    Conversation: ['He attained what he set out to achieve — which is more than most people manage.','It is attainable. You just have to commit fully.','She attained that level through years of very deliberate practice.'],
+    Emotion: ['The peace she had spent her life trying to attain came to her finally in stillness.','He had attained everything he had been told to want and found it hollow.','To attain something long desired is to discover that desire itself was the companion.']
+  },
+
+  'authentic': {
+    Academic: ['Authentic learning environments situate knowledge acquisition in real-world contexts.','The study raises important questions about the authenticity of self-reported data.','Authentic leadership is characterised by self-awareness and consistency between values and behaviour.'],
+    Business: ['Consumers increasingly value authentic brand communication over polished marketing.','She brings an authentic energy to every client interaction.','Build an authentic company culture — it cannot be manufactured from the outside.'],
+    News: ['Critics praised the film for its authentic portrayal of working-class life.','The document has been verified as authentic by independent experts.','She is known for her authentic engagement with constituents, even on difficult issues.'],
+    Conversation: ['He is so authentic — what you see is exactly what you get.','I just want something authentic, not performative.','That performance felt so authentic — I was genuinely moved.'],
+    Emotion: ['She had spent years performing happiness before she understood what authentic joy felt like.','Love, she believed, was only worth having if it was authentic — however inconvenient.','He found something authentic in her that he had stopped believing existed.']
+  },
+
+  'boundaries': {
+    Academic: ['The study examines how professional boundaries are negotiated in therapeutic relationships.','Disciplinary boundaries have increasingly dissolved in the era of interdisciplinary research.','Clear ethical boundaries are essential in research involving vulnerable populations.'],
+    Business: ['She sets very clear boundaries between her professional and personal life.','Knowing your boundaries as a leader makes you more effective, not less.','The merger will push the boundaries of what the current infrastructure can support.'],
+    News: ['The new legislation tests the boundaries of what is constitutionally permissible.','Humanitarian organisations are pushing the boundaries of what aid delivery can achieve.','The artist is known for pushing creative boundaries in both form and content.'],
+    Conversation: ['She is very good at setting boundaries, which I admire.','You need to establish boundaries early — otherwise people will take advantage.','That crossed a boundary for me personally.'],
+    Emotion: ['She had spent so long without boundaries that she no longer knew where she ended and others began.','Learning to set boundaries was not about protecting herself from others — it was about knowing herself.','He respected her boundaries not because he had to but because he understood why they existed.']
+  },
+
+  'clarify': {
+    Academic: ['The author clarifies the distinction between theoretical and applied approaches in the opening chapter.','Further research is needed to clarify the relationship between the two variables.','The revised edition clarifies several points that were ambiguous in the original publication.'],
+    Business: ['Could you clarify what the client expects in terms of deliverables and timeline?','She always clarifies expectations upfront, which prevents misunderstandings later.','Let me clarify our position before we proceed any further.'],
+    News: ['The spokesperson was asked to clarify whether the policy applied retroactively.','The minister sought to clarify remarks made in an interview the previous day.','Officials clarified that the regulations would not affect existing contracts.'],
+    Conversation: ['Sorry, can you clarify what you mean by that?','Let me clarify — I am not saying it was wrong, just that it was risky.','She always clarifies before assuming, which is a really good habit.'],
+    Emotion: ['She needed him to clarify — not to explain, but to be honest.','Time, more than anything, clarified what had actually mattered and what had merely felt urgent.','He was afraid that clarifying things would make them harder to walk away from.']
+  },
+
+  'coherent': {
+    Academic: ['A coherent theoretical framework is essential for guiding research design and interpretation.','The argument would be more coherent if the author addressed the contradictions in chapter three.','Coherent policy requires alignment between stated objectives and the mechanisms deployed to achieve them.'],
+    Business: ['The strategy needs to be more coherent — currently it reads like three separate documents.','She presented a coherent vision that brought the entire leadership team into alignment.','A coherent brand identity across all channels significantly improves customer recognition.'],
+    News: ['The opposition struggled to present a coherent alternative to the government\'s plan.','Analysts described the economic policy as the most coherent the country has had in decades.','The report provides the most coherent account yet of what occurred on that day.'],
+    Conversation: ['That argument makes total sense now. It is so much more coherent.','I was so tired I could barely put together a coherent sentence.','She explained it in a really coherent way — finally it clicked.'],
+    Emotion: ['She could not find a coherent narrative for what had happened — only fragments.','Grief made it impossible to think in coherent terms for weeks after.','He tried to form a coherent response but his thoughts kept breaking apart.']
+  },
+
+  'collaborate': {
+    Academic: ['The project required researchers from twelve institutions to collaborate across disciplinary boundaries.','Students who collaborate effectively demonstrate higher levels of critical thinking.','The paper is the result of a three-year collaboration between universities on two continents.'],
+    Business: ['The two firms agreed to collaborate on the development of a new product line.','She is one of the easiest people to collaborate with — generous with credit and ideas.','Effective collaboration requires clear roles, shared goals and mutual respect.'],
+    News: ['The two countries agreed to collaborate on intelligence sharing to combat terrorism.','Scientists from across the globe are collaborating on a vaccine for the newly identified strain.','The initiative brings together local authorities to collaborate on reducing homelessness.'],
+    Conversation: ['It was such a good collaboration — the work was so much stronger for it.','Have you two ever collaborated before? You should.','She collaborates really well — she brings out the best in everyone around her.'],
+    Emotion: ['They had collaborated for so many years that the line between their ideas had blurred beautifully.','To collaborate was to be vulnerable — to show your unfinished work to someone else.','She missed the collaboration more than she had expected — the thinking-together that could not be replicated alone.']
+  },
+
+  'commitment': {
+    Academic: ['Long-term commitment to longitudinal research designs yields insights unavailable to cross-sectional studies.','Commitment to ethical practice must be embedded in institutional culture, not merely stated in documents.','The study examines the relationship between employee commitment and organisational performance.'],
+    Business: ['Her commitment to quality is evident in every piece of work she produces.','We need commitment from leadership before any of this can move forward.','The contract represents a significant financial commitment over a five-year period.'],
+    News: ['World leaders renewed their commitment to the Paris Agreement targets.','The government\'s commitment to the project was questioned after budget cuts were announced.','She has demonstrated an unwavering commitment to the cause throughout her career.'],
+    Conversation: ['I appreciate your commitment — it does not go unnoticed.','That level of commitment is exactly what the role requires.','Commitment is one of her strongest qualities. Once she is in, she is fully in.'],
+    Emotion: ['He had made a commitment not in words but in the quiet, daily choices that love requires.','She was afraid of commitment not because she did not care but because she cared too much.','The weight of commitment, when carried by both people, becomes lighter than either expected.']
+  },
+
+  'complex': {
+    Academic: ['The relationship between poverty and educational attainment is far more complex than often assumed.','Complex systems exhibit emergent properties that cannot be predicted from their individual components.','The author provides a nuanced analysis of an inherently complex social phenomenon.'],
+    Business: ['The procurement process is unnecessarily complex and needs to be streamlined.','She handles complex negotiations with remarkable clarity and composure.','Complex projects require clear ownership at every stage to avoid accountability gaps.'],
+    News: ['The situation on the ground is complex and does not lend itself to simple solutions.','The legal case is complex, involving multiple jurisdictions and years of financial records.','Experts warn that the ecological impact of the spill is more complex than initially reported.'],
+    Conversation: ['It is complicated. More complex than I first thought.','She made a very complex idea sound completely simple — that is a real skill.','I do not want to oversimplify it because it is genuinely complex.'],
+    Emotion: ['Her feelings were complex in the way that real feelings always are — resistant to easy summary.','He had developed a complex relationship with success that he struggled to articulate.','The grief was complex: layered with relief and guilt and love all at once.']
+  },
+
+  'concede': {
+    Academic: ['The authors concede that the sample size limits the generalisability of the findings.','To advance an argument, one must be willing to concede the strongest points of the opposition.','She concedes that the evidence does not fully support the original hypothesis.'],
+    Business: ['We may need to concede on price to secure the contract.','He conceded the point graciously, which strengthened rather than weakened his overall position.','Conceding ground on minor issues can help preserve leverage on the matters that count.'],
+    News: ['The candidate conceded defeat in a brief statement shortly after midnight.','The company conceded that its practices had caused harm to some consumers.','Officials conceded that the initial response to the outbreak had been inadequate.'],
+    Conversation: ['Okay, I concede — you were right about that one.','She would not concede an inch, even when the evidence was clearly against her.','I will concede that point, but the broader argument still stands.'],
+    Emotion: ['He finally conceded to himself what he had known for months.','She was not ready to concede that it was over — not quite yet.','To concede defeat was not failure. It was, sometimes, the most honest form of courage.']
+  },
+
+  'confirm': {
+    Academic: ['Subsequent studies confirmed the findings of the original research.','The experiment was designed to confirm or refute the existing theoretical model.','Confirmation bias remains one of the most significant threats to research objectivity.'],
+    Business: ['Please confirm receipt of this email at your earliest convenience.','She confirmed the meeting via calendar invite and followed up with an agenda.','The board confirmed the appointment of the new chief executive at yesterday\'s meeting.'],
+    News: ['Officials confirmed that the death toll had risen to forty-seven.','The prime minister confirmed the date of the general election in a televised address.','The company confirmed it had received a takeover approach from a rival firm.'],
+    Conversation: ['Can you confirm you will be there by three?','She confirmed it herself — so it is definitely happening.','Let me just confirm the details before I tell you.'],
+    Emotion: ['The look on his face confirmed everything she had feared.','She needed the conversation not to learn something new but to confirm what she already knew.','Confirmation, when it finally came, brought not relief but a strange and heavy clarity.']
+  },
+
+  'consequence': {
+    Academic: ['The consequences of early childhood adversity extend well into adulthood.','Environmental degradation is a consequence of consumption patterns that prioritise short-term gain.','The study traces the long-term consequences of policy changes made in the 1980s.'],
+    Business: ['There are serious financial consequences for missing this deadline.','Leaders must be willing to face the consequences of the decisions they make.','The consequence of underinvestment in infrastructure is felt for generations.'],
+    News: ['The economic consequences of the decision will be felt for years.','He faces serious legal consequences following last night\'s arrest.','Aid workers warned of catastrophic humanitarian consequences if the blockade continues.'],
+    Conversation: ['Did you think about the consequences before you did it?','There are consequences to every decision — that is just how it works.','She accepted the consequences without complaining, which I respected.'],
+    Emotion: ['She lived with the consequences of one decision made on one ordinary afternoon.','The consequences of saying nothing weighed on him as heavily as action might have.','Love, she had learned, came with consequences she had not been warned about.']
+  },
+
+  'consistent': {
+    Academic: ['The findings are consistent with previous research on the topic.','Consistent application of methodology across all sites is essential for reliable comparison.','A consistent pattern emerged across all three rounds of data collection.'],
+    Business: ['Consistent branding across all channels builds recognition and trust.','She is one of the most consistently high-performing members of the team.','Consistent communication with stakeholders is the foundation of effective project management.'],
+    News: ['The data shows a consistent upward trend in renewable energy investment.','He has been consistent in his opposition to the policy since it was first proposed.','The organisation has maintained a consistent position on the issue for over a decade.'],
+    Conversation: ['She is so consistent — you always know exactly what you are going to get.','Be consistent. That is the thing that actually builds trust over time.','His results have been really consistent this season.'],
+    Emotion: ['She had loved him in a way that was quiet and consistent and completely taken for granted.','Consistent kindness, she had found, was rarer and more valuable than dramatic gestures.','The consistent presence of someone who stayed changed everything.']
+  },
+
+  'context': {
+    Academic: ['Findings must always be interpreted within the specific social and historical context of the study.','Context shapes meaning — a word or behaviour that is appropriate in one setting may be inappropriate in another.','The paper situates its analysis within the broader context of postcolonial theory.'],
+    Business: ['Without context, the data tells us nothing useful.','She always provides context when delivering feedback, which makes it easier to act on.','Understanding the cultural context of your client is essential in international negotiations.'],
+    News: ['The remarks were taken out of context, the spokesperson argued.','Reporters must provide context so that audiences understand the significance of the story.','The decision makes more sense when considered in the context of recent events.'],
+    Conversation: ['You have to put it in context — at the time, nobody knew that.','Out of context that sounds terrible. Let me explain.','Context is everything. The same words can mean completely different things.'],
+    Emotion: ['Without context, her silence had felt like indifference. Now she understood it as self-protection.','He missed having someone who shared enough of his context to truly understand what he meant.','She had pulled his words from their context and carried them alone, misshapen.']
+  },
+
+  'contrast': {
+    Academic: ['In contrast to earlier studies, the present research found no significant correlation.','The paper draws a sharp contrast between the theoretical and practical dimensions of the problem.','Comparative studies allow researchers to contrast outcomes across different populations.'],
+    Business: ['In contrast to last year, Q3 results show significant improvement across all key metrics.','The contrast between the two approaches becomes clear when you look at the long-term data.','Her calm leadership style contrasts sharply with her predecessor\'s.'],
+    News: ['The contrast between rich and poor neighbourhoods in the city has never been more stark.','In stark contrast to his public statements, documents reveal a different picture.','The film offers a contrast between the official narrative and the lived experience of ordinary people.'],
+    Conversation: ['It is such a contrast from how things were last year.','The contrast between the two options is pretty obvious when you lay them out.','I love the contrast of old and new in that part of the city.'],
+    Emotion: ['The contrast between her public composure and private anguish exhausted her.','Joy felt sharper in contrast to what had come before it.','He noticed the contrast in her — the person she was alone versus the one the world got to see.']
+  },
+
+  'contribute': {
+    Academic: ['This study contributes to the growing body of literature on language acquisition in multilingual contexts.','All participants contributed their time voluntarily and received no financial compensation.','The paper contributes a novel theoretical framework for understanding consumer behaviour.'],
+    Business: ['Every team member contributed to the success of this project.','She contributes ideas that consistently elevate the work of everyone around her.','To contribute meaningfully, you need to understand the bigger picture.'],
+    News: ['Rising energy prices have contributed significantly to inflationary pressures.','The foundation has contributed over fifty million pounds to education projects globally.','Several factors have contributed to the sharp rise in housing costs.'],
+    Conversation: ['I just want to contribute something useful, not just fill airtime.','He contributes so much to the team — not just in output but in energy.','What can I contribute? I want to help.'],
+    Emotion: ['She wanted to contribute something lasting before she was gone.','To feel that you have contributed — to anything — is one of the deepest human satisfactions.','He contributed to the lives of people who would never know his name.']
+  },
+
+  'controversy': {
+    Academic: ['The topic remains a source of ongoing controversy within the field.','Scientific controversy is a necessary part of the process by which knowledge advances.','The paper revisits a long-standing controversy and offers new empirical evidence.'],
+    Business: ['The rebrand generated unexpected controversy among long-standing customers.','She navigated the controversy with transparency and a genuine willingness to listen.','Any significant organisational change will generate some controversy.'],
+    News: ['The appointment generated immediate controversy given the candidate\'s previous statements.','The film courted controversy from its first trailer and has not disappointed critics.','The proposal has been dogged by controversy since it was first announced.'],
+    Conversation: ['I knew it would cause controversy but I said it anyway.','She avoids controversy professionally but is quite outspoken in private.','The decision was controversial at the time but looks obvious in hindsight.'],
+    Emotion: ['She had courted controversy her whole life and was not about to stop now.','The controversy around him had ceased to matter — what mattered was what she knew of him herself.','He did not seek controversy. It simply followed him wherever honesty led.']
+  },
+
+  'conviction': {
+    Academic: ['She argues her position with conviction, drawing on extensive empirical evidence.','The strength of a theoretical framework lies not in its certainty but in the conviction it generates.','Moral conviction, the paper argues, shapes policy preferences in ways that rational choice models cannot predict.'],
+    Business: ['She presents her ideas with the kind of conviction that makes people want to follow her.','Conviction in your product is the foundation of any successful sales conversation.','He changed direction without conviction — and the team could sense it.'],
+    News: ['The activist spoke with deep conviction about the injustice she had witnessed firsthand.','His conviction in the cause never wavered over forty years of campaigning.','She was convicted on three counts following a six-week trial.'],
+    Conversation: ['She says it with such conviction — you have to believe her.','I do not have the conviction I used to have about it.','He lacks conviction. You can hear it in the way he talks about it.'],
+    Emotion: ['She had lost conviction in most things but held tightly to the ones that remained.','There was a quiet, unshakeable conviction in her that the right thing would eventually prevail.','He spoke with the conviction of someone who had survived enough to trust himself.']
+  },
+
+  'cope': {
+    Academic: ['The study examines the coping strategies employed by individuals facing chronic illness.','Children who develop effective coping mechanisms in early life demonstrate better mental health outcomes.','The capacity to cope with ambiguity is a key skill in complex professional environments.'],
+    Business: ['The infrastructure is not currently able to cope with the projected increase in demand.','She copes remarkably well under pressure — it is one of her greatest professional strengths.','How do you cope when multiple high-priority deadlines coincide?'],
+    News: ['Hospitals are struggling to cope with the unprecedented surge in patients.','Communities along the coast are learning to cope with increasingly severe weather events.','The city\'s transport network is not designed to cope with this volume of commuters.'],
+    Conversation: ['How are you coping? Honestly?','I am coping. Not thriving, but coping.','She copes by keeping busy. I cope by doing nothing. Different approaches.'],
+    Emotion: ['She had developed a thousand ways to cope and none of them touched the actual thing.','Coping and healing are not the same thing, though people often mistake one for the other.','He coped in silence, which meant no one knew how much he was struggling.']
+  },
+
+  'credible': {
+    Academic: ['For a theory to be credible, it must be falsifiable and tested against empirical evidence.','The study was criticised for relying on sources of questionable credibility.','A credible research methodology is one that is transparent, rigorous and consistently applied.'],
+    Business: ['She is one of the most credible voices in the industry on this topic.','To be credible with your audience, you need to know the numbers inside out.','A credible proposal is one grounded in realistic assumptions and honest risk assessment.'],
+    News: ['Investigators described the new witness account as highly credible.','The organisation lost credibility following revelations about its internal practices.','She has emerged as one of the most credible candidates for the position.'],
+    Conversation: ['Is the source credible? That matters more than what it says.','He came across as completely credible — I believed every word.','She has made herself credible in that space over years of genuine work.'],
+    Emotion: ['She no longer found her own inner critic credible — its predictions had too often been wrong.','To be seen as credible by people whose judgment she respected meant more than any award.','He needed to be credible — not for others, but for himself.']
+  },
+
+  'decline': {
+    Academic: ['The study documents a significant decline in biodiversity across the study region.','Cognitive decline in later life has been linked to reduced social engagement.','The paper traces the decline of manufacturing employment in post-industrial economies.'],
+    Business: ['Sales declined for the third consecutive quarter, prompting a strategic review.','She politely declined the counter-offer and accepted a position elsewhere.','A declining market requires a fundamentally different strategy than a growing one.'],
+    News: ['The economy showed signs of decline for the first time in seven years.','The prime minister declined to comment on the speculation surrounding his future.','Voter turnout has been in steady decline since the early 2000s.'],
+    Conversation: ['I declined the offer — it just was not the right fit.','Sales are declining but I do not think it is cause for panic yet.','She declined graciously, which is the only way to do it.'],
+    Emotion: ['She watched his health decline and found herself grieving someone who was still present.','He declined slowly — not dramatically but in the way that quiet things erode.','To decline an invitation to something you secretly wanted was its own small grief.']
+  },
+
+  'demonstrate': {
+    Academic: ['The experiment demonstrates a clear causal link between the two variables.','This case study demonstrates the limitations of applying universal frameworks to local contexts.','Students are required to demonstrate competency before progressing to the next level.'],
+    Business: ['She consistently demonstrates the leadership qualities that the organisation values.','The pilot programme demonstrated strong results and has been approved for full rollout.','To win the contract, we need to demonstrate our track record with comparable clients.'],
+    News: ['Thousands gathered in the capital to demonstrate against the new legislation.','The report demonstrates that progress on gender pay equality remains painfully slow.','Scientists demonstrated the technology\'s effectiveness in a live trial broadcast globally.'],
+    Conversation: ['She demonstrates exactly the kind of thinking we need more of.','Can you demonstrate what you mean? I am still not quite following.','He demonstrated his commitment by showing up even when he did not have to.'],
+    Emotion: ['She demonstrated her love not through words but through the thousand invisible acts of daily devotion.','He needed to demonstrate to himself, more than anyone, that he was capable of this.','What she demonstrated in that moment was not strength but something deeper — grace.']
+  },
+
+  'derive': {
+    Academic: ['Many mathematical theorems can be derived from a small set of fundamental axioms.','The concept is derived from classical economic theory but has been significantly adapted.','The author derives several practical implications from the theoretical framework presented.'],
+    Business: ['The company derives sixty percent of its revenue from subscription services.','What insights can we derive from this customer feedback?','The model derives its value from network effects rather than individual utility.'],
+    News: ['The country derives much of its national identity from this historical period.','Significant revenue is derived from tourism in the coastal regions.','The policy derives from recommendations made by an independent commission three years ago.'],
+    Conversation: ['What exactly do you derive from doing it? Is it enjoyment or something else?','The word is derived from Latin — which explains the spelling.','She derives a lot of satisfaction from mentoring younger colleagues.'],
+    Emotion: ['She derived a quiet, private satisfaction from things no one else noticed.','He derived comfort not from certainty but from the familiar rituals that surrounded uncertainty.','The meaning she derived from her work sustained her through everything else.']
+  },
+
+  'devote': {
+    Academic: ['The researcher devoted fifteen years to this single question.','Entire academic careers have been devoted to understanding this relatively narrow phenomenon.','The final chapter is devoted to the practical implications of the findings.'],
+    Business: ['She devotes considerable time to mentoring junior staff, which sets her apart.','We need to devote more resources to customer onboarding if we want to reduce churn.','He devoted the early part of his career to building deep expertise in one narrow field.'],
+    News: ['The charity has devoted all its resources to the immediate relief effort.','She devoted her life to the cause of accessible education for all children.','The special edition of the magazine is devoted entirely to climate solutions.'],
+    Conversation: ['She is so devoted to that project. You can see it in everything she does.','I have devoted so much time to this and I am starting to wonder if it is worth it.','He just devoted himself to his work after the divorce.'],
+    Emotion: ['She had devoted herself to raising her children and, when they left, did not know who she was without that purpose.','To devote yourself entirely to something is to risk having nothing left when it ends.','He was devoted to her in a way that asked nothing in return.']
+  },
+
+  'diligent': {
+    Academic: ['Diligent note-taking during fieldwork is essential for accurate qualitative analysis.','Students who are diligent in their revision consistently outperform those who rely on last-minute preparation.','A diligent reviewer leaves no methodological claim unexamined.'],
+    Business: ['She is diligent in following up on every commitment she makes.','Diligent record-keeping protects the company in the event of an audit.','He is one of the most diligent professionals I have worked with in twenty years.'],
+    News: ['The diligent investigative work of the journalist took three years to complete.','Diligent enforcement of the regulations is essential if they are to have any effect.','She is a diligent public servant who has given decades to this department.'],
+    Conversation: ['She is so diligent — she never lets anything fall through the cracks.','You have to be diligent about this. It does not work if you are inconsistent.','He is diligent to a fault sometimes.'],
+    Emotion: ['She had been diligent in her grief — attending to it carefully, not letting it fester unexamined.','His diligent attention to her needs had, over the years, become its own form of love.','To be diligent about joy — to seek it out and tend it — turned out to be harder than enduring sorrow.']
+  },
+
+  'disrupt': {
+    Academic: ['Digital technology has disrupted traditional models of knowledge production and dissemination.','The intervention disrupted established behavioural patterns in ways that persisted beyond the study period.','Disruptive innovation theory, developed by Christensen, remains one of the most cited frameworks in management research.'],
+    Business: ['The startup aims to disrupt the traditional insurance market with a data-driven model.','We need to disrupt our own business model before someone else does it for us.','Her entry into the market disrupted pricing in ways that benefited consumers.'],
+    News: ['Protests disrupted traffic in the capital for the third consecutive day.','The new technology threatens to disrupt entire sectors of the economy.','Severe weather disrupted flights at the airport for over twelve hours.'],
+    Conversation: ['She just disrupts every meeting with those tangents.','I do not want to disrupt your routine — just let me know what works.','That company came in and completely disrupted the space.'],
+    Emotion: ['The news disrupted something fundamental in how she had understood her life.','He had disrupted her carefully constructed peace, and she was not sure she resented it.','Grief disrupts the ordinary in a way that reveals how much the ordinary was holding everything together.']
+  },
+
+  'diverse': {
+    Academic: ['The sample comprised a diverse range of participants drawn from twelve countries.','Diverse perspectives within a research team reduce the risk of blind spots and confirmation bias.','The curriculum should reflect the diverse cultural backgrounds of the student population.'],
+    Business: ['A diverse workforce is not only an ethical imperative but a competitive advantage.','The portfolio is deliberately diverse, spread across multiple sectors and geographies.','She has built a diverse client base that insulates the firm from sector-specific downturns.'],
+    News: ['The city is one of the most ethnically diverse in the country.','The shortlist was praised for being more diverse than in previous years.','Experts called for more diverse representation in scientific and academic leadership.'],
+    Conversation: ['It is a diverse group — different backgrounds, different perspectives. That is what makes it interesting.','The more diverse the team, the better the outcome. I have seen that consistently.','She has had a really diverse career — nothing linear about it at all.'],
+    Emotion: ['She had loved a diverse array of people in her life, each offering something no one else could.','The emotions of that year were so diverse — she could not find a single word to contain them.','His diverse experiences had given him an empathy that narrower lives rarely produced.']
+  },
+
+  'eliminate': {
+    Academic: ['The study sought to eliminate all plausible alternative explanations before drawing conclusions.','Experimental design aims to eliminate confounding variables that could distort results.','It is impossible to eliminate bias entirely, but it can be substantially reduced.'],
+    Business: ['The new process eliminated three redundant steps and reduced turnaround time by 40%.','We need to eliminate the bottleneck in the approval process.','She was brought in specifically to identify and eliminate inefficiencies.'],
+    News: ['The government pledged to eliminate rough sleeping by the end of the decade.','The disease has been nearly eliminated in several countries through vaccination.','The round of layoffs was described as a measure to eliminate duplication across departments.'],
+    Conversation: ['We eliminated that option early because of cost.','Can we not eliminate one of the steps? The process feels too long.','She eliminated the noise and focused on what actually mattered.'],
+    Emotion: ['She tried to eliminate the hope because hope, she had found, was the most painful thing.','To eliminate uncertainty is to eliminate possibility — and she was not ready to do that.','He could eliminate the distraction but not the feeling beneath it.']
+  },
+
+  'empower': {
+    Academic: ['Education is one of the most powerful tools for empowering individuals to participate fully in society.','The programme aims to empower communities to take ownership of local development decisions.','Empowerment frameworks shift the focus from deficits to strengths and capabilities.'],
+    Business: ['Great managers empower their teams rather than micromanaging every decision.','She was brought in to empower the regional offices to act with greater autonomy.','Empowering frontline staff to resolve complaints without escalation improves customer satisfaction.'],
+    News: ['The initiative is designed to empower women in rural areas through access to technology.','The legislation aims to empower consumers with greater rights over their personal data.','Community organisers have spent years empowering residents to challenge unfair policies.'],
+    Conversation: ['That experience really empowered her to speak up more.','We want to empower you to make that call yourself — you do not need approval for it.','She just naturally empowers everyone around her.'],
+    Emotion: ['Knowledge, she found, was not power in the abstract — it was the specific, embodied feeling of being empowered.','He empowered her not by solving her problems but by believing she could solve them herself.','To feel empowered after years of being diminished is its own kind of joy.']
+  },
+
+  'engage': {
+    Academic: ['Students who actively engage with feedback demonstrate greater improvement over time.','The study examines how organisations engage with their external stakeholders.','To engage critically with a text is to interrogate its assumptions as well as absorb its content.'],
+    Business: ['She engages clients with a warmth and intelligence that builds immediate trust.','Employee engagement scores have risen significantly following the introduction of flexible working.','We need to engage the community early to avoid opposition later in the process.'],
+    News: ['The charity engages with over two million young people annually through its programmes.','World leaders gathered to engage on the pressing issue of climate finance.','The candidate refused to engage with questions about her personal finances.'],
+    Conversation: ['He is so hard to engage in conversation sometimes.','I just want to engage more meaningfully with the community I live in.','She engages with every person she meets like they are the most interesting person in the room.'],
+    Emotion: ['She had stopped engaging with grief and found it had simply waited for her.','To engage with someone fully is to risk being changed by them.','He engaged with life with a curiosity that never diminished.']
+  },
+
+  'enhance': {
+    Academic: ['The intervention significantly enhanced participants\' reading comprehension scores.','Technology can enhance the learning experience when used purposefully and critically.','The revised model enhances predictive accuracy by incorporating additional variables.'],
+    Business: ['The upgrade will significantly enhance the performance of the existing system.','She enhances every team she is part of — not just through output but through culture.','Our goal is to enhance the customer experience at every touchpoint.'],
+    News: ['The new partnership is designed to enhance cultural exchange between the two nations.','Authorities say the measures will enhance security without restricting civil liberties.','The renovation is expected to significantly enhance the building\'s energy efficiency.'],
+    Conversation: ['A good soundtrack really enhances the experience.','Adding that element just enhances everything else.','She enhanced the project in ways I had not anticipated.'],
+    Emotion: ['Joy is enhanced, she found, by the presence of someone who notices the same things.','His absence enhanced her appreciation for what she had taken for granted.','Music enhanced the feeling she could not otherwise name.']
+  },
+
+  'evident': {
+    Academic: ['It is evident from the data that further investigation is required.','The influence of socioeconomic status on outcomes is evident across all age groups studied.','As is evident from the literature, this is a rapidly evolving field.'],
+    Business: ['The benefits of the approach are evident in the year-on-year performance data.','It was evident from the meeting that alignment on this issue was not going to be straightforward.','Her commitment to quality is evident in every piece of work she produces.'],
+    News: ['The scale of the devastation was evident as aerial photographs emerged.','It was evident that the two leaders held fundamentally different views on the matter.','The strain on public services is increasingly evident in communities across the country.'],
+    Conversation: ['It is pretty evident what the problem is.','She was clearly upset — it was evident to everyone in the room.','The improvement is evident even from the outside.'],
+    Emotion: ['His love was not stated but entirely evident in the way he watched over her.','The toll of the years was evident in his face but had not touched his eyes.','Her relief was evident — the kind that only comes after a long time of holding things together.']
+  },
+
+  'evolve': {
+    Academic: ['Language evolves continuously in response to social and cultural change.','The framework has evolved considerably since its initial formulation in the 1990s.','The study tracks how attitudes to work have evolved across three generations.'],
+    Business: ['The company has evolved from a product business into a platform business over a decade.','Our strategy will need to evolve as the market matures.','She has evolved as a leader through each challenge she has faced.'],
+    News: ['The conflict has evolved into a humanitarian crisis of global proportions.','The technology has evolved so rapidly that regulation is struggling to keep pace.','Diplomatic relations between the two countries have evolved significantly in recent years.'],
+    Conversation: ['That relationship has really evolved over the years.','I have evolved my thinking on this — I do not hold the same view I used to.','The project evolved in ways none of us predicted.'],
+    Emotion: ['Her understanding of love had evolved through each relationship she had navigated.','Grief evolves — it does not disappear, but it changes shape.','He had evolved too slowly for some people and too quickly for others.']
+  },
+
+  'explicit': {
+    Academic: ['The study provides explicit criteria for distinguishing between the two categories.','Explicit instruction in vocabulary is most effective when combined with contextual exposure.','The authors are explicit about the limitations and potential sources of bias in their methodology.'],
+    Business: ['Be explicit about expectations from the start — ambiguity creates problems later.','The contract contains explicit language about confidentiality obligations.','She was explicit about what she needed from the role before accepting the offer.'],
+    News: ['The legislation contains explicit provisions protecting whistleblowers from retaliation.','The statement was notable for its explicit acknowledgment of institutional failures.','The content was flagged as explicit and removed within hours of posting.'],
+    Conversation: ['Let me be explicit about what I mean here.','She was very explicit about her expectations — there was no room for misinterpretation.','He was not explicit about it but the implication was clear.'],
+    Emotion: ['She was rarely explicit about her needs, having learned early that they would not be met.','The feeling was explicit in a way that made it impossible to ignore or dismiss.','He made his feelings explicit at last, and the act of saying it changed something.']
+  },
+
+  'facilitate': {
+    Academic: ['Technology can facilitate collaboration between researchers across geographic boundaries.','The mentor\'s role is to facilitate reflection rather than provide direct instruction.','Structural inequality can facilitate the reproduction of disadvantage across generations.'],
+    Business: ['She facilitates meetings with a skill that consistently keeps discussions productive.','The platform is designed to facilitate seamless communication between remote teams.','Our role in this partnership is to facilitate rather than lead.'],
+    News: ['The mediator worked to facilitate dialogue between the two opposing sides.','The NGO facilitated the safe passage of refugees across the border.','The summit is designed to facilitate cooperation on global health security.'],
+    Conversation: ['Could you facilitate the next session? You are so good at it.','The new system really facilitates the whole process.','She facilitates rather than dominates — which is why everyone contributes.'],
+    Emotion: ['She facilitated others\' healing long before she turned to her own.','Time does not heal — it merely facilitates the healing that you have to do yourself.','His patience facilitated a conversation that neither of them had known they needed.']
+  },
+
+  'fundamental': {
+    Academic: ['The right to education is a fundamental human right enshrined in international law.','The paper challenges a fundamental assumption that has shaped the field for decades.','A fundamental understanding of statistical principles is essential for interpreting research data.'],
+    Business: ['Trust is fundamental to any successful client relationship.','The restructuring represents a fundamental shift in how the organisation operates.','Getting the fundamentals right is more important than chasing the latest trend.'],
+    News: ['The ruling represents a fundamental challenge to the separation of powers.','Fundamental changes to the healthcare system are required to address current pressures.','She argues that fundamental reform, not incremental adjustment, is what is needed.'],
+    Conversation: ['It is fundamental. You cannot build anything lasting without that foundation.','There is a fundamental misunderstanding here that we need to address.','Her approach is fundamentally different from what came before.'],
+    Emotion: ['Something fundamental had shifted between them and neither could say exactly when.','The loss was fundamental — not to her circumstances but to her sense of who she was.','She believed, fundamentally, in the goodness of people, even when they proved her wrong.']
+  },
+
+  'generate': {
+    Academic: ['The study was designed to generate hypotheses for future experimental research.','Qualitative methods are particularly effective at generating rich, contextualised data.','The model generates predictions that can be tested against observed behaviour.'],
+    Business: ['The campaign generated over fifty thousand leads in its first month.','We need to identify which activities generate the most value per hour invested.','She has a remarkable ability to generate ideas and then execute on them.'],
+    News: ['The announcement generated immediate controversy across social media platforms.','The policy is expected to generate significant revenue for the government over five years.','The film has generated more discussion than any release in recent memory.'],
+    Conversation: ['That idea could really generate some interesting results.','She generates so much energy in a room — it is infectious.','The project generated more interest than any of us expected.'],
+    Emotion: ['He had generated warmth wherever he went without ever seeming to try.','The memory generated a feeling she could not quite name — somewhere between nostalgia and grief.','Her presence generated a kind of calm that was rare and unmistakable.']
+  },
+
+  'genuine': {
+    Academic: ['The paper raises genuine concerns about the validity of the underlying assumptions.','Genuine informed consent requires not only disclosure but comprehension.','The distinction between genuine innovation and incremental improvement is rarely straightforward.'],
+    Business: ['Customers can tell the difference between genuine care and scripted service.','She has a genuine passion for the problem she is trying to solve.','Genuine relationships with clients require investment in understanding their context.'],
+    News: ['The apology was widely regarded as genuine rather than strategic.','He is a genuine reformer who has maintained his principles despite significant pressure.','The ceasefire represents a genuine opportunity for peace, analysts say.'],
+    Conversation: ['She is genuinely one of the kindest people I have ever met.','That is a genuine concern — I am not just being difficult.','He seemed genuinely interested, not just polite.'],
+    Emotion: ['She had experienced enough performance to recognise something genuine when she encountered it.','Genuine love, she had found, was quieter and more inconvenient than the stories suggested.','He felt genuine gratitude — the rare kind that has no agenda.']
+  },
+
+  'global': {
+    Academic: ['Climate change is a global challenge that demands coordinated international responses.','The study situates local phenomena within a broader global context.','Globalisation has fundamentally altered the dynamics of economic inequality.'],
+    Business: ['The brand has achieved global recognition in under a decade.','She leads the global expansion strategy for a company operating in forty countries.','A global mindset is an increasingly essential leadership quality.'],
+    News: ['Global temperatures have reached a record high for the third consecutive year.','The company announced a global restructuring affecting thousands of employees.','Leaders called for a global framework to regulate artificial intelligence.'],
+    Conversation: ['It is a global problem — no single country can solve it alone.','She has a really global perspective, having lived on four continents.','The impact is going to be felt globally, not just locally.'],
+    Emotion: ['He felt, for a moment, the weight of something global and helpless.','She cared about things at a global scale in a way that was both inspiring and exhausting.','The grief felt global — as though the whole world had lost something.']
+  },
+
+  'highlight': {
+    Academic: ['The findings highlight significant gaps in current policy and practice.','This case study highlights the complexity of implementing evidence-based reforms.','The review highlights several methodological weaknesses in the existing literature.'],
+    Business: ['The report highlights three areas where investment will generate the greatest return.','She always highlights achievements before giving constructive feedback.','The presentation should highlight our competitive advantages clearly and concisely.'],
+    News: ['The incident highlights ongoing tensions between the two communities.','The investigation highlights systemic failures that have been ignored for years.','The documentary highlights the stories of people whose voices are rarely heard.'],
+    Conversation: ['I just want to highlight one thing before we finish.','That really highlights the gap between what they say and what they do.','She highlighted it in the document — so it is easy to find.'],
+    Emotion: ['The reunion highlighted what she had been missing without knowing it.','Loss has a way of highlighting what matters and making everything else recede.','His absence highlighted the space he had occupied in ways his presence never could.']
+  },
+
+  'identify': {
+    Academic: ['The study sought to identify the key factors associated with successful outcomes.','Identifying causal relationships requires experimental rather than observational data.','The authors identify three principal limitations that should inform future research.'],
+    Business: ['She was the first to identify the market opportunity that became the company\'s core product.','We need to identify the root cause before proposing solutions.','Identifying high-potential employees early allows for targeted development investment.'],
+    News: ['Police have identified a suspect in connection with the attack.','Scientists have identified a new strain of the virus with distinct characteristics.','The report identifies ten regions at highest risk of food insecurity.'],
+    Conversation: ['Can you identify what specifically is causing the problem?','I identified it early — which is why we still have options.','She identified the issue before anyone else even noticed it.'],
+    Emotion: ['She could not identify the feeling — only that it was there and persistent.','He identified something in her expression that told him the truth before she spoke.','To identify your own grief is the beginning of being able to carry it.']
+  },
+
+  'illustrate': {
+    Academic: ['The case study illustrates the practical challenges of implementing policy in resource-constrained settings.','Statistical examples illustrate the potential for misleading inference from correlational data.','The diagram illustrates the relationship between the three key variables in the model.'],
+    Business: ['She used a simple analogy to illustrate a complex pricing concept.','The data illustrates a clear trend that should inform our strategic planning.','Could you illustrate what success looks like in concrete terms?'],
+    News: ['The incident illustrates the dangers faced daily by journalists in conflict zones.','The story illustrates how ordinary people are affected by abstract policy decisions.','These figures illustrate the scale of the challenge facing the new administration.'],
+    Conversation: ['Let me illustrate what I mean with an example.','That story really illustrates the point perfectly.','She illustrates her ideas so vividly — you always understand exactly what she means.'],
+    Emotion: ['The photograph illustrated perfectly the joy she had difficulty putting into words.','His expression illustrated the conflict between what he wanted to say and what he allowed himself to.','Art, she believed, illustrates what language cannot contain.']
+  },
+
+  'implement': {
+    Academic: ['The intervention was implemented across six schools with varying levels of institutional support.','Implementation fidelity is critical to ensuring that findings are generalisable.','The paper examines the barriers to implementing evidence-based policy at scale.'],
+    Business: ['The new system will be fully implemented by the end of Q2.','She is exceptional at implementing change — she brings people with her.','We need a clear implementation plan before we can take this to the board.'],
+    News: ['The government announced it would implement the recommendations in full.','Several countries have struggled to implement the agreed reforms within the given timeframe.','The new regulations will be implemented in phases over the next three years.'],
+    Conversation: ['When are you planning to implement the changes?','Implementing it properly takes longer than people think.','She implemented the feedback immediately — no hesitation.'],
+    Emotion: ['She had planned the change for years before she found the courage to implement it.','Implementing a decision and emotionally accepting it are very different things.','He implemented his goodbye quietly — no announcement, no drama, just an absence that grew.']
+  },
+
+  'implication': {
+    Academic: ['The implications of these findings for policy and practice are significant.','The paper draws out the theoretical implications of a shift in the dominant paradigm.','The ethical implications of the research design require careful and explicit consideration.'],
+    Business: ['What are the financial implications of delaying the decision by another quarter?','She always considers the second and third-order implications of any decision.','The implications for the wider organisation have not yet been fully worked through.'],
+    News: ['The ruling has significant implications for future cases of this kind.','The trade agreement has implications that extend well beyond economics.','Analysts are still assessing the broader geopolitical implications of the summit.'],
+    Conversation: ['Do you understand the implications of what you are saying?','The implications are pretty serious if we get this wrong.','She grasped the implications before anyone else had even finished reading.'],
+    Emotion: ['She understood the full implication of his silence.','The implications of leaving — and of staying — circled each other in her mind.','Love, she realised, came with implications she had underestimated.']
+  },
+
+  'inevitable': {
+    Academic: ['Change is not inevitable — it requires sustained agency and structural support.','The paper challenges the assumption that certain social outcomes are inevitable.','Conflict is not an inevitable outcome of resource scarcity, as some models suggest.'],
+    Business: ['Some disruption during the transition is inevitable, but we can minimise it.','It was inevitable that margins would compress as the market matured.','She treated failure as an inevitable and valuable part of the innovation process.'],
+    News: ['Commentators described the outcome as inevitable given the political conditions.','The collapse, while sudden, was described by insiders as inevitable.','Rising sea levels make some coastal flooding inevitable within the next century.'],
+    Conversation: ['It was inevitable. You could see it coming from miles away.','Not everything is inevitable — some things you can actually change.','She says it like it is inevitable but I do not think it is.'],
+    Emotion: ['Grief felt inevitable — as though it had always been waiting at the end of this particular road.','He had accepted the ending as inevitable long before she had.','There was something inevitable about loving her, in the way that certain things simply are.']
+  },
+
+  'insight': {
+    Academic: ['The qualitative data provided rich insights into the lived experience of participants.','The study offers new insights into the mechanisms driving this long-observed phenomenon.','Cross-cultural comparisons can yield insights unavailable from single-context studies.'],
+    Business: ['Customer insight is the most underutilised asset in most organisations.','She has a rare insight into what clients need before they can articulate it themselves.','The data team exists to turn information into actionable insight.'],
+    News: ['The memoir offers rare insight into the inner workings of the administration.','The documentary provides insight into a community rarely seen on mainstream media.','The leaked documents offer insight into how the decision was really made.'],
+    Conversation: ['That is a really good insight — I had not thought of it that way.','She always offers insights that reframe the whole conversation.','I came away from that meeting with more insight than I expected.'],
+    Emotion: ['Grief, unexpectedly, had given her insight into herself that easier years never had.','The insight arrived not during the crisis but long after, when she had space to look back.','He offered insight into her own heart that she had been too close to see.']
+  },
+
+  'inspire': {
+    Academic: ['Great teachers inspire curiosity rather than merely delivering content.','The research was inspired by observations made during an extended period of fieldwork.','The framework was inspired by theoretical developments in adjacent disciplines.'],
+    Business: ['She inspires everyone around her without making it seem effortful.','Leaders who inspire are those who connect the daily work to a larger purpose.','The new vision statement is designed to inspire rather than merely inform.'],
+    News: ['Her story has inspired thousands to pursue careers in science and technology.','The speech was widely praised for inspiring a new generation of activists.','The film is based on a true story of courage that continues to inspire.'],
+    Conversation: ['She just inspires me. I always leave conversations with her wanting to do more.','What inspires you? What actually gets you out of bed in the morning?','His work inspires me even when I am struggling.'],
+    Emotion: ['She inspired people not by being without fear but by acting despite it.','He was inspired by ordinary people doing extraordinary things quietly.','To be inspired is to feel, briefly, that your best self is within reach.']
+  },
+
+  'integrate': {
+    Academic: ['The paper integrates findings from neuroscience, psychology and educational research.','Students benefit from opportunities to integrate theory and practice.','The model integrates multiple variables to produce a more accurate prediction.'],
+    Business: ['The two systems need to be integrated before the migration can be completed.','She has done an exceptional job of integrating the acquired team into the existing culture.','Integrating sustainability into the core business model rather than treating it as an add-on is the goal.'],
+    News: ['The government faces the challenge of integrating hundreds of thousands of refugees.','The two agencies will be integrated into a single body under the new structure.','The platform integrates data from multiple sources to provide a unified view.'],
+    Conversation: ['They integrated so naturally — it did not feel like a merger at all.','We need to integrate that feedback into the next version.','She integrated herself into the team very quickly.'],
+    Emotion: ['He had struggled to integrate the two halves of his life into a coherent whole.','She had not yet integrated the loss — it still lived in her as something separate.','Love, when it works, integrates the person you were with the person you are becoming.']
+  },
+
+  'interpret': {
+    Academic: ['Findings must be interpreted with caution given the limitations of the study design.','How we interpret data depends significantly on the theoretical framework we bring to it.','The same evidence can be interpreted differently depending on the assumptions of the analyst.'],
+    Business: ['The data can be interpreted in more than one way — which is why context matters.','She interprets client feedback with unusual precision and translates it into design decisions.','How you interpret failure determines how quickly you recover from it.'],
+    News: ['Different countries interpreted the agreement in ways that suited their interests.','The comments were widely interpreted as a signal of policy change.','Historians continue to interpret the events of that period in radically different ways.'],
+    Conversation: ['How do you interpret what happened?','She interpreted it as criticism even though that was not the intention.','Do not interpret silence as consent.'],
+    Emotion: ['She had spent years interpreting his silences and was no longer sure she had been right.','The dream resisted interpretation in ways that felt almost deliberate.','To interpret someone else\'s grief through the lens of your own is to do them a small injustice.']
+  },
+
+  'investigate': {
+    Academic: ['The study investigates the relationship between sleep quality and academic performance in adolescents.','Further research is needed to investigate the long-term effects of the intervention.','The paper investigates whether the findings from high-income countries are applicable in other contexts.'],
+    Business: ['The audit committee was asked to investigate the discrepancies in the financial accounts.','She was brought in to investigate why customer retention rates had declined.','We need to investigate the root cause before proposing a solution.'],
+    News: ['Police are investigating the incident as a potential hate crime.','A parliamentary committee has been established to investigate the allegations.','Journalists spent two years investigating the offshore financial arrangements.'],
+    Conversation: ['Have you investigated all the options?','I am going to investigate further before committing to anything.','She investigated it herself rather than waiting for someone else to act.'],
+    Emotion: ['She investigated the feeling carefully, the way you examine something you have found and are not sure whether to keep.','He investigated his own motivations with the thoroughness of someone who had been burned by self-deception before.','To investigate grief is to discover how much of it belongs to things you did not know you were attached to.']
+  },
+
+  'justify': {
+    Academic: ['The author justifies the methodological choices with reference to the specific research questions.','No theory can justify outcomes that cause clear and measurable harm.','The paper argues that the benefits of the policy do not justify its ethical costs.'],
+    Business: ['The investment is justified by the projected return over a three-year period.','She justifies every significant decision with data — which builds confidence.','Can we justify the additional headcount given current budget constraints?'],
+    News: ['The government justified the measures as necessary for national security.','Critics argued that no economic rationale could justify the environmental cost.','He justified his decision in a brief statement that satisfied neither side.'],
+    Conversation: ['You do not have to justify it to me.','How do you justify that decision given what you knew at the time?','She does not justify herself to people who have already decided.'],
+    Emotion: ['She no longer tried to justify her feelings — they existed whether or not they made sense.','He had justified his choices to himself for so long that the justifications had become invisible.','Love requires no justification, which is precisely what makes it so difficult to explain.']
+  },
+
+  'maintain': {
+    Academic: ['It is important to maintain consistency in coding procedures throughout qualitative analysis.','The study maintains that these trends are likely to persist in the absence of intervention.','Ethical practice requires maintaining confidentiality at every stage of the research process.'],
+    Business: ['We need to maintain these standards even as we scale.','She has maintained a loyal client base through genuine personal investment.','Maintaining momentum through a long project requires deliberate effort.'],
+    News: ['The government maintained its position despite growing domestic pressure.','Troops maintain a fragile peace along the disputed border.','The charity maintains operations in fourteen countries with minimal central infrastructure.'],
+    Conversation: ['Maintain the pace you set in the first half and you will be fine.','She just maintains this incredible energy across everything she does.','How do you maintain that level of focus? I struggle after about an hour.'],
+    Emotion: ['She maintained composure in public and fell apart only in private.','He maintained hope with the determination of someone who had seen what despair looked like.','To maintain love through ordinariness and difficulty is the hardest and most underrated thing.']
+  },
+
+  'mitigate': {
+    Academic: ['The study examines strategies to mitigate the negative effects of urban heat islands.','Risk management frameworks aim to identify and mitigate potential threats before they materialise.','Policy interventions can mitigate but rarely eliminate structural inequalities.'],
+    Business: ['We need to mitigate the reputational risk before this becomes a public issue.','Diversification is one of the most effective strategies for mitigating financial risk.','She has a strong track record of mitigating conflict within teams.'],
+    News: ['International aid is urgently needed to mitigate the humanitarian impact of the crisis.','The company took immediate steps to mitigate the damage from the data breach.','New building codes are designed to mitigate flood risk in vulnerable areas.'],
+    Conversation: ['Is there anything we can do to mitigate the impact?','She mitigated the awkwardness with her humour — she is good at that.','We cannot eliminate the risk but we can mitigate it significantly.'],
+    Emotion: ['He told himself small stories to mitigate the fear.','Nothing fully mitigates grief — but presence comes close.','She tried to mitigate her hope, as though smaller expectations might hurt less.']
+  },
+
+  'monitor': {
+    Academic: ['Participants were monitored at six-month intervals over a two-year period.','The study uses ecological monitoring data collected over three decades.','Continuous monitoring of implementation fidelity is essential in large-scale trials.'],
+    Business: ['We monitor key metrics weekly to identify issues before they escalate.','She monitors her team\'s wellbeing as closely as she monitors performance.','The system allows us to monitor customer behaviour in real time.'],
+    News: ['Monitors were stationed at polling stations across the country.','International observers were deployed to monitor the ceasefire agreement.','Satellites are being used to monitor deforestation rates in the Amazon.'],
+    Conversation: ['Just monitor the situation and flag anything unusual.','She monitors everything so carefully — nothing escapes her notice.','We are monitoring it but it has not reached a critical level yet.'],
+    Emotion: ['She monitored her own feelings with the vigilance of someone who had learned that they could change without warning.','He monitored his grief as a doctor might — watching for signs of progression.','She monitored the distance between them, measuring it in conversations missed.']
+  },
+
+  'navigate': {
+    Academic: ['The paper examines how individuals navigate competing social identities.','Students must develop the skills to navigate complex and often contradictory bodies of evidence.','The study explores how communities navigate systemic barriers to health access.'],
+    Business: ['She has an exceptional ability to navigate complex organisational politics.','Navigating regulatory environments across multiple jurisdictions is one of our core competencies.','How you navigate a crisis defines your organisation\'s reputation for years afterwards.'],
+    News: ['Families are navigating an increasingly complex system with diminishing support.','The airline industry is navigating unprecedented turbulence in fuel costs and demand.','She has successfully navigated some of the most challenging diplomatic terrain in recent memory.'],
+    Conversation: ['I am just trying to navigate it as best I can.','She navigates that kind of conversation so skillfully.','It is a complicated situation to navigate — no clear right answer.'],
+    Emotion: ['She navigated her grief like a landscape she had been dropped into without a map.','To navigate love is to accept that you will sometimes be lost.','He navigated the conversation carefully, sensing how much was balanced on it.']
+  },
+
+  'neglect': {
+    Academic: ['The study examines the long-term consequences of childhood neglect on adult mental health.','Physical health infrastructure has been neglected in favour of acute care investment.','The paper argues that qualitative data has been systematically neglected in this field.'],
+    Business: ['Neglecting customer feedback is one of the most common and costly mistakes companies make.','The company neglected its core market while pursuing growth in adjacent segments.','Talent retention has been neglected as a strategic priority for too long.'],
+    News: ['The inquiry found evidence of widespread neglect of duty by senior officials.','Years of neglect have left the city\'s public housing in a dangerous condition.','The report calls for an end to the neglect of mental health services.'],
+    Conversation: ['Do not neglect the small things — they add up.','She neglects her own needs to take care of everyone else.','I have been neglecting my physical health and I can feel it.'],
+    Emotion: ['She had neglected her own heart for so long that when it finally demanded attention, she did not know what to do.','The neglect was not malicious — he simply had not noticed, which was its own kind of harm.','To neglect a friendship is a quiet act of loss that neither person always names.']
+  },
+
+  'objective': {
+    Academic: ['The primary objective of this study is to examine the relationship between diet and cognitive function.','Objective measures are preferable to self-reported data when studying sensitive topics.','The paper questions whether fully objective research is possible or even desirable.'],
+    Business: ['Set clear, measurable objectives before beginning any significant initiative.','She approaches performance conversations with a clear and objective framework.','The objective of the restructuring is to improve agility without sacrificing quality.'],
+    News: ['The inquiry\'s objective is to establish facts rather than assign blame.','Critics questioned whether the panel could remain objective given its composition.','The organisation\'s objective is to ensure every child has access to quality education.'],
+    Conversation: ['Be objective about it — what do you actually think happened?','She is hard to be objective about because I am too close to the situation.','What is the objective here? What are we actually trying to achieve?'],
+    Emotion: ['She tried to be objective about the loss but found that objectivity was a luxury grief did not permit.','The objective and the emotional lived in different rooms inside him, and rarely visited each other.','He valued her objectivity precisely because he knew it cost her something.']
+  },
+
+  'obtain': {
+    Academic: ['Ethical approval must be obtained before any data collection can begin.','The results were obtained using a standardised assessment tool applied consistently across sites.','Informed consent was obtained from all participants prior to their inclusion in the study.'],
+    Business: ['We need to obtain sign-off from three departments before proceeding.','She obtained the contract through a combination of persistence and genuine relationship-building.','The company obtained the licence after an eighteen-month regulatory review.'],
+    News: ['The documents were obtained by the newspaper following a freedom of information request.','She obtained the interview after months of persistent effort.','New data obtained from government sources paints a different picture.'],
+    Conversation: ['How did you obtain that information?','It is difficult to obtain — you need to go through official channels.','She obtained it through contacts, which is usually the fastest route.'],
+    Emotion: ['What she had worked so hard to obtain turned out not to be the thing she had needed.','He obtained her forgiveness not through grand gestures but through years of quiet change.','To obtain something at great cost is to spend the rest of your life weighing whether it was worth it.']
+  },
+
+  'overcome': {
+    Academic: ['The study examines how individuals develop the resilience to overcome adversity.','The primary barrier to be overcome is not technical but cultural.','Research suggests that growth mindset interventions help students overcome academic challenges.'],
+    Business: ['She has overcome significant obstacles to reach her current position.','The challenge to overcome is not awareness but behaviour change.','Overcoming internal resistance to change requires sustained leadership.'],
+    News: ['The team overcame a ten-point deficit to win the championship in dramatic fashion.','She overcame poverty and personal loss to become one of the country\'s leading scientists.','Communities have shown remarkable capacity to overcome even the most devastating events.'],
+    Conversation: ['You will overcome this. I genuinely believe that.','She has overcome so much and she makes it look effortless — but it is not.','The hardest thing to overcome is the story you tell yourself about why you cannot.'],
+    Emotion: ['She had not overcome the loss — she had simply learned to carry it differently.','To overcome something is not to forget it but to find that it no longer defines you.','He had overcome everything except the quietest voice inside him.']
+  },
+
+  'persevere': {
+    Academic: ['Students who persevere through early difficulty tend to demonstrate greater mastery over time.','The ability to persevere in the face of setbacks is a key predictor of academic success.','The research examines what environmental factors support individuals to persevere with challenging goals.'],
+    Business: ['She has persevered through three rounds of restructuring and come out stronger each time.','Persevering through the early difficult years of a startup is what separates those who succeed from those who do not.','The team persevered through significant technical challenges to deliver on time.'],
+    News: ['He persevered for twenty years before his work was finally recognised.','Communities persevered through decades of neglect to rebuild their neighbourhood.','She persevered against institutional resistance to become the first in her field.'],
+    Conversation: ['Just persevere — it gets easier once you get past the initial phase.','She perseveres with things that most people would have given up on.','Persevere. The results will come if you stay consistent.'],
+    Emotion: ['She persevered not because she was certain but because stopping felt worse than continuing.','To persevere through grief is not heroism — it is simply what you do when you are still alive.','He persevered with love long after logic had recommended otherwise.']
+  },
+
+  'priority': {
+    Academic: ['Establishing research priorities requires careful consideration of both scientific and societal value.','The paper argues that mental health should be given equal priority to physical health in policy.','Competing priorities often compromise the fidelity of evidence-based interventions.'],
+    Business: ['Customer experience is our number one priority and everything else flows from that.','She has an exceptional ability to prioritise ruthlessly without losing sight of the bigger picture.','The strategic priorities for the next three years are growth, talent and technology.'],
+    News: ['The government has listed job creation as its top priority for the coming term.','Environmental priorities have been deprioritised in the push for economic recovery.','Hospital trusts say staffing is the most urgent priority facing the health service.'],
+    Conversation: ['What is your priority right now — speed or quality?','Make this a priority. It will not get done otherwise.','She has worked out her priorities very clearly, which makes all the decisions easier.'],
+    Emotion: ['She rearranged her priorities quietly after the diagnosis.','The illness forced him to see, with startling clarity, what his priorities had actually been.','To love someone is to make their wellbeing a genuine priority — not just in words.']
+  },
+
+  'profound': {
+    Academic: ['The implications of these findings are profound and extend beyond the immediate discipline.','The paper traces the profound impact of colonialism on indigenous knowledge systems.','A profound shift in scientific understanding occurred with the publication of this work.'],
+    Business: ['The pandemic had a profound effect on how we think about the future of work.','She made a profound impact on the organisation\'s culture during her five-year tenure.','Profound change rarely happens quickly — it accumulates over years of consistent effort.'],
+    News: ['The discovery represents a profound advance in our understanding of the universe.','The decision will have profound consequences for millions of people.','She is regarded as a thinker who has had a profound influence on her generation.'],
+    Conversation: ['That is a pretty profound observation for a Tuesday morning.','It had a profound effect on her — she has not been quite the same since.','Profound does not have to mean complicated. Sometimes it is the simplest things.'],
+    Emotion: ['She felt a profound sense of peace that she had not expected and did not trust.','The silence between them was profound in the way that only shared understanding can create.','His gratitude was profound and entirely without words.']
+  },
+
+  'promote': {
+    Academic: ['Physical activity programmes promote both physical and mental health outcomes in young people.','The curriculum is designed to promote critical thinking rather than rote learning.','Policy should promote equity of access rather than merely equality of provision.'],
+    Business: ['She was promoted to vice president after leading the company\'s most successful product launch.','We need to promote the new offering more effectively to existing customers.','Promoting from within sends a powerful signal about how the organisation values its people.'],
+    News: ['The government launched a campaign to promote domestic tourism following the pandemic.','She was promoted to the rank of general, the first woman to hold the position.','The initiative promotes sustainable farming practices across the region.'],
+    Conversation: ['They promoted her — finally. She has deserved it for years.','We should promote this more actively. People do not know it exists.','He promotes his team relentlessly, which is one of the things I admire most about him.'],
+    Emotion: ['She promoted others to positions she deserved herself and never seemed to resent it.','To promote joy in others is a kind of generosity that goes largely unrecognised.','He promoted the work of his colleagues with a sincerity that was entirely free of envy.']
+  },
+
+  'pursue': {
+    Academic: ['The study pursues three distinct but interrelated research questions.','Researchers should pursue the most rigorous methodology available given the constraints of the context.','The paper pursues a line of inquiry that has been largely neglected in the field.'],
+    Business: ['We are actively pursuing new markets in South-East Asia.','She pursues excellence with an intensity that raises the standard for everyone around her.','The company decided not to pursue the acquisition after due diligence raised concerns.'],
+    News: ['Police are pursuing several lines of inquiry in the investigation.','The charity is pursuing legal action against the supplier.','She has pursued her campaign for reform for over twenty years without wavering.'],
+    Conversation: ['Are you going to pursue it further or let it go?','She pursued it so determinedly — I was in awe.','Pursue what actually matters to you, not what looks good to others.'],
+    Emotion: ['She had spent her life pursuing something she could not fully name.','To pursue joy deliberately, rather than waiting for it to arrive, turned out to be transformative.','He pursued her memory long after wisdom would have counselled letting go.']
+  },
+
+  'refine': {
+    Academic: ['The model was refined following peer review to address limitations identified by external scholars.','Successive iterations of the instrument refined its reliability and validity.','The paper refines existing theory by incorporating cultural variables previously overlooked.'],
+    Business: ['The product has been refined through three iterations based on user feedback.','She refines her ideas through conversation — she is at her best in dialogue.','We need to refine the pitch before we take it to the board.'],
+    News: ['The organisation has continually refined its approach based on outcomes data.','Engineers continue to refine the technology to improve efficiency.','The policy was refined several times before it reached its final form.'],
+    Conversation: ['That draft is good — just needs refining in a couple of places.','She is always refining — nothing is ever quite finished enough for her.','Refine the idea a little more and it could be something really strong.'],
+    Emotion: ['Grief, over time, refines itself — the edges soften even as the core remains.','She refined her understanding of herself through each difficult relationship.','Love, like any craft, requires refinement — the willingness to keep improving.']
+  },
+
+  'reinforce': {
+    Academic: ['The findings reinforce previous conclusions about the relationship between diet and cognition.','Reward systems can reinforce desired behaviours, but their effects may diminish over time.','The paper reinforces the argument that structural factors outweigh individual agency.'],
+    Business: ['Regular feedback reinforces the behaviours you want to see more of.','The new campaign reinforces the brand values established over the past decade.','Leadership behaviour either reinforces or undermines organisational culture — there is no neutral.'],
+    News: ['The agreement reinforces the alliance between the two countries.','The statistics reinforce concerns about growing inequality.','The decision reinforces the principle that no one is above the law.'],
+    Conversation: ['That just reinforces what I was saying earlier.','She reinforces positive behaviour in her team very naturally.','It reinforces my conviction that this was the right call.'],
+    Emotion: ['Each rejection reinforced the voice inside him that said he was not enough.','She reinforced her own boundaries through small, daily acts of self-respect.','The love they showed him reinforced something in him that had been damaged long ago.']
+  },
+
+  'relevant': {
+    Academic: ['Only evidence directly relevant to the research question should be included in the literature review.','The findings are highly relevant to current policy debates in the field.','Keeping the discussion relevant to the data requires discipline and clarity of purpose.'],
+    Business: ['Staying relevant in a fast-moving market requires continuous learning and adaptation.','She makes everything she presents feel relevant to the specific concerns of her audience.','Relevance is more important than volume in content marketing.'],
+    News: ['The case is particularly relevant given recent legislative changes.','She is one of the most relevant voices on this issue in the country.','The historical precedent cited is directly relevant to the current situation.'],
+    Conversation: ['Is that relevant to what we are discussing?','Make sure everything you include is relevant — cut anything that is not.','She always brings up something relevant that nobody else had thought of.'],
+    Emotion: ['He wondered, sometimes, whether he was still relevant to the lives of the people he loved.','The past, she found, was always relevant — it simply needed to be understood differently.','What felt irrelevant in ordinary times became acutely relevant when things fell apart.']
+  },
+
+  'resolve': {
+    Academic: ['The study seeks to resolve the apparent contradiction between the two theoretical frameworks.','Longitudinal research is better placed to resolve questions about causality than cross-sectional designs.','The paper resolves the debate by introducing a unifying conceptual framework.'],
+    Business: ['She resolves conflict with a speed and grace that is genuinely rare.','The issue needs to be resolved before it affects client relationships.','Resolve disputes at the lowest possible level — escalation is costly for everyone.'],
+    News: ['Diplomats worked through the night to resolve the standoff.','The dispute has not yet been resolved despite months of negotiation.','Leaders pledged to resolve their differences through dialogue rather than confrontation.'],
+    Conversation: ['Have you resolved the issue with the supplier?','She resolved it in about ten minutes. I am still not sure how.','Let us resolve this now rather than let it sit.'],
+    Emotion: ['Some things do not resolve — they simply become familiar.','She resolved her grief not by overcoming it but by finding a way to live alongside it.','He resolved to say what had long been unsaid, before the opportunity disappeared entirely.']
+  },
+
+  'restrict': {
+    Academic: ['The study was restricted to participants aged between 18 and 65.','Restricting the scope of the review allowed for greater depth of analysis.','The ethical framework restricts the kinds of interventions that can be used with vulnerable populations.'],
+    Business: ['Access to the system is restricted to authorised personnel only.','We need to restrict spending across all departments for the next two quarters.','Restricting information flow in complex organisations often backfires.'],
+    News: ['The government announced plans to restrict social media use among under-sixteens.','Movement was restricted in several areas following the security alert.','The ruling restricts the use of certain evidence obtained without a warrant.'],
+    Conversation: ['Are there any restrictions on who can attend?','She restricts herself to one coffee a day, which I admire.','Do not restrict yourself unnecessarily — there is more space here than you think.'],
+    Emotion: ['She had spent years restricting herself — her expression, her ambition, her voice.','The grief restricted her in ways she had not anticipated — making small decisions feel impossible.','He felt restricted by his own expectations in ways that external constraints never had.']
+  },
+
+  'retain': {
+    Academic: ['Students retain information more effectively when it is learned in context.','The study examines which elements of the training programme are retained six months later.','Organisations that fail to retain institutional knowledge face significant operational risks.'],
+    Business: ['Retaining top talent is one of the most significant challenges facing the sector.','The company retained its market-leading position through continuous product innovation.','She retained the client through a period of significant internal uncertainty.'],
+    News: ['The incumbent retained her seat with a reduced majority.','The company has retained the services of a leading law firm to advise on the case.','The site is a protected area — its character must be retained in any development proposal.'],
+    Conversation: ['How do you retain so much information? I forget half of what I read.','She retained the original design elements even through the renovation.','We need to retain what works and improve what does not.'],
+    Emotion: ['She retained the letters long after she had stopped reading them.','He retained the habit of hope even through years that had given him little reason for it.','What she retained was not the full memory but the feeling it had produced.']
+  },
+
+  'significant': {
+    Academic: ['The difference between the two groups was statistically significant at the 0.05 level.','This represents a significant contribution to the existing body of literature.','The findings have significant implications for clinical practice and public health policy.'],
+    Business: ['There has been significant improvement in customer satisfaction scores this quarter.','She made a significant contribution to the company\'s growth during her tenure.','The decision carries significant financial risk if market conditions change.'],
+    News: ['The ruling represents a significant shift in how the law is interpreted.','Significant investment in the region has been announced following years of decline.','She has played a significant role in shaping the direction of the movement.'],
+    Conversation: ['That is significant. More significant than people seem to be treating it.','She has made significant progress — this time last year she could barely manage it.','Is this a significant issue or something we can park for now?'],
+    Emotion: ['The moment was significant in a way that only became clear much later.','She felt significant in his presence — seen in a way that she rarely was.','The small things had been most significant — the ones that went unrecorded.']
+  },
+
+  'stimulate': {
+    Academic: ['Low interest rates are typically used to stimulate economic activity during a downturn.','The curriculum is designed to stimulate curiosity and develop independent thinking.','Creative environments stimulate innovation by reducing the fear of failure.'],
+    Business: ['The promotion was designed to stimulate demand in a traditionally slow quarter.','She stimulates the best thinking in every team she leads.','Investment in infrastructure is one of the most effective ways to stimulate growth.'],
+    News: ['The central bank cut rates in an effort to stimulate the stalling economy.','The arts programme is designed to stimulate engagement in underserved communities.','The initiative aims to stimulate entrepreneurship in regions with high unemployment.'],
+    Conversation: ['This kind of conversation really stimulates my thinking.','She stimulates ideas in other people without taking credit for them.','A bit of competition can stimulate performance, but too much is counterproductive.'],
+    Emotion: ['The music stimulated something dormant in her that she had not felt in years.','Travel had always stimulated him — the strangeness of new places woke something up.','Genuine conversation, she found, was the only thing that reliably stimulated her creativity.']
+  },
+
+  'strengthen': {
+    Academic: ['Longitudinal data strengthens the argument for a causal rather than correlational relationship.','The revised protocol strengthens the ethical safeguards around participant confidentiality.','Adding qualitative data to the study would significantly strengthen the overall findings.'],
+    Business: ['The acquisition is designed to strengthen our position in the enterprise market.','She has strengthened the team\'s capability in the area of data analysis over the past year.','Regular feedback strengthens the relationship between manager and team member.'],
+    News: ['The two governments agreed to take steps to strengthen bilateral ties.','The ruling is expected to strengthen protections for employees in the gig economy.','Training programmes are being expanded to strengthen the country\'s cyber defence capacity.'],
+    Conversation: ['That experience really strengthened our working relationship.','Strengthening communication is the first thing to fix.','She strengthened the team just by being in it.'],
+    Emotion: ['The hardships they had shared strengthened something between them that easier times never would have.','Grief, unexpectedly, had strengthened rather than diminished her capacity for joy.','He had strengthened himself by facing what he had previously run from.']
+  },
+
+  'substantial': {
+    Academic: ['The study makes a substantial contribution to our understanding of this complex phenomenon.','Substantial evidence now exists to support a causal interpretation of the relationship.','The differences between the two groups were both statistically and substantially significant.'],
+    Business: ['The investment required is substantial but the potential return justifies it.','She has made a substantial impact in a relatively short period of time.','There is substantial demand for this kind of service — the market research is clear.'],
+    News: ['The company announced a substantial increase in its renewable energy commitments.','The report documents substantial progress but warns against complacency.','A substantial portion of the workforce is employed in the informal sector.'],
+    Conversation: ['That is a substantial ask. Are you sure you have the bandwidth for it?','There has been substantial improvement since the last review.','She has done substantial work on this that is not visible to most people.'],
+    Emotion: ['The loss was substantial in a way that diminished everything around it.','What she felt for him was substantial — not a passing thing but something with weight.','The relief, when it came, was substantial enough to feel like its own kind of grief.']
+  },
+
+  'sustain': {
+    Academic: ['The study examines what factors allow communities to sustain collective action over time.','Sustained attention to implementation is as important as the quality of the design.','Few interventions are able to sustain their effects beyond the immediate post-intervention period.'],
+    Business: ['Sustaining growth at this rate will require a fundamentally different operating model.','She sustains her performance consistently over time, which is rarer than peak performance.','Can the infrastructure sustain the projected increase in traffic?'],
+    News: ['The ceasefire has been sustained for longer than previous attempts.','Economic recovery cannot be sustained without investment in education and training.','The initiative has sustained its impact over a decade through community ownership.'],
+    Conversation: ['Can you sustain that level of effort over the whole project?','She sustains focus for hours — I have never seen anything like it.','It is not sustainable at that pace. Something will have to give.'],
+    Emotion: ['She could not sustain the pretence of feeling fine — not for much longer.','What sustained him was not certainty but the ordinary comfort of familiar routines.','Love, she had found, required active effort to sustain — it did not maintain itself.']
+  },
+
+  'transform': {
+    Academic: ['The intervention transformed participants\' attitudes towards learning in measurable ways.','Technology has transformed the landscape of academic publishing over the past decade.','The paper traces how a single policy decision transformed the structure of the entire sector.'],
+    Business: ['She was brought in specifically to transform the culture of the organisation.','Digital transformation is not primarily a technology initiative — it is a people initiative.','The company has transformed from a local retailer into a global platform business.'],
+    News: ['The city has been transformed by a decade of sustained investment.','She transformed the department from one of the worst-performing to one of the best.','The invention transformed communication in ways its creator could not have imagined.'],
+    Conversation: ['That trip really transformed how I see things.','She has transformed the team — the energy is completely different now.','It has been transformative in ways I did not expect.'],
+    Emotion: ['Grief, she discovered, had the power to transform — not to destroy, as she had feared, but to rearrange.','The experience transformed him in ways that were not immediately visible but ran very deep.','Love transforms the person you are into someone who is capable of more than you knew.']
+  },
+
+  'transparent': {
+    Academic: ['Transparent reporting of methodology is essential for enabling replication of research.','The authors are admirably transparent about the limitations of their study.','Transparent peer review processes increase public trust in scientific findings.'],
+    Business: ['Companies that are transparent about challenges build more durable stakeholder relationships.','She leads with radical transparency — everyone knows where they stand.','Transparent pricing reduces the friction in the customer decision-making process.'],
+    News: ['The organisation was criticised for failing to be transparent about its governance arrangements.','The government pledged to be transparent about the costs of the infrastructure project.','The candidate called for a more transparent political system.'],
+    Conversation: ['I appreciate that she is so transparent — no games, no hidden agendas.','Be transparent about your concerns upfront.','He is transparently enthusiastic about it, which is refreshing.'],
+    Emotion: ['She was transparent in the way that people are when they have stopped being afraid of being known.','His love was transparent — visible in every small thing he did.','To be transparent about pain requires a courage that looks effortless but is not.']
+  },
+
+  'underlying': {
+    Academic: ['The underlying mechanisms by which poverty affects health outcomes are complex and multifactorial.','Addressing the underlying causes of conflict is more effective than managing its symptoms.','The paper argues that the underlying assumption of the model is empirically unsubstantiated.'],
+    Business: ['The underlying issue is a misalignment between incentives and desired behaviours.','Strong underlying fundamentals give the business resilience in periods of external volatility.','She identified the underlying cause of the problem rather than treating the symptom.'],
+    News: ['Experts warn that the underlying conditions that caused the crisis have not been addressed.','The figures suggest underlying inflation is more persistent than previously thought.','The report identifies underlying structural issues that short-term interventions cannot fix.'],
+    Conversation: ['There is an underlying issue here that nobody is talking about.','The underlying message was clear even if the words were polite.','She always gets to the underlying problem — not just the presenting one.'],
+    Emotion: ['Beneath the anger, she recognised the underlying fear that had been there all along.','His sadness had an underlying quality that she could not quite reach.','The joy was real but the underlying anxiety never entirely disappeared.']
+  },
+
+  'validate': {
+    Academic: ['The instrument was validated against established measures before being deployed in the study.','Independent researchers were asked to validate the coding framework.','The findings validate the theoretical model proposed in the original paper.'],
+    Business: ['We need to validate the concept with real customers before investing in development.','She validates her team\'s efforts explicitly, which has a measurable impact on morale.','The pilot programme was designed to validate our assumptions before full rollout.'],
+    News: ['The audit was conducted to validate the accuracy of the published accounts.','Independent observers validated the results of the election.','The study validates concerns that have been raised by campaigners for years.'],
+    Conversation: ['I just needed someone to validate that I was not overreacting.','She validates ideas before dismissing them, which makes people feel heard.','Did the testing validate the original hypothesis?'],
+    Emotion: ['She had spent years seeking validation from sources that could never truly provide it.','He validated her experience without trying to fix it, which was exactly what she needed.','To validate someone is not to agree with them — it is to acknowledge that their reality is real.']
+  },
+
+  'vulnerable': {
+    Academic: ['Children in low-income households are disproportionately vulnerable to the effects of food insecurity.','The study examines what makes certain communities more or less vulnerable to climate shocks.','Vulnerable populations require additional ethical safeguards in research involving them.'],
+    Business: ['The business is vulnerable to currency fluctuations given its reliance on imports.','She is not afraid to be vulnerable in leadership — and it makes her more effective, not less.','Concentration in a single market makes the company financially vulnerable.'],
+    News: ['Aid is being directed towards the most vulnerable communities in the affected region.','The policy change leaves millions of low-income workers more vulnerable to exploitation.','Authorities are urging vulnerable groups to seek advice before the deadline.'],
+    Conversation: ['She is more vulnerable than she lets on — you can see it sometimes.','I felt vulnerable admitting it but I am glad I did.','The moment you become successful you are also more vulnerable to criticism.'],
+    Emotion: ['To love is to make yourself voluntarily vulnerable to someone else\'s choices.','He had learned to appear invulnerable at great cost to his actual wellbeing.','She felt vulnerable in the best way — open, rather than exposed.']
+  },
+
+  'widespread': {
+    Academic: ['There is now widespread consensus that early intervention produces better outcomes.','Widespread adoption of the practice has occurred despite limited evidence of efficacy.','The study documents widespread non-compliance with existing regulatory frameworks.'],
+    Business: ['Widespread adoption of the new system was achieved within six months.','The failure had widespread implications for public confidence in the sector.','She achieved widespread recognition across the industry for her work on inclusion.'],
+    News: ['Widespread flooding has affected millions of people across the region.','There is widespread opposition to the proposed changes among frontline workers.','The practice is widespread but rarely discussed openly.'],
+    Conversation: ['The misunderstanding is pretty widespread — a lot of people think the same wrong thing.','Support for the idea seems widespread but shallow.','It is more widespread than the statistics suggest.'],
+    Emotion: ['The relief was widespread and genuine when the news finally broke.','She felt a widespread, unfocused grief that had no single object.','His influence was widespread in ways that would only become clear after he was gone.']
+  },
+
+};
+
+// ── MERGE EXTRA WORDS INTO VIC_WORDS ─────────────────────────
+(function() {
+  if(typeof VIC_WORDS === 'undefined') return;
+  Object.keys(VIC_WORDS_EXTRA).forEach(function(word) {
+    if(!VIC_WORDS[word]) {
+      VIC_WORDS[word] = VIC_WORDS_EXTRA[word];
+    }
+  });
+  // console.log('VIC total words:', Object.keys(VIC_WORDS).length);
+})();
+
+</script>
 </body>
 </html>

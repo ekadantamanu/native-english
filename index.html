@@ -1351,6 +1351,10 @@ button, .tbtn, .tgrp { -webkit-tap-highlight-color: transparent; }
   </div>
   
   <div style="font-size:12px;color:rgba(245,200,66,0.75);padding:7px 11px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.28);border-radius:0 7px 7px 0;margin:8px 14px 0;font-style:italic" id="nat-connected"><!-- native note --></div><div style="flex:1;overflow-y:auto;padding:13px" id="csGrid"></div>
+<div style="margin-top:16px;border-top:1px solid rgba(255,255,255,0.08);padding-top:14px">
+<div id="cdGame"></div>
+</div>
+
 </div>
 
 <!-- ═══════ L4: STRESS TRAINER ═══════ -->
@@ -8903,7 +8907,7 @@ function showTab(name,btn){
   if(name==='spotter')setTimeout(renderSpotter,50);
   if(name==='errordecoder')setTimeout(epcRender,150);
   if(name==='cheatsheet')setTimeout(buildCheatSheet,50);
-  if(name==='connected')setTimeout(renderCS,50);
+  if(name==='connected'){setTimeout(renderCS,50);setTimeout(CD_init,150);}
   if(name==='minimalpairs')setTimeout(function(){mpMode('identify',document.getElementById('mpM1'));},50);
   if(name==='collocations')setTimeout(function(){renderCollocations();ccInit();},50);
   if(name==='wordbuilder')setTimeout(function(){renderWordBuilder();},50);
@@ -15636,6 +15640,912 @@ var VIC_WORDS_EXTRA = {
   });
   // console.log('VIC total words:', Object.keys(VIC_WORDS).length);
 })();
+
+</script>
+
+<script>
+// ============================================================
+// CONVERSATION DECODER — 500 real native phrases
+// 6 real-world contexts, never repeats, all 16 languages
+// Zero tokens — pre-written explanations
+// ============================================================
+
+var CD_DATA = {
+
+  // ── CONTEXT 1: WHATSAPP / TEXT MESSAGES (85 phrases) ────
+  whatsapp: {
+    name: 'WhatsApp & Texts',
+    icon: '💬',
+    color: '#4ADE80',
+    desc: 'How natives actually text each other',
+    phrases: [
+      {casual:"gonna b late sry",formal:"Going to be late, sorry",explain:"gonna = going to · b = be · sry = sorry (text shorthand)"},
+      {casual:"wanna grab lunch?",formal:"Do you want to get lunch?",explain:"wanna = want to · grab = get/have (informal)"},
+      {casual:"lemme know asap",formal:"Let me know as soon as possible",explain:"lemme = let me · asap = as soon as possible"},
+      {casual:"cya tmrw",formal:"See you tomorrow",explain:"cya = see you · tmrw = tomorrow (text shorthand)"},
+      {casual:"ngl that was awkward",formal:"Not going to lie, that was awkward",explain:"ngl = not going to lie (honest admission)"},
+      {casual:"tbh I dunno",formal:"To be honest, I don't know",explain:"tbh = to be honest · dunno = don't know"},
+      {casual:"omw, b there in 10",formal:"On my way, I'll be there in 10 minutes",explain:"omw = on my way · b there = be there"},
+      {casual:"lmk if u need anything",formal:"Let me know if you need anything",explain:"lmk = let me know · u = you"},
+      {casual:"gonna cancel tbh",formal:"I'm going to cancel, to be honest",explain:"gonna = going to · tbh = to be honest"},
+      {casual:"wyd rn?",formal:"What are you doing right now?",explain:"wyd = what are you doing · rn = right now"},
+      {casual:"imo that's a bad idea",formal:"In my opinion, that's a bad idea",explain:"imo = in my opinion"},
+      {casual:"idk maybe tmrw?",formal:"I don't know, maybe tomorrow?",explain:"idk = I don't know · tmrw = tomorrow"},
+      {casual:"np at all!",formal:"No problem at all!",explain:"np = no problem"},
+      {casual:"smth came up sry",formal:"Something came up, sorry",explain:"smth = something · came up = an unexpected event happened"},
+      {casual:"brb in 5",formal:"Be right back in 5 minutes",explain:"brb = be right back"},
+      {casual:"wanna come over later?",formal:"Do you want to come to my place later?",explain:"wanna = want to · come over = visit someone's home"},
+      {casual:"just checking in :)",formal:"I'm just checking to see how you are",explain:"checking in = informally asking how someone is"},
+      {casual:"sounds good to me!",formal:"That works well for me",explain:"sounds good = informal agreement · to me = personal opinion"},
+      {casual:"kinda busy rn",formal:"I'm quite busy right now",explain:"kinda = kind of/quite · rn = right now"},
+      {casual:"def gonna be there",formal:"I will definitely be there",explain:"def = definitely · gonna = going to"},
+      {casual:"how's it going?",formal:"How are things going for you?",explain:"how's = how is · going = progressing (informal greeting)"},
+      {casual:"running a bit late",formal:"I am going to be slightly late",explain:"running late = arriving later than planned"},
+      {casual:"just saw ur msg",formal:"I just saw your message",explain:"ur = your · msg = message"},
+      {casual:"can't make it sry",formal:"I cannot attend, sorry",explain:"can't = cannot · make it = attend/be present"},
+      {casual:"heading out now",formal:"I am leaving now",explain:"heading out = leaving (informal direction phrase)"},
+      {casual:"stuck in traffic rn",formal:"I am stuck in traffic right now",explain:"stuck = unable to move · rn = right now"},
+      {casual:"gimme a sec",formal:"Give me a second/moment",explain:"gimme = give me · sec = second (very short time)"},
+      {casual:"tbf it wasn't that bad",formal:"To be fair, it wasn't that bad",explain:"tbf = to be fair (conceding a point)"},
+      {casual:"fwiw I agree with u",formal:"For what it's worth, I agree with you",explain:"fwiw = for what it's worth · u = you"},
+      {casual:"just fyi",formal:"Just so you know / just for your information",explain:"fyi = for your information"},
+      {casual:"ugh I'm exhausted",formal:"I am very tired",explain:"ugh = expression of frustration/exhaustion"},
+      {casual:"same tbh",formal:"I feel the same, to be honest",explain:"same = me too/I agree · tbh = to be honest"},
+      {casual:"probs around 7",formal:"Probably around 7 o'clock",explain:"probs = probably (British informal shortening)"},
+      {casual:"defo coming!",formal:"I am definitely coming!",explain:"defo = definitely (British informal)"},
+      {casual:"could u pls forward that?",formal:"Could you please forward that?",explain:"u = you · pls = please"},
+      {casual:"nvm forget it",formal:"Never mind, forget it",explain:"nvm = never mind (withdrawing a request)"},
+      {casual:"just gotta finish this",formal:"I just have to finish this",explain:"gotta = have got to/have to"},
+      {casual:"so hyped for tmrw",formal:"I am very excited for tomorrow",explain:"hyped = very excited · tmrw = tomorrow"},
+      {casual:"lol same",formal:"That's funny, I feel the same",explain:"lol = laugh out loud · same = me too"},
+      {casual:"awks...",formal:"That was awkward",explain:"awks = awkward (British informal shortening)"},
+      {casual:"proper tired rn",formal:"I am genuinely very tired right now",explain:"proper = genuinely/really (British informal intensifier)"},
+      {casual:"heading ur way",formal:"I am coming towards your location",explain:"heading = moving towards · ur = your"},
+      {casual:"just woke up lol",formal:"I just woke up",explain:"lol added informally to soften or add humour"},
+      {casual:"hbu?",formal:"How about you? / What about you?",explain:"hbu = how about you (asking the same question back)"},
+      {casual:"u free this wknd?",formal:"Are you free this weekend?",explain:"u = you · wknd = weekend"},
+      {casual:"gonna need ur help",formal:"I am going to need your help",explain:"gonna = going to · ur = your"},
+      {casual:"omg no way!",formal:"Oh my goodness, I can't believe it!",explain:"omg = oh my god/goodness (strong surprise)"},
+      {casual:"nah I'm good",formal:"No thank you, I'm fine",explain:"nah = no (very casual refusal) · I'm good = I'm fine/no thanks"},
+      {casual:"be there in a bit",formal:"I will arrive shortly",explain:"a bit = a short while (British informal for 'soon')"},
+      {casual:"soz totally forgot",formal:"Sorry, I completely forgot",explain:"soz = sorry (very informal British) · totally = completely"},
+      {casual:"k sounds good",formal:"OK, that sounds good",explain:"k = OK (very casual agreement)"},
+      {casual:"wanna do smth tmrw?",formal:"Do you want to do something tomorrow?",explain:"wanna = want to · smth = something · tmrw = tomorrow"},
+      {casual:"just left the house",formal:"I have just left home",explain:"just left = departed very recently · the house = home"},
+      {casual:"on my lunch break rn",formal:"I am currently on my lunch break",explain:"rn = right now (real-time update)"},
+      {casual:"dying laughing rn",formal:"I am laughing so much right now",explain:"dying laughing = laughing extremely hard (hyperbole)"},
+      {casual:"lowkey stressed",formal:"I am somewhat stressed",explain:"lowkey = slightly/quietly (modern informal intensifier)"},
+      {casual:"highkey need a holiday",formal:"I really need a holiday",explain:"highkey = really/very much (opposite of lowkey)"},
+      {casual:"this is so extra",formal:"This is too much / overdone",explain:"extra = excessive/over the top (modern slang)"},
+      {casual:"she's dead right",formal:"She is completely right",explain:"dead = completely/absolutely (British informal intensifier)"},
+      {casual:"I'm well up for it",formal:"I am very keen / I would love to",explain:"well up for it = very enthusiastic (British informal)"},
+      {casual:"gutted I missed it",formal:"I am very disappointed I missed it",explain:"gutted = very disappointed (British informal)"},
+      {casual:"it's giving good vibes",formal:"It has a positive atmosphere",explain:"it's giving = it has the feel of (modern informal)"},
+      {casual:"no cap that was amazing",formal:"Honestly/truly that was amazing",explain:"no cap = no lie / I am being serious (modern slang)"},
+      {casual:"hits different at night",formal:"It feels different/better at night",explain:"hits different = has a different/special quality (modern informal)"},
+      {casual:"slaps tbh",formal:"It's really good, to be honest",explain:"slaps = is excellent (modern slang for music/food)"},
+      {casual:"lowkey obsessed rn",formal:"I am quite obsessed with it right now",explain:"lowkey = quietly/somewhat · rn = right now"},
+      {casual:"we're good btw",formal:"We are fine, by the way",explain:"btw = by the way · we're good = we are fine/no problem"},
+      {casual:"told ya",formal:"I told you so",explain:"ya = you (casual) — triumphant informal reminder"},
+      {casual:"can't even rn",formal:"I cannot deal with this right now",explain:"can't even = cannot handle/process this (modern informal)"},
+      {casual:"it's giving me anxiety",formal:"It is making me anxious",explain:"giving me = causing me to feel (modern informal usage)"},
+      {casual:"not gonna lie it's hard",formal:"I am not going to pretend it is easy",explain:"not gonna lie = honest admission · gonna = going to"},
+      {casual:"what's the vibe?",formal:"What is the atmosphere/mood like?",explain:"vibe = atmosphere or feeling of a place/situation"},
+      {casual:"I'm dead 😂",formal:"I am laughing uncontrollably",explain:"I'm dead = I am laughing so hard (hyperbolic expression)"},
+      {casual:"spill the tea",formal:"Tell me the gossip/details",explain:"spill the tea = share interesting information or gossip"},
+      {casual:"the struggle is real",formal:"This is genuinely difficult",explain:"the struggle is real = humorous acknowledgment of difficulty"},
+      {casual:"adulting is hard",formal:"Being a responsible adult is difficult",explain:"adulting = behaving like a responsible adult (informal noun)"},
+      {casual:"it is what it is",formal:"There is nothing we can do about it",explain:"it is what it is = resigned acceptance of a situation"},
+      {casual:"living my best life",formal:"I am enjoying life fully",explain:"living my best life = experiencing maximum happiness/fulfilment"},
+      {casual:"that's a mood",formal:"I completely relate to that feeling",explain:"that's a mood = I identify with that (modern informal)"},
+      {casual:"so done with this",formal:"I have had enough of this",explain:"so done = completely finished/fed up with something"},
+      {casual:"I can't even cope",formal:"I cannot manage/deal with this",explain:"can't cope = unable to handle the situation"},
+      {casual:"this slaps actually",formal:"This is actually really good",explain:"slaps = is excellent · actually = used for genuine emphasis"},
+      {casual:"periodt",formal:"That's final / end of discussion",explain:"periodt = emphatic full stop — the matter is settled (modern slang)"},
+    ]
+  },
+
+  // ── CONTEXT 2: MOVIES & TV SUBTITLES (85 phrases) ──────
+  movies: {
+    name: 'Movies & TV',
+    icon: '🎬',
+    color: '#60A5FA',
+    desc: 'Phrases you hear in films and TV shows',
+    phrases: [
+      {casual:"I ain't got time for this",formal:"I don't have time for this",explain:"ain't = am not / have not (informal/dialectal)"},
+      {casual:"whatcha gonna do about it?",formal:"What are you going to do about it?",explain:"whatcha = what are you · gonna = going to"},
+      {casual:"I coulda been somebody",formal:"I could have been somebody important",explain:"coulda = could have (modal reduction)"},
+      {casual:"shoulda seen it coming",formal:"Should have seen it coming",explain:"shoulda = should have (modal reduction)"},
+      {casual:"woulda done the same",formal:"Would have done the same",explain:"woulda = would have (modal reduction)"},
+      {casual:"mighta been different",formal:"Might have been different",explain:"mighta = might have (modal reduction)"},
+      {casual:"I dunno whatcha mean",formal:"I don't know what you mean",explain:"dunno = don't know · whatcha = what you"},
+      {casual:"s'matter with you?",formal:"What's the matter with you?",explain:"s'matter = what's the matter (heavy reduction)"},
+      {casual:"c'mon, don't be like that",formal:"Come on, don't behave that way",explain:"c'mon = come on (encouragement/frustration)"},
+      {casual:"lemme tell ya somethin'",formal:"Let me tell you something",explain:"lemme = let me · ya = you · somethin' = something (dropped g)"},
+      {casual:"I ain't doing nothin'",formal:"I am not doing anything",explain:"ain't = am not · nothin' = nothing (double negative — informal)"},
+      {casual:"y'all better watch out",formal:"You all had better be careful",explain:"y'all = you all (Southern American / increasingly widespread)"},
+      {casual:"I'ma tell you right now",formal:"I am going to tell you right now",explain:"I'ma = I am going to (strong reduction)"},
+      {casual:"whaddya want from me?",formal:"What do you want from me?",explain:"whaddya = what do you (heavy reduction)"},
+      {casual:"d'you even know who I am?",formal:"Do you even know who I am?",explain:"d'you = do you (common reduction in speech)"},
+      {casual:"I've been runnin' all day",formal:"I have been running all day",explain:"runnin' = running (dropped g — very common in speech)"},
+      {casual:"gonna make 'em pay",formal:"Going to make them pay",explain:"gonna = going to · 'em = them (very common informal reduction)"},
+      {casual:"I got no choice",formal:"I have no choice",explain:"I got = I have (American informal — very common)"},
+      {casual:"it ain't over yet",formal:"It is not over yet",explain:"ain't = is not (informal negation)"},
+      {casual:"I'm talkin' to you",formal:"I am talking to you",explain:"talkin' = talking (dropped g — extremely common in speech)"},
+      {casual:"she's somethin' else",formal:"She is remarkable / unusual",explain:"somethin' else = exceptional · dropped g in something"},
+      {casual:"I toldja so",formal:"I told you so",explain:"toldja = told you (j inserted between d and y sounds)"},
+      {casual:"get outta here!",formal:"Get out of here! / I don't believe it!",explain:"outta = out of (extremely common reduction)"},
+      {casual:"I'm fixin' to leave",formal:"I am about to leave",explain:"fixin' to = about to (Southern American English)"},
+      {casual:"he ain't all there",formal:"He is not quite right mentally",explain:"ain't all there = not mentally sharp (informal idiom)"},
+      {casual:"I'm done messing around",formal:"I have finished with this behaviour",explain:"done = finished · messing around = behaving irresponsibly"},
+      {casual:"waddup with that?",formal:"What is going on with that?",explain:"waddup = what is up (greeting/inquiry reduction)"},
+      {casual:"catch my drift?",formal:"Do you understand what I mean?",explain:"catch my drift = understand my meaning (informal idiom)"},
+      {casual:"I'm not buyin' it",formal:"I don't believe it",explain:"not buying it = not believing it · buyin' = buying (dropped g)"},
+      {casual:"you feelin' me?",formal:"Do you understand what I'm saying?",explain:"feelin' me = understanding me · dropped g"},
+      {casual:"I'm on it",formal:"I am dealing with it / I will handle it",explain:"on it = actively dealing with something"},
+      {casual:"keep it together",formal:"Maintain your composure",explain:"keep it together = stay calm and controlled"},
+      {casual:"cut to the chase",formal:"Get to the point",explain:"cut to the chase = stop wasting time and say the important thing"},
+      {casual:"give it to me straight",formal:"Tell me the truth directly",explain:"give it to me straight = be completely honest without softening"},
+      {casual:"spill it",formal:"Tell me everything",explain:"spill = reveal information (informal command)"},
+      {casual:"I'm all ears",formal:"I am listening completely",explain:"all ears = giving full attention (idiom)"},
+      {casual:"my bad",formal:"My mistake / I apologise",explain:"my bad = informal acknowledgment of a mistake"},
+      {casual:"what gives?",formal:"What is the explanation? / What happened?",explain:"what gives = informal question asking for an explanation"},
+      {casual:"I'm beat",formal:"I am exhausted",explain:"beat = completely tired (informal American)"},
+      {casual:"hit me up later",formal:"Contact me later",explain:"hit me up = contact/call/message someone"},
+      {casual:"you're pulling my leg",formal:"You are joking / teasing me",explain:"pulling my leg = joking at someone's expense (idiom)"},
+      {casual:"I've had it up to here",formal:"I have reached my limit of patience",explain:"had it up to here = completely fed up (idiom with gesture)"},
+      {casual:"don't push it",formal:"Don't test my patience further",explain:"push it = exceed acceptable limits"},
+      {casual:"that's rich coming from you",formal:"That is hypocritical of you",explain:"that's rich = ironic comment about someone's hypocrisy"},
+      {casual:"get a grip",formal:"Control yourself / be realistic",explain:"get a grip = take control of your emotions"},
+      {casual:"take it easy",formal:"Relax / don't stress",explain:"take it easy = informal farewell or advice to relax"},
+      {casual:"I'm game",formal:"I am willing / I want to do it",explain:"I'm game = I am ready and willing to participate"},
+      {casual:"you're on",formal:"I accept your challenge / agreed",explain:"you're on = challenge accepted (informal agreement)"},
+      {casual:"that ship has sailed",formal:"That opportunity has passed",explain:"that ship has sailed = it is too late for that now (idiom)"},
+      {casual:"I'm with ya",formal:"I agree / I support you",explain:"I'm with ya = I agree or I am on your side · ya = you"},
+      {casual:"no sweat",formal:"No problem / that's easy",explain:"no sweat = no difficulty (informal reassurance)"},
+      {casual:"easy does it",formal:"Be careful / do it slowly and gently",explain:"easy does it = do something carefully and slowly"},
+      {casual:"hang tight",formal:"Wait patiently",explain:"hang tight = wait without moving or worrying"},
+      {casual:"hold your horses",formal:"Wait / slow down",explain:"hold your horses = be patient, don't rush (idiom)"},
+      {casual:"I'm gonna level with you",formal:"I am going to be completely honest",explain:"level with = be completely honest · gonna = going to"},
+      {casual:"that's the last straw",formal:"That is the final unacceptable thing",explain:"last straw = the final thing that causes someone to lose patience"},
+      {casual:"I'm not messing around",formal:"I am being completely serious",explain:"messing around = being unserious or playful"},
+      {casual:"don't get me started",formal:"Do not ask me about that — I have a lot to say",explain:"don't get me started = I have strong opinions and might not stop"},
+      {casual:"I kid you not",formal:"I am completely serious",explain:"I kid you not = I am not joking (old-fashioned but still used)"},
+      {casual:"like it or lump it",formal:"Accept it whether you like it or not",explain:"like it or lump it = accept the situation with no alternative"},
+      {casual:"you had me going",formal:"You almost convinced me / you fooled me",explain:"had me going = successfully deceived or confused someone"},
+      {casual:"I'm not having it",formal:"I refuse to accept this",explain:"not having it = refusing to tolerate or accept something"},
+      {casual:"it's doing my head in",formal:"It is frustrating/confusing me greatly",explain:"doing my head in = causing extreme frustration (British)"},
+      {casual:"get out of town!",formal:"I don't believe you! / That's incredible!",explain:"get out of town = expression of disbelief (American informal)"},
+      {casual:"I'm just winding you up",formal:"I am just joking with you",explain:"winding you up = teasing/joking (British informal)"},
+      {casual:"I'm gobsmacked",formal:"I am completely astonished",explain:"gobsmacked = utterly shocked (British informal)"},
+      {casual:"he's taking the mickey",formal:"He is making fun / being sarcastic",explain:"taking the mickey = mocking someone (British informal)"},
+      {casual:"I'm chuffed to bits",formal:"I am very pleased",explain:"chuffed = pleased/satisfied (British informal)"},
+      {casual:"it's gone pear-shaped",formal:"It has gone wrong",explain:"gone pear-shaped = went wrong (British informal)"},
+      {casual:"she's a right pain",formal:"She is very annoying",explain:"right = very (British intensifier) · pain = annoying person"},
+      {casual:"it's not on",formal:"That is unacceptable",explain:"not on = unacceptable behaviour (British informal)"},
+      {casual:"fair dos",formal:"That's fair / I admit that's reasonable",explain:"fair dos = fair enough (British informal concession)"},
+      {casual:"you're having a laugh",formal:"You must be joking",explain:"having a laugh = joking (British informal)"},
+      {casual:"brilliant, cheers mate",formal:"Excellent, thank you friend",explain:"brilliant = excellent · cheers = thanks · mate = friend (British)"},
+      {casual:"I'm knackered",formal:"I am exhausted",explain:"knackered = completely tired (British informal)"},
+      {casual:"sorted",formal:"Arranged / dealt with / fine",explain:"sorted = completed, arranged, or resolved (British informal)"},
+      {casual:"it's a doddle",formal:"It's very easy",explain:"doddle = something very easy (British informal)"},
+      {casual:"fancy a cuppa?",formal:"Would you like a cup of tea?",explain:"fancy = would you like · cuppa = cup of tea (British)"},
+      {casual:"I'm absolutely gutted",formal:"I am extremely disappointed",explain:"absolutely = completely (intensifier) · gutted = very disappointed"},
+      {casual:"she's gone off on one",formal:"She has started ranting/overreacting",explain:"gone off on one = started an angry or emotional outburst (British)"},
+      {casual:"it's not rocket science",formal:"It is not complicated",explain:"not rocket science = the task is straightforward (idiom)"},
+      {casual:"I haven't got a clue",formal:"I have no idea",explain:"haven't got a clue = completely unaware (British informal)"},
+      {casual:"you're well out of order",formal:"Your behaviour was unacceptable",explain:"well = very (British intensifier) · out of order = unacceptable"},
+    ]
+  },
+
+  // ── CONTEXT 3: SONG LYRICS PATTERNS (80 phrases) ───────
+  songs: {
+    name: 'Song Lyrics',
+    icon: '🎵',
+    color: '#F59E0B',
+    desc: 'Contractions and patterns common in music',
+    phrases: [
+      {casual:"I ain't got nobody",formal:"I don't have anyone",explain:"ain't got = don't have (blues/soul tradition)"},
+      {casual:"gonna fly now",formal:"Going to fly now",explain:"gonna = going to (extremely common in lyrics)"},
+      {casual:"somethin' in the way",formal:"Something in the way",explain:"somethin' = something (dropped g — very common in singing)"},
+      {casual:"I been waitin' so long",formal:"I have been waiting so long",explain:"I been = I have been · waitin' = waiting (dropped g)"},
+      {casual:"you're my everythin'",formal:"You are my everything",explain:"you're = you are · everythin' = everything (dropped g)"},
+      {casual:"walkin' on sunshine",formal:"Walking on sunshine",explain:"walkin' = walking (dropped g — standard in casual speech)"},
+      {casual:"cryin' in the rain",formal:"Crying in the rain",explain:"cryin' = crying (dropped g)"},
+      {casual:"I wanna hold your hand",formal:"I want to hold your hand",explain:"wanna = want to (very common reduction)"},
+      {casual:"we ain't ever gettin' older",formal:"We are never getting older",explain:"ain't ever = are never · gettin' = getting (dropped g)"},
+      {casual:"I got the feelin'",formal:"I have the feeling",explain:"I got = I have · feelin' = feeling (dropped g)"},
+      {casual:"she's got a ticket to ride",formal:"She has a ticket to ride",explain:"she's got = she has (British informal construction)"},
+      {casual:"can't stop the feelin'",formal:"Cannot stop the feeling",explain:"can't = cannot · feelin' = feeling (dropped g)"},
+      {casual:"I'm never gonna give you up",formal:"I am never going to give you up",explain:"I'm = I am · gonna = going to"},
+      {casual:"livin' on a prayer",formal:"Living on a prayer",explain:"livin' = living (dropped g — standard in music)"},
+      {casual:"I shoulda known better",formal:"I should have known better",explain:"shoulda = should have (modal reduction)"},
+      {casual:"coulda had it all",formal:"Could have had it all",explain:"coulda = could have (modal reduction)"},
+      {casual:"I'd rather be with you",formal:"I would rather be with you",explain:"I'd = I would (contraction)"},
+      {casual:"gonna make you love me",formal:"Going to make you love me",explain:"gonna = going to"},
+      {casual:"I ain't missin' you at all",formal:"I am not missing you at all",explain:"ain't = am not · missin' = missing (dropped g)"},
+      {casual:"workin' nine to five",formal:"Working nine to five",explain:"workin' = working (dropped g)"},
+      {casual:"I been down so long",formal:"I have been down so long",explain:"I been = I have been (blues reduction)"},
+      {casual:"all I wanna do",formal:"All I want to do",explain:"wanna = want to"},
+      {casual:"she don't know she's beautiful",formal:"She doesn't know she's beautiful",explain:"she don't = she doesn't (non-standard but very common)"},
+      {casual:"I'm holdin' on for dear life",formal:"I am holding on for dear life",explain:"I'm = I am · holdin' = holding (dropped g)"},
+      {casual:"we was robbed",formal:"We were robbed",explain:"we was = we were (non-standard — common in lyrics/dialect)"},
+      {casual:"I gotta feeling",formal:"I have a feeling / I've got a feeling",explain:"gotta = have got to / have a (very common informal)"},
+      {casual:"nothin' gonna stop us now",formal:"Nothing is going to stop us now",explain:"nothin' = nothing · gonna = going to"},
+      {casual:"I'd die without ya",formal:"I would die without you",explain:"I'd = I would · ya = you (casual)"},
+      {casual:"you ain't seen nothin' yet",formal:"You haven't seen anything yet",explain:"ain't seen nothin' = double negative (emphasis in lyrics)"},
+      {casual:"I'm every woman",formal:"I am every woman",explain:"I'm = I am (simple contraction but key in spoken English)"},
+      {casual:"don't you want me, baby?",formal:"Don't you want me?",explain:"baby = term of endearment extremely common in song lyrics"},
+      {casual:"I will always love ya",formal:"I will always love you",explain:"ya = you (casual/poetic)"},
+      {casual:"gimme shelter",formal:"Give me shelter",explain:"gimme = give me (very common informal)"},
+      {casual:"she loves ya, yeah yeah yeah",formal:"She loves you, yes, yes, yes",explain:"ya = you · yeah = yes (informal affirmation)"},
+      {casual:"whatcha gonna do?",formal:"What are you going to do?",explain:"whatcha = what are you · gonna = going to"},
+      {casual:"I'm runnin' out of time",formal:"I am running out of time",explain:"I'm = I am · runnin' = running (dropped g)"},
+      {casual:"tryna make it right",formal:"Trying to make it right",explain:"tryna = trying to (very common informal reduction)"},
+      {casual:"I dunno why",formal:"I don't know why",explain:"dunno = don't know"},
+      {casual:"burnin' up",formal:"Burning up",explain:"burnin' = burning (dropped g)"},
+      {casual:"gettin' jiggy wit it",formal:"Getting lively / dancing with it",explain:"gettin' = getting · wit = with (informal reduction)"},
+      {casual:"we gon' be alright",formal:"We are going to be alright",explain:"gon' = going to (African American Vernacular English reduction)"},
+      {casual:"I ain't one to gossip",formal:"I am not one to gossip",explain:"ain't = am not"},
+      {casual:"she's bangin' on the door",formal:"She is knocking loudly on the door",explain:"bangin' = banging · also banging = very good (British slang)"},
+      {casual:"I been thinking 'bout you",formal:"I have been thinking about you",explain:"I been = I have been · 'bout = about"},
+      {casual:"lyin' in the dark",formal:"Lying in the dark",explain:"lyin' = lying (dropped g)"},
+      {casual:"I'm so in love witcha",formal:"I am so in love with you",explain:"witcha = with you (heavy informal reduction)"},
+      {casual:"you da one",formal:"You are the one",explain:"da = the · you da one = you are the one (informal intensifier)"},
+      {casual:"we don't talk anymore",formal:"We do not talk anymore",explain:"don't = do not — note: anymore = any longer (American English)"},
+      {casual:"I'm never lettin' go",formal:"I am never letting go",explain:"I'm = I am · lettin' = letting (dropped g)"},
+      {casual:"y'all can't see me",formal:"You all cannot see me",explain:"y'all = you all · can't = cannot"},
+      {casual:"imma be real witchu",formal:"I am going to be honest with you",explain:"imma = I am going to · witchu = with you"},
+      {casual:"s/he's got the whole world",formal:"He/she has the whole world",explain:"s/he's got = has (possession — British/informal)"},
+      {casual:"what's love got to do witit?",formal:"What does love have to do with it?",explain:"witit = with it (heavy reduction)"},
+      {casual:"I'm so fancy",formal:"I am very sophisticated/luxurious",explain:"fancy = stylish/expensive · very common in modern pop"},
+      {casual:"talkin' 'bout my generation",formal:"Talking about my generation",explain:"talkin' = talking · 'bout = about (both very common)"},
+      {casual:"I'm just a girl",formal:"I am just a girl",explain:"just = merely/only — used for emphasis in this context"},
+      {casual:"she walks like she don't care",formal:"She walks as if she doesn't care",explain:"don't = doesn't — non-standard but common in lyrics"},
+      {casual:"I can't get no satisfaction",formal:"I cannot get any satisfaction",explain:"can't get no = double negative for emphasis (very common in rock)"},
+      {casual:"gonna write myself a letter",formal:"Going to write myself a letter",explain:"gonna = going to"},
+      {casual:"I'm a survivor",formal:"I am a survivor",explain:"I'm a = I am a — note the strong identity statement structure"},
+      {casual:"haters gonna hate",formal:"Those who dislike you will always dislike you",explain:"haters = people who are negative · gonna = going to"},
+      {casual:"shake whatcha got",formal:"Make the most of what you have",explain:"whatcha = what you · got = have"},
+      {casual:"you know I'd go anywhere for ya",formal:"You know I would go anywhere for you",explain:"I'd = I would · ya = you"},
+      {casual:"so whatcha waiting for?",formal:"So what are you waiting for?",explain:"whatcha = what are you"},
+      {casual:"I'm just sayin'",formal:"I am just saying",explain:"sayin' = saying (dropped g) · phrase used to soften a comment"},
+      {casual:"I'm a little mixed up",formal:"I am a little confused",explain:"mixed up = confused · a little = slightly"},
+      {casual:"she's workin' on a mystery",formal:"She is working on a mystery",explain:"she's = she is · workin' = working (dropped g)"},
+      {casual:"I've been searchin' so long",formal:"I have been searching for so long",explain:"I've = I have · searchin' = searching (dropped g)"},
+      {casual:"we ain't gotta do this",formal:"We don't have to do this",explain:"ain't gotta = don't have to (double informal reduction)"},
+      {casual:"I'm feelin' good",formal:"I am feeling good",explain:"I'm = I am · feelin' = feeling (dropped g)"},
+      {casual:"you got what I need",formal:"You have what I need",explain:"you got = you have (American informal possession)"},
+      {casual:"I gotta be me",formal:"I have to be myself",explain:"gotta = have got to · me = myself"},
+      {casual:"that's how I know",formal:"That is how I know",explain:"that's = that is (standard contraction)"},
+      {casual:"what's up with you?",formal:"What is happening with you? / How are you?",explain:"what's up = informal greeting or inquiry"},
+      {casual:"I been broken before",formal:"I have been broken before",explain:"I been = I have been (reduction of present perfect)"},
+      {casual:"keep on movin'",formal:"Keep on moving",explain:"movin' = moving (dropped g — very common)"},
+      {casual:"she drives me crazy",formal:"She makes me feel extremely excited/frustrated",explain:"drives me crazy = makes me feel very strong emotions"},
+      {casual:"whatcha doing to me?",formal:"What are you doing to me?",explain:"whatcha = what are you"},
+      {casual:"I'll be missin' you",formal:"I will be missing you",explain:"I'll = I will · missin' = missing (dropped g)"},
+    ]
+  },
+
+  // ── CONTEXT 4: PUB & CASUAL CONVERSATION (80 phrases) ──
+  pub: {
+    name: 'Pub & Casual Chat',
+    icon: '🗣️',
+    color: '#A78BFA',
+    desc: 'Informal spoken English between friends',
+    phrases: [
+      {casual:"alright?",formal:"How are you? / Are you well?",explain:"alright? = informal British greeting (not asking about health specifically)"},
+      {casual:"you alright there, mate?",formal:"Are you okay? / Can I help you?",explain:"alright = okay · mate = friend (British) — often said to a stranger"},
+      {casual:"fancy a pint?",formal:"Would you like a beer?",explain:"fancy = would you like · pint = glass of beer (British)"},
+      {casual:"I'm skint",formal:"I have no money",explain:"skint = broke/without money (British informal)"},
+      {casual:"that's well good",formal:"That is very good",explain:"well = very (British informal intensifier)"},
+      {casual:"proper job",formal:"Well done / that's excellent",explain:"proper job = very good, done correctly (British informal — especially Southwest England)"},
+      {casual:"you're having a laugh",formal:"You must be joking",explain:"having a laugh = joking (British informal)"},
+      {casual:"I'm absolutely hammered",formal:"I am very drunk",explain:"hammered = very drunk (British informal)"},
+      {casual:"cheeky Nando's?",formal:"Shall we go to Nando's as a treat?",explain:"cheeky = slightly naughty but enjoyable · Nando's = popular British restaurant chain"},
+      {casual:"I'm not bovvered",formal:"I am not bothered / I don't care",explain:"bovvered = bothered (London/Estuary English pronunciation)"},
+      {casual:"she's well fit",formal:"She is very attractive",explain:"well = very · fit = attractive (British informal)"},
+      {casual:"that's bang out of order",formal:"That is completely unacceptable",explain:"bang = completely · out of order = unacceptable (British)"},
+      {casual:"he proper mugged you off",formal:"He disrespected you / took advantage of you",explain:"mugged off = disrespected or deceived (British slang)"},
+      {casual:"I'm buzzing",formal:"I am very excited/happy",explain:"buzzing = very excited or pleased (British informal)"},
+      {casual:"it's gone pear-shaped",formal:"It has gone wrong",explain:"pear-shaped = gone wrong (British idiom)"},
+      {casual:"she's a bit of a nightmare",formal:"She is very difficult to deal with",explain:"a bit of a = somewhat · nightmare = very difficult person/situation"},
+      {casual:"can't be arsed",formal:"I can't be bothered",explain:"can't be arsed = don't have the energy or motivation (British — mildly crude)"},
+      {casual:"I'm chuffed to bits",formal:"I am extremely pleased",explain:"chuffed = pleased · to bits = intensifier (British)"},
+      {casual:"he's taking the mick",formal:"He is making fun of me",explain:"taking the mick = mocking (British informal — also 'taking the mickey')"},
+      {casual:"it's doing my nut in",formal:"It is driving me crazy",explain:"doing my nut in = causing extreme frustration (British)"},
+      {casual:"how's tricks?",formal:"How are things going?",explain:"how's tricks = casual inquiry about someone's wellbeing (British)"},
+      {casual:"not my cup of tea",formal:"Not something I enjoy",explain:"not my cup of tea = not to my taste (British idiom)"},
+      {casual:"I'm all right Jack",formal:"I am fine as I am / I only care about myself",explain:"I'm alright Jack = selfish attitude (British idiom)"},
+      {casual:"that's well dodgy",formal:"That seems very suspicious",explain:"well = very · dodgy = suspicious or unreliable (British)"},
+      {casual:"he's a bit of a muppet",formal:"He is rather foolish",explain:"muppet = foolish person (British informal — from the TV show)"},
+      {casual:"get in!",formal:"Yes! / That's great news!",explain:"get in = exclamation of triumph (British informal)"},
+      {casual:"I'm not being funny but...",formal:"I mean no offence, but...",explain:"I'm not being funny = disclaimer before a potentially blunt comment"},
+      {casual:"she's a proper laugh",formal:"She is very funny / great fun",explain:"proper = genuinely · a laugh = fun/amusing person (British)"},
+      {casual:"it's mint",formal:"It's excellent",explain:"mint = excellent (Northern British informal)"},
+      {casual:"she's dead nice",formal:"She is very nice",explain:"dead = very/completely (Northern British intensifier)"},
+      {casual:"I'm made up",formal:"I am very pleased",explain:"made up = very happy (Northern English/Scouse informal)"},
+      {casual:"that's sound",formal:"That's fine / good / reasonable",explain:"sound = good/reliable/fine (Northern British informal)"},
+      {casual:"he's a right div",formal:"He is very foolish",explain:"right = very · div = stupid person (British informal)"},
+      {casual:"she's well sound",formal:"She is very reliable/nice",explain:"well = very · sound = reliable/pleasant"},
+      {casual:"I'm not gonna lie to ya",formal:"I am going to be completely honest",explain:"gonna = going to · ya = you"},
+      {casual:"that's bang on",formal:"That is exactly right",explain:"bang on = precisely correct (British informal)"},
+      {casual:"you're winding me up",formal:"You are joking / teasing me",explain:"winding up = teasing or joking (British informal)"},
+      {casual:"I'm bricking it",formal:"I am very nervous",explain:"bricking it = very frightened or nervous (British informal — mildly crude)"},
+      {casual:"she's on a different planet",formal:"She is very out of touch with reality",explain:"on a different planet = not realistic or aware (idiom)"},
+      {casual:"that went down a treat",formal:"That was very well received",explain:"went down a treat = was very successful or enjoyed (British)"},
+      {casual:"I'm not best pleased",formal:"I am quite unhappy about this",explain:"not best pleased = a British understatement for being unhappy"},
+      {casual:"it's all gone south",formal:"Everything has gone wrong",explain:"gone south = deteriorated or failed (informal idiom)"},
+      {casual:"I've got a bone to pick",formal:"I have a complaint to discuss with you",explain:"bone to pick = a grievance or complaint to address"},
+      {casual:"pull the other one",formal:"I don't believe you",explain:"pull the other one = stop trying to fool me (British idiom)"},
+      {casual:"you're having me on",formal:"You are joking with me",explain:"having me on = deceiving or joking (British informal)"},
+      {casual:"I'm not holding my breath",formal:"I am not expecting it to happen",explain:"not holding my breath = not expecting a positive outcome (idiom)"},
+      {casual:"he's lost the plot",formal:"He has become irrational",explain:"lost the plot = become confused or irrational (British informal)"},
+      {casual:"she's not all there",formal:"She is not fully mentally present",explain:"not all there = not entirely sensible or rational"},
+      {casual:"I'm up to my eyeballs",formal:"I am completely overwhelmed",explain:"up to my eyeballs = completely overwhelmed with work/problems"},
+      {casual:"that's a load of codswallop",formal:"That is complete nonsense",explain:"codswallop = nonsense (British informal — old fashioned but still used)"},
+      {casual:"I'm at my wits' end",formal:"I am completely out of ideas",explain:"wits' end = the limit of one's ability to cope"},
+      {casual:"you've lost me there",formal:"I don't understand that",explain:"you've lost me = I am confused / I cannot follow"},
+      {casual:"right, I'm off",formal:"OK, I am leaving now",explain:"right = OK/anyway · I'm off = I am leaving (British informal)"},
+      {casual:"cheers, ta",formal:"Thank you",explain:"cheers = thanks · ta = thanks (British informal — both used together)"},
+      {casual:"see ya later, mate",formal:"Goodbye, friend",explain:"see ya = see you · later = later (informal farewell)"},
+      {casual:"I'm just nipping out",formal:"I am going out briefly",explain:"nipping = going quickly (British informal for a brief trip)"},
+      {casual:"give us a bell",formal:"Give me a phone call",explain:"give us = give me (British — us = me in some dialects) · bell = phone call"},
+      {casual:"I'll have a butcher's",formal:"I'll have a look",explain:"butcher's = look (Cockney rhyming slang: butcher's hook = look)"},
+      {casual:"it's gone a bit Pete Tong",formal:"It has gone a bit wrong",explain:"Pete Tong = wrong (Cockney rhyming slang — named after a DJ)"},
+      {casual:"I'm having none of it",formal:"I completely refuse to accept this",explain:"having none of it = refusing to accept or believe something"},
+      {casual:"she's a dark horse",formal:"She is more capable than people realised",explain:"dark horse = someone with hidden abilities or unknown history"},
+      {casual:"he talks the talk",formal:"He says the right things but may not deliver",explain:"talks the talk = says impressive things (but walks the walk = acts on them)"},
+      {casual:"she walks it",formal:"She does it easily",explain:"walks it = achieves something with no difficulty (British informal)"},
+      {casual:"I'm not fussed",formal:"I don't have a strong preference",explain:"not fussed = don't mind either way (British informal)"},
+      {casual:"it's a bit naff",formal:"It is not very good / tacky",explain:"naff = unfashionable or of poor quality (British informal)"},
+      {casual:"he's well in there",formal:"He has a good chance with her/that",explain:"well in = in a favourable position (British informal)"},
+      {casual:"she's a right laugh",formal:"She is very funny",explain:"right = very · a laugh = amusing person (British informal)"},
+      {casual:"I'm not arsed",formal:"I don't care",explain:"not arsed = not bothered (British informal — mildly crude)"},
+      {casual:"it's a bit much",formal:"It is slightly excessive",explain:"a bit much = slightly too much or unreasonable"},
+      {casual:"I'm on the mend",formal:"I am recovering",explain:"on the mend = getting better after illness or difficulty"},
+      {casual:"she's a tough cookie",formal:"She is a resilient person",explain:"tough cookie = someone who is mentally/emotionally strong"},
+      {casual:"he bottled it",formal:"He lost his nerve at the last moment",explain:"bottled it = gave up through fear or lack of courage (British)"},
+      {casual:"she smashed it",formal:"She did it excellently",explain:"smashed it = performed brilliantly (British informal)"},
+      {casual:"I'm over the moon",formal:"I am extremely happy",explain:"over the moon = very happy (British idiom)"},
+      {casual:"it's a dodgy area",formal:"It is not a safe area",explain:"dodgy = suspicious or risky (British informal)"},
+      {casual:"she's been through the mill",formal:"She has experienced many difficulties",explain:"through the mill = having suffered a lot"},
+      {casual:"he's lost his marbles",formal:"He has gone slightly mad",explain:"lost his marbles = become irrational (informal idiom)"},
+    ]
+  },
+
+  // ── CONTEXT 5: SOCIAL MEDIA (80 phrases) ───────────────
+  social: {
+    name: 'Social Media',
+    icon: '📱',
+    color: '#FB923C',
+    desc: 'Modern online language and internet slang',
+    phrases: [
+      {casual:"this is so relatable",formal:"I completely identify with this",explain:"relatable = easy to relate to (modern usage — now standard)"},
+      {casual:"I can't even",formal:"I cannot process/handle this",explain:"I can't even = overwhelmed beyond words (modern informal)"},
+      {casual:"this is giving me life",formal:"This is making me extremely happy",explain:"giving me life = causing great joy (modern informal)"},
+      {casual:"I'm deceased 💀",formal:"I am laughing uncontrollably",explain:"deceased/skull emoji = dead from laughter (modern informal)"},
+      {casual:"the audacity",formal:"I cannot believe the nerve of that",explain:"the audacity = exclamation about someone's shocking boldness"},
+      {casual:"she ate and left no crumbs",formal:"She performed perfectly and left nothing to criticise",explain:"ate and left no crumbs = performed flawlessly (modern slang)"},
+      {casual:"not me doing this at 2am",formal:"Here I am doing this at 2am",explain:"not me [doing thing] = self-aware ironic observation"},
+      {casual:"the way I just screamed",formal:"I was so surprised/excited I screamed",explain:"the way I = emphasising an extreme reaction"},
+      {casual:"we love to see it",formal:"This is very pleasing to observe",explain:"we love to see it = approval of something positive"},
+      {casual:"it's giving main character energy",formal:"She/it acts as if she is the most important person",explain:"giving = having the quality of · main character energy = acting like the protagonist"},
+      {casual:"she really said that",formal:"I cannot believe she actually said that",explain:"really said that = emphasis on disbelief at someone's words"},
+      {casual:"I'm in my era",formal:"I am going through a particular phase of life",explain:"in my [blank] era = currently experiencing a phase (e.g. 'in my villain era')"},
+      {casual:"the plot twist no one asked for",formal:"An unexpected development that nobody wanted",explain:"plot twist = unexpected development · no one asked for = unwanted"},
+      {casual:"rent free in my head",formal:"I keep thinking about this involuntarily",explain:"rent free = occupying mental space without effort (modern idiom)"},
+      {casual:"the lore is getting deep",formal:"The backstory/history is becoming very complex",explain:"lore = detailed background history (from gaming — now general)"},
+      {casual:"I need the whole lore",formal:"I want to understand the full background",explain:"lore = the complete history and context"},
+      {casual:"bestie no",formal:"My friend, please don't do that",explain:"bestie = best friend (used affectionately even to strangers online)"},
+      {casual:"that's a W",formal:"That is a win / a success",explain:"W = win (gaming origin — now widespread) · L = loss"},
+      {casual:"took the L",formal:"Suffered a loss or failure",explain:"took the L = accepted a loss (gaming slang now general)"},
+      {casual:"it's giving 2009 vibes",formal:"It feels like it belongs in 2009",explain:"giving [year] vibes = reminds one of that era"},
+      {casual:"the bar is on the floor",formal:"The standard expected is extremely low",explain:"the bar is on the floor = expectations are embarrassingly low"},
+      {casual:"I'm so here for this",formal:"I fully support and enjoy this",explain:"here for it = enthusiastic about something"},
+      {casual:"ok but hear me out",formal:"Please listen to my unconventional idea",explain:"hear me out = listen to me before judging · ok but = mild concession"},
+      {casual:"main character moment",formal:"A moment where one feels like the protagonist of their own story",explain:"main character = protagonist · moment = specific instance"},
+      {casual:"understood the assignment",formal:"Performed exactly what was needed, excellently",explain:"understood the assignment = did exactly what was required perfectly"},
+      {casual:"did not understand the assignment",formal:"Failed to do what was needed",explain:"opposite of above — missed the point entirely"},
+      {casual:"this is so unhinged",formal:"This is very irrational or extreme",explain:"unhinged = mentally unstable or extreme (now used humorously)"},
+      {casual:"chaotic good",formal:"Well-intentioned but disorganised",explain:"chaotic good = term from role-playing games meaning unpredictable but kind"},
+      {casual:"that's a big yikes",formal:"That is very embarrassing/bad",explain:"yikes = exclamation of alarm · big = intensifier"},
+      {casual:"yikes on bikes",formal:"That is very problematic",explain:"yikes on bikes = emphatic yikes (humorous rhyme)"},
+      {casual:"lowkey a banger",formal:"It is quite good actually",explain:"lowkey = somewhat/quietly · banger = excellent thing (music or generally)"},
+      {casual:"I'm screaming",formal:"I find this extremely funny or surprising",explain:"I'm screaming = extremely amused or shocked (hyperbole)"},
+      {casual:"sending me",formal:"Making me laugh uncontrollably",explain:"sending me = causing extreme laughter (modern informal)"},
+      {casual:"I'm weak",formal:"I am laughing so hard I have no strength",explain:"I'm weak = laughing so hard I cannot function (hyperbole)"},
+      {casual:"not the [thing]!",formal:"I cannot believe there is a [thing]!",explain:"not the X = disbelief that X exists — often used humorously"},
+      {casual:"the [noun] to end all [nouns]",formal:"The ultimate/defining version of this thing",explain:"to end all X = the definitive example of something"},
+      {casual:"it's giving very much",formal:"It strongly resembles / it really has the quality of",explain:"it's giving very much = it strongly reminds one of something"},
+      {casual:"gatekeeping this",formal:"I am not going to share this with others",explain:"gatekeeping = controlling access to information"},
+      {casual:"manifesting this",formal:"I am hoping very strongly for this to happen",explain:"manifesting = using positive thinking to attract outcomes (modern use)"},
+      {casual:"this is so wholesome",formal:"This is genuinely sweet and heartwarming",explain:"wholesome = pure, sweet, morally good (internet positive term)"},
+      {casual:"soft launching",formal:"Introducing something gradually to see reactions",explain:"soft launching = introducing a partner/product subtly to see response"},
+      {casual:"hard launching",formal:"Making a public official announcement",explain:"hard launching = officially announcing something publicly"},
+      {casual:"the timeline is unwell",formal:"Social media is producing a lot of drama today",explain:"the timeline = social media feed · unwell = chaotic/problematic"},
+      {casual:"this is so core",formal:"This perfectly represents an aesthetic",explain:"core = aesthetic category (e.g. cottagecore, dark academia)"},
+      {casual:"very much that girl",formal:"Very much the ideal, put-together version of a person",explain:"that girl = someone who has their life perfectly organised (trend)"},
+      {casual:"the delusion is real",formal:"I am/they are being unrealistically optimistic",explain:"delusion = false belief · the delusion is real = I know I'm being unrealistic"},
+      {casual:"living in my head",formal:"Occupying my thoughts constantly",explain:"living in my head = thinking about someone/something constantly"},
+      {casual:"I ate that up",formal:"I enjoyed that completely",explain:"ate that up = consumed enthusiastically / enjoyed very much"},
+      {casual:"it's not it",formal:"It is not good / not what is needed",explain:"not it = not acceptable, not good enough (modern informal)"},
+      {casual:"it's giving nothing",formal:"It is not impressive at all",explain:"giving nothing = producing no positive effect"},
+      {casual:"the serves are immaculate",formal:"The outfits/performances are excellent",explain:"serves = impressive displays · immaculate = perfect"},
+      {casual:"snatched",formal:"Looking very attractive / fitting perfectly",explain:"snatched = looking extremely good (especially applied to appearance)"},
+      {casual:"it's a vibe",formal:"It has a good atmosphere/feeling",explain:"vibe = atmosphere or general feeling"},
+      {casual:"big mood",formal:"I strongly relate to this feeling",explain:"big mood = I identify with this intensely"},
+      {casual:"no thoughts head empty",formal:"My mind is completely blank",explain:"no thoughts head empty = feeling of mental blankness (ironic self-deprecation)"},
+      {casual:"I'm obsessed",formal:"I love this very much",explain:"obsessed = used hyperbolically to mean very enthusiastic about"},
+      {casual:"this is so camp",formal:"This is deliberately theatrical and over the top",explain:"camp = consciously theatrical/artificial style"},
+      {casual:"living for this",formal:"I am loving this",explain:"living for = enthusiastically enjoying"},
+      {casual:"the way my jaw dropped",formal:"I was completely shocked",explain:"jaw dropped = extreme surprise · the way = emphasis"},
+      {casual:"not me crying at this",formal:"I am unexpectedly moved to tears by this",explain:"not me [doing thing] = self-aware acknowledgment of unexpected reaction"},
+      {casual:"this is everything",formal:"This is perfect / I love everything about this",explain:"this is everything = this is absolutely perfect"},
+      {casual:"I woke up and chose chaos",formal:"I decided to cause trouble today",explain:"woke up and chose [thing] = decided to embrace a quality from the start of the day"},
+      {casual:"you ate and that's on period",formal:"You performed excellently and that is final",explain:"ate = performed perfectly · on period/periodt = emphatically final"},
+      {casual:"the fit goes hard",formal:"The outfit looks very impressive",explain:"fit = outfit · goes hard = is extremely good"},
+      {casual:"it's giving rich auntie",formal:"It has the quality of an affluent, glamorous aunt",explain:"giving [person type] = resembling or having the energy of that type"},
+      {casual:"caught in 4K",formal:"Caught in the act with undeniable evidence",explain:"caught in 4K = caught with high-definition clarity (from camera quality)"},
+      {casual:"not even gonna cap",formal:"I am going to be completely honest",explain:"cap = lie · not gonna cap = not going to lie"},
+      {casual:"on god",formal:"I am being completely truthful",explain:"on god = I swear / I am totally serious"},
+      {casual:"facts no printer",formal:"That is completely true",explain:"facts no printer = that's facts without needing to print them (emphatic)"},
+      {casual:"bet",formal:"OK / agreed / sounds good",explain:"bet = agreement or confirmation (American slang)"},
+      {casual:"it's sus",formal:"It seems suspicious",explain:"sus = suspicious (from the game Among Us — now widespread)"},
+      {casual:"that's cap",formal:"That is a lie",explain:"cap = a lie · no cap = not a lie"},
+      {casual:"lowkey slay",formal:"Quietly excellent",explain:"lowkey = somewhat · slay = perform brilliantly"},
+      {casual:"she ate the stage",formal:"She performed magnificently",explain:"ate the stage = dominated a performance completely"},
+      {casual:"I'm in my feels",formal:"I am feeling very emotional",explain:"in my feels = experiencing strong emotions"},
+      {casual:"this broke me",formal:"This made me laugh/cry uncontrollably",explain:"broke me = caused an extreme emotional reaction"},
+      {casual:"touch grass",formal:"Go outside and experience real life",explain:"touch grass = spend time in reality, away from the internet"},
+    ]
+  },
+
+  // ── CONTEXT 6: INFORMAL OFFICE CHAT (90 phrases) ───────
+  office: {
+    name: 'Informal Office Chat',
+    icon: '🏢',
+    color: '#34D399',
+    desc: 'How colleagues really talk at work',
+    phrases: [
+      {casual:"let's circle back on that",formal:"Let's return to that topic later",explain:"circle back = return to a subject (common office jargon)"},
+      {casual:"I'll ping you later",formal:"I will send you a message later",explain:"ping = send a quick message (from network terminology)"},
+      {casual:"can we take this offline?",formal:"Can we discuss this privately, not in this meeting?",explain:"take offline = discuss separately outside the main meeting"},
+      {casual:"let's touch base",formal:"Let's have a brief check-in",explain:"touch base = make brief contact to check in (sports origin)"},
+      {casual:"we're on the same page",formal:"We have the same understanding",explain:"on the same page = sharing the same understanding"},
+      {casual:"let's run it up the flagpole",formal:"Let's test this idea and see if it gets support",explain:"run it up the flagpole = propose something to see if it gets approval"},
+      {casual:"it's not my wheelhouse",formal:"It is not my area of expertise",explain:"wheelhouse = area of strength/expertise (baseball origin)"},
+      {casual:"we need to move the needle",formal:"We need to make a meaningful impact",explain:"move the needle = make a significant measurable difference"},
+      {casual:"let's not reinvent the wheel",formal:"Let's not create something that already exists",explain:"reinvent the wheel = waste effort recreating something that exists"},
+      {casual:"it's a low-hanging fruit",formal:"It is an easy opportunity to take advantage of",explain:"low-hanging fruit = easiest available opportunity"},
+      {casual:"we need to think outside the box",formal:"We need to think creatively and unconventionally",explain:"outside the box = beyond conventional thinking"},
+      {casual:"let's get our ducks in a row",formal:"Let's get organised before proceeding",explain:"ducks in a row = everything organised and in order"},
+      {casual:"I'll action that",formal:"I will deal with that",explain:"action = to do/deal with (verb — common office usage)"},
+      {casual:"can you sense-check this?",formal:"Can you review this for obvious errors?",explain:"sense-check = verify something makes logical sense"},
+      {casual:"it needs more bandwidth",formal:"It requires more resources/people",explain:"bandwidth = capacity (from IT — now general office use)"},
+      {casual:"let's workshop it",formal:"Let's develop it through group discussion",explain:"workshop = to work on collaboratively (verb)"},
+      {casual:"I need to park that for now",formal:"I need to set that aside temporarily",explain:"park = put aside temporarily to return to later"},
+      {casual:"it's on my radar",formal:"I am aware of it",explain:"on my radar = within my awareness (from military terminology)"},
+      {casual:"let's get aligned",formal:"Let's ensure we all agree on direction",explain:"aligned = in agreement and pointing the same direction"},
+      {casual:"I'm blocked on this",formal:"I cannot progress because of an obstacle",explain:"blocked = unable to move forward (IT/agile origin)"},
+      {casual:"let's do a quick sync",formal:"Let's have a brief meeting to share updates",explain:"sync = synchronise/align (from IT — now general)"},
+      {casual:"it's not scalable",formal:"It cannot be expanded efficiently",explain:"scalable = able to grow without proportional increase in cost"},
+      {casual:"we need to socialise this idea",formal:"We need to share this idea with others to get buy-in",explain:"socialise = introduce an idea to stakeholders (office jargon)"},
+      {casual:"who's the DRI on this?",formal:"Who is directly responsible for this?",explain:"DRI = directly responsible individual (Silicon Valley origin)"},
+      {casual:"let's unpack that",formal:"Let's analyse that in detail",explain:"unpack = examine the components of something in detail"},
+      {casual:"I'm heads down right now",formal:"I am deeply focused on work right now",explain:"heads down = working intensively without distraction"},
+      {casual:"she's in the weeds",formal:"She is dealing with too many details",explain:"in the weeds = overwhelmed by details / too busy (restaurant origin)"},
+      {casual:"let's not boil the ocean",formal:"Let's not try to do everything at once",explain:"boil the ocean = attempt something impossibly large"},
+      {casual:"what's the ask here?",formal:"What is being requested?",explain:"the ask = the request or requirement (noun)"},
+      {casual:"I need a hard stop at three",formal:"I must end this meeting at three o'clock",explain:"hard stop = absolute end time — cannot go over"},
+      {casual:"let's take it to the next level",formal:"Let's improve it significantly",explain:"take to the next level = make it substantially better"},
+      {casual:"it's above my pay grade",formal:"It is not my responsibility to decide",explain:"above my pay grade = beyond one's authority or responsibility"},
+      {casual:"she's a go-getter",formal:"She is very ambitious and proactive",explain:"go-getter = highly motivated, proactive person"},
+      {casual:"he's a safe pair of hands",formal:"He is reliable and trustworthy",explain:"safe pair of hands = reliable, trusted person"},
+      {casual:"let's get the ball rolling",formal:"Let's start the process",explain:"get the ball rolling = begin something"},
+      {casual:"what's our north star?",formal:"What is our primary guiding goal?",explain:"north star = the guiding principle or ultimate goal"},
+      {casual:"we need to drink our own champagne",formal:"We need to use our own products",explain:"drink your own champagne = use the product you create (tech origin)"},
+      {casual:"let's put a pin in it",formal:"Let's pause this discussion for now",explain:"put a pin in it = pause and return to later"},
+      {casual:"she's a force multiplier",formal:"Her presence significantly increases the team's effectiveness",explain:"force multiplier = something that greatly increases overall power"},
+      {casual:"it needs more rigour",formal:"It needs to be more thorough and precise",explain:"rigour = thoroughness and precision"},
+      {casual:"let's get granular",formal:"Let's look at the details specifically",explain:"granular = very detailed and specific"},
+      {casual:"I need to flag this",formal:"I need to draw attention to this",explain:"flag = highlight something important for others to notice"},
+      {casual:"can you give me a steer?",formal:"Can you give me guidance?",explain:"steer = guidance or direction (informal)"},
+      {casual:"it's a quick win",formal:"It is an easy achievement that delivers results quickly",explain:"quick win = fast, easy success that builds momentum"},
+      {casual:"we're playing catch-up",formal:"We are trying to recover lost ground",explain:"playing catch-up = trying to reach the same level as competitors"},
+      {casual:"this is a stretch goal",formal:"This is an ambitious target beyond normal expectations",explain:"stretch goal = a target that requires exceptional effort"},
+      {casual:"let's ideate on this",formal:"Let's generate ideas about this",explain:"ideate = generate ideas (common in creative/business contexts)"},
+      {casual:"I'll take a stab at it",formal:"I will attempt it",explain:"take a stab at = make an attempt at something"},
+      {casual:"she has strong opinions loosely held",formal:"She has clear views but is open to being persuaded",explain:"strong opinions loosely held = confident but flexible thinking"},
+      {casual:"we need to build the plane while flying it",formal:"We must develop the solution while implementing it",explain:"build the plane while flying = develop something while using it"},
+      {casual:"it's a moonshot",formal:"It is an extremely ambitious goal",explain:"moonshot = an extremely ambitious undertaking (NASA origin)"},
+      {casual:"I'm drinking from a firehose",formal:"I am receiving too much information at once",explain:"drinking from a firehose = overwhelmed by excessive information"},
+      {casual:"let's do a pre-mortem",formal:"Let's anticipate what could go wrong before we start",explain:"pre-mortem = imagining future failure to prevent it"},
+      {casual:"she's a unicorn",formal:"She is an exceptionally rare talent",explain:"unicorn = someone with an extremely rare combination of skills"},
+      {casual:"we need to de-risk this",formal:"We need to reduce the risk",explain:"de-risk = reduce the level of risk (common in business)"},
+      {casual:"it's a forcing function",formal:"It is something that compels a decision or action",explain:"forcing function = a constraint that forces a particular outcome"},
+      {casual:"let's run a sanity check",formal:"Let's verify this is reasonable",explain:"sanity check = quick verification that something makes sense"},
+      {casual:"I'm in back-to-back meetings",formal:"I have meetings with no break between them",explain:"back-to-back = consecutive without gaps"},
+      {casual:"she runs a tight ship",formal:"She manages her team very strictly and efficiently",explain:"runs a tight ship = manages with strict discipline (nautical origin)"},
+      {casual:"it needs a light touch",formal:"It requires careful, non-intrusive handling",explain:"light touch = gentle, minimal intervention approach"},
+      {casual:"let's not get into the weeds",formal:"Let's not get distracted by unnecessary details",explain:"weeds = excessive detail that distracts from the main point"},
+      {casual:"she's got skin in the game",formal:"She has a personal stake in the outcome",explain:"skin in the game = personal investment in the result"},
+      {casual:"we need a step change",formal:"We need a significant, transformative improvement",explain:"step change = a major improvement rather than gradual progress"},
+      {casual:"it's a vanity metric",formal:"It is a measurement that looks good but is meaningless",explain:"vanity metric = a figure that seems impressive but reveals nothing"},
+      {casual:"let's future-proof this",formal:"Let's design this to remain useful as things change",explain:"future-proof = design to remain relevant and functional"},
+      {casual:"she's always fire-fighting",formal:"She is always dealing with urgent crises",explain:"fire-fighting = constantly dealing with immediate problems rather than planning"},
+      {casual:"we need to productise this",formal:"We need to turn this into a proper product",explain:"productise = develop something into a fully formed product"},
+      {casual:"I'll take ownership",formal:"I will take full responsibility",explain:"take ownership = accept complete responsibility for something"},
+      {casual:"let's pressure-test the assumptions",formal:"Let's challenge our assumptions to see if they hold",explain:"pressure-test = challenge something rigorously to find weaknesses"},
+      {casual:"it's a heavy lift",formal:"It will require a lot of effort",explain:"heavy lift = a demanding task requiring significant effort"},
+      {casual:"who do we need in the room?",formal:"Who needs to be involved in this decision?",explain:"in the room = present at and involved in a discussion"},
+      {casual:"let's not lose the thread",formal:"Let's stay focused on the main point",explain:"lose the thread = lose focus on the main discussion"},
+      {casual:"she's really leaning into it",formal:"She is embracing it with full commitment",explain:"leaning into = embracing something enthusiastically"},
+      {casual:"we're at an inflection point",formal:"We are at a critical turning point",explain:"inflection point = a moment where significant change occurs"},
+      {casual:"I need to get my arms around it",formal:"I need to fully understand it",explain:"get my arms around = get a complete understanding of something"},
+      {casual:"let's crystallise the thinking",formal:"Let's clarify and finalise our ideas",explain:"crystallise = make clear and definite"},
+      {casual:"it's a binary choice",formal:"There are only two possible options",explain:"binary = having only two possible states or options"},
+      {casual:"she's not afraid to fail fast",formal:"She is willing to try things quickly and learn from failure",explain:"fail fast = try something quickly to discover if it works"},
+      {casual:"we need eyes on this",formal:"We need someone to review this",explain:"eyes on = attention and scrutiny from someone"},
+      {casual:"it's gaining traction",formal:"It is starting to get support and momentum",explain:"gaining traction = becoming more accepted or successful"},
+      {casual:"let's double-click on that",formal:"Let's look at that in more detail",explain:"double-click on = examine more closely (from computer usage)"},
+      {casual:"she's the go-to person",formal:"She is the most knowledgeable person to consult",explain:"go-to = the person to consult for a particular issue"},
+      {casual:"it's in good shape",formal:"It is in a good condition / progressing well",explain:"in good shape = in a satisfactory or positive condition"},
+      {casual:"we need clear air",formal:"We need time free of other pressures to think",explain:"clear air = time without distractions or competing demands"},
+      {casual:"let's eat our own cooking",formal:"Let's use our own product/process",explain:"eat our own cooking = use what we produce ourselves"},
+    ]
+  }
+};
+
+// ── NATIVE LANGUAGE NOTES (pre-written, all 16 languages) ────
+var CD_CONTEXT_NOTES = {
+  whatsapp: {
+    Telugu: "WhatsApp మరియు text messages లో natives చాలా shortforms వాడతారు. 'gonna', 'wanna', 'lemme', 'cya' లాంటివి everyday English లో సర్వసాధారణం. ఇవి lazy కాదు — ఇదే natural communication.",
+    Hindi: "WhatsApp और text messages में natives बहुत shortforms use करते हैं। 'gonna', 'wanna', 'lemme' जैसे शब्द everyday English में बहुत common हैं। ये lazy नहीं — यही natural communication है।",
+    Tamil: "WhatsApp மற்றும் text messages-ல் natives பல shortforms பயன்படுத்துகிறார்கள். 'gonna', 'wanna', 'lemme' போன்றவை everyday English-ல் மிகவும் இயல்பானவை.",
+    Arabic: "في WhatsApp والرسائل، يستخدم الناطقون الأصليون اختصارات كثيرة. كلمات مثل gonna وwanna وlemme شائعة جداً في الإنجليزية اليومية.",
+    Spanish: "En WhatsApp y mensajes de texto, los nativos usan muchas abreviaciones. Palabras como gonna, wanna y lemme son muy comunes en el inglés cotidiano.",
+    French: "Dans WhatsApp et les SMS, les locuteurs natifs utilisent beaucoup d'abréviations. Des mots comme gonna, wanna et lemme sont très courants.",
+    German: "In WhatsApp und SMS verwenden Muttersprachler viele Abkürzungen. Wörter wie gonna, wanna und lemme sind im Alltag sehr gebräuchlich.",
+    Portuguese: "No WhatsApp e mensagens de texto, os nativos usam muitas abreviações. Palavras como gonna, wanna e lemme são muito comuns.",
+    Indonesian: "Di WhatsApp dan pesan teks, penutur asli menggunakan banyak singkatan. Kata-kata seperti gonna, wanna, dan lemme sangat umum.",
+    Malay: "Dalam WhatsApp dan mesej teks, penutur asli menggunakan banyak singkatan. Perkataan seperti gonna, wanna dan lemme sangat biasa.",
+    Kannada: "WhatsApp ಮತ್ತು text messages ನಲ್ಲಿ natives ಅನೇಕ shortforms ಬಳಸುತ್ತಾರೆ. gonna, wanna, lemme ಇವು everyday English ನಲ್ಲಿ ಸಾಮಾನ್ಯ.",
+    Malayalam: "WhatsApp, text messages-ൽ natives ധാരാളം shortforms ഉപയോഗിക്കുന്നു. gonna, wanna, lemme ഇവ everyday English-ൽ വളരെ സ്വാഭാവികം.",
+    Swahili: "Katika WhatsApp na ujumbe wa maandishi, wasemaji wa asili hutumia vifupisho vingi. Maneno kama gonna, wanna na lemme ni ya kawaida sana.",
+    Bengali: "WhatsApp এবং text messages-এ natives অনেক shortforms ব্যবহার করেন। gonna, wanna, lemme এগুলো everyday English-এ খুবই সাধারণ।",
+    Urdu: "WhatsApp اور text messages میں natives بہت shortforms استعمال کرتے ہیں۔ gonna, wanna, lemme جیسے الفاظ everyday English میں بہت عام ہیں۔",
+    default: "In WhatsApp and texts, native speakers use many informal shortenings. Words like gonna, wanna and lemme are natural, everyday English — not lazy or wrong."
+  },
+  movies: {
+    Telugu: "Movies మరియు TV లో characters informal గా మాట్లాడతారు. Subtitles చదివేటప్పుడు 'ain't', 'coulda', 'shoulda', 'woulda' లాంటి words చాలా కనిపిస్తాయి. వాటి formal equivalents తెలిస్తే comprehension చాలా improve అవుతుంది.",
+    Hindi: "Movies और TV में characters informally बोलते हैं। Subtitles पढ़ते समय ain't, coulda, shoulda, woulda जैसे words बहुत दिखते हैं। उनके formal equivalents जानने से comprehension काफी improve होती है।",
+    Tamil: "Movies மற்றும் TV-ல் characters informal-ஆக பேசுகிறார்கள். ain't, coulda, shoulda, woulda போன்ற words-ஐ அவற்றின் formal equivalents-உடன் தெரிந்துகொண்டால் comprehension மிகவும் மேம்படும்.",
+    Arabic: "في الأفلام والتلفزيون يتحدث الشخصيات بشكل غير رسمي. معرفة المكافئات الرسمية لكلمات مثل ain't وcoulda وshouldا تحسن الفهم كثيراً.",
+    Spanish: "En películas y TV los personajes hablan informalmente. Conocer los equivalentes formales de ain't, coulda, shoulda mejora mucho la comprensión.",
+    French: "Dans les films et la TV, les personnages parlent de façon informelle. Connaître les équivalents formels de ain't, coulda, shoulda améliore beaucoup la compréhension.",
+    German: "In Filmen und TV sprechen Charaktere informell. Wenn man die formalen Entsprechungen von ain't, coulda, shoulda kennt, verbessert sich das Verstehen erheblich.",
+    Portuguese: "Em filmes e TV os personagens falam informalmente. Conhecer os equivalentes formais de ain't, coulda, shoulda melhora muito a compreensão.",
+    Indonesian: "Dalam film dan TV, karakter berbicara secara informal. Mengetahui padanan formal dari ain't, coulda, shoulda sangat meningkatkan pemahaman.",
+    Malay: "Dalam filem dan TV, watak bercakap secara tidak formal. Mengetahui padanan formal bagi ain't, coulda, shoulda sangat meningkatkan pemahaman.",
+    Kannada: "Movies ಮತ್ತು TV ನಲ್ಲಿ characters informally ಮಾತನಾಡುತ್ತಾರೆ. ain't, coulda, shoulda ಇವುಗಳ formal equivalents ತಿಳಿದರೆ comprehension ಸುಧಾರಿಸುತ್ತದೆ.",
+    Malayalam: "Movies, TV-ൽ characters informal-ആയി സംസാരിക്കുന്നു. ain't, coulda, shoulda ഇവയുടെ formal equivalents അറിഞ്ഞാൽ comprehension വളരെ മെച്ചപ്പെടും.",
+    Swahili: "Katika filamu na TV, wahusika wanazungumza kwa njia isiyo rasmi. Kujua visawa rasmi vya ain't, coulda, shoulda kunaboresha uelewa sana.",
+    Bengali: "Movies এবং TV-তে characters informal-ভাবে কথা বলেন। ain't, coulda, shoulda-র formal equivalents জানলে comprehension অনেক উন্নত হয়।",
+    Urdu: "Movies اور TV میں characters informal طریقے سے بولتے ہیں۔ ain't, coulda, shoulda کے formal equivalents جاننے سے comprehension بہت بہتر ہوتی ہے۔",
+    default: "In movies and TV, characters speak informally. Knowing the formal equivalents of ain't, coulda, shoulda, woulda dramatically improves subtitle comprehension."
+  },
+  songs: {
+    Telugu: "Song lyrics లో dropped g (runnin', walkin'), modal reductions (coulda, shoulda, woulda) మరియు contractions చాలా common. ఇవి grammar mistakes కాదు — ఇవే song writing లో standard style.",
+    Hindi: "Song lyrics में dropped g (runnin', walkin'), modal reductions (coulda, shoulda) और contractions बहुत common हैं। ये grammar mistakes नहीं — song writing में यही standard style है।",
+    Tamil: "Song lyrics-ல் dropped g (runnin'), modal reductions (coulda, shoulda) மற்றும் contractions மிகவும் common. இவை grammar mistakes இல்லை — இவையே standard style.",
+    Arabic: "في كلمات الأغاني، حذف الـ g والاختصارات المودالية شائعة جداً. هذه ليست أخطاء نحوية — إنها الأسلوب القياسي في كتابة الأغاني.",
+    Spanish: "En letras de canciones, la g final omitida y las reducciones modales son muy comunes. No son errores gramaticales — es el estilo estándar.",
+    French: "Dans les paroles de chansons, le g final supprimé et les réductions modales sont très courants. Ce ne sont pas des fautes — c'est le style standard.",
+    German: "In Songtexten sind das weggelassene G und Modalreduktionen sehr häufig. Das sind keine Grammatikfehler — das ist der Standardstil.",
+    Portuguese: "Em letras de músicas, o g final omitido e as reduções modais são muito comuns. Não são erros — é o estilo padrão.",
+    Indonesian: "Dalam lirik lagu, g akhir yang dihilangkan dan reduksi modal sangat umum. Ini bukan kesalahan tata bahasa — itu gaya standar.",
+    Malay: "Dalam lirik lagu, g akhir yang digugurkan dan pengurangan modal sangat biasa. Ini bukan kesilapan tatabahasa — ia gaya standard.",
+    Kannada: "Song lyrics ನಲ್ಲಿ dropped g ಮತ್ತು modal reductions ತುಂಬಾ common. ಇವು grammar mistakes ಅಲ್ಲ — ಇದು standard style.",
+    Malayalam: "Song lyrics-ൽ dropped g, modal reductions വളരെ common. ഇവ grammar mistakes അല്ല — ഇതാണ് standard style.",
+    Swahili: "Katika maneno ya nyimbo, g iliyoachwa mwishoni na kupunguzwa kwa modal ni kawaida sana. Hizi si makosa ya sarufi — hii ndiyo mtindo wa kawaida.",
+    Bengali: "Song lyrics-এ dropped g এবং modal reductions খুব সাধারণ। এগুলো grammar mistakes নয় — এটাই standard style।",
+    Urdu: "Song lyrics میں dropped g اور modal reductions بہت عام ہیں۔ یہ grammar mistakes نہیں — یہی standard style ہے۔",
+    default: "In song lyrics, dropping the final g (runnin', walkin') and modal reductions (coulda, shoulda) are standard writing style — not grammar errors."
+  },
+  pub: {
+    Telugu: "British informal English చాలా unique గా ఉంటుంది. 'gutted', 'chuffed', 'knackered', 'dodgy' లాంటి words British daily life లో సర్వసాధారణం. వీటిని తెలుసుకోవడం British culture మరియు conversations అర్థం చేసుకోవడంలో చాలా help అవుతుంది.",
+    Hindi: "British informal English बहुत unique होती है। gutted, chuffed, knackered, dodgy जैसे words British daily life में बहुत common हैं। इन्हें जानना British culture समझने में बहुत help करता है।",
+    Tamil: "British informal English மிகவும் unique-ஆக இருக்கும். gutted, chuffed, knackered, dodgy போன்ற words British daily life-ல் மிகவும் சாதாரணமானவை.",
+    Arabic: "الإنجليزية البريطانية غير الرسمية فريدة جداً. كلمات مثل gutted وchuffed وknackered وdodgy شائعة جداً في الحياة اليومية البريطانية.",
+    Spanish: "El inglés informal británico es muy único. Palabras como gutted, chuffed, knackered, dodgy son muy comunes en la vida cotidiana británica.",
+    French: "L'anglais informel britannique est très unique. Des mots comme gutted, chuffed, knackered, dodgy sont très courants dans la vie quotidienne britannique.",
+    German: "Britisches informelles Englisch ist sehr einzigartig. Wörter wie gutted, chuffed, knackered, dodgy sind im britischen Alltag sehr gebräuchlich.",
+    Portuguese: "O inglês informal britânico é muito único. Palavras como gutted, chuffed, knackered, dodgy são muito comuns na vida cotidiana britânica.",
+    Indonesian: "Bahasa Inggris informal Britania sangat unik. Kata-kata seperti gutted, chuffed, knackered, dodgy sangat umum dalam kehidupan sehari-hari Britania.",
+    Malay: "Bahasa Inggeris tidak formal British sangat unik. Perkataan seperti gutted, chuffed, knackered, dodgy sangat biasa dalam kehidupan harian British.",
+    Kannada: "British informal English ತುಂಬಾ unique. gutted, chuffed, knackered, dodgy ಇವು British daily life ನಲ್ಲಿ ತುಂಬಾ common.",
+    Malayalam: "British informal English വളരെ unique ആണ്. gutted, chuffed, knackered, dodgy ഇവ British daily life-ൽ വളരെ സാധാരണം.",
+    Swahili: "Kiingereza cha kawaida cha Uingereza ni cha kipekee sana. Maneno kama gutted, chuffed, knackered, dodgy ni ya kawaida sana.",
+    Bengali: "British informal English খুব unique। gutted, chuffed, knackered, dodgy এগুলো British daily life-এ খুব সাধারণ।",
+    Urdu: "British informal English بہت unique ہوتی ہے۔ gutted, chuffed, knackered, dodgy جیسے words British daily life میں بہت عام ہیں۔",
+    default: "British informal English is very distinctive. Words like gutted (very disappointed), chuffed (very pleased), knackered (exhausted) and dodgy (suspicious) are everyday British vocabulary."
+  },
+  social: {
+    Telugu: "Modern internet slang చాలా rapidly change అవుతుంది. 'no cap', 'slaps', 'hits different', 'understood the assignment' లాంటి expressions తెలిస్తే online English మరియు young people తో conversations చాలా easier అవుతాయి.",
+    Hindi: "Modern internet slang बहुत rapidly change होती है। no cap, slaps, hits different जैसे expressions जानने से online English और young people के साथ conversations आसान होती हैं।",
+    Tamil: "Modern internet slang மிகவும் வேகமாக மாறுகிறது. no cap, slaps, hits different போன்ற expressions தெரிந்தால் online conversations மிகவும் எளிதாகும்.",
+    Arabic: "تتغير مصطلحات الإنترنت الحديثة بسرعة كبيرة. معرفة تعبيرات مثل no cap وslaps وhits different تجعل المحادثات الإلكترونية أسهل بكثير.",
+    Spanish: "El argot moderno de internet cambia muy rápidamente. Conocer expresiones como no cap, slaps, hits different facilita mucho las conversaciones en línea.",
+    French: "L'argot internet moderne change très rapidement. Connaître des expressions comme no cap, slaps, hits different facilite beaucoup les conversations en ligne.",
+    German: "Moderner Internet-Slang ändert sich sehr schnell. Ausdrücke wie no cap, slaps, hits different zu kennen erleichtert Online-Gespräche erheblich.",
+    Portuguese: "O gíria moderna da internet muda muito rapidamente. Conhecer expressões como no cap, slaps, hits different facilita muito as conversas online.",
+    Indonesian: "Slang internet modern berubah sangat cepat. Mengetahui ekspresi seperti no cap, slaps, hits different sangat memudahkan percakapan online.",
+    Malay: "Slang internet moden berubah dengan sangat cepat. Mengetahui ungkapan seperti no cap, slaps, hits different sangat memudahkan perbualan dalam talian.",
+    Kannada: "Modern internet slang ತುಂಬಾ ವೇಗವಾಗಿ ಬದಲಾಗುತ್ತದೆ. no cap, slaps, hits different ಇವು ತಿಳಿದರೆ online conversations ಸುಲಭ.",
+    Malayalam: "Modern internet slang വളരെ വേഗം മാറുന്നു. no cap, slaps, hits different ഇവ അറിഞ്ഞാൽ online conversations എളുപ്പമാകും.",
+    Swahili: "Slang ya kisasa ya mtandao inabadilika haraka sana. Kujua maneno kama no cap, slaps, hits different kunafanya mazungumzo ya mtandaoni kuwa rahisi zaidi.",
+    Bengali: "Modern internet slang খুব দ্রুত পরিবর্তন হয়। no cap, slaps, hits different এগুলো জানলে online conversations অনেক সহজ হয়।",
+    Urdu: "Modern internet slang بہت تیزی سے بدلتی ہے۔ no cap, slaps, hits different جیسے expressions جاننے سے online conversations بہت آسان ہو جاتی ہیں۔",
+    default: "Modern internet slang changes rapidly. Knowing expressions like no cap (honestly), slaps (is excellent) and hits different (has special quality) makes online English much easier to follow."
+  },
+  office: {
+    Telugu: "Corporate English లో చాలా jargon ఉంటుంది. 'circle back', 'bandwidth', 'synergy', 'low-hanging fruit' లాంటి words professional settings లో తరచుగా వినిపిస్తాయి. వీటిని అర్థం చేసుకోవడం career growth కి చాలా important.",
+    Hindi: "Corporate English में बहुत jargon होता है। circle back, bandwidth, synergy, low-hanging fruit जैसे words professional settings में अक्सर सुनाई देते हैं। इन्हें समझना career growth के लिए बहुत important है।",
+    Tamil: "Corporate English-ல் நிறைய jargon இருக்கும். circle back, bandwidth, synergy போன்ற words professional settings-ல் அடிக்கடி கேட்கப்படும். இவற்றை புரிந்துகொள்வது career growth-க்கு மிக முக்கியம்.",
+    Arabic: "في الإنجليزية المؤسسية، يوجد الكثير من المصطلحات التقنية. كلمات مثل circle back وbandwidth وlow-hanging fruit تُسمع كثيراً في البيئات المهنية.",
+    Spanish: "En el inglés corporativo hay mucho jargon. Palabras como circle back, bandwidth, low-hanging fruit se escuchan frecuentemente en entornos profesionales.",
+    French: "Dans l'anglais d'entreprise, il y a beaucoup de jargon. Des mots comme circle back, bandwidth, low-hanging fruit s'entendent fréquemment dans les milieux professionnels.",
+    German: "Im Unternehmens-Englisch gibt es viel Jargon. Wörter wie circle back, bandwidth, low-hanging fruit hört man häufig im professionellen Umfeld.",
+    Portuguese: "No inglês corporativo há muito jargão. Palavras como circle back, bandwidth, low-hanging fruit são frequentes em ambientes profissionais.",
+    Indonesian: "Dalam bahasa Inggris korporat, banyak jargon. Kata-kata seperti circle back, bandwidth, low-hanging fruit sering terdengar di lingkungan profesional.",
+    Malay: "Dalam bahasa Inggeris korporat, terdapat banyak jargon. Perkataan seperti circle back, bandwidth, low-hanging fruit kerap didengari dalam persekitaran profesional.",
+    Kannada: "Corporate English ನಲ್ಲಿ ಬಹಳ jargon ಇದೆ. circle back, bandwidth, low-hanging fruit ಇವು professional settings ನಲ್ಲಿ ಹೆಚ್ಚು ಕೇಳಿ ಬರುತ್ತವೆ.",
+    Malayalam: "Corporate English-ൽ ധാരാളം jargon ഉണ്ട്. circle back, bandwidth, low-hanging fruit ഇവ professional settings-ൽ അടിക്കടി കേൾക്കും.",
+    Swahili: "Katika Kiingereza cha shirika, kuna jargon nyingi. Maneno kama circle back, bandwidth, low-hanging fruit yanasikika mara kwa mara.",
+    Bengali: "Corporate English-এ অনেক jargon আছে। circle back, bandwidth, low-hanging fruit এগুলো professional settings-এ প্রায়ই শোনা যায়।",
+    Urdu: "Corporate English میں بہت jargon ہوتا ہے۔ circle back, bandwidth, low-hanging fruit جیسے words professional settings میں اکثر سنائی دیتے ہیں۔",
+    default: "Corporate English is full of jargon. Phrases like circle back, bandwidth, low-hanging fruit and touch base are heard constantly in professional settings."
+  }
+};
+
+// ── GET CONTEXT NOTE IN VISITOR'S LANGUAGE ───────────────────
+function CD_getNote(contextKey) {
+  var notes = CD_CONTEXT_NOTES[contextKey];
+  if(!notes) return '';
+  return notes[lang] || notes.default || '';
+}
+
+// ── GAME ENGINE ───────────────────────────────────────────────
+var CD_State = {
+  context: null,
+  queue: [],
+  score: 0,
+  total: 0,
+  streak: 0,
+  bestStreak: 0,
+  sessionSeen: []
+};
+
+function CD_start(contextKey) {
+  var ctx = CD_DATA[contextKey];
+  if(!ctx) return;
+
+  // Load seen phrases
+  var seenKey = 'ne_cd_seen_' + contextKey;
+  var seen = [];
+  try { seen = JSON.parse(localStorage.getItem(seenKey)||'[]'); } catch(e){}
+
+  // Get unseen phrases
+  var all = ctx.phrases.slice();
+  var unseen = all.filter(function(p,i){ return seen.indexOf(i) === -1; });
+
+  if(unseen.length < 5) {
+    try { localStorage.removeItem(seenKey); } catch(e){}
+    unseen = all.slice();
+    seen = [];
+  }
+
+  // Shuffle and take 8 per session
+  unseen.sort(function(){ return Math.random() - 0.5; });
+  CD_State.context = contextKey;
+  CD_State.queue = unseen.slice(0, 8);
+  CD_State.score = 0;
+  CD_State.total = 0;
+  CD_State.streak = 0;
+  CD_State.bestStreak = 0;
+  CD_State.sessionSeen = seen;
+
+  CD_renderQuestion();
+}
+
+function CD_renderQuestion() {
+  if(CD_State.queue.length === 0) {
+    CD_renderResults();
+    return;
+  }
+
+  var phrase = CD_State.queue.shift();
+  var ctx = CD_DATA[CD_State.context];
+  var container = document.getElementById('cdGame');
+  if(!container) return;
+
+  // Progress
+  var done = CD_State.total;
+  var total = done + CD_State.queue.length + 1;
+
+  // Generate wrong options (3 wrong formal versions from other phrases)
+  var allPhrases = CD_DATA[CD_State.context].phrases;
+  var wrongs = allPhrases
+    .filter(function(p){ return p.formal !== phrase.formal; })
+    .sort(function(){ return Math.random() - 0.5; })
+    .slice(0, 3)
+    .map(function(p){ return p.formal; });
+
+  var options = [phrase.formal].concat(wrongs).sort(function(){ return Math.random() - 0.5; });
+
+  var h = '';
+
+  // Header
+  h += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">';
+  h += '<span style="padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800;background:'+ctx.color+'20;color:'+ctx.color+';border:1px solid '+ctx.color+'40">'+ctx.icon+' '+ctx.name+'</span>';
+  h += '<div style="display:flex;gap:10px"><span style="font-size:11px;color:rgba(255,255,255,0.45)">'+done+'/'+total+'</span><span style="font-size:11px;font-weight:700;color:'+ctx.color+'">🔥 '+CD_State.streak+'</span></div>';
+  h += '</div>';
+
+  // Progress bar
+  h += '<div style="height:3px;background:rgba(255,255,255,0.07);border-radius:3px;margin-bottom:14px"><div style="height:100%;width:'+Math.round((done/total)*100)+'%;background:'+ctx.color+';border-radius:3px;transition:width .4s"></div></div>';
+
+  // Question
+  h += '<div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,0.40);margin-bottom:8px">A native said:</div>';
+  h += '<div style="padding:14px 16px;background:rgba(255,255,255,0.06);border:1.5px solid '+ctx.color+'40;border-radius:13px;margin-bottom:12px">';
+  h += '<div style="font-size:18px;font-weight:700;color:'+ctx.color+';margin-bottom:4px">"'+phrase.casual+'"</div>';
+  h += '</div>';
+
+  h += '<div style="font-size:12px;font-weight:700;color:rgba(255,255,255,0.55);margin-bottom:8px">What does this mean in formal English?</div>';
+
+  // Options
+  h += '<div style="display:flex;flex-direction:column;gap:7px;margin-bottom:8px">';
+  options.forEach(function(opt) {
+    h += '<button onclick="CD_answer(this,\''+opt.replace(/'/g,"\\'").replace(/"/g,'&quot;')+'\',\''+phrase.formal.replace(/'/g,"\\'").replace(/"/g,'&quot;')+'\')" ';
+    h += 'style="text-align:left;padding:11px 14px;border-radius:11px;border:1.5px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.85);font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;transition:all .15s" ';
+    h += 'onmouseover="this.style.borderColor=\''+ctx.color+'\';this.style.background=\''+ctx.color+'12\'" ';
+    h += 'onmouseout="if(!this.dataset.done){this.style.borderColor=\'rgba(255,255,255,0.12)\';this.style.background=\'rgba(255,255,255,0.04)\'}">';
+    h += opt + '</button>';
+  });
+  h += '</div>';
+  h += '<div id="cdFeedback"></div>';
+
+  container.innerHTML = h;
+  CD_State.currentPhrase = phrase;
+}
+
+function CD_answer(btn, selected, correct) {
+  if(btn.dataset.done) return;
+
+  var isCorrect = selected === correct;
+  CD_State.total++;
+
+  if(isCorrect) {
+    CD_State.score++;
+    CD_State.streak++;
+    CD_State.bestStreak = Math.max(CD_State.bestStreak, CD_State.streak);
+  } else {
+    CD_State.streak = 0;
+  }
+
+  // Style all buttons
+  var allBtns = btn.parentElement.querySelectorAll('button');
+  allBtns.forEach(function(b) {
+    b.dataset.done = '1';
+    b.style.cursor = 'default';
+    b.onmouseover = null; b.onmouseout = null;
+    if(b.textContent.trim() === correct) {
+      b.style.background = 'rgba(74,222,128,0.15)';
+      b.style.borderColor = '#4ADE80';
+      b.style.color = '#4ADE80';
+    } else if(b === btn && !isCorrect) {
+      b.style.background = 'rgba(255,107,107,0.15)';
+      b.style.borderColor = '#FF6B6B';
+      b.style.color = '#FF6B6B';
+    }
+  });
+
+  var phrase = CD_State.currentPhrase;
+  var ctx = CD_DATA[CD_State.context];
+  var nativeNote = CD_getNote(CD_State.context);
+  var feedback = document.getElementById('cdFeedback');
+  if(!feedback) return;
+
+  feedback.innerHTML =
+    '<div style="margin-top:8px;padding:12px 14px;border-radius:12px;background:'+(isCorrect?'rgba(74,222,128,0.08)':'rgba(255,107,107,0.08)')+';border:1.5px solid '+(isCorrect?'rgba(74,222,128,0.25)':'rgba(255,107,107,0.25)')+'">' +
+    '<div style="font-size:13px;font-weight:800;color:'+(isCorrect?'#4ADE80':'#FF6B6B')+';margin-bottom:6px">'+(isCorrect?'✅ Correct! +1':'❌ Not quite')+(CD_State.streak>2?' &nbsp;🔥 '+CD_State.streak+' in a row!':'')+'</div>' +
+    '<div style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.85);margin-bottom:6px">"'+phrase.casual+'" = "'+phrase.formal+'"</div>' +
+    '<div style="font-size:12px;color:rgba(255,255,255,0.65);margin-bottom:7px;line-height:1.65;padding:7px 10px;background:rgba(255,255,255,0.04);border-radius:8px">📌 '+phrase.explain+'</div>' +
+    (nativeNote ? '<div style="font-size:11.5px;color:rgba(245,200,66,0.80);padding:7px 10px;background:rgba(245,200,66,0.07);border-left:2px solid rgba(245,200,66,0.30);border-radius:0 7px 7px 0;line-height:1.60">🌐 <strong>'+lang+':</strong> '+nativeNote+'</div>' : '') +
+    '</div>' +
+    '<button onclick="CD_renderQuestion()" style="width:100%;margin-top:10px;padding:10px;border-radius:10px;border:none;background:'+ctx.color+';color:#05070F;font-family:inherit;font-size:13px;font-weight:800;cursor:pointer">'+(CD_State.queue.length===0?'See Results →':'Next phrase →')+'</button>';
+}
+
+function CD_renderResults() {
+  var pct = CD_State.total > 0 ? Math.round((CD_State.score/CD_State.total)*100) : 0;
+  var ctx = CD_DATA[CD_State.context];
+  var container = document.getElementById('cdGame');
+  if(!container) return;
+
+  // Save score
+  try {
+    var hist = JSON.parse(localStorage.getItem('ne_cd_hist_'+CD_State.context)||'[]');
+    hist.push({date:new Date().toISOString().split('T')[0],score:pct});
+    if(hist.length>30)hist.shift();
+    localStorage.setItem('ne_cd_hist_'+CD_State.context,JSON.stringify(hist));
+  } catch(e){}
+
+  if(typeof NE_track==='function') NE_track('connected',{uses:1,score:pct});
+
+  var grade = pct>=90?'🏆 Native Speaker Level!':pct>=70?'⭐ Almost There!':pct>=50?'📈 Getting Fluent!':'💪 Keep Practising!';
+
+  container.innerHTML =
+    '<div style="text-align:center;padding:16px 0 12px">' +
+    '<div style="font-size:36px;margin-bottom:8px">'+ctx.icon+'</div>' +
+    '<div style="font-size:20px;font-weight:800;color:'+ctx.color+';margin-bottom:4px">'+pct+'%</div>' +
+    '<div style="font-size:13px;color:rgba(255,255,255,0.55);margin-bottom:4px">'+CD_State.score+'/'+CD_State.total+' · Best streak: '+CD_State.bestStreak+'</div>' +
+    '<div style="font-size:12.5px;color:rgba(255,255,255,0.70)">'+grade+'</div>' +
+    '</div>' +
+    '<div style="padding:12px 14px;background:rgba(245,200,66,0.07);border:1.5px solid rgba(245,200,66,0.22);border-radius:12px;margin-bottom:12px">' +
+    '<div style="font-size:11px;font-weight:800;text-transform:uppercase;color:rgba(245,200,66,0.70);margin-bottom:6px">🚀 More coming in Premium</div>' +
+    '<div style="font-size:12px;color:rgba(255,255,255,0.60);line-height:1.65;margin-bottom:8px">' +
+    '• <strong style="color:rgba(255,255,255,0.80)">1,000+ more phrases</strong> across regional accents and specialist contexts<br>' +
+    '• <strong style="color:rgba(255,255,255,0.80)">Audio examples</strong> — hear the exact pronunciation natives use<br>' +
+    '• <strong style="color:rgba(255,255,255,0.80)">Industry packs</strong> — tech, medical, legal, academic English<br>' +
+    '• <strong style="color:rgba(255,255,255,0.80)">Your phrase book</strong> — save phrases you want to remember' +
+    '</div>' +
+    '<button onclick="openWaitlist()" style="width:100%;padding:8px;border-radius:8px;border:1px solid rgba(245,200,66,0.30);background:rgba(245,200,66,0.10);color:rgba(245,200,66,0.90);font-family:inherit;font-size:12px;font-weight:700;cursor:pointer">Register free for early access →</button>' +
+    '</div>' +
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">' +
+    '<button onclick="CD_start(\''+CD_State.context+'\')" style="padding:10px;border-radius:10px;border:none;background:'+ctx.color+';color:#05070F;font-family:inherit;font-size:13px;font-weight:800;cursor:pointer">🔄 Play again</button>' +
+    '<button onclick="CD_showMenu()" style="padding:10px;border-radius:10px;border:1.5px solid rgba(255,255,255,0.15);background:transparent;color:rgba(255,255,255,0.70);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer">📚 Other contexts</button>' +
+    '</div>';
+}
+
+function CD_showMenu() {
+  var container = document.getElementById('cdGame');
+  if(!container) return;
+
+  var h = '<div style="font-size:11px;font-weight:800;text-transform:uppercase;color:rgba(255,255,255,0.40);letter-spacing:.07em;margin-bottom:12px">Choose your context — 500 real native phrases total</div>';
+  h += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,200px),1fr));gap:8px;margin-bottom:12px">';
+
+  Object.keys(CD_DATA).forEach(function(key) {
+    var ctx = CD_DATA[key];
+    var bestScore = null;
+    try {
+      var hist = JSON.parse(localStorage.getItem('ne_cd_hist_'+key)||'[]');
+      if(hist.length>0) bestScore = Math.max.apply(null,hist.map(function(h){return h.score;}));
+    } catch(e){}
+
+    h += '<button onclick="CD_start(\''+key+'\')" style="text-align:left;padding:12px 14px;border-radius:12px;border:1.5px solid '+ctx.color+'40;background:'+ctx.color+'08;cursor:pointer;font-family:inherit" onmouseover="this.style.transform=\'translateY(-2px)\'" onmouseout="this.style.transform=\'translateY(0)\'">';
+    h += '<div style="font-size:20px;margin-bottom:5px">'+ctx.icon+'</div>';
+    h += '<div style="font-size:12.5px;font-weight:800;color:'+ctx.color+';margin-bottom:3px">'+ctx.name+'</div>';
+    h += '<div style="font-size:11px;color:rgba(255,255,255,0.45);margin-bottom:6px">'+ctx.phrases.length+' phrases · '+ctx.desc+'</div>';
+    h += (bestScore!==null?'<span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;background:'+ctx.color+'20;color:'+ctx.color+';border:1px solid '+ctx.color+'40">Best: '+bestScore+'%</span>':'<span style="font-size:10px;color:rgba(255,255,255,0.35)">Not tried yet</span>');
+    h += '</button>';
+  });
+  h += '</div>';
+
+  // Total count and premium teaser
+  var total = Object.values(CD_DATA).reduce(function(s,c){return s+c.phrases.length;},0);
+  h += '<div style="padding:10px 13px;background:rgba(245,200,66,0.06);border:1px solid rgba(245,200,66,0.18);border-radius:10px;font-size:12px;color:rgba(255,255,255,0.50);line-height:1.65">';
+  h += '📚 <strong style="color:rgba(255,255,255,0.75)">'+total+' real phrases free</strong> across 6 contexts. ';
+  h += '🚀 <strong style="color:rgba(245,200,66,0.80)">1,000+ more</strong> with audio, regional accents and industry packs — <span onclick="openWaitlist()" style="color:var(--gold);font-weight:700;cursor:pointer;text-decoration:underline">coming in Premium →</span>';
+  h += '</div>';
+
+  container.innerHTML = h;
+}
+
+function CD_init() {
+  var container = document.getElementById('cdGame');
+  if(!container) return;
+  CD_showMenu();
+}
 
 </script>
 </body>

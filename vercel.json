@@ -6,6 +6,19 @@
       "use": "@vercel/static"
     }
   ],
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.nativeenglish.fyi"
+        }
+      ],
+      "destination": "https://nativeenglish.fyi/:path*",
+      "permanent": true
+    }
+  ],
   "routes": [
     {
       "src": "/(.*)",

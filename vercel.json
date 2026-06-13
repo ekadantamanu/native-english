@@ -1,22 +1,13 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "**/*",
-      "use": "@vercel/static"
-    }
-  ],
-  "redirects": [
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.nativeenglish.fyi"
-        }
-      ],
-      "destination": "https://nativeenglish.fyi/:path*",
-      "permanent": true
-    }
-  ]
+  "builds": [{"src": "**/*", "use": "@vercel/static"}],
+  "redirects": [{
+    "source": "/:path*",
+    "has": [{
+      "type": "host",
+      "value": "www.nativeenglish.fyi"
+    }],
+    "destination": "https://nativeenglish.fyi/:path*",
+    "permanent": true
+  }]
 }

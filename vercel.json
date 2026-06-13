@@ -18,11 +18,5 @@
       "destination": "https://nativeenglish.fyi/:path*",
       "permanent": true
     }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
-    }
   ]
 }
